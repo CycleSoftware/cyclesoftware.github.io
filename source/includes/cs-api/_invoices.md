@@ -33,5 +33,33 @@ Get a list of unbooked sales transactions / invoices.
 
 > Response
 ```json
-{}
+{
+  "data": [
+    {
+      "created_at": "2009-10-21 00:00:00",
+      "customer_id": 0,
+      "modified_at": "2016-06-27 09:12:39",
+      "sales_order_id": null,
+      "sales_transaction_number": 20171235,
+      "store_id": 1,
+      "total_amount_cents": 12500,
+      "transaction_date": "2009-10-21",
+      "unpayed_amount_cents": 12500
+    },
+    {
+      "created_at": "2009-10-21 00:00:00",
+      "customer_id": 0,
+      "modified_at": "2016-06-27 09:12:39",
+      "sales_order_id": null,
+      "sales_transaction_number": 20001,
+      "store_id": 1,
+      "total_amount_cents": 12500,
+      "transaction_date": "2009-10-21",
+      "unpayed_amount_cents": 12500
+    }
+  ],
+  "pagination": {
+    "next_offset": null
+  }
+}
 ```

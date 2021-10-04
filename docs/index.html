@@ -506,50 +506,36 @@
 <h2 id='saveorder'>SaveOrder</h2>
 <p>Creates a new order in CycleSoftware</p>
 
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>Authentication.dealer_id</code></td>
-<td>Leave 0 for default store_id based on authentication   username and password. If &gt; 0 the value will be used to identify the store   within the account</td>
-</tr>
-<tr>
-<td><code>Order.order_vat_country_code</code></td>
-<td>Apply the VAT rates of this country code. CS will only   apply the VAT rates if enabled in account settings and if   order_ship_to_customer is true. If the VAT rates are not applied or the same   as the country of the account, it will default back to null in the   OrderStatusResponse</td>
-</tr>
-<tr>
-<td><code>Order.order_payment_method_description</code></td>
-<td>Use “psp” for payments using a Payment service Provider   (e.g. iDEAL, Bancontact etc.)</td>
-</tr>
-<tr>
-<td><code>OrderItems.OrderItem.order_item_is_bicycle</code></td>
-<td>Indicate whether this order item is a sold bicycle (0 or   1)</td>
-</tr>
-<tr>
-<td><code>OrderItems.OrderItem.order_item_supplier_order_mode</code></td>
-<td>0: no supplier order or reservation on objects<br/>1: automatically create supplier order for this sales   order<br/>2: automatically reserve available stock objects based   on the object_id in order_item_object_id or order_item_barcode field.</td>
-</tr>
-<tr>
-<td><code>OrderItems.OrderItem.order_item_supplier_id</code></td>
-<td>When order_item_supplier_mode = 1, make the supplier   order for this supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/</td>
-</tr>
-<tr>
-<td><code>OrderItems.OrderItem.order_item_object_id</code></td>
-<td>Reserve this specific object for this order item</td>
-</tr>
-<tr>
-<td><code>OrderItems.OrderItem.order_item_invoice_customer_id</code></td>
-<td>If supplied with integer value &gt; 0 this order item   will be invoiced to this customer id (SplitOrder) All the customer info in   the SaveOrder should be the “rider” or “consumer”</td>
-</tr>
-</tbody></table>
+<p>| Field | Description |
+| <code>Authentication.dealer_id</code> | Leave 0 for default store_id based on authentication username and password. If &gt; 0 the value will be used to identify the store within the account |
+| <code>Order.order_vat_country_code</code> | Apply the VAT rates of this country code. CS will only apply the VAT rates if enabled
+in account settings and if order_ship_to_customer is true. If the VAT rates are not applied or the same as the country
+of the account, it will default back to null in the OrderStatusResponse
+<code>Order.order_payment_method_description</code> | Use “psp” for payments using a Payment service Provider   (e.g. iDEAL,
+Bancontact etc.)
+<code>OrderItems.OrderItem.order_item_is_bicycle</code> | Indicate whether this order item is a sold bicycle (0 or 1)
+<code>OrderItems.OrderItem.order_item_supplier_order_mode</code> | 0: no supplier order or reservation on objects<br/>1:
+automatically create supplier order for this sales order<br/>2: automatically reserve available stock objects based on
+the object_id in order_item_object_id or order_item_barcode field.
+<code>OrderItems.OrderItem.order_item_supplier_id</code> | When order_item_supplier_mode = 1, make the supplier order for this
+supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/
+<code>OrderItems.OrderItem.order_item_object_id</code> | Reserve this specific object for this order item
+<code>OrderItems.OrderItem.order_item_invoice_customer_id</code> | If supplied with integer value &gt; 0 this order item will be
+invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder should be the “rider” or “consumer”</p>
 
 <blockquote>
-<p>Request</p>
+<p>HTTP Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_8/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">text/xml; charset=utf-8</span>
+<span class="na">Yser-agent</span><span class="p">:</span> <span class="s">SoapClient</span>
+<span class="na">Soapaction</span><span class="p">:</span> <span class="s">"SaveOrder"</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">4614</span>
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
     <span class="nt">&lt;ns1:SaveOrderRequest&gt;</span>
@@ -630,11 +616,13 @@
     <span class="nt">&lt;/ns1:SaveOrderRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
-</code></pre></div>
-<blockquote>
-<p>Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+
+HTTP/1.1 200 
+Content-type: application/xml; charset=utf-8
+Content-length: 2083
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
     <span class="nt">&lt;SaveOrderResponse&gt;</span>
@@ -681,7 +669,16 @@
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_8/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">text/xml; charset=utf-8</span>
+<span class="na">Yser-agent</span><span class="p">:</span> <span class="s">SoapClient</span>
+<span class="na">Soapaction</span><span class="p">:</span> <span class="s">"UpdateOrder"</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">846</span>
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
     <span class="nt">&lt;ns1:UpdateOrderRequest&gt;</span>
@@ -706,11 +703,13 @@
     <span class="nt">&lt;/ns1:UpdateOrderRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
-</code></pre></div>
-<blockquote>
-<p>Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+
+HTTP/1.1 200 
+Content-type: application/xml; charset=utf-8
+Content-length: 2446
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
     <span class="nt">&lt;ns1:OrderStatusResponse&gt;</span>
@@ -761,7 +760,16 @@
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_8/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">text/xml; charset=utf-8</span>
+<span class="na">Yser-agent</span><span class="p">:</span> <span class="s">SoapClient</span>
+<span class="na">Soapaction</span><span class="p">:</span> <span class="s">"AddOrderItems"</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1373</span>
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
     <span class="nt">&lt;ns1:AddOrderItemsRequest&gt;</span>
@@ -791,11 +799,13 @@
     <span class="nt">&lt;/ns1:AddOrderItemsRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
-</code></pre></div>
-<blockquote>
-<p>Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+
+HTTP/1.1 200 
+Content-type: application/xml; charset=utf-8
+Content-length: 2464
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
     <span class="nt">&lt;ns1:OrderStatusResponse&gt;</span>
@@ -868,7 +878,16 @@
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_8/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">text/xml; charset=utf-8</span>
+<span class="na">Yser-agent</span><span class="p">:</span> <span class="s">SoapClient</span>
+<span class="na">Soapaction</span><span class="p">:</span> <span class="s">"GetInvoiceDocument"</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">514</span>
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
     <span class="nt">&lt;ns1:GetInvoiceDocumentRequest&gt;</span>
@@ -881,11 +900,12 @@
     <span class="nt">&lt;/ns1:GetInvoiceDocumentRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
-</code></pre></div>
-<blockquote>
-<p>Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+HTTP/1.1 200
+Content-type: application/xml; charset=utf-8
+Content-length: 396
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
     <span class="nt">&lt;GetInvoiceDocumentResponse&gt;</span>
@@ -912,7 +932,16 @@
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_8/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">text/xml; charset=utf-8</span>
+<span class="na">Yser-agent</span><span class="p">:</span> <span class="s">SoapClient</span>
+<span class="na">Soapaction</span><span class="p">:</span> <span class="s">"CreateOrderUpdateCustomer"</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1648</span>
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;SOAP-ENV:Envelope</span>
   <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span>
   <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/"</span><span class="nt">&gt;</span>
@@ -947,11 +976,13 @@
     <span class="nt">&lt;/ns1:CreateOrUpdateCustomerRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
-</code></pre></div>
-<blockquote>
-<p>Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+
+
+HTTP/1.1 200
+Content-type: application/xml; charset=utf-8
+Content-length: 1448
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;SOAP-ENV:Envelope</span>
   <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span>
   <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/"</span><span class="nt">&gt;</span>
@@ -993,20 +1024,6 @@
 <h2 id='unbooked-invoices'>Unbooked invoices</h2>
 <p>Get a list of unbooked sales transactions / invoices.</p>
 
-<table><thead>
-<tr>
-<th>GET parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>offset</code></td>
-<td>integer</td>
-<td>Pagination offset. <i class="label label-info">optional</i></td>
-</tr>
-</tbody></table>
-<h3 id='http-request-examples'>HTTP request examples</h3>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
@@ -1021,10 +1038,38 @@
     </div>
 </div>
 
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>offset</code></td>
+<td>integer</td>
+<td>Pagination offset. <i class="label label-info">optional</i></td>
+</tr>
+</tbody></table>
+
 <blockquote>
-<p>Response</p>
+<p>HTTP request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/invoices/unbooked.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response </p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">722</span>
+
+<span class="p">{</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-21 00:00:00"</span><span class="p">,</span><span class="w">

@@ -28,22 +28,38 @@ The latest definition of the WSDL specification can be found at:
 </div>
 
 ## SaveOrder ##
+
 Creates a new order in CycleSoftware
 
-Field | Description
--- | --
-`Authentication.dealer_id` | Leave 0 for default store_id based on authentication   username and password. If > 0 the value will be used to identify the store   within the account
-`Order.order_vat_country_code` | Apply the VAT rates of this country code. CS will only   apply the VAT rates if enabled in account settings and if   order_ship_to_customer is true. If the VAT rates are not applied or the same   as the country of the account, it will default back to null in the   OrderStatusResponse
-`Order.order_payment_method_description` | Use “psp” for payments using a Payment service Provider   (e.g. iDEAL, Bancontact etc.)
-`OrderItems.OrderItem.order_item_is_bicycle` | Indicate whether this order item is a sold bicycle (0 or   1)
-`OrderItems.OrderItem.order_item_supplier_order_mode` | 0: no supplier order or reservation on objects<br/>1: automatically create supplier order for this sales   order<br/>2: automatically reserve available stock objects based   on the object_id in order_item_object_id or order_item_barcode field.
-`OrderItems.OrderItem.order_item_supplier_id` | When order_item_supplier_mode = 1, make the supplier   order for this supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/
+| Field | Description |
+| `Authentication.dealer_id` | Leave 0 for default store_id based on authentication username and password. If > 0 the value will be used to identify the store within the account |
+| `Order.order_vat_country_code` | Apply the VAT rates of this country code. CS will only apply the VAT rates if enabled
+in account settings and if order_ship_to_customer is true. If the VAT rates are not applied or the same as the country
+of the account, it will default back to null in the OrderStatusResponse
+`Order.order_payment_method_description` | Use “psp” for payments using a Payment service Provider   (e.g. iDEAL,
+Bancontact etc.)
+`OrderItems.OrderItem.order_item_is_bicycle` | Indicate whether this order item is a sold bicycle (0 or 1)
+`OrderItems.OrderItem.order_item_supplier_order_mode` | 0: no supplier order or reservation on objects<br/>1:
+automatically create supplier order for this sales order<br/>2: automatically reserve available stock objects based on
+the object_id in order_item_object_id or order_item_barcode field.
+`OrderItems.OrderItem.order_item_supplier_id` | When order_item_supplier_mode = 1, make the supplier order for this
+supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/
 `OrderItems.OrderItem.order_item_object_id` | Reserve this specific object for this order item
-`OrderItems.OrderItem.order_item_invoice_customer_id` | If supplied with integer value > 0 this order item   will be invoiced to this customer id (SplitOrder) All the customer info in   the SaveOrder should be the “rider” or “consumer”
+`OrderItems.OrderItem.order_item_invoice_customer_id` | If supplied with integer value > 0 this order item will be
+invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder should be the “rider” or “consumer”
 
-> Request
+> HTTP Request
 
-```html
+```http
+POST /app/cs/api/ecommerce/soap_2_8/ HTTP/1.1
+Host: api.cyclesoftware.nl
+Accept-encoding: gzip,deflate
+Accept: text/xml
+Content-type: text/xml; charset=utf-8
+Yser-agent: SoapClient
+Soapaction: "SaveOrder"
+Content-length: 4614
+
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/">
   <SOAP-ENV:Body>
@@ -125,11 +141,12 @@ Field | Description
     </ns1:SaveOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
-```
 
-> Response
 
-```html
+HTTP/1.1 200 
+Content-type: application/xml; charset=utf-8
+Content-length: 2083
+
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
   <SOAP-ENV:Body>
@@ -179,7 +196,16 @@ Field | Description
 
 > Request
 
-```html
+```http
+POST /app/cs/api/ecommerce/soap_2_8/ HTTP/1.1
+Host: api.cyclesoftware.nl
+Accept-encoding: gzip,deflate
+Accept: text/xml
+Content-type: text/xml; charset=utf-8
+Yser-agent: SoapClient
+Soapaction: "UpdateOrder"
+Content-length: 846
+
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/">
   <SOAP-ENV:Body>
@@ -205,11 +231,12 @@ Field | Description
     </ns1:UpdateOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
-```
 
-> Response
 
-```html
+HTTP/1.1 200 
+Content-type: application/xml; charset=utf-8
+Content-length: 2446
+
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/">
   <SOAP-ENV:Body>
@@ -263,7 +290,16 @@ Add new order items to an existing order
 
 > Request
 
-```html
+```http
+POST /app/cs/api/ecommerce/soap_2_8/ HTTP/1.1
+Host: api.cyclesoftware.nl
+Accept-encoding: gzip,deflate
+Accept: text/xml
+Content-type: text/xml; charset=utf-8
+Yser-agent: SoapClient
+Soapaction: "AddOrderItems"
+Content-length: 1373
+
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/">
   <SOAP-ENV:Body>
@@ -294,11 +330,12 @@ Add new order items to an existing order
     </ns1:AddOrderItemsRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
-```
 
-> Response
 
-```html
+HTTP/1.1 200 
+Content-type: application/xml; charset=utf-8
+Content-length: 2464
+
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/">
   <SOAP-ENV:Body>
@@ -377,7 +414,16 @@ try {
 
 > Request
 
-```html
+```http
+POST /app/cs/api/ecommerce/soap_2_8/ HTTP/1.1
+Host: api.cyclesoftware.nl
+Accept-encoding: gzip,deflate
+Accept: text/xml
+Content-type: text/xml; charset=utf-8
+Yser-agent: SoapClient
+Soapaction: "GetInvoiceDocument"
+Content-length: 514
+
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/">
   <SOAP-ENV:Body>
@@ -391,11 +437,11 @@ try {
     </ns1:GetInvoiceDocumentRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
-```
 
-> Response
+HTTP/1.1 200
+Content-type: application/xml; charset=utf-8
+Content-length: 396
 
-```html
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
   <SOAP-ENV:Body>
@@ -415,7 +461,16 @@ try {
 
 > Request
 
-```html
+```http
+POST /app/cs/api/ecommerce/soap_2_8/ HTTP/1.1
+Host: api.cyclesoftware.nl
+Accept-encoding: gzip,deflate
+Accept: text/xml
+Content-type: text/xml; charset=utf-8
+Yser-agent: SoapClient
+Soapaction: "CreateOrderUpdateCustomer"
+Content-length: 1648
+
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope
   xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
@@ -451,11 +506,12 @@ try {
     </ns1:CreateOrUpdateCustomerRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
-```
 
-> Response
 
-```html
+HTTP/1.1 200
+Content-type: application/xml; charset=utf-8
+Content-length: 1448
+
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope
   xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"

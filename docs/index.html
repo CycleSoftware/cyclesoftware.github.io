@@ -291,6 +291,32 @@
               </ul>
           </li>
           <li>
+            <a href="#e-commerce" class="toc-h1 toc-link" data-title="E-commerce">E-commerce</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#definition" class="toc-h2 toc-link" data-title="Definition">Definition</a>
+                  </li>
+                  <li>
+                    <a href="#saveorder" class="toc-h2 toc-link" data-title="SaveOrder">SaveOrder</a>
+                  </li>
+                  <li>
+                    <a href="#updateorder" class="toc-h2 toc-link" data-title="UpdateOrder">UpdateOrder</a>
+                  </li>
+                  <li>
+                    <a href="#addorderitems" class="toc-h2 toc-link" data-title="AddOrderItems">AddOrderItems</a>
+                  </li>
+                  <li>
+                    <a href="#getinvoicedocument" class="toc-h2 toc-link" data-title="GetInvoiceDocument">GetInvoiceDocument</a>
+                  </li>
+                  <li>
+                    <a href="#createorderupdatecustomer" class="toc-h2 toc-link" data-title="CreateOrderUpdateCustomer">CreateOrderUpdateCustomer</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#invoices" class="toc-h1 toc-link" data-title="Invoices">Invoices</a>
               <ul class="toc-list-h2">
                   <li>
@@ -433,7 +459,529 @@
 <p>TWSC API is available throught Oauth2 authentication</p>
 <h2 id='scopes'>Scopes</h2>
 <p>Credentials are linked to a set of scopes. Every endpoint is also linked to a set of scopes. If the required scope is not available for the credentials the API will provide an HTTP Unauthorized error.</p>
-<h1 id='invoices'>Invoices</h1>
+<h1 id='e-commerce'>E-commerce</h1>
+<p>The e-commerce APIs are designed for pushing e-commerce orders to CycleSoftware.</p>
+<h3 id='authentication'>Authentication</h3>
+<p>The authentication is handled in the <code>Authentication</code> element of the SOAP requests.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>username</code></td>
+<td>string</td>
+<td>API credentials username</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>API credentials password</td>
+</tr>
+<tr>
+<td><code>dealer_id</code></td>
+<td>string</td>
+<td>Leave empty or specify the store_id or use the API-key</td>
+</tr>
+</tbody></table>
+
+<p><strong><em>Scope(s)</em></strong>
+- <code>e-commerce</code></p>
+<h3 id='definition'>Definition</h3>
+<p>The latest definition of the WSDL specification can be found at:</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">WSDL-SOAP</i>
+        <h6>/app/cs/api/ecommerce/soap_2_8/?wsdl</h6>
+    </div>
+</div>
+<h2 id='saveorder'>SaveOrder</h2>
+<p>Creates a new order in CycleSoftware</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>Authentication.dealer_id</code></td>
+<td>Leave 0 for default store_id based on authentication   username and password. If &gt; 0 the value will be used to identify the store   within the account</td>
+</tr>
+<tr>
+<td><code>Order.order_vat_country_code</code></td>
+<td>Apply the VAT rates of this country code. CS will only   apply the VAT rates if enabled in account settings and if   order_ship_to_customer is true. If the VAT rates are not applied or the same   as the country of the account, it will default back to null in the   OrderStatusResponse</td>
+</tr>
+<tr>
+<td><code>Order.order_payment_method_description</code></td>
+<td>Use “psp” for payments using a Payment service Provider   (e.g. iDEAL, Bancontact etc.)</td>
+</tr>
+<tr>
+<td><code>OrderItems.OrderItem.order_item_is_bicycle</code></td>
+<td>Indicate whether this order item is a sold bicycle (0 or   1)</td>
+</tr>
+<tr>
+<td><code>OrderItems.OrderItem.order_item_supplier_order_mode</code></td>
+<td>0: no supplier order or reservation on objects<br/>1: automatically create supplier order for this sales   order<br/>2: automatically reserve available stock objects based   on the object_id in order_item_object_id or order_item_barcode field.</td>
+</tr>
+<tr>
+<td><code>OrderItems.OrderItem.order_item_supplier_id</code></td>
+<td>When order_item_supplier_mode = 1, make the supplier   order for this supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/</td>
+</tr>
+<tr>
+<td><code>OrderItems.OrderItem.order_item_object_id</code></td>
+<td>Reserve this specific object for this order item</td>
+</tr>
+<tr>
+<td><code>OrderItems.OrderItem.order_item_invoice_customer_id</code></td>
+<td>If supplied with integer value &gt; 0 this order item   will be invoiced to this customer id (SplitOrder) All the customer info in   the SaveOrder should be the “rider” or “consumer”</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;ns1:SaveOrderRequest&gt;</span>
+      <span class="nt">&lt;Authentication&gt;</span>
+        <span class="nt">&lt;username&gt;</span>User1<span class="nt">&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;</span>Pass1<span class="nt">&lt;/password&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>0<span class="nt">&lt;/dealer_id&gt;</span>
+      <span class="nt">&lt;/Authentication&gt;</span>
+      <span class="nt">&lt;Order&gt;</span>
+        <span class="nt">&lt;order_reference_id&gt;</span>319813049<span class="nt">&lt;/order_reference_id&gt;</span>
+        <span class="nt">&lt;order_reference_text&gt;</span>5640c085abba9<span class="nt">&lt;/order_reference_text&gt;</span>
+        <span class="nt">&lt;order_is_payed&gt;</span>1<span class="nt">&lt;/order_is_payed&gt;</span>
+        <span class="nt">&lt;order_payment_method_description&gt;</span>psp<span class="nt">&lt;/order_payment_method_description&gt;</span>
+        <span class="nt">&lt;order_ship_to_customer&gt;</span>1<span class="nt">&lt;/order_ship_to_customer&gt;</span>
+        <span class="nt">&lt;order_shipment_method_description&gt;</span>tnt<span class="nt">&lt;/order_shipment_method_description&gt;</span>
+        <span class="nt">&lt;order_date_preferred_delivery&gt;</span>2015-12-01<span class="nt">&lt;/order_date_preferred_delivery&gt;</span>
+        <span class="nt">&lt;order_remarks&gt;</span>remark example<span class="nt">&lt;/order_remarks&gt;</span>
+        <span class="nt">&lt;order_vat_country_code&gt;</span>NL<span class="nt">&lt;/order_vat_country_code&gt;</span>
+        <span class="nt">&lt;Customer&gt;</span>
+          <span class="nt">&lt;customer_cs_customer_id&gt;</span>0<span class="nt">&lt;/customer_cs_customer_id&gt;</span>
+          <span class="nt">&lt;customer_reference&gt;</span>REF<span class="nt">&lt;/customer_reference&gt;</span>
+          <span class="nt">&lt;customer_name_prefix&gt;</span>G<span class="nt">&lt;/customer_name_prefix&gt;</span>
+          <span class="nt">&lt;customer_middle_name&gt;</span>van<span class="nt">&lt;/customer_middle_name&gt;</span>
+          <span class="nt">&lt;customer_last_name&gt;</span>Wijgergangs<span class="nt">&lt;/customer_last_name&gt;</span>
+          <span class="nt">&lt;customer_postal_code&gt;</span>5258 hl<span class="nt">&lt;/customer_postal_code&gt;</span>
+          <span class="nt">&lt;customer_housenumber&gt;</span>2<span class="nt">&lt;/customer_housenumber&gt;</span>
+          <span class="nt">&lt;customer_housenumber_suffix&gt;</span>B<span class="nt">&lt;/customer_housenumber_suffix&gt;</span>
+          <span class="nt">&lt;customer_street_name&gt;</span>Sassenheimseweg<span class="nt">&lt;/customer_street_name&gt;</span>
+          <span class="nt">&lt;customer_city&gt;</span>Berlicum<span class="nt">&lt;/customer_city&gt;</span>
+          <span class="nt">&lt;customer_phone&gt;</span>0733030050<span class="nt">&lt;/customer_phone&gt;</span>
+          <span class="nt">&lt;customer_mobile&gt;</span>0622903913<span class="nt">&lt;/customer_mobile&gt;</span>
+          <span class="nt">&lt;customer_country_code_iso_3166&gt;</span>NL<span class="nt">&lt;/customer_country_code_iso_3166&gt;</span>
+          <span class="nt">&lt;customer_email&gt;</span>gielwijgergangs@gmail.com<span class="nt">&lt;/customer_email&gt;</span>
+          <span class="nt">&lt;customer_newsletter&gt;</span>1<span class="nt">&lt;/customer_newsletter&gt;</span>
+          <span class="nt">&lt;customer_iban&gt;</span>NL71INGB0008871139<span class="nt">&lt;/customer_iban&gt;</span>
+          <span class="nt">&lt;customer_date_of_birth&gt;</span>1988-09-29<span class="nt">&lt;/customer_date_of_birth&gt;</span>
+          <span class="nt">&lt;DeliveryAddress&gt;</span>
+            <span class="nt">&lt;delivery_address_use_delivery_address&gt;</span>1<span class="nt">&lt;/delivery_address_use_delivery_address&gt;</span>
+            <span class="nt">&lt;delivery_address_name&gt;</span>CycleSoftare<span class="nt">&lt;/delivery_address_name&gt;</span>
+            <span class="nt">&lt;delivery_address_street_name&gt;</span>Kievitsven 22<span class="nt">&lt;/delivery_address_street_name&gt;</span>
+            <span class="nt">&lt;delivery_address_postal_code&gt;</span>5249JJ<span class="nt">&lt;/delivery_address_postal_code&gt;</span>
+            <span class="nt">&lt;delivery_address_housenumber&gt;</span>4<span class="nt">&lt;/delivery_address_housenumber&gt;</span>
+            <span class="nt">&lt;delivery_address_housenumber_suffix&gt;</span>b<span class="nt">&lt;/delivery_address_housenumber_suffix&gt;</span>
+            <span class="nt">&lt;delivery_address_city&gt;</span>Rosmalen<span class="nt">&lt;/delivery_address_city&gt;</span>
+            <span class="nt">&lt;delivery_address_country_code_iso_3166&gt;</span>NL<span class="nt">&lt;/delivery_address_country_code_iso_3166&gt;</span>
+            <span class="nt">&lt;delivery_address_remarks&gt;</span>Bam<span class="nt">&lt;/delivery_address_remarks&gt;</span>
+          <span class="nt">&lt;/DeliveryAddress&gt;</span>
+        <span class="nt">&lt;/Customer&gt;</span>
+        <span class="nt">&lt;OrderItems&gt;</span>
+          <span class="nt">&lt;OrderItem&gt;</span>
+            <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+            <span class="nt">&lt;order_item_barcode&gt;</span>1000<span class="nt">&lt;/order_item_barcode&gt;</span>
+            <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+            <span class="nt">&lt;order_item_description&gt;</span>DescriptionTest<span class="nt">&lt;/order_item_description&gt;</span>
+            <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>12.99<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+            <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+            <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+            <span class="nt">&lt;order_item_supplier_order_mode&gt;</span>0<span class="nt">&lt;/order_item_supplier_order_mode&gt;</span>
+            <span class="nt">&lt;order_item_supplier_id&gt;</span>0<span class="nt">&lt;/order_item_supplier_id&gt;</span>
+            <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+            <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>0<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
+          <span class="nt">&lt;/OrderItem&gt;</span>
+          <span class="nt">&lt;OrderItem&gt;</span>
+            <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+            <span class="nt">&lt;order_item_barcode&gt;</span>1000<span class="nt">&lt;/order_item_barcode&gt;</span>
+            <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+            <span class="nt">&lt;order_item_description&gt;</span>DescriptionTest<span class="nt">&lt;/order_item_description&gt;</span>
+            <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>12.99<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+            <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+            <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+            <span class="nt">&lt;order_item_supplier_order_mode&gt;</span>0<span class="nt">&lt;/order_item_supplier_order_mode&gt;</span>
+            <span class="nt">&lt;order_item_supplier_id&gt;</span>0<span class="nt">&lt;/order_item_supplier_id&gt;</span>
+            <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+            <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
+          <span class="nt">&lt;/OrderItem&gt;</span>
+        <span class="nt">&lt;/OrderItems&gt;</span>
+      <span class="nt">&lt;/Order&gt;</span>
+    <span class="nt">&lt;/ns1:SaveOrderRequest&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;SaveOrderResponse&gt;</span>
+      <span class="nt">&lt;order_id&gt;</span>3688<span class="nt">&lt;/order_id&gt;</span>
+      <span class="nt">&lt;customer_id&gt;</span>1498<span class="nt">&lt;/customer_id&gt;</span>
+      <span class="nt">&lt;created_new_order&gt;</span>1<span class="nt">&lt;/created_new_order&gt;</span>
+      <span class="nt">&lt;remarks&gt;</span>
+      <span class="nt">&lt;/remarks&gt;</span>
+      <span class="nt">&lt;OrderItems&gt;</span>
+        <span class="nt">&lt;OrderItem&gt;</span>
+          <span class="nt">&lt;order_item_status_id&gt;</span>0<span class="nt">&lt;/order_item_status_id&gt;</span>
+          <span class="nt">&lt;order_item_status_text&gt;</span>Geen status<span class="nt">&lt;/order_item_status_text&gt;</span>
+          <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+          <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+          <span class="nt">&lt;order_item_barcode&gt;</span>1000<span class="nt">&lt;/order_item_barcode&gt;</span>
+          <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+          <span class="nt">&lt;order_item_description&gt;</span>Test product<span class="nt">&lt;/order_item_description&gt;</span>
+          <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>12.99<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+          <span class="nt">&lt;order_item_line_id&gt;</span>1<span class="nt">&lt;/order_item_line_id&gt;</span>
+          <span class="nt">&lt;order_item_object_id/&gt;</span>
+          <span class="nt">&lt;order_item_invoice_customer_id/&gt;</span>
+        <span class="nt">&lt;/OrderItem&gt;</span>
+        <span class="nt">&lt;OrderItem&gt;</span>
+          <span class="nt">&lt;order_item_status_id&gt;</span>0<span class="nt">&lt;/order_item_status_id&gt;</span>
+          <span class="nt">&lt;order_item_status_text&gt;</span>Geen status<span class="nt">&lt;/order_item_status_text&gt;</span>
+          <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+          <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+          <span class="nt">&lt;order_item_barcode&gt;</span>1000<span class="nt">&lt;/order_item_barcode&gt;</span>
+          <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+          <span class="nt">&lt;order_item_description&gt;</span>Test product<span class="nt">&lt;/order_item_description&gt;</span>
+          <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>12.99<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+          <span class="nt">&lt;order_item_line_id&gt;</span>2<span class="nt">&lt;/order_item_line_id&gt;</span>
+          <span class="nt">&lt;order_item_object_id/&gt;</span>
+          <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
+        <span class="nt">&lt;/OrderItem&gt;</span>
+    <span class="nt">&lt;/SaveOrderResponse&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div><h2 id='updateorder'>UpdateOrder</h2>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;ns1:UpdateOrderRequest&gt;</span>
+      <span class="nt">&lt;Authentication&gt;</span>
+        <span class="nt">&lt;username&gt;&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;&lt;/password&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>0<span class="nt">&lt;/dealer_id&gt;</span>
+      <span class="nt">&lt;/Authentication&gt;</span>
+      <span class="nt">&lt;order_id&gt;</span>3623<span class="nt">&lt;/order_id&gt;</span>
+      <span class="nt">&lt;order_reference_id&gt;</span>
+      <span class="nt">&lt;/order_reference_id&gt;</span>
+      <span class="nt">&lt;UpdateValues&gt;</span>
+        <span class="nt">&lt;UpdateValue&gt;</span>
+          <span class="nt">&lt;name&gt;</span>order_date_preferred_delivery<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;value&gt;</span>2015-11-09 15:50:35<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/UpdateValue&gt;</span>
+        <span class="nt">&lt;UpdateValue&gt;</span>
+          <span class="nt">&lt;name&gt;</span>order_remarks<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;value&gt;</span>Will pickup at 13.00<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/UpdateValue&gt;</span>
+      <span class="nt">&lt;/UpdateValues&gt;</span>
+    <span class="nt">&lt;/ns1:UpdateOrderRequest&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;ns1:OrderStatusResponse&gt;</span>
+      <span class="nt">&lt;order_id&gt;</span>3623<span class="nt">&lt;/order_id&gt;</span>
+      <span class="nt">&lt;order_reference_text&gt;</span>563c8b1bc4ada<span class="nt">&lt;/order_reference_text&gt;</span>
+      <span class="nt">&lt;order_reference_id&gt;</span>-663982782<span class="nt">&lt;/order_reference_id&gt;</span>
+      <span class="nt">&lt;order_status_text&gt;</span>In behandeling<span class="nt">&lt;/order_status_text&gt;</span>
+      <span class="nt">&lt;order_track_trace_reference&gt;</span>563c8b1bc4ada<span class="nt">&lt;/order_track_trace_reference&gt;</span>
+      <span class="nt">&lt;order_date_preferred_delivery&gt;</span>2015-11-09 15:50:35<span class="nt">&lt;/order_date_preferred_delivery&gt;</span>
+      <span class="nt">&lt;order_vat_country_code/&gt;</span>
+      <span class="nt">&lt;customer_id&gt;</span>1498<span class="nt">&lt;/customer_id&gt;</span>
+      <span class="nt">&lt;invoice_id&gt;</span>0<span class="nt">&lt;/invoice_id&gt;</span>
+      <span class="nt">&lt;OrderResultItems&gt;</span>
+        <span class="nt">&lt;OrderResultItem&gt;</span>
+          <span class="nt">&lt;order_item_status_id&gt;</span>0<span class="nt">&lt;/order_item_status_id&gt;</span>
+          <span class="nt">&lt;order_item_status_text&gt;</span>Geen status<span class="nt">&lt;/order_item_status_text&gt;</span>
+          <span class="nt">&lt;order_item_is_bicycle&gt;</span>1<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+          <span class="nt">&lt;order_item_barcode&gt;</span>1000<span class="nt">&lt;/order_item_barcode&gt;</span>
+          <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+          <span class="nt">&lt;order_item_description&gt;</span>Test product<span class="nt">&lt;/order_item_description&gt;</span>
+          <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>10.00<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+          <span class="nt">&lt;order_item_line_id&gt;</span>3<span class="nt">&lt;/order_item_line_id&gt;</span>
+          <span class="nt">&lt;order_item_object_id/&gt;</span>
+          <span class="nt">&lt;order_item_invoice_customer_id/&gt;</span>
+        <span class="nt">&lt;/OrderResultItem&gt;</span>
+        <span class="nt">&lt;OrderResultItem&gt;</span>
+          <span class="nt">&lt;order_item_status_id&gt;</span>0<span class="nt">&lt;/order_item_status_id&gt;</span>
+          <span class="nt">&lt;order_item_status_text&gt;</span>Geen status<span class="nt">&lt;/order_item_status_text&gt;</span>
+          <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+          <span class="nt">&lt;order_item_barcode&gt;</span>1000<span class="nt">&lt;/order_item_barcode&gt;</span>
+          <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+          <span class="nt">&lt;order_item_description&gt;</span>Test product<span class="nt">&lt;/order_item_description&gt;</span>
+          <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>10.00<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+          <span class="nt">&lt;order_item_line_id&gt;</span>5<span class="nt">&lt;/order_item_line_id&gt;</span>
+          <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+          <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
+        <span class="nt">&lt;/OrderResultItem&gt;</span>
+      <span class="nt">&lt;/OrderResultItems&gt;</span>
+    <span class="nt">&lt;/ns1:OrderStatusResponse&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+</code></pre></div><h2 id='addorderitems'>AddOrderItems</h2>
+<p>Add new order items to an existing order</p>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;ns1:AddOrderItemsRequest&gt;</span>
+      <span class="nt">&lt;Authentication&gt;</span>
+        <span class="nt">&lt;username&gt;&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;&lt;/password&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>0<span class="nt">&lt;/dealer_id&gt;</span>
+      <span class="nt">&lt;/Authentication&gt;</span>
+      <span class="nt">&lt;order_id&gt;</span>3692<span class="nt">&lt;/order_id&gt;</span>
+      <span class="nt">&lt;order_reference_id&gt;</span>
+      <span class="nt">&lt;/order_reference_id&gt;</span>
+      <span class="nt">&lt;OrderItems&gt;</span>
+        <span class="nt">&lt;OrderItem&gt;</span>
+          <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+          <span class="nt">&lt;order_item_barcode&gt;</span>5640c122a30b9<span class="nt">&lt;/order_item_barcode&gt;</span>
+          <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+          <span class="nt">&lt;order_item_description&gt;</span>DescriptionTest<span class="nt">&lt;/order_item_description&gt;</span>
+          <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>12.99<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+          <span class="nt">&lt;order_item_supplier_order_mode&gt;</span>0<span class="nt">&lt;/order_item_supplier_order_mode&gt;</span>
+          <span class="nt">&lt;order_item_supplier_id&gt;</span>0<span class="nt">&lt;/order_item_supplier_id&gt;</span>
+          <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+          <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
+        <span class="nt">&lt;/OrderItem&gt;</span>
+      <span class="nt">&lt;/OrderItems&gt;</span>
+    <span class="nt">&lt;/ns1:AddOrderItemsRequest&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_1/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;ns1:OrderStatusResponse&gt;</span>
+      <span class="nt">&lt;order_id&gt;</span>3692<span class="nt">&lt;/order_id&gt;</span>
+      <span class="nt">&lt;order_reference_text&gt;</span>5640c122154db<span class="nt">&lt;/order_reference_text&gt;</span>
+      <span class="nt">&lt;order_reference_id&gt;</span>-319656665<span class="nt">&lt;/order_reference_id&gt;</span>
+      <span class="nt">&lt;order_status_text&gt;</span>In behandeling<span class="nt">&lt;/order_status_text&gt;</span>
+      <span class="nt">&lt;order_track_trace_reference&gt;</span>
+      <span class="nt">&lt;/order_track_trace_reference&gt;</span>
+      <span class="nt">&lt;order_date_preferred_delivery&gt;</span>2015-12-01 00:00:00<span class="nt">&lt;/order_date_preferred_delivery&gt;</span>
+      <span class="nt">&lt;customer_id&gt;</span>1498<span class="nt">&lt;/customer_id&gt;</span>
+      <span class="nt">&lt;invoice_id&gt;</span>0<span class="nt">&lt;/invoice_id&gt;</span>
+      <span class="nt">&lt;OrderResultItems&gt;</span>
+        <span class="nt">&lt;OrderResultItem&gt;</span>
+          <span class="nt">&lt;order_item_status_id&gt;</span>0<span class="nt">&lt;/order_item_status_id&gt;</span>
+          <span class="nt">&lt;order_item_status_text&gt;</span>Geen status<span class="nt">&lt;/order_item_status_text&gt;</span>
+          <span class="nt">&lt;order_item_is_bicycle&gt;</span>1<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+          <span class="nt">&lt;order_item_barcode&gt;</span>1000<span class="nt">&lt;/order_item_barcode&gt;</span>
+          <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+          <span class="nt">&lt;order_item_description&gt;</span>Test product<span class="nt">&lt;/order_item_description&gt;</span>
+          <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>10.00<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_vat_code&gt;</span>1<span class="nt">&lt;/order_item_vat_code&gt;</span>
+          <span class="nt">&lt;order_item_line_id&gt;</span>3<span class="nt">&lt;/order_item_line_id&gt;</span>
+          <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+          <span class="nt">&lt;order_item_invoice_customer_id/&gt;</span>
+        <span class="nt">&lt;/OrderResultItem&gt;</span>
+        <span class="nt">&lt;OrderResultItem&gt;</span>
+          <span class="nt">&lt;order_item_status_id&gt;</span>0<span class="nt">&lt;/order_item_status_id&gt;</span>
+          <span class="nt">&lt;order_item_status_text&gt;</span>Geen status<span class="nt">&lt;/order_item_status_text&gt;</span>
+          <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+          <span class="nt">&lt;order_item_barcode&gt;</span>5640c122a30b9<span class="nt">&lt;/order_item_barcode&gt;</span>
+          <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+          <span class="nt">&lt;order_item_description&gt;</span>DescriptionTest<span class="nt">&lt;/order_item_description&gt;</span>
+          <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>10.00<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+          <span class="nt">&lt;order_item_line_id&gt;</span>5<span class="nt">&lt;/order_item_line_id&gt;</span>
+          <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+          <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
+        <span class="nt">&lt;/OrderResultItem&gt;</span>
+      <span class="nt">&lt;/OrderResultItems&gt;</span>
+    <span class="nt">&lt;/ns1:OrderStatusResponse&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div><h2 id='getinvoicedocument'>GetInvoiceDocument</h2>
+<p>Get an invoice document based on the invoice-number.</p>
+
+<blockquote>
+<p>Example in PHP</p>
+</blockquote>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl'</span><span class="p">,</span>
+        <span class="p">[</span>
+          <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
+          <span class="s1">'encoding'</span> <span class="o">=&gt;</span> <span class="s1">'UTF-8'</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">);</span>
+    <span class="nv">$input</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[];</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[];</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span><span class="o">-&gt;</span><span class="n">username</span> <span class="o">=</span> <span class="s1">'your-username'</span><span class="p">;</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span><span class="o">-&gt;</span><span class="n">password</span> <span class="o">=</span> <span class="s1">'your-password'</span><span class="p">;</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span><span class="o">-&gt;</span><span class="n">dealer_id</span> <span class="o">=</span> <span class="s1">'0'</span><span class="p">;</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="n">invoice_number</span> <span class="o">=</span> <span class="s1">'44848'</span><span class="p">;</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="nf">GetInvoiceDocument</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$result</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="err">\</span><span class="nc">SoapFault</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;ns1:GetInvoiceDocumentRequest&gt;</span>
+      <span class="nt">&lt;Authentication&gt;</span>
+        <span class="nt">&lt;username&gt;</span>test<span class="nt">&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;</span>fuji95<span class="nt">&lt;/password&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>0<span class="nt">&lt;/dealer_id&gt;</span>
+      <span class="nt">&lt;/Authentication&gt;</span>
+      <span class="nt">&lt;invoice_number&gt;</span>44848<span class="nt">&lt;/invoice_number&gt;</span>
+    <span class="nt">&lt;/ns1:GetInvoiceDocumentRequest&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;GetInvoiceDocumentResponse&gt;</span>
+      <span class="nt">&lt;invoice_number&gt;</span>44848<span class="nt">&lt;/invoice_number&gt;</span>
+      <span class="nt">&lt;data&gt;</span>data:application/pdf;base64,JVBERi0xLjcKMyAwIG9iago8PC9UeXBlIC9QYWdlIC9QYXJlbnQgMS.....==<span class="nt">&lt;/data&gt;</span>
+    <span class="nt">&lt;/GetInvoiceDocumentResponse&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div><h2 id='createorderupdatecustomer'>CreateOrderUpdateCustomer</h2>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer_type_name</code></td>
+<td>string</td>
+<td>One of the following: <code>Klant</code>, <code>Leverancier</code>, <code>E-commerce</code>, <code>Zakelijk</code>, <code>Lease-rijder</code>, <code>Lease-maatschappij</code>, <code>Werkgever</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span>
+  <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span>
+  <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;ns1:CreateOrUpdateCustomerRequest&gt;</span>
+      <span class="nt">&lt;Authentication&gt;</span>
+        <span class="nt">&lt;username&gt;</span>test<span class="nt">&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;</span>fuji95<span class="nt">&lt;/password&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>0<span class="nt">&lt;/dealer_id&gt;</span>
+      <span class="nt">&lt;/Authentication&gt;</span>
+      <span class="nt">&lt;Customer&gt;</span>
+        <span class="nt">&lt;customer_type_name&gt;</span>Lease-maatschappij<span class="nt">&lt;/customer_type_name&gt;</span>
+        <span class="nt">&lt;customer_cs_customer_id&gt;</span>235238848<span class="nt">&lt;/customer_cs_customer_id&gt;</span>
+        <span class="nt">&lt;customer_reference&gt;</span>REF46<span class="nt">&lt;/customer_reference&gt;</span>
+        <span class="nt">&lt;customer_name_prefix&gt;</span>Dhr.<span class="nt">&lt;/customer_name_prefix&gt;</span>
+        <span class="nt">&lt;customer_name_initials&gt;</span>A<span class="nt">&lt;/customer_name_initials&gt;</span>
+        <span class="nt">&lt;customer_middle_name&gt;</span>Van<span class="nt">&lt;/customer_middle_name&gt;</span>
+        <span class="nt">&lt;customer_last_name&gt;</span>Name 235238848<span class="nt">&lt;/customer_last_name&gt;</span>
+        <span class="nt">&lt;customer_postal_code&gt;</span>8448PE<span class="nt">&lt;/customer_postal_code&gt;</span>
+        <span class="nt">&lt;customer_housenumber&gt;</span>32<span class="nt">&lt;/customer_housenumber&gt;</span>
+        <span class="nt">&lt;customer_housenumber_suffix&gt;</span>B<span class="nt">&lt;/customer_housenumber_suffix&gt;</span>
+        <span class="nt">&lt;customer_street_name&gt;</span>Mauritslaan<span class="nt">&lt;/customer_street_name&gt;</span>
+        <span class="nt">&lt;customer_city&gt;</span>Heerenveen<span class="nt">&lt;/customer_city&gt;</span>
+        <span class="nt">&lt;customer_phone&gt;</span>073-1234567<span class="nt">&lt;/customer_phone&gt;</span>
+        <span class="nt">&lt;customer_mobile&gt;</span>06-124235335<span class="nt">&lt;/customer_mobile&gt;</span>
+        <span class="nt">&lt;customer_country_code_iso_3166&gt;</span>NL<span class="nt">&lt;/customer_country_code_iso_3166&gt;</span>
+        <span class="nt">&lt;customer_email&gt;</span>test235238848@cyclesoftware.nl<span class="nt">&lt;/customer_email&gt;</span>
+        <span class="nt">&lt;customer_newsletter&gt;</span>0<span class="nt">&lt;/customer_newsletter&gt;</span>
+        <span class="nt">&lt;customer_date_of_birth/&gt;</span>
+        <span class="nt">&lt;customer_iban&gt;</span>NL69INGB0123456789<span class="nt">&lt;/customer_iban&gt;</span>
+      <span class="nt">&lt;/Customer&gt;</span>
+    <span class="nt">&lt;/ns1:CreateOrUpdateCustomerRequest&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight html tab-html"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span>
+  <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span>
+  <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;ns1:CreateOrUpdateCustomerResponse&gt;</span>
+      <span class="nt">&lt;is_new_customer&gt;</span>false<span class="nt">&lt;/is_new_customer&gt;</span>
+      <span class="nt">&lt;Customer&gt;</span>
+        <span class="nt">&lt;customer_cs_customer_id&gt;</span>235238848<span class="nt">&lt;/customer_cs_customer_id&gt;</span>
+        <span class="nt">&lt;customer_reference&gt;</span>REF46<span class="nt">&lt;/customer_reference&gt;</span>
+        <span class="nt">&lt;customer_name_prefix&gt;</span>Dhr.<span class="nt">&lt;/customer_name_prefix&gt;</span>
+        <span class="nt">&lt;customer_name_initials&gt;</span>A<span class="nt">&lt;/customer_name_initials&gt;</span>
+        <span class="nt">&lt;customer_middle_name&gt;</span>Van<span class="nt">&lt;/customer_middle_name&gt;</span>
+        <span class="nt">&lt;customer_last_name&gt;</span>Name 235238848<span class="nt">&lt;/customer_last_name&gt;</span>
+        <span class="nt">&lt;customer_postal_code&gt;</span>8448PE<span class="nt">&lt;/customer_postal_code&gt;</span>
+        <span class="nt">&lt;customer_housenumber&gt;</span>32<span class="nt">&lt;/customer_housenumber&gt;</span>
+        <span class="nt">&lt;customer_housenumber_suffix&gt;</span>B<span class="nt">&lt;/customer_housenumber_suffix&gt;</span>
+        <span class="nt">&lt;customer_street_name&gt;</span>Mauritslaan<span class="nt">&lt;/customer_street_name&gt;</span>
+        <span class="nt">&lt;customer_city&gt;</span>Heerenveen<span class="nt">&lt;/customer_city&gt;</span>
+        <span class="nt">&lt;customer_phone&gt;&lt;/customer_phone&gt;</span>
+        <span class="nt">&lt;customer_mobile&gt;</span>0733030050<span class="nt">&lt;/customer_mobile&gt;</span>
+        <span class="nt">&lt;customer_country_code_iso_3166&gt;</span>NL<span class="nt">&lt;/customer_country_code_iso_3166&gt;</span>
+        <span class="nt">&lt;customer_email&gt;</span>test235238848@cyclesoftware.nl<span class="nt">&lt;/customer_email&gt;</span>
+        <span class="nt">&lt;customer_newsletter&gt;</span>0<span class="nt">&lt;/customer_newsletter&gt;</span>
+        <span class="nt">&lt;customer_date_of_birth/&gt;</span>
+        <span class="nt">&lt;customer_iban&gt;&lt;/customer_iban&gt;</span>
+      <span class="nt">&lt;/Customer&gt;</span>
+    <span class="nt">&lt;/ns1:CreateOrUpdateCustomerResponse&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div><h1 id='invoices'>Invoices</h1>
 <p>Access invoice data</p>
 
 <p><strong><em>Authentication mechanism</em></strong></p>

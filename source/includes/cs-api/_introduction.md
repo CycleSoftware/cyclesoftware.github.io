@@ -5,7 +5,7 @@ Welcome to the CycleSoftware API documentation
 |-------------|---------------------------|
 | `CS api` | [CycleSoftware API docs](index.html) |
 | `Warehouse api` | [Warehouse API docs](warehouse.html) |
-| `TWSC api` | [TWSC API docs](twsc.html) |
+| `TWSC api` | [TWSC API docs](https://github.com/CycleSoftware/oauth2-twsc/) |
 
 ## API endpoint ##
 

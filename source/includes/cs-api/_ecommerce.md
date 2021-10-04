@@ -351,8 +351,6 @@ Add new order items to an existing order
 
 Get an invoice document based on the invoice-number.
 
-> Example in PHP
-
 ```php
 <?php
 try {

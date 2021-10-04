@@ -3,6 +3,7 @@ title: CycleSoftware API Documentation
 
 language_tabs:
   - code: Code
+  - php: PHP
 
 toc_footers:
   - <a href="https://cyclesoftware.nl/" target="_blank">CycleSoftware</a>

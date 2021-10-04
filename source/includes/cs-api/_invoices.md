@@ -32,6 +32,7 @@ Get a list of unbooked sales transactions / invoices.
 </div>
 
 > Response
+
 ```json
 {
   "data": [

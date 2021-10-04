@@ -79,7 +79,7 @@ For certain endpoints pagination is implemented. The mechanism differs per endpo
   "error_message": null,
   "data": [],
   "pagination": {
-	  "next_offset": 1000
+    "next_offset": 1000
   }
 }
 ```

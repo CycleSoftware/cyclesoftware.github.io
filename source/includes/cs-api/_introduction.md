@@ -1,4 +1,5 @@
 # Introduction #
+
 Welcome to the CycleSoftware API documentation
 
 | API type | Documentation             |
@@ -26,7 +27,8 @@ To use the APIs you'll need API credentials. The API credentials are provided by
 
 The APIs consist of SOAP/WSDL webservices and JSON endpoints.
 
-The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes. Successful requests will return a `200 OK` HTTP status.
+The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes.
+Successful requests will return a `200 OK` HTTP status.
 
 Some general information about responses:
 
@@ -55,21 +57,41 @@ Occasionally you might encounter errors when accessing the REST API. There are f
 }
 ```
 
-> XML/SOAP error response
+> XML error response
 
 ```xml
-<result/>
+<?xml version="1.0"?>
+<result>
+  <error>1</error>
+  <error_message>Unauthorized</error_message>
+</result>
+```
+
+> SOAP error response
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <SOAP-ENV:Fault>
+      <faultcode>400</faultcode>
+      <faultstring>The problem description</faultstring>
+    </SOAP-ENV:Fault>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
 ```
 
 Errors return both an appropriate HTTP status code and response object which contains a `error`, and `error_message`
 
 ## Parameters ##
 
-Almost all endpoints accept optional parameters which can be passed as a HTTP query string parameter, e.g. `GET /v1/endpoint?status=completed`. All parameters are documented along each endpoint.
+Almost all endpoints accept optional parameters which can be passed as a HTTP query string parameter,
+e.g. `GET /v1/endpoint?status=completed`. All parameters are documented along each endpoint.
 
 ## Pagination ##
 
-For certain endpoints pagination is implemented. The mechanism differs per endpoint. But the default pagination mechanism is as follows:
+For certain endpoints pagination is implemented. The mechanism differs per endpoint. But the default pagination
+mechanism is as follows:
 
 > JSON response
 

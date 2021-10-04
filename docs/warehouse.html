@@ -346,7 +346,8 @@
 <h2 id='request-response-format'>Request/Response Format</h2>
 <p>The APIs consist of SOAP/WSDL webservices and JSON endpoints.</p>
 
-<p>The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes. Successful requests will return a <code>200 OK</code> HTTP status.</p>
+<p>The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes.
+Successful requests will return a <code>200 OK</code> HTTP status.</p>
 
 <p>Some general information about responses:</p>
 
@@ -395,15 +396,34 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>XML/SOAP error response</p>
+<p>XML error response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;result/&gt;</span>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="nt">&lt;result&gt;</span>
+  <span class="nt">&lt;error&gt;</span>1<span class="nt">&lt;/error&gt;</span>
+  <span class="nt">&lt;error_message&gt;</span>Unauthorized<span class="nt">&lt;/error_message&gt;</span>
+<span class="nt">&lt;/result&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>SOAP error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;SOAP-ENV:Fault&gt;</span>
+      <span class="nt">&lt;faultcode&gt;</span>400<span class="nt">&lt;/faultcode&gt;</span>
+      <span class="nt">&lt;faultstring&gt;</span>The problem description<span class="nt">&lt;/faultstring&gt;</span>
+    <span class="nt">&lt;/SOAP-ENV:Fault&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 </code></pre></div>
 <p>Errors return both an appropriate HTTP status code and response object which contains a <code>error</code>, and <code>error_message</code></p>
 <h2 id='parameters'>Parameters</h2>
-<p>Almost all endpoints accept optional parameters which can be passed as a HTTP query string parameter, e.g. <code>GET /v1/endpoint?status=completed</code>. All parameters are documented along each endpoint.</p>
+<p>Almost all endpoints accept optional parameters which can be passed as a HTTP query string parameter,
+e.g. <code>GET /v1/endpoint?status=completed</code>. All parameters are documented along each endpoint.</p>
 <h2 id='pagination'>Pagination</h2>
-<p>For certain endpoints pagination is implemented. The mechanism differs per endpoint. But the default pagination mechanism is as follows:</p>
+<p>For certain endpoints pagination is implemented. The mechanism differs per endpoint. But the default pagination
+mechanism is as follows:</p>
 
 <blockquote>
 <p>JSON response</p>

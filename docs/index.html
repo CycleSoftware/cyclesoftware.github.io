@@ -1,0 +1,493 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>CycleSoftware API Documentation</title>
+
+    <link rel="icon" href="images/favicon-32x32-fe8fe4b0.png" sizes="32x32" />
+    <link rel="icon" href="images/favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="images/favicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="images/favicon-270x270.png" />
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nn {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nl {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ni {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .bp {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vg {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vi {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .w {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen-bf0b2620.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-c5541673.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KCYZ2CYMS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8KCYZ2CYMS', {
+        'content_group' : 'WooCommerce REST API Docs',
+      });
+    </script>
+  </head>
+
+  <body class="index" data-languages="[&quot;code&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <a href="#" class="logo">
+        <img src="images/logo-98e3f68f.png" alt="" />
+      </a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="code">Code</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-endpoint" class="toc-h2 toc-link" data-title="API endpoint">API endpoint</a>
+                  </li>
+                  <li>
+                    <a href="#requirements" class="toc-h2 toc-link" data-title="Requirements">Requirements</a>
+                  </li>
+                  <li>
+                    <a href="#request-response-format" class="toc-h2 toc-link" data-title="Request/Response Format">Request/Response Format</a>
+                  </li>
+                  <li>
+                    <a href="#errors" class="toc-h2 toc-link" data-title="Errors">Errors</a>
+                  </li>
+                  <li>
+                    <a href="#parameters" class="toc-h2 toc-link" data-title="Parameters">Parameters</a>
+                  </li>
+                  <li>
+                    <a href="#pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#libraries-and-tools" class="toc-h2 toc-link" data-title="Libraries and Tools">Libraries and Tools</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-basic-authentication" class="toc-h2 toc-link" data-title="HTTP Basic Authentication">HTTP Basic Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#soap-wsdl-authentication" class="toc-h2 toc-link" data-title="SOAP/WSDL Authentication">SOAP/WSDL Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#oauth2-authentication" class="toc-h2 toc-link" data-title="OAUTH2 Authentication">OAUTH2 Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#scopes" class="toc-h2 toc-link" data-title="Scopes">Scopes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#invoices" class="toc-h1 toc-link" data-title="Invoices">Invoices</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#unbooked-invoices" class="toc-h2 toc-link" data-title="Unbooked invoices">Unbooked invoices</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href="https://cyclesoftware.nl/" target="_blank">CycleSoftware</a></li>
+            <li><a href="https://github.com/CycleSoftware/cs-docs/">Contributing to the Docs</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the CycleSoftware API documentation</p>
+
+<table><thead>
+<tr>
+<th>API type</th>
+<th>Documentation</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>CS api</code></td>
+<td><a href="./">CycleSoftware API docs</a></td>
+</tr>
+<tr>
+<td><code>Warehouse api</code></td>
+<td><a href="warehouse.html">Warehouse API docs</a></td>
+</tr>
+<tr>
+<td><code>TWSC api</code></td>
+<td><a href="twsc.html">TWSC API docs</a></td>
+</tr>
+</tbody></table>
+<h2 id='api-endpoint'>API endpoint</h2>
+<p>Use the following domain: <code>https://api.cyclesoftware.nl/</code> unless otherwise specified.</p>
+<h2 id='requirements'>Requirements</h2>
+<p>To use the APIs you&#39;ll need API credentials. The API credentials are provided by CS or available in your account.</p>
+
+<ul>
+<li>You should access the API over HTTPS</li>
+<li>Where possible use Accept-encoding: gzip. For data api&#39;s this might be required.</li>
+</ul>
+
+<aside class="notice">
+    Please note that you are <strong>not</strong> required to install the <a href="https://wordpress.org/plugins/rest-api/" target="_blank">WP REST API (WP API)</a> plugin.
+</aside>
+<h2 id='request-response-format'>Request/Response Format</h2>
+<p>The APIs consist of SOAP/WSDL webservices and JSON endpoints.</p>
+
+<p>The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes. Successful requests will return a <code>200 OK</code> HTTP status.</p>
+
+<p>Some general information about responses:</p>
+
+<ul>
+<li>Datetimes are returned in format (unless specified otherwise): <code>YYYY-MM-DD HH:MM:SS</code></li>
+<li>Dates are returned in format (unless specified otherwise): <code>YYYY-MM-DD</code></li>
+<li>Amounts could be specified in cents (which will be clear by the fieldname) or with decimal-strings</li>
+</ul>
+<h2 id='errors'>Errors</h2>
+<p>Occasionally you might encounter errors when accessing the REST API. There are four possible types:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Error Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>400 Bad Request</code></td>
+<td>Invalid request, e.g. using an unsupported HTTP method, or GET variable</td>
+</tr>
+<tr>
+<td><code>401 Unauthorized</code></td>
+<td>Authentication or permission error, e.g. incorrect credentials</td>
+</tr>
+<tr>
+<td><code>403 Forbidden</code></td>
+<td>Authentication or permission error</td>
+</tr>
+<tr>
+<td><code>404 Not Found</code></td>
+<td>Requests to resources that don&#39;t exist or are missing</td>
+</tr>
+<tr>
+<td><code>500 Internal Server Error</code></td>
+<td>Server error</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>JSON error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unauthorized"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>XML/SOAP error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="nt">&lt;result/&gt;</span>
+</code></pre></div>
+<p>Errors return both an appropriate HTTP status code and response object which contains a <code>error</code>, and <code>error_message</code></p>
+<h2 id='parameters'>Parameters</h2>
+<p>Almost all endpoints accept optional parameters which can be passed as a HTTP query string parameter, e.g. <code>GET /v1/endpoint?status=completed</code>. All parameters are documented along each endpoint.</p>
+<h2 id='pagination'>Pagination</h2>
+<p>For certain endpoints pagination is implemented. The mechanism differs per endpoint. But the default pagination mechanism is as follows:</p>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET /v1/endpoint?offset=1000</code></p>
+
+<p>In the response the next_offset is suggested. You can pass the next offset in the <code>offset</code> GET paramater.</p>
+<h2 id='libraries-and-tools'>Libraries and Tools</h2><h3 id='official-libraries'>Official libraries</h3>
+<ul>
+<li><a href="https://packagist.org/packages/cyclesoftware/oauth2-twsc">PHP TWSC api</a></li>
+</ul>
+<h1 id='authentication'>Authentication</h1>
+<p>CycleSoftware uses different authentication mechanisms. </p>
+<h2 id='http-basic-authentication'>HTTP Basic Authentication</h2>
+<p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided using the Basic HTTP authentication http header. The api-key is usage is documented per service.</p>
+<h2 id='soap-wsdl-authentication'>SOAP/WSDL Authentication</h2>
+<p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided within the SOAP-Header as documented per request.</p>
+<h2 id='oauth2-authentication'>OAUTH2 Authentication</h2>
+<p>TWSC API is available throught Oauth2 authentication</p>
+<h2 id='scopes'>Scopes</h2>
+<p>Credentials are linked to a set of scopes. Every endpoint is also linked to a set of scopes. If the required scope is not available for the credentials the API will provide an HTTP Unauthorized error.</p>
+<h1 id='invoices'>Invoices</h1>
+<p>Access invoice data</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>salesdata</code></li>
+</ul>
+<h2 id='unbooked-invoices'>Unbooked invoices</h2>
+<p>Get a list of unbooked sales transactions / invoices.</p>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>offset</code></td>
+<td>integer</td>
+<td>Pagination offset. <i class="label label-info">optional</i></td>
+</tr>
+</tbody></table>
+<h3 id='http-request-examples'>HTTP request examples</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/invoices/unbooked.json</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/invoices/unbooked.json?offset=1000</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>Response
+<code>json
+{}
+</code></p>
+</blockquote>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="code">Code</a>
+          </div>
+      </div>
+	</div>
+
+
+  </body>
+</html>

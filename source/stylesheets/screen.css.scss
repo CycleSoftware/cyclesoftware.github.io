@@ -634,3 +634,14 @@ body.has-warning {
 @import 'api-endpoint';
 @import 'content';
 @import 'lang-selector';
+
+@media(max-width: 683px){
+  .api-endpoint {
+    margin-right: unset;
+  }
+}
+@media(min-width: 684px){
+  .api-endpoint {
+    margin-right: 50%;
+  }
+}

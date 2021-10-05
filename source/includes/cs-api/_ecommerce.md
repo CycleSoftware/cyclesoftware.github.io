@@ -31,11 +31,11 @@ The latest definition of the WSDL specification can be found at:
 
 Creates a new order in CycleSoftware
 
-| Field | Description |
-| `Authentication.dealer_id` | Leave 0 for default store_id based on authentication username and password. If > 0 the value will be used to identify the store within the account |
-| `Order.order_vat_country_code` | Apply the VAT rates of this country code. CS will only apply the VAT rates if enabled
-in account settings and if order_ship_to_customer is true. If the VAT rates are not applied or the same as the country
-of the account, it will default back to null in the OrderStatusResponse
+| Field | Description | | `Authentication.dealer_id` | Leave 0 for default store_id based on authentication username and
+password. If > 0 the value will be used to identify the store within the account | | `Order.order_vat_country_code` |
+Apply the VAT rates of this country code. CS will only apply the VAT rates if enabled in account settings and if
+order_ship_to_customer is true. If the VAT rates are not applied or the same as the country of the account, it will
+default back to null in the OrderStatusResponse
 `Order.order_payment_method_description` | Use “psp” for payments using a Payment service Provider   (e.g. iDEAL,
 Bancontact etc.)
 `OrderItems.OrderItem.order_item_is_bicycle` | Indicate whether this order item is a sold bicycle (0 or 1)
@@ -48,6 +48,121 @@ supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/ap
 `OrderItems.OrderItem.order_item_invoice_customer_id` | If supplied with integer value > 0 this order item will be
 invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder should be the “rider” or “consumer”
 
+```php
+<?php
+
+
+try {
+    $client = new \SoapClient(
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl',
+        [
+            'trace' => true,
+            'use' => SOAP_LITERAL,
+            'encoding' => 'UTF-8',
+        ]
+    );
+   $input = (object)[
+        'Authentication' =>
+            (object)[
+                'username' => 'nehi33',
+                'password' => 'fuji95',
+                'dealer_id' => '0',
+            ],
+        'Order' =>
+            (object)[
+                'order_reference_text' => '615beb388f53d',
+                'order_reference_id' => '1633413944587',
+                'order_is_payed' => '1',
+                'order_payment_method_description' => 'ideal',
+                'order_ship_to_customer' => '1',
+                'order_shipment_method_description' => 'tnt',
+                'order_date_preferred_delivery' => '2015-12-01',
+                'order_remarks' => 'TestRemarks',
+                'order_vat_country_code' => 'NL',
+                'Customer' =>
+                    (object)[
+                        'customer_cs_customer_id' => '11',
+                        'customer_reference' => 'REFBE',
+                        'customer_name_prefix' => 'Dhr.',
+                        'customer_name_initials' => 'J',
+                        'customer_middle_name' => 'van',
+                        'customer_last_name' => 'Dijk',
+                        'customer_postal_code' => '1000AA',
+                        'customer_housenumber' => '2',
+                        'customer_housenumber_suffix' => 'B',
+                        'customer_street_name' => 'Steenweg',
+                        'customer_city' => 'Amsterdam',
+                        'customer_phone' => '0733030050',
+                        'customer_mobile' => '0612345678',
+                        'customer_country_code_iso_3166' => 'NL',
+                        'customer_email' => 'test@test.com',
+                        'customer_newsletter' => '1',
+                        'customer_date_of_birth' => '',
+                        'customer_iban' => '',
+                        'DeliveryAddress' =>
+                            (object)[
+                                'delivery_address_use_delivery_address' => '1',
+                                'delivery_address_name' => 'Bedrijfsnaam',
+                                'delivery_address_street_name' => 'Steenweg',
+                                'delivery_address_postal_code' => '1000AA',
+                                'delivery_address_housenumber' => '2',
+                                'delivery_address_housenumber_suffix' => 'B',
+                                'delivery_address_city' => 'Amsterdam',
+                                'delivery_address_country_code_iso_3166' => 'NL',
+                                'delivery_address_remarks' => 'Extra opmerking',
+                            ],
+                    ],
+                'OrderItems' =>
+                    (object)[
+                        'OrderItem' =>
+                            [
+                                    (object)[
+                                        'order_item_is_bicycle' => '0',
+                                        'order_item_barcode' => '88237237239',
+                                        'order_item_quantity' => '-1',
+                                        'order_item_description' => 'Some article',
+                                        'order_item_unit_price_in_vat' => '1021',
+                                        'order_item_unit_discount_amount_in_vat' => '21',
+                                        'order_item_vat_code' => '2',
+                                        'order_item_supplier_order_mode' => '0',
+                                        'order_item_invoice_customer_id' => 4,
+                                    ],
+                                    (object)[
+                                        'order_item_is_bicycle' => '0',
+                                        'order_item_barcode' => '47348340934',
+                                        'order_item_quantity' => '1',
+                                        'order_item_description' => 'Some Article',
+                                        'order_item_unit_price_in_vat' => '1521',
+                                        'order_item_unit_discount_amount_in_vat' => '21',
+                                        'order_item_vat_code' => '2',
+                                        'order_item_supplier_order_mode' => '0',
+                                        'order_item_invoice_customer_id' => '2',
+                                    ],
+                                    (object)[
+                                        'order_item_is_bicycle' => '0',
+                                        'order_item_barcode' => '43934939344',
+                                        'order_item_quantity' => '3',
+                                        'order_item_description' => 'Some article',
+                                        'order_item_unit_price_in_vat' => '1021',
+                                        'order_item_unit_discount_amount_in_vat' => '21',
+                                        'order_item_vat_code' => '2',
+                                        'order_item_supplier_order_mode' => '0',
+                                        'order_item_invoice_customer_id' => null,
+                                    ],
+                            ],
+                    ],
+            ],
+    ];
+    $result = $client->SaveOrder($input);
+    $order_id = $result->order_id;
+    $customer_id = $result->customer_id;
+    var_dump($result);
+}
+catch (\SoapFault $e) {
+    var_dump($e->getMessage());
+}
+```
+
 > HTTP Request
 
 ```http
@@ -56,7 +171,7 @@ Host: api.cyclesoftware.nl
 Accept-encoding: gzip,deflate
 Accept: text/xml
 Content-type: text/xml; charset=utf-8
-Yser-agent: SoapClient
+User-agent: SoapClient
 Soapaction: "SaveOrder"
 Content-length: 4614
 
@@ -65,8 +180,8 @@ Content-length: 4614
   <SOAP-ENV:Body>
     <ns1:SaveOrderRequest>
       <Authentication>
-        <username>User1</username>
-        <password>Pass1</password>
+        <username>your-username</username>
+        <password>your-password</password>
         <dealer_id>0</dealer_id>
       </Authentication>
       <Order>
@@ -194,6 +309,59 @@ Content-length: 2083
 
 ## UpdateOrder ##
 
+Update some header fields in the sales order. The following fields can be updated:
+
+```php
+<?php
+
+try {
+    $client = new \SoapClient(
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl',
+        [
+            'trace' => true,
+            'use' => SOAP_LITERAL,
+            'encoding' => 'UTF-8',
+        ]
+    );
+    $input = (object)[
+        'Authentication' =>
+            (object)[
+                'username' => 'your-username',
+                'password' => 'your-password',
+                'dealer_id' => '0',
+            ],
+        'order_id' => '3623',
+        'order_reference_id' => '',
+        'UpdateValues' =>
+            (object)[
+                'UpdateValue' =>
+                    [
+                        0 =>
+                            (object)[
+                                'name' => 'order_date_preferred_delivery',
+                                'value' => '2021-10-05 08:03:31',
+                            ],
+                        1 =>
+                            (object)[
+                                'name' => 'order_reference_text',
+                                'value' => '615beab217c75',
+                            ],
+                        2 =>
+                            (object)[
+                                'name' => 'order_track_trace_reference',
+                                'value' => '615beab217c76',
+                            ],
+                    ],
+            ],
+    ];
+    $result = $client->UpdateOrder($input);
+    var_dump($result);
+}
+catch (\SoapFault $e) {
+    var_dump($e->getMessage());
+}
+```
+
 > Request
 
 ```http
@@ -202,7 +370,7 @@ Host: api.cyclesoftware.nl
 Accept-encoding: gzip,deflate
 Accept: text/xml
 Content-type: text/xml; charset=utf-8
-Yser-agent: SoapClient
+User-agent: SoapClient
 Soapaction: "UpdateOrder"
 Content-length: 846
 
@@ -211,8 +379,8 @@ Content-length: 846
   <SOAP-ENV:Body>
     <ns1:UpdateOrderRequest>
       <Authentication>
-        <username></username>
-        <password></password>
+        <username>your-username</username>
+        <password>your-password</password>
         <dealer_id>0</dealer_id>
       </Authentication>
       <order_id>3623</order_id>
@@ -286,7 +454,59 @@ Content-length: 2446
 
 ## AddOrderItems ##
 
-Add new order items to an existing order
+Add new order items to an existing order.
+
+```php
+try {
+    $client = new \SoapClient(
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl',
+        [
+            'trace' => true,
+            'use' => SOAP_LITERAL,
+            'encoding' => 'UTF-8',
+        ]
+    );
+    $input = (object)[
+        'Authentication' =>
+            (object)[
+                'username' => 'your-username',
+                'password' => 'your-password',
+                'dealer_id' => '0',
+            ],
+        'order_id' => '684476',
+        'order_reference_id' => '',
+        'OrderItems' => (object)[
+                'OrderItem' =>
+                    [
+                        (object)[
+                            'order_item_is_bicycle' => '0',
+                            'order_item_barcode' => '872382382323',
+                            'order_item_quantity' => '2',
+                            'order_item_description' => 'DescriptionTest',
+                            'order_item_unit_price_in_vat' => '12.99',
+                            'order_item_unit_discount_amount_in_vat' => '2.99',
+                            'order_item_invoice_customer_id' => null,
+                        ],
+                        (object)[
+                            'order_item_is_bicycle' => '0',
+                            'order_item_barcode' => '4624824934349',
+                            'order_item_quantity' => '2',
+                            'order_item_description' => 'For lease company',
+                            'order_item_unit_price_in_vat' => '12.99',
+                            'order_item_unit_discount_amount_in_vat' => '2.99',
+                            'order_item_vat_code' => '2',
+                            'order_item_invoice_customer_id' => '10003',
+                        ],
+                    ],
+            ],
+    ];
+    $result = $client->AddOrderItems($input);
+    var_dump($result);
+}
+catch (\SoapFault $e) {
+    var_dump($e->getMessage());
+}
+```
 
 > Request
 
@@ -296,7 +516,7 @@ Host: api.cyclesoftware.nl
 Accept-encoding: gzip,deflate
 Accept: text/xml
 Content-type: text/xml; charset=utf-8
-Yser-agent: SoapClient
+User-agent: SoapClient
 Soapaction: "AddOrderItems"
 Content-length: 1373
 
@@ -305,8 +525,8 @@ Content-length: 1373
   <SOAP-ENV:Body>
     <ns1:AddOrderItemsRequest>
       <Authentication>
-        <username></username>
-        <password></password>
+        <username>your-username</username>
+        <password>your-password</password>
         <dealer_id>0</dealer_id>
       </Authentication>
       <order_id>3692</order_id>
@@ -420,7 +640,7 @@ Host: api.cyclesoftware.nl
 Accept-encoding: gzip,deflate
 Accept: text/xml
 Content-type: text/xml; charset=utf-8
-Yser-agent: SoapClient
+User-agent: SoapClient
 Soapaction: "GetInvoiceDocument"
 Content-length: 514
 
@@ -429,8 +649,8 @@ Content-length: 514
   <SOAP-ENV:Body>
     <ns1:GetInvoiceDocumentRequest>
       <Authentication>
-        <username>test</username>
-        <password>fuji95</password>
+        <username>your-username</username>
+        <password>your-password</password>
         <dealer_id>0</dealer_id>
       </Authentication>
       <invoice_number>44848</invoice_number>
@@ -453,11 +673,62 @@ Content-length: 396
 </SOAP-ENV:Envelope>
 ```
 
-## CreateOrderUpdateCustomer ##
+## CreateOrUpdateCustomer ##
+
+This method creates or updates an existing customer. Existing customers are matched on `customer_id`, `customer_phone`
+, `customer_mobile`, `customer_reference` or `customer_email`.
 
 | Field               | Type      | Description                                                                                                          |
 |-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
 |`customer_type_name`                  | string    |  One of the following: `Klant`, `Leverancier`, `E-commerce`, `Zakelijk`, `Lease-rijder`, `Lease-maatschappij`, `Werkgever` |
+
+```php
+<?php
+try {
+    $client = new \SoapClient(
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl',
+        [
+            'trace' => true,
+            'use' => SOAP_LITERAL,
+            'encoding' => 'UTF-8',
+        ]
+    );
+    $input = (object) array(
+        'Authentication' => (object) array(
+            'username' => 'your-username',
+            'password' => 'your-password',
+            'dealer_id' => '0',
+        ),
+        'customer_type_name' => '',
+        'Customer' => (object)array(
+            'customer_id' => 46,
+            'customer_cs_customer_id' => 235238848,
+            'customer_reference' => 'REF46',
+            'customer_name_prefix' => 'Dhr.',
+            'customer_name_initials' => 'A',
+            'customer_middle_name' => 'Van',
+            'customer_last_name' => 'Name 235238848',
+            'customer_postal_code' => '8448PE',
+            'customer_housenumber' => '32',
+            'customer_housenumber_suffix' => 'B',
+            'customer_street_name' => 'Mauritslaan',
+            'customer_city' => 'Heerenveen',
+            'customer_phone' => '073-3030050',
+            'customer_mobile' => '06-24238848',
+            'customer_country_code_iso_3166' => 'NL',
+            'customer_email' => 'test235238848@cyclesoftware.nl',
+            'customer_newsletter' => '0',
+            'customer_date_of_birth' => NULL,
+            'customer_iban' => 'NL69INGB0123456789',
+            'DeliveryAddress' => NULL,
+        )
+    );
+    $result = $client->CreateOrUpdateCustomer($input);
+    var_dump($result);
+} catch (\SoapFault $e) {
+    var_dump($e->getMessage());
+}
+```
 
 > Request
 
@@ -467,7 +738,7 @@ Host: api.cyclesoftware.nl
 Accept-encoding: gzip,deflate
 Accept: text/xml
 Content-type: text/xml; charset=utf-8
-Yser-agent: SoapClient
+User-agent: SoapClient
 Soapaction: "CreateOrderUpdateCustomer"
 Content-length: 1648
 
@@ -478,8 +749,8 @@ Content-length: 1648
   <SOAP-ENV:Body>
     <ns1:CreateOrUpdateCustomerRequest>
       <Authentication>
-        <username>test</username>
-        <password>fuji95</password>
+        <username>your-username</username>
+        <password>your-password</password>
         <dealer_id>0</dealer_id>
       </Authentication>
       <Customer>

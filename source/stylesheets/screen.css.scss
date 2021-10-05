@@ -645,3 +645,10 @@ body.has-warning {
     margin-right: 50%;
   }
 }
+.api-endpoint .endpoint-data {
+  height: unset;
+}
+.api-endpoint .endpoint-data h6 {
+  word-break: break-word;
+  padding: 0 5px 0 5px;
+}

@@ -7,7 +7,7 @@ language_tabs:
 
 toc_footers:
   - <a href="https://cyclesoftware.nl/" target="_blank">CycleSoftware</a>
-  - <a href="https://github.com/CycleSoftware/cyclesoftware.github.io">Contributing to the Docs</a>
+  - <a href="https://github.com/CycleSoftware/cyclesoftware.github.io">Contribute to the docs</a>
 
 includes:
   - cs-api/_introduction

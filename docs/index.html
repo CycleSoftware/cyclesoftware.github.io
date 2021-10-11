@@ -301,6 +301,9 @@
                     <a href="#definition" class="toc-h2 toc-link" data-title="Definition">Definition</a>
                   </li>
                   <li>
+                    <a href="#properties" class="toc-h2 toc-link" data-title="Properties">Properties</a>
+                  </li>
+                  <li>
                     <a href="#saveorder" class="toc-h2 toc-link" data-title="SaveOrder">SaveOrder</a>
                   </li>
                   <li>
@@ -531,48 +534,302 @@ mechanism is as follows:</p>
         <h6>/app/cs/api/ecommerce/soap_2_9/?wsdl</h6>
     </div>
 </div>
-<h2 id='saveorder'>SaveOrder</h2>
-<p>Creates a new order in CycleSoftware</p>
-
+<h2 id='properties'>Properties</h2>
 <table><thead>
 <tr>
-<th>Field</th>
+<th>Property</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>Authentication.dealer_id</code></td>
-<td>Leave 0 for default store_id based on authentication username and password. If &gt; 0 the value will be used to identify the store within the account</td>
+<td>Authentication[].username</td>
+<td><code>string</code></td>
+<td>e.g. <code>your-username</code></td>
 </tr>
 <tr>
-<td><code>Order.order_vat_country_code</code></td>
+<td>Authentication[].password</td>
+<td><code>string</code></td>
+<td>e.g. <code>your-password</code></td>
+</tr>
+<tr>
+<td>Authentication[].dealer_id</td>
+<td><code>string</code></td>
+<td>store-id or api-key. e.g. <code>1</code></td>
+</tr>
+<tr>
+<td>Order.order_reference_id</td>
+<td><code>string</code></td>
+<td>Unique order reference id <code>319813049</code></td>
+</tr>
+<tr>
+<td>Order.order_reference_text</td>
+<td><code>string</code></td>
+<td>Unique order reference text <code>5640c085abba9</code></td>
+</tr>
+<tr>
+<td>Order.order_is_payed</td>
+<td><code>boolean</code></td>
+<td>boolean <code>1</code> or <code>0</code></td>
+</tr>
+<tr>
+<td>Order.order_payment_method_description</td>
+<td><code>string</code></td>
+<td>Use “psp” for payments using a Payment service Provider (e.g. iDEAL, Bancontact etc.): <code>psp</code>,<code>pin</code>,<code>bancontact</code>,<code>contant</code>,<code>chip</code>,<code>creditcard</code>,<code>bank</code>,<code>rembours</code>,<code>ecocheques</code></td>
+</tr>
+<tr>
+<td>Order.order_ship_to_customer</td>
+<td><code>boolean</code></td>
+<td>boolean <code>1</code> or <code>0</code></td>
+</tr>
+<tr>
+<td>Order.order_shipment_method_description</td>
+<td><code>string</code></td>
+<td>e.g. <code>tnt</code></td>
+</tr>
+<tr>
+<td>Order.order_date_preferred_delivery</td>
+<td><code>date</code></td>
+<td>e.g. <code>2015-12-01</code></td>
+</tr>
+<tr>
+<td>Order.order_remarks</td>
+<td><code>string</code></td>
+<td>e.g. <code>remark example</code></td>
+</tr>
+<tr>
+<td>Order.order_vat_country_code</td>
+<td><code>string</code></td>
 <td>Apply the VAT rates of this country code. CS will only apply the VAT rates if enabled in account settings and if order_ship_to_customer is true. If the VAT rates are not applied or the same as the country of the account, it will default back to null in the OrderStatusResponse</td>
 </tr>
 <tr>
-<td><code>Order.order_payment_method_description</code></td>
-<td>Use “psp” for payments using a Payment service Provider   (e.g. iDEAL, Bancontact etc.)</td>
+<td>Order.order_sales_employee_id</td>
+<td><code>integer</code></td>
+<td>e.g. <code>10001</code> see Common / Employees endpoint for employee_id values</td>
 </tr>
 <tr>
-<td><code>OrderItems.OrderItem.order_item_is_bicycle</code></td>
+<td>Order.Customer</td>
+<td><code>object</code></td>
+<td>see Customer.* property</td>
+</tr>
+<tr>
+<td>Order.Customer.DeliveryAddress.delivery_address_use_delivery_address</td>
+<td><code>boolean</code></td>
+<td>Boolean <code>1</code> or <code>0</code></td>
+</tr>
+<tr>
+<td>Order.Customer.DeliveryAddress.delivery_address_name</td>
+<td><code>string</code></td>
+<td>e.g. <code>CycleSoftware</code></td>
+</tr>
+<tr>
+<td>Order.Customer.DeliveryAddress.delivery_address_street_name</td>
+<td><code>string</code></td>
+<td>e.g. <code>Kievitsven</code></td>
+</tr>
+<tr>
+<td>Order.Customer.DeliveryAddress.delivery_address_postal_code</td>
+<td><code>string</code></td>
+<td>e.g. <code>5249JJ</code></td>
+</tr>
+<tr>
+<td>Order.Customer.DeliveryAddress.delivery_address_housenumber</td>
+<td><code>string</code></td>
+<td>e.g. <code>4</code></td>
+</tr>
+<tr>
+<td>Order.Customer.DeliveryAddress.delivery_address_housenumber_suffix</td>
+<td><code>string</code></td>
+<td>e.g. <code>b</code></td>
+</tr>
+<tr>
+<td>Order.Customer.DeliveryAddress.delivery_address_city</td>
+<td><code>string</code></td>
+<td>e.g. <code>Rosmalen</code></td>
+</tr>
+<tr>
+<td>Order.Customer.DeliveryAddress.delivery_address_country_code_iso_3166</td>
+<td><code>string</code></td>
+<td>e.g. <code>NL</code></td>
+</tr>
+<tr>
+<td>Order.Customer.DeliveryAddress.delivery_address_remarks</td>
+<td><code>string</code></td>
+<td>e.g. <code>Bam</code></td>
+</tr>
+<tr>
+<td>Order.OrderItems.OrderItem</td>
+<td><code>array</code></td>
+<td>Array of OrderItem objects</td>
+</tr>
+<tr>
+<td>Order.OrderItems.OrderItem[].order_item_is_bicycle</td>
+<td><code>boolean</code></td>
 <td>Indicate whether this order item is a sold bicycle (0 or 1)</td>
 </tr>
 <tr>
-<td><code>OrderItems.OrderItem.order_item_supplier_order_mode</code></td>
+<td>Order.OrderItems.OrderItem[].order_item_barcode</td>
+<td><code>string</code></td>
+<td>e.g. <code>1000</code></td>
+</tr>
+<tr>
+<td>Order.OrderItems.OrderItem[].order_item_quantity</td>
+<td><code>integer</code></td>
+<td>e.g. <code>2</code></td>
+</tr>
+<tr>
+<td>Order.OrderItems.OrderItem[].order_item_description</td>
+<td><code>string</code></td>
+<td>e.g. <code>Test product</code></td>
+</tr>
+<tr>
+<td>Order.OrderItems.OrderItem[].order_item_unit_price_in_vat</td>
+<td><code>decimal</code></td>
+<td>e.g. <code>12.99</code></td>
+</tr>
+<tr>
+<td>Order.OrderItems.OrderItem[].order_item_unit_discount_amount_in_vat</td>
+<td><code>decimal</code></td>
+<td>e.g. <code>2.99</code></td>
+</tr>
+<tr>
+<td>Order.OrderItems.OrderItem[].order_item_vat_code</td>
+<td><code>integer</code></td>
+<td><code>0</code>: no VAT, <code>1</code>: Low VAT, <code>2</code> High VAT</td>
+</tr>
+<tr>
+<td>Order.OrderItems.OrderItem[].order_item_supplier_order_mode</td>
+<td><code>string</code></td>
 <td>0: no supplier order or reservation on objects<br/>1:automatically create supplier order for this sales order<br/>2: automatically reserve available stock objects based on the object_id in order_item_object_id or order_item_barcode field.</td>
 </tr>
 <tr>
-<td><code>OrderItems.OrderItem.order_item_supplier_id</code></td>
+<td>Order.OrderItems.OrderItem[].order_item_supplier_id`</td>
+<td><code>integer</code></td>
 <td>When order_item_supplier_mode = 1, make the supplier order for this supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/</td>
 </tr>
 <tr>
-<td><code>OrderItems.OrderItem.order_item_object_id</code></td>
+<td>Order.OrderItems.OrderItem[].order_item_object_id`</td>
+<td><code>integer</code></td>
 <td>Reserve this specific object for this order item</td>
 </tr>
 <tr>
-<td><code>OrderItems.OrderItem.order_item_invoice_customer_id</code></td>
+<td>Order.OrderItems.OrderItem[].order_item_invoice_customer_id`</td>
+<td><code>integer</code></td>
 <td>If supplied with integer value &gt; 0 this order item will be invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder should be the “rider” or “consumer”</td>
 </tr>
+<tr>
+<td>UpdateValues.UpdateValue</td>
+<td><code>array</code></td>
+<td>Array of UpdateValue objects</td>
+</tr>
+<tr>
+<td>UpdateValues.UpdateValue[].name</td>
+<td><code>string</code></td>
+<td>Field to update: <code>order_reference_text</code>, <code>order_is_payed</code>,<code>order_payment_method_description</code>,<code>order_ship_to_customer</code>,<code>order_shipment_method_description</code>,<code>order_date_preferred_delivery</code>,<code>order_track_trace_reference</code>,<code>order_remarks</code></td>
+</tr>
+<tr>
+<td>UpdateValues.UpdateValue[].value</td>
+<td><code>string</code></td>
+<td>e.g. <code>Will pickup at 13.00</code></td>
+</tr>
+<tr>
+<td>Customer.customer_type_name</td>
+<td><code>string</code></td>
+<td>One of the following: <code>Klant</code>, <code>Leverancier</code>, <code>E-commerce</code>, <code>Zakelijk</code>, <code>Lease-rijder</code>, <code>Lease-maatschappij</code>, <code>Werkgever</code></td>
+</tr>
+<tr>
+<td>Customer.customer_cs_customer_id</td>
+<td><code>string</code></td>
+<td>e.g. <code>235238848</code></td>
+</tr>
+<tr>
+<td>Customer.customer_reference</td>
+<td><code>string</code></td>
+<td>Should be an unique reference to the customer to prevent re-use / overwrites of existing customers</td>
+</tr>
+<tr>
+<td>Customer.customer_name_prefix</td>
+<td><code>string</code></td>
+<td>e.g. <code>Dhr.</code></td>
+</tr>
+<tr>
+<td>Customer.customer_name_initials</td>
+<td><code>string</code></td>
+<td>e.g. <code>A</code></td>
+</tr>
+<tr>
+<td>Customer.customer_middle_name</td>
+<td><code>string</code></td>
+<td>e.g. <code>Van</code></td>
+</tr>
+<tr>
+<td>Customer.customer_last_name</td>
+<td><code>string</code></td>
+<td>e.g. <code>Name 235238848</code></td>
+</tr>
+<tr>
+<td>Customer.customer_postal_code</td>
+<td><code>string</code></td>
+<td>e.g. <code>8448PE</code></td>
+</tr>
+<tr>
+<td>Customer.customer_housenumber</td>
+<td><code>string</code></td>
+<td>e.g. <code>32</code></td>
+</tr>
+<tr>
+<td>Customer.customer_housenumber_suffix</td>
+<td><code>string</code></td>
+<td>e.g. <code>B</code></td>
+</tr>
+<tr>
+<td>Customer.customer_street_name</td>
+<td><code>string</code></td>
+<td>e.g. <code>Mauritslaan</code></td>
+</tr>
+<tr>
+<td>Customer.customer_city</td>
+<td><code>string</code></td>
+<td>e.g. <code>Heerenveen</code></td>
+</tr>
+<tr>
+<td>Customer.customer_phone</td>
+<td><code>string</code></td>
+<td>e.g. <code>073-1234567</code></td>
+</tr>
+<tr>
+<td>Customer.customer_mobile</td>
+<td><code>string</code></td>
+<td>e.g. <code>06-124235335</code></td>
+</tr>
+<tr>
+<td>Customer.customer_country_code_iso_3166</td>
+<td><code>string</code></td>
+<td>Country code iso3166 e.g. <code>NL</code></td>
+</tr>
+<tr>
+<td>Customer.customer_email</td>
+<td><code>string</code></td>
+<td>e.g. <code>test235238848@cyclesoftware.nl</code></td>
+</tr>
+<tr>
+<td>Customer.customer_newsletter</td>
+<td><code>boolean</code></td>
+<td>Toggle newsletter option boolean <code>1</code> or <code>0</code></td>
+</tr>
+<tr>
+<td>Customer.customer_date_of_birth</td>
+<td><code>date</code></td>
+<td>e.g. <code>1980-01-01</code></td>
+</tr>
+<tr>
+<td>Customer.customer_iban</td>
+<td><code>string</code></td>
+<td>e.g. <code>NL69INGB0123456789</code></td>
+</tr>
 </tbody></table>
+<h2 id='saveorder'>SaveOrder</h2>
+<p>Creates a new order in CycleSoftware</p>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 
@@ -588,26 +845,26 @@ mechanism is as follows:</p>
    <span class="nv">$input</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
         <span class="s1">'Authentication'</span> <span class="o">=&gt;</span>
             <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
-                <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'nehi33'</span><span class="p">,</span>
-                <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'fuji95'</span><span class="p">,</span>
-                <span class="s1">'dealer_id'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
+                <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'your-username'</span><span class="p">,</span>
+                <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'your-password'</span><span class="p">,</span>
+                <span class="s1">'dealer_id'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span> <span class="c1">// store-id within account</span>
             <span class="p">],</span>
         <span class="s1">'Order'</span> <span class="o">=&gt;</span>
             <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
-                <span class="s1">'order_reference_text'</span> <span class="o">=&gt;</span> <span class="s1">'615beb388f53d'</span><span class="p">,</span>
-                <span class="s1">'order_reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'1633413944587'</span><span class="p">,</span>
+                <span class="s1">'order_reference_text'</span> <span class="o">=&gt;</span> <span class="s1">'5640c085abba9'</span><span class="p">,</span>
+                <span class="s1">'order_reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'319813049'</span><span class="p">,</span>
                 <span class="s1">'order_is_payed'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
-                <span class="s1">'order_payment_method_description'</span> <span class="o">=&gt;</span> <span class="s1">'ideal'</span><span class="p">,</span>
+                <span class="s1">'order_payment_method_description'</span> <span class="o">=&gt;</span> <span class="s1">'psp'</span><span class="p">,</span>
                 <span class="s1">'order_ship_to_customer'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
                 <span class="s1">'order_shipment_method_description'</span> <span class="o">=&gt;</span> <span class="s1">'tnt'</span><span class="p">,</span>
                 <span class="s1">'order_date_preferred_delivery'</span> <span class="o">=&gt;</span> <span class="s1">'2015-12-01'</span><span class="p">,</span>
-                <span class="s1">'order_remarks'</span> <span class="o">=&gt;</span> <span class="s1">'TestRemarks'</span><span class="p">,</span>
+                <span class="s1">'order_remarks'</span> <span class="o">=&gt;</span> <span class="s1">'remark example'</span><span class="p">,</span>
                 <span class="s1">'order_vat_country_code'</span> <span class="o">=&gt;</span> <span class="s1">'NL'</span><span class="p">,</span>
                 <span class="s1">'order_sales_employee_id '</span> <span class="o">=&gt;</span> <span class="kc">null</span><span class="p">,</span>
                 <span class="s1">'Customer'</span> <span class="o">=&gt;</span>
                     <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
                         <span class="s1">'customer_cs_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'11'</span><span class="p">,</span>
-                        <span class="s1">'customer_reference'</span> <span class="o">=&gt;</span> <span class="s1">'REFBE'</span><span class="p">,</span>
+                        <span class="s1">'customer_reference'</span> <span class="o">=&gt;</span> <span class="s1">'unique-reference-customer'</span><span class="p">,</span>
                         <span class="s1">'customer_name_prefix'</span> <span class="o">=&gt;</span> <span class="s1">'Dhr.'</span><span class="p">,</span>
                         <span class="s1">'customer_name_initials'</span> <span class="o">=&gt;</span> <span class="s1">'J'</span><span class="p">,</span>
                         <span class="s1">'customer_middle_name'</span> <span class="o">=&gt;</span> <span class="s1">'van'</span><span class="p">,</span>
@@ -706,7 +963,7 @@ mechanism is as follows:</p>
       <span class="nt">&lt;Authentication&gt;</span>
         <span class="nt">&lt;username&gt;</span>your-username<span class="nt">&lt;/username&gt;</span>
         <span class="nt">&lt;password&gt;</span>your-password<span class="nt">&lt;/password&gt;</span>
-        <span class="nt">&lt;dealer_id&gt;</span>0<span class="nt">&lt;/dealer_id&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>1<span class="nt">&lt;/dealer_id&gt;</span>
       <span class="nt">&lt;/Authentication&gt;</span>
       <span class="nt">&lt;Order&gt;</span>
         <span class="nt">&lt;order_reference_id&gt;</span>319813049<span class="nt">&lt;/order_reference_id&gt;</span>
@@ -721,26 +978,26 @@ mechanism is as follows:</p>
         <span class="nt">&lt;order_sales_employee_id/&gt;</span>
         <span class="nt">&lt;Customer&gt;</span>
           <span class="nt">&lt;customer_cs_customer_id&gt;</span>0<span class="nt">&lt;/customer_cs_customer_id&gt;</span>
-          <span class="nt">&lt;customer_reference&gt;</span>REF<span class="nt">&lt;/customer_reference&gt;</span>
-          <span class="nt">&lt;customer_name_prefix&gt;</span>G<span class="nt">&lt;/customer_name_prefix&gt;</span>
+          <span class="nt">&lt;customer_reference&gt;</span>unique-reference-customer<span class="nt">&lt;/customer_reference&gt;</span>
+          <span class="nt">&lt;customer_name_prefix&gt;</span>J<span class="nt">&lt;/customer_name_prefix&gt;</span>
           <span class="nt">&lt;customer_middle_name&gt;</span>van<span class="nt">&lt;/customer_middle_name&gt;</span>
-          <span class="nt">&lt;customer_last_name&gt;</span>Wijgergangs<span class="nt">&lt;/customer_last_name&gt;</span>
-          <span class="nt">&lt;customer_postal_code&gt;</span>5258 hl<span class="nt">&lt;/customer_postal_code&gt;</span>
+          <span class="nt">&lt;customer_last_name&gt;</span>Dijk<span class="nt">&lt;/customer_last_name&gt;</span>
+          <span class="nt">&lt;customer_postal_code&gt;</span>1000AA<span class="nt">&lt;/customer_postal_code&gt;</span>
           <span class="nt">&lt;customer_housenumber&gt;</span>2<span class="nt">&lt;/customer_housenumber&gt;</span>
           <span class="nt">&lt;customer_housenumber_suffix&gt;</span>B<span class="nt">&lt;/customer_housenumber_suffix&gt;</span>
-          <span class="nt">&lt;customer_street_name&gt;</span>Sassenheimseweg<span class="nt">&lt;/customer_street_name&gt;</span>
-          <span class="nt">&lt;customer_city&gt;</span>Berlicum<span class="nt">&lt;/customer_city&gt;</span>
+          <span class="nt">&lt;customer_street_name&gt;</span>Steenweg<span class="nt">&lt;/customer_street_name&gt;</span>
+          <span class="nt">&lt;customer_city&gt;</span>Amsterdam<span class="nt">&lt;/customer_city&gt;</span>
           <span class="nt">&lt;customer_phone&gt;</span>0733030050<span class="nt">&lt;/customer_phone&gt;</span>
-          <span class="nt">&lt;customer_mobile&gt;</span>0622903913<span class="nt">&lt;/customer_mobile&gt;</span>
+          <span class="nt">&lt;customer_mobile&gt;</span>0612345678<span class="nt">&lt;/customer_mobile&gt;</span>
           <span class="nt">&lt;customer_country_code_iso_3166&gt;</span>NL<span class="nt">&lt;/customer_country_code_iso_3166&gt;</span>
-          <span class="nt">&lt;customer_email&gt;</span>gielwijgergangs@gmail.com<span class="nt">&lt;/customer_email&gt;</span>
+          <span class="nt">&lt;customer_email&gt;</span>test@test.com<span class="nt">&lt;/customer_email&gt;</span>
           <span class="nt">&lt;customer_newsletter&gt;</span>1<span class="nt">&lt;/customer_newsletter&gt;</span>
-          <span class="nt">&lt;customer_iban&gt;</span>NL71INGB0008871139<span class="nt">&lt;/customer_iban&gt;</span>
+          <span class="nt">&lt;customer_iban&gt;</span>NL69INGB0123456789<span class="nt">&lt;/customer_iban&gt;</span>
           <span class="nt">&lt;customer_date_of_birth&gt;</span>1988-09-29<span class="nt">&lt;/customer_date_of_birth&gt;</span>
           <span class="nt">&lt;DeliveryAddress&gt;</span>
             <span class="nt">&lt;delivery_address_use_delivery_address&gt;</span>1<span class="nt">&lt;/delivery_address_use_delivery_address&gt;</span>
-            <span class="nt">&lt;delivery_address_name&gt;</span>CycleSoftare<span class="nt">&lt;/delivery_address_name&gt;</span>
-            <span class="nt">&lt;delivery_address_street_name&gt;</span>Kievitsven 22<span class="nt">&lt;/delivery_address_street_name&gt;</span>
+            <span class="nt">&lt;delivery_address_name&gt;</span>CycleSoftware<span class="nt">&lt;/delivery_address_name&gt;</span>
+            <span class="nt">&lt;delivery_address_street_name&gt;</span>Kievitsven<span class="nt">&lt;/delivery_address_street_name&gt;</span>
             <span class="nt">&lt;delivery_address_postal_code&gt;</span>5249JJ<span class="nt">&lt;/delivery_address_postal_code&gt;</span>
             <span class="nt">&lt;delivery_address_housenumber&gt;</span>4<span class="nt">&lt;/delivery_address_housenumber&gt;</span>
             <span class="nt">&lt;delivery_address_housenumber_suffix&gt;</span>b<span class="nt">&lt;/delivery_address_housenumber_suffix&gt;</span>
@@ -848,7 +1105,7 @@ Content-length: 2083
             <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
                 <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'your-username'</span><span class="p">,</span>
                 <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'your-password'</span><span class="p">,</span>
-                <span class="s1">'dealer_id'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
+                <span class="s1">'dealer_id'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span> <span class="c1">// store-id within account</span>
             <span class="p">],</span>
         <span class="s1">'order_id'</span> <span class="o">=&gt;</span> <span class="s1">'3623'</span><span class="p">,</span>
         <span class="s1">'order_reference_id'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
@@ -900,7 +1157,7 @@ Content-length: 2083
       <span class="nt">&lt;Authentication&gt;</span>
         <span class="nt">&lt;username&gt;</span>your-username<span class="nt">&lt;/username&gt;</span>
         <span class="nt">&lt;password&gt;</span>your-password<span class="nt">&lt;/password&gt;</span>
-        <span class="nt">&lt;dealer_id&gt;</span>0<span class="nt">&lt;/dealer_id&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>1<span class="nt">&lt;/dealer_id&gt;</span>
       <span class="nt">&lt;/Authentication&gt;</span>
       <span class="nt">&lt;order_id&gt;</span>3623<span class="nt">&lt;/order_id&gt;</span>
       <span class="nt">&lt;order_reference_id&gt;</span>
@@ -986,7 +1243,7 @@ Content-length: 2446
             <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
                 <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'your-username'</span><span class="p">,</span>
                 <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'your-password'</span><span class="p">,</span>
-                <span class="s1">'dealer_id'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
+                <span class="s1">'dealer_id'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span> <span class="c1">// store-id within account</span>
             <span class="p">],</span>
         <span class="s1">'order_id'</span> <span class="o">=&gt;</span> <span class="s1">'684476'</span><span class="p">,</span>
         <span class="s1">'order_reference_id'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
@@ -1041,7 +1298,7 @@ Content-length: 2446
       <span class="nt">&lt;Authentication&gt;</span>
         <span class="nt">&lt;username&gt;</span>your-username<span class="nt">&lt;/username&gt;</span>
         <span class="nt">&lt;password&gt;</span>your-password<span class="nt">&lt;/password&gt;</span>
-        <span class="nt">&lt;dealer_id&gt;</span>0<span class="nt">&lt;/dealer_id&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>1<span class="nt">&lt;/dealer_id&gt;</span>
       <span class="nt">&lt;/Authentication&gt;</span>
       <span class="nt">&lt;order_id&gt;</span>3692<span class="nt">&lt;/order_id&gt;</span>
       <span class="nt">&lt;order_reference_id&gt;</span>
@@ -1133,7 +1390,7 @@ Content-length: 2464
     <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[];</span>
     <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span><span class="o">-&gt;</span><span class="n">username</span> <span class="o">=</span> <span class="s1">'your-username'</span><span class="p">;</span>
     <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span><span class="o">-&gt;</span><span class="n">password</span> <span class="o">=</span> <span class="s1">'your-password'</span><span class="p">;</span>
-    <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span><span class="o">-&gt;</span><span class="n">dealer_id</span> <span class="o">=</span> <span class="s1">'0'</span><span class="p">;</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span><span class="o">-&gt;</span><span class="n">dealer_id</span> <span class="o">=</span> <span class="s1">'1'</span><span class="p">;</span>
     <span class="nv">$input</span><span class="o">-&gt;</span><span class="n">invoice_number</span> <span class="o">=</span> <span class="s1">'44848'</span><span class="p">;</span>
     <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="nf">GetInvoiceDocument</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$result</span><span class="p">);</span>
@@ -1160,7 +1417,7 @@ Content-length: 2464
       <span class="nt">&lt;Authentication&gt;</span>
         <span class="nt">&lt;username&gt;</span>your-username<span class="nt">&lt;/username&gt;</span>
         <span class="nt">&lt;password&gt;</span>your-password<span class="nt">&lt;/password&gt;</span>
-        <span class="nt">&lt;dealer_id&gt;</span>0<span class="nt">&lt;/dealer_id&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>1<span class="nt">&lt;/dealer_id&gt;</span>
       <span class="nt">&lt;/Authentication&gt;</span>
       <span class="nt">&lt;invoice_number&gt;</span>44848<span class="nt">&lt;/invoice_number&gt;</span>
     <span class="nt">&lt;/ns1:GetInvoiceDocumentRequest&gt;</span>
@@ -1183,20 +1440,6 @@ Content-length: 396
 </code></pre></div><h2 id='createorupdatecustomer'>CreateOrUpdateCustomer</h2>
 <p>This method creates or updates an existing customer. Existing customers are matched on <code>customer_id</code>, <code>customer_phone</code>
 , <code>customer_mobile</code>, <code>customer_reference</code> or <code>customer_email</code>.</p>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>customer_type_name</code></td>
-<td>string</td>
-<td>One of the following: <code>Klant</code>, <code>Leverancier</code>, <code>E-commerce</code>, <code>Zakelijk</code>, <code>Lease-rijder</code>, <code>Lease-maatschappij</code>, <code>Werkgever</code></td>
-</tr>
-</tbody></table>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
@@ -1211,13 +1454,13 @@ Content-length: 396
         <span class="s1">'Authentication'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">object</span><span class="p">)</span> <span class="k">array</span><span class="p">(</span>
             <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'your-username'</span><span class="p">,</span>
             <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'your-password'</span><span class="p">,</span>
-            <span class="s1">'dealer_id'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
+            <span class="s1">'dealer_id'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span> <span class="c1">// store-id within account</span>
         <span class="p">),</span>
         <span class="s1">'customer_type_name'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
         <span class="s1">'Customer'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">object</span><span class="p">)</span><span class="k">array</span><span class="p">(</span>
             <span class="s1">'customer_id'</span> <span class="o">=&gt;</span> <span class="mi">46</span><span class="p">,</span>
             <span class="s1">'customer_cs_customer_id'</span> <span class="o">=&gt;</span> <span class="mi">235238848</span><span class="p">,</span>
-            <span class="s1">'customer_reference'</span> <span class="o">=&gt;</span> <span class="s1">'REF46'</span><span class="p">,</span>
+            <span class="s1">'customer_reference'</span> <span class="o">=&gt;</span> <span class="s1">'unique-reference-customer'</span><span class="p">,</span>
             <span class="s1">'customer_name_prefix'</span> <span class="o">=&gt;</span> <span class="s1">'Dhr.'</span><span class="p">,</span>
             <span class="s1">'customer_name_initials'</span> <span class="o">=&gt;</span> <span class="s1">'A'</span><span class="p">,</span>
             <span class="s1">'customer_middle_name'</span> <span class="o">=&gt;</span> <span class="s1">'Van'</span><span class="p">,</span>
@@ -1264,12 +1507,12 @@ Content-length: 396
       <span class="nt">&lt;Authentication&gt;</span>
         <span class="nt">&lt;username&gt;</span>your-username<span class="nt">&lt;/username&gt;</span>
         <span class="nt">&lt;password&gt;</span>your-password<span class="nt">&lt;/password&gt;</span>
-        <span class="nt">&lt;dealer_id&gt;</span>0<span class="nt">&lt;/dealer_id&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>1<span class="nt">&lt;/dealer_id&gt;</span>
       <span class="nt">&lt;/Authentication&gt;</span>
       <span class="nt">&lt;Customer&gt;</span>
         <span class="nt">&lt;customer_type_name&gt;</span>Lease-maatschappij<span class="nt">&lt;/customer_type_name&gt;</span>
         <span class="nt">&lt;customer_cs_customer_id&gt;</span>235238848<span class="nt">&lt;/customer_cs_customer_id&gt;</span>
-        <span class="nt">&lt;customer_reference&gt;</span>REF46<span class="nt">&lt;/customer_reference&gt;</span>
+        <span class="nt">&lt;customer_reference&gt;</span>unique-reference-customer<span class="nt">&lt;/customer_reference&gt;</span>
         <span class="nt">&lt;customer_name_prefix&gt;</span>Dhr.<span class="nt">&lt;/customer_name_prefix&gt;</span>
         <span class="nt">&lt;customer_name_initials&gt;</span>A<span class="nt">&lt;/customer_name_initials&gt;</span>
         <span class="nt">&lt;customer_middle_name&gt;</span>Van<span class="nt">&lt;/customer_middle_name&gt;</span>

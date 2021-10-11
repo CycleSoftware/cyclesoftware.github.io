@@ -22,22 +22,22 @@ Get a list of employees associated with the account
 
 ### Properties ###
 
-Property                 | Type    | Nullable | Description
------------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------
-error                    | boolean | `false`  | e.g. `false`
-error_message            | string  | `true`   | e.g. `Unauthorized`
-data                     | array   | `false`  | array of objects
-data[].employee_id       | integer | `false`  | e.g. `4475`
-data[].employee_name     | string  | `false`  | e.g. `John`
-data[].verification_hash | string  | `false`  | e.g. `8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb` sha256 hash mac with api-key as secret
-data[].roles             | array   | `false`  | array of strings
-data[].roles[]           | string  | `false`  | e.g. `employee`
-data[].is_active         | boolean | `false`  | e.g. `false`
-data[].is_default        | boolean | `false`  | e.g. `false`
-data[].is_administrator  | boolean | `false`  | e.g. `false`
-data[].avatar            | string  | `true`   | URL to avatar or null
-data[].authorizations    | array   | `false`  | array of strings
-data[].authorizations[]  | string  | `false`  | e.g. `MAY_ACCEPT_SALES_LEADS`
+Property                 | Type      | Nullable | Description
+------------------------ | --------- | -------- | --------------------------------------------------------------------------------------------------------------
+error                    | `boolean` | `false`  | e.g. `false`
+error_message            | `string`  | `true`   | e.g. `Unauthorized`
+data                     | `array`   | `false`  | array of objects
+data[].employee_id       | `integer` | `false`  | e.g. `4475`
+data[].employee_name     | `string`  | `false`  | e.g. `John`
+data[].verification_hash | `string`  | `false`  | e.g. `8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb` sha256 hash mac with api-key as secret
+data[].roles             | `array`   | `false`  | array of strings
+data[].roles[]           | `string`  | `false`  | e.g. `employee`
+data[].is_active         | `boolean` | `false`  | e.g. `false`
+data[].is_default        | `boolean` | `false`  | e.g. `false`
+data[].is_administrator  | `boolean` | `false`  | e.g. `false`
+data[].avatar            | `string`  | `true`   | URL to avatar or null
+data[].authorizations    | `array`   | `false`  | array of strings
+data[].authorizations[]  | `string`  | `false`  | e.g. `MAY_ACCEPT_SALES_LEADS`
 
 > HTTP Request
 
@@ -112,7 +112,7 @@ Content-length: 1220
 $api_key = 'your-api-key';
 $code = '1234';
 $hash = \hash_hmac('sha256', $code, $api_key);
-if(\hash_equals('value in data[].verification_hash', $hash)){
+if(\hash_equals('data[].verification_hash', $hash)){
    // code is correct
 }
 ```

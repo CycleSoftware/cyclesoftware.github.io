@@ -72,7 +72,7 @@ Content-length: 1220
       "is_active": true,
       "is_default": true,
       "is_administrator": false,
-      "avatar": "https://s01.cyclesoftware.local/app/cs/img/img_1_large_medewerker_44269.jpg",
+      "avatar": "https://s01.cyclesoftware.nl/app/cs/img/img_1_large_medewerker_44269.jpg",
       "authorizations": [
         "MAY_PERFORM_CYCLE_COUNT",
         "MAY_MODIFY_ARTICLE_PRICES",

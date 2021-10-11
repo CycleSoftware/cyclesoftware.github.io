@@ -23,7 +23,7 @@ The latest definition of the WSDL specification can be found at:
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">WSDL-SOAP</i>
-		<h6>/app/cs/api/ecommerce/soap_2_8/?wsdl</h6>
+		<h6>/app/cs/api/ecommerce/soap_2_9/?wsdl</h6>
 	</div>
 </div>
 
@@ -31,22 +31,16 @@ The latest definition of the WSDL specification can be found at:
 
 Creates a new order in CycleSoftware
 
-| Field | Description | | `Authentication.dealer_id` | Leave 0 for default store_id based on authentication username and
-password. If > 0 the value will be used to identify the store within the account | | `Order.order_vat_country_code` |
-Apply the VAT rates of this country code. CS will only apply the VAT rates if enabled in account settings and if
-order_ship_to_customer is true. If the VAT rates are not applied or the same as the country of the account, it will
-default back to null in the OrderStatusResponse
-`Order.order_payment_method_description` | Use “psp” for payments using a Payment service Provider   (e.g. iDEAL,
-Bancontact etc.)
-`OrderItems.OrderItem.order_item_is_bicycle` | Indicate whether this order item is a sold bicycle (0 or 1)
-`OrderItems.OrderItem.order_item_supplier_order_mode` | 0: no supplier order or reservation on objects<br/>1:
-automatically create supplier order for this sales order<br/>2: automatically reserve available stock objects based on
-the object_id in order_item_object_id or order_item_barcode field.
-`OrderItems.OrderItem.order_item_supplier_id` | When order_item_supplier_mode = 1, make the supplier order for this
-supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/
-`OrderItems.OrderItem.order_item_object_id` | Reserve this specific object for this order item
-`OrderItems.OrderItem.order_item_invoice_customer_id` | If supplied with integer value > 0 this order item will be
-invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder should be the “rider” or “consumer”
+| Field | Description | 
+| ---------| ------- |
+| `Authentication.dealer_id` | Leave 0 for default store_id based on authentication username and password. If > 0 the value will be used to identify the store within the account | 
+| `Order.order_vat_country_code` | Apply the VAT rates of this country code. CS will only apply the VAT rates if enabled in account settings and if order_ship_to_customer is true. If the VAT rates are not applied or the same as the country of the account, it will default back to null in the OrderStatusResponse |
+| `Order.order_payment_method_description` | Use “psp” for payments using a Payment service Provider   (e.g. iDEAL, Bancontact etc.) |
+| `OrderItems.OrderItem.order_item_is_bicycle` | Indicate whether this order item is a sold bicycle (0 or 1) |
+| `OrderItems.OrderItem.order_item_supplier_order_mode` | 0: no supplier order or reservation on objects<br/>1:automatically create supplier order for this sales order<br/>2: automatically reserve available stock objects based on the object_id in order_item_object_id or order_item_barcode field. |
+| `OrderItems.OrderItem.order_item_supplier_id` | When order_item_supplier_mode = 1, make the supplier order for this supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/ |
+| `OrderItems.OrderItem.order_item_object_id` | Reserve this specific object for this order item |
+| `OrderItems.OrderItem.order_item_invoice_customer_id` | If supplied with integer value > 0 this order item will be invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder should be the “rider” or “consumer” |
 
 ```php
 <?php
@@ -54,7 +48,7 @@ invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder
 
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -64,25 +58,26 @@ try {
    $input = (object)[
         'Authentication' =>
             (object)[
-                'username' => 'nehi33',
-                'password' => 'fuji95',
-                'dealer_id' => '0',
+                'username' => 'your-username',
+                'password' => 'your-password',
+                'dealer_id' => '1', // store-id within account
             ],
         'Order' =>
             (object)[
-                'order_reference_text' => '615beb388f53d',
-                'order_reference_id' => '1633413944587',
+                'order_reference_text' => '5640c085abba9',
+                'order_reference_id' => '319813049',
                 'order_is_payed' => '1',
-                'order_payment_method_description' => 'ideal',
+                'order_payment_method_description' => 'psp',
                 'order_ship_to_customer' => '1',
                 'order_shipment_method_description' => 'tnt',
                 'order_date_preferred_delivery' => '2015-12-01',
-                'order_remarks' => 'TestRemarks',
+                'order_remarks' => 'remark example',
                 'order_vat_country_code' => 'NL',
+                'order_sales_employee_id ' => null,
                 'Customer' =>
                     (object)[
                         'customer_cs_customer_id' => '11',
-                        'customer_reference' => 'REFBE',
+                        'customer_reference' => 'unique-reference-customer',
                         'customer_name_prefix' => 'Dhr.',
                         'customer_name_initials' => 'J',
                         'customer_middle_name' => 'van',
@@ -166,7 +161,7 @@ catch (\SoapFault $e) {
 > HTTP Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_8/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip,deflate
 Accept: text/xml
@@ -194,9 +189,10 @@ Content-length: 4614
         <order_date_preferred_delivery>2015-12-01</order_date_preferred_delivery>
         <order_remarks>remark example</order_remarks>
         <order_vat_country_code>NL</order_vat_country_code>
+        <order_sales_employee_id/>
         <Customer>
           <customer_cs_customer_id>0</customer_cs_customer_id>
-          <customer_reference>REF</customer_reference>
+          <customer_reference>unique-reference-customer</customer_reference>
           <customer_name_prefix>G</customer_name_prefix>
           <customer_middle_name>van</customer_middle_name>
           <customer_last_name>Wijgergangs</customer_last_name>
@@ -316,7 +312,7 @@ Update some header fields in the sales order. The following fields can be update
 
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -365,7 +361,7 @@ catch (\SoapFault $e) {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_8/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip,deflate
 Accept: text/xml
@@ -416,6 +412,7 @@ Content-length: 2446
       <order_track_trace_reference>563c8b1bc4ada</order_track_trace_reference>
       <order_date_preferred_delivery>2015-11-09 15:50:35</order_date_preferred_delivery>
       <order_vat_country_code/>
+      <order_sales_employee_id>11111</order_sales_employee_id>
       <customer_id>1498</customer_id>
       <invoice_id>0</invoice_id>
       <OrderResultItems>
@@ -459,7 +456,7 @@ Add new order items to an existing order.
 ```php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -511,7 +508,7 @@ catch (\SoapFault $e) {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_8/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip,deflate
 Accept: text/xml
@@ -567,6 +564,7 @@ Content-length: 2464
       <order_track_trace_reference>
       </order_track_trace_reference>
       <order_date_preferred_delivery>2015-12-01 00:00:00</order_date_preferred_delivery>
+      <order_sales_employee_id>1212</order_sales_employee_id>
       <customer_id>1498</customer_id>
       <invoice_id>0</invoice_id>
       <OrderResultItems>
@@ -612,7 +610,7 @@ Get an invoice document based on the invoice-number.
 <?php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
         [
           'trace' => true,
           'use' => SOAP_LITERAL,
@@ -635,7 +633,7 @@ try {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_8/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip,deflate
 Accept: text/xml
@@ -686,7 +684,7 @@ This method creates or updates an existing customer. Existing customers are matc
 <?php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -703,7 +701,7 @@ try {
         'Customer' => (object)array(
             'customer_id' => 46,
             'customer_cs_customer_id' => 235238848,
-            'customer_reference' => 'REF46',
+            'customer_reference' => 'unique-reference-customer',
             'customer_name_prefix' => 'Dhr.',
             'customer_name_initials' => 'A',
             'customer_middle_name' => 'Van',
@@ -733,7 +731,7 @@ try {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_8/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip,deflate
 Accept: text/xml
@@ -756,7 +754,7 @@ Content-length: 1648
       <Customer>
         <customer_type_name>Lease-maatschappij</customer_type_name>
         <customer_cs_customer_id>235238848</customer_cs_customer_id>
-        <customer_reference>REF46</customer_reference>
+        <customer_reference>unique-reference-customer</customer_reference>
         <customer_name_prefix>Dhr.</customer_name_prefix>
         <customer_name_initials>A</customer_name_initials>
         <customer_middle_name>Van</customer_middle_name>

@@ -7,20 +7,21 @@ Access invoice data
 - Basic HTTP Authentication
 - Scope(s): `salesdata`
 
-## Unbooked invoices ##
-Get a list of unbooked sales transactions / invoices.
+## Pro-forma invoices ##
+
+Get a list of proforma sales transactions / invoices.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
-		<h6>/api/v1/invoices/unbooked.json</h6>
+		<h6>/api/v1/invoices/proforma.json</h6>
 	</div>
 </div>
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
-		<h6>/api/v1/invoices/unbooked.json?offset=1000</h6>
+		<h6>/api/v1/invoices/proforma.json?offset=1000</h6>
 	</div>
 </div>
 

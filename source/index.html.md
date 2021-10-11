@@ -13,6 +13,7 @@ includes:
   - cs-api/_introduction
   - cs-api/_authentication
   - cs-api/_ecommerce
+  - cs-api/_common
   - cs-api/_invoices
 
 search: true

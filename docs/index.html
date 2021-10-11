@@ -318,10 +318,18 @@
               </ul>
           </li>
           <li>
+            <a href="#common" class="toc-h1 toc-link" data-title="Common">Common</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#employees" class="toc-h2 toc-link" data-title="Employees">Employees</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#invoices" class="toc-h1 toc-link" data-title="Invoices">Invoices</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#unbooked-invoices" class="toc-h2 toc-link" data-title="Unbooked invoices">Unbooked invoices</a>
+                    <a href="#pro-forma-invoices" class="toc-h2 toc-link" data-title="Pro-forma invoices">Pro-forma invoices</a>
                   </li>
               </ul>
           </li>
@@ -520,34 +528,57 @@ mechanism is as follows:</p>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">WSDL-SOAP</i>
-        <h6>/app/cs/api/ecommerce/soap_2_8/?wsdl</h6>
+        <h6>/app/cs/api/ecommerce/soap_2_9/?wsdl</h6>
     </div>
 </div>
 <h2 id='saveorder'>SaveOrder</h2>
 <p>Creates a new order in CycleSoftware</p>
 
-<p>| Field | Description | | <code>Authentication.dealer_id</code> | Leave 0 for default store_id based on authentication username and
-password. If &gt; 0 the value will be used to identify the store within the account | | <code>Order.order_vat_country_code</code> |
-Apply the VAT rates of this country code. CS will only apply the VAT rates if enabled in account settings and if
-order_ship_to_customer is true. If the VAT rates are not applied or the same as the country of the account, it will
-default back to null in the OrderStatusResponse
-<code>Order.order_payment_method_description</code> | Use “psp” for payments using a Payment service Provider   (e.g. iDEAL,
-Bancontact etc.)
-<code>OrderItems.OrderItem.order_item_is_bicycle</code> | Indicate whether this order item is a sold bicycle (0 or 1)
-<code>OrderItems.OrderItem.order_item_supplier_order_mode</code> | 0: no supplier order or reservation on objects<br/>1:
-automatically create supplier order for this sales order<br/>2: automatically reserve available stock objects based on
-the object_id in order_item_object_id or order_item_barcode field.
-<code>OrderItems.OrderItem.order_item_supplier_id</code> | When order_item_supplier_mode = 1, make the supplier order for this
-supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/
-<code>OrderItems.OrderItem.order_item_object_id</code> | Reserve this specific object for this order item
-<code>OrderItems.OrderItem.order_item_invoice_customer_id</code> | If supplied with integer value &gt; 0 this order item will be
-invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder should be the “rider” or “consumer”</p>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>Authentication.dealer_id</code></td>
+<td>Leave 0 for default store_id based on authentication username and password. If &gt; 0 the value will be used to identify the store within the account</td>
+</tr>
+<tr>
+<td><code>Order.order_vat_country_code</code></td>
+<td>Apply the VAT rates of this country code. CS will only apply the VAT rates if enabled in account settings and if order_ship_to_customer is true. If the VAT rates are not applied or the same as the country of the account, it will default back to null in the OrderStatusResponse</td>
+</tr>
+<tr>
+<td><code>Order.order_payment_method_description</code></td>
+<td>Use “psp” for payments using a Payment service Provider   (e.g. iDEAL, Bancontact etc.)</td>
+</tr>
+<tr>
+<td><code>OrderItems.OrderItem.order_item_is_bicycle</code></td>
+<td>Indicate whether this order item is a sold bicycle (0 or 1)</td>
+</tr>
+<tr>
+<td><code>OrderItems.OrderItem.order_item_supplier_order_mode</code></td>
+<td>0: no supplier order or reservation on objects<br/>1:automatically create supplier order for this sales order<br/>2: automatically reserve available stock objects based on the object_id in order_item_object_id or order_item_barcode field.</td>
+</tr>
+<tr>
+<td><code>OrderItems.OrderItem.order_item_supplier_id</code></td>
+<td>When order_item_supplier_mode = 1, make the supplier order for this supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/</td>
+</tr>
+<tr>
+<td><code>OrderItems.OrderItem.order_item_object_id</code></td>
+<td>Reserve this specific object for this order item</td>
+</tr>
+<tr>
+<td><code>OrderItems.OrderItem.order_item_invoice_customer_id</code></td>
+<td>If supplied with integer value &gt; 0 this order item will be invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder should be the “rider” or “consumer”</td>
+</tr>
+</tbody></table>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -572,6 +603,7 @@ invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder
                 <span class="s1">'order_date_preferred_delivery'</span> <span class="o">=&gt;</span> <span class="s1">'2015-12-01'</span><span class="p">,</span>
                 <span class="s1">'order_remarks'</span> <span class="o">=&gt;</span> <span class="s1">'TestRemarks'</span><span class="p">,</span>
                 <span class="s1">'order_vat_country_code'</span> <span class="o">=&gt;</span> <span class="s1">'NL'</span><span class="p">,</span>
+                <span class="s1">'order_sales_employee_id '</span> <span class="o">=&gt;</span> <span class="kc">null</span><span class="p">,</span>
                 <span class="s1">'Customer'</span> <span class="o">=&gt;</span>
                     <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
                         <span class="s1">'customer_cs_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'11'</span><span class="p">,</span>
@@ -658,7 +690,7 @@ invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder
 <blockquote>
 <p>HTTP Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_8/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -686,6 +718,7 @@ invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder
         <span class="nt">&lt;order_date_preferred_delivery&gt;</span>2015-12-01<span class="nt">&lt;/order_date_preferred_delivery&gt;</span>
         <span class="nt">&lt;order_remarks&gt;</span>remark example<span class="nt">&lt;/order_remarks&gt;</span>
         <span class="nt">&lt;order_vat_country_code&gt;</span>NL<span class="nt">&lt;/order_vat_country_code&gt;</span>
+        <span class="nt">&lt;order_sales_employee_id/&gt;</span>
         <span class="nt">&lt;Customer&gt;</span>
           <span class="nt">&lt;customer_cs_customer_id&gt;</span>0<span class="nt">&lt;/customer_cs_customer_id&gt;</span>
           <span class="nt">&lt;customer_reference&gt;</span>REF<span class="nt">&lt;/customer_reference&gt;</span>
@@ -803,7 +836,7 @@ Content-length: 2083
 
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -851,7 +884,7 @@ Content-length: 2083
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_8/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -902,6 +935,7 @@ Content-length: 2446
       <span class="nt">&lt;order_track_trace_reference&gt;</span>563c8b1bc4ada<span class="nt">&lt;/order_track_trace_reference&gt;</span>
       <span class="nt">&lt;order_date_preferred_delivery&gt;</span>2015-11-09 15:50:35<span class="nt">&lt;/order_date_preferred_delivery&gt;</span>
       <span class="nt">&lt;order_vat_country_code/&gt;</span>
+      <span class="nt">&lt;order_sales_employee_id&gt;</span>11111<span class="nt">&lt;/order_sales_employee_id&gt;</span>
       <span class="nt">&lt;customer_id&gt;</span>1498<span class="nt">&lt;/customer_id&gt;</span>
       <span class="nt">&lt;invoice_id&gt;</span>0<span class="nt">&lt;/invoice_id&gt;</span>
       <span class="nt">&lt;OrderResultItems&gt;</span>
@@ -940,7 +974,7 @@ Content-length: 2446
 <p>Add new order items to an existing order.</p>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -991,7 +1025,7 @@ Content-length: 2446
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_8/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -1047,6 +1081,7 @@ Content-length: 2464
       <span class="nt">&lt;order_track_trace_reference&gt;</span>
       <span class="nt">&lt;/order_track_trace_reference&gt;</span>
       <span class="nt">&lt;order_date_preferred_delivery&gt;</span>2015-12-01 00:00:00<span class="nt">&lt;/order_date_preferred_delivery&gt;</span>
+      <span class="nt">&lt;order_sales_employee_id&gt;</span>1212<span class="nt">&lt;/order_sales_employee_id&gt;</span>
       <span class="nt">&lt;customer_id&gt;</span>1498<span class="nt">&lt;/customer_id&gt;</span>
       <span class="nt">&lt;invoice_id&gt;</span>0<span class="nt">&lt;/invoice_id&gt;</span>
       <span class="nt">&lt;OrderResultItems&gt;</span>
@@ -1087,7 +1122,7 @@ Content-length: 2464
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
           <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
           <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -1109,7 +1144,7 @@ Content-length: 2464
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_8/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -1165,7 +1200,7 @@ Content-length: 396
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_8/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -1211,7 +1246,7 @@ Content-length: 396
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_8/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -1291,6 +1326,189 @@ Content-length: 1448
     <span class="nt">&lt;/ns1:CreateOrUpdateCustomerResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div><h1 id='common'>Common</h1>
+<p>Access common data</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>common</code></li>
+</ul>
+<h2 id='employees'>Employees</h2>
+<p>Get a list of employees associated with the account</p>
+<h3 id='http-request-examples'>HTTP request examples</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/common/employees.json</h6>
+    </div>
+</div>
+<h3 id='properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td>error_message</td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>e.g. <code>Unauthorized</code></td>
+</tr>
+<tr>
+<td>data</td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array of objects</td>
+</tr>
+<tr>
+<td>data[].employee_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>4475</code></td>
+</tr>
+<tr>
+<td>data[].employee_name</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>John</code></td>
+</tr>
+<tr>
+<td>data[].verification_hash</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb</code> sha256 hash mac with api-key as secret</td>
+</tr>
+<tr>
+<td>data[].roles</td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array of strings</td>
+</tr>
+<tr>
+<td>data[].roles[]</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>employee</code></td>
+</tr>
+<tr>
+<td>data[].is_active</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td>data[].is_default</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td>data[].is_administrator</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td>data[].avatar</td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>URL to avatar or null</td>
+</tr>
+<tr>
+<td>data[].authorizations</td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array of strings</td>
+</tr>
+<tr>
+<td>data[].authorizations[]</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>MAY_ACCEPT_SALES_LEADS</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/common/employees.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1220</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">44269</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"verification_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"345ef8a695fded5cff8c2bfb83fa1bffc39f7bc9d13c589facac9ed2b41ebefe"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"employee"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_administrator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.local/app/cs/img/img_1_large_medewerker_44269.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"authorizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"MAY_PERFORM_CYCLE_COUNT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_MODIFY_ARTICLE_PRICES"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_REPLACE_ARTICLE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_MODIFY_ARTICLES"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_IMPORT_SUPPLIER_ORDER"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_SEND_SUPPLIER_ORDERS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_MANAGE_SUPPLIER_ORDERS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_DO_ANALYTICS"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1133</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"verification_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69baca4df93b1f213aff9d8582178ec6875da7d8c9bd030340d2de623aa19a69"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"mechanic"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_administrator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"authorizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"MAY_PERFORM_CYCLE_COUNT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_MODIFY_ARTICLE_PRICES"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_REPLACE_ARTICLE"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="c1">// example on how to check personal code of employee</span>
+
+<span class="nv">$api_key</span> <span class="o">=</span> <span class="s1">'your-api-key'</span><span class="p">;</span>
+<span class="nv">$code</span> <span class="o">=</span> <span class="s1">'1234'</span><span class="p">;</span>
+<span class="nv">$hash</span> <span class="o">=</span> <span class="err">\</span><span class="nb">hash_hmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nv">$code</span><span class="p">,</span> <span class="nv">$api_key</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="err">\</span><span class="nb">hash_equals</span><span class="p">(</span><span class="s1">'data[].verification_hash'</span><span class="p">,</span> <span class="nv">$hash</span><span class="p">)){</span>
+   <span class="c1">// code is correct</span>
+<span class="p">}</span>
 </code></pre></div><h1 id='invoices'>Invoices</h1>
 <p>Access invoice data</p>
 
@@ -1300,20 +1518,20 @@ Content-length: 1448
 <li>Basic HTTP Authentication</li>
 <li>Scope(s): <code>salesdata</code></li>
 </ul>
-<h2 id='unbooked-invoices'>Unbooked invoices</h2>
-<p>Get a list of unbooked sales transactions / invoices.</p>
+<h2 id='pro-forma-invoices'>Pro-forma invoices</h2>
+<p>Get a list of proforma sales transactions / invoices.</p>
 
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v1/invoices/unbooked.json</h6>
+        <h6>/api/v1/invoices/proforma.json</h6>
     </div>
 </div>
 
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v1/invoices/unbooked.json?offset=1000</h6>
+        <h6>/api/v1/invoices/proforma.json?offset=1000</h6>
     </div>
 </div>
 

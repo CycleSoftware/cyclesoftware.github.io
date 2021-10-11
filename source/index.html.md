@@ -3,6 +3,7 @@ title: CycleSoftware API Documentation
 
 language_tabs:
   - code: Code
+  - php: PHP
 
 toc_footers:
   - <a href="https://cyclesoftware.nl/" target="_blank">CycleSoftware</a>
@@ -11,6 +12,7 @@ toc_footers:
 includes:
   - cs-api/_introduction
   - cs-api/_authentication
+  - cs-api/_common
   - cs-api/_invoices
 
 search: true

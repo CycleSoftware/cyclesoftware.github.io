@@ -11,12 +11,6 @@ Access invoice data
 
 Get a list of proforma sales transactions / invoices.
 
-| GET parameter               | Type      | Description                                                                                                          |
-|-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
-|`offset`                  | integer    | Pagination offset. <i class="label label-info">optional</i>                                                                                                          |
-
-### HTTP request examples ###
-
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
@@ -31,9 +25,29 @@ Get a list of proforma sales transactions / invoices.
 	</div>
 </div>
 
-> Response
+| GET parameter               | Type      | Description                                                                                                          |
+|-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
+|`offset`                  | integer    | Pagination offset. <i class="label label-info">optional</i>                                                                                                          |
 
-```json
+
+> HTTP request
+
+```http
+GET /api/v1/invoices/unbooked.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip,deflate
+Accept: application/json
+Content-type: application/json; charset=utf-8
+```
+
+> HTTP Response 
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 722
+
 {
   "data": [
     {

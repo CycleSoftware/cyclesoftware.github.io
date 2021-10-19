@@ -13,6 +13,7 @@ includes:
 - cs-api/introduction
 - cs-api/authentication
 - cs-whm/deliveries
+- cs-whm/workshop
 
 search: true
 ---

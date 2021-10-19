@@ -9,7 +9,7 @@ Access inbound deliveries data
 
 ## Inbound delivered items ##
 
-Get a list of unbooked sales transactions / invoices.
+Get a list of delivered inbound goods
 
 | GET parameter               | Type      | Description                                                                                                          |
 |-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|

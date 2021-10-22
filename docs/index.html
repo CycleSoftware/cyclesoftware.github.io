@@ -336,6 +336,14 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#stock" class="toc-h1 toc-link" data-title="Stock">Stock</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#stockinfo" class="toc-h2 toc-link" data-title="Stockinfo">Stockinfo</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href="https://cyclesoftware.nl/" target="_blank">CycleSoftware</a></li>
@@ -1837,6 +1845,224 @@ Content-length: 1448
   </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='stock'>Stock</h1>
+<p>Access stock data</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>ecommerce</code></li>
+</ul>
+<h2 id='stockinfo'>Stockinfo</h2>
+<p>Get stock-info for a set of barcodes. The max number of barcodes is 10. If more are supplied remote supplier stock is not included.</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/v3/stockinfo/:barcode1/:barcode2/../../</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>only_supplier_stock</code></td>
+<td>integer</td>
+<td>if 1 stock in stores is ignored <i class="label label-info">optional</i></td>
+</tr>
+<tr>
+<td><code>only_supplier_id</code></td>
+<td>integer</td>
+<td>If supplied only the stock of this supplier is checked <i class="label label-info">optional</i></td>
+</tr>
+<tr>
+<td><code>remote_supplier_check</code></td>
+<td>integer</td>
+<td>If 0, no remote supplier checks are performed <i class="label label-info">optional</i></td>
+</tr>
+</tbody></table>
+<h3 id='properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. ``</td>
+</tr>
+<tr>
+<td><code>data.result_items</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array of result objects</td>
+</tr>
+<tr>
+<td><code>data.result_items[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>4026495856010</code></td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_available</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>overall stock status for article</td>
+</tr>
+<tr>
+<td><code>data.result_items[].delivery_date</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td>expected delivery date from supplier</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_supplier</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td><code>true</code> if supplier has stock, <code>false</code> if supplier has no stock, <code>null</code> if not checked</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_quantity</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>quantity available in stores</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>info per store</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].dealer_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>store number <code>1</code></td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].store_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Name of the store <code>test</code></td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].store_phone</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Phone of the store <code>0733030050</code></td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].quantity</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>quantity available including demo <code>0</code></td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].quantity_demo</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Quantity of demo models</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].quantity_expected</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Quantity expected from supplier</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].delivery_dates</code></td>
+<td><code>string[]</code></td>
+<td><code>false</code></td>
+<td>Delivery dates expected from supplier</td>
+</tr>
+<tr>
+<td><code>data.result_items[].article_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Article ID in request url</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/app/api/v3/stockinfo/4026495856010/4026495843614/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1574</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"result_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_supplier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"store_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0733030050"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_expected"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"delivery_dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495856010"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_supplier"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"store_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0733030050"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_expected"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"delivery_dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495856010"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
       </div>

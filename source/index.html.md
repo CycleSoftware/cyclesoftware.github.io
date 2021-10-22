@@ -15,6 +15,7 @@ includes:
   - cs-api/_ecommerce
   - cs-api/_common
   - cs-api/_invoices
+  - cs-api/_stockinfo
 
 search: true
 ---

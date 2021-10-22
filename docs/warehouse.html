@@ -306,6 +306,20 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#stock" class="toc-h1 toc-link" data-title="Stock">Stock</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#stock-info" class="toc-h2 toc-link" data-title="Stock-info">Stock-info</a>
+                  </li>
+                  <li>
+                    <a href="#stock-list-warehouse" class="toc-h2 toc-link" data-title="Stock list Warehouse">Stock list Warehouse</a>
+                  </li>
+                  <li>
+                    <a href="#stock-list-pos" class="toc-h2 toc-link" data-title="Stock list POS">Stock list POS</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href="/" target="_blank">Main documentation</a></li>
@@ -597,85 +611,85 @@ mechanism is as follows:</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>error</td>
+<td><code>error</code></td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
 <td>e.g. <code>false</code></td>
 </tr>
 <tr>
-<td>error_message</td>
+<td><code>error_message</code></td>
 <td><code>string</code></td>
 <td><code>true</code></td>
-<td></td>
+<td>The error message if an error occurred</td>
 </tr>
 <tr>
-<td>data[].stock_item_id</td>
+<td><code>data[].stock_item_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
 <td>Stock item ID e.g. <code>20000</code></td>
 </tr>
 <tr>
-<td>data[].is_assembled</td>
+<td><code>data[].is_assembled</code></td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
 <td><code>true</code> if object is assembled</td>
 </tr>
 <tr>
-<td>data[].released_by</td>
+<td><code>data[].released_by</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td>The user who released/assembled the item e.g. <code>Name 12</code></td>
 </tr>
 <tr>
-<td>data[].scheduled_for_release_at</td>
+<td><code>data[].scheduled_for_release_at</code></td>
 <td><code>date</code></td>
 <td><code>false</code></td>
 <td>Scheduled date for release/assembly e.g. <code>2021-10-10</code></td>
 </tr>
 <tr>
-<td>data[].released_for_shipment_at</td>
+<td><code>data[].released_for_shipment_at</code></td>
 <td><code>date</code></td>
 <td><code>false</code></td>
 <td>Date of release/assembly e.g. <code>2021-10-11</code></td>
 </tr>
 <tr>
-<td>data[].claimed_by_dealer_id</td>
+<td><code>data[].claimed_by_dealer_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
 <td>Dealer-id who claimed the stock item <code>5393</code></td>
 </tr>
 <tr>
-<td>data[].outbound_order_id</td>
+<td><code>data[].outbound_order_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
 <td>The Outbound Order ID e.g. <code>20001</code></td>
 </tr>
 <tr>
-<td>data[].outbound_order_item_id</td>
+<td><code>data[].outbound_order_item_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
 <td>The Outbound Order Item ID e.g. <code>20002</code></td>
 </tr>
 <tr>
-<td>data[].outbound_shipment_id</td>
+<td><code>data[].outbound_shipment_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
 <td>The Outbound Shipment ID e.g. <code>20003</code></td>
 </tr>
 <tr>
-<td>data[].outbound_shipment_item_id</td>
+<td><code>data[].outbound_shipment_item_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
 <td>The Outbound Shipment Item ID e.g. <code>20004</code></td>
 </tr>
 <tr>
-<td>data[].is_sold_to_customer</td>
+<td><code>data[].is_sold_to_customer</code></td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
 <td>Boolean whether the item is sold</td>
 </tr>
 <tr>
-<td>pagination.next_offset</td>
+<td><code>pagination.next_offset</code></td>
 <td><code>integer</code></td>
 <td><code>true</code></td>
 <td>If not null use in next paginated request in <code>offset</code> GET parameter</td>
@@ -733,6 +747,652 @@ mechanism is as follows:</p>
   </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='stock'>Stock</h1>
+<p>Access stock info for warehouse</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>warehouse</code></li>
+</ul>
+<h2 id='stock-info'>Stock-info</h2>
+<p>Get a list of stock items released for shipment</p>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>stock_items</code></td>
+<td><code>integer</code></td>
+<td>if set to 1 details about the stock items is provided <i class="label label-info">optional</i></td>
+</tr>
+<tr>
+<td><code>no_remote_supplier_check</code></td>
+<td><code>integer</code></td>
+<td>if set to 1 no remote supplier checks are included <i class="label label-info">optional</i></td>
+</tr>
+<tr>
+<td><code>only_supplier_stock</code></td>
+<td><code>integer</code></td>
+<td>if set to 1 only remote supplier stock is checked, store and warehouse stock is ignored <i class="label label-info">optional</i></td>
+</tr>
+<tr>
+<td><code>only_supplier_id</code></td>
+<td><code>integer</code></td>
+<td>if a supplier_id is given only this supplier will be included for supplier stock checks <i class="label label-info">optional</i></td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>POST parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>barcodes</code></td>
+<td><code>array</code></td>
+<td>array of barcodes</td>
+</tr>
+</tbody></table>
+<h3 id='properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>true if errors occurred</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Error message if occurred</td>
+</tr>
+<tr>
+<td><code>data.status</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>true if no errors occurred</td>
+</tr>
+<tr>
+<td><code>data.result_items</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>Result per requested barcode</td>
+</tr>
+<tr>
+<td><code>data.result_items[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Article barcode</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_available</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Overall status whether stock is available</td>
+</tr>
+<tr>
+<td><code>data.result_items[].delivery_date</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td>expected delivery date from supplier</td>
+</tr>
+<tr>
+<td><code>data.result_items[].delivery_date_supplier</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td>expected delivery date from supplier</td>
+</tr>
+<tr>
+<td><code>data.result_items[].delivery_date_backlog</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td>expected delivery date from registered backlog orders supplier</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_supplier</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>true if stock available at supplier, null if not checked</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_quantity</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>available quantity within stores+warehouse</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_quantity_stores</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>available quantity within stores</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_quantity_warehouse</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>available quantity within warehouse</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array with stock info per store</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].dealer_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>dealer-id of store</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].store_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>name of store</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].store_phone</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>phone number of store</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].quantity</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>quantity including demo models available</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].quantity_demo</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>quantity of demo models available</td>
+</tr>
+<tr>
+<td><code>data.result_items[].supplier_id</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>used supplier_id in request</td>
+</tr>
+<tr>
+<td><code>data.result_items[].article_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>used &quot;barcode&quot; in request e.g. <code>8719461035781</code></td>
+</tr>
+</tbody></table>
+<h3 id='http-request-examples'>HTTP request examples</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/whm/stockinfo/:barcode1/:barcode2/../../</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/whm/stockinfo/:barcode1/:barcode2/../../?stock_items={0,1}</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/whm/stockinfo/:barcode1/:barcode2/../../?no_remote_supplier_check={0,1}</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/whm/stockinfo/:barcode1/:barcode2/../../?only_supplier_stock={0,1}</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/whm/stockinfo/:barcode1/:barcode2/../../?only_supplier_id=:supplier_id</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/app/api/whm/stockinfo/</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"result_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8719461035781"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"delivery_date_supplier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"delivery_date_backlog"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_supplier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_quantity_stores"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_quantity_warehouse"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">791825</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ridderkerk"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"010-1234567"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">857361</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Breda"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"010-1234567"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8719461035781"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8719461035782"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_available"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-01-2022"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"delivery_date_supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-05-2022"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"delivery_date_backlog"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-01-2022"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_supplier"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_quantity_stores"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_quantity_warehouse"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8719461035782"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='stock-list-warehouse'>Stock list Warehouse</h2>
+<p>Get a list of objects in warehouse</p>
+<h3 id='properties-2'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if error occurred</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>null</code></td>
+<td><code>true</code></td>
+<td>Error if occurred</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array of objects</td>
+</tr>
+<tr>
+<td><code>data[].stock_item_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Object ID within warehouse <code>325817</code></td>
+</tr>
+<tr>
+<td><code>data[].outbound_order_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Outbound order ID</td>
+</tr>
+<tr>
+<td><code>data[].supplier</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Supplier name</td>
+</tr>
+<tr>
+<td><code>data[].article_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Article number <code>735-18460</code></td>
+</tr>
+<tr>
+<td><code>data[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Barcode <code>4063518126705</code></td>
+</tr>
+<tr>
+<td><code>data[].description</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description of article <code>Ravenna E8F Herenfiets 28&quot; grey 60 cm diamant</code></td>
+</tr>
+<tr>
+<td><code>data[].frame_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Framenumber <code>AA01148291</code></td>
+</tr>
+<tr>
+<td><code>data[].purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Purchase price in cents</td>
+</tr>
+<tr>
+<td><code>data[].dealer_rrp_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>RRP in cents</td>
+</tr>
+<tr>
+<td><code>data[].claimed_for_account_id</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>If claimed the account_id</td>
+</tr>
+<tr>
+<td><code>data[].claimed_for_store_id</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>If claimed the store_id</td>
+</tr>
+<tr>
+<td><code>data[].is_blocked_for_claiming</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if blocked for claiming</td>
+</tr>
+<tr>
+<td><code>data[].is_claimed_for_obo</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if claimed for outbound order</td>
+</tr>
+<tr>
+<td><code>data[].is_sold_to_customer</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if sold to a customer</td>
+</tr>
+<tr>
+<td><code>data[].is_shipped</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if shipped</td>
+</tr>
+<tr>
+<td><code>data[].stocked_at</code></td>
+<td><code>datetime</code></td>
+<td><code>false</code></td>
+<td>Datetime stocked <code>2021-10-22 11:33:03</code></td>
+</tr>
+<tr>
+<td><code>data[].shipped_at</code></td>
+<td><code>datetime</code></td>
+<td><code>true</code></td>
+<td>Datetime shipped</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-examples-2'>HTTP request examples</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/warehouse/stock/items.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"stock_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">109993</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"outbound_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">315254</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Leopard"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"593005"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8717931438117"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Leopard Tess 24 inch 2019 M24-39 Zwart Mat"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17017456"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">40900</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dealer_rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">41900</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"claimed_for_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"claimed_for_store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_blocked_for_claiming"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_claimed_for_obo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_shipped"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-24 08:53:20"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"shipped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-13 07:59:29"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"stock_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">203013</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"outbound_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">376797</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gazelle"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G1539"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8717231346426"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orange C8 HMB H8"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61380279"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">279900</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dealer_rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">289900</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"claimed_for_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"claimed_for_store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_blocked_for_claiming"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_claimed_for_obo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_shipped"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-11 10:59:05"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"shipped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-15 10:03:09"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='stock-list-pos'>Stock list POS</h2>
+<p>Get a list of stocked objects in POS</p>
+<h3 id='properties-3'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>null</code></td>
+<td><code>true</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>data[].account_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Account ID of store <code>5393</code></td>
+</tr>
+<tr>
+<td><code>data[].store_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>ID of the POS store <code>2</code></td>
+</tr>
+<tr>
+<td><code>data[].object_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>POS Object ID <code>20648</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_order_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>POS order id <code>1000</code></td>
+</tr>
+<tr>
+<td><code>data[].supplier</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Supplier name <code>Gazelle</code></td>
+</tr>
+<tr>
+<td><code>data[].article_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Article number <code>A1935</code></td>
+</tr>
+<tr>
+<td><code>data[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Barcode <code>8717231254776</code></td>
+</tr>
+<tr>
+<td><code>data[].description</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description <code>Gazelle Eclipse C8 LTD</code></td>
+</tr>
+<tr>
+<td><code>data[].frame_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Framenumber <code>60516151</code></td>
+</tr>
+<tr>
+<td><code>data[].purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Purchase price in cents <code>50980</code></td>
+</tr>
+<tr>
+<td><code>data[].dealer_rrp_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>RRP in cents <code>94900</code></td>
+</tr>
+<tr>
+<td><code>data[].is_sold_to_customer</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if sold to customer</td>
+</tr>
+<tr>
+<td><code>data[].is_demo</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if marked as demo</td>
+</tr>
+<tr>
+<td><code>data[].has_invoice</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if invoiced</td>
+</tr>
+<tr>
+<td><code>data[].stocked_at</code></td>
+<td><code>date</code></td>
+<td><code>false</code></td>
+<td>Date of stock            `</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-examples-3'>HTTP request examples</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/warehouse/stock/pos-items.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1076</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE100086"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8713568256155"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus STREAM"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BA5169351"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">219900</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dealer_rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">259900</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"has_invoice"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-08"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4673</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gazelle"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A0828"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8717231240205"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gazelle Orange C8 Hm"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60467933"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">190000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dealer_rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">210000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"has_invoice"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-03"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
       </div>

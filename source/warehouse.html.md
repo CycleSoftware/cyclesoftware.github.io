@@ -14,6 +14,7 @@ includes:
 - cs-api/authentication
 - cs-whm/deliveries
 - cs-whm/workshop
+- cs-whm/stockinfo
 
 search: true
 ---

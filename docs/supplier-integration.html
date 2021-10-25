@@ -1,0 +1,896 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>CycleSoftware Supplier Integration</title>
+
+    <link rel="icon" href="images/favicon-32x32-fe8fe4b0.png" sizes="32x32" />
+    <link rel="icon" href="images/favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="images/favicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="images/favicon-270x270.png" />
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nn {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nl {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ni {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .bp {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vg {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vi {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .w {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen-b22ce35b.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-c5541673.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KCYZ2CYMS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8KCYZ2CYMS', {
+        'content_group' : 'WooCommerce REST API Docs',
+      });
+    </script>
+  </head>
+
+  <body class="supplier-integration" data-languages="[&quot;code&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <a href="#" class="logo">
+        <img src="images/logo-transparant-e28903f5.png" alt="" />
+      </a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="code">Examples</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#definitions" class="toc-h2 toc-link" data-title="Definitions">Definitions</a>
+                  </li>
+                  <li>
+                    <a href="#overview" class="toc-h2 toc-link" data-title="Overview">Overview</a>
+                  </li>
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#examples" class="toc-h2 toc-link" data-title="Examples">Examples</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#article-information" class="toc-h1 toc-link" data-title="Article information">Article information</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#parts-amp-accessories" class="toc-h2 toc-link" data-title="Parts &amp; Accessories">Parts &amp; Accessories</a>
+                  </li>
+                  <li>
+                    <a href="#bicycles" class="toc-h2 toc-link" data-title="Bicycles">Bicycles</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#stock-indication" class="toc-h1 toc-link" data-title="Stock indication">Stock indication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#example-webservice" class="toc-h2 toc-link" data-title="Example webservice">Example webservice</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#order-creation" class="toc-h1 toc-link" data-title="Order creation">Order creation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#order-creation-2" class="toc-h2 toc-link" data-title="Order creation">Order creation</a>
+                  </li>
+                  <li>
+                    <a href="#dropshipment-order-creation" class="toc-h2 toc-link" data-title="Dropshipment order creation">Dropshipment order creation</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#open-order-items" class="toc-h1 toc-link" data-title="Open order items">Open order items</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-open-order-items" class="toc-h2 toc-link" data-title="Get open order items">Get open order items</a>
+                  </li>
+                  <li>
+                    <a href="#updating-a-comment" class="toc-h2 toc-link" data-title="Updating a comment">Updating a comment</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#packing-lists" class="toc-h1 toc-link" data-title="Packing lists">Packing lists</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#example-webservice-2" class="toc-h2 toc-link" data-title="Example webservice">Example webservice</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#spare-parts" class="toc-h1 toc-link" data-title="Spare parts">Spare parts</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#example-webservice-3" class="toc-h2 toc-link" data-title="Example webservice">Example webservice</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href="/" target="_blank">Main documentation</a></li>
+            <li><a href="https://cyclesoftware.nl/" target="_blank">CycleSoftware</a></li>
+            <li><a href="https://github.com/CycleSoftware/cyclesoftware.github.io">Contributing to the Docs</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the CycleSoftware Supplier integration documentation. In this documentation we will outline the different components which CycleSoftware can integrate to facilitate supplier services within CycleSoftware.</p>
+<h2 id='definitions'>Definitions</h2>
+<ul>
+<li>CycleSoftware: POS application</li>
+<li>Supplier: the articles supplier to a store</li>
+<li>Store: the dealer/customer of the supplier and user of CycleSoftware</li>
+</ul>
+<h2 id='overview'>Overview</h2>
+<p>As as supplier for bicycle stores you can integrate with CycleSoftware by offering a set of webservices or files.
+CycleSoftware will integrate the services and act as a client to the supplier server.</p>
+
+<p>The integration consists of the following topics:</p>
+
+<ul>
+<li>Article information <i class="label label-info">required</i></li>
+<li>Stock indication - nett purchase prices</li>
+<li>Order creation</li>
+<li>Dropshipment order creation</li>
+<li>Open order items</li>
+<li>Packing lists</li>
+<li>Spare parts</li>
+</ul>
+
+<aside class="notice">
+  You can contact <a href="mailto:support@cycleesoftware.nl">support</a> for more information
+</aside>
+<h2 id='authentication'>Authentication</h2>
+<p>Every store in CycleSoftware can setup it&#39;s credentials for communication to the supplier. For example a customer number or a combination of username+password.</p>
+
+<p>To enhance the onboarding process we can setup an e-mail address. When a store wants to integrate you&#39;ll receive an e-mail with the onboarding request for a specific store.</p>
+<h2 id='examples'>Examples</h2>
+<p>In this documentation you&#39;ll find examples. This is just to illustrate which requests and responses are integrated. It is not necessary to use the same field names or structure.</p>
+
+<p>We support a wide range of different integration content types:</p>
+
+<ul>
+<li>XML</li>
+<li>JSON</li>
+<li>REST</li>
+<li>SOAP</li>
+<li>CSV</li>
+</ul>
+<h1 id='article-information'>Article information</h1>
+<p>As supplier you&#39;ll share article information with CycleSoftware in order to make articles known to the dealer. CycleSoftware will index the data once for all our customers with gross purchase prices.</p>
+
+<p>The supplier will provide a webservice or FTP location with a fixed file-format with up-to-date article information. The data will be indexed twice every week.</p>
+<h2 id='parts-amp-accessories'>Parts &amp; Accessories</h2>
+<p>For parts &amp; accessories the following attributes are suggested to be available in the file or webservice:</p>
+
+<ul>
+<li>  Article number</li>
+<li>  EAN / Barcode</li>
+<li>  Brand name</li>
+<li>  Model name</li>
+<li>  Short description (POS)</li>
+<li>Long description</li>
+<li>  Main group name</li>
+<li>  Sub group name</li>
+<li>  Recommended Retail Price (including VAT)</li>
+<li>  Purchase price (excluding VAT)</li>
+<li>  Package quantity (how many consumer goods within one pacakage)</li>
+<li>  Order quantity</li>
+<li>  Minimal order quantity</li>
+<li>  URL to image</li>
+<li>  Color</li>
+<li>  Size</li>
+<li>  Other properties we might be able to index.</li>
+</ul>
+<h2 id='bicycles'>Bicycles</h2>
+<p>For bicycles the following attributes are suggested to be available in the file or webservice:</p>
+
+<ul>
+<li>  Article number</li>
+<li>  EAN / Barcode</li>
+<li>  Brand name</li>
+<li>  Model name</li>
+<li>  Short description (POS)</li>
+<li>  Main group name (e.g. Race, City, Mountainbike)</li>
+<li>  Sub group name</li>
+<li>  Frame type (Ladies, Gents, Boys, Girls, Uni)</li>
+<li>  Frame height in cm</li>
+<li>Frame height description (e.g. L)</li>
+<li>  Brand gears </li>
+<li>Model gears<br></li>
+<li>  Gear count</li>
+<li>Brand brakes rear</li>
+<li>Model brakes rear</li>
+<li>Brand brakes front</li>
+<li>Model brakes front</li>
+<li>Wheelsize (inch)</li>
+<li>Color</li>
+<li>Model year</li>
+<li>Purchase price (ex vat)</li>
+<li>Recommended retail price (ex vat)</li>
+<li>URL to image</li>
+<li>Gross weight</li>
+<li>Nett weight</li>
+<li>Long description</li>
+<li>Is electric bike (yes / no)</li>
+<li>Battery included in price (yes / no)</li>
+<li>Battery options<br></li>
+<li>  Other properties we might be able to index.</li>
+</ul>
+<h1 id='stock-indication'>Stock indication</h1>
+<p>To provide supplier stock information in CycleSoftware we are able to connect using webservices or by indexing a text file. The following information is advices:</p>
+
+<ul>
+<li>  Article number</li>
+<li>  Stock indication</li>
+<li>  First delivery date</li>
+<li>  Quantity available</li>
+<li>  Nett purchase price (only in webservices)</li>
+</ul>
+
+<p>For webservices a service supporting multiple requests accepting multiple  article numbers at once is preferred for efficiency.</p>
+<h2 id='example-webservice'>Example webservice</h2>
+<blockquote>
+<p>Example HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/supplier/api/stock/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.supplier.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"CustomerNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Articles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo1111"</span><span class="p">},</span><span class="w">     
+    </span><span class="p">{</span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo2222"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo3333"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo4444"</span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Example HTTP response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">776</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"Articles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo1111"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8733723823239"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"StockIndication"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AVAILABLE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"StockQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"DeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-19"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">68.99</span><span class="w">  
+        </span><span class="p">},</span><span class="w">      
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo2222"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"873272382029"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"StockIndication"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNAVAILABLE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"StockQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"DeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-19"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">323.00</span><span class="w">     
+        </span><span class="p">},</span><span class="w">      
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo3333"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"873272382029"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"StockIndication"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INCOURANT"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"StockQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"DeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">2122.00</span><span class="w">    
+        </span><span class="p">},</span><span class="w">  
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo4444"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"StockIndication"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNKNOWN_ARTICLE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"StockQuantity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"DeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">       
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='order-creation'>Order creation</h1>
+<p>Transmitting orders can be achieved using webservices or uploading text files. When text files are used we normally upload them to the suppliers’ FTP server.</p>
+
+<p>Input (multiple):</p>
+
+<ul>
+<li>  Article number</li>
+<li>  Quantity</li>
+<li>  Reference</li>
+</ul>
+
+<p>Output:</p>
+
+<ul>
+<li>  Order ID</li>
+<li>Result per line</li>
+</ul>
+<h2 id='order-creation-2'>Order creation</h2>
+<blockquote>
+<p>Example HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/supplier/api/create/order/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.supplier.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"CustomerNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"OrderReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1010"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Dropshipment"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"DeliveryAddress"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART1"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ItemReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1010-1"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART2"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ItemReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1010-2"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Example HTTP response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">484</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"CustomerNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"OrderReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1010"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"OrderNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART1"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87123445843"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"OrderedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ItemReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1010-1"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART2"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87123445843"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"OrderedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ItemReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1010-2"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART2"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown article or incourant"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"OrderedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='dropshipment-order-creation'>Dropshipment order creation</h2>
+<p>Dropshipments are orders which will be delivered at the consumers&#39; address. It is a variant for the Order Creation service which will include the delivery address.</p>
+
+<blockquote>
+<p>Example HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/supplier/api/create/order-dropshipment/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.supplier.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"CustomerNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"OrderReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1010"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Dropshipment"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"DeliveryAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drosphipment Naam"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afleverstraat"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"HouseNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"HouseNumberPostfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ZipCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5388GM"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"City"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nistelrode"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"CountryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"voorbeeld@cyclesoftware.nl"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+3173030050"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"Items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART1"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ItemReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1010-1"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART2"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ItemReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1010-2"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='open-order-items'>Open order items</h1>
+<p>In many situations the store as pre-ordered bicycles. 
+To provide correct stock information to the dealer it is advised to provide a service where the open order items can be retrieved.</p>
+
+<p>In addition it is advised to provide a service the remarks for a specific item.</p>
+
+<p>Normally the open-order-items endpoint will provide all open items, but if possible a filter with &quot;article number&quot; </p>
+
+<ul>
+<li>Article number</li>
+</ul>
+<h2 id='get-open-order-items'>Get open order items</h2>
+<p>Get a list of open order items</p>
+
+<blockquote>
+<p>Example HTTP request </p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/supplier/api/open-order-items/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.supplier.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+</code></pre></div>
+<blockquote>
+<p>Example HTTP response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1853</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"LastModifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-01 12:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OrderNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345679</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OrderItemNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC10000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8712345678901"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"QuantityShipped"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"PackinglistNumber"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Remark by dealer"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"IsMarkedSoldToCustomer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ExpectDeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-28"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"DesiredDeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-01"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"LastModifiedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-01 13:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OrderNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345679</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OrderItemNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC10000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8712345678901"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in_transit"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"QuantityShipped"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"PackinglistNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"222222222"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Remark by dealer"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"IsMarkedSoldToCustomer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ExpectDeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-28"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"DesiredDeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div><h2 id='updating-a-comment'>Updating a comment</h2>
+<p>Updates a comment for a specific open order item</p>
+
+<blockquote>
+<p>Example HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/supplier/api/open-order-items/12345679/1/comment/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.supplier.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"OrderNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345679</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"OrderItemNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new remark"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"IsMarkedSoldToCustomer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"DesiredDeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-28"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<blockquote>
+<p>Example HTTP response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">49</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='packing-lists'>Packing lists</h1>
+<p>Packinglists are downloaded using webservices based on a packinglist number.</p>
+
+<p>The output consists of the following fields:</p>
+
+<ul>
+<li>  Quantity</li>
+<li>  Purchase price (important for correct margin registration)</li>
+<li>  Description</li>
+<li>  Article number</li>
+<li>  EAN / Barcode</li>
+<li>  Reference (given in the order service)</li>
+<li>  Order ID (result of order service)</li>
+<li>  Frame number</li>
+<li>  Serial number</li>
+<li>  Battery number</li>
+</ul>
+<h2 id='example-webservice-2'>Example webservice</h2>
+<p>This is an example of a request for a packinglist and the response with the information.</p>
+
+<blockquote>
+<p>Example HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/supplier/api/packinglist/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.supplier.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"CustomerNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"PackinglistNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22222222"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Example HTTP response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">800</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"CustomerNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1111111"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"PackinglistNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22222222"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"Items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"Barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87123445843"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART1"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description of the article"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"OrderedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"DeliveredQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Backorder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ItemReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1010-1"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"OrderNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1212122"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"PurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">99.95</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"FrameNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Frame211212"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"BatteryNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Battery212121"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"Barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87123445843"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART2"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description of the article"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"OrderedQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"DeliveredQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"Backorder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ItemReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1010-2"</span><span class="w">
+          </span><span class="nl">"OrderNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1212122"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"PurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">99.95</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"FrameNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Frame2112123"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"BatteryNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Battery21212123"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='spare-parts'>Spare parts</h1>
+<p>Get a list of spare parts for a specific bike</p>
+
+<p>Input: </p>
+
+<ul>
+<li>  Frame number or article number</li>
+</ul>
+
+<p>Output (list of):</p>
+
+<ul>
+<li>Group/section (e.g. brakes)</li>
+<li>Article number</li>
+<li>Description</li>
+<li>Purchase price</li>
+</ul>
+<h2 id='example-webservice-3'>Example webservice</h2>
+<blockquote>
+<p>Example HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/supplier/api/spareparts/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.supplier.com</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04507783"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"FrameNumber"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Example HTTP response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1853</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04507783"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"GroupDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-bike componenten"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"SparePartArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"64622045"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87832823823"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EBP WIEL V 28 ION MMU2 V2 33NM APP ST 650MM RIG ZI"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ArticleNumberOEM"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">222.99</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"GroupDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Frame"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"SparePartArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35135142"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87832823824"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Voorvork"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ArticleNumberOEM"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">223.99</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"group_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-bike componenten"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"SparePartArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"39145603"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87832823825"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KETTINGSPANNER TMM-A V2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ArticleNumberOEM"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">227.99</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"group_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-bike componenten"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24358017"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87832823826"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VULBUS RVS FRONTMOTOR L"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ArticleNumberOEM"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3823021"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">227.99</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"group_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-bike componenten"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29111490"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87832823827"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"Quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BATTERIJ PAKKET ION-300 PMU4 SERIES ZILVER"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ArticleNumberOEM"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3823023"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">227.99</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="code">Examples</a>
+          </div>
+      </div>
+	</div>
+
+
+  </body>
+</html>

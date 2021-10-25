@@ -15,6 +15,7 @@ includes:
 - cs-whm/deliveries
 - cs-whm/workshop
 - cs-whm/stockinfo
+- cs-whm/shipments
 
 search: true
 ---

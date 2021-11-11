@@ -20,7 +20,7 @@ To use the APIs you'll need API credentials. The API credentials are provided by
 * Where possible use Accept-encoding: gzip. For data api's this might be required.
 
 <aside class="notice">
-  You can contact <a href="mailto:support@cycleesoftware.nl">support</a> for more information about the API credentials
+  You can contact <a href="mailto:support@cyclesoftware.nl">support</a> for more information about the API credentials
 </aside>
 
 ## Request/Response Format ##

@@ -1449,7 +1449,7 @@ Content-length: 396
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 </code></pre></div><h2 id='getorderstatus'>GetOrderStatus</h2>
-<p>Get an invoice document based on the invoice-number.</p>
+<p>Get an invoice document based on the sales order id or order reference.</p>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>

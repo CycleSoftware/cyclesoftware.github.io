@@ -728,7 +728,7 @@ Content-length: 396
 
 ## GetOrderStatus ##
 
-Get an invoice document based on the invoice-number.
+Get an invoice document based on the sales order id or order reference.
 
 ```php
 <?php

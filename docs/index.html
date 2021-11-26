@@ -316,6 +316,9 @@
                     <a href="#getinvoicedocument" class="toc-h2 toc-link" data-title="GetInvoiceDocument">GetInvoiceDocument</a>
                   </li>
                   <li>
+                    <a href="#getorderstatus" class="toc-h2 toc-link" data-title="GetOrderStatus">GetOrderStatus</a>
+                  </li>
+                  <li>
                     <a href="#createorupdatecustomer" class="toc-h2 toc-link" data-title="CreateOrUpdateCustomer">CreateOrUpdateCustomer</a>
                   </li>
               </ul>
@@ -1048,7 +1051,7 @@ mechanism is as follows:</p>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200
+HTTP/1.1 200 
 Content-type: application/xml; charset=utf-8
 Content-length: 2083
 
@@ -1185,7 +1188,7 @@ Content-length: 2083
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200
+HTTP/1.1 200 
 Content-type: application/xml; charset=utf-8
 Content-length: 2446
 
@@ -1331,7 +1334,7 @@ Content-length: 2446
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200
+HTTP/1.1 200 
 Content-type: application/xml; charset=utf-8
 Content-length: 2464
 
@@ -1443,6 +1446,108 @@ Content-length: 396
       <span class="nt">&lt;invoice_number&gt;</span>44848<span class="nt">&lt;/invoice_number&gt;</span>
       <span class="nt">&lt;data&gt;</span>data:application/pdf;base64,JVBERi0xLjcKMyAwIG9iago8PC9UeXBlIC9QYWdlIC9QYXJlbnQgMS.....==<span class="nt">&lt;/data&gt;</span>
     <span class="nt">&lt;/GetInvoiceDocumentResponse&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div><h2 id='getorderstatus'>GetOrderStatus</h2>
+<p>Get an invoice document based on the invoice-number.</p>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
+        <span class="p">[</span>
+          <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+          <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
+          <span class="s1">'encoding'</span> <span class="o">=&gt;</span> <span class="s1">'UTF-8'</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">);</span>
+    <span class="nv">$input</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[];</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[];</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span><span class="o">-&gt;</span><span class="n">username</span> <span class="o">=</span> <span class="s1">'your-username'</span><span class="p">;</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span><span class="o">-&gt;</span><span class="n">password</span> <span class="o">=</span> <span class="s1">'your-password'</span><span class="p">;</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">Authentication</span><span class="o">-&gt;</span><span class="n">dealer_id</span> <span class="o">=</span> <span class="s1">'1'</span><span class="p">;</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="n">order_id</span> <span class="o">=</span> <span class="s1">'44848'</span><span class="p">;</span>
+    <span class="nv">$input</span><span class="o">-&gt;</span><span class="n">order_reference_id</span> <span class="o">=</span> <span class="s1">'61a0d79989fa3'</span><span class="p">;</span><span class="c1">//optional</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="nf">GetOrderStatus</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$result</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="err">\</span><span class="nc">SoapFault</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">text/xml; charset=utf-8</span>
+<span class="na">User-agent</span><span class="p">:</span> <span class="s">SoapClient</span>
+<span class="na">Soapaction</span><span class="p">:</span> <span class="s">"GetOrderStatus"</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">580</span>
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;ns1:GetInvoiceDocumentRequest&gt;</span>
+      <span class="nt">&lt;Authentication&gt;</span>
+        <span class="nt">&lt;username&gt;</span>your-username<span class="nt">&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;</span>your-password<span class="nt">&lt;/password&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>1<span class="nt">&lt;/dealer_id&gt;</span>
+      <span class="nt">&lt;/Authentication&gt;</span>
+      <span class="nt">&lt;order_id&gt;</span>711075<span class="nt">&lt;/order_id&gt;</span>
+      <span class="nt">&lt;order_reference_id&gt;</span>61a0d79989fa3<span class="nt">&lt;/order_reference_id&gt;</span>
+    <span class="nt">&lt;/ns1:GetInvoiceDocumentRequest&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+
+HTTP/1.1 200
+Content-type: application/xml; charset=utf-8
+Content-length: 2595
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;ns1:OrderStatusResponse&gt;</span>
+      <span class="nt">&lt;order_id&gt;</span>711075<span class="nt">&lt;/order_id&gt;</span>
+      <span class="nt">&lt;order_reference_text&gt;</span>61a0d79989fa3<span class="nt">&lt;/order_reference_text&gt;</span>
+      <span class="nt">&lt;order_reference_id&gt;</span>1637930905565<span class="nt">&lt;/order_reference_id&gt;</span>
+      <span class="nt">&lt;order_status_text&gt;</span>In behandeling<span class="nt">&lt;/order_status_text&gt;</span>
+      <span class="nt">&lt;order_track_trace_reference/&gt;</span>
+      <span class="nt">&lt;order_date_preferred_delivery&gt;</span>2020-12-01 00:00:00<span class="nt">&lt;/order_date_preferred_delivery&gt;</span>
+      <span class="nt">&lt;order_vat_country_code&gt;</span>BE<span class="nt">&lt;/order_vat_country_code&gt;</span>
+      <span class="nt">&lt;customer_id&gt;</span>11<span class="nt">&lt;/customer_id&gt;</span>
+      <span class="nt">&lt;invoice_id&gt;</span>0<span class="nt">&lt;/invoice_id&gt;</span>
+      <span class="nt">&lt;order_sales_employee_id&gt;</span>10369<span class="nt">&lt;/order_sales_employee_id&gt;</span>
+      <span class="nt">&lt;OrderResultItems&gt;</span>
+        <span class="nt">&lt;OrderResultItem&gt;</span>
+          <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+          <span class="nt">&lt;order_item_object_id</span> <span class="na">xsi:nil=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;order_item_barcode&gt;</span>$barcode<span class="nt">&lt;/order_item_barcode&gt;</span>
+          <span class="nt">&lt;order_item_quantity&gt;</span>-1<span class="nt">&lt;/order_item_quantity&gt;</span>
+          <span class="nt">&lt;order_item_description&gt;</span>SomeBatavus<span class="nt">&lt;/order_item_description&gt;</span>
+          <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>1021.00<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>21.00<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+          <span class="nt">&lt;order_item_status_id&gt;</span>0<span class="nt">&lt;/order_item_status_id&gt;</span>
+          <span class="nt">&lt;order_item_status_text&gt;</span>Geen status<span class="nt">&lt;/order_item_status_text&gt;</span>
+          <span class="nt">&lt;order_item_line_id&gt;</span>1<span class="nt">&lt;/order_item_line_id&gt;</span>
+          <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>4<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
+        <span class="nt">&lt;/OrderResultItem&gt;</span>
+        <span class="nt">&lt;OrderResultItem&gt;</span>
+          <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+          <span class="nt">&lt;order_item_object_id</span> <span class="na">xsi:nil=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+          <span class="nt">&lt;order_item_barcode&gt;</span>$barcode<span class="nt">&lt;/order_item_barcode&gt;</span>
+          <span class="nt">&lt;order_item_quantity&gt;</span>1<span class="nt">&lt;/order_item_quantity&gt;</span>
+          <span class="nt">&lt;order_item_description&gt;</span>SomeBatavus<span class="nt">&lt;/order_item_description&gt;</span>
+          <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>1521.00<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>21.00<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+          <span class="nt">&lt;order_item_status_id&gt;</span>0<span class="nt">&lt;/order_item_status_id&gt;</span>
+          <span class="nt">&lt;order_item_status_text&gt;</span>Geen status<span class="nt">&lt;/order_item_status_text&gt;</span>
+          <span class="nt">&lt;order_item_line_id&gt;</span>2<span class="nt">&lt;/order_item_line_id&gt;</span>
+          <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>2<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
+        <span class="nt">&lt;/OrderResultItem&gt;</span>
+    <span class="nt">&lt;/ns1:OrderStatusResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 </code></pre></div><h2 id='createorupdatecustomer'>CreateOrUpdateCustomer</h2>
@@ -1703,7 +1808,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1220</span>
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -1813,7 +1918,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response </p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">722</span>
 
@@ -2014,7 +2119,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1574</span>
 

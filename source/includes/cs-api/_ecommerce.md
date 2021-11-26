@@ -724,6 +724,117 @@ Content-length: 396
 </SOAP-ENV:Envelope>
 ```
 
+
+
+## GetOrderStatus ##
+
+Get an invoice document based on the invoice-number.
+
+```php
+<?php
+try {
+    $client = new \SoapClient(
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
+        [
+          'trace' => true,
+          'use' => SOAP_LITERAL,
+          'encoding' => 'UTF-8',
+        ]
+    );
+    $input = (object)[];
+    $input->Authentication = (object)[];
+    $input->Authentication->username = 'your-username';
+    $input->Authentication->password = 'your-password';
+    $input->Authentication->dealer_id = '1';
+    $input->order_id = '44848';
+    $input->order_reference_id = '61a0d79989fa3';//optional
+    $result = $client->GetOrderStatus($input);
+    var_dump($result);
+} catch (\SoapFault $e) {
+    var_dump($e->getMessage());
+}
+```
+
+> Request
+
+```http
+POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
+Host: api.cyclesoftware.nl
+Accept-encoding: gzip,deflate
+Accept: text/xml
+Content-type: text/xml; charset=utf-8
+User-agent: SoapClient
+Soapaction: "GetOrderStatus"
+Content-length: 580
+
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/">
+  <SOAP-ENV:Body>
+    <ns1:GetInvoiceDocumentRequest>
+      <Authentication>
+        <username>your-username</username>
+        <password>your-password</password>
+        <dealer_id>1</dealer_id>
+      </Authentication>
+      <order_id>711075</order_id>
+      <order_reference_id>61a0d79989fa3</order_reference_id>
+    </ns1:GetInvoiceDocumentRequest>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+HTTP/1.1 200
+Content-type: application/xml; charset=utf-8
+Content-length: 2595
+
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns1="http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/">
+  <SOAP-ENV:Body>
+    <ns1:OrderStatusResponse>
+      <order_id>711075</order_id>
+      <order_reference_text>61a0d79989fa3</order_reference_text>
+      <order_reference_id>1637930905565</order_reference_id>
+      <order_status_text>In behandeling</order_status_text>
+      <order_track_trace_reference/>
+      <order_date_preferred_delivery>2020-12-01 00:00:00</order_date_preferred_delivery>
+      <order_vat_country_code>BE</order_vat_country_code>
+      <customer_id>11</customer_id>
+      <invoice_id>0</invoice_id>
+      <order_sales_employee_id>10369</order_sales_employee_id>
+      <OrderResultItems>
+        <OrderResultItem>
+          <order_item_is_bicycle>0</order_item_is_bicycle>
+          <order_item_object_id xsi:nil="true"/>
+          <order_item_barcode>$barcode</order_item_barcode>
+          <order_item_quantity>-1</order_item_quantity>
+          <order_item_description>SomeBatavus</order_item_description>
+          <order_item_unit_price_in_vat>1021.00</order_item_unit_price_in_vat>
+          <order_item_unit_discount_amount_in_vat>21.00</order_item_unit_discount_amount_in_vat>
+          <order_item_vat_code>2</order_item_vat_code>
+          <order_item_status_id>0</order_item_status_id>
+          <order_item_status_text>Geen status</order_item_status_text>
+          <order_item_line_id>1</order_item_line_id>
+          <order_item_invoice_customer_id>4</order_item_invoice_customer_id>
+        </OrderResultItem>
+        <OrderResultItem>
+          <order_item_is_bicycle>0</order_item_is_bicycle>
+          <order_item_object_id xsi:nil="true"/>
+          <order_item_barcode>$barcode</order_item_barcode>
+          <order_item_quantity>1</order_item_quantity>
+          <order_item_description>SomeBatavus</order_item_description>
+          <order_item_unit_price_in_vat>1521.00</order_item_unit_price_in_vat>
+          <order_item_unit_discount_amount_in_vat>21.00</order_item_unit_discount_amount_in_vat>
+          <order_item_vat_code>2</order_item_vat_code>
+          <order_item_status_id>0</order_item_status_id>
+          <order_item_status_text>Geen status</order_item_status_text>
+          <order_item_line_id>2</order_item_line_id>
+          <order_item_invoice_customer_id>2</order_item_invoice_customer_id>
+        </OrderResultItem>
+    </ns1:OrderStatusResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+```
+
+
 ## CreateOrUpdateCustomer ##
 
 This method creates or updates an existing customer. Existing customers are matched on `customer_id`, `customer_phone`

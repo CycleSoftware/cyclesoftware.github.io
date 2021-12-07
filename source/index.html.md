@@ -16,6 +16,7 @@ includes:
   - cs-api/_common
   - cs-api/_invoices
   - cs-api/_stockinfo
+  - cs-api/_rental
 
 search: true
 ---

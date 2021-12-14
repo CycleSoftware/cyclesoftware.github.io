@@ -1122,6 +1122,12 @@ mechanism is as follows:</p>
 <td>Purchase price in cents</td>
 </tr>
 <tr>
+<td><code>data[].purchase_price_cents_packinglist</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Purchase price in cents from last packinglist</td>
+</tr>
+<tr>
 <td><code>data[].dealer_rrp_cents</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
@@ -1175,6 +1181,36 @@ mechanism is as follows:</p>
 <td><code>true</code></td>
 <td>Datetime shipped</td>
 </tr>
+<tr>
+<td><code>data[].custom_variable_1</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable from article</td>
+</tr>
+<tr>
+<td><code>data[].custom_variable_2</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable from article</td>
+</tr>
+<tr>
+<td><code>data[].custom_variable_3</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable from article</td>
+</tr>
+<tr>
+<td><code>data[].custom_variable_4</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable from article</td>
+</tr>
+<tr>
+<td><code>data[].custom_variable_5</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable from article</td>
+</tr>
 </tbody></table>
 <h3 id='http-request-examples-2'>HTTP request examples</h3>
 <div class="api-endpoint">
@@ -1200,6 +1236,7 @@ mechanism is as follows:</p>
       </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Leopard Tess 24 inch 2019 M24-39 Zwart Mat"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17017456"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">40900</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"purchase_price_cents_packinglist"</span><span class="p">:</span><span class="w"> </span><span class="mi">40900</span><span class="p">,</span><span class="w">
       </span><span class="nl">"dealer_rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">41900</span><span class="p">,</span><span class="w">
       </span><span class="nl">"claimed_for_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
       </span><span class="nl">"claimed_for_store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
@@ -1208,7 +1245,12 @@ mechanism is as follows:</p>
       </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_shipped"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-24 08:53:20"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"shipped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-13 07:59:29"</span><span class="w">
+      </span><span class="nl">"shipped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-13 07:59:29"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 2"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 3"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 4"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"stock_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">203013</span><span class="p">,</span><span class="w">
@@ -1219,6 +1261,7 @@ mechanism is as follows:</p>
       </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Orange C8 HMB H8"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61380279"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">279900</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"purchase_price_cents_packinglist"</span><span class="p">:</span><span class="w"> </span><span class="mi">279900</span><span class="p">,</span><span class="w">
       </span><span class="nl">"dealer_rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">289900</span><span class="p">,</span><span class="w">
       </span><span class="nl">"claimed_for_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
       </span><span class="nl">"claimed_for_store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
@@ -1227,7 +1270,12 @@ mechanism is as follows:</p>
       </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_shipped"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-11 10:59:05"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"shipped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-15 10:03:09"</span><span class="w">
+      </span><span class="nl">"shipped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-15 10:03:09"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 2"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 3"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 4"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1321,6 +1369,12 @@ mechanism is as follows:</p>
 <td>Purchase price in cents <code>50980</code></td>
 </tr>
 <tr>
+<td><code>data[].purchase_price_cents_packinglist</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Purchase price in cents from last packinglist <code>50980</code></td>
+</tr>
+<tr>
 <td><code>data[].dealer_rrp_cents</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
@@ -1348,7 +1402,37 @@ mechanism is as follows:</p>
 <td><code>data[].stocked_at</code></td>
 <td><code>date</code></td>
 <td><code>false</code></td>
-<td>Date of stock            `</td>
+<td>Custom variable from article</td>
+</tr>
+<tr>
+<td><code>data[].custom_variable_1</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable from article</td>
+</tr>
+<tr>
+<td><code>data[].custom_variable_2</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable from article</td>
+</tr>
+<tr>
+<td><code>data[].custom_variable_3</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable from article</td>
+</tr>
+<tr>
+<td><code>data[].custom_variable_4</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable from article</td>
+</tr>
+<tr>
+<td><code>data[].custom_variable_5</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable from article</td>
 </tr>
 </tbody></table>
 <h3 id='http-request-examples-3'>HTTP request examples</h3>
@@ -1377,11 +1461,17 @@ mechanism is as follows:</p>
       </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus STREAM"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BA5169351"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">219900</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"purchase_price_cents_packinglist"</span><span class="p">:</span><span class="w"> </span><span class="mi">219900</span><span class="p">,</span><span class="w">
       </span><span class="nl">"dealer_rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">259900</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"has_invoice"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-08"</span><span class="w">
+      </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-08"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 2"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 3"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 4"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
@@ -1394,11 +1484,17 @@ mechanism is as follows:</p>
       </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gazelle Orange C8 Hm"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60467933"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">190000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"purchase_price_cents_packinglist"</span><span class="p">:</span><span class="w"> </span><span class="mi">190000</span><span class="p">,</span><span class="w">
       </span><span class="nl">"dealer_rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">210000</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"has_invoice"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-03"</span><span class="w">
+      </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-03"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 2"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 3"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 4"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">

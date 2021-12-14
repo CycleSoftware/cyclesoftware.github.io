@@ -160,28 +160,34 @@ Get a list of objects in warehouse
 
 ### Properties ###
 
-| Property                       | Type               | Nullable        | Description                                                       |
-| ------------------------------ | ------------------ | --------------- | ----------------------------------------------------------------- |
-| `error`                          | `boolean`  | `false` | `true` if error occurred                                             |
-| `error_message`                  | `null`     | `true`  | Error if occurred                                                                  |
-| `data`                           | `array`    | `false` | array of objects                                                                  |
-| `data[].stock_item_id`           | `integer`  | `false` | Object ID within warehouse `325817`                                             |
-| `data[].outbound_order_id`       | `integer`  | `false` | Outbound order ID                                                  |
-| `data[].supplier`                | `string`   | `false` | Supplier name                                               |
-| `data[].article_id`              | `string`   | `false` | Article number `735-18460`                                          |
-| `data[].barcode`                 | `string`   | `false` | Barcode `4063518126705`                                      |
-| `data[].description`             | `string`   | `false` | Description of article `Ravenna E8F Herenfiets 28" grey 60 cm diamant` |
-| `data[].frame_id`                | `string`   | `false` | Framenumber `AA01148291`                                         |
-| `data[].purchase_price_cents`    | `integer`  | `false` | Purchase price in cents                                                  |
-| `data[].dealer_rrp_cents`        | `integer`  | `false` | RRP in cents                                             |
-| `data[].claimed_for_account_id`  | `integer`     | `true`  | If claimed the account_id                                                                 |
-| `data[].claimed_for_store_id`    | `integer`     | `true`  | If claimed the store_id                                                                  |
-| `data[].is_blocked_for_claiming` | `boolean`  | `false` | `true` if blocked for claiming                                              |
-| `data[].is_claimed_for_obo`      | `boolean`  | `false` | `true` if claimed for outbound order                                              |
-| `data[].is_sold_to_customer`     | `boolean`  | `false` | `true` if sold to a customer                                             |
-| `data[].is_shipped`              | `boolean`  | `false` | `true` if shipped                                              |
-| `data[].stocked_at`              | `datetime` | `false` | Datetime stocked `2021-10-22 11:33:03`                                |
-| `data[].shipped_at`              | `datetime`     | `true`  | Datetime shipped                                                                   |
+| Property                                  | Type       | Nullable | Description                                                            |
+|-------------------------------------------|------------|----------|------------------------------------------------------------------------|
+| `error`                                   | `boolean`  | `false`  | `true` if error occurred                                               |
+| `error_message`                           | `null`     | `true`   | Error if occurred                                                      |
+| `data`                                    | `array`    | `false`  | array of objects                                                       |
+| `data[].stock_item_id`                    | `integer`  | `false`  | Object ID within warehouse `325817`                                    |
+| `data[].outbound_order_id`                | `integer`  | `false`  | Outbound order ID                                                      |
+| `data[].supplier`                         | `string`   | `false`  | Supplier name                                                          |
+| `data[].article_id`                       | `string`   | `false`  | Article number `735-18460`                                             |
+| `data[].barcode`                          | `string`   | `false`  | Barcode `4063518126705`                                                |
+| `data[].description`                      | `string`   | `false`  | Description of article `Ravenna E8F Herenfiets 28" grey 60 cm diamant` |
+| `data[].frame_id`                         | `string`   | `false`  | Framenumber `AA01148291`                                               |
+| `data[].purchase_price_cents`             | `integer`  | `false`  | Purchase price in cents                                                |
+| `data[].purchase_price_cents_packinglist` | `integer`  | `false`  | Purchase price in cents from last packinglist                          |
+| `data[].dealer_rrp_cents`                 | `integer`  | `false`  | RRP in cents                                                           |
+| `data[].claimed_for_account_id`           | `integer`  | `true`   | If claimed the account_id                                              |
+| `data[].claimed_for_store_id`             | `integer`  | `true`   | If claimed the store_id                                                |
+| `data[].is_blocked_for_claiming`          | `boolean`  | `false`  | `true` if blocked for claiming                                         |
+| `data[].is_claimed_for_obo`               | `boolean`  | `false`  | `true` if claimed for outbound order                                   |
+| `data[].is_sold_to_customer`              | `boolean`  | `false`  | `true` if sold to a customer                                           |
+| `data[].is_shipped`                       | `boolean`  | `false`  | `true` if shipped                                                      |
+| `data[].stocked_at`                       | `datetime` | `false`  | Datetime stocked `2021-10-22 11:33:03`                                 |
+| `data[].shipped_at`                       | `datetime` | `true`   | Datetime shipped                                                       |
+| `data[].custom_variable_1`                | `string`   | `false`  | Custom variable from article                                           |
+| `data[].custom_variable_2`                | `string`   | `false`  | Custom variable from article                                           |
+| `data[].custom_variable_3`                | `string`   | `false`  | Custom variable from article                                           |
+| `data[].custom_variable_4`                | `string`   | `false`  | Custom variable from article                                           |
+| `data[].custom_variable_5`                | `string`   | `false`  | Custom variable from article                                           |
 
 ### HTTP request examples ###
 
@@ -208,6 +214,7 @@ Get a list of objects in warehouse
       "description": "Leopard Tess 24 inch 2019 M24-39 Zwart Mat",
       "frame_id": "17017456",
       "purchase_price_cents": 40900,
+      "purchase_price_cents_packinglist": 40900,
       "dealer_rrp_cents": 41900,
       "claimed_for_account_id": 1000,
       "claimed_for_store_id": 13,
@@ -216,7 +223,12 @@ Get a list of objects in warehouse
       "is_sold_to_customer": true,
       "is_shipped": true,
       "stocked_at": "2018-04-24 08:53:20",
-      "shipped_at": "2021-04-13 07:59:29"
+      "shipped_at": "2021-04-13 07:59:29",
+      "custom_variable_1": "Custom var 1",
+      "custom_variable_2": "Custom var 2",
+      "custom_variable_3": "Custom var 3",
+      "custom_variable_4": "Custom var 4",
+      "custom_variable_5": "Custom var 5"
     },
     {
       "stock_item_id": 203013,
@@ -227,6 +239,7 @@ Get a list of objects in warehouse
       "description": "Orange C8 HMB H8",
       "frame_id": "61380279",
       "purchase_price_cents": 279900,
+      "purchase_price_cents_packinglist": 279900,
       "dealer_rrp_cents": 289900,
       "claimed_for_account_id": 1000,
       "claimed_for_store_id": 23,
@@ -235,7 +248,12 @@ Get a list of objects in warehouse
       "is_sold_to_customer": false,
       "is_shipped": true,
       "stocked_at": "2020-06-11 10:59:05",
-      "shipped_at": "2021-10-15 10:03:09"
+      "shipped_at": "2021-10-15 10:03:09",
+      "custom_variable_1": "Custom var 1",
+      "custom_variable_2": "Custom var 2",
+      "custom_variable_3": "Custom var 3",
+      "custom_variable_4": "Custom var 4",
+      "custom_variable_5": "Custom var 5"
     }
   ]
 }
@@ -247,26 +265,32 @@ Get a list of stocked objects in POS
 
 ### Properties ###
 
-| Property                    | Type              | Nullable        | Description                           |
-| --------------------------- | ----------------- | --------------- | ------------------------------------- |
-| `error`                       | `boolean` | `false` | e.g. `false`                  |
-| `error_message`               | `null`    | `true`  |                                       |
-| `data`                        | `array`   | `false` |                                       |
-| `data[].account_id`           | `integer` | `false` | Account ID of store `5393`                   |
-| `data[].store_id`             | `integer` | `false` | ID of the POS store `2`                      |
-| `data[].object_id`            | `integer` | `false` | POS Object ID `20648`                  |
-| `data[].sales_order_id`       | `integer` | `false` | POS order id `1000`                      |
-| `data[].supplier`             | `string`  | `false` | Supplier name `Gazelle`                |
-| `data[].article_id`           | `string`  | `false` | Article number `A1935`                  |
-| `data[].barcode`              | `string`  | `false` | Barcode `8717231254776`          |
-| `data[].description`          | `string`  | `false` | Description `Gazelle Eclipse C8 LTD` |
-| `data[].frame_id`             | `string`  | `false` | Framenumber `60516151`               |
-| `data[].purchase_price_cents` | `integer` | `false` | Purchase price in cents `50980`                  |
-| `data[].dealer_rrp_cents`     | `integer` | `false` | RRP in cents `94900`                  |
-| `data[].is_sold_to_customer`  | `boolean` | `false` | `true` if sold to customer                  |
-| `data[].is_demo`              | `boolean` | `false` | `true` if marked as demo            |
-| `data[].has_invoice`          | `boolean` | `false` | `true` if invoiced                  |
-| `data[].stocked_at`           | `date`    | `false` | Date of stock            `|
+| Property                                  | Type      | Nullable | Description                                           |
+|-------------------------------------------|-----------|----------|-------------------------------------------------------|
+| `error`                                   | `boolean` | `false`  | e.g. `false`                                          |
+| `error_message`                           | `null`    | `true`   |                                                       |
+| `data`                                    | `array`   | `false`  |                                                       |
+| `data[].account_id`                       | `integer` | `false`  | Account ID of store `5393`                            |
+| `data[].store_id`                         | `integer` | `false`  | ID of the POS store `2`                               |
+| `data[].object_id`                        | `integer` | `false`  | POS Object ID `20648`                                 |
+| `data[].sales_order_id`                   | `integer` | `false`  | POS order id `1000`                                   |
+| `data[].supplier`                         | `string`  | `false`  | Supplier name `Gazelle`                               |
+| `data[].article_id`                       | `string`  | `false`  | Article number `A1935`                                |
+| `data[].barcode`                          | `string`  | `false`  | Barcode `8717231254776`                               |
+| `data[].description`                      | `string`  | `false`  | Description `Gazelle Eclipse C8 LTD`                  |
+| `data[].frame_id`                         | `string`  | `false`  | Framenumber `60516151`                                |
+| `data[].purchase_price_cents`             | `integer` | `false`  | Purchase price in cents `50980`                       |
+| `data[].purchase_price_cents_packinglist` | `integer` | `false`  | Purchase price in cents from last packinglist `50980` |
+| `data[].dealer_rrp_cents`                 | `integer` | `false`  | RRP in cents `94900`                                  |
+| `data[].is_sold_to_customer`              | `boolean` | `false`  | `true` if sold to customer                            |
+| `data[].is_demo`                          | `boolean` | `false`  | `true` if marked as demo                              |
+| `data[].has_invoice`                      | `boolean` | `false`  | `true` if invoiced                                    |
+| `data[].stocked_at`                       | `date`    | `false`  | Custom variable from article                          |
+| `data[].custom_variable_1`                | `string`  | `false`  | Custom variable from article                          |
+| `data[].custom_variable_2`                | `string`  | `false`  | Custom variable from article                          |
+| `data[].custom_variable_3`                | `string`  | `false`  | Custom variable from article                          |
+| `data[].custom_variable_4`                | `string`  | `false`  | Custom variable from article                          |
+| `data[].custom_variable_5`                | `string`  | `false`  | Custom variable from article                          |
 
 
 ### HTTP request examples ###
@@ -297,11 +321,17 @@ Get a list of stocked objects in POS
       "description": "Batavus STREAM",
       "frame_id": "BA5169351",
       "purchase_price_cents": 219900,
+      "purchase_price_cents_packinglist": 219900,
       "dealer_rrp_cents": 259900,
       "is_sold_to_customer": false,
       "is_demo": true,
       "has_invoice": false,
-      "stocked_at": "2015-12-08"
+      "stocked_at": "2015-12-08",
+      "custom_variable_1": "Custom var 1",
+      "custom_variable_2": "Custom var 2",
+      "custom_variable_3": "Custom var 3",
+      "custom_variable_4": "Custom var 4",
+      "custom_variable_5": "Custom var 5"
     },
     {
       "account_id": 1000,
@@ -314,11 +344,17 @@ Get a list of stocked objects in POS
       "description": "Gazelle Orange C8 Hm",
       "frame_id": "60467933",
       "purchase_price_cents": 190000,
+      "purchase_price_cents_packinglist": 190000,
       "dealer_rrp_cents": 210000,
       "is_sold_to_customer": false,
       "is_demo": true,
       "has_invoice": false,
-      "stocked_at": "2016-02-03"
+      "stocked_at": "2016-02-03",
+      "custom_variable_1": "Custom var 1",
+      "custom_variable_2": "Custom var 2",
+      "custom_variable_3": "Custom var 3",
+      "custom_variable_4": "Custom var 4",
+      "custom_variable_5": "Custom var 5"
     }
   ]
 }

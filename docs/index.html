@@ -355,6 +355,14 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#internal-deliveries-store-orders" class="toc-h2 toc-link" data-title="Internal deliveries / store orders">Internal deliveries / store orders</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href="https://cyclesoftware.nl/" target="_blank">CycleSoftware</a></li>
@@ -719,7 +727,7 @@ mechanism is as follows:</p>
 <tr>
 <td>Order.OrderItems.OrderItem[].order_item_supplier_order_mode</td>
 <td><code>string</code></td>
-<td>0: no supplier order or reservation on objects<br/>1:automatically create supplier order for this sales order<br/>2: automatically reserve available stock objects based on the object_id in order_item_object_id or order_item_barcode field.</td>
+<td>0: no supplier order or reservation on objects<br/>1:automatically create supplier order for this sales order<br/>2: automatically reserve available stock objects based on the object_id in order_item_object_id or order_item_barcode field.<br/>4: Same as mode=2 with pool orders via warehouse</td>
 </tr>
 <tr>
 <td>Order.OrderItems.OrderItem[].order_item_supplier_id`</td>
@@ -2264,6 +2272,197 @@ Content-length: 1448
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
+</span></code></pre></div><h1 id='webhooks'>Webhooks</h1>
+<p>Receive updates from CycleSoftware for specific entities.</p>
+<h2 id='internal-deliveries-store-orders'>Internal deliveries / store orders</h2>
+<table><thead>
+<tr>
+<th>Events</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>store_order.created</code></td>
+<td>Will be delivered when store order is created</td>
+</tr>
+</tbody></table>
+<h3 id='payload-properties'>Payload properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>store_order_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>internal delivery / store order id e.g. <code>45287</code></td>
+</tr>
+<tr>
+<td>store_id_from</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>destination store id</td>
+</tr>
+<tr>
+<td>dealer_id_from</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>source dealer_id</td>
+</tr>
+<tr>
+<td>store_id_to</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>destination store_id</td>
+</tr>
+<tr>
+<td>dealer_id_to</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>destination dealer_id</td>
+</tr>
+<tr>
+<td>store_order_type</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td><code>regulier</code> or <code>via warehouse</code></td>
+</tr>
+<tr>
+<td>store_order_type_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>0: regular, 1: via warehouse</td>
+</tr>
+<tr>
+<td>status_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>0: open, 1: processed, 2: cancelled</td>
+</tr>
+<tr>
+<td>status</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>Verwerkt</code></td>
+</tr>
+<tr>
+<td>remarks</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>Filiaal naar filiaal levering #2341</code></td>
+</tr>
+<tr>
+<td>processed_at</td>
+<td><code>datetime</code></td>
+<td><code>true</code></td>
+<td>e.g. <code>2012-05-25 15:17:00</code></td>
+</tr>
+<tr>
+<td>related_to_sales_order_ids</td>
+<td><code>integer[]</code></td>
+<td><code>false</code></td>
+<td>List of sales order ids related to delivery</td>
+</tr>
+<tr>
+<td>related_to_supplier_order_ids</td>
+<td><code>integer[]</code></td>
+<td><code>false</code></td>
+<td>List of supplier order ids related to delivery</td>
+</tr>
+<tr>
+<td>items</td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>list of items within store order</td>
+</tr>
+<tr>
+<td>items[].store_order_item_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>2</code></td>
+</tr>
+<tr>
+<td>items[].barcode</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>F.1000</code></td>
+</tr>
+<tr>
+<td>items[].quantity</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>1</code></td>
+</tr>
+<tr>
+<td>items[].item_type_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>1: article, 2:object</td>
+</tr>
+<tr>
+<td>items[].object_id</td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>e.g. <code>1000</code> or <code>null</code></td>
+</tr>
+<tr>
+<td>items[].description</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>Fiets</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Payload</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20c5d026-68b3-11ec-90d6-0242ac120003"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_order.created"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mf">1640787926.323</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"store_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45287</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_id_from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dealer_id_from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_id_to"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dealer_id_to"</span><span class="p">:</span><span class="w"> </span><span class="mi">131073</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"regulier"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Verwerkt"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Filiaal naar filiaal levering #2341"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"processed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-25 15:17:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"related_to_sales_order_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">123223</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"related_to_supplier_order_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">2443</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"store_order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Artikel"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"store_order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F.1000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fiets"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
       </div>
       <div class="dark-box">

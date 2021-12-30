@@ -17,6 +17,7 @@ includes:
   - cs-api/_invoices
   - cs-api/_stockinfo
   - cs-api/_rental
+  - cs-api/_webhooks
 
 search: true
 ---

@@ -1170,6 +1170,12 @@ mechanism is as follows:</p>
 <td><code>true</code> if shipped</td>
 </tr>
 <tr>
+<td><code>data[].is_deleted</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if item was deleted</td>
+</tr>
+<tr>
 <td><code>data[].stocked_at</code></td>
 <td><code>datetime</code></td>
 <td><code>false</code></td>
@@ -1244,6 +1250,7 @@ mechanism is as follows:</p>
       </span><span class="nl">"is_claimed_for_obo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_shipped"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-24 08:53:20"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"shipped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-13 07:59:29"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 1"</span><span class="p">,</span><span class="w">
@@ -1269,6 +1276,7 @@ mechanism is as follows:</p>
       </span><span class="nl">"is_claimed_for_obo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_shipped"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-11 10:59:05"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"shipped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-15 10:03:09"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 1"</span><span class="p">,</span><span class="w">
@@ -1434,6 +1442,12 @@ mechanism is as follows:</p>
 <td><code>false</code></td>
 <td>Custom variable from article</td>
 </tr>
+<tr>
+<td><code>data[].is_deleted</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Item is deleted</td>
+</tr>
 </tbody></table>
 <h3 id='http-request-examples-3'>HTTP request examples</h3>
 <div class="api-endpoint">
@@ -1471,7 +1485,8 @@ mechanism is as follows:</p>
       </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 2"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 3"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 4"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="w">
+      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
@@ -1494,7 +1509,8 @@ mechanism is as follows:</p>
       </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 2"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 3"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 4"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="w">
+      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">

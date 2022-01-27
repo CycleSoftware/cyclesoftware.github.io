@@ -11,45 +11,43 @@ Access stock info for warehouse
 
 Get a list of stock items released for shipment
 
-| GET parameter               | Type      | Description                                                                                                          |
-|-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|                                                                                                       |
-|`stock_items`  | `integer` | if set to 1 details about the stock items is provided <i class="label label-info">optional</i> |
-|`no_remote_supplier_check`  | `integer`  | if set to 1 no remote supplier checks are included <i class="label label-info">optional</i> |
-|`only_supplier_stock`  | `integer` | if set to 1 only remote supplier stock is checked, store and warehouse stock is ignored <i class="label label-info">optional</i> |
-|`only_supplier_id`  | `integer` | if a supplier_id is given only this supplier will be included for supplier stock checks <i class="label label-info">optional</i> |
-                                                                                                   
+| GET parameter               | Type      | Description                                                                                                                      |
+|-----------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------|
+|`stock_items`                | `integer` | if set to 1 details about the stock items is provided <i class="label label-info">optional</i>                                   |
+|`no_remote_supplier_check`   | `integer` | if set to 1 no remote supplier checks are included <i class="label label-info">optional</i>                                      |
+|`only_supplier_stock`        | `integer` | if set to 1 only remote supplier stock is checked, store and warehouse stock is ignored <i class="label label-info">optional</i> |
+|`only_supplier_id`           | `integer` | if a supplier_id is given only this supplier will be included for supplier stock checks <i class="label label-info">optional</i> |
 
-| POST parameter               | Type      | Description                                                                                                          |
-|-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|                                                                                                       |
-|`barcodes`                  | `array`    | array of barcodes     |
 
+| POST parameter | Type    | Description       |
+|----------------|---------|-------------------|
+| `barcodes`     | `array` | array of barcodes |
 
 ### Properties ###
 
-| Property                                         | Type              | Nullable        | Description                    |
-| ------------------------------------------------ | ----------------- | --------------- | ------------------------------ |
-| `error`                                            | `boolean` | `false` | true if errors occurred            |
-| `error_message`                                    | `string`  | `false` | Error message if occurred              |
-| `data.status`                                      | `boolean` | `false` | true if no errors occurred           |
-| `data.result_items`                                | `array`   | `false` | Result per requested barcode                               |
-| `data.result_items[].barcode`                      | `string`  | `false` | Article barcode   |
-| `data.result_items[].stock_available`              | `boolean` | `false` | Overall status whether stock is available            |
-| `data.result_items[].delivery_date`                | `date`    | `true`  | expected delivery date from supplier                               |
-| `data.result_items[].delivery_date_supplier`       | `date`    | `true`  | expected delivery date from supplier                               |
-| `data.result_items[].delivery_date_backlog`       | `date`    | `true`  | expected delivery date from registered backlog orders supplier                               |
-| `data.result_items[].stock_supplier`               | `boolean`    | `true`  | true if stock available at supplier, null if not checked                               |
-| `data.result_items[].stock_quantity`               | `integer` | `false` | available quantity within stores+warehouse               |
-| `data.result_items[].stock_quantity_stores`        | `integer` | `false` | available quantity within stores               |
-| `data.result_items[].stock_quantity_warehouse`     | `integer` | `false` | available quantity within warehouse               |
-| `data.result_items[].stock_stores`                 | `array`   | `false` | array with stock info per store                               |
-| `data.result_items[].stock_stores[].dealer_id`     | `integer` | `false` | dealer-id of store         |
-| `data.result_items[].stock_stores[].store_name`    | `string`  | `false` | name of store    |
-| `data.result_items[].stock_stores[].store_phone`   | `string`  | `false` | phone number of store |
-| `data.result_items[].stock_stores[].quantity`      | `integer` | `false` | quantity including demo models available               |
-| `data.result_items[].stock_stores[].quantity_demo` | `integer` | `false` | quantity of demo models available              |
-| `data.result_items[].supplier_id`                  | `string`    | `true`  | used supplier_id in request                               |
-| `data.result_items[].article_id`                   | `string`  | `false` | used "barcode" in request e.g. `8719461035781`   |
-
+| Property                                           | Type      | Nullable | Description                                                    |
+|----------------------------------------------------|-----------|----------|----------------------------------------------------------------|
+| `error`                                            | `boolean` | `false`  | true if errors occurred                                        |
+| `error_message`                                    | `string`  | `false`  | Error message if occurred                                      |
+| `data.status`                                      | `boolean` | `false`  | true if no errors occurred                                     |
+| `data.result_items`                                | `array`   | `false`  | Result per requested barcode                                   |
+| `data.result_items[].barcode`                      | `string`  | `false`  | Article barcode                                                |
+| `data.result_items[].stock_available`              | `boolean` | `false`  | Overall status whether stock is available                      |
+| `data.result_items[].delivery_date`                | `date`    | `true`   | expected delivery date from supplier                           |
+| `data.result_items[].delivery_date_supplier`       | `date`    | `true`   | expected delivery date from supplier                           |
+| `data.result_items[].delivery_date_backlog`        | `date`    | `true`   | expected delivery date from registered backlog orders supplier |
+| `data.result_items[].stock_supplier`               | `boolean` | `true`   | true if stock available at supplier, null if not checked       |
+| `data.result_items[].stock_quantity`               | `integer` | `false`  | available quantity within stores+warehouse                     |
+| `data.result_items[].stock_quantity_stores`        | `integer` | `false`  | available quantity within stores                               |
+| `data.result_items[].stock_quantity_warehouse`     | `integer` | `false`  | available quantity within warehouse                            |
+| `data.result_items[].stock_stores`                 | `array`   | `false`  | array with stock info per store                                |
+| `data.result_items[].stock_stores[].dealer_id`     | `integer` | `false`  | dealer-id of store                                             |
+| `data.result_items[].stock_stores[].store_name`    | `string`  | `false`  | name of store                                                  |
+| `data.result_items[].stock_stores[].store_phone`   | `string`  | `false`  | phone number of store                                          |
+| `data.result_items[].stock_stores[].quantity`      | `integer` | `false`  | quantity including demo models available                       |
+| `data.result_items[].stock_stores[].quantity_demo` | `integer` | `false`  | quantity of demo models available                              |
+| `data.result_items[].supplier_id`                  | `string`  | `true`   | used supplier_id in request                                    |
+| `data.result_items[].article_id`                   | `string`  | `false`  | used "barcode" in request e.g. `8719461035781`                 |
 
 ### HTTP request examples ###
 
@@ -181,6 +179,7 @@ Get a list of objects in warehouse
 | `data[].is_claimed_for_obo`               | `boolean`  | `false`  | `true` if claimed for outbound order                                   |
 | `data[].is_sold_to_customer`              | `boolean`  | `false`  | `true` if sold to a customer                                           |
 | `data[].is_shipped`                       | `boolean`  | `false`  | `true` if shipped                                                      |
+| `data[].is_deleted`                       | `boolean`  | `false`  | `true` if item was deleted                                             |
 | `data[].stocked_at`                       | `datetime` | `false`  | Datetime stocked `2021-10-22 11:33:03`                                 |
 | `data[].shipped_at`                       | `datetime` | `true`   | Datetime shipped                                                       |
 | `data[].custom_variable_1`                | `string`   | `false`  | Custom variable from article                                           |
@@ -222,6 +221,7 @@ Get a list of objects in warehouse
       "is_claimed_for_obo": true,
       "is_sold_to_customer": true,
       "is_shipped": true,
+      "is_deleted": false,
       "stocked_at": "2018-04-24 08:53:20",
       "shipped_at": "2021-04-13 07:59:29",
       "custom_variable_1": "Custom var 1",
@@ -247,6 +247,7 @@ Get a list of objects in warehouse
       "is_claimed_for_obo": true,
       "is_sold_to_customer": false,
       "is_shipped": true,
+      "is_deleted": true,
       "stocked_at": "2020-06-11 10:59:05",
       "shipped_at": "2021-10-15 10:03:09",
       "custom_variable_1": "Custom var 1",
@@ -291,7 +292,7 @@ Get a list of stocked objects in POS
 | `data[].custom_variable_3`                | `string`  | `false`  | Custom variable from article                          |
 | `data[].custom_variable_4`                | `string`  | `false`  | Custom variable from article                          |
 | `data[].custom_variable_5`                | `string`  | `false`  | Custom variable from article                          |
-
+| `data[].is_deleted`                       | `boolean` | `false`  | Item is deleted                                       |
 
 ### HTTP request examples ###
 
@@ -331,7 +332,8 @@ Get a list of stocked objects in POS
       "custom_variable_2": "Custom var 2",
       "custom_variable_3": "Custom var 3",
       "custom_variable_4": "Custom var 4",
-      "custom_variable_5": "Custom var 5"
+      "custom_variable_5": "Custom var 5",
+      "is_deleted": false
     },
     {
       "account_id": 1000,
@@ -354,7 +356,8 @@ Get a list of stocked objects in POS
       "custom_variable_2": "Custom var 2",
       "custom_variable_3": "Custom var 3",
       "custom_variable_4": "Custom var 4",
-      "custom_variable_5": "Custom var 5"
+      "custom_variable_5": "Custom var 5",
+      "is_deleted": false
     }
   ]
 }

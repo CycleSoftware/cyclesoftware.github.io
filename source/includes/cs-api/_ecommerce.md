@@ -2,7 +2,7 @@
 
 The e-commerce APIs are designed for pushing e-commerce orders to CycleSoftware.
 
-### Authentication ###
+***Authentication***
 
 The authentication is handled in the `Authentication` element of the SOAP requests.
 

@@ -292,11 +292,16 @@
               </ul>
           </li>
           <li>
-            <a href="#e-commerce" class="toc-h1 toc-link" data-title="E-commerce">E-commerce</a>
+            <a href="#common" class="toc-h1 toc-link" data-title="Common">Common</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                    <a href="#employees" class="toc-h2 toc-link" data-title="Employees">Employees</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#e-commerce" class="toc-h1 toc-link" data-title="E-commerce">E-commerce</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#definition" class="toc-h2 toc-link" data-title="Definition">Definition</a>
                   </li>
@@ -324,10 +329,13 @@
               </ul>
           </li>
           <li>
-            <a href="#common" class="toc-h1 toc-link" data-title="Common">Common</a>
+            <a href="#article-data" class="toc-h1 toc-link" data-title="Article data">Article data</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#employees" class="toc-h2 toc-link" data-title="Employees">Employees</a>
+                    <a href="#articledata" class="toc-h2 toc-link" data-title="Articledata">Articledata</a>
+                  </li>
+                  <li>
+                    <a href="#articledata-definitions" class="toc-h2 toc-link" data-title="Articledata definitions">Articledata definitions</a>
                   </li>
               </ul>
           </li>
@@ -518,9 +526,194 @@ mechanism is as follows:</p>
 <p>TWSC API is available throught Oauth2 authentication</p>
 <h2 id='scopes'>Scopes</h2>
 <p>Credentials are linked to a set of scopes. Every endpoint is also linked to a set of scopes. If the required scope is not available for the credentials the API will provide an HTTP Unauthorized error.</p>
-<h1 id='e-commerce'>E-commerce</h1>
+<h1 id='common'>Common</h1>
+<p>Access common data</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>common</code></li>
+</ul>
+<h2 id='employees'>Employees</h2>
+<p>Get a list of employees associated with the account</p>
+<h3 id='http-request-examples'>HTTP request examples</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/common/employees.json</h6>
+    </div>
+</div>
+<h3 id='properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td>error_message</td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>e.g. <code>Unauthorized</code></td>
+</tr>
+<tr>
+<td>data</td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array of objects</td>
+</tr>
+<tr>
+<td>data[].employee_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>4475</code></td>
+</tr>
+<tr>
+<td>data[].employee_name</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>John</code></td>
+</tr>
+<tr>
+<td>data[].verification_hash</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb</code> sha256 hash mac with api-key as secret</td>
+</tr>
+<tr>
+<td>data[].roles</td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array of strings</td>
+</tr>
+<tr>
+<td>data[].roles[]</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>employee</code></td>
+</tr>
+<tr>
+<td>data[].is_active</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td>data[].is_default</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td>data[].is_administrator</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td>data[].avatar</td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>URL to avatar or null</td>
+</tr>
+<tr>
+<td>data[].authorizations</td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array of strings</td>
+</tr>
+<tr>
+<td>data[].authorizations[]</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>MAY_ACCEPT_SALES_LEADS</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/common/employees.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1220</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">44269</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"verification_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"345ef8a695fded5cff8c2bfb83fa1bffc39f7bc9d13c589facac9ed2b41ebefe"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"employee"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_administrator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/cs/img/img_1_large_medewerker_44269.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"authorizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"MAY_PERFORM_CYCLE_COUNT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_MODIFY_ARTICLE_PRICES"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_REPLACE_ARTICLE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_MODIFY_ARTICLES"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_IMPORT_SUPPLIER_ORDER"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_SEND_SUPPLIER_ORDERS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_MANAGE_SUPPLIER_ORDERS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_DO_ANALYTICS"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1133</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"verification_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69baca4df93b1f213aff9d8582178ec6875da7d8c9bd030340d2de623aa19a69"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"mechanic"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_administrator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"authorizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"MAY_PERFORM_CYCLE_COUNT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_MODIFY_ARTICLE_PRICES"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"MAY_REPLACE_ARTICLE"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="c1">// example on how to check personal code of employee</span>
+
+<span class="nv">$api_key</span> <span class="o">=</span> <span class="s1">'your-api-key'</span><span class="p">;</span>
+<span class="nv">$code</span> <span class="o">=</span> <span class="s1">'1234'</span><span class="p">;</span>
+<span class="nv">$hash</span> <span class="o">=</span> <span class="err">\</span><span class="nb">hash_hmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nv">$code</span><span class="p">,</span> <span class="nv">$api_key</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="err">\</span><span class="nb">hash_equals</span><span class="p">(</span><span class="s1">'data[].verification_hash'</span><span class="p">,</span> <span class="nv">$hash</span><span class="p">)){</span>
+   <span class="c1">// code is correct</span>
+<span class="p">}</span>
+</code></pre></div><h1 id='e-commerce'>E-commerce</h1>
 <p>The e-commerce APIs are designed for pushing e-commerce orders to CycleSoftware.</p>
-<h3 id='authentication'>Authentication</h3>
+
+<p><strong><em>Authentication</em></strong></p>
+
 <p>The authentication is handled in the <code>Authentication</code> element of the SOAP requests.</p>
 
 <table><thead>
@@ -1698,190 +1891,900 @@ Content-length: 1448
     <span class="nt">&lt;/ns1:CreateOrUpdateCustomerResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
-</code></pre></div><h1 id='common'>Common</h1>
-<p>Access common data</p>
+</code></pre></div><h1 id='article-data'>Article data</h1>
+<p>The articledata APIs are designed for pulling article-information for e-commerce environments.</p>
 
-<p><strong><em>Authentication mechanism</em></strong></p>
+<p><strong><em>Authentication</em></strong></p>
 
 <ul>
 <li>Basic HTTP Authentication</li>
-<li>Scope(s): <code>common</code></li>
+<li>Scope(s): <code>ecommerce</code></li>
 </ul>
-<h2 id='employees'>Employees</h2>
-<p>Get a list of employees associated with the account</p>
-<h3 id='http-request-examples'>HTTP request examples</h3>
+<h2 id='articledata'>Articledata</h2>
+<p>Get article data available for e-commerce environments or for a specific <code>barcode</code>.</p>
+
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v1/common/employees.json</h6>
+        <h6>/app/api/v3/articledata/</h6>
+    </div>
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/v3/articledata/:next_resultset</h6>
+    </div>
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/v3/articleinfo/:barcode</h6>
     </div>
 </div>
-<h3 id='properties'>Properties</h3>
-<table><thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Nullable</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>error</td>
-<td><code>boolean</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>false</code></td>
-</tr>
-<tr>
-<td>error_message</td>
-<td><code>string</code></td>
-<td><code>true</code></td>
-<td>e.g. <code>Unauthorized</code></td>
-</tr>
-<tr>
-<td>data</td>
-<td><code>array</code></td>
-<td><code>false</code></td>
-<td>array of objects</td>
-</tr>
-<tr>
-<td>data[].employee_id</td>
-<td><code>integer</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>4475</code></td>
-</tr>
-<tr>
-<td>data[].employee_name</td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>John</code></td>
-</tr>
-<tr>
-<td>data[].verification_hash</td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb</code> sha256 hash mac with api-key as secret</td>
-</tr>
-<tr>
-<td>data[].roles</td>
-<td><code>array</code></td>
-<td><code>false</code></td>
-<td>array of strings</td>
-</tr>
-<tr>
-<td>data[].roles[]</td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>employee</code></td>
-</tr>
-<tr>
-<td>data[].is_active</td>
-<td><code>boolean</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>false</code></td>
-</tr>
-<tr>
-<td>data[].is_default</td>
-<td><code>boolean</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>false</code></td>
-</tr>
-<tr>
-<td>data[].is_administrator</td>
-<td><code>boolean</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>false</code></td>
-</tr>
-<tr>
-<td>data[].avatar</td>
-<td><code>string</code></td>
-<td><code>true</code></td>
-<td>URL to avatar or null</td>
-</tr>
-<tr>
-<td>data[].authorizations</td>
-<td><code>array</code></td>
-<td><code>false</code></td>
-<td>array of strings</td>
-</tr>
-<tr>
-<td>data[].authorizations[]</td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>MAY_ACCEPT_SALES_LEADS</code></td>
-</tr>
-</tbody></table>
+
+<p><strong>Pagination</strong></p>
+
+<p>In every response you&#39;ll find a path to the next resultset. In the example the next resultset is <code>/app/api/v3/articledata/750-750-0/</code>. If <code>next_resultset</code> is null no additional data is available.</p>
 
 <blockquote>
 <p>HTTP Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/common/employees.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/app/api/v3/articledata/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
-<span class="na">Content-length</span><span class="p">:</span> <span class="s">1220</span>
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">44269</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"verification_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"345ef8a695fded5cff8c2bfb83fa1bffc39f7bc9d13c589facac9ed2b41ebefe"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"employee"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"is_administrator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/cs/img/img_1_large_medewerker_44269.jpg"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"authorizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"MAY_PERFORM_CYCLE_COUNT"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"MAY_MODIFY_ARTICLE_PRICES"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"MAY_REPLACE_ARTICLE"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"MAY_MODIFY_ARTICLES"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"MAY_IMPORT_SUPPLIER_ORDER"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"MAY_SEND_SUPPLIER_ORDERS"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"MAY_MANAGE_SUPPLIER_ORDERS"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"MAY_DO_ANALYTICS"</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1133</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"verification_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"69baca4df93b1f213aff9d8582178ec6875da7d8c9bd030340d2de623aa19a69"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"mechanic"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"is_administrator"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"authorizations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"MAY_PERFORM_CYCLE_COUNT"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"MAY_MODIFY_ARTICLE_PRICES"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"MAY_REPLACE_ARTICLE"</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="mi">750</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"next_resultset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/app/api/v3/articledata/750-750-0/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"property_definition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/app/api/v3/articledata/definition/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"supplier_data_columns"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"reference"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"supplier_name"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"supplier_id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"article_id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"barcode"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"brand"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"model"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"color"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pos_description"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"size"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"purchase_price"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vat_code"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rrp"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"model_year"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"product_pos_group_id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"main_group"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sub_group"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sub_sub_group"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"supplier_sub_group"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"supplier_subsub_group"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_code"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_quantity"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"min_order_quantity"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status_code"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"package_contents_quantity"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customer_group"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"keyword"</span><span class="p">,</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"33"</span><span class="p">:</span><span class="w"> </span><span class="s2">"location"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"34"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_color"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"35"</span><span class="p">:</span><span class="w"> </span><span class="s2">"secundary_basic_color"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"36"</span><span class="p">:</span><span class="w"> </span><span class="s2">"weight_bruto"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"37"</span><span class="p">:</span><span class="w"> </span><span class="s2">"weight_netto"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"43"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long_description"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"46"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wheelsize"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"47"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frametype"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"105"</span><span class="p">:</span><span class="w"> </span><span class="s2">"keyword"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"106"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer_group"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"108"</span><span class="p">:</span><span class="w"> </span><span class="s2">"model_id"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"131"</span><span class="p">:</span><span class="w"> </span><span class="s2">"url_article_information"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"133"</span><span class="p">:</span><span class="w"> </span><span class="s2">"highres_image_url"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"137"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image_url"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"139"</span><span class="p">:</span><span class="w"> </span><span class="s2">"video_url"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"140"</span><span class="p">:</span><span class="w"> </span><span class="s2">"basic_color"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"141"</span><span class="p">:</span><span class="w"> </span><span class="s2">"size"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"142"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pos_description"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"143"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"203"</span><span class="p">:</span><span class="w"> </span><span class="s2">"width_package"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"205"</span><span class="p">:</span><span class="w"> </span><span class="s2">"height_package"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"206"</span><span class="p">:</span><span class="w"> </span><span class="s2">"length_package"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"232"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_manual"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"233"</span><span class="p">:</span><span class="w"> </span><span class="s2">"technical_guide"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"26-07-2020"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0008022142197"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"parent_barcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_bicycle"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"bicycle_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"has_stock"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_discontinued"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"salesprice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40.75"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"rrp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"39.95"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lease_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"removal_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"purchase_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDAARD URSUS 26 TWEEPOOT ZWART"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ursus"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"promo_salesprice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"promo_startdate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"promo_enddate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_6"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"08-05-2012 08:02:58"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://s02.cyclesoftware.nl/app/img/Y/artPic_public_T_18563.jpg"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://s02.cyclesoftware.nl/app/img/Y/artPic_public_L_18563.jpg"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"product_group_main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O&amp;A"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_group_sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Onderdelen/Reparatie"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_group_sub_sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standaarden"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2_N_1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"7177049"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ACCELL NL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"5229"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"680862"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0008022142197"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"URSUS"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"JUMBO"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"STANDAARD URSUS 26 JUMBO TWEEPOOT ZWART"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"H"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"39.95"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"O&amp;A"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Onderdelen/Reparatie"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Standaarden"</span><span class="p">,</span><span class="w">
+                    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"VERVALLEN"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"STANDAARD"</span><span class="p">,</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"34"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"43"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDAARD URSUS 26 JUMBO TWEEPOOT ZWART"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"105"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDAARD"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"137"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="s2">"http://www.accentry.com/upload/Juncker/680862.JPG"</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"140"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"142"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDAARD URSUS 26 JUMBO"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"143"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDAARD URSUS 26 JUMBO TWEEPOOT ZWART"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10-02-2022"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0091021578005"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"parent_barcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_bicycle"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"bicycle_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"has_stock"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_discontinued"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"salesprice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"139.95"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"rrp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"139.95"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lease_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"removal_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"purchase_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thule yepp kinderzitje nexxt maxi bagagedrager vib"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"THULE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"promo_salesprice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"promo_startdate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"promo_enddate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_6"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12-02-2019 11:03:31"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://s02.cyclesoftware.nl/app/img/Y/artPic_public_T_1741674.jpg"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://s02.cyclesoftware.nl/app/img/Y/artPic_public_L_1741674.jpg"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"product_group_main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O&amp;A"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_group_sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinderzitjes"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_group_sub_sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinderzitje achter"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2_D_2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"7967511"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"THULE"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"5285"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"12080205"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0091021578005"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"THULE"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Yepp Nexxt Maxi Universal Mount Vibrant Orange"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Yepp Nexxt Maxi Universal Mount Vibrant Orange"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"H"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"139.95"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"O&amp;A"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Kinderzitjes"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Kinderzitje achter"</span><span class="p">,</span><span class="w">
+                    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"COURANT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ZITJE"</span><span class="p">,</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"36"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.73"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"37"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.70"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"43"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">Lichtgewicht en veilig fietszitje voor montage op de bagagedrager met een eigentijds ontwerp dat hoogwaardig comfort voor uw kind biedt.</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"105"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZITJE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"131"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.thule.com/nl-nl/nl/child-bike-seats/rear-mounted-child-bike-seats/thule-yepp-nexxt-maxi-_-12080205"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"133"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="s2">"https://cdn1.static-tgdp.com/ui/productimages/Approved/std.lang.all/44/49/604449_sized_900x600.jpg"</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"137"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="s2">"https://cdn1.static-tgdp.com/ui/productimages/Approved/std.lang.all/44/49/604449_sized_900x600.jpg"</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"139"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="s2">"https://www.youtube.com/embed/6KGMZFZW58E"</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"142"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yepp Nexxt Maxi Universal"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"143"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yepp Nexxt Maxi Universal Mount Vibrant Orange"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"203"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.43"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"205"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.89"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"206"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.28"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"232"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GEBRUIKERS HANDLEIDING"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"type_omschrijving"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gebruikers handleiding"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.thule.com/assetloader.axd?pimid=12080205&amp;id=574173&amp;brand=Thule&amp;market=NL&amp;att=1"</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"233"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SERVICE DOCUMENTATIE"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"type_omschrijving"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service documentatie"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.thule.com/assetloader.axd?pimid=12080205&amp;id=580543&amp;brand=Thule&amp;market=NL&amp;att=1"</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"7996325"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"AGU"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"130383"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0091021578005"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"THULE"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Oranje"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Thule yepp kinderzitje nexxt maxi bagagedrager vib"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"H"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"139.95"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"O&amp;A"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Kinderzitjes"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Kinderzitje achter"</span><span class="p">,</span><span class="w">
+                    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"130383"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"VERVALLEN"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ZITJE"</span><span class="p">,</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"33"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"34"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORANJE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"36"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.50"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"37"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.00"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"43"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lichtgewicht en veilig fietszitje, voor montage op de bagagedrager, met een eigentijds ontwerp dat hoogwaardig comfort voor uw kind biedt.&lt;b&gt;Specificaties&lt;/b&gt;</span><span class="se">\u</span><span class="s2">2022 Merk: Thule</span><span class="se">\u</span><span class="s2">2022 Upgrade: nvt</span><span class="se">\u</span><span class="s2">2022 Introductiejaar: 2017</span><span class="se">\u</span><span class="s2">2022 Alternatief: Thule Yepp Nexxt</span><span class="se">\u</span><span class="s2">2022 Kleur: Oranje</span><span class="se">\u</span><span class="s2">2022 Locatie Fiets: Achter</span><span class="se">\u</span><span class="s2">2022 Montage: Bagagedrager</span><span class="se">\u</span><span class="s2">2022 Diameter Bevestiging: nvt</span><span class="se">\u</span><span class="s2">2022 Inhoud Pakket: Compleet FietszitjeVoor alle specificaties, kijk onderaan de pagina.&lt;b&gt;USP&lt;/b&gt;- Maximaal comfort voor uw kind en een veilige en goede pasvorm dankzij de verstelbare, vijfpuntsgordel met zachte schouderpads - Biedt uw kind een soepele rit in het zachte en schokabsorberende zitje - Lichtgewicht maar robuust zitje waarin een harde buitenkant wordt gecombineerd met een zachte zitting voor optimaal comfort voor het kind - Zet uw kind zeer snel, gemakkelijk en handig vast met de magnetische kindveilige gesp - Gemak en flexibiliteit zijn verzekerd naarmate ..."</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"105"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZITJE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"137"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="s2">"http://www.abcb2b.eu/afbeelding.aspx?a=130383&amp;t=jpgextra"</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"140"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oranje"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"142"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORANJE Zitje"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"143"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thule yepp kinderzitje nexxt maxi bagagedrager vib"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"08-03-2021"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0193751005308"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"parent_barcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_bicycle"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"bicycle_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"has_stock"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_discontinued"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"salesprice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"39.90"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"rrp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"39.90"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lease_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"removal_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"purchase_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TANNUS"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"promo_salesprice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"promo_startdate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"promo_enddate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_6"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"product_group_main"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O&amp;A"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_group_sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banden"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_group_sub_sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banden accessoires en onderdelen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2_A_3"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"product_pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"9650393"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"GRANSIERBV"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"7069"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"30129528"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0193751005308"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"TANNUS"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Rood"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Armour 3 in 1 fietsband anti-lek systeem 28 x 1.65"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"28</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"H"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"39.90"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"O&amp;A"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Banden"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Banden accessoires en onderdelen"</span><span class="p">,</span><span class="w">
+                    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"30129528"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"COURANT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"VELGLINT"</span><span class="p">,</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"34"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ROOD"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"43"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rij sneller en met meer vertrouwen met het Armour anti-lek systeem van Tannus. Deze extra beschermlaag wordt tussen de binnen- en buitenband geplaatst. Herbruikbaar Eenvoudige montage tussen band en binnenband Hogere grip en lagere rolweerstand Heel licht All-round anti-lekbescherming Universeel voor de bandengrootte 28x 1.65 - 1.85, 42/47-700. De aanbevolen binnenbandgrootte is 28/40-622. Past in de velgmaten 19/25-622."</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"105"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VELGLINT"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"131"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.gransier.nl/nl/tannus-armour-3-in-1-fietsband-anti-lek-systeem-28-x-1-65-1-85-700-x-42-47c"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"133"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"140"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rood"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"141"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"142"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Armour 3 in 1 fietsband"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"143"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Armour 3 in 1 fietsband anti-lek systeem 28 x 1.65"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-<span class="c1">// example on how to check personal code of employee</span>
+</span></code></pre></div><h2 id='articledata-definitions'>Articledata definitions</h2>
+<p>Use <code>/app/api/v3/articledata/definition/</code> and <code>/app/api/groups/</code>  for more information about possible field values.</p>
 
-<span class="nv">$api_key</span> <span class="o">=</span> <span class="s1">'your-api-key'</span><span class="p">;</span>
-<span class="nv">$code</span> <span class="o">=</span> <span class="s1">'1234'</span><span class="p">;</span>
-<span class="nv">$hash</span> <span class="o">=</span> <span class="err">\</span><span class="nb">hash_hmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nv">$code</span><span class="p">,</span> <span class="nv">$api_key</span><span class="p">);</span>
-<span class="k">if</span><span class="p">(</span><span class="err">\</span><span class="nb">hash_equals</span><span class="p">(</span><span class="s1">'data[].verification_hash'</span><span class="p">,</span> <span class="nv">$hash</span><span class="p">)){</span>
-   <span class="c1">// code is correct</span>
-<span class="p">}</span>
-</code></pre></div><h1 id='invoices'>Invoices</h1>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/v3/articledata/definition/</h6>
+    </div>
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/groups/</h6>
+    </div>
+</div>
+
+<p><strong>Main object</strong></p>
+
+<table><thead>
+<tr>
+<th><strong>Element</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td>boolean</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td>Error message description</td>
+</tr>
+<tr>
+<td><code>results</code></td>
+<td>Number of results (max 750)</td>
+</tr>
+<tr>
+<td><code>next_result_set</code></td>
+<td>Next result set url e.g. /load/ci_app/api/article_data/750-750-0</td>
+</tr>
+<tr>
+<td><code>supplier_data_columns</code></td>
+<td>Definition of fields used in supplier_data element</td>
+</tr>
+</tbody></table>
+
+<p><strong>Data object</strong></p>
+
+<table><thead>
+<tr>
+<th><strong>Element</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Length</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>barcode**</code></td>
+<td>Article barcode (alpha numeric)</td>
+<td>20</td>
+</tr>
+<tr>
+<td><code>parent_barcode</code></td>
+<td></td>
+<td>20</td>
+</tr>
+<tr>
+<td><code>is_bicycle</code></td>
+<td>Boolean article is bicycle</td>
+<td></td>
+</tr>
+<tr>
+<td><code>bicycle_id</code></td>
+<td>Multiple unique bicycle identifiers</td>
+<td>0..*</td>
+</tr>
+<tr>
+<td><code>salesprice</code></td>
+<td>Price without promo</td>
+<td>decimal string</td>
+</tr>
+<tr>
+<td><code>has_stock</code></td>
+<td>Boolean, if true there is stock for this article at supplier</td>
+<td></td>
+</tr>
+<tr>
+<td><code>is_discontinued</code></td>
+<td>Boolean, whether the article is marked by dealer as discontinued</td>
+<td></td>
+</tr>
+<tr>
+<td><code>rrp</code></td>
+<td>Recommended Retail Price</td>
+<td>decimal string</td>
+</tr>
+<tr>
+<td><code>lease_options</code></td>
+<td>Array of objects with lease option</td>
+<td></td>
+</tr>
+<tr>
+<td><code>removal_fee</code></td>
+<td>The default removal fee for elo bikes</td>
+<td>decimal string</td>
+</tr>
+<tr>
+<td><code>pos_description</code></td>
+<td>Description used in POS and Invoices</td>
+<td>255</td>
+</tr>
+<tr>
+<td><code>brand</code></td>
+<td>Brand name</td>
+<td>30</td>
+</tr>
+<tr>
+<td><code>promo_salesprice</code></td>
+<td>Promo price</td>
+<td>decimal string</td>
+</tr>
+<tr>
+<td><code>promo_startdate</code></td>
+<td>yyyy-mm-dd hh:mm:ss</td>
+<td>19</td>
+</tr>
+<tr>
+<td><code>promo_enddate</code></td>
+<td>yyyy-mm-dd hh:mm:ss</td>
+<td>19</td>
+</tr>
+<tr>
+<td><code>sales_text</code></td>
+<td>Product description</td>
+<td>10000</td>
+</tr>
+<tr>
+<td><code>custom_variable_1</code></td>
+<td>Custom defined variable</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>custom_variable_2</code></td>
+<td>Custom defined variable</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>custom_variable_3</code></td>
+<td>Custom defined variable</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>custom_variable_4</code></td>
+<td>Custom defined variable</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>custom_variable_5</code></td>
+<td>Custom defined variable</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>images</code></td>
+<td>Object with image urls see images object</td>
+<td></td>
+</tr>
+<tr>
+<td><code>product_group_main</code></td>
+<td>DST main group description</td>
+<td>40</td>
+</tr>
+<tr>
+<td><code>product_group_sub</code></td>
+<td>DST sub group description</td>
+<td>40</td>
+</tr>
+<tr>
+<td><code>product_group_sub_sub</code></td>
+<td>DST sub sub group description</td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>product_group_id</code></td>
+<td>DST group code</td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>product_pos_group_id</code></td>
+<td>POS sales group see request /load/ci_app/api/groups</td>
+<td>1 = new product 20 = used product</td>
+</tr>
+<tr>
+<td><code>supplier_data</code></td>
+<td>Supplier data object, the field columns are defined in the supplier_data_columns column</td>
+<td>0..*</td>
+</tr>
+</tbody></table>
+
+<p><strong>Lease option object</strong></p>
+
+<table><thead>
+<tr>
+<th><strong>Element</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>type</code></td>
+<td>b2b or b2c</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td>Name of the lease platform e.g. “cyclelease”</td>
+<td>String</td>
+</tr>
+<tr>
+<td><code>rrp</code></td>
+<td>RRP used to calculate the fee</td>
+<td>Decimal string</td>
+</tr>
+<tr>
+<td><code>duration_months</code></td>
+<td>Contract length</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td><code>fee_monthly_ex_vat</code></td>
+<td>The estimated base lease fee ex vat</td>
+<td>Decimal string</td>
+</tr>
+<tr>
+<td><code>service</code></td>
+<td>Services included</td>
+<td>Array of strings</td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td>Additional selectable options with description and fee_monthly_ex_vat for each option</td>
+<td>Array of object with elements description and fee_monthly_ex_vat</td>
+</tr>
+</tbody></table>
+
+<p><strong>Images object</strong></p>
+
+<table><thead>
+<tr>
+<th><strong>Element</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Length</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>date_modified</code></td>
+<td>dd-mm-yyyy hh:mm:ss</td>
+<td>19</td>
+</tr>
+<tr>
+<td><code>url_thumb</code></td>
+<td>url to thumb image</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>url_large</code></td>
+<td>url to large image</td>
+<td>100</td>
+</tr>
+</tbody></table>
+
+<p><strong>Supplier_data object</strong></p>
+
+<table><thead>
+<tr>
+<th><strong>Element</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>reference</code></td>
+<td>ID of article, or reference to bicycle</td>
+</tr>
+<tr>
+<td><code>supplier_name</code></td>
+<td>Supplier name</td>
+</tr>
+<tr>
+<td><code>supplier_id</code></td>
+<td>Supplier id (see groups api)</td>
+</tr>
+<tr>
+<td><code>article_id</code></td>
+<td>Article code</td>
+</tr>
+<tr>
+<td><code>barcode</code></td>
+<td>Barcode (ean, upc or string)</td>
+</tr>
+<tr>
+<td><code>brand</code></td>
+<td>Brand name</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>Model name</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>Color</td>
+</tr>
+<tr>
+<td><code>pos_description</code></td>
+<td>Description used in POS</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>Size</td>
+</tr>
+<tr>
+<td><code>purchase_price</code></td>
+<td>Purchase price (= null)</td>
+</tr>
+<tr>
+<td><code>vat_code</code></td>
+<td>Code: H, L, G</td>
+</tr>
+<tr>
+<td><code>rrp</code></td>
+<td>Recommended retail price</td>
+</tr>
+<tr>
+<td><code>model_year</code></td>
+<td>Year of model</td>
+</tr>
+<tr>
+<td><code>product_pos_group_id</code></td>
+<td>Group id of POS group (see groups api)</td>
+</tr>
+<tr>
+<td><code>main_group</code></td>
+<td>DST main group</td>
+</tr>
+<tr>
+<td><code>sub_group</code></td>
+<td>DST sub group</td>
+</tr>
+<tr>
+<td><code>sub_sub_group</code></td>
+<td>DST subsub group</td>
+</tr>
+<tr>
+<td><code>supplier_sub_group</code></td>
+<td>Supplier groupname</td>
+</tr>
+<tr>
+<td><code>supplier_subsub_group</code></td>
+<td>Supplier sub groupname</td>
+</tr>
+<tr>
+<td><code>order_code</code></td>
+<td>Order code, see also article_id</td>
+</tr>
+<tr>
+<td><code>order_quantity</code></td>
+<td>Quantity in which it is ordered at supplier</td>
+</tr>
+<tr>
+<td><code>min_order_quantity</code></td>
+<td>Minimal order quantity for order to supplier</td>
+</tr>
+<tr>
+<td><code>status_code</code></td>
+<td>Status code (current = COURANT)</td>
+</tr>
+<tr>
+<td><code>package_contents_quantity</code></td>
+<td>If multiple items in package</td>
+</tr>
+<tr>
+<td><code>customer_group</code></td>
+<td>Customer group name (Heren, Dames etc)</td>
+</tr>
+<tr>
+<td><code>keyword</code></td>
+<td>Key description word (e.g. FIETS)</td>
+</tr>
+<tr>
+<td><code>basic_color</code></td>
+<td>Basic color description</td>
+</tr>
+<tr>
+<td><code>primary_color</code></td>
+<td>Basic color description</td>
+</tr>
+<tr>
+<td><code>secundary_basic_color</code></td>
+<td>Secundary color description</td>
+</tr>
+<tr>
+<td><code>weight_bruto</code></td>
+<td>Weight kg</td>
+</tr>
+<tr>
+<td><code>weight_netto</code></td>
+<td>Weight net kg</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>Description of product</td>
+</tr>
+<tr>
+<td><code>wheelsize</code></td>
+<td>Wheelsize in inch</td>
+</tr>
+<tr>
+<td><code>frametype</code></td>
+<td>Frametype (e.g. HEREN, DAMES)</td>
+</tr>
+<tr>
+<td><code>framesize</code></td>
+<td>Framesize in cm</td>
+</tr>
+<tr>
+<td><code>framesize_description</code></td>
+<td>Framesize description</td>
+</tr>
+<tr>
+<td><code>material</code></td>
+<td>Frame material</td>
+</tr>
+<tr>
+<td><code>brand_gearsystem_rear</code></td>
+<td>Brand of gear rear</td>
+</tr>
+<tr>
+<td><code>model_gearsystem_rear</code></td>
+<td>Model of gear rear</td>
+</tr>
+<tr>
+<td><code>type_gearsystem_rear</code></td>
+<td>Type of gear rear</td>
+</tr>
+<tr>
+<td><code>gears</code></td>
+<td>Number of gears</td>
+</tr>
+<tr>
+<td><code>brand_primary_brake_system_rear</code></td>
+<td>Brand of primary brake rear</td>
+</tr>
+<tr>
+<td><code>type_primary_brake_system_rear</code></td>
+<td>Type of primary brake rear</td>
+</tr>
+<tr>
+<td><code>model_primary_brake_system_rear</code></td>
+<td>Model of primary brake rear</td>
+</tr>
+<tr>
+<td><code>brand_secondary_brake_system_rear</code></td>
+<td>Brand of secondary brake rear</td>
+</tr>
+<tr>
+<td><code>type_secondary_brake_system_rear</code></td>
+<td>Type of secondary brake rear</td>
+</tr>
+<tr>
+<td><code>model_secondary_brake_system_rear</code></td>
+<td>Model of secondary brake rear</td>
+</tr>
+<tr>
+<td><code>brand_brake_system_front</code></td>
+<td>Brand of primary brake front</td>
+</tr>
+<tr>
+<td><code>model_brake_system_front</code></td>
+<td>Type of primary brake front</td>
+</tr>
+<tr>
+<td><code>type_brake_system_front</code></td>
+<td>Model of primary brake front</td>
+</tr>
+</tbody></table>
+<h1 id='invoices'>Invoices</h1>
 <p>Access invoice data</p>
 
 <p><strong><em>Authentication mechanism</em></strong></p>

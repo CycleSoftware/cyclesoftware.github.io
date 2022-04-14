@@ -2955,7 +2955,7 @@ Content-length: 1448
 <td><code>data.result_items[].delivery_date</code></td>
 <td><code>date</code></td>
 <td><code>true</code></td>
-<td>expected delivery date from supplier</td>
+<td>expected delivery date from supplier or back-orders / expected stock</td>
 </tr>
 <tr>
 <td><code>data.result_items[].delivery_date_backlog</code></td>
@@ -3068,6 +3068,28 @@ Content-length: 1448
                         </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                         </span><span class="nl">"quantity_expected"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                         </span><span class="nl">"delivery_dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843690"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-01-2022"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"delivery_date_backlog"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-01-2022"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_supplier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"store_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0733030050"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_expected"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"delivery_dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="s2">"01-01-2022"</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
                     </span><span class="p">}</span><span class="w">
                 </span><span class="p">],</span><span class="w">
                 </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="w">

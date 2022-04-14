@@ -34,7 +34,7 @@ Get stock-info for a set of barcodes. The max number of barcodes is 10. If more 
 | `data.result_items`                                    | `array`    | `false`  | array of result objects                                                               |
 | `data.result_items[].barcode`                          | `string`   | `false`  | e.g. `4026495856010`                                                                  |
 | `data.result_items[].stock_available`                  | `boolean`  | `false`  | if true, there is stock available within stores                                       |
-| `data.result_items[].delivery_date`                    | `date`     | `true`   | expected delivery date from supplier                                                  |
+| `data.result_items[].delivery_date`                    | `date`     | `true`   | expected delivery date from supplier or back-orders / expected stock                  |
 | `data.result_items[].delivery_date_backlog`            | `date`     | `true`   | expected delivery date based on back-orders or expected stock                         |
 | `data.result_items[].stock_supplier`                   | `boolean`  | `true`   | `true` if supplier has stock, `false` if supplier has no stock, `null` if not checked |
 | `data.result_items[].stock_quantity`                   | `integer`  | `false`  | quantity available in stores                                                          |
@@ -86,6 +86,28 @@ Content-length: 1574
                         "quantity_demo": 0,
                         "quantity_expected": 0,
                         "delivery_dates": []
+                    }
+                ],
+                "article_id": "4026495843614"
+            },
+            {
+                "barcode": "4026495843690",
+                "stock_available": true,
+                "delivery_date": "01-01-2022",
+                "delivery_date_backlog": "01-01-2022",
+                "stock_supplier": null,
+                "stock_quantity": 3,
+                "stock_stores": [
+                    {
+                        "dealer_id": 1,
+                        "store_name": "test",
+                        "store_phone": "0733030050",
+                        "quantity": 3,
+                        "quantity_demo": 0,
+                        "quantity_expected": 1,
+                        "delivery_dates": [
+                            "01-01-2022"
+                        ]
                     }
                 ],
                 "article_id": "4026495843614"

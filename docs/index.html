@@ -2949,13 +2949,19 @@ Content-length: 1448
 <td><code>data.result_items[].stock_available</code></td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
-<td>overall stock status for article</td>
+<td>if true, there is stock available within stores</td>
 </tr>
 <tr>
 <td><code>data.result_items[].delivery_date</code></td>
 <td><code>date</code></td>
 <td><code>true</code></td>
 <td>expected delivery date from supplier</td>
+</tr>
+<tr>
+<td><code>data.result_items[].delivery_date_backlog</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td>expected delivery date based on back-orders or expected stock</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_supplier</code></td>

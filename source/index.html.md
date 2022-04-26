@@ -15,8 +15,8 @@ includes:
   - cs-api/_common
   - cs-api/_ecommerce
   - cs-api/_articledata
-  - cs-api/_invoices
   - cs-api/_stockinfo
+  - cs-api/_salesdata
   - cs-api/_rental
   - cs-api/_webhooks
 

@@ -295,6 +295,9 @@
             <a href="#common" class="toc-h1 toc-link" data-title="Common">Common</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#enums" class="toc-h2 toc-link" data-title="Enums">Enums</a>
+                  </li>
+                  <li>
                     <a href="#employees" class="toc-h2 toc-link" data-title="Employees">Employees</a>
                   </li>
               </ul>
@@ -550,7 +553,115 @@ mechanism is as follows:</p>
 <li>Basic HTTP Authentication</li>
 <li>Scope(s): <code>common</code></li>
 </ul>
-<h2 id='employees'>Employees</h2>
+<h2 id='enums'>Enums</h2>
+<p>Get a set of enums with identifiers and descriptions used in various APIs</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/common/enum.json</h6>
+    </div>
+</div>
+<h3 id='types'>Types</h3>
+<table><thead>
+<tr>
+<th>Subject</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sales_order_types</td>
+<td>Sales order type descriptions</td>
+</tr>
+<tr>
+<td>sales_order_status</td>
+<td>Sales order status descriptions</td>
+</tr>
+<tr>
+<td>sales_order_item_status</td>
+<td>Sales order item status descriptions</td>
+</tr>
+<tr>
+<td>cancellation_types</td>
+<td>Cancellation reasons</td>
+</tr>
+<tr>
+<td>pos_groups</td>
+<td>POS / Sales group descriptions</td>
+</tr>
+<tr>
+<td>payment_methods</td>
+<td>Payment method descriptions</td>
+</tr>
+<tr>
+<td>delivery_methods</td>
+<td>Delivery method descriptions</td>
+</tr>
+<tr>
+<td>vat_codes</td>
+<td>VAT codes</td>
+</tr>
+<tr>
+<td>workshop_order_status</td>
+<td>Workshop order status descriptions</td>
+</tr>
+<tr>
+<td>customer_types</td>
+<td>Customer type descriptions</td>
+</tr>
+<tr>
+<td>transaction_item_types</td>
+<td>Transaction item type descriptions (item_type / row_type)</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/common/enum.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response (limited)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">571</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"sales_order_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bestelling"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"sales_order_status"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In behandeling"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nog niet besteld"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not ordered"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='employees'>Employees</h2>
 <p>Get a list of employees associated with the account</p>
 <h3 id='http-request-examples'>HTTP request examples</h3>
 <div class="api-endpoint">
@@ -3472,7 +3583,7 @@ By default the book-date is used.</p>
 <td>data[].order_type_id</td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Order type id e.g. <code>6</code></td>
+<td>Order type id e.g. <code>6</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td>data[].order_type_text</td>
@@ -3514,25 +3625,25 @@ By default the book-date is used.</p>
 <td>data[].status_id</td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Sales order status id e.g. <code>9</code></td>
+<td>Sales order status id e.g. <code>9</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td>data[].status_text</td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>Sales order status text e.g. <code>Afgerond</code></td>
+<td>Sales order status text e.g. <code>Afgerond</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td>data[].cancellation_type_id</td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Cancellation type id e.g. <code>0</code></td>
+<td>Cancellation type id e.g. <code>0</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td>data[].cancellation_description</td>
 <td><code>string</code></td>
 <td><code>true</code></td>
-<td>Cancellation description</td>
+<td>Cancellation description (see common enum for list)</td>
 </tr>
 <tr>
 <td>data[].has_invoice</td>
@@ -3550,13 +3661,13 @@ By default the book-date is used.</p>
 <td>data[].delivery_method_id</td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Delivery method id <code>0</code></td>
+<td>Delivery method id <code>0</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td>data[].delivery_method_description</td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>Delivery method description <code>Afhalen in winkel</code></td>
+<td>Delivery method description <code>Afhalen in winkel</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td>data[].order_item_id</td>
@@ -3568,7 +3679,7 @@ By default the book-date is used.</p>
 <td>data[].order_item_status</td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>Order item status description <code>Geen status</code></td>
+<td>Order item status description <code>Geen status</code>  (see common enum for list)</td>
 </tr>
 <tr>
 <td>data[].assigned_to_customer_id</td>
@@ -3580,7 +3691,7 @@ By default the book-date is used.</p>
 <td>data[].item_type</td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>Description of item type <code>Artikelregel</code></td>
+<td>Description of item type <code>Artikelregel</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td>data[].barcode</td>
@@ -3598,7 +3709,7 @@ By default the book-date is used.</p>
 <td>data[].pos_group_id</td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>POS group id <code>0</code></td>
+<td>POS group id <code>0</code>  (see common enum for list)</td>
 </tr>
 <tr>
 <td>data[].quantity</td>
@@ -3893,7 +4004,7 @@ By default the book-date is used.</p>
 <td>payments[].method_id</td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Payment method id <code>1</code></td>
+<td>Payment method id <code>1</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td>payments[].amount_cents</td>

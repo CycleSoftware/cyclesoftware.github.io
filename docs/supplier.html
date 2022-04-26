@@ -404,14 +404,14 @@ CycleSoftware will integrate the services and act as a client to the supplier se
 <p>For bicycles the following attributes are suggested to be available in the file or webservice:</p>
 
 <ul>
-<li>  Article number *</li>
-<li>  EAN / Barcode *</li>
-<li>  Brand name *</li>
-<li>  Model name *</li>
-<li>  Short description (POS) *</li>
-<li>  Main group name (e.g. Race, City, Mountainbike) *</li>
-<li>  Sub group name *</li>
-<li>  Frame type (Ladies, Gents, Boys, Girls, Uni) *</li>
+<li>  Article number</li>
+<li>  EAN / Barcode</li>
+<li>  Brand name</li>
+<li>  Model name</li>
+<li>  Short description (POS)</li>
+<li>  Main group name (e.g. Race, City, Mountainbike)</li>
+<li>  Sub group name</li>
+<li>  Frame type (Ladies, Gents, Boys, Girls, Uni)</li>
 <li>  Frame height in cm</li>
 <li>Frame height description (e.g. L)</li>
 <li>  Brand gears </li>
@@ -422,20 +422,19 @@ CycleSoftware will integrate the services and act as a client to the supplier se
 <li>Brand brakes front</li>
 <li>Model brakes front</li>
 <li>Wheelsize (inch)</li>
-<li>Color *</li>
-<li>Model year *</li>
-<li>Purchase price (ex vat) *</li>
-<li>Recommended retail price (ex vat) *</li>
+<li>Color</li>
+<li>Model year</li>
+<li>Purchase price (ex vat)</li>
+<li>Recommended retail price (ex vat)</li>
 <li>URL to image</li>
 <li>Gross weight</li>
 <li>Nett weight</li>
 <li>Long description</li>
-<li>Is electric bike (yes / no) *</li>
+<li>Is electric bike (yes / no)</li>
 <li>Battery included in price (yes / no)</li>
 <li>Battery options<br></li>
 <li>  Other properties we might be able to index.</li>
 </ul>
-<b>Attributes marked with * are mandatory</b>
 <h1 id='stock-indication'>Stock indication</h1>
 <p>To provide supplier stock information in CycleSoftware we are able to connect using webservices or by indexing a text file. The following information is advices:</p>
 
@@ -460,7 +459,7 @@ CycleSoftware will integrate the services and act as a client to the supplier se
 <span class="p">{</span><span class="w">
   </span><span class="nl">"CustomerNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1111111"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"Articles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo1111"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo1111"</span><span class="p">},</span><span class="w">     
     </span><span class="p">{</span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo2222"</span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo3333"</span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo4444"</span><span class="p">}</span><span class="w">
@@ -470,7 +469,7 @@ CycleSoftware will integrate the services and act as a client to the supplier se
 <blockquote>
 <p>Example HTTP response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">776</span>
 
@@ -482,31 +481,31 @@ CycleSoftware will integrate the services and act as a client to the supplier se
             </span><span class="nl">"StockIndication"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AVAILABLE"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"StockQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
             </span><span class="nl">"DeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-19"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">68.99</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">68.99</span><span class="w">  
+        </span><span class="p">},</span><span class="w">      
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo2222"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"873272382029"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"StockIndication"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNAVAILABLE"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"StockQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"DeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-19"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">323.00</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">323.00</span><span class="w">     
+        </span><span class="p">},</span><span class="w">      
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo3333"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"873272382029"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"StockIndication"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INCOURANT"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"StockQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"DeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">2122.00</span><span class="w">
-        </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">2122.00</span><span class="w">    
+        </span><span class="p">},</span><span class="w">  
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"ArticleNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ArtNo4444"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"EAN"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"StockIndication"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNKNOWN_ARTICLE"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"StockQuantity"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"DeliveryDate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="nl">"NettPurchasePrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">       
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -559,7 +558,7 @@ CycleSoftware will integrate the services and act as a client to the supplier se
 <blockquote>
 <p>Example HTTP response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">484</span>
 
@@ -629,7 +628,7 @@ CycleSoftware will integrate the services and act as a client to the supplier se
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='open-order-items'>Open order items</h1>
-<p>In many situations the store as pre-ordered bicycles.
+<p>In many situations the store as pre-ordered bicycles. 
 To provide correct stock information to the dealer it is advised to provide a service where the open order items can be retrieved.</p>
 
 <p>In addition it is advised to provide a service the remarks for a specific item.</p>
@@ -654,7 +653,7 @@ To provide correct stock information to the dealer it is advised to provide a se
 <blockquote>
 <p>Example HTTP response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1853</span>
 
@@ -713,7 +712,7 @@ To provide correct stock information to the dealer it is advised to provide a se
 <blockquote>
 <p>Example HTTP response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">49</span>
 
@@ -757,7 +756,7 @@ To provide correct stock information to the dealer it is advised to provide a se
 <blockquote>
 <p>Example HTTP response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">800</span>
 
@@ -827,7 +826,7 @@ To provide correct stock information to the dealer it is advised to provide a se
 <blockquote>
 <p>Example HTTP response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1853</span>
 

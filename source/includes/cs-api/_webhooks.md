@@ -255,6 +255,25 @@ Every payload has the same structure. The payload object is different per entity
 | `workshop_order.updated` | Fired when the workshop order / repair is updated           |
 | `workshop_order.deleted` | Fired when the workshop order / repair is marked as deleted |
 
+
+### Properties
+
+| Property                      | Type       | Nullable | Description                                                      |
+|-------------------------------|------------|----------|------------------------------------------------------------------|
+| `workshop_order_id`           | `integer`  | `false`  | Workshop order ID e.g. `50032`                                   |
+| `repair_object_id`            | `integer`  | `false`  | Repair object ID e.g. `22534`                                    |
+| `reference_text`              | `string`   | `false`  | Reference of order `RefText`                                     |
+| `datetime_scheduled_start`    | `datetime` | `false`  | Scheduled start `2019-06-07 14:30:00`                            |
+| `datetime_scheduled_finished` | `datetime` | `false`  | Scheduled finished `2019-06-07 16:10:00`                         |
+| `mechanic_employee_id`        | `integer`  | `false`  | Assigned to mechanic see common employees `40899`                |
+| `repair_description`          | `string`   | `false`  | Description of workshop order `Band plakken`                     |
+| `status_id`                   | `integer`  | `false`  | Workshop order status ID see common enum e.g. `7`                |
+| `status_text`                 | `string`   | `false`  | Workshop order status see common enum e.g. `Reparatie voltooid`  |
+| `borrowed_object_reference`   | `string`   | `false`  | Reference to borrowed object `BORROWEDBIKE1`                     |
+| `total_repair_time_minutes`   | `integer`  | `false`  | Total time of repair in minutes e.g. `100` (Custom time + items) |
+| `custom_repair_time_minutes`  | `integer`  | `false`  | Custom time of repair in minutes e.g. `0`                        |
+| `sales_order`                 | `object`   | `false`  | See structure of sales order webhook `                           |
+
 > Payload example
 
 ```json
@@ -446,8 +465,8 @@ Every payload has the same structure. The payload object is different per entity
 
 ### Payload properties ###
 
-| Property                      | Type        | Nullable | Description                                     |
-|-------------------------------|-------------|----------|-------------------------------------------------|
+| Property                        | Type        | Nullable | Description                                     |
+|---------------------------------|-------------|----------|-------------------------------------------------|
 | `store_order_id`                | `integer`   | `false`  | internal delivery / store order id e.g. `45287` |
 | `store_id_from`                 | `integer`   | `false`  | destination store id                            |
 | `dealer_id_from`                | `integer`   | `false`  | source dealer_id                                |

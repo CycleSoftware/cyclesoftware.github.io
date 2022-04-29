@@ -5072,6 +5072,94 @@ By default the book-date is used.</p>
 <td>Fired when the workshop order / repair is marked as deleted</td>
 </tr>
 </tbody></table>
+<h3 id='properties-2'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>workshop_order_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Workshop order ID e.g. <code>50032</code></td>
+</tr>
+<tr>
+<td><code>repair_object_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Repair object ID e.g. <code>22534</code></td>
+</tr>
+<tr>
+<td><code>reference_text</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Reference of order <code>RefText</code></td>
+</tr>
+<tr>
+<td><code>datetime_scheduled_start</code></td>
+<td><code>datetime</code></td>
+<td><code>false</code></td>
+<td>Scheduled start <code>2019-06-07 14:30:00</code></td>
+</tr>
+<tr>
+<td><code>datetime_scheduled_finished</code></td>
+<td><code>datetime</code></td>
+<td><code>false</code></td>
+<td>Scheduled finished <code>2019-06-07 16:10:00</code></td>
+</tr>
+<tr>
+<td><code>mechanic_employee_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Assigned to mechanic see common employees <code>40899</code></td>
+</tr>
+<tr>
+<td><code>repair_description</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description of workshop order <code>Band plakken</code></td>
+</tr>
+<tr>
+<td><code>status_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Workshop order status ID see common enum e.g. <code>7</code></td>
+</tr>
+<tr>
+<td><code>status_text</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Workshop order status see common enum e.g. <code>Reparatie voltooid</code></td>
+</tr>
+<tr>
+<td><code>borrowed_object_reference</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Reference to borrowed object <code>BORROWEDBIKE1</code></td>
+</tr>
+<tr>
+<td><code>total_repair_time_minutes</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Total time of repair in minutes e.g. <code>100</code> (Custom time + items)</td>
+</tr>
+<tr>
+<td><code>custom_repair_time_minutes</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Custom time of repair in minutes e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>sales_order</code></td>
+<td><code>object</code></td>
+<td><code>false</code></td>
+<td>See structure of sales order webhook `</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Payload example</p>
@@ -5179,7 +5267,7 @@ By default the book-date is used.</p>
 <td>Fired when the sales transaction / invoice is updated</td>
 </tr>
 </tbody></table>
-<h3 id='properties-2'>Properties</h3>
+<h3 id='properties-3'>Properties</h3>
 <table><thead>
 <tr>
 <th>Property</th>

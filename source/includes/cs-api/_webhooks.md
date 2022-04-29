@@ -46,6 +46,83 @@ Every payload has the same structure. The payload object is different per entity
 | `sales_order.deleted`  | Fired when the sales order is marked as deleted                    |
 | `sales_order.invoiced` | Fired when the sales order is invoiced (sales transaction created) |
 
+### Properties
+
+| Property                                          | Type       | Nullable | Description                                                           |
+|---------------------------------------------------|------------|----------|-----------------------------------------------------------------------|
+| `sales_order_id`                                  | `integer`  | `false`  | Sales Order ID e.g. `1442`                                            |
+| `store_id`                                        | `integer`  | `false`  | Store ID within account e.g. `1`                                      |
+| `sales_employee_id`                               | `integer`  | `false`  | Employee ID see common employees e.g. `1619`                          |
+| `customer_id`                                     | `integer`  | `false`  | Customer ID e.g. `6667`                                               |
+| `order_type_id`                                   | `integer`  | `false`  | Order type ID, see common enum e.g. `3`                               |
+| `order_type_text`                                 | `string`   | `false`  | Order type text, see common enum  `Order`                             |
+| `order_reference_id`                              | `string`   | `false`  | Order reference ID `12212`                                            |
+| `order_reference_text`                            | `string`   | `false`  | Order reference text `REF12212`                                       |
+| `datetime_created`                                | `datetime` | `false`  | Created at e.g. `2013-09-05 12:00:00`                                 |
+| `datetime_modified`                               | `datetime` | `false`  | Modified at e.g. `2022-04-20 12:29:23`                                |
+| `datetime_preferred_delivery`                     | `null`     | `true`   | Date of preferred delivery e.g. `2022-04-20` or `null`                |
+| `datetime_preferred_pickup`                       | `null`     | `true`   | Date of preferred pickup e.g. `2022-04-20` or `null`                  |
+| `status_id`                                       | `integer`  | `false`  | Sales order status id see common enum e.g. `2`                        |
+| `status_text`                                     | `string`   | `false`  | Sales order status text see common enum e.g.  `In behandeling`        |
+| `cancellation_type_id`                            | `integer`  | `false`  | Cancellation type id see common enum e.g. `0`                         |
+| `cancellation_description`                        | `null`     | `true`   | Cancellation type description see common enum                         |
+| `remarks`                                         | `string`   | `false`  | Order remarks `Omschrijving 1`                                        |
+| `has_invoice`                                     | `boolean`  | `false`  | True if invoice is associcated with order e.g. `false`                |
+| `invoice_number`                                  | `integer`  | `false`  | Invoice number if present `0`                                         |
+| `ship_to_customer`                                | `boolean`  | `false`  | True if should ship to customer `false` (deprecated)                  |
+| `delivery_method_id`                              | `integer`  | `false`  | Delivery method ID see common enum e.g. `0`                           |
+| `delivery_method_description`                     | `string`   | `false`  | Delivery method description see common enum e.g. `Afhalen in winkel`  |
+| `shipment_method_description`                     | `string`   | `false`  | Free description of shipment e.g. `VERZENDEN`                         |
+| `payment_method_description`                      | `string`   | `false`  | Free description of shipment e.g. `IDEAL`                             |
+| `order_items`                                     | `array`    | `false`  | List of order items                                                   |
+| `order_items[].item_id`                           | `integer`  | `false`  | ID of item within the order e.g. `2`                                  |
+| `order_items[].item_type_id`                      | `integer`  | `false`  | Item type ID see common enum e.g. `1`                                 |
+| `order_items[].special_type_id`                   | `integer`  | `false`  | ID if associated object if present e.g. `0`                           |
+| `order_items[].quantity`                          | `integer`  | `false`  | Quantity e.g. `1`                                                     |
+| `order_items[].barcode`                           | `string`   | `false`  | Barcode of item e.g. `4008496261628`                                  |
+| `order_items[].pos_group_id`                      | `integer`  | `false`  | POS group see common enum e.g. `11`                                   |
+| `order_items[].description`                       | `string`   | `false`  | Description of item e.g. `VARTA BATTERIE 12V38MAH V23GA`              |
+| `order_items[].unit_price_in_vat_cents`           | `integer`  | `false`  | Gross price in cents `225`                                            |
+| `order_items[].unit_discount_amount_in_vat_cents` | `integer`  | `false`  | Unit discount in cents e.g. `0`                                       |
+| `order_items[].price_in_vat_cents`                | `integer`  | `false`  | Line price in cents e.g. `225`                                        |
+| `order_items[].discount_percentage`               | `integer`  | `false`  | Discount percentage e.g. `0`                                          |
+| `order_items[].vat_code`                          | `integer`  | `false`  | VAT code see common enum e.g. `2`                                     |
+| `order_items[].vat_percentage`                    | `integer`  | `false`  | VAT percentage e.g. `21`                                              |
+| `order_items[].vat_amount_cents`                  | `integer`  | `false`  | VAT amount in cents e.g. `39`                                         |
+| `order_items[].item_status_id`                    | `integer`  | `false`  | Item status ID see common enum e.g. `0`                               |
+| `order_items[].item_status_text`                  | `string`   | `false`  | Item status text see common enum e.g. `Geen status`                   |
+| `order_items[].unit_work_time_minutes`            | `integer`  | `false`  | Work time for item in minutes e.g. `0`                                |
+| `customer.customer_barcode`                       | `string`   | `false`  | (deprecated) Reference of the customer e.g. `REF1212`                 |
+| `customer.prefix`                                 | `string`   | `false`  | (deprecated) Name prefix e.g. `Dhr./Mevr. `                           |
+| `customer.country`                                | `string`   | `false`  | (deprecated) Country (deprecated) see country_code_iso_3166 e.g. `NL` |
+| `customer.name_prefix`                            | `string`   | `true`   | (deprecated)                                                          |
+| `customer.iban`                                   | `string`   | `false`  | IBAN bank account                                                     |
+| `customer.customer_id`                            | `integer`  | `false`  | Customer ID e.g. `6667`                                               |
+| `customer.customer_type_name`                     | `string`   | `false`  | Customer type see common enum e.g. `Klant`                            |
+| `customer.customer_reference`                     | `string`   | `false`  | Customer reference e.g. `REF1212`                                     |
+| `customer.postcode`                               | `string`   | `false`  | Postal code e.g. `1000AA`                                             |
+| `customer.house_number`                           | `string`   | `false`  | Housenumber e.g. `2522`                                               |
+| `customer.house_number_postfix`                   | `string`   | `false`  | Housenumber postfix e.g. `B`                                          |
+| `customer.attn`                                   | `string`   | `false`  | e.g. ``                                                               |
+| `customer.title`                                  | `string`   | `false`  | Title of customer e.g. `Dhr./Mevr. `                                  |
+| `customer.initials`                               | `string`   | `false`  | Initials e.g. `C.G.`                                                  |
+| `customer.insertion`                              | `string`   | `false`  | Name insertion e.g. `van`                                             |
+| `customer.name`                                   | `string`   | `false`  | (Sur)name e.g. `Wijk`                                                 |
+| `customer.street`                                 | `string`   | `false`  | Street name e.g. `Aalsburg`                                           |
+| `customer.city`                                   | `string`   | `false`  | City name e.g. `Amsterdam`                                            |
+| `customer.country_code_iso_3166`                  | `string`   | `false`  | Country code e.g. `NL`                                                |
+| `customer.email`                                  | `string`   | `false`  | Customer E-mail e.g. `test@test.nl`                                   |
+| `customer.discount_percentage`                    | `integer`  | `false`  | Default discount percentage e.g. `0`                                  |
+| `customer.datetime_created`                       | `string`   | `true`   | datetime created if known (null if unknown)                           |
+| `customer.phone_numbers`                          | `array`    | `false`  | array of phone numbers                                                |
+| `customer.phone_numbers[].phone_number_id`        | `string`   | `false`  | ID `mob`, `tel` or stringed ID e.g. `10589`                           |
+| `customer.phone_numbers[].customer_id`            | `integer`  | `false`  | Customer ID `6667`                                                    |
+| `customer.phone_numbers[].phone_number`           | `string`   | `false`  | Phone number `06-12345678`                                            |
+| `customer.phone_numbers[].name`                   | `string`   | `false`  | Name associated with the phone number e.g. `Sjaak`                    |
+| `delivery_address`                                | `object`   | `true`   | Delivery address if specified                                         |
+| `labels`                                          | `array`    | `false`  | Array of label strings                                                |
+| `labels[]`                                        | `string`   | `false`  | Label associated with the sales order e.g. `label1`                   |
+
 > Payload structure
 
 ```json
@@ -277,20 +354,88 @@ Every payload has the same structure. The payload object is different per entity
 | `sales_transaction.created` | Fired when the sales transaction / invoice is created |
 | `sales_transaction.updated` | Fired when the sales transaction / invoice is updated |
 
+### Properties
+
+| Property                                            | Type      | Nullable | Description                                                   |
+|-----------------------------------------------------|-----------|----------|---------------------------------------------------------------|
+| `invoice_number`                                    | `integer` | `false`  | Sales transaction number / invoice number e.g. `20210048`     |
+| `is_final`                                          | `boolean` | `false`  | True if the transaciton is booked `false`                     |
+| `customer_id`                                       | `integer` | `false`  | Customer ID e.g. `1006` for anonymous `0`                     |
+| `store_id`                                          | `integer` | `false`  | Store ID within account `1`                                   |
+| `sales_employee_id`                                 | `integer` | `false`  | Employee ID e.g. `1001` see common employees                  |
+| `sales_order_id`                                    | `integer` | `true`   | Sales Order ID                                                |
+| `workshop_order_id`                                 | `integer` | `true`   | Workshop Order ID                                             |
+| `total_amount_cents`                                | `integer` | `false`  | Total amount in cents e.g. `278820`                           |
+| `unpayed_amount_cents`                              | `integer` | `false`  | Unpayed amount in cents. `278820`                             |
+| `invoice_date`                                      | `date`    | `false`  | (pro-forma) date of the invoice `2022-04-29`                  |
+| `book_date`                                         | `date`    | `true`   | Book date of invoice. `null` if not booked                    |
+| `sales_items`                                       | `array`   | `false`  | Array of sales items                                          |
+| `sales_items[].sales_item_id`                       | `integer` | `false`  | Item identifier `115350527`                                   |
+| `sales_items[].item_type_id`                        | `integer` | `false`  | Item type, see common enum .e.g. `1`                          |
+| `sales_items[].special_type_id`                     | `integer` | `false`  | If associated with a stock item this is the stock item id `0` |
+| `sales_items[].quantity`                            | `integer` | `false`  | Quantity sold e.g. `1`                                        |
+| `sales_items[].barcode`                             | `string`  | `false`  | Barcode of the article                                        |
+| `sales_items[].pos_group_id`                        | `integer` | `false`  | POS group id see common enum e.g. `11`                        |
+| `sales_items[].description`                         | `string`  | `false`  | Line description `Diversen`                                   |
+| `sales_items[].unit_price_in_vat_cents`             | `integer` | `false`  | Gross unit price in cents `9900`                              |
+| `sales_items[].unit_discount_amount_in_vat_cents`   | `integer` | `false`  | Unit discount amount in cents `990`                           |
+| `sales_items[].price_in_vat_cents`                  | `integer` | `false`  | Line price in cents e.g. `8910`                               |
+| `sales_items[].discount_percentage`                 | `integer` | `false`  | Discount percentage `10`                                      |
+| `sales_items[].vat_code`                            | `integer` | `false`  | VAT code, see common enum `2`                                 |
+| `sales_items[].vat_percentage`                      | `integer` | `false`  | VAT percentage `21`                                           |
+| `sales_items[].vat_amount_cents`                    | `integer` | `false`  | Line vat amount in cents. `1546`                              |
+| `sales_items[].identification`                      | `object`  | `true`   | Object with serial numbers if associated                      |
+| `sales_items[].identification.stock_object_id`      | `integer` | `false`  | Object associated with the item `24406`                       |
+| `sales_items[].identification.frame_number`         | `string`  | `false`  | Frame number e.g. `FR0000010`                                 |
+| `sales_items[].identification.key_number`           | `string`  | `false`  | Key number e.g. `SL10000`                                     |
+| `sales_items[].identification.lock_number`          | `string`  | `false`  | Lock number e.g. `K1212`                                      |
+| `sales_items[].identification.battery_number`       | `string`  | `false`  | Battery number e.g. `B12122112`                               |
+| `sales_items[].identification.engine_number`        | `string`  | `false`  | Engine number e.g. `E3322323`                                 |
+| `sales_items[].identification.serial_number`        | `string`  | `false`  | Serial number e.g. `S320934`                                  |
+| `sales_items[].identification.license_plate_number` | `string`  | `false`  | License plate number e.g. `xx-yy-zz`                          |
 
 > Payload example
 
 ```json
 {
-  "id": "20c5d026-68b3-11ec-90d6-0242ac120003",
+  "id": "f65ee643-1010-4ecb-a67e-da50dbe1ed90",
   "account_id": 1,
-  "event_name": "store_order.created",
-  "event_timestamp": 1640787926.323,
+  "event_name": "sales_transaction.created",
+  "event_timestamp": 1651242527.212,
   "payload": {
-
+    "invoice_number": 20210047,
+    "is_final": true,
+    "customer_id": 0,
+    "store_id": 1,
+    "sales_employee_id": 1001,
+    "sales_order_id": null,
+    "workshop_order_id": null,
+    "total_amount_cents": 200,
+    "unpayed_amount_cents": 0,
+    "invoice_date": "2022-04-29",
+    "book_date": "2022-04-29",
+    "sales_items": [
+      {
+        "sales_item_id": 115350525,
+        "item_type_id": 1,
+        "special_type_id": 0,
+        "quantity": 1,
+        "barcode": "",
+        "pos_group_id": 8,
+        "description": "Kleding",
+        "unit_price_in_vat_cents": 200,
+        "unit_discount_amount_in_vat_cents": 0,
+        "price_in_vat_cents": 200,
+        "discount_percentage": 0,
+        "vat_code": 2,
+        "vat_percentage": 21,
+        "vat_amount_cents": 35,
+        "identification": null
+      }
+    ]
+  }
 }
 ```
-
 
 
 ## Internal deliveries / store orders ##
@@ -303,26 +448,26 @@ Every payload has the same structure. The payload object is different per entity
 
 | Property                      | Type        | Nullable | Description                                     |
 |-------------------------------|-------------|----------|-------------------------------------------------|
-| store_order_id                | `integer`   | `false`  | internal delivery / store order id e.g. `45287` |
-| store_id_from                 | `integer`   | `false`  | destination store id                            |
-| dealer_id_from                | `integer`   | `false`  | source dealer_id                                |
-| store_id_to                   | `integer`   | `false`  | destination store_id                            |
-| dealer_id_to                  | `integer`   | `false`  | destination dealer_id                           |
-| store_order_type              | `string`    | `false`  | `regulier` or `via warehouse`                   |
-| store_order_type_id           | `integer`   | `false`  | 0: regular, 1: via warehouse                    |
-| status_id                     | `integer`   | `false`  | 0: open, 1: processed, 2: cancelled             |
-| status                        | `string`    | `false`  | e.g. `Verwerkt`                                 |
-| remarks                       | `string`    | `false`  | e.g. `Filiaal naar filiaal levering #2341`      |
-| processed_at                  | `datetime`  | `true`   | e.g. `2012-05-25 15:17:00`                      |
-| related_to_sales_order_ids    | `integer[]` | `false`  | List of sales order ids related to delivery     |
-| related_to_supplier_order_ids | `integer[]` | `false`  | List of supplier order ids related to delivery  |
-| items                         | `array`     | `false`  | list of items within store order                |
-| items[].store_order_item_id   | `integer`   | `false`  | e.g. `2`                                        |
-| items[].barcode               | `string`    | `false`  | e.g. `F.1000`                                   |
-| items[].quantity              | `integer`   | `false`  | e.g. `1`                                        |
-| items[].item_type_id          | `integer`   | `false`  | 1: article, 2:object                            |
-| items[].object_id             | `integer`   | `true`   | e.g. `1000` or `null`                           |
-| items[].description           | `string`    | `false`  | e.g. `Fiets`                                    |
+| `store_order_id`                | `integer`   | `false`  | internal delivery / store order id e.g. `45287` |
+| `store_id_from`                 | `integer`   | `false`  | destination store id                            |
+| `dealer_id_from`                | `integer`   | `false`  | source dealer_id                                |
+| `store_id_to`                   | `integer`   | `false`  | destination store_id                            |
+| `dealer_id_to`                  | `integer`   | `false`  | destination dealer_id                           |
+| `store_order_type`              | `string`    | `false`  | `regulier` or `via warehouse`                   |
+| `store_order_type_id`           | `integer`   | `false`  | 0: regular, 1: via warehouse                    |
+| `status_id`                     | `integer`   | `false`  | 0: open, 1: processed, 2: cancelled             |
+| `status`                        | `string`    | `false`  | e.g. `Verwerkt`                                 |
+| `remarks`                       | `string`    | `false`  | e.g. `Filiaal naar filiaal levering #2341`      |
+| `processed_at`                  | `datetime`  | `true`   | e.g. `2012-05-25 15:17:00`                      |
+| `related_to_sales_order_ids`    | `integer[]` | `false`  | List of sales order ids related to delivery     |
+| `related_to_supplier_order_ids` | `integer[]` | `false`  | List of supplier order ids related to delivery  |
+| `items`                         | `array`     | `false`  | list of items within store order                |
+| `items[].store_order_item_id`   | `integer`   | `false`  | e.g. `2`                                        |
+| `items[].barcode`               | `string`    | `false`  | e.g. `F.1000`                                   |
+| `items[].quantity`              | `integer`   | `false`  | e.g. `1`                                        |
+| `items[].item_type_id`          | `integer`   | `false`  | 1: article, 2:object                            |
+| `items[].object_id`             | `integer`   | `true`   | e.g. `1000` or `null`                           |
+| `items[].description`           | `string`    | `false`  | e.g. `Fiets`                                    |
 
 > Payload
 

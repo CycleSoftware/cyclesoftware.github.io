@@ -15,7 +15,7 @@ Properties used in create, get and send endpoints.
 | Property                          | Type       | Nullable | Create | Description                                                 |
 |-----------------------------------|------------|----------|--------|-------------------------------------------------------------|
 | `supplier_order_id`               | `integer`  | `false`  |        | Supplier order ID `2222`                                    |
-| `supplier_id`                     | `integer`  | `false`  | X      | Supplier ID see ?? e.g. `2113`                              |
+| `supplier_id`                     | `integer`  | `false`  | X      | Supplier ID see common suppliers endpoint e.g. `2113`       |
 | `store_id`                        | `integer`  | `false`  | X      | Store ID within account e.g. `2`                            |
 | `order_type_id`                   | `integer`  | `false`  |        | Order type see common enum supplier_order_types e.g. `1`    |
 | `status_id`                       | `integer`  | `false`  |        | Order status see common enum supplier_order_status e.g. `0` |
@@ -207,7 +207,7 @@ Send a supplier order.
 > HTTP request
 
 ```http
-POST /api/v1/supplier/order/1000.json HTTP/1.1
+POST /api/v1/supplier/order/2222.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip,deflate

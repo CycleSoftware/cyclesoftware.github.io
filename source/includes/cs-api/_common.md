@@ -197,3 +197,69 @@ if(\hash_equals('data[].verification_hash', $hash)){
    // code is correct
 }
 ```
+
+
+## Supplier list ##
+
+Get a list of suppliers
+
+### HTTP request examples ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v1/common/suppliers.json</h6>
+	</div>
+</div>
+
+### Properties ###
+
+| Property                    | Type      | Nullable | Description                                  |
+|-----------------------------|-----------|----------|----------------------------------------------|
+| `error`                     | `boolean` | `false`  | e.g. `false`                                 |
+| `error_message`             | `string`  | `true`   | Error message if occured                     |
+| `data`                      | `array`   | `false`  | Array of suppliers                           |
+| `data[].type`               | `string`  | `false`  | `supplier`, `bike-brand` or `moped-brand`    |
+| `data[].supplier_id`        | `integer` | `false`  | Unique supplier ID `580`                     |
+| `data[].supplier_name`      | `string`  | `false`  | Name of supplier e.g. `Accell NL`            |
+| `data[].parent_supplier_id` | `integer` | `true`   | Brands may be linked to a parent supplier-id |
+
+> HTTP Request
+
+```http
+GET /api/v1/common/suppliers.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip,deflate
+Accept: application/json
+Content-type: application/json; charset=utf-8
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 331
+```
+
+```json
+{
+  "error": false,
+  "error_message": null,
+  "data": [
+    {
+      "type": "supplier",
+      "supplier_id": 122,
+      "supplier_name": "Supplier A",
+      "parent_supplier_id": null
+    },
+    {
+      "type": "bike-brand",
+      "supplier_id": 580,
+      "supplier_name": "Brand one",
+      "parent_supplier_id": 122
+    }
+  ]
+}
+```

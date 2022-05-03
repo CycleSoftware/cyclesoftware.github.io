@@ -300,13 +300,16 @@
                   <li>
                     <a href="#common-employees" class="toc-h2 toc-link" data-title="Employees">Employees</a>
                   </li>
+                  <li>
+                    <a href="#common-supplier-list" class="toc-h2 toc-link" data-title="Supplier list">Supplier list</a>
+                  </li>
               </ul>
           </li>
           <li>
             <a href="#e-commerce" class="toc-h1 toc-link" data-title="E-commerce">E-commerce</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#e-commerce-employees-definition" class="toc-h2 toc-link" data-title="Definition">Definition</a>
+                    <a href="#e-commerce-supplier-list-definition" class="toc-h2 toc-link" data-title="Definition">Definition</a>
                   </li>
                   <li>
                     <a href="#e-commerce-properties" class="toc-h2 toc-link" data-title="Properties">Properties</a>
@@ -370,6 +373,23 @@
                   </li>
                   <li>
                     <a href="#sales-insurances" class="toc-h2 toc-link" data-title="Insurances">Insurances</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#suppliers" class="toc-h1 toc-link" data-title="Suppliers">Suppliers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#suppliers-insurances-supplier-order-properties" class="toc-h2 toc-link" data-title="Supplier order properties">Supplier order properties</a>
+                  </li>
+                  <li>
+                    <a href="#suppliers-create-supplier-order" class="toc-h2 toc-link" data-title="Create supplier order">Create supplier order</a>
+                  </li>
+                  <li>
+                    <a href="#suppliers-get-supplier-order" class="toc-h2 toc-link" data-title="Get supplier order">Get supplier order</a>
+                  </li>
+                  <li>
+                    <a href="#suppliers-send-supplier-order" class="toc-h2 toc-link" data-title="Send supplier order">Send supplier order</a>
                   </li>
               </ul>
           </li>
@@ -850,7 +870,103 @@ mechanism is as follows:</p>
 <span class="k">if</span><span class="p">(</span><span class="err">\</span><span class="nb">hash_equals</span><span class="p">(</span><span class="s1">'data[].verification_hash'</span><span class="p">,</span> <span class="nv">$hash</span><span class="p">)){</span>
    <span class="c1">// code is correct</span>
 <span class="p">}</span>
-</code></pre></div><h1 id='e-commerce'>E-commerce</h1>
+</code></pre></div><h2 id='common-supplier-list'>Supplier list</h2>
+<p>Get a list of suppliers</p>
+<h3 id='common-supplier-list-http-request-examples'>HTTP request examples</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/common/suppliers.json</h6>
+    </div>
+</div>
+<h3 id='common-supplier-list-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Error message if occured</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>Array of suppliers</td>
+</tr>
+<tr>
+<td><code>data[].type</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td><code>supplier</code>, <code>bike-brand</code> or <code>moped-brand</code></td>
+</tr>
+<tr>
+<td><code>data[].supplier_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Unique supplier ID <code>580</code></td>
+</tr>
+<tr>
+<td><code>data[].supplier_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Name of supplier e.g. <code>Accell NL</code></td>
+</tr>
+<tr>
+<td><code>data[].parent_supplier_id</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Brands may be linked to a parent supplier-id</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/common/suppliers.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">331</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"supplier"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Supplier A"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"parent_supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bike-brand"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">580</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brand one"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"parent_supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='e-commerce'>E-commerce</h1>
 <p>The e-commerce APIs are designed for pushing e-commerce orders to CycleSoftware.</p>
 
 <p><strong><em>Authentication</em></strong></p>
@@ -886,7 +1002,7 @@ mechanism is as follows:</p>
 <ul>
 <li><code>e-commerce</code></li>
 </ul>
-<h3 id='e-commerce-employees-definition'>Definition</h3>
+<h3 id='e-commerce-supplier-list-definition'>Definition</h3>
 <p>The latest definition of the WSDL specification can be found at:</p>
 
 <div class="api-endpoint">
@@ -4300,6 +4416,377 @@ By default the book-date is used.</p>
         </span><span class="nl">"premium_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">7343</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
+</span></code></pre></div><h1 id='suppliers'>Suppliers</h1>
+<p>Create and send supplier orders</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>e-commerce</code></li>
+</ul>
+<h3 id='suppliers-insurances-supplier-order-properties'>Supplier order properties</h3>
+<p>Properties used in create, get and send endpoints.</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Create</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>supplier_order_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Supplier order ID <code>2222</code></td>
+</tr>
+<tr>
+<td><code>supplier_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>X</td>
+<td>Supplier ID see common suppliers endpoint e.g. <code>2113</code></td>
+</tr>
+<tr>
+<td><code>store_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>X</td>
+<td>Store ID within account e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>order_type_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Order type see common enum supplier_order_types e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>status_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Order status see common enum supplier_order_status e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>supplier_comment</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Comment given by supplier e.g. <code>Some text</code></td>
+</tr>
+<tr>
+<td><code>supplier_reference</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Reference from supplier <code>ref-from-supplier</code></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>datetime</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Creation date <code>2022-01-12 12:30:30</code></td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Array of order items</td>
+</tr>
+<tr>
+<td><code>items[].supplier_order_item_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Item ID <code>10012</code></td>
+</tr>
+<tr>
+<td><code>items[].item_type_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Item type see common enum transaction_item_types e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>items[].article_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>X</td>
+<td>Article Number. <code>ART2</code></td>
+</tr>
+<tr>
+<td><code>items[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>X</td>
+<td>Barcode e.g. <code>BARCODE2</code></td>
+</tr>
+<tr>
+<td><code>items[].quantity</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>X</td>
+<td>Quantity ordered e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>items[].quantity_delivered</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Quantity delivered e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>items[].quantity_open</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Quantity open (not delivered) e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>items[].supplier_delivery_date</code></td>
+<td><code>date</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Delivery date given by supplier e.g. <code>2022-01-20</code></td>
+</tr>
+<tr>
+<td><code>items[].supplier_item_reference</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Reference item from supplier e.g. <code>ref-item-1</code></td>
+</tr>
+</tbody></table>
+<h2 id='suppliers-create-supplier-order'>Create supplier order</h2>
+<p>Creates a supplier order. To actually dispatch and send the supplier order to the supplier call the send endpoint with the obtained supplier order ID.</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/supplier/order/</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/supplier/order/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">299</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2113</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87123456789"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"art-no-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87123456790"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"art-no-2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">989</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"supplier_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2222</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2113</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"supplier_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some text"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"supplier_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ref-from-supplier"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-12 12:30:30"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"supplier_order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10010</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"art-no-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87123456789"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_delivered"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_item_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"supplier_order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10012</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BARCODE2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_delivered"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-20"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_item_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ref-item-1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Error Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">57</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad request"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='suppliers-get-supplier-order'>Get supplier order</h2>
+<div class="api-endpoint">
+<div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/supplier/order/:id.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/supplier/order/2222.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">989</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"supplier_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2222</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2113</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"supplier_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some text"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"supplier_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ref-from-supplier"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-12 12:30:30"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"supplier_order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10010</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"art-no-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87123456789"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_delivered"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_item_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"supplier_order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10012</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BARCODE2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_delivered"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-20"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_item_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ref-item-1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='suppliers-send-supplier-order'>Send supplier order</h2>
+<p>Send a supplier order.</p>
+
+<div class="api-endpoint">
+<div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/supplier/order/:id/send.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/supplier/order/2222.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">989</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"supplier_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2222</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2113</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"supplier_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some text"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"supplier_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ref-from-supplier"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-12 12:30:30"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"supplier_order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10010</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"art-no-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87123456789"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_delivered"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_item_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"supplier_order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10012</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BARCODE2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_delivered"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-20"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"supplier_item_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ref-item-1"</span><span class="p">,</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Error Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">57</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Error given by supplier"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='rental'>Rental</h1>
 <p>Access rental object data</p>
 

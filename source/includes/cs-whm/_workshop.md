@@ -11,30 +11,30 @@ Access workshop data
 
 Get a list of stock items released for shipment
 
-| GET parameter               | Type      | Description                                                                                                          |
-|-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
-|`start_date`                  | date    | Start date interval (yyyy-mm-dd) <i class="label label-info">required</i>                                                                                                         |
-|`end_date`                  | date    | Start date interval (yyyy-mm-dd) <i class="label label-info">required</i>                                                                                                         |
-|`offset`                  | integer    | Pagination offset. <i class="label label-info">optional</i>                                                                                                          |
+| GET parameter | Type    | Description                                                               |
+|---------------|---------|---------------------------------------------------------------------------|
+| `start_date`  | date    | Start date interval (yyyy-mm-dd) <i class="label label-info">required</i> |
+| `end_date`    | date    | Start date interval (yyyy-mm-dd) <i class="label label-info">required</i> |
+| `offset`      | integer | Pagination offset. <i class="label label-info">optional</i>               |
 
 ### Properties ###
 
-| Property                         | Type              | Nullable        | Description               |
-| -------------------------------- | ----------------- | --------------- | ------------------------- |
-| `error`                            | `boolean` | `false` | e.g. `false`      |
-| `error_message`                    | `string`    | `true`  | The error message if an error occurred                          |
-| `data[].stock_item_id`             | `integer` | `false` | Stock item ID e.g. `20000`      |
-| `data[].is_assembled`              | `boolean` | `false` | `true` if object is assembled      |
-| `data[].released_by`               | `string`  | `false` | The user who released/assembled the item e.g. `Name 12`    |
-| `data[].scheduled_for_release_at`  | `date`    | `false` | Scheduled date for release/assembly e.g. `2021-10-10` |
-| `data[].released_for_shipment_at`  | `date`    | `false` | Date of release/assembly e.g. `2021-10-11` |
-| `data[].claimed_by_dealer_id`      | `integer` | `false` | Dealer-id who claimed the stock item `5393`       |
-| `data[].outbound_order_id`         | `integer` | `false` | The Outbound Order ID e.g. `20001`      |
-| `data[].outbound_order_item_id`    | `integer` | `false` | The Outbound Order Item ID e.g. `20002`      |
-| `data[].outbound_shipment_id`      | `integer` | `false` | The Outbound Shipment ID e.g. `20003`      |
-| `data[].outbound_shipment_item_id` | `integer` | `false` | The Outbound Shipment Item ID e.g. `20004`      |
-| `data[].is_sold_to_customer`       | `boolean` | `false` | Boolean whether the item is sold      |
-| `pagination.next_offset`           | `integer`    | `true`  | If not null use in next paginated request in `offset` GET parameter                          |
+| Property                           | Type      | Nullable | Description                                                         |
+|------------------------------------|-----------|----------|---------------------------------------------------------------------|
+| `error`                            | `boolean` | `false`  | e.g. `false`                                                        |
+| `error_message`                    | `string`  | `true`   | The error message if an error occurred                              |
+| `data[].stock_item_id`             | `integer` | `false`  | Stock item ID e.g. `20000`                                          |
+| `data[].is_assembled`              | `boolean` | `false`  | `true` if object is assembled                                       |
+| `data[].released_by`               | `string`  | `false`  | The user who released/assembled the item e.g. `Name 12`             |
+| `data[].scheduled_for_release_at`  | `date`    | `false`  | Scheduled date for release/assembly e.g. `2021-10-10`               |
+| `data[].released_for_shipment_at`  | `date`    | `false`  | Date of release/assembly e.g. `2021-10-11`                          |
+| `data[].claimed_by_dealer_id`      | `integer` | `false`  | Dealer-id who claimed the stock item `5393`                         |
+| `data[].outbound_order_id`         | `integer` | `false`  | The Outbound Order ID e.g. `20001`                                  |
+| `data[].outbound_order_item_id`    | `integer` | `false`  | The Outbound Order Item ID e.g. `20002`                             |
+| `data[].outbound_shipment_id`      | `integer` | `false`  | The Outbound Shipment ID e.g. `20003`                               |
+| `data[].outbound_shipment_item_id` | `integer` | `false`  | The Outbound Shipment Item ID e.g. `20004`                          |
+| `data[].is_sold_to_customer`       | `boolean` | `false`  | Boolean whether the item is sold                                    |
+| `pagination.next_offset`           | `integer` | `true`   | If not null use in next paginated request in `offset` GET parameter |
 
 ### HTTP request examples ###
 

@@ -40,13 +40,13 @@ Some general information about responses:
 
 Occasionally you might encounter errors when accessing the REST API. There are four possible types:
 
-| Error Code                  | Error Type                                                  |
-|-----------------------------|-------------------------------------------------------------|
-| `400 Bad Request`           | Invalid request, e.g. using an unsupported HTTP method, or GET variable     |
-| `401 Unauthorized`          | Authentication or permission error, e.g. incorrect credentials |
-| `403 Forbidden`          | Authentication or permission error |
-| `404 Not Found`             | Requests to resources that don't exist or are missing       |
-| `500 Internal Server Error` | Server error                                                |
+| Error Code                  | Error Type                                                              |
+|-----------------------------|-------------------------------------------------------------------------|
+| `400 Bad Request`           | Invalid request, e.g. using an unsupported HTTP method, or GET variable |
+| `401 Unauthorized`          | Authentication or permission error, e.g. incorrect credentials          |
+| `403 Forbidden`             | Authentication or permission error                                      |
+| `404 Not Found`             | Requests to resources that don't exist or are missing                   |
+| `500 Internal Server Error` | Server error                                                            |
 
 > JSON error response
 

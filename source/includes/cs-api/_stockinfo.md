@@ -28,26 +28,26 @@ not included.
 
 ### Properties ###
 
-| Property                                               | Type       | Nullable | Description                                                                           |
-|--------------------------------------------------------|------------|----------|---------------------------------------------------------------------------------------|
-| `error`                                                | `boolean`  | `false`  | e.g. `false`                                                                          |
-| `error_message`                                        | `string`   | `false`  | e.g. ``                                                                               |
-| `data.result_items`                                    | `array`    | `false`  | array of result objects                                                               |
-| `data.result_items[].barcode`                          | `string`   | `false`  | e.g. `4026495856010`                                                                  |
-| `data.result_items[].stock_available`                  | `boolean`  | `false`  | if true, there is stock available within stores                                       |
-| `data.result_items[].delivery_date`                    | `date`     | `true`   | expected delivery date from supplier or back-orders / expected stock                  |
-| `data.result_items[].delivery_date_backlog`            | `date`     | `true`   | expected delivery date based on back-orders or expected stock                         |
+| Property                                               | Type       | Nullable | Description                                                                          |
+|--------------------------------------------------------|------------|----------|--------------------------------------------------------------------------------------|
+| `error`                                                | `boolean`  | `false`  | e.g. `false`                                                                         |
+| `error_message`                                        | `string`   | `false`  | Error message if error is `true`                                                      |
+| `data.result_items`                                    | `array`    | `false`  | array of result objects                                                              |
+| `data.result_items[].barcode`                          | `string`   | `false`  | e.g. `4026495856010`                                                                 |
+| `data.result_items[].stock_available`                  | `boolean`  | `false`  | if true, there is stock available within stores                                      |
+| `data.result_items[].delivery_date`                    | `date`     | `true`   | expected delivery date from supplier or back-orders / expected stock                 |
+| `data.result_items[].delivery_date_backlog`            | `date`     | `true`   | expected delivery date based on back-orders or expected stock                        |
 | `data.result_items[].stock_supplier`                   | `boolean`  | `true`   | `true` if supplier has stock, `false` if supplier has no stock, `null` if not checked |
-| `data.result_items[].stock_quantity`                   | `integer`  | `false`  | quantity available in stores                                                          |
-| `data.result_items[].stock_stores`                     | `array`    | `false`  | info per store                                                                        |
-| `data.result_items[].stock_stores[].dealer_id`         | `integer`  | `false`  | store number `1`                                                                      |
-| `data.result_items[].stock_stores[].store_name`        | `string`   | `false`  | Name of the store `test`                                                              |
-| `data.result_items[].stock_stores[].store_phone`       | `string`   | `false`  | Phone of the store `0733030050`                                                       |
-| `data.result_items[].stock_stores[].quantity`          | `integer`  | `false`  | quantity available including demo `0`                                                 |
-| `data.result_items[].stock_stores[].quantity_demo`     | `integer`  | `false`  | Quantity of demo models                                                               |
-| `data.result_items[].stock_stores[].quantity_expected` | `integer`  | `false`  | Quantity expected from supplier                                                       |
-| `data.result_items[].stock_stores[].delivery_dates`    | `string[]` | `false`  | Delivery dates expected from supplier                                                 |
-| `data.result_items[].article_id`                       | `string`   | `false`  | Article ID in request url                                                             |
+| `data.result_items[].stock_quantity`                   | `integer`  | `false`  | quantity available in stores                                                         |
+| `data.result_items[].stock_stores`                     | `array`    | `false`  | info per store                                                                       |
+| `data.result_items[].stock_stores[].dealer_id`         | `integer`  | `false`  | store number `1`                                                                     |
+| `data.result_items[].stock_stores[].store_name`        | `string`   | `false`  | Name of the store `test`                                                             |
+| `data.result_items[].stock_stores[].store_phone`       | `string`   | `false`  | Phone of the store `0733030050`                                                      |
+| `data.result_items[].stock_stores[].quantity`          | `integer`  | `false`  | quantity available including demo `0`                                                |
+| `data.result_items[].stock_stores[].quantity_demo`     | `integer`  | `false`  | Quantity of demo models                                                              |
+| `data.result_items[].stock_stores[].quantity_expected` | `integer`  | `false`  | Quantity expected from supplier                                                      |
+| `data.result_items[].stock_stores[].delivery_dates`    | `string[]` | `false`  | Delivery dates expected from supplier                                                |
+| `data.result_items[].article_id`                       | `string`   | `false`  | Article ID in request url                                                            |
 
 > HTTP request
 
@@ -167,7 +167,7 @@ Get a list of stocked objects with status available or pro-forma sold.
 | `data[].article_id`           | `string`  | `false`  | Article number e.g. `787-25646`                 |
 | `data[].barcode`              | `string`  | `false`  | Barcode e.g. `2200082836636`                    |
 | `data[].description`          | `string`  | `false`  | Object brand + model e.g. `ZNEN Scooter 8N 20"` |
-| `data[].frame_id`             | `string`  | `false`  | Framenumber e.g. ``                             |
+| `data[].frame_id`             | `string`  | `false`  | Framenumber e.g. `FR121212`                     |
 | `data[].purchase_price_cents` | `integer` | `false`  | Purchase price cents e.g. `205800`              |
 | `data[].dealer_rrp_cents`     | `integer` | `false`  | RRP cents e.g. `349900`                         |
 | `data[].is_sold_to_customer`  | `boolean` | `false`  | Sold indicator e.g. `true`                      |
@@ -175,9 +175,8 @@ Get a list of stocked objects with status available or pro-forma sold.
 | `data[].is_used`              | `boolean` | `false`  | Used indicator e.g. `false`                     |
 | `data[].has_invoice`          | `boolean` | `false`  | Has an invoice e.g. `true`                      |
 | `data[].stocked_at`           | `date`    | `true`   | Date of stocking e.g. `2019-01-24`              |
-| `data[].custom_variable_1`    | `string`  | `false`  | Custom variable e.g. ``                         |
+| `data[].custom_variable_1`    | `string`  | `false`  | Custom variable e.g. `Some value`               |
 | `data[].is_deleted`           | `boolean` | `false`  | Is deleted indicator e.g. `false`               |
-
 
 > Response
 

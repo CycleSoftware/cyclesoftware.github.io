@@ -5,7 +5,7 @@ Create and send supplier orders
 ***Authentication mechanism***
 
 - Basic HTTP Authentication
-- Scope(s): `suppliers`
+- Scope(s): `e-commerce`
 
 
 ### Supplier order properties

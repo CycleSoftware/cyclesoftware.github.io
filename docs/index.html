@@ -295,6 +295,9 @@
             <a href="#common" class="toc-h1 toc-link" data-title="Common">Common</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#common-enums" class="toc-h2 toc-link" data-title="Enums">Enums</a>
+                  </li>
+                  <li>
                     <a href="#common-employees" class="toc-h2 toc-link" data-title="Employees">Employees</a>
                   </li>
               </ul>
@@ -340,21 +343,33 @@
               </ul>
           </li>
           <li>
-            <a href="#invoices" class="toc-h1 toc-link" data-title="Invoices">Invoices</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#invoices-employees" class="toc-h2 toc-link" data-title="Employees">Employees</a>
-                  </li>
-                  <li>
-                    <a href="#invoices-pro-forma-invoices" class="toc-h2 toc-link" data-title="Pro-forma invoices">Pro-forma invoices</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
             <a href="#stock" class="toc-h1 toc-link" data-title="Stock">Stock</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#stock-stockinfo" class="toc-h2 toc-link" data-title="Stockinfo">Stockinfo</a>
+                  </li>
+                  <li>
+                    <a href="#stock-stock-list" class="toc-h2 toc-link" data-title="Stock list">Stock list</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#sales" class="toc-h1 toc-link" data-title="Sales">Sales</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#sales-sales-transactions" class="toc-h2 toc-link" data-title="Sales transactions">Sales transactions</a>
+                  </li>
+                  <li>
+                    <a href="#sales-pro-forma-invoices" class="toc-h2 toc-link" data-title="Pro-forma invoices">Pro-forma invoices</a>
+                  </li>
+                  <li>
+                    <a href="#sales-sales-orders" class="toc-h2 toc-link" data-title="Sales orders">Sales orders</a>
+                  </li>
+                  <li>
+                    <a href="#sales-payments" class="toc-h2 toc-link" data-title="Payments">Payments</a>
+                  </li>
+                  <li>
+                    <a href="#sales-insurances" class="toc-h2 toc-link" data-title="Insurances">Insurances</a>
                   </li>
               </ul>
           </li>
@@ -538,7 +553,115 @@ mechanism is as follows:</p>
 <li>Basic HTTP Authentication</li>
 <li>Scope(s): <code>common</code></li>
 </ul>
-<h2 id='common-employees'>Employees</h2>
+<h2 id='common-enums'>Enums</h2>
+<p>Get a set of enums with identifiers and descriptions used in various APIs</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/common/enum.json</h6>
+    </div>
+</div>
+<h3 id='common-enums-types'>Types</h3>
+<table><thead>
+<tr>
+<th>Subject</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sales_order_types</td>
+<td>Sales order type descriptions</td>
+</tr>
+<tr>
+<td>sales_order_status</td>
+<td>Sales order status descriptions</td>
+</tr>
+<tr>
+<td>sales_order_item_status</td>
+<td>Sales order item status descriptions</td>
+</tr>
+<tr>
+<td>cancellation_types</td>
+<td>Cancellation reasons</td>
+</tr>
+<tr>
+<td>pos_groups</td>
+<td>POS / Sales group descriptions</td>
+</tr>
+<tr>
+<td>payment_methods</td>
+<td>Payment method descriptions</td>
+</tr>
+<tr>
+<td>delivery_methods</td>
+<td>Delivery method descriptions</td>
+</tr>
+<tr>
+<td>vat_codes</td>
+<td>VAT codes</td>
+</tr>
+<tr>
+<td>workshop_order_status</td>
+<td>Workshop order status descriptions</td>
+</tr>
+<tr>
+<td>customer_types</td>
+<td>Customer type descriptions</td>
+</tr>
+<tr>
+<td>transaction_item_types</td>
+<td>Transaction item type descriptions (item_type / row_type)</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/common/enum.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response (limited)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">571</span>
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"sales_order_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bestelling"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"sales_order_status"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In behandeling"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nog niet besteld"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not ordered"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='common-employees'>Employees</h2>
 <p>Get a list of employees associated with the account</p>
 <h3 id='common-employees-http-request-examples'>HTTP request examples</h3>
 <div class="api-endpoint">
@@ -2787,105 +2910,21 @@ Content-length: 1448
 <td>Model of primary brake front</td>
 </tr>
 </tbody></table>
-<h1 id='invoices'>Invoices</h1>
-<p>Access invoice data</p>
-
-<p><strong><em>Authentication mechanism</em></strong></p>
-
-<ul>
-<li>Basic HTTP Authentication</li>
-<li>Scope(s): <code>salesdata</code></li>
-</ul>
-<h2 id='invoices-employees'>Employees</h2>
-<p>Get a list of employees associated with the account</p>
-<h2 id='invoices-pro-forma-invoices'>Pro-forma invoices</h2>
-<p>Get a list of proforma sales transactions / invoices.</p>
-
-<div class="api-endpoint">
-    <div class="endpoint-data">
-        <i class="label label-post">GET</i>
-        <h6>/api/v1/invoices/proforma.json</h6>
-    </div>
-</div>
-
-<div class="api-endpoint">
-    <div class="endpoint-data">
-        <i class="label label-post">GET</i>
-        <h6>/api/v1/invoices/proforma.json?offset=1000</h6>
-    </div>
-</div>
-
-<table><thead>
-<tr>
-<th>GET parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>offset</code></td>
-<td>integer</td>
-<td>Pagination offset. <i class="label label-info">optional</i></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>HTTP request</p>
-</blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/invoices/unbooked.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
-<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
-</code></pre></div>
-<blockquote>
-<p>HTTP Response </p>
-</blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
-<span class="na">Content-length</span><span class="p">:</span> <span class="s">722</span>
-
-<span class="p">{</span><span class="w">
-  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-21 00:00:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-27 09:12:39"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"sales_transaction_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20171235</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">12500</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"transaction_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-21"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"unpayed_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">12500</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-21 00:00:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-27 09:12:39"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"sales_transaction_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20001</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">12500</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"transaction_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-21"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"unpayed_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">12500</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='stock'>Stock</h1>
+<h1 id='stock'>Stock</h1>
 <p>Access stock data</p>
 
 <p><strong><em>Authentication mechanism</em></strong></p>
 
 <ul>
 <li>Basic HTTP Authentication</li>
-<li>Scope(s): <code>ecommerce</code></li>
 </ul>
 <h2 id='stock-stockinfo'>Stockinfo</h2>
-<p>Get stock-info for a set of barcodes. The max number of barcodes is 10. If more are supplied remote supplier stock is not included.</p>
+<p>Get stock-info for a set of barcodes. The max number of barcodes is 10. If more are supplied remote supplier stock is
+not included.</p>
+
+<ul>
+<li>Scope(s): <code>ecommerce</code></li>
+</ul>
 
 <div class="api-endpoint">
     <div class="endpoint-data">
@@ -2954,13 +2993,19 @@ Content-length: 1448
 <td><code>data.result_items[].stock_available</code></td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
-<td>overall stock status for article</td>
+<td>if true, there is stock available within stores</td>
 </tr>
 <tr>
 <td><code>data.result_items[].delivery_date</code></td>
 <td><code>date</code></td>
 <td><code>true</code></td>
-<td>expected delivery date from supplier</td>
+<td>expected delivery date from supplier or back-orders / expected stock</td>
+</tr>
+<tr>
+<td><code>data.result_items[].delivery_date_backlog</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td>expected delivery date based on back-orders or expected stock</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_supplier</code></td>
@@ -3072,6 +3117,28 @@ Content-length: 1448
                 </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843690"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-01-2022"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"delivery_date_backlog"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-01-2022"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_supplier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"store_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0733030050"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_expected"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"delivery_dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="s2">"01-01-2022"</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495856010"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"stock_available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"stock_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -3093,6 +3160,1137 @@ Content-length: 1448
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='stock-stock-list'>Stock list</h2>
+<p>Get a list of stocked objects with status available or pro-forma sold.</p>
+
+<ul>
+<li>Scope(s): <code>stock-export</code></li>
+</ul>
+<h3 id='stock-stock-list-http-request-examples'>HTTP request examples</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/stock/pos-items.json</h6>
+    </div>
+</div>
+<h3 id='stock-stock-list-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td>error_message</td>
+<td><code>null</code></td>
+<td><code>true</code></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td>data[].account_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Account ID of store e.g. <code>1</code></td>
+</tr>
+<tr>
+<td>data[].store_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>ID of the POS store e.g. <code>1</code></td>
+</tr>
+<tr>
+<td>data[].object_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>POS Object ID e.g. <code>22952</code></td>
+</tr>
+<tr>
+<td>data[].sales_order_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>POS order id e.g. <code>0</code></td>
+</tr>
+<tr>
+<td>data[].brand_name</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Brand name e.g. <code>ZNEN</code></td>
+</tr>
+<tr>
+<td>data[].article_id</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Article number e.g. <code>787-25646</code></td>
+</tr>
+<tr>
+<td>data[].barcode</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Barcode e.g. <code>2200082836636</code></td>
+</tr>
+<tr>
+<td>data[].description</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Object brand + model e.g. <code>ZNEN Scooter 8N 20&quot;</code></td>
+</tr>
+<tr>
+<td>data[].frame_id</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Framenumber e.g. ``</td>
+</tr>
+<tr>
+<td>data[].purchase_price_cents</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Purchase price cents e.g. <code>205800</code></td>
+</tr>
+<tr>
+<td>data[].dealer_rrp_cents</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>RRP cents e.g. <code>349900</code></td>
+</tr>
+<tr>
+<td>data[].is_sold_to_customer</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Sold indicator e.g. <code>true</code></td>
+</tr>
+<tr>
+<td>data[].is_demo</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Demo indicator e.g. <code>false</code></td>
+</tr>
+<tr>
+<td>data[].is_used</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Used indicator e.g. <code>false</code></td>
+</tr>
+<tr>
+<td>data[].has_invoice</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Has an invoice e.g. <code>true</code></td>
+</tr>
+<tr>
+<td>data[].stocked_at</td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td>Date of stocking e.g. <code>2019-01-24</code></td>
+</tr>
+<tr>
+<td>data[].custom_variable_1</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable e.g. ``</td>
+</tr>
+<tr>
+<td>data[].is_deleted</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Is deleted indicator e.g. <code>false</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21016</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Votani"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"99.Y2634.Q14"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2200054202292"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Votani X2 Mid Motor"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dealer_rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">130000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_used"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"has_invoice"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-25"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22952</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZNEN"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"787-25646"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2200082836636"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZNEN Scooter 8N 20</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">205800</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dealer_rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">349900</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_used"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"has_invoice"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-24"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='sales'>Sales</h1>
+<p>Access sales data</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scopes: <code>salesdata</code></li>
+</ul>
+<h2 id='sales-sales-transactions'>Sales transactions</h2>
+<p>Get sales transactions within interval of specified date field (max 31 days).
+By default the book-date is used.</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/salesdata/json/:start_date/:end_date/</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/app/api/salesdata/json/:start_date/:end_date/?date_field=datetime_modified</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>URI parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>start_date</code></td>
+<td><code>date</code></td>
+<td>end date e.g. 2020-01-01</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td><code>date</code></td>
+<td>end date e.g. 2020-01-01</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>date_field</code></td>
+<td><code>string</code></td>
+<td><code>kassadatum</code> (default) interval as booked date<br/> <code>datetime_modified</code> interval as modification dates<br/><code>factuurdatum</code> interval as invoice proforma date</td>
+</tr>
+</tbody></table>
+<h2 id='sales-pro-forma-invoices'>Pro-forma invoices</h2>
+<p>Get a list of proforma sales transactions / invoices.</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/invoices/proforma.json</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/invoices/proforma.json?offset=1000</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>offset</code></td>
+<td>integer</td>
+<td>Pagination offset. <i class="label label-info">optional</i></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/invoices/unbooked.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">722</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-21 00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-27 09:12:39"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sales_transaction_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20171235</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">12500</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"transaction_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-21"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"unpayed_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">12500</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-21 00:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-27 09:12:39"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sales_transaction_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20001</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">12500</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"transaction_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-21"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"unpayed_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">12500</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='sales-sales-orders'>Sales orders</h2>
+<p>Get modified orders within date interval (max 31 days)</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v2/salesdata/orders.json?modified_start=:modified_start&modified_end=:modified_end</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v2/salesdata/orders.json?modified_start=:modified_start&modified_end=:modified_end&offset=:offset&store_id=:store_id</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>store_id</code></td>
+<td><code>integer</code></td>
+<td>optional store-id</td>
+</tr>
+<tr>
+<td><code>offset</code></td>
+<td><code>integer</code></td>
+<td>optional offset, see pagination in result</td>
+</tr>
+<tr>
+<td><code>modified_start</code></td>
+<td><code>date</code></td>
+<td>end date e.g. 2020-01-01</td>
+</tr>
+<tr>
+<td><code>modified_end</code></td>
+<td><code>date</code></td>
+<td>end date e.g. 2020-01-01</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td>data[].account_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>CS Account e.g. <code>1</code></td>
+</tr>
+<tr>
+<td>data[].store_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Store id e.g. <code>1</code></td>
+</tr>
+<tr>
+<td>data[].sales_order_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Sales order number e.g. <code>50032</code></td>
+</tr>
+<tr>
+<td>data[].customer_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Customer number <code>6776</code></td>
+</tr>
+<tr>
+<td>data[].order_type_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Order type id e.g. <code>6</code> (see common enum for list)</td>
+</tr>
+<tr>
+<td>data[].order_type_text</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Order type name e.g. <code>Reparatie</code></td>
+</tr>
+<tr>
+<td>data[].order_reference_id</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Sales order reference id e.g. <code>212</code></td>
+</tr>
+<tr>
+<td>data[].order_reference_text</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Sales order reference id text e.g. <code>TXT212</code></td>
+</tr>
+<tr>
+<td>data[].datetime_created</td>
+<td><code>datetime</code></td>
+<td><code>false</code></td>
+<td>Created at <code>2019-05-22 13:45:37</code></td>
+</tr>
+<tr>
+<td>data[].datetime_modified</td>
+<td><code>datetime</code></td>
+<td><code>false</code></td>
+<td>Modified at <code>2022-04-07 15:03:32</code></td>
+</tr>
+<tr>
+<td>data[].datetime_preferred_delivery</td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td>Preferred delivery date</td>
+</tr>
+<tr>
+<td>data[].status_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Sales order status id e.g. <code>9</code> (see common enum for list)</td>
+</tr>
+<tr>
+<td>data[].status_text</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Sales order status text e.g. <code>Afgerond</code> (see common enum for list)</td>
+</tr>
+<tr>
+<td>data[].cancellation_type_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Cancellation type id e.g. <code>0</code> (see common enum for list)</td>
+</tr>
+<tr>
+<td>data[].cancellation_description</td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Cancellation description (see common enum for list)</td>
+</tr>
+<tr>
+<td>data[].has_invoice</td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>If invoiced <code>true</code></td>
+</tr>
+<tr>
+<td>data[].invoice_number</td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Invoice number <code>20173328</code></td>
+</tr>
+<tr>
+<td>data[].delivery_method_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Delivery method id <code>0</code> (see common enum for list)</td>
+</tr>
+<tr>
+<td>data[].delivery_method_description</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Delivery method description <code>Afhalen in winkel</code> (see common enum for list)</td>
+</tr>
+<tr>
+<td>data[].order_item_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Item id within sales order <code>0</code></td>
+</tr>
+<tr>
+<td>data[].order_item_status</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Order item status description <code>Geen status</code>  (see common enum for list)</td>
+</tr>
+<tr>
+<td>data[].assigned_to_customer_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Sales order could be assigned to a different customer (lease) <code>6776</code></td>
+</tr>
+<tr>
+<td>data[].item_type</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description of item type <code>Artikelregel</code> (see common enum for list)</td>
+</tr>
+<tr>
+<td>data[].barcode</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Barcode of article <code>8237238723823</code></td>
+</tr>
+<tr>
+<td>data[].object_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>ID of linked stock object <code>0</code></td>
+</tr>
+<tr>
+<td>data[].pos_group_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>POS group id <code>0</code>  (see common enum for list)</td>
+</tr>
+<tr>
+<td>data[].quantity</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Quantity <code>1</code></td>
+</tr>
+<tr>
+<td>data[].description</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description of article <code>Tire</code></td>
+</tr>
+<tr>
+<td>data[].gross_unit_price_in_vat_in_cents</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Gross unit price in cents <code>9900</code></td>
+</tr>
+<tr>
+<td>data[].unit_discount_in_vat_in_cents</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Unit discount amount in cents  <code>1000</code></td>
+</tr>
+<tr>
+<td>data[].nett_line_price_in_vat_in_cents</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Nett line price in cents <code>8900</code></td>
+</tr>
+<tr>
+<td>data[].vat_amount_cents</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>VAT amount in cents e.g. <code>1546</code></td>
+</tr>
+<tr>
+<td>data[].vat_percentage</td>
+<td><code>decimal</code></td>
+<td><code>false</code></td>
+<td>VAT percentage <code>21</code></td>
+</tr>
+<tr>
+<td>pagination.count</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Number of items <code>3</code></td>
+</tr>
+<tr>
+<td>pagination.next_offset</td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>If specified call the api again with offset parameter</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/salesdata/orders.json?modified_start=2022-04-01&amp;modified_end=2022-04-15</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1655</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">54230</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235270570</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_type_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reparatie"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:04:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"datetime_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:04:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"datetime_preferred_delivery"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In behandeling"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"cancellation_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"cancellation_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"has_invoice"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"delivery_method_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afhalen in winkel"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_item_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235270570</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"item_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Artikelregel"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"gross_unit_price_in_vat_in_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unit_discount_in_vat_in_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"nett_line_price_in_vat_in_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">54228</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235269158</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_type_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reparatie"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:03:15"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"datetime_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:03:15"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"datetime_preferred_delivery"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In behandeling"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"cancellation_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"cancellation_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"has_invoice"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"delivery_method_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afhalen in winkel"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_item_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235269158</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"item_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Arbeid"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reparatie laag BTW-tarief"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"gross_unit_price_in_vat_in_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">3792</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unit_discount_in_vat_in_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"nett_line_price_in_vat_in_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">3792</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">313</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">54228</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235269158</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_type_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reparatie"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:03:15"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"datetime_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:03:15"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"datetime_preferred_delivery"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In behandeling"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"cancellation_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"cancellation_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"has_invoice"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"delivery_method_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afhalen in winkel"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_item_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235269158</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"item_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Artikelregel"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495099707"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Schwalbe binnenband 28X1.1/2 SV19"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"gross_unit_price_in_vat_in_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">850</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unit_discount_in_vat_in_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"nett_line_price_in_vat_in_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">850</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='sales-payments'>Payments</h2>
+<p>Get payments within date interval (max 31 days)</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/salesdata/payments.json?start_date=:start_date&end_date=:end_date</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>start_date</code></td>
+<td><code>date</code></td>
+<td>start date e.g. 2020-01-01</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td><code>date</code></td>
+<td>end date e.g. 2020-01-01</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id</td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Customer id <code>332107</code></td>
+</tr>
+<tr>
+<td>invoice_number</td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Invoice number <code>365259</code> (may be null for advance payments)</td>
+</tr>
+<tr>
+<td>related_to_invoice_number</td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Related to another parent invoice number</td>
+</tr>
+<tr>
+<td>sales_order_id</td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Sales order id <code>476953</code></td>
+</tr>
+<tr>
+<td>ecommerce_reference_text</td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Sales order reference text <code>reference_129223</code></td>
+</tr>
+<tr>
+<td>ecommerce_reference_id</td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Sales order reference id <code>129223</code></td>
+</tr>
+<tr>
+<td>payments</td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>List of payments</td>
+</tr>
+<tr>
+<td>payments[].payment_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>ID of payment <code>65444361</code></td>
+</tr>
+<tr>
+<td>payments[].store_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Store id <code>1</code></td>
+</tr>
+<tr>
+<td>payments[].book_location_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Book location id in POS <code>1</code></td>
+</tr>
+<tr>
+<td>payments[].method</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Payment method description <code>Contant</code> <code>Creditcard</code> <code>Chip</code> <code>Tegoedbon(nen)</code> <code>Spaarpunten</code> <code>Retour</code> <code>Bank</code> <code>PSP</code> <code>Rembours</code> <code>Ecocheques</code></td>
+</tr>
+<tr>
+<td>payments[].method_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Payment method id <code>1</code> (see common enum for list)</td>
+</tr>
+<tr>
+<td>payments[].amount_cents</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Amount of payment in cents <code>6999</code></td>
+</tr>
+<tr>
+<td>payments[].book_date</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Date booked <code>01-04-2022 15:31:44</code></td>
+</tr>
+<tr>
+<td>payments[].created_at</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Date created <code>01-04-2022 15:31:44</code></td>
+</tr>
+<tr>
+<td>psp</td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>Array of payment service provider information (e.g. PAY.)</td>
+</tr>
+<tr>
+<td>psp[].psp_reference</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>PSP reference <code>17232323571X84a7d</code></td>
+</tr>
+<tr>
+<td>psp[].psp_reference_2</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>PSP reference 2 <code>fb9c911850f4edfe214ff3cdfb214dbef9e8e599</code></td>
+</tr>
+<tr>
+<td>psp[].amount_cents</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Amount of PSP payment <code>6999</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/salesdata/payments.json?start_date=2022-04-01&amp;end_date=2022-04-15</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1655</span>
+
+<span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">365075</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"related_to_invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ecommerce_reference_text"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ecommerce_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"payment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65423367</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"book_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pin"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">850</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"book_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2022 10:09:26"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2022 10:09:27"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"psp"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"psp_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1726172361X338a1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"psp_reference_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4b94747349c0afa0e0f6ec58dcbe717e1b32d7b0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">850</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">332107</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">365259</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"related_to_invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">476953</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ecommerce_reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reference_129223"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ecommerce_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"129223"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"payment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65423591</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"book_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bank"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">228900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"book_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2022 10:14:18"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2022 10:14:18"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"payment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65444361</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"book_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pin"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">6999</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"book_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2022 15:31:44"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2022 15:31:44"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"psp"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"psp_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"17232323571X84a7d"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"psp_reference_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fb9c911850f4edfe214ff3cdfb214dbef9e8e599"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">6999</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div><h2 id='sales-insurances'>Insurances</h2>
+<p>Get insurances for objects created within date interval (max 31 days). The information may not be up-to-date with the information known at the insurance company. This information is based on created insurance applications.</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/stock-objects/insurance/list.json?start_date=:start_date&end_date=:end_date</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>start_date</code></td>
+<td><code>date</code></td>
+<td>start date e.g. 2020-01-01</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td><code>date</code></td>
+<td>end date e.g. 2020-01-01</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>insurance_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>ID of insurance application <code>1182027</code></td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Customer ID e.g. <code>334357</code></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td><code>date</code></td>
+<td><code>false</code></td>
+<td>Date created e.g. <code>15-04-2022</code></td>
+</tr>
+<tr>
+<td>stock_object_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Stock object ID <code>786080</code></td>
+</tr>
+<tr>
+<td>insurance_company</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Name of insurance company <code>KING</code></td>
+</tr>
+<tr>
+<td>reference_id</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Reference ID <code>0</code></td>
+</tr>
+<tr>
+<td>policy_number</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Policy Number (if available) <code>12212</code></td>
+</tr>
+<tr>
+<td>insurance_starting_date</td>
+<td><code>date</code></td>
+<td><code>false</code></td>
+<td>Start date of the insurance <code>15-04-2022</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Name of the insurance e.g. <code>E-bike Casco Compleet - 3 jaar - Aut. Incasso</code></td>
+</tr>
+<tr>
+<td>policy_costs</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Costs of the policy in cents <code>650</code></td>
+</tr>
+<tr>
+<td>insured_amount</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Insured amount in cents <code>299900</code></td>
+</tr>
+<tr>
+<td>premium_amount</td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Insurance premium in cents <code>19895</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/stock-objects/insurance/list.json??start_date=2022-04-01&amp;end_date=2022-04-15</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">903</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1168101</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">317247</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2022"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">775832</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"insurance_company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNIGARANT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"policy_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">143123238</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"insurance_starting_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2022"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Onbekend"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"policy_costs"</span><span class="p">:</span><span class="w"> </span><span class="mi">968</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"insured_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">6300</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"premium_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5371</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1168175</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">332105</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2022"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">781192</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"insurance_company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KING"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"policy_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"insurance_starting_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2022"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-bike casco compleet jaarpremie Aut. Incasso"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"policy_costs"</span><span class="p">:</span><span class="w"> </span><span class="mi">650</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"insured_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">176900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"premium_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">7343</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre></div><h1 id='rental'>Rental</h1>
 <p>Access rental object data</p>
 

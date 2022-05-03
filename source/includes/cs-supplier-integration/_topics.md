@@ -7,57 +7,62 @@ The supplier will provide a webservice or FTP location with a fixed file-format 
 ## Parts & Accessories ##
 For parts & accessories the following attributes are suggested to be available in the file or webservice:
 
--	Article number
--	EAN / Barcode
--	Brand name
--	Model name
--	Short description (POS)
+-	Article number *
+-	EAN / Barcode *
+-	Brand name *
+-	Model name *
+-	Short description (POS) *
 - Long description
--	Main group name
+-	Main group name *
 -	Sub group name
 -	Recommended Retail Price (including VAT)
--	Purchase price (excluding VAT)
+-	Purchase price (excluding VAT) *
 -	Package quantity (how many consumer goods within one pacakage)
 -	Order quantity
 -	Minimal order quantity
 -	URL to image
--	Color
+-	Color *
 -	Size
 -	Other properties we might be able to index.
+
+Attributes marked with * are mandatory
 
 ## Bicycles ##
 For bicycles the following attributes are suggested to be available in the file or webservice:
 
--	Article number
--	EAN / Barcode
--	Brand name
--	Model name
--	Short description (POS)
--	Main group name (e.g. Race, City, Mountainbike)
--	Sub group name
--	Frame type (Ladies, Gents, Boys, Girls, Uni)
--	Frame height in cm
+- Article number *
+- EAN / Barcode *
+- Brand name *
+- Model name *
+- Short description (POS) *
+- Main group name (e.g. Race, City, Mountainbike) *
+- Sub group name
+- Frame type (Ladies, Gents, Boys, Girls, Uni)
+- Frame height in cm
 - Frame height description (e.g. L)
--	Brand gears	
+- Brand gears	
 - Model gears	
--	Gear count
+- Gear count
 - Brand brakes rear
 - Model brakes rear
 - Brand brakes front
 - Model brakes front
 - Wheelsize (inch)
-- Color
-- Model year
-- Purchase price (ex vat)
+- Color *
+- Model year *
+- Purchase price (ex vat) *
 - Recommended retail price (ex vat)
 - URL to image
 - Gross weight
 - Nett weight
 - Long description
-- Is electric bike (yes / no)
-- Battery included in price (yes / no)
+- Is electric bike (yes / no) *
+- Battery included in price (yes / no)  **
 - Battery options  
--	Other properties we might be able to index.
+- Other properties we might be able to index.
+
+Attributes marked with * are mandatory
+** When electricbike is yes battery included is mandatory
 
 # Stock indication #
 To provide supplier stock information in CycleSoftware we are able to connect using webservices or by indexing a text file. The following information is advices:

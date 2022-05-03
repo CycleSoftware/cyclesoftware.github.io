@@ -11,11 +11,11 @@ Access inbound deliveries data
 
 Get a list of delivered inbound goods
 
-| GET parameter               | Type      | Description                                                                                                          |
-|-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
-|`start_date`                  | date    | Start date interval (yyyy-mm-dd) <i class="label label-info">required</i>                                                                                                         |
-|`end_date`                  | date    | Start date interval (yyyy-mm-dd) <i class="label label-info">required</i>                                                                                                         |
-|`offset`                  | integer    | Pagination offset. <i class="label label-info">optional</i>                                                                                                          |
+| GET parameter | Type    | Description                                                               |
+|---------------|---------|---------------------------------------------------------------------------|
+| `start_date`  | date    | Start date interval (yyyy-mm-dd) <i class="label label-info">required</i> |
+| `end_date`    | date    | Start date interval (yyyy-mm-dd) <i class="label label-info">required</i> |
+| `offset`      | integer | Pagination offset. <i class="label label-info">optional</i>               |
 
 ### HTTP request examples ###
 

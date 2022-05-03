@@ -48,80 +48,95 @@ Every JSON payload has the same structure. The payload object is different per e
 
 ### Properties
 
-| Property                                          | Type       | Nullable | Description                                                           |
-|---------------------------------------------------|------------|----------|-----------------------------------------------------------------------|
-| `sales_order_id`                                  | `integer`  | `false`  | Sales Order ID e.g. `1442`                                            |
-| `store_id`                                        | `integer`  | `false`  | Store ID within account e.g. `1`                                      |
-| `sales_employee_id`                               | `integer`  | `false`  | Employee ID see common employees e.g. `1619`                          |
-| `customer_id`                                     | `integer`  | `false`  | Customer ID e.g. `6667`                                               |
-| `order_type_id`                                   | `integer`  | `false`  | Order type ID, see common enum e.g. `3`                               |
-| `order_type_text`                                 | `string`   | `false`  | Order type text, see common enum  `Order`                             |
-| `order_reference_id`                              | `string`   | `false`  | Order reference ID `12212`                                            |
-| `order_reference_text`                            | `string`   | `false`  | Order reference text `REF12212`                                       |
-| `datetime_created`                                | `datetime` | `false`  | Created at e.g. `2013-09-05 12:00:00`                                 |
-| `datetime_modified`                               | `datetime` | `false`  | Modified at e.g. `2022-04-20 12:29:23`                                |
-| `datetime_preferred_delivery`                     | `null`     | `true`   | Date of preferred delivery e.g. `2022-04-20` or `null`                |
-| `datetime_preferred_pickup`                       | `null`     | `true`   | Date of preferred pickup e.g. `2022-04-20` or `null`                  |
-| `status_id`                                       | `integer`  | `false`  | Sales order status id see common enum e.g. `2`                        |
-| `status_text`                                     | `string`   | `false`  | Sales order status text see common enum e.g.  `In behandeling`        |
-| `cancellation_type_id`                            | `integer`  | `false`  | Cancellation type id see common enum e.g. `0`                         |
-| `cancellation_description`                        | `null`     | `true`   | Cancellation type description see common enum                         |
-| `remarks`                                         | `string`   | `false`  | Order remarks `Omschrijving 1`                                        |
-| `has_invoice`                                     | `boolean`  | `false`  | True if invoice is associcated with order e.g. `false`                |
-| `invoice_number`                                  | `integer`  | `false`  | Invoice number if present `0`                                         |
-| `ship_to_customer`                                | `boolean`  | `false`  | True if should ship to customer `false` (deprecated)                  |
-| `delivery_method_id`                              | `integer`  | `false`  | Delivery method ID see common enum e.g. `0`                           |
-| `delivery_method_description`                     | `string`   | `false`  | Delivery method description see common enum e.g. `Afhalen in winkel`  |
-| `shipment_method_description`                     | `string`   | `false`  | Free description of shipment e.g. `VERZENDEN`                         |
-| `payment_method_description`                      | `string`   | `false`  | Free description of shipment e.g. `IDEAL`                             |
-| `order_items`                                     | `array`    | `false`  | List of order items                                                   |
-| `order_items[].item_id`                           | `integer`  | `false`  | ID of item within the order e.g. `2`                                  |
-| `order_items[].item_type_id`                      | `integer`  | `false`  | Item type ID see common enum e.g. `1`                                 |
-| `order_items[].special_type_id`                   | `integer`  | `false`  | ID if associated object if present e.g. `0`                           |
-| `order_items[].quantity`                          | `integer`  | `false`  | Quantity e.g. `1`                                                     |
-| `order_items[].barcode`                           | `string`   | `false`  | Barcode of item e.g. `4008496261628`                                  |
-| `order_items[].pos_group_id`                      | `integer`  | `false`  | POS group see common enum e.g. `11`                                   |
-| `order_items[].description`                       | `string`   | `false`  | Description of item e.g. `VARTA BATTERIE 12V38MAH V23GA`              |
-| `order_items[].unit_price_in_vat_cents`           | `integer`  | `false`  | Gross price in cents `225`                                            |
-| `order_items[].unit_discount_amount_in_vat_cents` | `integer`  | `false`  | Unit discount in cents e.g. `0`                                       |
-| `order_items[].price_in_vat_cents`                | `integer`  | `false`  | Line price in cents e.g. `225`                                        |
-| `order_items[].discount_percentage`               | `integer`  | `false`  | Discount percentage e.g. `0`                                          |
-| `order_items[].vat_code`                          | `integer`  | `false`  | VAT code see common enum e.g. `2`                                     |
-| `order_items[].vat_percentage`                    | `integer`  | `false`  | VAT percentage e.g. `21`                                              |
-| `order_items[].vat_amount_cents`                  | `integer`  | `false`  | VAT amount in cents e.g. `39`                                         |
-| `order_items[].item_status_id`                    | `integer`  | `false`  | Item status ID see common enum e.g. `0`                               |
-| `order_items[].item_status_text`                  | `string`   | `false`  | Item status text see common enum e.g. `Geen status`                   |
-| `order_items[].unit_work_time_minutes`            | `integer`  | `false`  | Work time for item in minutes e.g. `0`                                |
-| `customer.customer_barcode`                       | `string`   | `false`  | (deprecated) Reference of the customer e.g. `REF1212`                 |
-| `customer.prefix`                                 | `string`   | `false`  | (deprecated) Name prefix e.g. `Dhr./Mevr. `                           |
-| `customer.country`                                | `string`   | `false`  | (deprecated) Country (deprecated) see country_code_iso_3166 e.g. `NL` |
-| `customer.name_prefix`                            | `string`   | `true`   | (deprecated)                                                          |
-| `customer.iban`                                   | `string`   | `false`  | IBAN bank account                                                     |
-| `customer.customer_id`                            | `integer`  | `false`  | Customer ID e.g. `6667`                                               |
-| `customer.customer_type_name`                     | `string`   | `false`  | Customer type see common enum e.g. `Klant`                            |
-| `customer.customer_reference`                     | `string`   | `false`  | Customer reference e.g. `REF1212`                                     |
-| `customer.postcode`                               | `string`   | `false`  | Postal code e.g. `1000AA`                                             |
-| `customer.house_number`                           | `string`   | `false`  | Housenumber e.g. `2522`                                               |
-| `customer.house_number_postfix`                   | `string`   | `false`  | Housenumber postfix e.g. `B`                                          |
-| `customer.attn`                                   | `string`   | `false`  | e.g. ``                                                               |
-| `customer.title`                                  | `string`   | `false`  | Title of customer e.g. `Dhr./Mevr. `                                  |
-| `customer.initials`                               | `string`   | `false`  | Initials e.g. `C.G.`                                                  |
-| `customer.insertion`                              | `string`   | `false`  | Name insertion e.g. `van`                                             |
-| `customer.name`                                   | `string`   | `false`  | (Sur)name e.g. `Wijk`                                                 |
-| `customer.street`                                 | `string`   | `false`  | Street name e.g. `Aalsburg`                                           |
-| `customer.city`                                   | `string`   | `false`  | City name e.g. `Amsterdam`                                            |
-| `customer.country_code_iso_3166`                  | `string`   | `false`  | Country code e.g. `NL`                                                |
-| `customer.email`                                  | `string`   | `false`  | Customer E-mail e.g. `test@test.nl`                                   |
-| `customer.discount_percentage`                    | `integer`  | `false`  | Default discount percentage e.g. `0`                                  |
-| `customer.datetime_created`                       | `string`   | `true`   | datetime created if known (null if unknown)                           |
-| `customer.phone_numbers`                          | `array`    | `false`  | array of phone numbers                                                |
-| `customer.phone_numbers[].phone_number_id`        | `string`   | `false`  | ID `mob`, `tel` or stringed ID e.g. `10589`                           |
-| `customer.phone_numbers[].customer_id`            | `integer`  | `false`  | Customer ID `6667`                                                    |
-| `customer.phone_numbers[].phone_number`           | `string`   | `false`  | Phone number `06-12345678`                                            |
-| `customer.phone_numbers[].name`                   | `string`   | `false`  | Name associated with the phone number e.g. `Sjaak`                    |
-| `delivery_address`                                | `object`   | `true`   | Delivery address if specified                                         |
-| `labels`                                          | `array`    | `false`  | Array of label strings                                                |
-| `labels[]`                                        | `string`   | `false`  | Label associated with the sales order e.g. `label1`                   |
+| Property                                          | Type       | Nullable |     | Description                                                           |
+|---------------------------------------------------|------------|----------|:----|-----------------------------------------------------------------------|
+| `sales_order_id`                                  | `integer`  | `false`  |     | Sales Order ID e.g. `1442`                                            |
+| `store_id`                                        | `integer`  | `false`  |     | Store ID within account e.g. `1`                                      |
+| `sales_employee_id`                               | `integer`  | `false`  |     | Employee ID see common employees e.g. `1619`                          |
+| `customer_id`                                     | `integer`  | `false`  |     | Customer ID e.g. `6667`                                               |
+| `order_type_id`                                   | `integer`  | `false`  |     | Order type ID, see common enum e.g. `3`                               |
+| `order_type_text`                                 | `string`   | `false`  |     | Order type text, see common enum  `Order`                             |
+| `order_reference_id`                              | `string`   | `false`  |     | Order reference ID `12212`                                            |
+| `order_reference_text`                            | `string`   | `false`  |     | Order reference text `REF12212`                                       |
+| `datetime_created`                                | `datetime` | `false`  |     | Created at e.g. `2013-09-05 12:00:00`                                 |
+| `datetime_modified`                               | `datetime` | `false`  |     | Modified at e.g. `2022-04-20 12:29:23`                                |
+| `datetime_preferred_delivery`                     | `null`     | `true`   |     | Date of preferred delivery e.g. `2022-04-20` or `null`                |
+| `datetime_preferred_pickup`                       | `null`     | `true`   |     | Date of preferred pickup e.g. `2022-04-20` or `null`                  |
+| `status_id`                                       | `integer`  | `false`  |     | Sales order status id see common enum e.g. `2`                        |
+| `status_text`                                     | `string`   | `false`  |     | Sales order status text see common enum e.g.  `In behandeling`        |
+| `cancellation_type_id`                            | `integer`  | `false`  |     | Cancellation type id see common enum e.g. `0`                         |
+| `cancellation_description`                        | `null`     | `true`   |     | Cancellation type description see common enum                         |
+| `remarks`                                         | `string`   | `false`  |     | Order remarks `Omschrijving 1`                                        |
+| `has_invoice`                                     | `boolean`  | `false`  |     | True if invoice is associcated with order e.g. `false`                |
+| `invoice_number`                                  | `integer`  | `false`  |     | Invoice number if present `0`                                         |
+| `ship_to_customer`                                | `boolean`  | `false`  |     | True if should ship to customer `false` (deprecated)                  |
+| `delivery_method_id`                              | `integer`  | `false`  |     | Delivery method ID see common enum e.g. `0`                           |
+| `delivery_method_description`                     | `string`   | `false`  |     | Delivery method description see common enum e.g. `Afhalen in winkel`  |
+| `shipment_method_description`                     | `string`   | `false`  |     | Free description of shipment e.g. `VERZENDEN`                         |
+| `payment_method_description`                      | `string`   | `false`  |     | Free description of shipment e.g. `IDEAL`                             |
+| `order_items`                                     | `array`    | `false`  |     | List of order items                                                   |
+| `order_items[].item_id`                           | `integer`  | `false`  |     | ID of item within the order e.g. `2`                                  |
+| `order_items[].item_type_id`                      | `integer`  | `false`  |     | Item type ID see common enum e.g. `1`                                 |
+| `order_items[].special_type_id`                   | `integer`  | `false`  |     | ID if associated object if present e.g. `0`                           |
+| `order_items[].quantity`                          | `integer`  | `false`  |     | Quantity e.g. `1`                                                     |
+| `order_items[].barcode`                           | `string`   | `false`  |     | Barcode of item e.g. `4008496261628`                                  |
+| `order_items[].pos_group_id`                      | `integer`  | `false`  |     | POS group see common enum e.g. `11`                                   |
+| `order_items[].description`                       | `string`   | `false`  |     | Description of item e.g. `VARTA BATTERIE 12V38MAH V23GA`              |
+| `order_items[].unit_price_in_vat_cents`           | `integer`  | `false`  |     | Gross price in cents `225`                                            |
+| `order_items[].unit_discount_amount_in_vat_cents` | `integer`  | `false`  |     | Unit discount in cents e.g. `0`                                       |
+| `order_items[].price_in_vat_cents`                | `integer`  | `false`  |     | Line price in cents e.g. `225`                                        |
+| `order_items[].discount_percentage`               | `integer`  | `false`  |     | Discount percentage e.g. `0`                                          |
+| `order_items[].vat_code`                          | `integer`  | `false`  |     | VAT code see common enum e.g. `2`                                     |
+| `order_items[].vat_percentage`                    | `integer`  | `false`  |     | VAT percentage e.g. `21`                                              |
+| `order_items[].vat_amount_cents`                  | `integer`  | `false`  |     | VAT amount in cents e.g. `39`                                         |
+| `order_items[].item_status_id`                    | `integer`  | `false`  |     | Item status ID see common enum e.g. `0`                               |
+| `order_items[].item_status_text`                  | `string`   | `false`  |     | Item status text see common enum e.g. `Geen status`                   |
+| `order_items[].unit_work_time_minutes`            | `integer`  | `false`  |     | Work time for item in minutes e.g. `0`                                |
+| `customer.customer_barcode`                       | `string`   | `false`  |     | (deprecated) Reference of the customer e.g. `REF1212`                 |
+| `customer.prefix`                                 | `string`   | `false`  |     | (deprecated) Name prefix e.g. `Dhr./Mevr. `                           |
+| `customer.country`                                | `string`   | `false`  |     | (deprecated) Country (deprecated) see country_code_iso_3166 e.g. `NL` |
+| `customer.name_prefix`                            | `string`   | `true`   |     | (deprecated)                                                          |
+| `customer.iban`                                   | `string`   | `false`  |     | IBAN bank account                                                     |
+| `customer.customer_id`                            | `integer`  | `false`  |     | Customer ID e.g. `6667`                                               |
+| `customer.customer_type_name`                     | `string`   | `false`  |     | Customer type see common enum e.g. `Klant`                            |
+| `customer.customer_reference`                     | `string`   | `false`  |     | Customer reference e.g. `REF1212`                                     |
+| `customer.postcode`                               | `string`   | `false`  |     | Postal code e.g. `1000AA`                                             |
+| `customer.house_number`                           | `string`   | `false`  |     | Housenumber e.g. `2522`                                               |
+| `customer.house_number_postfix`                   | `string`   | `false`  |     | Housenumber postfix e.g. `B`                                          |
+| `customer.attn`                                   | `string`   | `false`  |     | e.g. ``                                                               |
+| `customer.title`                                  | `string`   | `false`  |     | Title of customer e.g. `Dhr./Mevr. `                                  |
+| `customer.initials`                               | `string`   | `false`  |     | Initials e.g. `C.G.`                                                  |
+| `customer.insertion`                              | `string`   | `false`  |     | Name insertion e.g. `van`                                             |
+| `customer.name`                                   | `string`   | `false`  |     | (Sur)name e.g. `Wijk`                                                 |
+| `customer.street`                                 | `string`   | `false`  |     | Street name e.g. `Aalsburg`                                           |
+| `customer.city`                                   | `string`   | `false`  |     | City name e.g. `Amsterdam`                                            |
+| `customer.country_code_iso_3166`                  | `string`   | `false`  |     | Country code e.g. `NL`                                                |
+| `customer.email`                                  | `string`   | `false`  |     | Customer E-mail e.g. `test@test.nl`                                   |
+| `customer.discount_percentage`                    | `integer`  | `false`  |     | Default discount percentage e.g. `0`                                  |
+| `customer.datetime_created`                       | `string`   | `true`   |     | datetime created if known (null if unknown)                           |
+| `customer.phone_numbers`                          | `array`    | `false`  |     | array of phone numbers                                                |
+| `customer.phone_numbers[].phone_number_id`        | `string`   | `false`  |     | ID `mob`, `tel` or stringed ID e.g. `10589`                           |
+| `customer.phone_numbers[].customer_id`            | `integer`  | `false`  |     | Customer ID `6667`                                                    |
+| `customer.phone_numbers[].phone_number`           | `string`   | `false`  |     | Phone number `06-12345678`                                            |
+| `customer.phone_numbers[].name`                   | `string`   | `false`  |     | Name associated with the phone number e.g. `Sjaak`                    |
+| `delivery_address`                                | `object`   | `true`   |     | Delivery address if specified, `null` if not specified                |
+| `delivery_address.delivery_address_id`            | `integer`  | `false`  |     | Delivery address ID e.g. `91953`                                      |
+| `delivery_address.customer_id`                    | `integer`  | `false`  |     | Customer ID e.g. `6667`                                               |
+| `delivery_address.is_business`                    | `boolean`  | `false`  |     | If business address `true`                                            |
+| `delivery_address.company_name`                   | `string`   | `false`  |     | Company name if specified                                             |
+| `delivery_address.name`                           | `string`   | `false`  |     | Name of customer `Name 91953`                                         |
+| `delivery_address.street`                         | `string`   | `false`  |     | Street name e.g. `Slangenburg`                                        |
+| `delivery_address.housenumber`                    | `string`   | `false`  |     | House number e.g. `314`                                               |
+| `delivery_address.housenumber_postfix`            | `string`   | `false`  |     | House number postfix `B`                                              |
+| `delivery_address.postcode`                       | `string`   | `false`  |     | Postcode e.g. `8888ZZ`                                                |
+| `delivery_address.city`                           | `string`   | `false`  |     | City `Deventer`                                                       |
+| `delivery_address.country`                        | `string`   | `false`  |     | Deprecated, filled with country code `NL`                             |
+| `delivery_address.country_code_iso_3166`          | `string`   | `false`  |     | ISO 3166 Country code e.g. `NL`                                       |
+| `delivery_address.phone_number`                   | `string`   | `false`  |     | Phonenumber associated with address `06 12345678`                     |
+| `delivery_address.email`                          | `string`   | `false`  |     | E-mail associated with address `email91953@example.nl`                |
+| `delivery_address.remarks`                        | `string`   | `false`  |     | Remarks for address `Some text`                                       |
+| `labels`                                          | `array`    | `false`  |     | Array of label strings                                                |
+| `labels[]`                                        | `string`   | `false`  |     | Label associated with the sales order e.g. `label1`                   |
 
 > Payload structure
 
@@ -240,7 +255,23 @@ Every JSON payload has the same structure. The payload object is different per e
         }
       ]
     },
-    "delivery_address": null,
+    "delivery_address": {
+      "delivery_address_id": 91953,
+      "customer_id": 6667,
+      "is_business": false,
+      "company_name": "",
+      "name": "Name 91953",
+      "street": "Slangenburg",
+      "housenumber": "314",
+      "housenumber_postfix": "B",
+      "postcode": "8888ZZ",
+      "city": "Deventer",
+      "country": "NL",
+      "country_code_iso_3166": "NL",
+      "phone_number": "06 12345678",
+      "email": "email91953@example.nl",
+      "remarks": "Some text"
+    },
     "labels": ["label1"]
   }
 }

@@ -1,4 +1,4 @@
-#``` Webhooks #
+# Webhooks #
 
 Receive updates from CycleSoftware for specific entities.
 
@@ -39,7 +39,7 @@ Every payload has the same structure. The payload object is different per entity
 
 ## Sales orders ##
 
-| Subject                | Description                                                        |
+| Event name             | Description                                                        |
 |------------------------|--------------------------------------------------------------------|
 | `sales_order.created`  | Fired when the sales order is created                              |
 | `sales_order.updated`  | Fired when the sales order is updated                              |

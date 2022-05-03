@@ -301,7 +301,7 @@
                     <a href="#common-employees" class="toc-h2 toc-link" data-title="Employees">Employees</a>
                   </li>
                   <li>
-                    <a href="#supplier-list" class="toc-h2 toc-link" data-title="Supplier list">Supplier list</a>
+                    <a href="#common-supplier-list" class="toc-h2 toc-link" data-title="Supplier list">Supplier list</a>
                   </li>
               </ul>
           </li>
@@ -309,7 +309,7 @@
             <a href="#e-commerce" class="toc-h1 toc-link" data-title="E-commerce">E-commerce</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#e-commerce-employees-definition" class="toc-h2 toc-link" data-title="Definition">Definition</a>
+                    <a href="#e-commerce-supplier-list-definition" class="toc-h2 toc-link" data-title="Definition">Definition</a>
                   </li>
                   <li>
                     <a href="#e-commerce-properties" class="toc-h2 toc-link" data-title="Properties">Properties</a>
@@ -380,16 +380,16 @@
             <a href="#suppliers" class="toc-h1 toc-link" data-title="Suppliers">Suppliers</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#supplier-order-properties" class="toc-h2 toc-link" data-title="Supplier order properties">Supplier order properties</a>
+                    <a href="#suppliers-insurances-supplier-order-properties" class="toc-h2 toc-link" data-title="Supplier order properties">Supplier order properties</a>
                   </li>
                   <li>
-                    <a href="#create-supplier-order" class="toc-h2 toc-link" data-title="Create supplier order">Create supplier order</a>
+                    <a href="#suppliers-create-supplier-order" class="toc-h2 toc-link" data-title="Create supplier order">Create supplier order</a>
                   </li>
                   <li>
-                    <a href="#get-supplier-order" class="toc-h2 toc-link" data-title="Get supplier order">Get supplier order</a>
+                    <a href="#suppliers-get-supplier-order" class="toc-h2 toc-link" data-title="Get supplier order">Get supplier order</a>
                   </li>
                   <li>
-                    <a href="#send-supplier-order" class="toc-h2 toc-link" data-title="Send supplier order">Send supplier order</a>
+                    <a href="#suppliers-send-supplier-order" class="toc-h2 toc-link" data-title="Send supplier order">Send supplier order</a>
                   </li>
               </ul>
           </li>
@@ -855,16 +855,16 @@ mechanism is as follows:</p>
 <span class="k">if</span><span class="p">(</span><span class="err">\</span><span class="nb">hash_equals</span><span class="p">(</span><span class="s1">'data[].verification_hash'</span><span class="p">,</span> <span class="nv">$hash</span><span class="p">)){</span>
    <span class="c1">// code is correct</span>
 <span class="p">}</span>
-</code></pre></div><h2 id='supplier-list'>Supplier list</h2>
+</code></pre></div><h2 id='common-supplier-list'>Supplier list</h2>
 <p>Get a list of suppliers</p>
-<h3 id='http-request-examples-2'>HTTP request examples</h3>
+<h3 id='common-supplier-list-http-request-examples'>HTTP request examples</h3>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
         <h6>/api/v1/common/suppliers.json</h6>
     </div>
 </div>
-<h3 id='properties-2'>Properties</h3>
+<h3 id='common-supplier-list-properties'>Properties</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -987,7 +987,7 @@ mechanism is as follows:</p>
 <ul>
 <li><code>e-commerce</code></li>
 </ul>
-<h3 id='e-commerce-employees-definition'>Definition</h3>
+<h3 id='e-commerce-supplier-list-definition'>Definition</h3>
 <p>The latest definition of the WSDL specification can be found at:</p>
 
 <div class="api-endpoint">
@@ -4410,7 +4410,7 @@ By default the book-date is used.</p>
 <li>Basic HTTP Authentication</li>
 <li>Scope(s): <code>suppliers</code></li>
 </ul>
-<h3 id='supplier-order-properties'>Supplier order properties</h3>
+<h3 id='suppliers-insurances-supplier-order-properties'>Supplier order properties</h3>
 <p>Properties used in create, get and send endpoints.</p>
 
 <table><thead>
@@ -4549,7 +4549,7 @@ By default the book-date is used.</p>
 <td>Reference item from supplier e.g. <code>ref-item-1</code></td>
 </tr>
 </tbody></table>
-<h2 id='create-supplier-order'>Create supplier order</h2>
+<h2 id='suppliers-create-supplier-order'>Create supplier order</h2>
 <p>Creates a supplier order. To actually dispatch and send the supplier order to the supplier call the send endpoint with the obtained supplier order ID.</p>
 
 <div class="api-endpoint">
@@ -4640,7 +4640,7 @@ By default the book-date is used.</p>
     </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad request"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='get-supplier-order'>Get supplier order</h2>
+</span></code></pre></div><h2 id='suppliers-get-supplier-order'>Get supplier order</h2>
 <div class="api-endpoint">
 <div class="endpoint-data">
         <i class="label label-post">GET</i>
@@ -4699,7 +4699,7 @@ By default the book-date is used.</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='send-supplier-order'>Send supplier order</h2>
+</span></code></pre></div><h2 id='suppliers-send-supplier-order'>Send supplier order</h2>
 <p>Send a supplier order.</p>
 
 <div class="api-endpoint">

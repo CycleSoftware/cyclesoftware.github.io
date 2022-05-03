@@ -156,27 +156,27 @@ Get a list of stocked objects with status available or pro-forma sold.
 
 | Property                    | Type      | Nullable | Description                                     |
 |-----------------------------|-----------|----------|-------------------------------------------------|
-| error                       | `boolean` | `false`  | e.g. `false`                                    |
-| error_message               | `null`    | `true`   |                                                 |
-| data                        | `array`   | `false`  |                                                 |
-| data[].account_id           | `integer` | `false`  | Account ID of store e.g. `1`                    |
-| data[].store_id             | `integer` | `false`  | ID of the POS store e.g. `1`                    |
-| data[].object_id            | `integer` | `false`  | POS Object ID e.g. `22952`                      |
-| data[].sales_order_id       | `integer` | `false`  | POS order id e.g. `0`                           |
-| data[].brand_name           | `string`  | `false`  | Brand name e.g. `ZNEN`                          |
-| data[].article_id           | `string`  | `false`  | Article number e.g. `787-25646`                 |
-| data[].barcode              | `string`  | `false`  | Barcode e.g. `2200082836636`                    |
-| data[].description          | `string`  | `false`  | Object brand + model e.g. `ZNEN Scooter 8N 20"` |
-| data[].frame_id             | `string`  | `false`  | Framenumber e.g. ``                             |
-| data[].purchase_price_cents | `integer` | `false`  | Purchase price cents e.g. `205800`              |
-| data[].dealer_rrp_cents     | `integer` | `false`  | RRP cents e.g. `349900`                         |
-| data[].is_sold_to_customer  | `boolean` | `false`  | Sold indicator e.g. `true`                      |
-| data[].is_demo              | `boolean` | `false`  | Demo indicator e.g. `false`                     |
-| data[].is_used              | `boolean` | `false`  | Used indicator e.g. `false`                     |
-| data[].has_invoice          | `boolean` | `false`  | Has an invoice e.g. `true`                      |
-| data[].stocked_at           | `date`    | `true`   | Date of stocking e.g. `2019-01-24`              |
-| data[].custom_variable_1    | `string`  | `false`  | Custom variable e.g. ``                         |
-| data[].is_deleted           | `boolean` | `false`  | Is deleted indicator e.g. `false`               |
+| `error`                       | `boolean` | `false`  | e.g. `false`                                    |
+| `error_message`               | `null`    | `true`   |                                                 |
+| `data`                        | `array`   | `false`  |                                                 |
+| `data[].account_id`           | `integer` | `false`  | Account ID of store e.g. `1`                    |
+| `data[].store_id`             | `integer` | `false`  | ID of the POS store e.g. `1`                    |
+| `data[].object_id`            | `integer` | `false`  | POS Object ID e.g. `22952`                      |
+| `data[].sales_order_id`       | `integer` | `false`  | POS order id e.g. `0`                           |
+| `data[].brand_name`           | `string`  | `false`  | Brand name e.g. `ZNEN`                          |
+| `data[].article_id`           | `string`  | `false`  | Article number e.g. `787-25646`                 |
+| `data[].barcode`              | `string`  | `false`  | Barcode e.g. `2200082836636`                    |
+| `data[].description`          | `string`  | `false`  | Object brand + model e.g. `ZNEN Scooter 8N 20"` |
+| `data[].frame_id`             | `string`  | `false`  | Framenumber e.g. ``                             |
+| `data[].purchase_price_cents` | `integer` | `false`  | Purchase price cents e.g. `205800`              |
+| `data[].dealer_rrp_cents`     | `integer` | `false`  | RRP cents e.g. `349900`                         |
+| `data[].is_sold_to_customer`  | `boolean` | `false`  | Sold indicator e.g. `true`                      |
+| `data[].is_demo`              | `boolean` | `false`  | Demo indicator e.g. `false`                     |
+| `data[].is_used`              | `boolean` | `false`  | Used indicator e.g. `false`                     |
+| `data[].has_invoice`          | `boolean` | `false`  | Has an invoice e.g. `true`                      |
+| `data[].stocked_at`           | `date`    | `true`   | Date of stocking e.g. `2019-01-24`              |
+| `data[].custom_variable_1`    | `string`  | `false`  | Custom variable e.g. ``                         |
+| `data[].is_deleted`           | `boolean` | `false`  | Is deleted indicator e.g. `false`               |
 
 
 > Response

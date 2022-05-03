@@ -134,44 +134,43 @@ Get modified orders within date interval (max 31 days)
 | `modified_end`   | `date`    | end date e.g. 2020-01-01                  |
 
 
-| Property                                | Type       | Nullable | Description                                                                |
-|-----------------------------------------|------------|----------|----------------------------------------------------------------------------|
-| data                                    | `array`    | `false`  |                                                                            |
-| data[].account_id                       | `integer`  | `false`  | CS Account e.g. `1`                                                        |
-| data[].store_id                         | `integer`  | `false`  | Store id e.g. `1`                                                          |
-| data[].sales_order_id                   | `integer`  | `false`  | Sales order number e.g. `50032`                                            |
-| data[].customer_id                      | `integer`  | `false`  | Customer number `6776`                                                     |
-| data[].order_type_id                    | `integer`  | `false`  | Order type id e.g. `6` (see common enum for list)                          |
-| data[].order_type_text                  | `string`   | `false`  | Order type name e.g. `Reparatie`                                           |
-| data[].order_reference_id               | `string`   | `false`  | Sales order reference id e.g. `212`                                        |
-| data[].order_reference_text             | `string`   | `false`  | Sales order reference id text e.g. `TXT212`                                |
-| data[].datetime_created                 | `datetime` | `false`  | Created at `2019-05-22 13:45:37`                                           |
-| data[].datetime_modified                | `datetime` | `false`  | Modified at `2022-04-07 15:03:32`                                          |
-| data[].datetime_preferred_delivery      | `date`     | `true`   | Preferred delivery date                                                    |
-| data[].status_id                        | `integer`  | `false`  | Sales order status id e.g. `9` (see common enum for list)                  |
-| data[].status_text                      | `string`   | `false`  | Sales order status text e.g. `Afgerond` (see common enum for list)         |
-| data[].cancellation_type_id             | `integer`  | `false`  | Cancellation type id e.g. `0` (see common enum for list)                   |
-| data[].cancellation_description         | `string`   | `true`   | Cancellation description (see common enum for list)                        |
-| data[].has_invoice                      | `boolean`  | `false`  | If invoiced `true`                                                         |
-| data[].invoice_number                   | `integer`  | `true`   | Invoice number `20173328`                                                  |
-| data[].delivery_method_id               | `integer`  | `false`  | Delivery method id `0` (see common enum for list)                          |
-| data[].delivery_method_description      | `string`   | `false`  | Delivery method description `Afhalen in winkel` (see common enum for list) |
-| data[].order_item_id                    | `integer`  | `false`  | Item id within sales order `0`                                             |
-| data[].order_item_status                | `string`   | `false`  | Order item status description `Geen status`  (see common enum for list)    |
-| data[].assigned_to_customer_id          | `integer`  | `false`  | Sales order could be assigned to a different customer (lease) `6776`       |
-| data[].item_type                        | `string`   | `false`  | Description of item type `Artikelregel` (see common enum for list)         |
-| data[].barcode                          | `string`   | `false`  | Barcode of article `8237238723823`                                         |
-| data[].object_id                        | `integer`  | `false`  | ID of linked stock object `0`                                              |
-| data[].pos_group_id                     | `integer`  | `false`  | POS group id `0`  (see common enum for list)                               |
-| data[].quantity                         | `integer`  | `false`  | Quantity `1`                                                               |
-| data[].description                      | `string`   | `false`  | Description of article `Tire`                                              |
-| data[].gross_unit_price_in_vat_in_cents | `integer`  | `false`  | Gross unit price in cents `9900`                                           |
-| data[].unit_discount_in_vat_in_cents    | `integer`  | `false`  | Unit discount amount in cents  `1000`                                      |
-| data[].nett_line_price_in_vat_in_cents  | `integer`  | `false`  | Nett line price in cents `8900`                                            |
-| data[].vat_amount_cents                 | `integer`  | `false`  | VAT amount in cents e.g. `1546`                                            |
-| data[].vat_percentage                   | `decimal`  | `false`  | VAT percentage `21`                                                        |
-| pagination.count                        | `integer`  | `false`  | Number of items `3`                                                        |
-| pagination.next_offset                  | `integer`  | `true`   | If specified call the api again with offset parameter                      |
+| Property                                  | Type       | Nullable | Description                                                                |
+|-------------------------------------------|------------|----------|----------------------------------------------------------------------------|
+| `data[].account_id`                       | `integer`  | `false`  | CS Account e.g. `1`                                                        |
+| `data[].store_id`                         | `integer`  | `false`  | Store id e.g. `1`                                                          |
+| `data[].sales_order_id`                   | `integer`  | `false`  | Sales order number e.g. `50032`                                            |
+| `data[].customer_id`                      | `integer`  | `false`  | Customer number `6776`                                                     |
+| `data[].order_type_id`                    | `integer`  | `false`  | Order type id e.g. `6` (see common enum for list)                          |
+| `data[].order_type_text`                  | `string`   | `false`  | Order type name e.g. `Reparatie`                                           |
+| `data[].order_reference_id`               | `string`   | `false`  | Sales order reference id e.g. `212`                                        |
+| `data[].order_reference_text`             | `string`   | `false`  | Sales order reference id text e.g. `TXT212`                                |
+| `data[].datetime_created`                 | `datetime` | `false`  | Created at `2019-05-22 13:45:37`                                           |
+| `data[].datetime_modified`                | `datetime` | `false`  | Modified at `2022-04-07 15:03:32`                                          |
+| `data[].datetime_preferred_delivery`      | `date`     | `true`   | Preferred delivery date                                                    |
+| `data[].status_id`                        | `integer`  | `false`  | Sales order status id e.g. `9` (see common enum for list)                  |
+| `data[].status_text`                      | `string`   | `false`  | Sales order status text e.g. `Afgerond` (see common enum for list)         |
+| `data[].cancellation_type_id`             | `integer`  | `false`  | Cancellation type id e.g. `0` (see common enum for list)                   |
+| `data[].cancellation_description`         | `string`   | `true`   | Cancellation description (see common enum for list)                        |
+| `data[].has_invoice`                      | `boolean`  | `false`  | If invoiced `true`                                                         |
+| `data[].invoice_number`                   | `integer`  | `true`   | Invoice number `20173328`                                                  |
+| `data[].delivery_method_id`               | `integer`  | `false`  | Delivery method id `0` (see common enum for list)                          |
+| `data[].delivery_method_description`      | `string`   | `false`  | Delivery method description `Afhalen in winkel` (see common enum for list) |
+| `data[].order_item_id`                    | `integer`  | `false`  | Item id within sales order `0`                                             |
+| `data[].order_item_status`                | `string`   | `false`  | Order item status description `Geen status`  (see common enum for list)    |
+| `data[].assigned_to_customer_id`          | `integer`  | `false`  | Sales order could be assigned to a different customer (lease) `6776`       |
+| `data[].item_type`                        | `string`   | `false`  | Description of item type `Artikelregel` (see common enum for list)         |
+| `data[].barcode`                          | `string`   | `false`  | Barcode of article `8237238723823`                                         |
+| `data[].object_id`                        | `integer`  | `false`  | ID of linked stock object `0`                                              |
+| `data[].pos_group_id`                     | `integer`  | `false`  | POS group id `0`  (see common enum for list)                               |
+| `data[].quantity`                         | `integer`  | `false`  | Quantity `1`                                                               |
+| `data[].description`                      | `string`   | `false`  | Description of article `Tire`                                              |
+| `data[].gross_unit_price_in_vat_in_cents` | `integer`  | `false`  | Gross unit price in cents `9900`                                           |
+| `data[].unit_discount_in_vat_in_cents`    | `integer`  | `false`  | Unit discount amount in cents  `1000`                                      |
+| `data[].nett_line_price_in_vat_in_cents`  | `integer`  | `false`  | Nett line price in cents `8900`                                            |
+| `data[].vat_amount_cents`                 | `integer`  | `false`  | VAT amount in cents e.g. `1546`                                            |
+| `data[].vat_percentage`                   | `decimal`  | `false`  | VAT percentage `21`                                                        |
+| `pagination.count`                        | `integer`  | `false`  | Number of items `3`                                                        |
+| `pagination.next_offset`                  | `integer`  | `true`   | If specified call the api again with offset parameter                      |
 
 
 > HTTP request

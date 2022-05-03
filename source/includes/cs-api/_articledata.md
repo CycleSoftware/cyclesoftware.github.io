@@ -5,7 +5,7 @@ The articledata APIs are designed for pulling article-information for e-commerce
 ***Authentication***
 
 - Basic HTTP Authentication
-- Scope(s): `ecommerce`
+- Scope(s): `e-commerce`
 
 ## Articledata ##
 

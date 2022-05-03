@@ -11,7 +11,7 @@ Access stock data
 Get stock-info for a set of barcodes. The max number of barcodes is 10. If more are supplied remote supplier stock is
 not included.
 
-- Scope(s): `ecommerce`
+- Scope(s): `e-commerce`
 
 <div class="api-endpoint">
 	<div class="endpoint-data">

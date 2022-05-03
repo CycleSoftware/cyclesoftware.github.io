@@ -11,9 +11,9 @@ Access outbound shipment data
 
 Mark the shipment for a stock item as `delivered` or `not-delivered`. `not-delivered` should be used if the package could not be delivered at the destination.
 
-| URL parameter               | Type      | Description                                                                                                          |
-|-------------------------|-----------|----------------------------------------------------------------------------------------------------------------------|
-|`:stock_item_id`                  | `integer`    | Stock item ID in warehouse <i class="label label-info">required</i>                                                                                                         |
+| URL parameter    | Type      | Description                                                         |
+|------------------|-----------|---------------------------------------------------------------------|
+| `:stock_item_id` | `integer` | Stock item ID in warehouse <i class="label label-info">required</i> |
 
 ### HTTP request examples ###
 

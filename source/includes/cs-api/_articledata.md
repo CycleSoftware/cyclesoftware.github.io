@@ -444,9 +444,9 @@ Use `/app/api/v3/articledata/definition/` and `/app/api/groups/`  for more infor
 
 **Data object**
 
-| **Element**             | **Description**                                                                         | **Length**                        |
+| **Property**            | **Description**                                                                         | **Length**                        |
 |-------------------------|-----------------------------------------------------------------------------------------|-----------------------------------|
-| `barcode**`             | Article barcode (alpha numeric)                                                         | 20                                |
+| `barcode`               | Article barcode (alpha numeric)                                                         | 20                                |
 | `parent_barcode`        |                                                                                         | 20                                |
 | `is_bicycle`            | Boolean article is bicycle                                                              |                                   |
 | `bicycle_id`            | Multiple unique bicycle identifiers                                                     | 0..*                              |
@@ -478,7 +478,7 @@ Use `/app/api/v3/articledata/definition/` and `/app/api/groups/`  for more infor
 
 **Lease option object**
 
-| **Element**          | **Description**                                                                       | **Type**                                                         |
+| **Property**         | **Description**                                                                       | **Type**                                                         |
 |----------------------|---------------------------------------------------------------------------------------|------------------------------------------------------------------|
 | `type`               | b2b or b2c                                                                            | String                                                           |
 | `platform`           | Name of the lease platform e.g. “cyclelease”                                          | String                                                           |
@@ -490,15 +490,15 @@ Use `/app/api/v3/articledata/definition/` and `/app/api/groups/`  for more infor
 
 **Images object**
 
-| **Element**      | **Description**     | **Length** |
-|------------------|---------------------|------------|
+| **Property**    | **Description**     | **Length** |
+|-----------------|---------------------|------------|
 | `date_modified` | dd-mm-yyyy hh:mm:ss | 19         |
 | `url_thumb`     | url to thumb image  | 100        |
 | `url_large`     | url to large image  | 100        |
 
 **Supplier_data object**
 
-| **Element**                         | **Description**                              |
+| **Property**                        | **Description**                              |
 |-------------------------------------|----------------------------------------------|
 | `reference`                         | ID of article, or reference to bicycle       |
 | `supplier_name`                     | Supplier name                                |

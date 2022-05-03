@@ -154,8 +154,8 @@ Get a list of stocked objects with status available or pro-forma sold.
 
 ### Properties ###
 
-| Property                    | Type      | Nullable | Description                                     |
-|-----------------------------|-----------|----------|-------------------------------------------------|
+| Property                      | Type      | Nullable | Description                                     |
+|-------------------------------|-----------|----------|-------------------------------------------------|
 | `error`                       | `boolean` | `false`  | e.g. `false`                                    |
 | `error_message`               | `null`    | `true`   |                                                 |
 | `data`                        | `array`   | `false`  |                                                 |

@@ -146,7 +146,7 @@ Get modified orders within date interval (max 31 days)
 | `data[].order_reference_text`             | `string`   | `false`  | Sales order reference id text e.g. `TXT212`                                |
 | `data[].datetime_created`                 | `datetime` | `false`  | Created at `2019-05-22 13:45:37`                                           |
 | `data[].datetime_modified`                | `datetime` | `false`  | Modified at `2022-04-07 15:03:32`                                          |
-| `data[].datetime_preferred_delivery`      | `date`     | `true`   | Preferred delivery date                                                    |
+| ``data[].datetime_preferred_delivery`      | `date`     | `true`   | Preferred delivery date                                                    |
 | `data[].status_id`                        | `integer`  | `false`  | Sales order status id e.g. `9` (see common enum for list)                  |
 | `data[].status_text`                      | `string`   | `false`  | Sales order status text e.g. `Afgerond` (see common enum for list)         |
 | `data[].cancellation_type_id`             | `integer`  | `false`  | Cancellation type id e.g. `0` (see common enum for list)                   |
@@ -323,27 +323,27 @@ Get payments within date interval (max 31 days)
 | `end_date`    | `date` | end date e.g. 2020-01-01   |
 
 
-| Property                    | Type      | Nullable | Description                                                                                                                           |
-|-----------------------------|-----------|----------|---------------------------------------------------------------------------------------------------------------------------------------|
-| customer_id                 | `integer` | `true`   | Customer id `332107`                                                                                                                  |
-| invoice_number              | `integer` | `true`   | Invoice number `365259` (may be null for advance payments)                                                                            |
-| related_to_invoice_number   | `integer` | `true`   | Related to another parent invoice number                                                                                              |
-| sales_order_id              | `integer` | `true`   | Sales order id `476953`                                                                                                               |
-| ecommerce_reference_text    | `string`  | `true`   | Sales order reference text `reference_129223`                                                                                         |
-| ecommerce_reference_id      | `string`  | `true`   | Sales order reference id `129223`                                                                                                     |
-| payments                    | `array`   | `false`  | List of payments                                                                                                                      |
-| payments[].payment_id       | `integer` | `false`  | ID of payment `65444361`                                                                                                              |
-| payments[].store_id         | `integer` | `false`  | Store id `1`                                                                                                                          |
-| payments[].book_location_id | `integer` | `false`  | Book location id in POS `1`                                                                                                           |
-| payments[].method           | `string`  | `false`  | Payment method description `Contant` `Creditcard` `Chip` `Tegoedbon(nen)` `Spaarpunten` `Retour` `Bank` `PSP` `Rembours` `Ecocheques` |
-| payments[].method_id        | `integer` | `false`  | Payment method id `1` (see common enum for list)                                                                                      |
-| payments[].amount_cents     | `integer` | `false`  | Amount of payment in cents `6999`                                                                                                     |
-| payments[].book_date        | `string`  | `false`  | Date booked `01-04-2022 15:31:44`                                                                                                     |
-| payments[].created_at       | `string`  | `false`  | Date created `01-04-2022 15:31:44`                                                                                                    |
-| psp                         | `array`   | `false`  | Array of payment service provider information (e.g. PAY.)                                                                             |
-| psp[].psp_reference         | `string`  | `false`  | PSP reference `17232323571X84a7d`                                                                                                     |
-| psp[].psp_reference_2       | `string`  | `false`  | PSP reference 2 `fb9c911850f4edfe214ff3cdfb214dbef9e8e599`                                                                            |
-| psp[].amount_cents          | `integer` | `false`  | Amount of PSP payment `6999`                                                                                                          |
+| Property                      | Type      | Nullable | Description                                                                                                                           |
+|-------------------------------|-----------|----------|---------------------------------------------------------------------------------------------------------------------------------------|
+| `customer_id`                 | `integer` | `true`   | Customer id `332107`                                                                                                                  |
+| `invoice_number`              | `integer` | `true`   | Invoice number `365259` (may be null for advance payments)                                                                            |
+| `related_to_invoice_number`   | `integer` | `true`   | Related to another parent invoice number                                                                                              |
+| `sales_order_id`              | `integer` | `true`   | Sales order id `476953`                                                                                                               |
+| `ecommerce_reference_text`    | `string`  | `true`   | Sales order reference text `reference_129223`                                                                                         |
+| `ecommerce_reference_id`      | `string`  | `true`   | Sales order reference id `129223`                                                                                                     |
+| `payments`                    | `array`   | `false`  | List of payments                                                                                                                      |
+| `payments[].payment_id`       | `integer` | `false`  | ID of payment `65444361`                                                                                                              |
+| `payments[].store_id`         | `integer` | `false`  | Store id `1`                                                                                                                          |
+| `payments[].book_location_id` | `integer` | `false`  | Book location id in POS `1`                                                                                                           |
+| `payments[].method`           | `string`  | `false`  | Payment method description `Contant` `Creditcard` `Chip` `Tegoedbon(nen)` `Spaarpunten` `Retour` `Bank` `PSP` `Rembours` `Ecocheques` |
+| `payments[].method_id`        | `integer` | `false`  | Payment method id `1` (see common enum for list)                                                                                      |
+| `payments[].amount_cents`     | `integer` | `false`  | Amount of payment in cents `6999`                                                                                                     |
+| `payments[].book_date`        | `string`  | `false`  | Date booked `01-04-2022 15:31:44`                                                                                                     |
+| `payments[].created_at`       | `string`  | `false`  | Date created `01-04-2022 15:31:44`                                                                                                    |
+| `psp`                         | `array`   | `false`  | Array of payment service provider information (e.g. PAY.)                                                                             |
+| `psp[].psp_reference`         | `string`  | `false`  | PSP reference `17232323571X84a7d`                                                                                                     |
+| `psp[].psp_reference_2`       | `string`  | `false`  | PSP reference 2 `fb9c911850f4edfe214ff3cdfb214dbef9e8e599`                                                                            |
+| `psp[].amount_cents`          | `integer` | `false`  | Amount of PSP payment `6999`                                                                                                          |
 
 
 > HTTP request
@@ -448,20 +448,20 @@ Get insurances for objects created within date interval (max 31 days). The infor
 | `start_date`  | `date` | start date e.g. 2020-01-01 |
 | `end_date`    | `date` | end date e.g. 2020-01-01   |
 
-| Property                | Type      | Nullable | Description                                                                |
-|-------------------------|-----------|----------|----------------------------------------------------------------------------|
-| insurance_id            | `integer` | `false`  | ID of insurance application `1182027`                                      |
-| customer_id             | `integer` | `false`  | Customer ID e.g. `334357`                                                  |
-| created_at              | `date`    | `false`  | Date created e.g. `15-04-2022`                                             |
-| stock_object_id         | `integer` | `false`  | Stock object ID `786080`                                                   |
-| insurance_company       | `string`  | `false`  | Name of insurance company `KING`                                           |
-| reference_id            | `integer` | `false`  | Reference ID `0`                                                           |
-| policy_number           | `integer` | `false`  | Policy Number (if available) `12212`                                       |
-| insurance_starting_date | `date`    | `false`  | Start date of the insurance `15-04-2022`                                   |
-| description             | `string`  | `false`  | Name of the insurance e.g. `E-bike Casco Compleet - 3 jaar - Aut. Incasso` |
-| policy_costs            | `integer` | `false`  | Costs of the policy in cents `650`                                         |
-| insured_amount          | `integer` | `false`  | Insured amount in cents `299900`                                           |
-| premium_amount          | `integer` | `false`  | Insurance premium in cents `19895`                                         |
+| Property                  | Type      | Nullable | Description                                                                |
+|---------------------------|-----------|----------|----------------------------------------------------------------------------|
+| `insurance_id`            | `integer` | `false`  | ID of insurance application `1182027`                                      |
+| `customer_id`             | `integer` | `false`  | Customer ID e.g. `334357`                                                  |
+| `created_at`              | `date`    | `false`  | Date created e.g. `15-04-2022`                                             |
+| `stock_object_id`         | `integer` | `false`  | Stock object ID `786080`                                                   |
+| `insurance_company`       | `string`  | `false`  | Name of insurance company `KING`                                           |
+| `reference_id`            | `integer` | `false`  | Reference ID `0`                                                           |
+| `policy_number`           | `integer` | `false`  | Policy Number (if available) `12212`                                       |
+| `insurance_starting_date` | `date`    | `false`  | Start date of the insurance `15-04-2022`                                   |
+| `description`             | `string`  | `false`  | Name of the insurance e.g. `E-bike Casco Compleet - 3 jaar - Aut. Incasso` |
+| `policy_costs`            | `integer` | `false`  | Costs of the policy in cents `650`                                         |
+| `insured_amount`          | `integer` | `false`  | Insured amount in cents `299900`                                           |
+| `premium_amount`          | `integer` | `false`  | Insurance premium in cents `19895`                                         |
 
 
 > HTTP request

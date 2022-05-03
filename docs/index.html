@@ -4390,7 +4390,7 @@ By default the book-date is used.</p>
 </span></code></pre></div><h1 id='webhooks'>Webhooks</h1>
 <p>Receive updates from CycleSoftware for specific entities.</p>
 <h3 id='webhooks-rental-objects-webhook-request'>Webhook request</h3>
-<p>The payload is a raw POST request to your server. Several headers are included:</p>
+<p>The payload is a raw POST of a JSON string to your server. Several headers are included:</p>
 
 <table><thead>
 <tr>
@@ -4412,7 +4412,7 @@ By default the book-date is used.</p>
 </tr>
 </tbody></table>
 <h3 id='webhooks-rental-objects-payload-structure'>Payload structure</h3>
-<p>Every payload has the same structure. The payload object is different per entity type.</p>
+<p>Every JSON payload has the same structure. The payload object is different per event.</p>
 
 <table><thead>
 <tr>

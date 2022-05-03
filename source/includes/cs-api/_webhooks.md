@@ -3,7 +3,7 @@
 Receive updates from CycleSoftware for specific entities.
 
 ### Webhook request
-The payload is a raw POST request to your server. Several headers are included:
+The payload is a raw POST of a JSON string to your server. Several headers are included:
 
 | Header                      | Description                                                     |
 |-----------------------------|-----------------------------------------------------------------|
@@ -14,7 +14,7 @@ The payload is a raw POST request to your server. Several headers are included:
 
 ### Payload structure
 
-Every payload has the same structure. The payload object is different per entity type.
+Every JSON payload has the same structure. The payload object is different per event.
 
 | Property          | Type      | Description                                                |
 |-------------------|-----------|------------------------------------------------------------|

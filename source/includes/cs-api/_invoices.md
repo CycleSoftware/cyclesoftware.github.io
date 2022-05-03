@@ -7,6 +7,7 @@ Access invoice data
 - Basic HTTP Authentication
 - Scope(s): `salesdata`
 
+
 ## Pro-forma invoices ##
 
 Get a list of proforma sales transactions / invoices.

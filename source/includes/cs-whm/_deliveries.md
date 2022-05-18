@@ -80,7 +80,7 @@ Content-type: application/json; charset=utf-8
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 1374
+Content-length: 1330
 
 {
   "error": false,
@@ -99,8 +99,8 @@ Content-length: 1374
       "original_delivery_date": "2022-11-14",
       "external_remarks": "",
       "internal_remarks": "some text",
-      "created_at": "2022-04-21 2022-04-21 12:15:56",
-      "modified_at": "2022-04-21 2022-04-21 12:18:53",
+      "created_at": "2022-04-21 12:15:56",
+      "modified_at": "2022-04-21 12:18:53",
       "assignment": null
     },
     {
@@ -116,8 +116,8 @@ Content-length: 1374
       "original_delivery_date": "2022-10-31",
       "external_remarks": "BL-412843",
       "internal_remarks": null,
-      "created_at": "2022-04-21 2022-04-21 12:15:56",
-      "modified_at": "2022-04-21 2022-04-21 12:18:53",
+      "created_at": "2022-04-21 12:15:56",
+      "modified_at": "2022-04-21 12:18:53",
       "assignment": {
         "assigned_to_entity_type_id": 20,
         "assigned_to_entity_id": 564840,

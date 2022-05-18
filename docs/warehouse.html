@@ -291,10 +291,13 @@
               </ul>
           </li>
           <li>
-            <a href="#inbound-deliveries" class="toc-h1 toc-link" data-title="Inbound deliveries">Inbound deliveries</a>
+            <a href="#inbound-orders" class="toc-h1 toc-link" data-title="Inbound orders">Inbound orders</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#inbound-deliveries-inbound-delivered-items" class="toc-h2 toc-link" data-title="Inbound delivered items">Inbound delivered items</a>
+                    <a href="#inbound-orders-inbound-back-log" class="toc-h2 toc-link" data-title="Inbound back-log">Inbound back-log</a>
+                  </li>
+                  <li>
+                    <a href="#inbound-orders-inbound-delivered-items" class="toc-h2 toc-link" data-title="Inbound delivered items">Inbound delivered items</a>
                   </li>
               </ul>
           </li>
@@ -484,8 +487,8 @@ mechanism is as follows:</p>
 <p>TWSC API is available throught Oauth2 authentication</p>
 <h2 id='authentication-scopes'>Scopes</h2>
 <p>Credentials are linked to a set of scopes. Every endpoint is also linked to a set of scopes. If the required scope is not available for the credentials the API will provide an HTTP Unauthorized error.</p>
-<h1 id='inbound-deliveries'>Inbound deliveries</h1>
-<p>Access inbound deliveries data</p>
+<h1 id='inbound-orders'>Inbound orders</h1>
+<p>Access inbound deliveries and inbound backlog data</p>
 
 <p><strong><em>Authentication mechanism</em></strong></p>
 
@@ -493,7 +496,261 @@ mechanism is as follows:</p>
 <li>Basic HTTP Authentication</li>
 <li>Scope(s): <code>warehouse</code></li>
 </ul>
-<h2 id='inbound-deliveries-inbound-delivered-items'>Inbound delivered items</h2>
+<h2 id='inbound-orders-inbound-back-log'>Inbound back-log</h2>
+<p>Get a list of goods to be delivered.</p>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>supplier_id</code></td>
+<td>integer</td>
+<td>If supplied only the data for the specified supplier is given<br/>See common api for supplier-ids</td>
+</tr>
+<tr>
+<td><code>is_assigned</code></td>
+<td>integer</td>
+<td>if 1 only assigned items are returned</td>
+</tr>
+<tr>
+<td><code>offset</code></td>
+<td>integer</td>
+<td>Pagination offset. <i class="label label-info">optional</i></td>
+</tr>
+</tbody></table>
+<h3 id='inbound-orders-inbound-back-log-http-request-examples'>HTTP request examples</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/warehouse/inbound/backlog.json</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/warehouse/inbound/backlog.json?supplier_id=:supplier_id&is_assigned=1&offset=:offset</h6>
+    </div>
+</div>
+<h3 id='inbound-orders-inbound-back-log-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> when an error occured</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Error message if known</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>Array of backlog items</td>
+</tr>
+<tr>
+<td><code>data[].id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Unique item id <code>412855</code></td>
+</tr>
+<tr>
+<td><code>data[].supplier_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Supplier ID <code>2403</code></td>
+</tr>
+<tr>
+<td><code>data[].is_sold_to_customer</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Marked as sold to customer <code>false</code></td>
+</tr>
+<tr>
+<td><code>data[].in_transit</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Marked as in transit <code>false</code></td>
+</tr>
+<tr>
+<td><code>data[].article_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Article ID <code>LV106</code></td>
+</tr>
+<tr>
+<td><code>data[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Barcode of article <code>8719812004299</code></td>
+</tr>
+<tr>
+<td><code>data[].supplier_reference</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Reference of supplier <code>7171999</code></td>
+</tr>
+<tr>
+<td><code>data[].supplier_reference_2</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Reference of supplier 2 <code>7171999</code></td>
+</tr>
+<tr>
+<td><code>data[].delivery_date</code></td>
+<td><code>date</code></td>
+<td><code>false</code></td>
+<td>Expected delivery-date <code>2022-12-26</code></td>
+</tr>
+<tr>
+<td><code>data[].original_delivery_date</code></td>
+<td><code>date</code></td>
+<td><code>false</code></td>
+<td>Original expected delivery-date <code>2023-01-02</code></td>
+</tr>
+<tr>
+<td><code>data[].external_remarks</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Remarks from supplier</td>
+</tr>
+<tr>
+<td><code>data[].internal_remarks</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Internal remarks</td>
+</tr>
+<tr>
+<td><code>data[].created_at</code></td>
+<td><code>datetime</code></td>
+<td><code>false</code></td>
+<td>date-time created</td>
+</tr>
+<tr>
+<td><code>data[].modified_at</code></td>
+<td><code>datetime</code></td>
+<td><code>false</code></td>
+<td>date-time modified</td>
+</tr>
+<tr>
+<td><code>data[].assignment</code></td>
+<td><code>object</code></td>
+<td><code>true</code></td>
+<td>If not null the item is assigned</td>
+</tr>
+<tr>
+<td><code>data[].assignment.assigned_to_entity_type_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Entity type assignment <code>20</code> (see common api)</td>
+</tr>
+<tr>
+<td><code>data[].assignment.assigned_to_entity_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Entity ID of assignment <code>564840</code></td>
+</tr>
+<tr>
+<td><code>data[].assignment.outbound_order_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Assigned outbound order id <code>440452</code></td>
+</tr>
+<tr>
+<td><code>data[].assignment.reference</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Reference of outbound-order <code>fvs_138443</code></td>
+</tr>
+<tr>
+<td><code>pagination.next_offset</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>If specified use offset in GET parameter for extra data</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/warehouse/inbound/backlog.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1374</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">412805</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2403</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"in_transit"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LV105"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8719812004282"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7171648"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier_reference_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7171648"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-11-07"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"original_delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-11-14"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"external_remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"internal_remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some text"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-21 2022-04-21 12:15:56"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-21 2022-04-21 12:18:53"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"assignment"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">412843</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2403</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"in_transit"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LV106"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8719812004299"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7171984"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"supplier_reference_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7171984"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-10-24"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"original_delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-10-31"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"external_remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BL-412843"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"internal_remarks"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-21 2022-04-21 12:15:56"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-21 2022-04-21 12:18:53"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"assignment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"assigned_to_entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"assigned_to_entity_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">564840</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"outbound_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">440452</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yourref_138443"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='inbound-orders-inbound-delivered-items'>Inbound delivered items</h2>
 <p>Get a list of delivered inbound goods</p>
 
 <table><thead>
@@ -519,7 +776,7 @@ mechanism is as follows:</p>
 <td>Pagination offset. <i class="label label-info">optional</i></td>
 </tr>
 </tbody></table>
-<h3 id='inbound-deliveries-inbound-delivered-items-http-request-examples'>HTTP request examples</h3>
+<h3 id='inbound-orders-inbound-delivered-items-http-request-examples'>HTTP request examples</h3>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>

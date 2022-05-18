@@ -1,11 +1,137 @@
-# Inbound deliveries #
+# Inbound orders #
 
-Access inbound deliveries data
+Access inbound deliveries and inbound backlog data
 
 ***Authentication mechanism***
 
 - Basic HTTP Authentication
 - Scope(s): `warehouse`
+
+
+## Inbound back-log ##
+
+Get a list of goods to be delivered.
+
+| GET parameter | Type    | Description                                                                                       |
+|---------------|---------|---------------------------------------------------------------------------------------------------|
+| `supplier_id` | integer | If supplied only the data for the specified supplier is given<br/>See common api for supplier-ids |
+| `is_assigned` | integer | if 1 only assigned items are returned                                                             |
+| `offset`      | integer | Pagination offset. <i class="label label-info">optional</i>                                       |
+
+### HTTP request examples ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v1/warehouse/inbound/backlog.json</h6>
+	</div>
+</div>
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v1/warehouse/inbound/backlog.json?supplier_id=:supplier_id&is_assigned=1&offset=:offset</h6>
+	</div>
+</div>
+
+### Properties ###
+
+| Property                                       | Type       | Nullable | Description                                             |
+|------------------------------------------------|------------|----------|---------------------------------------------------------|
+| `error`                                        | `boolean`  | `false`  | `true` when an error occured                            |
+| `error_message`                                | `string`   | `true`   | Error message if known                                  |
+| `data`                                         | `array`    | `false`  | Array of backlog items                                  |
+| `data[].id`                                    | `integer`  | `false`  | Unique item id `412855`                                 |
+| `data[].supplier_id`                           | `integer`  | `false`  | Supplier ID `2403`                                      |
+| `data[].is_sold_to_customer`                   | `boolean`  | `false`  | Marked as sold to customer `false`                      |
+| `data[].in_transit`                            | `boolean`  | `false`  | Marked as in transit `false`                            |
+| `data[].article_id`                            | `string`   | `false`  | Article ID `LV106`                                      |
+| `data[].barcode`                               | `string`   | `false`  | Barcode of article `8719812004299`                      |
+| `data[].supplier_reference`                    | `string`   | `false`  | Reference of supplier `7171999`                         |
+| `data[].supplier_reference_2`                  | `string`   | `false`  | Reference of supplier 2 `7171999`                       |
+| `data[].delivery_date`                         | `date`     | `false`  | Expected delivery-date `2022-12-26`                     |
+| `data[].original_delivery_date`                | `date`     | `false`  | Original expected delivery-date `2023-01-02`            |
+| `data[].external_remarks`                      | `string`   | `false`  | Remarks from supplier                                   |
+| `data[].internal_remarks`                      | `string`   | `true`   | Internal remarks                                        |
+| `data[].created_at`                            | `datetime` | `false`  | date-time created                                       |
+| `data[].modified_at`                           | `datetime` | `false`  | date-time modified                                      |
+| `data[].assignment`                            | `object`   | `true`   | If not null the item is assigned                        |
+| `data[].assignment.assigned_to_entity_type_id` | `integer`  | `false`  | Entity type assignment `20` (see common api)            |
+| `data[].assignment.assigned_to_entity_id`      | `integer`  | `false`  | Entity ID of assignment `564840`                        |
+| `data[].assignment.outbound_order_id`          | `integer`  | `false`  | Assigned outbound order id `440452`                     |
+| `data[].assignment.reference`                  | `string`   | `false`  | Reference of outbound-order `fvs_138443`                |
+| `pagination.next_offset`                       | `integer`  | `true`   | If specified use offset in GET parameter for extra data |
+
+
+
+> HTTP request
+
+```http
+GET /api/v1/warehouse/inbound/backlog.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip,deflate
+Accept: application/json
+Content-type: application/json; charset=utf-8
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 1374
+
+{
+  "error": false,
+  "error_message": null,
+  "data": [
+    {
+      "id": 412805,
+      "supplier_id": 2403,
+      "is_sold_to_customer": false,
+      "in_transit": false,
+      "article_id": "LV105",
+      "barcode": "8719812004282",
+      "supplier_reference": "7171648",
+      "supplier_reference_2": "7171648",
+      "delivery_date": "2022-11-07",
+      "original_delivery_date": "2022-11-14",
+      "external_remarks": "",
+      "internal_remarks": "some text",
+      "created_at": "2022-04-21 2022-04-21 12:15:56",
+      "modified_at": "2022-04-21 2022-04-21 12:18:53",
+      "assignment": null
+    },
+    {
+      "id": 412843,
+      "supplier_id": 2403,
+      "is_sold_to_customer": false,
+      "in_transit": false,
+      "article_id": "LV106",
+      "barcode": "8719812004299",
+      "supplier_reference": "7171984",
+      "supplier_reference_2": "7171984",
+      "delivery_date": "2022-10-24",
+      "original_delivery_date": "2022-10-31",
+      "external_remarks": "BL-412843",
+      "internal_remarks": null,
+      "created_at": "2022-04-21 2022-04-21 12:15:56",
+      "modified_at": "2022-04-21 2022-04-21 12:18:53",
+      "assignment": {
+        "assigned_to_entity_type_id": 20,
+        "assigned_to_entity_id": 564840,
+        "outbound_order_id": 440452,
+        "reference": "yourref_138443"
+      }
+    }
+  ],
+  "pagination": {
+    "next_offset": 2
+  }
+}
+```
+
 
 ## Inbound delivered items ##
 

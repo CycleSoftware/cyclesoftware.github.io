@@ -53,8 +53,8 @@ Get a list of goods to be delivered.
 | `data[].original_delivery_date`                | `date`     | `false`  | Original expected delivery-date `2023-01-02`            |
 | `data[].external_remarks`                      | `string`   | `false`  | Remarks from supplier                                   |
 | `data[].internal_remarks`                      | `string`   | `true`   | Internal remarks                                        |
-| `data[].created_at`                            | `datetime` | `false`  | date-time created                                       |
-| `data[].modified_at`                           | `datetime` | `false`  | date-time modified                                      |
+| `data[].created_at`                            | `datetime` | `false`  | Date-time created                                       |
+| `data[].modified_at`                           | `datetime` | `false`  | Date-time modified                                      |
 | `data[].assignment`                            | `object`   | `true`   | If not null the item is assigned                        |
 | `data[].assignment.assigned_to_entity_type_id` | `integer`  | `false`  | Entity type assignment `20` (see common api)            |
 | `data[].assignment.assigned_to_entity_id`      | `integer`  | `false`  | Entity ID of assignment `564840`                        |

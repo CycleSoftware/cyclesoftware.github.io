@@ -8,6 +8,7 @@ Access sales data
 - Scopes: `salesdata`
 
 ## Sales transactions ##
+
 Get sales transactions within interval of specified date field (max 31 days).
 By default the book-date is used.
 
@@ -29,11 +30,9 @@ By default the book-date is used.
 | `start_date`  | `date`    | end date e.g. 2020-01-01                                                                                                                                 |
 | `end_date`    | `date`    | end date e.g. 2020-01-01                                                                                                                                 |
 
-
 | GET parameter | Type     | Description                                                                                                                                                 |
 |---------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `date_field`  | `string` | `kassadatum` (default) interval as booked date<br/> `datetime_modified` interval as modification dates<br/>`factuurdatum` interval as invoice proforma date |
-
 
 ## Pro-forma invoices ##
 
@@ -56,7 +55,6 @@ Get a list of proforma sales transactions / invoices.
 | GET parameter | Type    | Description                                                 |
 |---------------|---------|-------------------------------------------------------------|
 | `offset`      | integer | Pagination offset. <i class="label label-info">optional</i> |
-
 
 > HTTP request
 
@@ -107,7 +105,6 @@ Content-length: 722
 }
 ```
 
-
 ## Sales orders ##
 
 Get modified orders within date interval (max 31 days)
@@ -125,14 +122,13 @@ Get modified orders within date interval (max 31 days)
 	</div>
 </div>
 
-
-| GET parameter    | Type      | Description                               |
-|------------------|-----------|-------------------------------------------|
-| `store_id`       | `integer` | optional store-id                         |
-| `offset`         | `integer` | optional offset, see pagination in result |
-| `modified_start` | `date`    | end date e.g. 2020-01-01                  |
-| `modified_end`   | `date`    | end date e.g. 2020-01-01                  |
-
+| GET parameter     | Type      | Description                                                       |
+|-------------------|-----------|-------------------------------------------------------------------|
+| `store_id`        | `integer` | optional store-id                                                 |
+| `offset`          | `integer` | optional offset, see pagination in result                         |
+| `modified_start`  | `date`    | end date e.g. 2020-01-01                                          |
+| `modified_end`    | `date`    | end date e.g. 2020-01-01                                          |
+| `include_deleted` | `boolean` | If `1` deleted sales orders are included with status_id=CANCELLED |
 
 | Property                                  | Type       | Nullable | Description                                                                |
 |-------------------------------------------|------------|----------|----------------------------------------------------------------------------|
@@ -171,7 +167,6 @@ Get modified orders within date interval (max 31 days)
 | `data[].vat_percentage`                   | `decimal`  | `false`  | VAT percentage `21`                                                        |
 | `pagination.count`                        | `integer`  | `false`  | Number of items `3`                                                        |
 | `pagination.next_offset`                  | `integer`  | `true`   | If specified call the api again with offset parameter                      |
-
 
 > HTTP request
 
@@ -322,7 +317,6 @@ Get payments within date interval (max 31 days)
 | `start_date`  | `date` | start date e.g. 2020-01-01 |
 | `end_date`    | `date` | end date e.g. 2020-01-01   |
 
-
 | Property                      | Type      | Nullable | Description                                                                                                                           |
 |-------------------------------|-----------|----------|---------------------------------------------------------------------------------------------------------------------------------------|
 | `customer_id`                 | `integer` | `true`   | Customer id `332107`                                                                                                                  |
@@ -344,7 +338,6 @@ Get payments within date interval (max 31 days)
 | `psp[].psp_reference`         | `string`  | `false`  | PSP reference `17232323571X84a7d`                                                                                                     |
 | `psp[].psp_reference_2`       | `string`  | `false`  | PSP reference 2 `fb9c911850f4edfe214ff3cdfb214dbef9e8e599`                                                                            |
 | `psp[].amount_cents`          | `integer` | `false`  | Amount of PSP payment `6999`                                                                                                          |
-
 
 > HTTP request
 
@@ -434,7 +427,8 @@ Content-length: 1655
 
 ## Insurances ##
 
-Get insurances for objects created within date interval (max 31 days). The information may not be up-to-date with the information known at the insurance company. This information is based on created insurance applications.
+Get insurances for objects created within date interval (max 31 days). The information may not be up-to-date with the
+information known at the insurance company. This information is based on created insurance applications.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -462,7 +456,6 @@ Get insurances for objects created within date interval (max 31 days). The infor
 | `policy_costs`            | `integer` | `false`  | Costs of the policy in cents `650`                                         |
 | `insured_amount`          | `integer` | `false`  | Insured amount in cents `299900`                                           |
 | `premium_amount`          | `integer` | `false`  | Insurance premium in cents `19895`                                         |
-
 
 > HTTP request
 

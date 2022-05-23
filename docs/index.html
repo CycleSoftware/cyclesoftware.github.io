@@ -3670,6 +3670,11 @@ By default the book-date is used.</p>
 <td><code>date</code></td>
 <td>end date e.g. 2020-01-01</td>
 </tr>
+<tr>
+<td><code>include_deleted</code></td>
+<td><code>boolean</code></td>
+<td>If <code>1</code> deleted sales orders are included with status_id=CANCELLED</td>
+</tr>
 </tbody></table>
 
 <table><thead>
@@ -4259,7 +4264,8 @@ By default the book-date is used.</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div><h2 id='sales-insurances'>Insurances</h2>
-<p>Get insurances for objects created within date interval (max 31 days). The information may not be up-to-date with the information known at the insurance company. This information is based on created insurance applications.</p>
+<p>Get insurances for objects created within date interval (max 31 days). The information may not be up-to-date with the
+information known at the insurance company. This information is based on created insurance applications.</p>
 
 <div class="api-endpoint">
     <div class="endpoint-data">

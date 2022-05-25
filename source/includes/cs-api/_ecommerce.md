@@ -502,7 +502,8 @@ Content-length: 2446
 
 ## Create invoice(s) ##
 
-Create invoice(s) for sales order. If the sales-order is split amongst several customers, the result will yield multiple invoices.
+Create invoice(s) for sales order. If the sales-order is split amongst several customers, the result will yield multiple
+invoices.
 
 - Scope(s): `e-commerce`
 
@@ -527,20 +528,20 @@ The following optional POST parameters can be used to specify specific behavior.
 | `customer_messages`     | `boolean` | `true`                                            | if `true` a phone- of e-mail message will be sent (according to account settings) to inform the customer |
 | `allow_resend_messages` | `integer` | `false`                                           | if `true` a phone- of e-mail message will be sent again if there were previous messages                  |
 
-
 ### Properties ###
 
-| Property                                 | Type      | Nullable | Description                                      |
-|------------------------------------------|-----------|----------|--------------------------------------------------|
-| `error`                                  | `boolean` | `false`  | `true` if an error occurred                      |
-| `error_message`                          | `null`    | `true`   | Error message if occurred                        |
-| `invoices`                               | `array`   | `false`  | array of created invoices                        |
-| `invoices[].invoice_number`              | `integer` | `false`  | Invoice number e.g. `20173383`                   |
-| `invoices[].customer_id`                 | `integer` | `false`  | Customer number of invoice e.g. `9011`           |
-| `invoices[].sent_messages.phone_message` | `boolean` | `false`  | `true` if a phone message was sent               |
-| `invoices[].sent_messages.email_message` | `boolean` | `false`  | `true` if an e-mail message was sent             |
-| `invoices[].document_mime_type`          | `string`  | `false`  | Mime type of the document e.g. `application/pdf` |
-| `invoices[].document_base64`             | `string`  | `false`  | Base64 encoded string of document                |
+| Property                                    | Type      | Nullable | Description                                      |
+|---------------------------------------------|-----------|----------|--------------------------------------------------|
+| `error`                                     | `boolean` | `false`  | `true` if an error occurred                      |
+| `error_message`                             | `null`    | `true`   | Error message if occurred                        |
+| `invoices`                                  | `array`   | `false`  | array of created invoices                        |
+| `invoices[].invoice_number`                 | `integer` | `false`  | Invoice number e.g. `20173383`                   |
+| `invoices[].customer_id`                    | `integer` | `false`  | Customer number of invoice e.g. `9011`           |
+| `invoices[].sent_messages.phone_message`    | `boolean` | `false`  | `true` if a phone message was sent               |
+| `invoices[].sent_messages.email_message`    | `boolean` | `false`  | `true` if an e-mail message was sent             |
+| `invoices[].documents`                      | `array`   | `false`  | Array of generated documents                     |
+| `invoices[].documents[].document_mime_type` | `string`  | `false`  | Mime type of the document e.g. `application/pdf` |
+| `invoices[].documents[].document_base64`    | `string`  | `false`  | Base64 encoded string of document                |
 
 > HTTP request
 
@@ -561,7 +562,7 @@ employee_id=1005&order_status_id=9&book=1&customer_messages=1&allow_resend_messa
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 716
+Content-length: 900
 
 {
     "error": false,
@@ -574,18 +575,26 @@ Content-length: 716
                 "phone_message": true,
                 "email_message": false
             },
-            "document_mime_type": "application/pdf",
-            "document_base64": "VBERi0xLjcKJ..."
+            "documents": [
+                {
+                    "document_mime_type": "application/pdf",
+                    "document_base64": "VBERi0xLjcKJ..."
+                }
+            ]
         },
-          {
+        {
             "invoice_number": 20173383,
             "customer_id": 9011,
             "sent_messages": {
                 "phone_message": false,
                 "email_message": false
             },
-            "document_mime_type": "application/pdf",
-            "document_base64": "VBERi0xLjcKJ..."
+            "documents": [
+                {
+                    "document_mime_type": "application/pdf",
+                    "document_base64": "VBERi0xLjcKJ..."
+                }
+            ]
         }
     ]
 }

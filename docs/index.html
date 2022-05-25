@@ -1708,7 +1708,8 @@ Content-length: 2446
     <span class="nt">&lt;/ns1:OrderStatusResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 </code></pre></div><h2 id='e-commerce-create-invoice-s'>Create invoice(s)</h2>
-<p>Create invoice(s) for sales order. If the sales-order is split amongst several customers, the result will yield multiple invoices.</p>
+<p>Create invoice(s) for sales order. If the sales-order is split amongst several customers, the result will yield multiple
+invoices.</p>
 
 <ul>
 <li>Scope(s): <code>e-commerce</code></li>
@@ -1828,13 +1829,19 @@ Content-length: 2446
 <td><code>true</code> if an e-mail message was sent</td>
 </tr>
 <tr>
-<td><code>invoices[].document_mime_type</code></td>
+<td><code>invoices[].documents</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>Array of generated documents</td>
+</tr>
+<tr>
+<td><code>invoices[].documents[].document_mime_type</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td>Mime type of the document e.g. <code>application/pdf</code></td>
 </tr>
 <tr>
-<td><code>invoices[].document_base64</code></td>
+<td><code>invoices[].documents[].document_base64</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td>Base64 encoded string of document</td>
@@ -1859,7 +1866,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 </blockquote>
 <div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
-<span class="na">Content-length</span><span class="p">:</span> <span class="s">716</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">900</span>
 
 <span class="p">{</span><span class="w">
     </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -1872,18 +1879,26 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
                 </span><span class="nl">"phone_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"email_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nl">"document_mime_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"document_base64"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VBERi0xLjcKJ..."</span><span class="w">
+            </span><span class="nl">"documents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"document_mime_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"document_base64"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VBERi0xLjcKJ..."</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
+        </span><span class="p">{</span><span class="w">
             </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20173383</span><span class="p">,</span><span class="w">
             </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9011</span><span class="p">,</span><span class="w">
             </span><span class="nl">"sent_messages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"phone_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"email_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nl">"document_mime_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"document_base64"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VBERi0xLjcKJ..."</span><span class="w">
+            </span><span class="nl">"documents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"document_mime_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"document_base64"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VBERi0xLjcKJ..."</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">

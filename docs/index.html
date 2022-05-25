@@ -321,6 +321,9 @@
                     <a href="#e-commerce-updateorder" class="toc-h2 toc-link" data-title="UpdateOrder">UpdateOrder</a>
                   </li>
                   <li>
+                    <a href="#e-commerce-create-invoice-s" class="toc-h2 toc-link" data-title="Create invoice(s)">Create invoice(s)</a>
+                  </li>
+                  <li>
                     <a href="#e-commerce-addorderitems" class="toc-h2 toc-link" data-title="AddOrderItems">AddOrderItems</a>
                   </li>
                   <li>
@@ -1704,7 +1707,187 @@ Content-length: 2446
       <span class="nt">&lt;/OrderResultItems&gt;</span>
     <span class="nt">&lt;/ns1:OrderStatusResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
-</code></pre></div><h2 id='e-commerce-addorderitems'>AddOrderItems</h2>
+</code></pre></div><h2 id='e-commerce-create-invoice-s'>Create invoice(s)</h2>
+<p>Create invoice(s) for sales order. If the sales-order is split amongst several customers, the result will yield multiple invoices.</p>
+
+<ul>
+<li>Scope(s): <code>e-commerce</code></li>
+</ul>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/sales/orders/:sales_order_id/create-invoices.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>URL parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:sales_order_id</code></td>
+<td><code>integer</code></td>
+<td>Sales order ID <i class="label label-info">required</i></td>
+</tr>
+</tbody></table>
+
+<p>The following optional POST parameters can be used to specify specific behavior.</p>
+
+<table><thead>
+<tr>
+<th>POST parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>employee_id</code></td>
+<td><code>integer</code></td>
+<td>The sales employee registered for the sales-order</td>
+<td>Employee ID for registration</td>
+</tr>
+<tr>
+<td><code>order_status_id</code></td>
+<td><code>integer</code></td>
+<td><code>null</code></td>
+<td>New sales order status. See common endpoint</td>
+</tr>
+<tr>
+<td><code>book</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>if <code>true</code>, the invoice will be booked in administration. Otherwise the invoice will be pro-forma</td>
+</tr>
+<tr>
+<td><code>customer_messages</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>if <code>true</code> a phone- of e-mail message will be sent (according to account settings) to inform the customer</td>
+</tr>
+<tr>
+<td><code>allow_resend_messages</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>if <code>true</code> a phone- of e-mail message will be sent again if there were previous messages</td>
+</tr>
+</tbody></table>
+<h3 id='e-commerce-create-invoice-s-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if an error occurred</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>null</code></td>
+<td><code>true</code></td>
+<td>Error message if occurred</td>
+</tr>
+<tr>
+<td><code>invoices</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array of created invoices</td>
+</tr>
+<tr>
+<td><code>invoices[].invoice_number</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Invoice number e.g. <code>20173383</code></td>
+</tr>
+<tr>
+<td><code>invoices[].customer_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Customer number of invoice e.g. <code>9011</code></td>
+</tr>
+<tr>
+<td><code>invoices[].sent_messages.phone_message</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if a phone message was sent</td>
+</tr>
+<tr>
+<td><code>invoices[].sent_messages.email_message</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if an e-mail message was sent</td>
+</tr>
+<tr>
+<td><code>invoices[].document_mime_type</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Mime type of the document e.g. <code>application/pdf</code></td>
+</tr>
+<tr>
+<td><code>invoices[].document_base64</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Base64 encoded string of document</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/sales/orders/1000/create-invoices.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip,deflate</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/x-www-form-urlencoded; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">299</span>
+
+employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;allow_resend_messages=1
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">716</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20173382</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6298</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sent_messages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"phone_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"email_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"document_mime_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"document_base64"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VBERi0xLjcKJ..."</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20173383</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9011</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sent_messages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"phone_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"email_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"document_mime_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"document_base64"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VBERi0xLjcKJ..."</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='e-commerce-addorderitems'>AddOrderItems</h2>
 <p>Add new order items to an existing order.</p>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>

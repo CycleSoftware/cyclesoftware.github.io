@@ -270,6 +270,9 @@
                     <a href="#introduction-pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
                   </li>
                   <li>
+                    <a href="#introduction-limits" class="toc-h2 toc-link" data-title="Limits">Limits</a>
+                  </li>
+                  <li>
                     <a href="#introduction-libraries-and-tools" class="toc-h2 toc-link" data-title="Libraries and Tools">Libraries and Tools</a>
                   </li>
               </ul>
@@ -568,6 +571,19 @@ mechanism is as follows:</p>
 <p><code>GET /v1/endpoint?offset=1000</code></p>
 
 <p>In the response the next_offset is suggested. You can pass the next offset in the <code>offset</code> GET paramater.</p>
+<h2 id='introduction-limits'>Limits</h2>
+<p>Since may 2022 api-limits are introduced. For endpoints that implement limits the following HTTP response headers are
+available.</p>
+
+<ul>
+<li><code>X-RateLimit-Minutely-Limit</code> contains the number of allowed requests per minute</li>
+<li><code>X-RateLimit-Minutely-Remaining</code> contains the number of remaining requests available within moving minutely interval</li>
+<li><code>X-RateLimit-Daily-Limit</code> contains the number of daily allowed requests</li>
+<li><code>X-RateLimit-Daily-Remaining</code> contains the number of daily remaining requests</li>
+<li><code>X-RateLimit-Daily-Reset</code> contains the UNIX timestamp when the daily limit is reset</li>
+</ul>
+
+<p>If the limit is reached, the server will respond with an <code>HTTP 429 - Too Many Requests</code> error. </p>
 <h2 id='introduction-libraries-and-tools'>Libraries and Tools</h2><h3 id='introduction-libraries-and-tools-official-libraries'>Official libraries</h3>
 <ul>
 <li><a href="https://packagist.org/packages/cyclesoftware/oauth2-twsc">PHP TWSC api</a></li>
@@ -1733,6 +1749,27 @@ invoices.</p>
 <td><code>:sales_order_id</code></td>
 <td><code>integer</code></td>
 <td>Sales order ID <i class="label label-info">required</i></td>
+</tr>
+</tbody></table>
+<h3 id='e-commerce-create-invoice-s-limits'>Limits</h3>
+<p>See <a href="#introduction-limits">API limits</a> for more information about API rate limiting.</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Limit</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>minutely-limit</code></td>
+<td><code>15</code></td>
+<td>15 requests per minute allowed</td>
+</tr>
+<tr>
+<td><code>daily-limit</code></td>
+<td><code>default</code></td>
+<td>The default daily limit applies</td>
 </tr>
 </tbody></table>
 

@@ -518,6 +518,15 @@ invoices.
 |-------------------|-----------|---------------------------------------------------------|
 | `:sales_order_id` | `integer` | Sales order ID <i class="label label-info">required</i> |
 
+### Limits ###
+See [API limits](#introduction-limits) for more information about API rate limiting.
+
+| Type             | Limit     | Description                     |
+|------------------|-----------|---------------------------------|
+| `minutely-limit` | `15`      | 15 requests per minute allowed  |
+| `daily-limit`    | `default` | The default daily limit applies |
+
+
 The following optional POST parameters can be used to specify specific behavior.
 
 | POST parameter          | Type      | Default                                           | Description                                                                                              |

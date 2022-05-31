@@ -110,6 +110,19 @@ mechanism is as follows:
 
 In the response the next_offset is suggested. You can pass the next offset in the `offset` GET paramater.
 
+## Limits ##
+
+Since may 2022 api-limits are introduced. For endpoints that implement limits the following HTTP response headers are
+available.
+
+- `X-RateLimit-Minutely-Limit` contains the number of allowed requests per minute
+- `X-RateLimit-Minutely-Remaining` contains the number of remaining requests available within moving minutely interval
+- `X-RateLimit-Daily-Limit` contains the number of daily allowed requests
+- `X-RateLimit-Daily-Remaining` contains the number of daily remaining requests
+- `X-RateLimit-Daily-Reset` contains the UNIX timestamp when the daily limit is reset
+
+If the limit is reached, the server will respond with an `HTTP 429 - Too Many Requests` error. 
+
 ## Libraries and Tools ##
 
 ### Official libraries ###

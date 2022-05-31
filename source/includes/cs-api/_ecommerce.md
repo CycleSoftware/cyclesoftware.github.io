@@ -27,7 +27,6 @@ The latest definition of the WSDL specification can be found at:
 	</div>
 </div>
 
-
 ## Properties ##
 
 | Property                                                                | Type      | Description                                                                                                                                                                                                                                                                                         |
@@ -89,7 +88,6 @@ The latest definition of the WSDL specification can be found at:
 | `Customer.customer_newsletter`                                          | `boolean` | Toggle newsletter option boolean `1` or `0`                                                                                                                                                                                                                                                         |
 | `Customer.customer_date_of_birth`                                       | `date`    | e.g. `1980-01-01`                                                                                                                                                                                                                                                                                   |
 | `Customer.customer_iban`                                                | `string`  | e.g. `NL69INGB0123456789`                                                                                                                                                                                                                                                                           |
-
 
 ## SaveOrder ##
 
@@ -502,6 +500,115 @@ Content-length: 2446
   </SOAP-ENV:Body>
 ```
 
+## Create invoice(s) ##
+
+Create invoice(s) for sales order. If the sales-order is split amongst several customers, the result will yield multiple
+invoices.
+
+- Scope(s): `e-commerce`
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/api/v1/sales/orders/:sales_order_id/create-invoices.json</h6>
+	</div>
+</div>
+
+| URL parameter     | Type      | Description                                             |
+|-------------------|-----------|---------------------------------------------------------|
+| `:sales_order_id` | `integer` | Sales order ID <i class="label label-info">required</i> |
+
+### Limits ###
+See [API limits](#introduction-limits) for more information about API rate limiting.
+
+| Type             | Limit     | Description                     |
+|------------------|-----------|---------------------------------|
+| `minutely-limit` | `15`      | 15 requests per minute allowed  |
+| `daily-limit`    | `default` | The default daily limit applies |
+
+
+The following optional POST parameters can be used to specify specific behavior.
+
+| POST parameter          | Type      | Default                                           | Description                                                                                              |
+|-------------------------|-----------|---------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| `employee_id`           | `integer` | The sales employee registered for the sales-order | Employee ID for registration                                                                             |
+| `order_status_id`       | `integer` | `null`                                            | New sales order status. See common endpoint                                                              |
+| `book`                  | `boolean` | `false`                                           | if `true`, the invoice will be booked in administration. Otherwise the invoice will be pro-forma         |
+| `customer_messages`     | `boolean` | `true`                                            | if `true` a phone- of e-mail message will be sent (according to account settings) to inform the customer |
+| `allow_resend_messages` | `integer` | `false`                                           | if `true` a phone- of e-mail message will be sent again if there were previous messages                  |
+
+### Properties ###
+
+| Property                                    | Type      | Nullable | Description                                      |
+|---------------------------------------------|-----------|----------|--------------------------------------------------|
+| `error`                                     | `boolean` | `false`  | `true` if an error occurred                      |
+| `error_message`                             | `null`    | `true`   | Error message if occurred                        |
+| `invoices`                                  | `array`   | `false`  | array of created invoices                        |
+| `invoices[].invoice_number`                 | `integer` | `false`  | Invoice number e.g. `20173383`                   |
+| `invoices[].customer_id`                    | `integer` | `false`  | Customer number of invoice e.g. `9011`           |
+| `invoices[].sent_messages.phone_message`    | `boolean` | `false`  | `true` if a phone message was sent               |
+| `invoices[].sent_messages.email_message`    | `boolean` | `false`  | `true` if an e-mail message was sent             |
+| `invoices[].documents`                      | `array`   | `false`  | Array of generated documents                     |
+| `invoices[].documents[].document_mime_type` | `string`  | `false`  | Mime type of the document e.g. `application/pdf` |
+| `invoices[].documents[].document_base64`    | `string`  | `false`  | Base64 encoded string of document                |
+
+> HTTP request
+
+```http
+POST /api/v1/sales/orders/1000/create-invoices.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip,deflate
+Accept: application/json
+Content-type: application/x-www-form-urlencoded; charset=utf-8
+Content-length: 299
+
+employee_id=1005&order_status_id=9&book=1&customer_messages=1&allow_resend_messages=1
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 900
+
+{
+    "error": false,
+    "error_message": null,
+    "invoices": [
+        {
+            "invoice_number": 20173382,
+            "customer_id": 6298,
+            "sent_messages": {
+                "phone_message": true,
+                "email_message": false
+            },
+            "documents": [
+                {
+                    "document_mime_type": "application/pdf",
+                    "document_base64": "VBERi0xLjcKJ..."
+                }
+            ]
+        },
+        {
+            "invoice_number": 20173383,
+            "customer_id": 9011,
+            "sent_messages": {
+                "phone_message": false,
+                "email_message": false
+            },
+            "documents": [
+                {
+                    "document_mime_type": "application/pdf",
+                    "document_base64": "VBERi0xLjcKJ..."
+                }
+            ]
+        }
+    ]
+}
+```
+
 ## AddOrderItems ##
 
 Add new order items to an existing order.
@@ -724,8 +831,6 @@ Content-length: 396
 </SOAP-ENV:Envelope>
 ```
 
-
-
 ## GetOrderStatus ##
 
 Get an invoice document based on the sales order id or order reference.
@@ -833,7 +938,6 @@ Content-length: 2595
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 ```
-
 
 ## CreateOrUpdateCustomer ##
 

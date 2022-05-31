@@ -62,7 +62,7 @@ Get a list of proforma sales transactions / invoices.
 GET /api/v1/invoices/unbooked.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 ```
@@ -174,7 +174,7 @@ Get modified orders within date interval (max 31 days)
 GET /api/v2/salesdata/orders.json?modified_start=2022-04-01&modified_end=2022-04-15 HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 ```
@@ -345,7 +345,7 @@ Get payments within date interval (max 31 days)
 GET /api/v1/salesdata/payments.json?start_date=2022-04-01&end_date=2022-04-15 HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 ```
@@ -463,7 +463,7 @@ information known at the insurance company. This information is based on created
 GET /api/v1/stock-objects/insurance/list.json??start_date=2022-04-01&end_date=2022-04-15 HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 ```

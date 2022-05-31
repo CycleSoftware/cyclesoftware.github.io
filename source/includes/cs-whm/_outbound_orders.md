@@ -31,7 +31,7 @@ Convert a POOL order to a regular order.
 POST /api/v1/warehouse/outbound/order/1013123/pool-to-regular.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 ```

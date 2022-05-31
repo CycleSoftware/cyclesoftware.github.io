@@ -51,7 +51,7 @@ Creates a supplier order. To actually dispatch and send the supplier order to th
 POST /api/v1/supplier/order/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 Content-length: 299
@@ -145,7 +145,7 @@ Content-length: 57
 GET /api/v1/supplier/order/2222.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 ```
@@ -210,7 +210,7 @@ Send a supplier order.
 POST /api/v1/supplier/order/2222.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 ```

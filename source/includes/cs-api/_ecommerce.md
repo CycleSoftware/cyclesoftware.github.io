@@ -214,7 +214,7 @@ catch (\SoapFault $e) {
 ```http
 POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
 Host: api.cyclesoftware.nl
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: text/xml
 Content-type: text/xml; charset=utf-8
 User-agent: SoapClient
@@ -414,7 +414,7 @@ catch (\SoapFault $e) {
 ```http
 POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
 Host: api.cyclesoftware.nl
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: text/xml
 Content-type: text/xml; charset=utf-8
 User-agent: SoapClient
@@ -558,7 +558,7 @@ The following optional POST parameters can be used to specify specific behavior.
 POST /api/v1/sales/orders/1000/create-invoices.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/x-www-form-urlencoded; charset=utf-8
 Content-length: 299
@@ -670,7 +670,7 @@ catch (\SoapFault $e) {
 ```http
 POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
 Host: api.cyclesoftware.nl
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: text/xml
 Content-type: text/xml; charset=utf-8
 User-agent: SoapClient
@@ -795,7 +795,7 @@ try {
 ```http
 POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
 Host: api.cyclesoftware.nl
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: text/xml
 Content-type: text/xml; charset=utf-8
 User-agent: SoapClient
@@ -865,7 +865,7 @@ try {
 ```http
 POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
 Host: api.cyclesoftware.nl
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: text/xml
 Content-type: text/xml; charset=utf-8
 User-agent: SoapClient
@@ -997,7 +997,7 @@ try {
 ```http
 POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
 Host: api.cyclesoftware.nl
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: text/xml
 Content-type: text/xml; charset=utf-8
 User-agent: SoapClient

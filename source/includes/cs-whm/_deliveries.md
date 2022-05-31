@@ -70,7 +70,7 @@ Get a list of goods to be delivered.
 GET /api/v1/warehouse/inbound/backlog.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 ```

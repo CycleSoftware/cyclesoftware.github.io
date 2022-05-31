@@ -41,7 +41,7 @@ Get a set of enums with identifiers and descriptions used in various APIs
 GET /api/v1/common/enum.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 ```
@@ -125,7 +125,7 @@ Get a list of employees associated with the account
 GET /api/v1/common/employees.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 ```
@@ -230,7 +230,7 @@ Get a list of suppliers
 GET /api/v1/common/suppliers.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
 ```

@@ -36,7 +36,7 @@ In every response you'll find a path to the next resultset. In the example the n
 GET /app/api/v3/articledata/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip,deflate
+Accept-encoding: gzip
 Accept: application/json
 ```
 

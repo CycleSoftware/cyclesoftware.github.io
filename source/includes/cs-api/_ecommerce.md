@@ -73,6 +73,7 @@ The latest definition of the WSDL specification can be found at:
 | `Customer.customer_cs_customer_id`                                      | `string`  | e.g. `235238848`                                                                                                                                                                                                                                                                                    |
 | `Customer.customer_reference`                                           | `string`  | Should be an unique reference to the customer to prevent re-use / overwrites of existing customers                                                                                                                                                                                                  |
 | `Customer.customer_name_prefix`                                         | `string`  | e.g. `Dhr.`                                                                                                                                                                                                                                                                                         |
+| `Customer.customer_first_name`                                          | `string`  | e.g. `Adri`                                                                                                                                                                                                                                                                                         |
 | `Customer.customer_name_initials`                                       | `string`  | e.g. `A`                                                                                                                                                                                                                                                                                            |
 | `Customer.customer_middle_name`                                         | `string`  | e.g. `Van`                                                                                                                                                                                                                                                                                          |
 | `Customer.customer_last_name`                                           | `string`  | e.g. `Name 235238848`                                                                                                                                                                                                                                                                               |
@@ -131,6 +132,7 @@ try {
                         'customer_reference' => 'unique-reference-customer',
                         'customer_name_prefix' => 'Dhr.',
                         'customer_name_initials' => 'J',
+                        'customer_first_name' => 'Jan',
                         'customer_middle_name' => 'van',
                         'customer_last_name' => 'Dijk',
                         'customer_postal_code' => '1000AA',
@@ -968,6 +970,7 @@ try {
             'customer_reference' => 'unique-reference-customer',
             'customer_name_prefix' => 'Dhr.',
             'customer_name_initials' => 'A',
+            'customer_first_name' => 'Adri',
             'customer_middle_name' => 'Van',
             'customer_last_name' => 'Name 235238848',
             'customer_postal_code' => '8448PE',
@@ -1020,6 +1023,7 @@ Content-length: 1648
         <customer_cs_customer_id>235238848</customer_cs_customer_id>
         <customer_reference>unique-reference-customer</customer_reference>
         <customer_name_prefix>Dhr.</customer_name_prefix>
+        <customer_name_first_name>Adri</customer_first_name>
         <customer_name_initials>A</customer_name_initials>
         <customer_middle_name>Van</customer_middle_name>
         <customer_last_name>Name 235238848</customer_last_name>
@@ -1056,6 +1060,7 @@ Content-length: 1448
         <customer_cs_customer_id>235238848</customer_cs_customer_id>
         <customer_reference>REF46</customer_reference>
         <customer_name_prefix>Dhr.</customer_name_prefix>
+        <customer_name_first_name>Adri</customer_name_first_name>
         <customer_name_initials>A</customer_name_initials>
         <customer_middle_name>Van</customer_middle_name>
         <customer_last_name>Name 235238848</customer_last_name>

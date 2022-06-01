@@ -6,7 +6,7 @@ language_tabs:
   - php: PHP
 
 toc_footers:
-  - <a href="https://docs.cyclesoftware.nl/supplier.html" target="_blank">Suppliers docs</a>
+  - <a href="https://docs.cyclesoftware.nl/supplier.html" target="_blank">Suppliers Docs</a>
   - <a href="https://cyclesoftware.nl/" target="_blank">CycleSoftware</a>
   - <a href="https://github.com/CycleSoftware/cyclesoftware.github.io">Contribute to the docs</a>
 

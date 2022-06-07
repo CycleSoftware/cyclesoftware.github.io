@@ -105,6 +105,7 @@ Every JSON payload has the same structure. The payload object is different per e
 | `customer.house_number_postfix`                   | `string`   | `false`  |     | Housenumber postfix e.g. `B`                                          |
 | `customer.attn`                                   | `string`   | `false`  |     | e.g. ``                                                               |
 | `customer.title`                                  | `string`   | `false`  |     | Title of customer e.g. `Dhr./Mevr. `                                  |
+| `customer.first_name`                             | `string`   | `false`  |     | Initials e.g. `Adri`                                                  |
 | `customer.initials`                               | `string`   | `false`  |     | Initials e.g. `C.G.`                                                  |
 | `customer.insertion`                              | `string`   | `false`  |     | Name insertion e.g. `van`                                             |
 | `customer.name`                                   | `string`   | `false`  |     | (Sur)name e.g. `Wijk`                                                 |
@@ -225,6 +226,7 @@ Every JSON payload has the same structure. The payload object is different per e
       "house_number_postfix": "",
       "attn": "",
       "title": "Dhr./Mevr. ",
+      "first_name": "Carlo",
       "initials": "C.G.",
       "insertion": "van",
       "name": "Wijk",
@@ -366,6 +368,7 @@ Every JSON payload has the same structure. The payload object is different per e
         "house_number_postfix": "B",
         "attn": "",
         "title": "",
+        "first_name": "Jan",
         "initials": "",
         "insertion": "Van",
         "name": "Wijk",

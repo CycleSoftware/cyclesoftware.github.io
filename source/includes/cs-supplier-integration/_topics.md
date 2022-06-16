@@ -4,6 +4,21 @@ As supplier you'll share article information with CycleSoftware in order to make
 
 The supplier will provide a webservice or FTP location with a fixed file-format with up-to-date article information. The data will be indexed twice every week.
 
+## Import templates ##
+
+If you are unable to provide the article data trough a webservice or ftp it is possible to send them by e-mail to us on data@cyclesoftware.nl this will uassually be imported within 10 days.
+
+You can use or example import template witch you can download in your language.
+
+[Download in English](https://s01.cyclesoftware.nl/app/supplier/import/template/download/en/)
+
+[Download in Dutch](https://s01.cyclesoftware.nl/app/supplier/import/template/download/nl/)
+
+[Download in French](https://s01.cyclesoftware.nl/app/supplier/import/template/download/fr/)
+
+[Download in German](https://s01.cyclesoftware.nl/app/supplier/import/template/download/de/)
+
+We can import it like this for a maximum of 2 times a year, if you need it to be more frequent please contact us for the options.
 ## Parts & Accessories ##
 For parts & accessories the following attributes are suggested to be available in the file or webservice:
 

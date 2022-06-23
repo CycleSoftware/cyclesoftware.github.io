@@ -30,6 +30,18 @@ Get list of service items for workshop.
 | `modified_end`   | `date`    | end date e.g. 2020-01-01                  |
 | `offset`         | `integer` | offset (omit or `pagination.next_offset`) |
 
+### Limits ###
+
+See [API limits](#introduction-limits) for more information about API rate limiting.
+
+| Type             | Limit     | Description                        |
+|------------------|-----------|------------------------------------|
+| `minutely-limit` | `default` | The default minutely limit applies |
+| `daily-limit`    | `default` | The default daily limit applies    |
+
+
+### Properties ###
+
 | Property                               | Type       | Nullable | Description                                                                           |
 |----------------------------------------|------------|----------|---------------------------------------------------------------------------------------|
 | `error`                                | `boolean`  | `false`  | e.g. `false`                                                                          |

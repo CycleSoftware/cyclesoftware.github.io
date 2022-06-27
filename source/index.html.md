@@ -20,6 +20,7 @@ includes:
   - cs-api/_salesdata
   - cs-api/_suppliers
   - cs-api/_rental
+  - cs-api/_workshopdata
   - cs-api/_webhooks
 
 search: true

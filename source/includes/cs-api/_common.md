@@ -33,6 +33,7 @@ Get a set of enums with identifiers and descriptions used in various APIs
 | `workshop_order_status`   | Workshop order status descriptions                        |
 | `customer_types`          | Customer type descriptions                                |
 | `transaction_item_types`  | Transaction item type descriptions (item_type / row_type) |
+| `service_item_status`     | Status descriptions for object service items              |
 
 
 > HTTP Request

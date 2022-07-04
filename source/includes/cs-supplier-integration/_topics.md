@@ -46,7 +46,7 @@ Attributes marked with * are mandatory
 For bicycles the following attributes are suggested to be available in the file or webservice:
 
 - Article number *
-- EAN / Barcode *
+- EAN / Barcode
 - Brand name *
 - Model name *
 - Short description (POS) *

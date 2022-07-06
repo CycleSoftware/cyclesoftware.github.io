@@ -50,6 +50,8 @@ Every JSON payload has the same structure. The payload object is different per e
 | `payload.outbound_order_type_id`                        | `integer`  | `false`  | Type of order e.g. `1`                                                  |
 | `payload.outbound_order_status_id`                      | `integer`  | `false`  | Status of order e.g. `1`                                                |
 | `payload.dealer_id`                                     | `integer`  | `false`  | ID of dealer e.g. `4807`                                                |
+| `payload.account_id`                                    | `integer`  | `false`  | ID of account of the order e.g. `4807`                                  |
+| `payload.store_id`                                      | `integer`  | `false`  | ID of store of the order e.g. `1`                                       |
 | `payload.created_at`                                    | `datetime` | `false`  | Created datetime e.g. `2022-07-05 11:07:48`                             |
 | `payload.datetime_preferred_delivery`                   | `datetime` | `true`   | e.g. `2022-07-05 11:07:48` or `null`                                    |
 | `payload.sales_order_id`                                | `integer`  | `true`   | Sales order ID in POS                                                   |
@@ -83,6 +85,8 @@ Every JSON payload has the same structure. The payload object is different per e
     "outbound_order_type_id": 1,
     "outbound_order_status_id": 1,
     "dealer_id": 4807,
+    "account_id": 4807,
+    "store_id": 1,
     "created_at": "2022-07-05 11:07:48",
     "datetime_preferred_delivery": null,
     "sales_order_id": null,

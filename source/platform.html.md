@@ -1,9 +1,8 @@
 ---
-title: CycleSoftware Supplier Integration Documentation
-
+title: CycleSoftware Stock platform API documentation
 
 language_tabs:
-- code: Examples
+- code: Code
 
 toc_footers:
 - <a href="/" target="_blank">Main documentation</a>
@@ -11,8 +10,10 @@ toc_footers:
 - <a href="https://github.com/CycleSoftware/cyclesoftware.github.io">Contributing to the Docs</a>
 
 includes:
-- cs-supplier-integration/introduction
-- cs-supplier-integration/topics
+- cs-api/introduction
+- cs-api/authentication
+- cs-platform/stock_locator
+- cs-platform/leads
 
 search: true
 ---

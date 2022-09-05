@@ -146,7 +146,7 @@ Content-type: application/json; charset=utf-8
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 998
+Content-length: 1357
 
 {
   "error": false,
@@ -207,6 +207,12 @@ Content-length: 998
 	</div>
 </div>
 
+
+| URI parameter | Type   | Description                                                      |
+|---------------|--------|------------------------------------------------------------------|
+| `uuid`        | `uuid` | The UUID of the lead e.g. `0c6b40a4-a217-11e8-92bb-005056a46320` |
+
+
 > HTTP request
 
 ```http
@@ -225,7 +231,7 @@ Content-length: 65
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 989
+Content-length: 1357
 
 {
   "error": false,
@@ -277,7 +283,6 @@ Content-length: 989
 }
 ```
 
-
 ## Cancel lead ##
 
 <div class="api-endpoint">
@@ -286,6 +291,12 @@ Content-length: 989
 		<h6>/api/v1/leads/:uuid/cancel.json</h6>
 	</div>
 </div>
+
+
+| URI parameter | Type   | Description                                                      |
+|---------------|--------|------------------------------------------------------------------|
+| `uuid`        | `uuid` | The UUID of the lead e.g. `0c6b40a4-a217-11e8-92bb-005056a46320` |
+
 
 > HTTP request
 
@@ -296,7 +307,6 @@ Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8
-Content-length: 65
 
 ```
 
@@ -305,7 +315,7 @@ Content-length: 65
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 989
+Content-length: 45
 
 {
   "error": false,

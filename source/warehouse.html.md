@@ -1,5 +1,5 @@
 ---
-title: CycleSoftware Warehouse API Documentation
+title: CycleSoftware Warehouse API documentation
 
 language_tabs:
 - code: Code

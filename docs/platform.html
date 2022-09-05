@@ -1,0 +1,1361 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>CycleSoftware Stock platform API documentation</title>
+
+    <link rel="icon" href="images/favicon-32x32-fe8fe4b0.png" sizes="32x32" />
+    <link rel="icon" href="images/favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="images/favicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="images/favicon-270x270.png" />
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nn {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nl {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ni {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .bp {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vg {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vi {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .w {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen-b22ce35b.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-c5541673.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8KCYZ2CYMS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8KCYZ2CYMS', {
+        'content_group' : 'WooCommerce REST API Docs',
+      });
+    </script>
+  </head>
+
+  <body class="platform" data-languages="[&quot;code&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <a href="#" class="logo">
+        <img src="images/logo-transparant-e28903f5.png" alt="" />
+      </a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="code">Code</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#introduction-api-endpoint" class="toc-h2 toc-link" data-title="API endpoint">API endpoint</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-requirements" class="toc-h2 toc-link" data-title="Requirements">Requirements</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-request-response-format" class="toc-h2 toc-link" data-title="Request/Response Format">Request/Response Format</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-errors" class="toc-h2 toc-link" data-title="Errors">Errors</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-parameters" class="toc-h2 toc-link" data-title="Parameters">Parameters</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-limits" class="toc-h2 toc-link" data-title="Limits">Limits</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-libraries-and-tools" class="toc-h2 toc-link" data-title="Libraries and Tools">Libraries and Tools</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#authentication-http-basic-authentication" class="toc-h2 toc-link" data-title="HTTP Basic Authentication">HTTP Basic Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#authentication-soap-wsdl-authentication" class="toc-h2 toc-link" data-title="SOAP/WSDL Authentication">SOAP/WSDL Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#authentication-oauth2-authentication" class="toc-h2 toc-link" data-title="OAUTH2 Authentication">OAUTH2 Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#authentication-scopes" class="toc-h2 toc-link" data-title="Scopes">Scopes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#stock-locator" class="toc-h1 toc-link" data-title="Stock locator">Stock locator</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#stock-locator-properties" class="toc-h2 toc-link" data-title="Properties">Properties</a>
+                  </li>
+                  <li>
+                    <a href="#stock-locator-stores" class="toc-h2 toc-link" data-title="Stores">Stores</a>
+                  </li>
+                  <li>
+                    <a href="#stock-locator-stock-in-store-locator" class="toc-h2 toc-link" data-title="Stock in store locator">Stock in store locator</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#leads" class="toc-h1 toc-link" data-title="Leads">Leads</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#leads-properties" class="toc-h2 toc-link" data-title="Properties">Properties</a>
+                  </li>
+                  <li>
+                    <a href="#leads-sales-lead-types" class="toc-h2 toc-link" data-title="Sales lead types">Sales lead types</a>
+                  </li>
+                  <li>
+                    <a href="#leads-sales-lead-status" class="toc-h2 toc-link" data-title="Sales lead status">Sales lead status</a>
+                  </li>
+                  <li>
+                    <a href="#leads-create-lead" class="toc-h2 toc-link" data-title="Create lead">Create lead</a>
+                  </li>
+                  <li>
+                    <a href="#leads-get-lead" class="toc-h2 toc-link" data-title="Get lead">Get lead</a>
+                  </li>
+                  <li>
+                    <a href="#leads-cancel-lead" class="toc-h2 toc-link" data-title="Cancel lead">Cancel lead</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href="/" target="_blank">Main documentation</a></li>
+            <li><a href="https://cyclesoftware.nl/" target="_blank">CycleSoftware</a></li>
+            <li><a href="https://github.com/CycleSoftware/cyclesoftware.github.io">Contributing to the Docs</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the CycleSoftware API documentation</p>
+
+<p><strong>Documentation overview</strong></p>
+
+<ul>
+<li><a href="./">CycleSoftware API docs</a></li>
+<li><a href="warehouse.html">Warehouse API docs</a></li>
+<li><a href="supplier.html">Supplier integration API docs</a></li>
+<li><a href="platform.html">Stock platform API docs</a></li>
+<li><a href="https://github.com/CycleSoftware/oauth2-twsc/">TWSC API docs</a></li>
+</ul>
+<h2 id='introduction-api-endpoint'>API endpoint</h2>
+<p>Use the following domain: <code>https://api.cyclesoftware.nl/</code> unless otherwise specified.</p>
+<h2 id='introduction-requirements'>Requirements</h2>
+<p>To use the APIs you&#39;ll need API credentials. The API credentials are provided by CS or available in your account.</p>
+
+<ul>
+<li>You should access the API over HTTPS</li>
+<li>Where possible use Accept-encoding: gzip. For data api&#39;s this might be required.</li>
+</ul>
+
+<aside class="notice">
+  You can contact <a href="mailto:support@cyclesoftware.nl">support</a> for more information about the API credentials
+</aside>
+<h2 id='introduction-request-response-format'>Request/Response Format</h2>
+<p>The APIs consist of SOAP/WSDL webservices and JSON endpoints.</p>
+
+<p>The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes.
+Successful requests will return a <code>200 OK</code> HTTP status.</p>
+
+<p>Some general information about responses:</p>
+
+<ul>
+<li>Datetimes are returned in format (unless specified otherwise): <code>YYYY-MM-DD HH:MM:SS</code></li>
+<li>Dates are returned in format (unless specified otherwise): <code>YYYY-MM-DD</code></li>
+<li>Amounts could be specified in cents (which will be clear by the fieldname) or with decimal-strings</li>
+</ul>
+<h2 id='introduction-errors'>Errors</h2>
+<p>Occasionally you might encounter errors when accessing the REST API. There are four possible types:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Error Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>400 Bad Request</code></td>
+<td>Invalid request, e.g. using an unsupported HTTP method, or GET variable</td>
+</tr>
+<tr>
+<td><code>401 Unauthorized</code></td>
+<td>Authentication or permission error, e.g. incorrect credentials</td>
+</tr>
+<tr>
+<td><code>403 Forbidden</code></td>
+<td>Authentication or permission error</td>
+</tr>
+<tr>
+<td><code>404 Not Found</code></td>
+<td>Requests to resources that don&#39;t exist or are missing</td>
+</tr>
+<tr>
+<td><code>500 Internal Server Error</code></td>
+<td>Server error</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>JSON error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unauthorized"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>XML error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="nt">&lt;result&gt;</span>
+  <span class="nt">&lt;error&gt;</span>1<span class="nt">&lt;/error&gt;</span>
+  <span class="nt">&lt;error_message&gt;</span>Unauthorized<span class="nt">&lt;/error_message&gt;</span>
+<span class="nt">&lt;/result&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>SOAP error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;SOAP-ENV:Fault&gt;</span>
+      <span class="nt">&lt;faultcode&gt;</span>400<span class="nt">&lt;/faultcode&gt;</span>
+      <span class="nt">&lt;faultstring&gt;</span>The problem description<span class="nt">&lt;/faultstring&gt;</span>
+    <span class="nt">&lt;/SOAP-ENV:Fault&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div>
+<p>Errors return both an appropriate HTTP status code and response object which contains a <code>error</code>, and <code>error_message</code></p>
+<h2 id='introduction-parameters'>Parameters</h2>
+<p>Almost all endpoints accept optional parameters which can be passed as a HTTP query string parameter,
+e.g. <code>GET /v1/endpoint?status=completed</code>. All parameters are documented along each endpoint.</p>
+<h2 id='introduction-pagination'>Pagination</h2>
+<p>For certain endpoints pagination is implemented. The mechanism differs per endpoint. But the default pagination
+mechanism is as follows:</p>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET /v1/endpoint?offset=1000</code></p>
+
+<p>In the response the next_offset is suggested. You can pass the next offset in the <code>offset</code> GET paramater.</p>
+<h2 id='introduction-limits'>Limits</h2>
+<p>Since may 2022 api-limits are introduced. For endpoints that implement limits the following HTTP response headers are
+available.</p>
+
+<ul>
+<li><code>X-RateLimit-Minutely-Limit</code> contains the number of allowed requests per minute</li>
+<li><code>X-RateLimit-Minutely-Remaining</code> contains the number of remaining requests available within moving minutely interval</li>
+<li><code>X-RateLimit-Daily-Limit</code> contains the number of daily allowed requests</li>
+<li><code>X-RateLimit-Daily-Remaining</code> contains the number of daily remaining requests</li>
+<li><code>X-RateLimit-Daily-Reset</code> contains the UNIX timestamp when the daily limit is reset</li>
+</ul>
+
+<p>If the limit is reached, the server will respond with an <code>HTTP 429 - Too Many Requests</code> error. </p>
+<h2 id='introduction-libraries-and-tools'>Libraries and Tools</h2><h3 id='introduction-libraries-and-tools-official-libraries'>Official libraries</h3>
+<ul>
+<li><a href="https://packagist.org/packages/cyclesoftware/oauth2-twsc">PHP TWSC api</a></li>
+</ul>
+<h1 id='authentication'>Authentication</h1>
+<p>CycleSoftware uses different authentication mechanisms. </p>
+<h2 id='authentication-http-basic-authentication'>HTTP Basic Authentication</h2>
+<p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided using the Basic HTTP authentication http header. The api-key is usage is documented per service.</p>
+<h2 id='authentication-soap-wsdl-authentication'>SOAP/WSDL Authentication</h2>
+<p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided within the <code>Authentication</code> element as documented per request. For <code>dealer_id</code> the actual store id within the account or api-key can be provided.</p>
+<h2 id='authentication-oauth2-authentication'>OAUTH2 Authentication</h2>
+<p>TWSC API is available throught Oauth2 authentication</p>
+<h2 id='authentication-scopes'>Scopes</h2>
+<p>Credentials are linked to a set of scopes. Every endpoint is also linked to a set of scopes. If the required scope is not available for the credentials the API will provide an HTTP Unauthorized error.</p>
+<h1 id='stock-locator'>Stock locator</h1>
+<p>Locate stock based on barcodes / article ids in associated accounts</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>platform</code></li>
+</ul>
+<h2 id='stock-locator-properties'>Properties</h2>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error_message</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Error message if occured</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if error occured</td>
+</tr>
+<tr>
+<td><code>stores</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>Array of store objects</td>
+</tr>
+<tr>
+<td><code>stores[].store_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Account ID in CS e.g.  <code>5185-1</code></td>
+</tr>
+<tr>
+<td><code>stores[].store_gln</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>GLN code <code>8718288145482</code></td>
+</tr>
+<tr>
+<td><code>stores[].store_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Company name e.g. <code>CS-Unit test</code></td>
+</tr>
+<tr>
+<td><code>stores[].store_address</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Company street e.g. <code>Kievitsven 22</code></td>
+</tr>
+<tr>
+<td><code>stores[].store_postal_code</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Company postal code e.g. <code>5249JJ</code></td>
+</tr>
+<tr>
+<td><code>stores[].store_phone_number</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Company phone number</td>
+</tr>
+<tr>
+<td><code>stores[].store_country_code</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Company country code e.g. <code>NL</code></td>
+</tr>
+<tr>
+<td><code>stores[].store_email</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>email5185@example.nl</code></td>
+</tr>
+<tr>
+<td><code>stores[].store_coordinates</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array with <code>[latitude, longitude]</code></td>
+</tr>
+<tr>
+<td><code>stock</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>List of stocked objects</td>
+</tr>
+<tr>
+<td><code>stock[].store_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Account ID in CS e.g. <code>1-1</code></td>
+</tr>
+<tr>
+<td><code>stock[].object_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>ID of object in account <code>18696</code></td>
+</tr>
+<tr>
+<td><code>stock[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Barcode of article <code>8717231204726</code></td>
+</tr>
+<tr>
+<td><code>stock[].article_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Article number e.g. <code>30015</code></td>
+</tr>
+<tr>
+<td><code>stock[].brand_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Brand name <code>Gazelle</code></td>
+</tr>
+<tr>
+<td><code>stock[].is_demo</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if marked as demo bike</td>
+</tr>
+</tbody></table>
+<h2 id='stock-locator-stores'>Stores</h2>
+<p>Get a list of stores</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/stock-in-store-locator/stores.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/stock-in-store-locator/stores.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">998</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_gln"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8718288145482"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CycleSoftware"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raadhuisplein 1c"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5388GM"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0733030050"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email1@example.nl"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mf">51.701163</span><span class="p">,</span><span class="w">
+                </span><span class="mf">5.5619904</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5185-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_gln"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8718288145482"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS-Unit test"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kievitsven 22"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5249JJ"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email5185@example.nl"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mf">51.7261667</span><span class="p">,</span><span class="w">
+                </span><span class="mf">5.3978953</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='stock-locator-stock-in-store-locator'>Stock in store locator</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/stock-in-store-locator/stock.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/stock-in-store-locator/stock.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">65</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8717144186799"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8717231204726"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">989</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_gln"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8718288145482"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CycleSoftware"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raadhuisplein 1c"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5388GM"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0733030050"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email1@example.nl"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mf">51.701163</span><span class="p">,</span><span class="w">
+                </span><span class="mf">5.5619904</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5185-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_gln"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8718288145482"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS-Unit test"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kievitsven 22"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5249JJ"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email5185@example.nl"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mf">51.7261667</span><span class="p">,</span><span class="w">
+                </span><span class="mf">5.3978953</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5185-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">144922</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8717144186799"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"03505002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sparta"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18695</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8717231204726"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30015"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gazelle"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18696</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8717231204726"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30015"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gazelle"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='leads'>Leads</h1>
+<p>Create, read and cancel sales leads</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>platform</code></li>
+</ul>
+<h2 id='leads-properties'>Properties</h2>
+<table><thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Example value</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td>true if an error occurred</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>?string</code></td>
+<td>Empty if no error</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sales_lead.uuid</code></td>
+<td><code>string</code></td>
+<td>Unique identifier of the lead (null on creation)</td>
+<td>0c6b40a4-a217-11e8-92bb-005056a46320</td>
+</tr>
+<tr>
+<td><code>sales_lead.store_id</code></td>
+<td><code>string</code></td>
+<td>The store identification format of [account]-[store]</td>
+<td>43831</td>
+</tr>
+<tr>
+<td><code>sales_lead.type</code></td>
+<td><code>string</code></td>
+<td>Type of the lead (see type list)</td>
+<td>information</td>
+</tr>
+<tr>
+<td><code>sales_lead.status</code></td>
+<td><code>string</code></td>
+<td>Status of the lead (see status list)</td>
+<td>open</td>
+</tr>
+<tr>
+<td><code>sales_lead.title</code></td>
+<td><code>string</code></td>
+<td>Short title of lead description</td>
+<td>Kieskeurig: proefrit Batavus Crescendo</td>
+</tr>
+<tr>
+<td><code>sales_lead.message</code></td>
+<td><code>string</code></td>
+<td>Message to the dealer about the lead</td>
+<td>Een potientiele klant wil een proefrit maken</td>
+</tr>
+<tr>
+<td><code>sales_lead.costs_ex_vat_cents</code></td>
+<td><code>integer</code></td>
+<td>The costs that the platform charges to the dealer on acceptance of the lead</td>
+<td>1500</td>
+</tr>
+<tr>
+<td><code>sales_lead.options.test_ride_requested</code></td>
+<td><code>boolean</code></td>
+<td>provide true if a test-ride is requested</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>sales_lead.options.phone_call_requested</code></td>
+<td><code>boolean</code></td>
+<td>provide true if the dealer should call the customer</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>sales_lead.options.finance_information_requested</code></td>
+<td><code>boolean</code></td>
+<td>provide true if the dealer should provide financial information</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>sales_lead.options.insurance_information_requested</code></td>
+<td><code>boolean</code></td>
+<td>provide true if the dealer should provide insurance information</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>sales_lead.object.description</code></td>
+<td><code>string</code></td>
+<td>Description of the object</td>
+<td>Batavus Crescendo</td>
+</tr>
+<tr>
+<td><code>sales_lead.object.object_id</code></td>
+<td><code>integer</code></td>
+<td>Object id in stock dealer (can be retrieved in stock locator api)</td>
+<td>12212</td>
+</tr>
+<tr>
+<td><code>sales_lead.object.article_number</code></td>
+<td><code>string</code></td>
+<td>Article number of the object</td>
+<td>ART1</td>
+</tr>
+<tr>
+<td><code>sales_lead.object.barcode</code></td>
+<td><code>string</code></td>
+<td>EAN barcode of the object</td>
+<td>877474749349</td>
+</tr>
+<tr>
+<td><code>sales_lead.exchange_object.exchange_description</code></td>
+<td><code>string</code></td>
+<td>Description of the exchange object</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sales_lead.exchange_object.exchange_remarks</code></td>
+<td><code>string</code></td>
+<td>Remarks about the exchange object</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.customer_address_id</code></td>
+<td><code>?integer</code></td>
+<td>ID of the customer address (null on creation)</td>
+<td>91953</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.address_type</code></td>
+<td><code>string</code></td>
+<td>lead  null on creation</td>
+<td>lead</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.customer_id</code></td>
+<td><code>integer</code></td>
+<td>Customer ID if address is linked to a customer null on creation)</td>
+<td>235240102</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.is_business_address</code></td>
+<td><code>boolean</code></td>
+<td>true if address is for a company</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.company_name</code></td>
+<td><code>string</code></td>
+<td>The company name</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.name</code></td>
+<td><code>string</code></td>
+<td>Name of the customer</td>
+<td>Name 91953</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.street</code></td>
+<td><code>string</code></td>
+<td>Street of the address</td>
+<td>Slangenburg</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.house_number</code></td>
+<td><code>string</code></td>
+<td>Housenumber</td>
+<td>314</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.house_number_postfix</code></td>
+<td><code>string</code></td>
+<td>Housenumber suffix</td>
+<td>B</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.postal_code</code></td>
+<td><code>string</code></td>
+<td>Postalcode</td>
+<td>7423ZR</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.city</code></td>
+<td><code>string</code></td>
+<td>City</td>
+<td>Deventer</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.country_code</code></td>
+<td><code>string</code></td>
+<td>Country code (ISO 3166)</td>
+<td>NL</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.phone_number</code></td>
+<td><code>string</code></td>
+<td>Phonenumber</td>
+<td>06 38668303</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.email</code></td>
+<td><code>string</code></td>
+<td>E-mail address</td>
+<td>email91953@example.nl</td>
+</tr>
+<tr>
+<td><code>sales_lead.customer.notes</code></td>
+<td><code>string</code></td>
+<td>Extra information about the customer address</td>
+<td></td>
+</tr>
+<tr>
+<td><code>sales_lead.created_at</code></td>
+<td><code>datetime</code></td>
+<td>When the lead was created (null on creation)</td>
+<td>2020-04-14T06:33:26+02:00</td>
+</tr>
+<tr>
+<td><code>sales_lead.modified_at</code></td>
+<td><code>datetime</code></td>
+<td>When the lead was last modified (null on creation)</td>
+<td>2020-04-14T06:33:26+02:00</td>
+</tr>
+</tbody></table>
+<h2 id='leads-sales-lead-types'>Sales lead types</h2>
+<p>Possible values for <code>sales_lead.type</code></p>
+
+<table><thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>information</code></td>
+<td>The customer would like to receive information</td>
+</tr>
+<tr>
+<td><code>sales_offer</code></td>
+<td>The customer would like to buy the object</td>
+</tr>
+<tr>
+<td><code>test_ride</code></td>
+<td>The customer would like to make a test-ride</td>
+</tr>
+<tr>
+<td><code>contact_request</code></td>
+<td>The customer would like to be contacted</td>
+</tr>
+<tr>
+<td><code>exchange</code></td>
+<td>The customer would like to exchange an object</td>
+</tr>
+<tr>
+<td><code>complaint</code></td>
+<td>The customer has a complaint</td>
+</tr>
+<tr>
+<td><code>other</code></td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h2 id='leads-sales-lead-status'>Sales lead status</h2>
+<p>Possible values for <code>sales_lead.status</code></p>
+
+<table><thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Costs apply</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>open</code></td>
+<td>The dealer did not take any action on the lead</td>
+<td>NO</td>
+</tr>
+<tr>
+<td><code>noticed</code></td>
+<td>The dealer has noticed the lead but did not accept or decline it</td>
+<td>NO</td>
+</tr>
+<tr>
+<td><code>accepted</code></td>
+<td>The dealer has accepted the lead</td>
+<td>YES</td>
+</tr>
+<tr>
+<td><code>declined</code></td>
+<td>The dealer has declined the lead</td>
+<td>NO</td>
+</tr>
+<tr>
+<td><code>succeeded</code></td>
+<td>The dealer has successfully converted the lead</td>
+<td>YES</td>
+</tr>
+<tr>
+<td><code>failed</code></td>
+<td>The dealer has not coverted the lead</td>
+<td>YES</td>
+</tr>
+<tr>
+<td><code>cancelled</code></td>
+<td>The lead was cancelled</td>
+<td>NO</td>
+</tr>
+</tbody></table>
+<h2 id='leads-create-lead'>Create lead</h2>
+<p>Get a list of stores</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/leads/create.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/leads/create.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_ride"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kieskeurig: proefrit Batavus Crescendo"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NaamKlant wil een proefrit maken"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"costs_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"test_ride_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"phone_call_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"finance_information_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"insurance_information_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus Crescendo"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11212</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"article_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"877474749349"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"exchange_object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"exchange_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"exchange_remarks"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"customer_address_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lead"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_business_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NaamKlant"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hoofdstraat"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5238HL"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Berlicum"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0612345678"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"voorbeeld@host.nl"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bellen tussen 12.00-17.00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1357</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sales_lead"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0c6b40a4-a217-11e8-92bb-005056a46320"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"information"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kieskeurig: proefrit"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Een potientiele klant wil een proefrit maken"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"costs_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"test_ride_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"phone_call_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"finance_information_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"insurance_information_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus Crescendo"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12212</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"article_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"877474749349"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"exchange_object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"exchange_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"exchange_remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"customer_address_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">91953</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery_address"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235240102</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_business_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name 91953"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slangenburg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"314"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7423ZR"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deventer"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06 38668303"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email91953@example.nl"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-14T06:33:26+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-14T06:33:26+02:00"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='leads-get-lead'>Get lead</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/leads/:uuid.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>URI parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>uuid</code></td>
+<td><code>uuid</code></td>
+<td>The UUID of the lead e.g. <code>0c6b40a4-a217-11e8-92bb-005056a46320</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/leads/0c6b40a4-a217-11e8-92bb-005056a46320.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">65</span>
+
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1357</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sales_lead"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0c6b40a4-a217-11e8-92bb-005056a46320"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"information"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kieskeurig: proefrit"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Een potientiele klant wil een proefrit maken"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"costs_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"test_ride_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"phone_call_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"finance_information_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"insurance_information_requested"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus Crescendo"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12212</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"article_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ART1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"877474749349"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"exchange_object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"exchange_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"exchange_remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"customer_address_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">91953</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"address_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery_address"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235240102</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_business_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name 91953"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Slangenburg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"314"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7423ZR"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deventer"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06 38668303"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email91953@example.nl"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-14T06:33:26+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-14T06:33:26+02:00"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='leads-cancel-lead'>Cancel lead</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/leads/:uuid/cancel.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>URI parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>uuid</code></td>
+<td><code>uuid</code></td>
+<td>The UUID of the lead e.g. <code>0c6b40a4-a217-11e8-92bb-005056a46320</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/leads/0c6b40a4-a217-11e8-92bb-005056a46320/cancel.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="code">Code</a>
+          </div>
+      </div>
+	</div>
+
+
+  </body>
+</html>

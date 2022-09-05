@@ -2,11 +2,13 @@
 
 Welcome to the CycleSoftware API documentation
 
-| API type | Documentation             |
-|-------------|---------------------------|
-| `CS api` | [CycleSoftware API docs](index.html) |
-| `Warehouse api` | [Warehouse API docs](warehouse.html) |
-| `TWSC api` | [TWSC API docs](https://github.com/CycleSoftware/oauth2-twsc/) |
+**Documentation overview**
+
+- [CycleSoftware API docs](index.html)
+- [Warehouse API docs](warehouse.html)
+- [Supplier integration API docs](supplier.html)
+- [Stock platform API docs](platform.html)
+- [TWSC API docs](https://github.com/CycleSoftware/oauth2-twsc/)
 
 ## API endpoint ##
 

@@ -6289,7 +6289,9 @@ information known at the insurance company. This information is based on created
       </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email91953@example.nl"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"remarks"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some text"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"label1"</span><span class="p">]</span><span class="w">
+    </span><span class="nl">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"label1"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='webhooks-workshop-orders'>Workshop orders</h2>
@@ -6488,7 +6490,9 @@ information known at the insurance company. This information is based on created
         </span><span class="p">]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nl">"delivery_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"label1"</span><span class="p">]</span><span class="w">
+      </span><span class="nl">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"label1"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6781,6 +6785,10 @@ information known at the insurance company. This information is based on created
 <td><code>store_order.created</code></td>
 <td>Will be delivered when store order is created</td>
 </tr>
+<tr>
+<td><code>store_order.updated</code></td>
+<td>Will be delivered when store order is updated</td>
+</tr>
 </tbody></table>
 <h3 id='webhooks-internal-deliveries-store-orders-payload-properties'>Payload properties</h3>
 <table><thead>
@@ -6831,13 +6839,13 @@ information known at the insurance company. This information is based on created
 <td><code>store_order_type_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>0: regular, 1: via warehouse</td>
+<td>0: regular, 1: via warehouse, 2: regular via warehouse</td>
 </tr>
 <tr>
 <td><code>status_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>0: open, 1: processed, 2: cancelled</td>
+<td>0: open, 1: processed, 2: cancelled, 3: invoiced, 5: locked</td>
 </tr>
 <tr>
 <td><code>status</code></td>

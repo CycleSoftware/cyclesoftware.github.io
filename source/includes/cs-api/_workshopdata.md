@@ -47,6 +47,7 @@ See [API limits](#introduction-limits) for more information about API rate limit
 | `error`                                | `boolean`  | `false`  | e.g. `false`                                                                          |
 | `error_message`                        | `string`   | `true`   | if not null the error message                                                         |
 | `data`                                 | `array`    | `false`  | Array of service item objects                                                         |
+| `data[].account_id`                    | `integer`  | `false`  | Account ID within CS `1000`                                                           |
 | `data[].service_id`                    | `integer`  | `false`  | ID of service `1790811`                                                               |
 | `data[].service_item_id`               | `integer`  | `false`  | Iem ID of service item `4823371`                                                      |
 | `data[].service_barcode`               | `string`   | `false`  | Barcode of service item e.g. `DSK-1790811-3`                                          |
@@ -82,13 +83,14 @@ Content-type: application/json; charset=utf-8
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 2366
+Content-length: 2392
 
 {
     "error": false,
     "error_message": null,
     "data": [
         {
+            "account_id": 1000,
             "service_id": 1790811,
             "service_item_id": 4823367,
             "service_barcode": "DSK-1790811-1",
@@ -109,7 +111,7 @@ Content-length: 2366
             "modified_at": "2022-06-22 10:51:49"
         },
         {
-            "service_id": 1790811,
+            "account_id": 1000,
             "service_item_id": 4823369,
             "service_barcode": "DSK-1790811-2",
             "service_status_id": 1,
@@ -129,7 +131,7 @@ Content-length: 2366
             "modified_at": "2022-06-22 10:51:49"
         },
         {
-            "service_id": 1790811,
+            "account_id": 1000,
             "service_item_id": 4823371,
             "service_barcode": "DSK-1790811-3",
             "service_status_id": 1,

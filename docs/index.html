@@ -5227,6 +5227,12 @@ information known at the insurance company. This information is based on created
 <td>Array of service item objects</td>
 </tr>
 <tr>
+<td><code>data[].account_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Account ID within CS <code>1000</code></td>
+</tr>
+<tr>
 <td><code>data[].service_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
@@ -5359,13 +5365,14 @@ information known at the insurance company. This information is based on created
 </blockquote>
 <div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
-<span class="na">Content-length</span><span class="p">:</span> <span class="s">2366</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">2392</span>
 
 <span class="p">{</span><span class="w">
     </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1790811</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4823367</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-1790811-1"</span><span class="p">,</span><span class="w">
@@ -5386,7 +5393,7 @@ information known at the insurance company. This information is based on created
             </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-22 10:51:49"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1790811</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4823369</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-1790811-2"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -5406,7 +5413,7 @@ information known at the insurance company. This information is based on created
             </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-22 10:51:49"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1790811</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4823371</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-1790811-3"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">

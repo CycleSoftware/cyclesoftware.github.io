@@ -338,6 +338,9 @@
                   <li>
                     <a href="#e-commerce-createorupdatecustomer" class="toc-h2 toc-link" data-title="CreateOrUpdateCustomer">CreateOrUpdateCustomer</a>
                   </li>
+                  <li>
+                    <a href="#e-commerce-cancel-sales-order" class="toc-h2 toc-link" data-title="Cancel sales order">Cancel sales order</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2397,7 +2400,70 @@ Content-length: 1448
     <span class="nt">&lt;/ns1:CreateOrUpdateCustomerResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
-</code></pre></div><h1 id='article-data'>Article data</h1>
+</code></pre></div><h2 id='e-commerce-cancel-sales-order'>Cancel sales order</h2>
+<p>Mark a sales order as cancelled.</p>
+
+<table><thead>
+<tr>
+<th>URL parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:sales_order_id</code></td>
+<td><code>integer</code></td>
+<td>Sales order id also referred to as <code>order_id</code> in SOAP APIs <i class="label label-info">required</i></td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:cancellation_type_id</code></td>
+<td><code>integer</code></td>
+<td>Cancellation type ID see common api <code>cancellation_types</code> e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>:delete_exchange</code></td>
+<td><code>bool</code></td>
+<td>if <code>true</code> the exchange objects in the order will be deleted. Defaults to <code>false</code></td>
+</tr>
+</tbody></table>
+<h3 id='e-commerce-cancel-sales-order-http-request-example'>HTTP request example</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/sales/orders/:sales_order_id/cancel.json?cancellation_type_id=:cancellation_type_id&delete_exchange=:delete_exchange</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/sales/orders/121212/cancel.json?cancellation_type_id=1&amp;delete_exchange=true</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='article-data'>Article data</h1>
 <p>The articledata APIs are designed for pulling article-information for e-commerce environments.</p>
 
 <p><strong><em>Authentication</em></strong></p>

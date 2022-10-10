@@ -521,13 +521,13 @@ invoices.
 | `:sales_order_id` | `integer` | Sales order ID <i class="label label-info">required</i> |
 
 ### Limits ###
+
 See [API limits](#introduction-limits) for more information about API rate limiting.
 
 | Type             | Limit     | Description                     |
 |------------------|-----------|---------------------------------|
 | `minutely-limit` | `15`      | 15 requests per minute allowed  |
 | `daily-limit`    | `default` | The default daily limit applies |
-
 
 The following optional POST parameters can be used to specify specific behavior.
 
@@ -1080,4 +1080,50 @@ Content-length: 1448
     </ns1:CreateOrUpdateCustomerResponse>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
+```
+
+## Cancel sales order ##
+
+Mark a sales order as cancelled.
+
+| URL parameter     | Type      | Description                                                                                         |
+|-------------------|-----------|-----------------------------------------------------------------------------------------------------|
+| `:sales_order_id` | `integer` | Sales order id also referred to as `order_id` in SOAP APIs <i class="label label-info">required</i> |
+
+| GET parameter           | Type      | Description                                                                      |
+|-------------------------|-----------|----------------------------------------------------------------------------------|
+| `:cancellation_type_id` | `integer` | Cancellation type ID see common api `cancellation_types` e.g. `1`                |
+| `:delete_exchange`      | `bool`    | if `true` the exchange objects in the order will be deleted. Defaults to `false` |
+
+### HTTP request example ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/api/v1/sales/orders/:sales_order_id/cancel.json?cancellation_type_id=:cancellation_type_id&delete_exchange=:delete_exchange</h6>
+	</div>
+</div>
+
+
+> HTTP Request
+
+```http
+POST /api/v1/sales/orders/121212/cancel.json?cancellation_type_id=1&delete_exchange=true HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 45
+
+{
+  "error": false,
+  "error_message": null
+}
 ```

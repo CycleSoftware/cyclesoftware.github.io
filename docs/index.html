@@ -383,10 +383,21 @@
               </ul>
           </li>
           <li>
+            <a href="#sales-orders" class="toc-h1 toc-link" data-title="Sales orders">Sales orders</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#sales-orders-update-sales-order-store" class="toc-h2 toc-link" data-title="Update sales order store">Update sales order store</a>
+                  </li>
+                  <li>
+                    <a href="#sales-orders-cancel-sales-order" class="toc-h2 toc-link" data-title="Cancel sales order">Cancel sales order</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#suppliers" class="toc-h1 toc-link" data-title="Suppliers">Suppliers</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#suppliers-insurances-supplier-order-properties" class="toc-h2 toc-link" data-title="Supplier order properties">Supplier order properties</a>
+                    <a href="#suppliers-cancel-sales-order-supplier-order-properties" class="toc-h2 toc-link" data-title="Supplier order properties">Supplier order properties</a>
                   </li>
                   <li>
                     <a href="#suppliers-create-supplier-order" class="toc-h2 toc-link" data-title="Create supplier order">Create supplier order</a>
@@ -4671,6 +4682,348 @@ information known at the insurance company. This information is based on created
         </span><span class="nl">"premium_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">7343</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
+</span></code></pre></div><h1 id='sales-orders'>Sales orders</h1>
+<p>For create and update of sales orders see the E-commerce documentation section.</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>e-commerce</code></li>
+</ul>
+<h2 id='sales-orders-update-sales-order-store'>Update sales order store</h2>
+<p>Update the store of a sales order with the possibility to change the delivery type and address. This API call may only
+be used if your account has multiple stores. If no mode is specified in the items array objects the default mode will be used.</p>
+
+<table><thead>
+<tr>
+<th>URL parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:sales_order_id</code></td>
+<td><code>integer</code></td>
+<td>Sales order id also referred to as <code>order_id</code> in SOAP APIs <i class="label label-info">required</i></td>
+</tr>
+</tbody></table>
+<h3 id='sales-orders-update-sales-order-store-http-request-example'>HTTP request example</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/sales/orders/:sales_order_id/update-store.json</h6>
+    </div>
+</div>
+<h3 id='sales-orders-update-sales-order-store-request-properties'>Request properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>to_store_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The new store id e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>default_mode</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Default transfer mode <code>2</code> (see common enum api <code>sales_order_store_transfer_modes</code>)</td>
+</tr>
+<tr>
+<td><code>new_delivery_method_id</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>New delivery method <code>3</code> (see common enum api  <code>delivery_methods</code>)</td>
+</tr>
+<tr>
+<td><code>new_delivery_address</code></td>
+<td><code>object</code></td>
+<td><code>true</code></td>
+<td>New delivery address for the sales order (<code>null</code> if not changed or required)</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.is_business_address</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if business address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.company_name</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Company name or <code>null</code></td>
+</tr>
+<tr>
+<td><code>new_delivery_address.name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>The name of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.street</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Street name of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.house_number</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>House number of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.house_number_postfix</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>House number postfix of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.postal_code</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Postal code of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.city</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>City of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.country_code</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Country_code of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.phone_number</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Phone_number of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.email</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>E-mail of the address com`</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.notes</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Notes of the address</td>
+</tr>
+<tr>
+<td><code>items</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>List of sales order items and associated transfer mode</td>
+</tr>
+<tr>
+<td><code>items[].item_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The sales order item id, also referred to as order_item_line_id in e-commerce APIs</td>
+</tr>
+<tr>
+<td><code>items[].mode</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Specify the transfer mode for this specific sales order item (see common enum api <code>sales_order_store_transfer_modes</code>)</td>
+</tr>
+</tbody></table>
+<h3 id='sales-orders-update-sales-order-store-response-properties'>Response properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if an error occcured</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The error message if <code>error</code> is <code>true</code></td>
+</tr>
+<tr>
+<td><code>created_store_order_id</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>The internal delivery store order id that was created <code>45287</code></td>
+</tr>
+<tr>
+<td><code>affected_supplier_order_ids</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>List of supplier order ids that may have a new store</td>
+</tr>
+<tr>
+<td><code>cancelled_store_order_ids</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>List of store orders which were cancelled</td>
+</tr>
+<tr>
+<td><code>cancelled_supplier_order_ids</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>List of supplier orders which were cancelled</td>
+</tr>
+<tr>
+<td><code>updated_outbound_order_ids</code></td>
+<td><code>array</code></td>
+<td><code>true</code></td>
+<td>List of outbound order ids which were cancelled (if warehouse account)</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/sales/orders/102323/update-store.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="s">Content-Length:</span>
+
+{
+    "to_store_id": 2,
+    "default_mode": 2,
+    "new_delivery_method_id": 3,
+    "new_delivery_address": {
+        "address_type_id": "1",
+        "is_business_address": "0",
+        "company_name": "",
+        "name": "name1",
+        "street": "street1",
+        "house_number": "1",
+        "house_number_postfix": "a",
+        "postal_code": "5258HL",
+        "city": "Berlicum",
+        "country_code": "NL",
+        "phone_number": "073031111",
+        "email": "test@test.com",
+        "notes": "hallo"
+    },
+    "items": [
+        {
+            "item_id": 1,
+            "mode": 1
+        },
+        {
+            "item_id": 2,
+            "mode": 1
+        }
+    ]
+}
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_store_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45287</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"affected_supplier_order_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">1481</span><span class="p">,</span><span class="w">
+        </span><span class="mi">20000</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"cancelled_store_order_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">3333</span><span class="p">,</span><span class="w">
+        </span><span class="mi">4444</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"cancelled_supplier_order_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">102020</span><span class="p">,</span><span class="w">
+        </span><span class="mi">102021</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"updated_outbound_order_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">32323</span><span class="p">,</span><span class="w">
+        </span><span class="mi">32324</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='sales-orders-cancel-sales-order'>Cancel sales order</h2>
+<p>Mark a sales order as cancelled. An order may only be cancelled if there is no payment amount left and the sales orders is not invoiced.</p>
+
+<table><thead>
+<tr>
+<th>URL parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:sales_order_id</code></td>
+<td><code>integer</code></td>
+<td>Sales order id also referred to as <code>order_id</code> in SOAP APIs <i class="label label-info">required</i></td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:cancellation_type_id</code></td>
+<td><code>integer</code></td>
+<td>Cancellation type ID see common api <code>cancellation_types</code> e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>:delete_exchange</code></td>
+<td><code>bool</code></td>
+<td>if <code>true</code> the exchange objects in the order will be deleted. Defaults to <code>false</code></td>
+</tr>
+</tbody></table>
+<h3 id='sales-orders-cancel-sales-order-http-request-example'>HTTP request example</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/sales/orders/:sales_order_id/cancel.json?cancellation_type_id=:cancellation_type_id&delete_exchange=:delete_exchange</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/sales/orders/121212/cancel.json?cancellation_type_id=1&amp;delete_exchange=true</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='suppliers'>Suppliers</h1>
 <p>Create and send supplier orders</p>
 
@@ -4680,7 +5033,7 @@ information known at the insurance company. This information is based on created
 <li>Basic HTTP Authentication</li>
 <li>Scope(s): <code>e-commerce</code></li>
 </ul>
-<h3 id='suppliers-insurances-supplier-order-properties'>Supplier order properties</h3>
+<h3 id='suppliers-cancel-sales-order-supplier-order-properties'>Supplier order properties</h3>
 <p>Properties used in create, get and send endpoints.</p>
 
 <table><thead>

@@ -67,8 +67,9 @@ be used if your account has multiple stores. If no mode is specified in the item
 POST /api/v1/sales/orders/102323/update-store.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip
 Accept: application/json
+Accept-encoding: gzip
+Content-type: application/json; charset=utf-8
 Content-Length: 688
 
 {

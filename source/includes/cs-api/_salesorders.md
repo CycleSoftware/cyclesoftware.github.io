@@ -69,7 +69,7 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
-Content-Length:
+Content-Length: 688
 
 {
     "to_store_id": 2,
@@ -79,16 +79,16 @@ Content-Length:
         "address_type_id": "1",
         "is_business_address": "0",
         "company_name": "",
-        "name": "name1",
-        "street": "street1",
+        "name": "Name 1",
+        "street": "Streetname",
         "house_number": "1",
         "house_number_postfix": "a",
-        "postal_code": "5258HL",
-        "city": "Berlicum",
+        "postal_code": "1000AA",
+        "city": "Amsterdam",
         "country_code": "NL",
         "phone_number": "073031111",
         "email": "test@test.com",
-        "notes": "hallo"
+        "notes": "Some note"
     },
     "items": [
         {

@@ -394,10 +394,18 @@
               </ul>
           </li>
           <li>
+            <a href="#payments" class="toc-h1 toc-link" data-title="Payments">Payments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#payments-payment-links" class="toc-h2 toc-link" data-title="Payment links">Payment links</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#suppliers" class="toc-h1 toc-link" data-title="Suppliers">Suppliers</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#suppliers-cancel-sales-order-supplier-order-properties" class="toc-h2 toc-link" data-title="Supplier order properties">Supplier order properties</a>
+                    <a href="#suppliers-payment-links-supplier-order-properties" class="toc-h2 toc-link" data-title="Supplier order properties">Supplier order properties</a>
                   </li>
                   <li>
                     <a href="#suppliers-create-supplier-order" class="toc-h2 toc-link" data-title="Create supplier order">Create supplier order</a>
@@ -5025,6 +5033,151 @@ be used if your account has multiple stores. If no mode is specified in the item
   </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='payments'>Payments</h1>
+<p>Access payment portal links</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scopes: <code>e-commerce</code></li>
+</ul>
+<h2 id='payments-payment-links'>Payment links</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/payments/order/:id/payment-link.json</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/payments/invoice/:id/payment-link.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>URI parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td><code>integer</code></td>
+<td>Sales order ID or the invoice / sales transaction number</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>payment_amount_cents</code></td>
+<td><code>integer</code></td>
+<td>The payment amount in cents. Only applicable for advance order payments endpoint</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if an error occurred</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The error message if an error occurred</td>
+</tr>
+<tr>
+<td><code>data.sales_order_id</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>The sales order ID <code>1000</code></td>
+</tr>
+<tr>
+<td><code>data.sales_transaction_number</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>The sales transaction number (invoice number)</td>
+</tr>
+<tr>
+<td><code>data.payment_url</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Payment portal URL <code>https://twsc.%s/p/xM4iatg</code></td>
+</tr>
+<tr>
+<td><code>data.total_amount_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Total amount in cents of the order or invoice <code>100000</code></td>
+</tr>
+<tr>
+<td><code>data.already_payed_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The amount already payed in cents e.g. <code>50000</code></td>
+</tr>
+<tr>
+<td><code>data.payment_link_amount_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The payment amount in the portal e.g. <code>25000</code></td>
+</tr>
+<tr>
+<td><code>data.qr_code</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>The QR code of the payment portal url as data uri <code>data:image/png;base64,iVBORw0KGgoAAAANSUhEU....</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/payments/order/1012/payment-link.json?payment_amount_cents=10000</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">722</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1012</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sales_transaction_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"payment_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twsc.nl/p/xM4iatg"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">250000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"already_payed_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"payment_link_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"qr_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64,iVBORw0KGgoAAAANSUhEU...."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='suppliers'>Suppliers</h1>
 <p>Create and send supplier orders</p>
 
@@ -5034,7 +5187,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <li>Basic HTTP Authentication</li>
 <li>Scope(s): <code>e-commerce</code></li>
 </ul>
-<h3 id='suppliers-cancel-sales-order-supplier-order-properties'>Supplier order properties</h3>
+<h3 id='suppliers-payment-links-supplier-order-properties'>Supplier order properties</h3>
 <p>Properties used in create, get and send endpoints.</p>
 
 <table><thead>

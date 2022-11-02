@@ -455,6 +455,9 @@
                   <li>
                     <a href="#webhooks-internal-deliveries-store-orders" class="toc-h2 toc-link" data-title="Internal deliveries / store orders">Internal deliveries / store orders</a>
                   </li>
+                  <li>
+                    <a href="#webhooks-payments-created" class="toc-h2 toc-link" data-title="Payments created">Payments created</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -7477,6 +7480,106 @@ be used if your account has multiple stores. If no mode is specified in the item
         </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fiets"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='webhooks-payments-created'>Payments created</h2>
+<table><thead>
+<tr>
+<th>Event name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>payments.created</code></td>
+<td>Will be delivered when payments were registered for a sales order or invoice</td>
+</tr>
+</tbody></table>
+<h3 id='webhooks-payments-created-payload-properties'>Payload properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>entity_type_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Entity type (sales transaction <code>5</code> or sales order <code>7</code>)</td>
+</tr>
+<tr>
+<td><code>entity_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Sales transaction number or sales order ID e.g. <code>54876</code> (depending on <code>entity_type_id</code></td>
+</tr>
+<tr>
+<td><code>payments</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td>array of payment objects</td>
+</tr>
+<tr>
+<td><code>payments[].payment_method_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Payment method ID <code>2</code> (see common api <code>payment_methods</code>)</td>
+</tr>
+<tr>
+<td><code>payments[].payment_method_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Payment method description e.g. <code>Contant</code></td>
+</tr>
+<tr>
+<td><code>payments[].book_date</code></td>
+<td><code>datetime</code></td>
+<td><code>false</code></td>
+<td>Book date of the payment <code>2022-11-02 14:12:57</code></td>
+</tr>
+<tr>
+<td><code>payments[].amount_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Payment amount in cents <code>4400</code> for 44.00 in <code>payments[].currency</code></td>
+</tr>
+<tr>
+<td><code>payments[].currency</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Payment currency e.g. <code>EUR</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Payload</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19b4b578-79bb-4577-9b2c-c86b5fb77004"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payments.created"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mf">1667394777.764</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">54876</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"payment_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"payment_method_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contant"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"book_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-11-02 14:12:57"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">4400</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"payment_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"payment_method_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PIN"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"book_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-11-02 14:12:57"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">

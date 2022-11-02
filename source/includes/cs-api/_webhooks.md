@@ -570,3 +570,53 @@ Every JSON payload has the same structure. The payload object is different per e
   }
 }
 ```
+
+## Payments created ##
+
+| Event name            | Description                                                                  |
+|-----------------------|------------------------------------------------------------------------------|
+| `payments.created`    | Will be delivered when payments were registered for a sales order or invoice |
+
+### Payload properties ###
+
+| Property                         | Type       | Nullable | Description                                                                            |
+|----------------------------------|------------|----------|----------------------------------------------------------------------------------------|
+| `entity_type_id`                 | `integer`  | `false`  | Entity type (sales transaction `5` or sales order `7`)                                 |
+| `entity_id`                      | `integer`  | `false`  | Sales transaction number or sales order ID e.g. `54876` (depending on `entity_type_id` |
+| `payments`                       | `array`    | `false`  | array of payment objects                                                               |
+| `payments[].payment_method_id`   | `integer`  | `false`  | Payment method ID `2` (see common api `payment_methods`)                               |
+| `payments[].payment_method_name` | `string`   | `false`  | Payment method description e.g. `Contant`                                              |
+| `payments[].book_date`           | `datetime` | `false`  | Book date of the payment `2022-11-02 14:12:57`                                         |
+| `payments[].amount_cents`        | `integer`  | `false`  | Payment amount in cents `4400` for 44.00 in `payments[].currency`                      |
+| `payments[].currency`            | `string`   | `false`  | Payment currency e.g. `EUR`                                                            |
+
+> Payload
+
+```json
+{
+  "id": "19b4b578-79bb-4577-9b2c-c86b5fb77004",
+  "account_id": 1,
+  "event_name": "payments.created",
+  "event_timestamp": 1667394777.764,
+  "payload": {
+    "entity_type_id": 7,
+    "entity_id": 54876,
+    "payments": [
+      {
+        "payment_method_id": 2,
+        "payment_method_name": "Contant",
+        "book_date": "2022-11-02 14:12:57",
+        "amount_cents": 4400,
+        "currency": "EUR"
+      },
+      {
+        "payment_method_id": 1,
+        "payment_method_name": "PIN",
+        "book_date": "2022-11-02 14:12:57",
+        "amount_cents": 10000,
+        "currency": "EUR"
+      }
+    ]
+  }
+}
+```

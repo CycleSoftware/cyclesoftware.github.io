@@ -5,7 +5,7 @@ Locate stock based on barcodes / article ids in associated accounts
 ***Authentication mechanism***
 
 - Basic HTTP Authentication
-- Scope(s): `platform`
+- Scope(s): `platform` or `e-commerce`
 
 ## Properties ##
 

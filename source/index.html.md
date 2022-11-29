@@ -21,6 +21,7 @@ includes:
   - cs-api/_stockinfo
   - cs-api/_salesdata
   - cs-api/_salesorders
+  - cs-api/_labels
   - cs-api/_payments
   - cs-api/_suppliers
   - cs-api/_rental

@@ -20,20 +20,21 @@ Get a set of enums with identifiers and descriptions used in various APIs
 
 ### Types ###
 
-| Subject                   | Description                                               |
-|---------------------------|-----------------------------------------------------------|
-| `sales_order_types`       | Sales order type descriptions                             |
-| `sales_order_status`      | Sales order status descriptions                           |
-| `sales_order_item_status` | Sales order item status descriptions                      |
-| `cancellation_types`      | Cancellation reasons                                      |
-| `pos_groups`              | POS / Sales group descriptions                            |
-| `payment_methods`         | Payment method descriptions                               |
-| `delivery_methods`        | Delivery method descriptions                              |
-| `vat_codes`               | VAT codes                                                 |
-| `workshop_order_status`   | Workshop order status descriptions                        |
-| `customer_types`          | Customer type descriptions                                |
-| `transaction_item_types`  | Transaction item type descriptions (item_type / row_type) |
-| `service_item_status`     | Status descriptions for object service items              |
+| Subject                   | Description                                                                                 |
+|---------------------------|---------------------------------------------------------------------------------------------|
+| `sales_order_types`       | Sales order type descriptions                                                               |
+| `sales_order_status`      | Sales order status descriptions                                                             |
+| `sales_order_item_status` | Sales order item status descriptions                                                        |
+| `cancellation_types`      | Cancellation reasons                                                                        |
+| `pos_groups`              | POS / Sales group descriptions                                                              |
+| `payment_methods`         | Payment method descriptions                                                                 |
+| `delivery_methods`        | Delivery method descriptions                                                                |
+| `vat_codes`               | VAT codes                                                                                   |
+| `workshop_order_status`   | Workshop order status descriptions                                                          |
+| `customer_types`          | Customer type descriptions                                                                  |
+| `transaction_item_types`  | Transaction item type descriptions (item_type / row_type)                                   |
+| `service_item_status`     | Status descriptions for object service items                                                |
+| `entity_types`            | Entity types and descriptions, used as reference to an object in API requests and responses |
 
 
 > HTTP Request

@@ -126,7 +126,7 @@ Detach labels from an entity
 <div class="api-endpoint">
 <div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/api/v1/labels/:entity_type_id/:entity_id/attach.json</h6>
+		<h6>/api/v1/labels/:entity_type_id/:entity_id/detach.json</h6>
 	</div>
 </div>
 

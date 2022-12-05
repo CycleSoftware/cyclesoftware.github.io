@@ -711,6 +711,10 @@ available.</p>
 <td><code>service_item_status</code></td>
 <td>Status descriptions for object service items</td>
 </tr>
+<tr>
+<td><code>entity_types</code></td>
+<td>Entity types and descriptions, used as reference to an object in API requests and responses</td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -5089,7 +5093,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <td><code>entity_type_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Entity type e.g. <code>7</code>, see common API</td>
+<td>Entity type e.g. <code>7</code>, see common API <code>entity_types</code></td>
 </tr>
 <tr>
 <td><code>entity_id</code></td>
@@ -5206,7 +5210,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <div class="api-endpoint">
 <div class="endpoint-data">
         <i class="label label-post">POST</i>
-        <h6>/api/v1/labels/:entity_type_id/:entity_id/attach.json</h6>
+        <h6>/api/v1/labels/:entity_type_id/:entity_id/detach.json</h6>
     </div>
 </div>
 

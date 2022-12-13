@@ -36,7 +36,7 @@ Access payment portal links
 | `error_message`                  | `string`  | `true`   | The error message if an error occurred                                                              |
 | `data.sales_order_id`            | `integer` | `true`   | The sales order ID `1000`                                                                           |
 | `data.sales_transaction_number`  | `integer` | `true`   | The sales transaction number (invoice number)                                                       |
-| `data.payment_url`               | `string`  | `false`  | Payment portal URL `https://twsc.%s/p/xM4iatg`                                                      |
+| `data.payment_url`               | `string`  | `false`  | Payment portal URL `https://twsc.nl/p/xM4iatg`                                                      |
 | `data.total_amount_cents`        | `integer` | `false`  | Total amount in cents of the order or invoice `100000`                                              |
 | `data.already_payed_cents`       | `integer` | `false`  | The amount already payed in cents e.g. `50000`                                                      |
 | `data.payment_link_amount_cents` | `integer` | `false`  | The payment amount in the portal e.g. `25000`                                                       |

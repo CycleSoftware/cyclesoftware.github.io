@@ -7241,7 +7241,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
+<th>Nullable / optional</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -7250,6 +7250,18 @@ be used if your account has multiple stores. If no mode is specified in the item
 <td><code>integer</code></td>
 <td><code>false</code></td>
 <td>Sales transaction number / invoice number e.g. <code>20210048</code></td>
+</tr>
+<tr>
+<td><code>credit_invoice_number</code></td>
+<td><code>integer</code></td>
+<td><code>optional</code></td>
+<td>If this transaction is credited the credit invoice number e.g. <code>20210049</code></td>
+</tr>
+<tr>
+<td><code>debit_invoice_number</code></td>
+<td><code>integer</code></td>
+<td><code>optional</code></td>
+<td>If this transaction is a credit the original invoice number e.g. <code>20210047</code></td>
 </tr>
 <tr>
 <td><code>is_final</code></td>

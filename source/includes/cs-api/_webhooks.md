@@ -410,43 +410,45 @@ Every JSON payload has the same structure. The payload object is different per e
 
 ### Properties
 
-| Property                                            | Type      | Nullable | Description                                                   |
-|-----------------------------------------------------|-----------|----------|---------------------------------------------------------------|
-| `invoice_number`                                    | `integer` | `false`  | Sales transaction number / invoice number e.g. `20210048`     |
-| `is_final`                                          | `boolean` | `false`  | True if the transaciton is booked `false`                     |
-| `customer_id`                                       | `integer` | `false`  | Customer ID e.g. `1006` for anonymous `0`                     |
-| `store_id`                                          | `integer` | `false`  | Store ID within account `1`                                   |
-| `sales_employee_id`                                 | `integer` | `false`  | Employee ID e.g. `1001` see common employees                  |
-| `sales_order_id`                                    | `integer` | `true`   | Sales Order ID                                                |
-| `workshop_order_id`                                 | `integer` | `true`   | Workshop Order ID                                             |
-| `total_amount_cents`                                | `integer` | `false`  | Total amount in cents e.g. `278820`                           |
-| `unpayed_amount_cents`                              | `integer` | `false`  | Unpayed amount in cents. `278820`                             |
-| `invoice_date`                                      | `date`    | `false`  | (pro-forma) date of the invoice `2022-04-29`                  |
-| `book_date`                                         | `date`    | `true`   | Book date of invoice. `null` if not booked                    |
-| `sales_items`                                       | `array`   | `false`  | Array of sales items                                          |
-| `sales_items[].sales_item_id`                       | `integer` | `false`  | Item identifier `115350527`                                   |
-| `sales_items[].item_type_id`                        | `integer` | `false`  | Item type, see common enum .e.g. `1`                          |
-| `sales_items[].special_type_id`                     | `integer` | `false`  | If associated with a stock item this is the stock item id `0` |
-| `sales_items[].quantity`                            | `integer` | `false`  | Quantity sold e.g. `1`                                        |
-| `sales_items[].barcode`                             | `string`  | `false`  | Barcode of the article                                        |
-| `sales_items[].pos_group_id`                        | `integer` | `false`  | POS group id see common enum e.g. `11`                        |
-| `sales_items[].description`                         | `string`  | `false`  | Line description `Diversen`                                   |
-| `sales_items[].unit_price_in_vat_cents`             | `integer` | `false`  | Gross unit price in cents `9900`                              |
-| `sales_items[].unit_discount_amount_in_vat_cents`   | `integer` | `false`  | Unit discount amount in cents `990`                           |
-| `sales_items[].price_in_vat_cents`                  | `integer` | `false`  | Line price in cents e.g. `8910`                               |
-| `sales_items[].discount_percentage`                 | `integer` | `false`  | Discount percentage `10`                                      |
-| `sales_items[].vat_code`                            | `integer` | `false`  | VAT code, see common enum `2`                                 |
-| `sales_items[].vat_percentage`                      | `integer` | `false`  | VAT percentage `21`                                           |
-| `sales_items[].vat_amount_cents`                    | `integer` | `false`  | Line vat amount in cents. `1546`                              |
-| `sales_items[].identification`                      | `object`  | `true`   | Object with serial numbers if associated                      |
-| `sales_items[].identification.stock_object_id`      | `integer` | `false`  | Object associated with the item `24406`                       |
-| `sales_items[].identification.frame_number`         | `string`  | `false`  | Frame number e.g. `FR0000010`                                 |
-| `sales_items[].identification.key_number`           | `string`  | `false`  | Key number e.g. `SL10000`                                     |
-| `sales_items[].identification.lock_number`          | `string`  | `false`  | Lock number e.g. `K1212`                                      |
-| `sales_items[].identification.battery_number`       | `string`  | `false`  | Battery number e.g. `B12122112`                               |
-| `sales_items[].identification.engine_number`        | `string`  | `false`  | Engine number e.g. `E3322323`                                 |
-| `sales_items[].identification.serial_number`        | `string`  | `false`  | Serial number e.g. `S320934`                                  |
-| `sales_items[].identification.license_plate_number` | `string`  | `false`  | License plate number e.g. `xx-yy-zz`                          |
+| Property                                            | Type      | Nullable / optional | Description                                                                 |
+|-----------------------------------------------------|-----------|---------------------|-----------------------------------------------------------------------------|
+| `invoice_number`                                    | `integer` | `false`             | Sales transaction number / invoice number e.g. `20210048`                   |
+| `credit_invoice_number`                             | `integer` | `optional`          | If this transaction is credited the credit invoice number e.g. `20210049`   |
+| `debit_invoice_number`                              | `integer` | `optional`          | If this transaction is a credit the original invoice number e.g. `20210047` |
+| `is_final`                                          | `boolean` | `false`             | True if the transaciton is booked `false`                                   |
+| `customer_id`                                       | `integer` | `false`             | Customer ID e.g. `1006` for anonymous `0`                                   |
+| `store_id`                                          | `integer` | `false`             | Store ID within account `1`                                                 |
+| `sales_employee_id`                                 | `integer` | `false`             | Employee ID e.g. `1001` see common employees                                |
+| `sales_order_id`                                    | `integer` | `true`              | Sales Order ID                                                              |
+| `workshop_order_id`                                 | `integer` | `true`              | Workshop Order ID                                                           |
+| `total_amount_cents`                                | `integer` | `false`             | Total amount in cents e.g. `278820`                                         |
+| `unpayed_amount_cents`                              | `integer` | `false`             | Unpayed amount in cents. `278820`                                           |
+| `invoice_date`                                      | `date`    | `false`             | (pro-forma) date of the invoice `2022-04-29`                                |
+| `book_date`                                         | `date`    | `true`              | Book date of invoice. `null` if not booked                                  |
+| `sales_items`                                       | `array`   | `false`             | Array of sales items                                                        |
+| `sales_items[].sales_item_id`                       | `integer` | `false`             | Item identifier `115350527`                                                 |
+| `sales_items[].item_type_id`                        | `integer` | `false`             | Item type, see common enum .e.g. `1`                                        |
+| `sales_items[].special_type_id`                     | `integer` | `false`             | If associated with a stock item this is the stock item id `0`               |
+| `sales_items[].quantity`                            | `integer` | `false`             | Quantity sold e.g. `1`                                                      |
+| `sales_items[].barcode`                             | `string`  | `false`             | Barcode of the article                                                      |
+| `sales_items[].pos_group_id`                        | `integer` | `false`             | POS group id see common enum e.g. `11`                                      |
+| `sales_items[].description`                         | `string`  | `false`             | Line description `Diversen`                                                 |
+| `sales_items[].unit_price_in_vat_cents`             | `integer` | `false`             | Gross unit price in cents `9900`                                            |
+| `sales_items[].unit_discount_amount_in_vat_cents`   | `integer` | `false`             | Unit discount amount in cents `990`                                         |
+| `sales_items[].price_in_vat_cents`                  | `integer` | `false`             | Line price in cents e.g. `8910`                                             |
+| `sales_items[].discount_percentage`                 | `integer` | `false`             | Discount percentage `10`                                                    |
+| `sales_items[].vat_code`                            | `integer` | `false`             | VAT code, see common enum `2`                                               |
+| `sales_items[].vat_percentage`                      | `integer` | `false`             | VAT percentage `21`                                                         |
+| `sales_items[].vat_amount_cents`                    | `integer` | `false`             | Line vat amount in cents. `1546`                                            |
+| `sales_items[].identification`                      | `object`  | `true`              | Object with serial numbers if associated                                    |
+| `sales_items[].identification.stock_object_id`      | `integer` | `false`             | Object associated with the item `24406`                                     |
+| `sales_items[].identification.frame_number`         | `string`  | `false`             | Frame number e.g. `FR0000010`                                               |
+| `sales_items[].identification.key_number`           | `string`  | `false`             | Key number e.g. `SL10000`                                                   |
+| `sales_items[].identification.lock_number`          | `string`  | `false`             | Lock number e.g. `K1212`                                                    |
+| `sales_items[].identification.battery_number`       | `string`  | `false`             | Battery number e.g. `B12122112`                                             |
+| `sales_items[].identification.engine_number`        | `string`  | `false`             | Engine number e.g. `E3322323`                                               |
+| `sales_items[].identification.serial_number`        | `string`  | `false`             | Serial number e.g. `S320934`                                                |
+| `sales_items[].identification.license_plate_number` | `string`  | `false`             | License plate number e.g. `xx-yy-zz`                                        |
 
 > Payload example
 

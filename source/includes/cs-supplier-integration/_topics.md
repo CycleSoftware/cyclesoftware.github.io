@@ -385,16 +385,18 @@ Packinglists are downloaded using webservices based on a packinglist number.
 
 The output consists of the following fields:
 
--	Quantity
--	Purchase price (important for correct margin registration)
--	Description
--	Article number
--	EAN / Barcode
+-	Quantity *
+-	Purchase price (important for correct margin registration) *
+-	Description *
+-	Article number *
+-	EAN / Barcode *
 -	Reference (given in the order service)
 -	Order ID (result of order service)
 -	Frame number
 -	Serial number
 -	Battery number
+
+<p>Attributes marked with * are mandatory</p>
 
 ## Example webservice ##
 

@@ -13,6 +13,13 @@ Welcome to the CycleSoftware Supplier integration documentation. In this documen
 As as supplier for bicycle stores you can integrate with CycleSoftware by offering a set of webservices or files.
 CycleSoftware will integrate the services and act as a client to the supplier server.
 
+<aside class="notice">
+To avoid misunderstandings.
+It is not possible to communicate to the CycleSoftware's API for a supplier integration.
+CycleSoftware will have to make an integration with the supplier's web service / ftp.
+These docs are an indication of the possibilities available and which fields we expect.
+</aside>
+
 The integration consists of the following topics:
 
 * Article information <i class="label label-info">required</i>

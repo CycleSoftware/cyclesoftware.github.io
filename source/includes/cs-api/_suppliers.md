@@ -21,6 +21,7 @@ Properties used in create, get and send endpoints.
 | `status_id`                       | `integer`  | `false`  |        | Order status see common enum supplier_order_status e.g. `0` |
 | `supplier_comment`                | `string`   | `false`  |        | Comment given by supplier e.g. `Some text`                  |
 | `supplier_reference`              | `string`   | `false`  |        | Reference from supplier `ref-from-supplier`                 |
+| `own_reference`                   | `string`   | `false`  |        | Own reference e.g. `Own1212`                                |
 | `created_at`                      | `datetime` | `false`  |        | Creation date `2022-01-12 12:30:30`                         |
 | `items`                           | `array`    | `false`  |        | Array of order items                                        |
 | `items[].supplier_order_item_id`  | `integer`  | `false`  |        | Item ID `10012`                                             |
@@ -59,6 +60,7 @@ Content-length: 299
 {
     "supplier_id": 2113,
     "store_id": 2,
+    "own_reference": "ref1",
     "items": [
         {
             "barcode": "87123456789",
@@ -79,7 +81,7 @@ Content-length: 299
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 989
+Content-length: 1017
 
 {
     "supplier_order_id": 2222,
@@ -88,6 +90,7 @@ Content-length: 989
     "order_type_id": 1,
     "status_id": 0,
     "supplier_comment": "Some text",
+    "own_reference": "ref1",
     "supplier_reference": "ref-from-supplier",
     "created_at": "2022-01-12 12:30:30",
     "items": [
@@ -155,7 +158,7 @@ Content-type: application/json; charset=utf-8
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 989
+Content-length: 1022
 
 {
     "supplier_order_id": 2222,
@@ -164,6 +167,7 @@ Content-length: 989
     "order_type_id": 1,
     "status_id": 0,
     "supplier_comment": "Some text",
+    "own_reference": "own-ref-1",
     "supplier_reference": "ref-from-supplier",
     "created_at": "2022-01-12 12:30:30",
     "items": [
@@ -220,7 +224,7 @@ Content-type: application/json; charset=utf-8
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 989
+Content-length: 1023
 
 {
     "supplier_order_id": 2222,
@@ -230,6 +234,7 @@ Content-length: 989
     "status_id": 1,
     "supplier_comment": "Some text",
     "supplier_reference": "ref-from-supplier",
+    "own_reference": "own-ref-1",
     "created_at": "2022-01-12 12:30:30",
     "items": [
         {

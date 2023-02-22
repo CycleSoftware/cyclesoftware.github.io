@@ -26,9 +26,10 @@ Access payment portal links
 |---------------|-----------|----------------------------------------------------------|
 | `id`          | `integer` | Sales order ID or the invoice / sales transaction number |
 
-| GET parameter          | Type      | Description                                                                      |
-|------------------------|-----------|----------------------------------------------------------------------------------|
-| `payment_amount_cents` | `integer` | The payment amount in cents. Only applicable for advance order payments endpoint |
+| GET parameter            | Type      | Description                                                                                                                                                |
+|--------------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `payment_amount_cents`   | `integer` | The payment amount in cents. Only applicable for advance order payments endpoint                                                                           |
+| `dynamic_payment_amount` | `bool`    | `true` if the amount in the payment link should depend dynamically on unpayed amount of the order. If a `payment_amount_cents` this option will be ignored |
 
 | Property                         | Type      | Nullable | Description                                                                                         |
 |----------------------------------|-----------|----------|-----------------------------------------------------------------------------------------------------|
@@ -40,6 +41,7 @@ Access payment portal links
 | `data.total_amount_cents`        | `integer` | `false`  | Total amount in cents of the order or invoice `100000`                                              |
 | `data.already_payed_cents`       | `integer` | `false`  | The amount already payed in cents e.g. `50000`                                                      |
 | `data.payment_link_amount_cents` | `integer` | `false`  | The payment amount in the portal e.g. `25000`                                                       |
+| `data.dynamic_payment_amount`    | `bool`    | `false`  | `true` if the amount to be payed is dynamic and depends on unpayed amount of the order or invoice   |
 | `data.qr_code`                   | `string`  | `false`  | The QR code of the payment portal url as data uri `data:image/png;base64,iVBORw0KGgoAAAANSUhEU....` |
 
 > HTTP request
@@ -57,7 +59,7 @@ Accept: application/json
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 722
+Content-length: 425
 
 {
     "error": false,
@@ -69,6 +71,7 @@ Content-length: 722
         "total_amount_cents": 250000,
         "already_payed_cents": 10000,
         "payment_link_amount_cents": 10000,
+        "dynamic_payment_amount": true,
         "qr_code": "data:image/png;base64,iVBORw0KGgoAAAANSUhEU...."
     }
 }

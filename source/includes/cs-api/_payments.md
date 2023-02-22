@@ -71,7 +71,7 @@ Content-length: 425
         "total_amount_cents": 250000,
         "already_payed_cents": 10000,
         "payment_link_amount_cents": 10000,
-        "dynamic_payment_amount": true,
+        "dynamic_payment_amount": false,
         "qr_code": "data:image/png;base64,iVBORw0KGgoAAAANSUhEU...."
     }
 }

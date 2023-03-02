@@ -461,6 +461,9 @@
                     <a href="#webhooks-service-items-payload-structure" class="toc-h2 toc-link" data-title="Payload structure">Payload structure</a>
                   </li>
                   <li>
+                    <a href="#webhooks-customers" class="toc-h2 toc-link" data-title="Customers">Customers</a>
+                  </li>
+                  <li>
                     <a href="#webhooks-sales-orders" class="toc-h2 toc-link" data-title="Sales orders">Sales orders</a>
                   </li>
                   <li>
@@ -6249,6 +6252,287 @@ be used if your account has multiple stores. If no mode is specified in the item
   </span><span class="nl">"event_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mf">1640787926.323</span><span class="p">,</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='webhooks-customers'>Customers</h2>
+<table><thead>
+<tr>
+<th>Event name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer.created</code></td>
+<td>Fired when the customer is created</td>
+</tr>
+<tr>
+<td><code>customer.updated</code></td>
+<td>Fired when the customer is updated</td>
+</tr>
+</tbody></table>
+<h3 id='webhooks-customers-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th style="text-align: left"></th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer.customer_barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">(deprecated) Reference of the customer e.g. <code>REF1212</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.prefix</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">(deprecated) Name prefix e.g. <code>Dhr./Mevr.</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.country</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">(deprecated) Country (deprecated) see country_code_iso_3166 e.g. <code>NL</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.name_prefix</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td style="text-align: left">(deprecated)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.iban</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">IBAN bank account</td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.customer_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Customer ID e.g. <code>6667</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.customer_type_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Customer type see common enum e.g. <code>Klant</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.customer_reference</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Customer reference e.g. <code>REF1212</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.postcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Postal code e.g. <code>1000AA</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.house_number</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Housenumber e.g. <code>2522</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.house_number_postfix</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Housenumber postfix e.g. <code>B</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.attn</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Attention of e.g. <code>Name of person</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.title</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Title of customer e.g. <code>Dhr./Mevr.</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.first_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Initials e.g. <code>Adri</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.initials</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Initials e.g. <code>C.G.</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.insertion</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Name insertion e.g. <code>van</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">(Sur)name e.g. <code>Wijk</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.street</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Street name e.g. <code>Aalsburg</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.city</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">City name e.g. <code>Amsterdam</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.country_code_iso_3166</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Country code e.g. <code>NL</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.email</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Customer E-mail e.g. <code>test@test.nl</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.discount_percentage</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Default discount percentage e.g. <code>0</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.datetime_created</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td style="text-align: left">datetime created if known (null if unknown)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.phone_numbers</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">array of phone numbers</td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.phone_numbers[].phone_number_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">ID <code>mob</code>, <code>tel</code> or stringed ID e.g. <code>10589</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.phone_numbers[].customer_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Customer ID <code>6667</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.phone_numbers[].phone_number</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Phone number <code>06-12345678</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>customer.phone_numbers[].name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td style="text-align: left">Name associated with the phone number e.g. <code>Sjaak</code></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Payload structure</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5e2435ef-bd25-4399-9332-2a8d3c9e5830"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer.updated"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mf">1677599374.04</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"customer_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lease-rijder"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"customer_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"600008000011700"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9999AA"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"132"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"attn"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dhr."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"initials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"insertion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"van"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peter"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wijk"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hoogheem"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boxtel"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AF"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email20@example.nl"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-12 12:30:44"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peter van Wijk"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tel"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09-10000020"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peter van Wijk"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"75189"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09-10075189"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peter van Wijk alternatief"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"customer_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"600008000011700"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dhr."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AF"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name_prefix"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL00BANK1000000020"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1992-11-22"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='webhooks-sales-orders'>Sales orders</h2>
 <table><thead>
 <tr>
@@ -6547,172 +6831,10 @@ be used if your account has multiple stores. If no mode is specified in the item
 <td>List of deleted order items (same structure as <code>order_items</code>, only present once in webhook</td>
 </tr>
 <tr>
-<td><code>customer.customer_barcode</code></td>
-<td><code>string</code></td>
+<td><code>customer</code></td>
+<td><code>object</code></td>
 <td><code>false</code></td>
-<td>(deprecated) Reference of the customer e.g. <code>REF1212</code></td>
-</tr>
-<tr>
-<td><code>customer.prefix</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>(deprecated) Name prefix e.g. <code>Dhr./Mevr.</code></td>
-</tr>
-<tr>
-<td><code>customer.country</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>(deprecated) Country (deprecated) see country_code_iso_3166 e.g. <code>NL</code></td>
-</tr>
-<tr>
-<td><code>customer.name_prefix</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
-<td>(deprecated)</td>
-</tr>
-<tr>
-<td><code>customer.iban</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>IBAN bank account</td>
-</tr>
-<tr>
-<td><code>customer.customer_id</code></td>
-<td><code>integer</code></td>
-<td><code>false</code></td>
-<td>Customer ID e.g. <code>6667</code></td>
-</tr>
-<tr>
-<td><code>customer.customer_type_name</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Customer type see common enum e.g. <code>Klant</code></td>
-</tr>
-<tr>
-<td><code>customer.customer_reference</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Customer reference e.g. <code>REF1212</code></td>
-</tr>
-<tr>
-<td><code>customer.postcode</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Postal code e.g. <code>1000AA</code></td>
-</tr>
-<tr>
-<td><code>customer.house_number</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Housenumber e.g. <code>2522</code></td>
-</tr>
-<tr>
-<td><code>customer.house_number_postfix</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Housenumber postfix e.g. <code>B</code></td>
-</tr>
-<tr>
-<td><code>customer.attn</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. ``</td>
-</tr>
-<tr>
-<td><code>customer.title</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Title of customer e.g. <code>Dhr./Mevr.</code></td>
-</tr>
-<tr>
-<td><code>customer.first_name</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Initials e.g. <code>Adri</code></td>
-</tr>
-<tr>
-<td><code>customer.initials</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Initials e.g. <code>C.G.</code></td>
-</tr>
-<tr>
-<td><code>customer.insertion</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Name insertion e.g. <code>van</code></td>
-</tr>
-<tr>
-<td><code>customer.name</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>(Sur)name e.g. <code>Wijk</code></td>
-</tr>
-<tr>
-<td><code>customer.street</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Street name e.g. <code>Aalsburg</code></td>
-</tr>
-<tr>
-<td><code>customer.city</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>City name e.g. <code>Amsterdam</code></td>
-</tr>
-<tr>
-<td><code>customer.country_code_iso_3166</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Country code e.g. <code>NL</code></td>
-</tr>
-<tr>
-<td><code>customer.email</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Customer E-mail e.g. <code>test@test.nl</code></td>
-</tr>
-<tr>
-<td><code>customer.discount_percentage</code></td>
-<td><code>integer</code></td>
-<td><code>false</code></td>
-<td>Default discount percentage e.g. <code>0</code></td>
-</tr>
-<tr>
-<td><code>customer.datetime_created</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
-<td>datetime created if known (null if unknown)</td>
-</tr>
-<tr>
-<td><code>customer.phone_numbers</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
-<td>array of phone numbers</td>
-</tr>
-<tr>
-<td><code>customer.phone_numbers[].phone_number_id</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>ID <code>mob</code>, <code>tel</code> or stringed ID e.g. <code>10589</code></td>
-</tr>
-<tr>
-<td><code>customer.phone_numbers[].customer_id</code></td>
-<td><code>integer</code></td>
-<td><code>false</code></td>
-<td>Customer ID <code>6667</code></td>
-</tr>
-<tr>
-<td><code>customer.phone_numbers[].phone_number</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Phone number <code>06-12345678</code></td>
-</tr>
-<tr>
-<td><code>customer.phone_numbers[].name</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Name associated with the phone number e.g. <code>Sjaak</code></td>
+<td>See customers webhook definition</td>
 </tr>
 <tr>
 <td><code>delivery_address</code></td>

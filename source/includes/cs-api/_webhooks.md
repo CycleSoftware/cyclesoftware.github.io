@@ -36,6 +36,105 @@ Every JSON payload has the same structure. The payload object is different per e
 }
 ```
 
+## Customers ##
+
+| Event name         | Description                        |
+|--------------------|------------------------------------|
+| `customer.created` | Fired when the customer is created |
+| `customer.updated` | Fired when the customer is updated |
+
+### Properties
+
+| Property                                   | Type      | Nullable |                                                                       | Description |
+|--------------------------------------------|-----------|----------|:----------------------------------------------------------------------|-------------|
+| `customer.customer_barcode`                | `string`  | `false`  | (deprecated) Reference of the customer e.g. `REF1212`                 |
+| `customer.prefix`                          | `string`  | `false`  | (deprecated) Name prefix e.g. `Dhr./Mevr. `                           |
+| `customer.country`                         | `string`  | `false`  | (deprecated) Country (deprecated) see country_code_iso_3166 e.g. `NL` |
+| `customer.name_prefix`                     | `string`  | `true`   | (deprecated)                                                          |
+| `customer.iban`                            | `string`  | `false`  | IBAN bank account                                                     |
+| `customer.customer_id`                     | `integer` | `false`  | Customer ID e.g. `6667`                                               |
+| `customer.customer_type_name`              | `string`  | `false`  | Customer type see common enum e.g. `Klant`                            |
+| `customer.customer_reference`              | `string`  | `false`  | Customer reference e.g. `REF1212`                                     |
+| `customer.postcode`                        | `string`  | `false`  | Postal code e.g. `1000AA`                                             |
+| `customer.house_number`                    | `string`  | `false`  | Housenumber e.g. `2522`                                               |
+| `customer.house_number_postfix`            | `string`  | `false`  | Housenumber postfix e.g. `B`                                          |
+| `customer.attn`                            | `string`  | `false`  | Attention of e.g. `Name of person`                                    |
+| `customer.title`                           | `string`  | `false`  | Title of customer e.g. `Dhr./Mevr. `                                  |
+| `customer.first_name`                      | `string`  | `false`  | Initials e.g. `Adri`                                                  |
+| `customer.initials`                        | `string`  | `false`  | Initials e.g. `C.G.`                                                  |
+| `customer.insertion`                       | `string`  | `false`  | Name insertion e.g. `van`                                             |
+| `customer.name`                            | `string`  | `false`  | (Sur)name e.g. `Wijk`                                                 |
+| `customer.street`                          | `string`  | `false`  | Street name e.g. `Aalsburg`                                           |
+| `customer.city`                            | `string`  | `false`  | City name e.g. `Amsterdam`                                            |
+| `customer.country_code_iso_3166`           | `string`  | `false`  | Country code e.g. `NL`                                                |
+| `customer.email`                           | `string`  | `false`  | Customer E-mail e.g. `test@test.nl`                                   |
+| `customer.discount_percentage`             | `integer` | `false`  | Default discount percentage e.g. `0`                                  |
+| `customer.datetime_created`                | `string`  | `true`   | datetime created if known (null if unknown)                           |
+| `customer.phone_numbers`                   | `array`   | `false`  | array of phone numbers                                                |
+| `customer.phone_numbers[].phone_number_id` | `string`  | `false`  | ID `mob`, `tel` or stringed ID e.g. `10589`                           |
+| `customer.phone_numbers[].customer_id`     | `integer` | `false`  | Customer ID `6667`                                                    |
+| `customer.phone_numbers[].phone_number`    | `string`  | `false`  | Phone number `06-12345678`                                            |
+| `customer.phone_numbers[].name`            | `string`  | `false`  | Name associated with the phone number e.g. `Sjaak`                    |
+
+> Payload structure
+
+```json
+{
+  "id": "5e2435ef-bd25-4399-9332-2a8d3c9e5830",
+  "account_id": 1,
+  "event_name": "customer.updated",
+  "event_timestamp": 1677599374.04,
+  "payload": {
+    "customer": {
+      "customer_id": 20,
+      "customer_type_name": "Lease-rijder",
+      "customer_reference": "600008000011700",
+      "postcode": "9999AA",
+      "house_number": "132",
+      "house_number_postfix": "a",
+      "attn": "",
+      "title": "Dhr.",
+      "initials": "P",
+      "insertion": "van",
+      "first_name": "Peter",
+      "name": "Wijk",
+      "street": "Hoogheem",
+      "city": "Boxtel",
+      "country_code_iso_3166": "AF",
+      "email": "email20@example.nl",
+      "discount_percentage": 0,
+      "datetime_created": "2023-02-12 12:30:44",
+      "phone_numbers": [
+        {
+          "phone_number_id": "mob",
+          "customer_id": 20,
+          "phone_number": "",
+          "name": "Peter van Wijk"
+        },
+        {
+          "phone_number_id": "tel",
+          "customer_id": 20,
+          "phone_number": "09-10000020",
+          "name": "Peter van Wijk"
+        },
+        {
+          "phone_number_id": "75189",
+          "customer_id": 20,
+          "phone_number": "09-10075189",
+          "name": "Peter van Wijk alternatief"
+        }
+      ],
+      "customer_barcode": "600008000011700",
+      "prefix": "Dhr.",
+      "country": "AF",
+      "name_prefix": null,
+      "iban": "NL00BANK1000000020",
+      "date_of_birth": "1992-11-22"
+    }
+  }
+}
+```
+
 ## Sales orders ##
 
 | Event name             | Description                                                        |
@@ -93,34 +192,7 @@ Every JSON payload has the same structure. The payload object is different per e
 | `order_items[].unit_work_time_minutes`            | `integer`  | `false`     | Work time for item in minutes e.g. `0`                                                     |
 | `cancelled_order_items`                           | `array`    | `false`     | List of cancelled / non-deleted order items (same structure as `order_items`               |
 | `deleted_order_items`                             | `array`    | `ommitable` | List of deleted order items (same structure as `order_items`, only present once in webhook |
-| `customer.customer_barcode`                       | `string`   | `false`     | (deprecated) Reference of the customer e.g. `REF1212`                                      |
-| `customer.prefix`                                 | `string`   | `false`     | (deprecated) Name prefix e.g. `Dhr./Mevr. `                                                |
-| `customer.country`                                | `string`   | `false`     | (deprecated) Country (deprecated) see country_code_iso_3166 e.g. `NL`                      |
-| `customer.name_prefix`                            | `string`   | `true`      | (deprecated)                                                                               |
-| `customer.iban`                                   | `string`   | `false`     | IBAN bank account                                                                          |
-| `customer.customer_id`                            | `integer`  | `false`     | Customer ID e.g. `6667`                                                                    |
-| `customer.customer_type_name`                     | `string`   | `false`     | Customer type see common enum e.g. `Klant`                                                 |
-| `customer.customer_reference`                     | `string`   | `false`     | Customer reference e.g. `REF1212`                                                          |
-| `customer.postcode`                               | `string`   | `false`     | Postal code e.g. `1000AA`                                                                  |
-| `customer.house_number`                           | `string`   | `false`     | Housenumber e.g. `2522`                                                                    |
-| `customer.house_number_postfix`                   | `string`   | `false`     | Housenumber postfix e.g. `B`                                                               |
-| `customer.attn`                                   | `string`   | `false`     | e.g. ``                                                                                    |
-| `customer.title`                                  | `string`   | `false`     | Title of customer e.g. `Dhr./Mevr. `                                                       |
-| `customer.first_name`                             | `string`   | `false`     | Initials e.g. `Adri`                                                                       |
-| `customer.initials`                               | `string`   | `false`     | Initials e.g. `C.G.`                                                                       |
-| `customer.insertion`                              | `string`   | `false`     | Name insertion e.g. `van`                                                                  |
-| `customer.name`                                   | `string`   | `false`     | (Sur)name e.g. `Wijk`                                                                      |
-| `customer.street`                                 | `string`   | `false`     | Street name e.g. `Aalsburg`                                                                |
-| `customer.city`                                   | `string`   | `false`     | City name e.g. `Amsterdam`                                                                 |
-| `customer.country_code_iso_3166`                  | `string`   | `false`     | Country code e.g. `NL`                                                                     |
-| `customer.email`                                  | `string`   | `false`     | Customer E-mail e.g. `test@test.nl`                                                        |
-| `customer.discount_percentage`                    | `integer`  | `false`     | Default discount percentage e.g. `0`                                                       |
-| `customer.datetime_created`                       | `string`   | `true`      | datetime created if known (null if unknown)                                                |
-| `customer.phone_numbers`                          | `array`    | `false`     | array of phone numbers                                                                     |
-| `customer.phone_numbers[].phone_number_id`        | `string`   | `false`     | ID `mob`, `tel` or stringed ID e.g. `10589`                                                |
-| `customer.phone_numbers[].customer_id`            | `integer`  | `false`     | Customer ID `6667`                                                                         |
-| `customer.phone_numbers[].phone_number`           | `string`   | `false`     | Phone number `06-12345678`                                                                 |
-| `customer.phone_numbers[].name`                   | `string`   | `false`     | Name associated with the phone number e.g. `Sjaak`                                         |
+| `customer`                                        | `object`   | `false`     | See customers webhook definition                                                           |
 | `delivery_address`                                | `object`   | `true`      | Delivery address if specified, `null` if not specified                                     |
 | `delivery_address.delivery_address_id`            | `integer`  | `false`     | Delivery address ID e.g. `91953`                                                           |
 | `delivery_address.customer_id`                    | `integer`  | `false`     | Customer ID e.g. `6667`                                                                    |

@@ -53,6 +53,7 @@ Get a list of repair objects for a customer
 |-------------------|----------|--------------------------------------------|
 | `customer_id`     | `int`    | Customer ID to get objects for e.g. `1006` |
 
+This endpoint will return a list of [Repair object (object)](#repair-objects-repair-object-object).
 
 > HTTP request
 
@@ -62,8 +63,6 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
-Content-type: application/json; charset=utf-8
-
 ```
 
 > HTTP Response
@@ -149,7 +148,7 @@ Get a repair object
 | `customer_id`     | `int`    | Customer ID e.g. `1006`      |
 | `object_id`       | `int`    | Repair object ID e.g. `1004` |
 
-
+See [Repair object (object)](#repair-objects-repair-object-object) for the response definition
 
 > HTTP request
 
@@ -220,6 +219,7 @@ Create a repair object for a customer
 |-------------------|----------|-----------------------|
 | `customer_id`     | `int`    | Customer ID e.g. `24` |
 
+See [Repair object (object)](#repair-objects-repair-object-object) for the request and response definition
 
 > HTTP request
 
@@ -299,23 +299,23 @@ Update a repair object
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">PUT</i>
-        <h6>/api/v1/customers/:customer_id/objects/:repair_object_id.json</h6>
+        <h6>/api/v1/customers/:customer_id/objects/:object_id.json</h6>
     </div>
 </div>
 
-| **URI parameter**  | **Type** | **Description**                |
-|--------------------|----------|--------------------------------|
-| `customer_id`      | `int`    | Customer ID e.g. `1900`        |
-| `repair_object_id` | `int`    | Repair Object ID e.g. `152614` |
+| **URI parameter** | **Type** | **Description**                |
+|-------------------|----------|--------------------------------|
+| `customer_id`     | `int`    | Customer ID e.g. `1900`        |
+| `object_id`       | `int`    | Repair Object ID e.g. `152614` |
 
+See [Repair object (object)](#repair-objects-repair-object-object) for the request and response definition
 
 > HTTP request
 
 ```http
 PUT /api/v1/customers/1900/objects/152614.json HTTP/1.1
 Host: api.cyclesoftware.nl
-Authorization: Basic
-Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
 Content-type: application/json; charset=utf-8

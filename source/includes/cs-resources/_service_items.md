@@ -9,6 +9,5 @@ Read, create or update repair objects for a customer
 ## Service items for object
 
 
-
 ## Service items list
 

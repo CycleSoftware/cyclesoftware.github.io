@@ -374,105 +374,105 @@
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>OwnRef</code></td>
+<td>Reference of customer e.g. <code>OwnRef</code></td>
 </tr>
 <tr>
 <td><code>postcode</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>5488HM</code></td>
+<td>Postcode of customer e.g. <code>5488HM</code></td>
 </tr>
 <tr>
 <td><code>house_number</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>1</code></td>
+<td>House number of customer e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>house_number_postfix</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>c</code></td>
+<td>House number postfix of customer e.g. <code>c</code></td>
 </tr>
 <tr>
 <td><code>attn</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>Name of address</code></td>
+<td>Attn name <code>Name of address</code></td>
 </tr>
 <tr>
 <td><code>title</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>Dhr./Mevr.</code></td>
+<td>Name prefix e.g. <code>Dhr./Mevr.</code></td>
 </tr>
 <tr>
 <td><code>initials</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>T</code></td>
+<td>Initials e.g. <code>T</code></td>
 </tr>
 <tr>
 <td><code>insertion</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>van</code></td>
+<td>Insertion e.g. <code>van</code></td>
 </tr>
 <tr>
 <td><code>first_name</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>Tim</code></td>
+<td>First name e.g. <code>Tim</code></td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>LastName</code></td>
+<td>Last name e.g. <code>LastName</code></td>
 </tr>
 <tr>
 <td><code>street</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>Raadhuisplein</code></td>
+<td>Street e.g. <code>Raadhuisplein</code></td>
 </tr>
 <tr>
 <td><code>city</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>Nistelrode</code></td>
+<td>City e.g. <code>Nistelrode</code></td>
 </tr>
 <tr>
 <td><code>country_code_iso_3166</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>NL</code></td>
+<td>Country code e.g. <code>NL</code></td>
 </tr>
 <tr>
 <td><code>email</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>name@domain.nl</code></td>
+<td>E-mail e.g. <code>name@domain.nl</code></td>
 </tr>
 <tr>
 <td><code>discount_percentage</code></td>
 <td><code>decimal</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>e.g. <code>10</code></td>
+<td>Default discount percentage e.g. <code>10</code></td>
 </tr>
 <tr>
 <td><code>datetime_created</code></td>
@@ -493,7 +493,7 @@
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>PUT&#124;POST</code></td>
-<td>ID of phone number e.g. <code>tel</code></td>
+<td>ID of phone number e.g. <code>tel</code> (landline) <code>mob</code> (mobile) or ID</td>
 </tr>
 <tr>
 <td><code>phone_numbers[].customer_id</code></td>
@@ -549,7 +549,6 @@
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>
@@ -837,7 +836,7 @@
 <tr>
 <td><code>postal_code</code></td>
 <td><code>string</code></td>
-<td>postal_code of customer e.g. &#39;5388GM`</td>
+<td>postal_code of customer e.g. <code>5388GM</code></td>
 </tr>
 <tr>
 <td><code>housenumber</code></td>
@@ -1158,6 +1157,8 @@
 </tr>
 </tbody></table>
 
+<p>This endpoint will return a list of <a href="#repair-objects-repair-object-object">Repair object (object)</a>.</p>
+
 <blockquote>
 <p>HTTP request</p>
 </blockquote>
@@ -1166,8 +1167,6 @@
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
-
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>
@@ -1263,6 +1262,8 @@
 </tr>
 </tbody></table>
 
+<p>See <a href="#repair-objects-repair-object-object">Repair object (object)</a> for the response definition</p>
+
 <blockquote>
 <p>HTTP request</p>
 </blockquote>
@@ -1336,6 +1337,8 @@
 <td>Customer ID e.g. <code>24</code></td>
 </tr>
 </tbody></table>
+
+<p>See <a href="#repair-objects-repair-object-object">Repair object (object)</a> for the request and response definition</p>
 
 <blockquote>
 <p>HTTP request</p>
@@ -1411,7 +1414,7 @@
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">PUT</i>
-        <h6>/api/v1/customers/:customer_id/objects/:repair_object_id.json</h6>
+        <h6>/api/v1/customers/:customer_id/objects/:object_id.json</h6>
     </div>
 </div>
 
@@ -1428,19 +1431,20 @@
 <td>Customer ID e.g. <code>1900</code></td>
 </tr>
 <tr>
-<td><code>repair_object_id</code></td>
+<td><code>object_id</code></td>
 <td><code>int</code></td>
 <td>Repair Object ID e.g. <code>152614</code></td>
 </tr>
 </tbody></table>
+
+<p>See <a href="#repair-objects-repair-object-object">Repair object (object)</a> for the request and response definition</p>
 
 <blockquote>
 <p>HTTP request</p>
 </blockquote>
 <div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/v1/customers/1900/objects/152614.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic</span>
-<span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
@@ -1518,6 +1522,7 @@
 <th><strong>Property</strong></th>
 <th><strong>Type</strong></th>
 <th><strong>Nullable</strong></th>
+<th></th>
 <th><strong>Description</strong></th>
 </tr>
 </thead><tbody>
@@ -1525,259 +1530,302 @@
 <td><code>workshop_order_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>978070</code></td>
+<td><code>readonly</code></td>
+<td>Workshop order ID e.g. <code>978070</code></td>
 </tr>
 <tr>
 <td><code>sales_order_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>978070</code></td>
+<td><code>readonly</code></td>
+<td>Sales order ID e.g. <code>978070</code></td>
 </tr>
 <tr>
 <td><code>customer_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>24</code></td>
+<td><code>POST</code></td>
+<td>Customer ID e.g. <code>24</code></td>
 </tr>
 <tr>
 <td><code>store_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>1</code></td>
+<td><code>POST</code></td>
+<td>Store ID e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>repair_object_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>1105</code></td>
+<td><code>POST</code></td>
+<td>Repair object ID e.g. <code>1105</code></td>
 </tr>
 <tr>
 <td><code>is_active</code></td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>true</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>If deleted <code>false</code></td>
 </tr>
 <tr>
 <td><code>reference_text</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>work_number</code></td>
+<td><code>POST</code></td>
+<td>Own reference e.g. <code>work_number</code></td>
 </tr>
 <tr>
 <td><code>datetime_scheduled_start</code></td>
 <td><code>datetime</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>2023-03-07 12:13:47</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Scheduled start e.g. <code>2023-03-07 12:13:47</code></td>
 </tr>
 <tr>
 <td><code>datetime_scheduled_finished</code></td>
 <td><code>datetime</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>2023-03-07 12:43:47</code></td>
+<td><code>readonly</code></td>
+<td>Scheduled finished e.g. <code>2023-03-07 12:43:47</code></td>
 </tr>
 <tr>
 <td><code>datetime_created</code></td>
 <td><code>datetime</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>2023-03-07 12:13:47</code></td>
+<td><code>readonly</code></td>
+<td>Created at e.g. <code>2023-03-07 12:13:47</code></td>
 </tr>
 <tr>
 <td><code>datetime_modified</code></td>
 <td><code>datetime</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>2023-03-07 12:13:47</code></td>
+<td><code>readonly</code></td>
+<td>Modified at e.g. <code>2023-03-07 12:13:47</code></td>
 </tr>
 <tr>
 <td><code>mechanic_employee_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>12</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Employee ID of mechanic (see common employees) e.g. <code>12</code></td>
 </tr>
 <tr>
 <td><code>created_by_employee_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>1</code></td>
+<td><code>POST</code></td>
+<td>Created by employee ID (see common employees) e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>last_update_employee_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>1</code></td>
+<td><code>POST</code></td>
+<td>Last update by employee ID (see common employees) e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>phone_number_id</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>tel</code></td>
+<td><code>POST</code></td>
+<td>Phone number ID for communication e.g. <code>tel</code></td>
 </tr>
 <tr>
 <td><code>repair_description</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>posted repair</code></td>
+<td><code>POST</code></td>
+<td>Description of repair e.g. <code>posted repair</code></td>
 </tr>
 <tr>
 <td><code>status_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>7</code></td>
+<td><code>POST</code></td>
+<td>Status see common enum <code>workshop_order_status</code> e.g. <code>7</code></td>
 </tr>
 <tr>
 <td><code>status_text</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>Reparatie voltooid</code></td>
+<td><code>readonly</code></td>
+<td>Status text see common enum <code>workshop_order_status</code> e.g. <code>Reparatie voltooid</code></td>
 </tr>
 <tr>
 <td><code>invoice_number</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>0</code></td>
+<td><code>readonly</code></td>
+<td>Sales transaction / invoice number <code>0</code> if not invoiced</td>
 </tr>
 <tr>
 <td><code>borrowed_object_reference</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Borrowed object reference</td>
 </tr>
 <tr>
 <td><code>total_repair_time_minutes</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>30</code></td>
+<td><code>readonly</code></td>
+<td>Total repair time scheduled in minutes e.g. <code>30</code></td>
 </tr>
 <tr>
 <td><code>custom_repair_time_minutes</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>30</code></td>
+<td><code>POST</code></td>
+<td>Custom repair time (total time - repair codes time) e.g. <code>30</code></td>
 </tr>
 <tr>
 <td><code>repair_codes</code></td>
-<td><code>null</code></td>
+<td><code>string[]</code></td>
 <td><code>true</code></td>
-<td></td>
+<td><code>POST</code></td>
+<td>On create a list of repair codes. See repair-codes endpoint</td>
 </tr>
 <tr>
 <td><code>service_card_codes</code></td>
-<td><code>null</code></td>
+<td><code>string[]</code></td>
 <td><code>true</code></td>
-<td></td>
+<td><code>POST</code></td>
+<td>On create a list of service-item codes. See service-items endpoint</td>
 </tr>
 <tr>
 <td><code>delivery_method_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>0</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Delivery method see common enum <code>delivery_methods</code> e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items</code></td>
 <td><code>array</code></td>
 <td><code>false</code></td>
-<td></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Array of order items</td>
 </tr>
 <tr>
 <td><code>order_items[].item_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>2</code></td>
+<td><code>readonly</code></td>
+<td>Unique item id within the order e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>order_items[].item_type_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>1</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Order item type see common enum <code>transaction_item_types</code> e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>order_items[].special_type_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>0</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Related id for example object id e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].quantity</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>1</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Quantity e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>order_items[].barcode</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>102</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Barcode of item e.g. <code>102</code></td>
 </tr>
 <tr>
 <td><code>order_items[].pos_group_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>2</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>POS group see common enum <code>pos_groups</code> e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>order_items[].description</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>In- en uitbouwen electromotor in- en uitbouwen accu</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Description of item e.g. <code>In- en uitbouwen electromotor in- en uitbouwen accu</code></td>
 </tr>
 <tr>
 <td><code>order_items[].unit_price_in_vat_cents</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>9000</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Gross unit price including vat in cents e.g. <code>9000</code></td>
 </tr>
 <tr>
 <td><code>order_items[].unit_discount_amount_in_vat_cents</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>0</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Unit discount amount including VAT in cents e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].price_in_vat_cents</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>9000</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Line price including VAT in cents e.g. <code>9000</code></td>
 </tr>
 <tr>
 <td><code>order_items[].discount_percentage</code></td>
-<td><code>integer</code></td>
+<td><code>decimal</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>0</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Discount percentage e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].vat_code</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>1</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Vat code see common enum <code>vat_codes</code> e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>order_items[].vat_percentage</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>9</code></td>
+<td><code>readonly</code></td>
+<td>Vat percentage e.g. <code>9</code></td>
 </tr>
 <tr>
 <td><code>order_items[].vat_amount_cents</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>743</code></td>
+<td><code>readonly</code></td>
+<td>Line vat amount in cents e.g. <code>743</code></td>
 </tr>
 <tr>
 <td><code>order_items[].item_status_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>0</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Status ID of item see common enum <code>sales_order_item_status</code> e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].item_status_text</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>Geen status</code></td>
+<td><code>readonly</code></td>
+<td>Status text of item see common enum <code>sales_order_item_status</code> e.g. <code>Geen status</code></td>
 </tr>
 <tr>
 <td><code>order_items[].unit_work_time_minutes</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>0</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>Unit of work time in minutes e.g. <code>0</code></td>
 </tr>
 </tbody></table>
 <h2 id='workshop-orders-list-workshop-orders'>List workshop orders</h2>

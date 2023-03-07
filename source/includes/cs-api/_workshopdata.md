@@ -59,7 +59,7 @@ See [API limits](#introduction-limits) for more information about API rate limit
 | `data[].is_scheduled`                  | `boolean`  | `false`  | `true` if scheduled in a workshop order                                               |
 | `data[].title`                         | `string`   | `false`  | Title e.g. `3e servicebeurt`                                                          |
 | `data[].description`                   | `string`   | `false`  | Description e.g. `3e servicebeurt`                                                    |
-| `data[].gross_unit_price_cents`        | `integer`  | `false`  | Gross price in cents `6900`                                                           |
+| `data[].gross_unit_price_cents`        | `integer`  | `false`  | Gross unit price in cents `6900`                                                      |
 | `data[].unit_discount_amount_cents`    | `integer`  | `false`  | Discount in cents `0`                                                                 |
 | `data[].amount_payed_in_advance_cents` | `integer`  | `false`  | Amount payed `0`                                                                      |
 | `data[].time_minutes`                  | `integer`  | `false`  | Time in minutes for workshop `60`                                                     |

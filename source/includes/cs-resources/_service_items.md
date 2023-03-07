@@ -22,7 +22,7 @@ Read, create or update repair objects for a customer
 | `is_scheduled`                  | `boolean`  | `false`      | `true` if scheduled in a workshop order                                               |
 | `title`                         | `string`   | `false`      | Title e.g. `3e servicebeurt`                                                          |
 | `description`                   | `string`   | `false`      | Description e.g. `3e servicebeurt`                                                    |
-| `gross_unit_price_cents`        | `integer`  | `false`      | Gross price in cents `6900`                                                           |
+| `gross_unit_price_cents`        | `integer`  | `false`      | Gross unit price in cents `6900`                                                      |
 | `unit_discount_amount_cents`    | `integer`  | `false`      | Discount in cents `0`                                                                 |
 | `amount_payed_in_advance_cents` | `integer`  | `false`      | Amount payed `0`                                                                      |
 | `time_minutes`                  | `integer`  | `false`      | Time in minutes for workshop `60`                                                     |

@@ -180,7 +180,7 @@ Every JSON payload has the same structure. The payload object is different per e
 | `order_items[].barcode`                           | `string`   | `false`     | Barcode of item e.g. `4008496261628`                                                       |
 | `order_items[].pos_group_id`                      | `integer`  | `false`     | POS group see common enum e.g. `11`                                                        |
 | `order_items[].description`                       | `string`   | `false`     | Description of item e.g. `VARTA BATTERIE 12V38MAH V23GA`                                   |
-| `order_items[].unit_price_in_vat_cents`           | `integer`  | `false`     | Gross price in cents `225`                                                                 |
+| `order_items[].unit_price_in_vat_cents`           | `integer`  | `false`     | Gross unit price in cents `225`                                                            |
 | `order_items[].unit_discount_amount_in_vat_cents` | `integer`  | `false`     | Unit discount in cents e.g. `0`                                                            |
 | `order_items[].price_in_vat_cents`                | `integer`  | `false`     | Line price in cents e.g. `225`                                                             |
 | `order_items[].discount_percentage`               | `integer`  | `false`     | Discount percentage e.g. `0`                                                               |

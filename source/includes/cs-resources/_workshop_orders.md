@@ -58,16 +58,430 @@ Read, create or update workshop orders
 
 List workshop orders for a specific customer
 
+@Todo order_items =null
+
 ## Get workshop order
 
 Get workshop order
+
+> HTTP request
+
+```http
+GET /api/v1/customers/24/workshop-order/978768.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+Content-length: 2814
+
+{
+    "workshop_order_id": 978768,
+    "sales_order_id": 978768,
+    "customer_id": 24,
+    "store_id": 1,
+    "repair_object_id": 1105,
+    "is_active": true,
+    "reference_text": "work_number",
+    "datetime_scheduled_start": "2023-03-07 16:54:23",
+    "datetime_scheduled_finished": "2023-03-07 17:54:23",
+    "datetime_created": "2023-03-07 16:54:23",
+    "datetime_modified": "2023-03-07 16:54:23",
+    "mechanic_employee_id": 12,
+    "created_by_employee_id": 1,
+    "last_update_employee_id": 1,
+    "phone_number_id": "tel",
+    "repair_description": "posted repair",
+    "status_id": 7,
+    "status_text": "Reparatie voltooid",
+    "invoice_number": 0,
+    "borrowed_object_reference": "",
+    "total_repair_time_minutes": 60,
+    "custom_repair_time_minutes": 0,
+    "delivery_method_id": 0,
+    "order_items": [
+        {
+            "item_id": 1,
+            "item_type_id": 4,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "102",
+            "pos_group_id": 2,
+            "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+            "unit_price_in_vat_cents": 9000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 9000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 9,
+            "vat_amount_cents": 743,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 0
+        },
+        {
+            "item_id": 2,
+            "item_type_id": 1,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "102",
+            "pos_group_id": 2,
+            "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+            "unit_price_in_vat_cents": 9000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 9000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 9,
+            "vat_amount_cents": 743,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 0
+        },
+        {
+            "item_id": 3,
+            "item_type_id": 4,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "999",
+            "pos_group_id": 2,
+            "description": "Test Title",
+            "unit_price_in_vat_cents": 12000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 12000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 9,
+            "vat_amount_cents": 991,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 60
+        }
+    ]
+}
+```
 
 ## Create workshop order
 
 Create a workshop order
 
+> HTTP request
+
+```http
+POST /api/v1/customers/24/workshop-order.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+Content-type: application/json; charset=utf-8
+Content-length: 2814
+
+{
+    "customer_id": 24,
+    "store_id": null,
+    "repair_object_id": 1105,
+    "is_active": true,
+    "reference_text": "work_number",
+    "datetime_scheduled_start": "2023-03-07T16:56:32+01:00",
+    "datetime_scheduled_finished": null,
+    "datetime_created": null,
+    "datetime_modified": null,
+    "mechanic_employee_id": 12,
+    "created_by_employee_id": null,
+    "last_update_employee_id": null,
+    "phone_number_id": "tel",
+    "repair_description": "posted repair",
+    "status_id": 7,
+    "status_text": null,
+    "invoice_number": null,
+    "borrowed_object_reference": null,
+    "total_repair_time_minutes": null,
+    "custom_repair_time_minutes": null,
+    "delivery_method_id": 0,
+    "repair_codes": [
+        "999"
+    ],
+    "service_card_codes": [],
+    "order_items": [
+        {
+            "item_id": 1,
+            "item_type_id": 4,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "102",
+            "pos_group_id": 2,
+            "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+            "unit_price_in_vat_cents": 9000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 9000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 6,
+            "vat_amount_cents": 509,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 0
+        },
+        {
+            "item_id": 2,
+            "item_type_id": 1,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "102",
+            "pos_group_id": 2,
+            "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+            "unit_price_in_vat_cents": 9000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 9000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 6,
+            "vat_amount_cents": 509,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 0
+        }
+    ]
+}
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+Content-length: 2814
+
+{
+    "workshop_order_id": 978768,
+    "sales_order_id": 978768,
+    "customer_id": 24,
+    "store_id": 1,
+    "repair_object_id": 1105,
+    "is_active": true,
+    "reference_text": "work_number",
+    "datetime_scheduled_start": "2023-03-07 16:54:23",
+    "datetime_scheduled_finished": "2023-03-07 17:54:23",
+    "datetime_created": "2023-03-07 16:54:23",
+    "datetime_modified": "2023-03-07 16:54:23",
+    "mechanic_employee_id": 12,
+    "created_by_employee_id": 1,
+    "last_update_employee_id": 1,
+    "phone_number_id": "tel",
+    "repair_description": "posted repair",
+    "status_id": 7,
+    "status_text": "Reparatie voltooid",
+    "invoice_number": 0,
+    "borrowed_object_reference": "",
+    "total_repair_time_minutes": 60,
+    "custom_repair_time_minutes": 0,
+    "delivery_method_id": 0,
+    "order_items": [
+        {
+            "item_id": 1,
+            "item_type_id": 4,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "102",
+            "pos_group_id": 2,
+            "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+            "unit_price_in_vat_cents": 9000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 9000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 9,
+            "vat_amount_cents": 743,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 0
+        },
+        {
+            "item_id": 2,
+            "item_type_id": 1,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "102",
+            "pos_group_id": 2,
+            "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+            "unit_price_in_vat_cents": 9000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 9000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 9,
+            "vat_amount_cents": 743,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 0
+        },
+        {
+            "item_id": 3,
+            "item_type_id": 4,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "999",
+            "pos_group_id": 2,
+            "description": "Test Title",
+            "unit_price_in_vat_cents": 12000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 12000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 9,
+            "vat_amount_cents": 991,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 60
+        }
+    ]
+}
+```
+
+
 ## Update workshop order
 
 Update a workshop order
 
+> HTTP request
+
+```http
+PUT /api/v1/customers/24/workshop-order/397876.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic
+Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+Content-type: application/json; charset=utf-8
+Content-length: 2237
+
+{
+    "is_active": true,
+    "datetime_scheduled_start": "2020-03-13 18:15:45",
+    "mechanic_employee_id": 12,
+    "borrowed_object_reference": "",
+    "total_repair_time_minutes": 30,
+    "delivery_method_id": 0,
+    "order_items": [
+        {
+            "item_id": 1,
+            "item_type_id": 4,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "102",
+            "pos_group_id": 2,
+            "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+            "unit_price_in_vat_cents": 9000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 9000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 9,
+            "vat_amount_cents": 743,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 0
+        },
+        {
+            "item_id": 2,
+            "item_type_id": 1,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "102",
+            "pos_group_id": 2,
+            "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+            "unit_price_in_vat_cents": 9000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 9000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 9,
+            "vat_amount_cents": 743,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 0
+        }
+    ]
+}
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+Content-length: 2237
+
+{
+    "workshop_order_id": 397876,
+    "sales_order_id": 397876,
+    "customer_id": 24,
+    "store_id": 1,
+    "repair_object_id": 1105,
+    "is_active": true,
+    "reference_text": "work_number",
+    "datetime_scheduled_start": "2020-03-13 18:15:45",
+    "datetime_scheduled_finished": "2020-03-13 18:45:45",
+    "datetime_created": "2020-03-13 18:15:44",
+    "datetime_modified": "2023-03-07 16:48:43",
+    "mechanic_employee_id": 12,
+    "created_by_employee_id": 1,
+    "last_update_employee_id": 1,
+    "phone_number_id": "tel",
+    "repair_description": "64075cdc1db73",
+    "status_id": 7,
+    "status_text": "Reparatie voltooid",
+    "invoice_number": 0,
+    "borrowed_object_reference": "",
+    "total_repair_time_minutes": 30,
+    "custom_repair_time_minutes": 30,
+    "delivery_method_id": 0,
+    "order_items": [
+        {
+            "item_id": 1,
+            "item_type_id": 4,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "102",
+            "pos_group_id": 2,
+            "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+            "unit_price_in_vat_cents": 9000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 9000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 9,
+            "vat_amount_cents": 743,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 0
+        },
+        {
+            "item_id": 2,
+            "item_type_id": 1,
+            "special_type_id": 0,
+            "quantity": 1,
+            "barcode": "102",
+            "pos_group_id": 2,
+            "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+            "unit_price_in_vat_cents": 9000,
+            "unit_discount_amount_in_vat_cents": 0,
+            "price_in_vat_cents": 9000,
+            "discount_percentage": 0,
+            "vat_code": 1,
+            "vat_percentage": 9,
+            "vat_amount_cents": 743,
+            "item_status_id": 0,
+            "item_status_text": "Geen status",
+            "unit_work_time_minutes": 0
+        }
+    ]
+}
+```
 

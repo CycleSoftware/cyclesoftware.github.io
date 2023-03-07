@@ -237,20 +237,21 @@ Get list of repair codes
     </div>
 </div>
 
-### Repair codes (object)
+### Repair code (object)
 
-| **Property**          | **Type**  | **Nullable** | **Description**                                        |
-|-----------------------|-----------|--------------|--------------------------------------------------------|
-| `[].code_id`          | `integer` | `false`      | ID of repair code e.g. `90753`                         |
-| `[].category`         | `string`  | `false`      | Category name e.g. `Accu`                              |
-| `[].code`             | `string`  | `false`      | Code e.g. `999`                                        |
-| `[].description`      | `string`  | `false`      | Description e.g. `Test Title`                          |
-| `[].extra_text`       | `string`  | `false`      | Description extra e.g. `Omschrijving`                  |
-| `[].price_cents`      | `integer` | `true`       | Price in cents or null e.g. `12000`                    |
-| `[].time_minutes`     | `integer` | `false`      | Time in minutes required for code e.g. `60`            |
-| `[].workshop_rate_id` | `integer` | `false`      | Workshop rate see common api `workshop_rates` e.g. `1` |
-| `[].vat_code`         | `integer` | `false`      | Vat code see common api `vat_codes` e.g. `1`           |
+| **Property**   | **Type**  | **Nullable** | **Description**                                        |
+|----------------|-----------|--------------|--------------------------------------------------------|
+| `code_id`    | `integer` | `false`      | ID of repair code e.g. `90753`                         |
+| `category`   | `string`  | `false`      | Category name e.g. `Accu`                              |
+| `code`       | `string`  | `false`      | Code e.g. `999`                                        |
+| `description` | `string`  | `false`      | Description e.g. `Test Title`                          |
+| `extra_text` | `string`  | `false`      | Description extra e.g. `Omschrijving`                  |
+| `price_cents` | `integer` | `true`       | Price in cents or null e.g. `12000`                    |
+| `time_minutes` | `integer` | `false`      | Time in minutes required for code e.g. `60`            |
+| `workshop_rate_id` | `integer` | `false`      | Workshop rate see common api `workshop_rates` e.g. `1` |
+| `vat_code`   | `integer` | `false`      | Vat code see common api `vat_codes` e.g. `1`           |
 
+The result will return a list of Repair code (object)
 
 > HTTP request
 
@@ -260,7 +261,6 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
-
 ```
 
 > HTTP Response

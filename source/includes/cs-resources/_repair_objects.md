@@ -71,6 +71,11 @@ Accept: application/json
 HTTP/1.1 200
 Content-type: application/json; charset=utf-8
 Content-length: 1676
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
 
 [
     {
@@ -169,6 +174,11 @@ Content-type: application/json; charset=utf-8
 HTTP/1.1 200
 Content-type: application/json; charset=utf-8
 Content-length: 827
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
 
 {
     "customer_id": 1006,
@@ -264,6 +274,11 @@ Content-length: 620
 HTTP/1.1 200
 Content-type: application/json; charset=utf-8
 Content-length: 620
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
 
 {
     "customer_id": 24,
@@ -340,6 +355,11 @@ Content-length: 853
 HTTP/1.1 200
 Content-type: application/json; charset=utf-8
 Content-length: 853
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
 
 {
     "customer_id": 1900,

@@ -55,10 +55,20 @@ Read, create or update workshop orders
 | `order_items[].unit_work_time_minutes`            | `integer` | `false`      | e.g. `0`                                                   |
 
 
+## List workshop orders
+
+List workshop orders for a specific customer
+
 ## Get workshop order
+
+Get workshop order
 
 ## Create workshop order
 
+Create a workshop order
+
 ## Update workshop order
+
+Update a workshop order
 
 

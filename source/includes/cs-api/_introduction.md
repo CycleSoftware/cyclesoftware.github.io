@@ -110,7 +110,7 @@ mechanism is as follows:
 
 `GET /v1/endpoint?offset=1000`
 
-In the response the next_offset is suggested. You can pass the next offset in the `offset` GET paramater.
+In the response the next_offset is suggested. You can pass the next offset in the `offset` GET parameter.
 
 ## Limits ##
 

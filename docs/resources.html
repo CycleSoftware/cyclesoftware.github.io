@@ -351,7 +351,7 @@
 <th>Property</th>
 <th>Type</th>
 <th>Nullable</th>
-<th>POST / PUT</th>
+<th>Modify</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -366,112 +366,112 @@
 <td><code>customer_type_name</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>See common enum <code>customer_types</code> e.g. <code>Klant</code></td>
 </tr>
 <tr>
 <td><code>customer_reference</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>OwnRef</code></td>
 </tr>
 <tr>
 <td><code>postcode</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>5488HM</code></td>
 </tr>
 <tr>
 <td><code>house_number</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>house_number_postfix</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>c</code></td>
 </tr>
 <tr>
 <td><code>attn</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>Name of address</code></td>
 </tr>
 <tr>
 <td><code>title</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>Dhr./Mevr.</code></td>
 </tr>
 <tr>
 <td><code>initials</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>T</code></td>
 </tr>
 <tr>
 <td><code>insertion</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>van</code></td>
 </tr>
 <tr>
 <td><code>first_name</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>Tim</code></td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>LastName</code></td>
 </tr>
 <tr>
 <td><code>street</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>Raadhuisplein</code></td>
 </tr>
 <tr>
 <td><code>city</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>Nistelrode</code></td>
 </tr>
 <tr>
 <td><code>country_code_iso_3166</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>NL</code></td>
 </tr>
 <tr>
 <td><code>email</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>name@domain.nl</code></td>
 </tr>
 <tr>
 <td><code>discount_percentage</code></td>
 <td><code>decimal</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>10</code></td>
 </tr>
 <tr>
@@ -485,14 +485,14 @@
 <td><code>phone_numbers</code></td>
 <td><code>array</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>array of phone numbers</td>
 </tr>
 <tr>
 <td><code>phone_numbers[].phone_number_id</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>ID of phone number e.g. <code>tel</code></td>
 </tr>
 <tr>
@@ -506,14 +506,14 @@
 <td><code>phone_numbers[].phone_number</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Phone number e.g. <code>0733030050</code></td>
 </tr>
 <tr>
 <td><code>phone_numbers[].name</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td><code>POST</code> <code>PUT</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Name of number e.g. <code>Dhr./Mevr.  T UnitTest</code></td>
 </tr>
 </tbody></table>
@@ -973,7 +973,7 @@
 <tr>
 <th><strong>Property</strong></th>
 <th><strong>Type</strong></th>
-<th><strong>Type</strong></th>
+<th><strong>Modify</strong></th>
 <th><strong>Description</strong></th>
 </tr>
 </thead><tbody>
@@ -992,121 +992,121 @@
 <tr>
 <td><code>object_barcode</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>object_barcode</code></td>
 </tr>
 <tr>
 <td><code>is_active</code></td>
 <td><code>boolean</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Whether this object is still owned by customer e.g. <code>true</code></td>
 </tr>
 <tr>
 <td><code>object_type_name</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>e.g. <code>fiets</code></td>
 </tr>
 <tr>
 <td><code>category</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Category name e.g. <code>Racefietsen</code></td>
 </tr>
 <tr>
 <td><code>brand</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Brand name e.g. <code>BrandName</code></td>
 </tr>
 <tr>
 <td><code>model</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Model name e.g. <code>ModelName</code></td>
 </tr>
 <tr>
 <td><code>model_year</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Model year e.g. <code>2017</code></td>
 </tr>
 <tr>
 <td><code>color</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Color of object e.g. <code>Black</code></td>
 </tr>
 <tr>
 <td><code>variant</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Variant name e.g. <code>Heren</code></td>
 </tr>
 <tr>
 <td><code>phone_number_id</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Phone number ID for communication e.g. <code>12345</code></td>
 </tr>
 <tr>
 <td><code>license_plate</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>License plate number e.g. <code>xx-zz-yy</code></td>
 </tr>
 <tr>
 <td><code>km_mileage</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Kilometer age e.g. <code>200</code></td>
 </tr>
 <tr>
 <td><code>frame_id</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Frame number e.g. <code>frame_id</code></td>
 </tr>
 <tr>
 <td><code>chip_id</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Chip number e.g. <code>chip_id</code></td>
 </tr>
 <tr>
 <td><code>key_id</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Key number e.g. <code>key_id</code></td>
 </tr>
 <tr>
 <td><code>engine_id</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Engine number e.g. <code>engine_id</code></td>
 </tr>
 <tr>
 <td><code>battery_id</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Battery number e.g. <code>1234</code></td>
 </tr>
 <tr>
 <td><code>lock_id</code></td>
 <td><code>string</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Lock number e.g. <code>1234</code></td>
 </tr>
 <tr>
 <td><code>workshop_rate_id</code></td>
 <td><code>integer</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>See common API <code>workshop_rates</code> e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>service_level_id</code></td>
 <td><code>integer</code></td>
-<td><code>PUT</code> <code>POST</code></td>
+<td><code>PUT&#124;POST</code></td>
 <td>Service level ID e.g. <code>0</code></td>
 </tr>
 <tr>
@@ -1117,9 +1117,9 @@
 </tr>
 <tr>
 <td><code>images[].date_modified</code></td>
-<td><code>date ISO</code></td>
+<td><code>datetime&#124;null</code></td>
 <td><code>readonly</code></td>
-<td>Modification date e.g. <code>2016-05-24T11:15:02+0200</code></td>
+<td>Modification date e.g. <code>2016-05-24 11:15:02</code></td>
 </tr>
 <tr>
 <td><code>images[].url_thumb</code></td>
@@ -1202,7 +1202,7 @@
         </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24T11:15:02+0200"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24 11:15:02"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
             </span><span class="p">}</span><span class="w">
@@ -1307,7 +1307,7 @@
     </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24T11:15:02+0200"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24 11:15:02"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -1490,7 +1490,7 @@
     </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-19T08:35:58+0100"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-19 08:35:58"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_T_1215427.jpg"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1215427.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -1565,27 +1565,27 @@
 </tr>
 <tr>
 <td><code>datetime_scheduled_start</code></td>
-<td><code>string</code></td>
+<td><code>datetime</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>2023-03-07T12:13:47+01:00</code></td>
+<td>e.g. <code>2023-03-07 12:13:47</code></td>
 </tr>
 <tr>
 <td><code>datetime_scheduled_finished</code></td>
-<td><code>string</code></td>
+<td><code>datetime</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>2023-03-07T12:43:47+01:00</code></td>
+<td>e.g. <code>2023-03-07 12:43:47</code></td>
 </tr>
 <tr>
 <td><code>datetime_created</code></td>
-<td><code>string</code></td>
+<td><code>datetime</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>2023-03-07T12:13:47+01:00</code></td>
+<td>e.g. <code>2023-03-07 12:13:47</code></td>
 </tr>
 <tr>
 <td><code>datetime_modified</code></td>
-<td><code>string</code></td>
+<td><code>datetime</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>2023-03-07T12:13:47+01:00</code></td>
+<td>e.g. <code>2023-03-07 12:13:47</code></td>
 </tr>
 <tr>
 <td><code>mechanic_employee_id</code></td>

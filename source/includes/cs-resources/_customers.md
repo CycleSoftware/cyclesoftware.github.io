@@ -8,31 +8,31 @@ Find, create and update customers
 
 ## Customer (object)
 
-| Property                          | Type       | Nullable | POST / PUT   | Description                                        |
-|-----------------------------------|------------|----------|--------------|----------------------------------------------------|
-| `customer_id`                     | `integer`  | `false`  | `readonly`   | Customer ID e.g. `6`                               |
-| `customer_type_name`              | `string`   | `false`  | `POST` `PUT` | See common enum `customer_types` e.g. `Klant`      |
-| `customer_reference`              | `string`   | `false`  | `POST` `PUT` | e.g. `OwnRef`                                      |
-| `postcode`                        | `string`   | `false`  | `POST` `PUT` | e.g. `5488HM`                                      |
-| `house_number`                    | `string`   | `false`  | `POST` `PUT` | e.g. `1`                                           |
-| `house_number_postfix`            | `string`   | `false`  | `POST` `PUT` | e.g. `c`                                           |
-| `attn`                            | `string`   | `false`  | `POST` `PUT` | e.g. `Name of address`                             |
-| `title`                           | `string`   | `false`  | `POST` `PUT` | e.g. `Dhr./Mevr. `                                 |
-| `initials`                        | `string`   | `false`  | `POST` `PUT` | e.g. `T`                                           |
-| `insertion`                       | `string`   | `false`  | `POST` `PUT` | e.g. `van`                                         |
-| `first_name`                      | `string`   | `false`  | `POST` `PUT` | e.g. `Tim`                                         |
-| `name`                            | `string`   | `false`  | `POST` `PUT` | e.g. `LastName`                                    |
-| `street`                          | `string`   | `false`  | `POST` `PUT` | e.g. `Raadhuisplein`                               |
-| `city`                            | `string`   | `false`  | `POST` `PUT` | e.g. `Nistelrode`                                  |
-| `country_code_iso_3166`           | `string`   | `false`  | `POST` `PUT` | e.g. `NL`                                          |
-| `email`                           | `string`   | `false`  | `POST` `PUT` | e.g. `name@domain.nl`                              |
-| `discount_percentage`             | `decimal`  | `false`  | `POST` `PUT` | e.g. `10`                                          |
-| `datetime_created`                | `datetime` | `true`   | `readonly`   | Created at if available e.g. `2023-01-03 12:30:44` |
-| `phone_numbers`                   | `array`    | `false`  | `POST` `PUT` | array of phone numbers                             |
-| `phone_numbers[].phone_number_id` | `string`   | `false`  | `POST` `PUT` | ID of phone number e.g. `tel`                      |
-| `phone_numbers[].customer_id`     | `integer`  | `false`  | `readonly`   | Customer ID e.g. `6`                               |
-| `phone_numbers[].phone_number`    | `string`   | `false`  | `POST` `PUT` | Phone number e.g. `0733030050`                     |
-| `phone_numbers[].name`            | `string`   | `false`  | `POST` `PUT` | Name of number e.g. `Dhr./Mevr.  T UnitTest`       |
+| Property                          | Type       | Nullable | Modify                     | Description                                                   |
+|-----------------------------------|------------|----------|----------------------------|---------------------------------------------------------------|
+| `customer_id`                     | `integer`  | `false`  | `readonly`                 | Customer ID e.g. `6`                                          |
+| `customer_type_name`              | `string`   | `false`  | <code>PUT&#124;POST</code> | See common enum `customer_types` e.g. `Klant`                 |
+| `customer_reference`              | `string`   | `false`  | <code>PUT&#124;POST</code> | Reference of customer e.g. `OwnRef`                           |
+| `postcode`                        | `string`   | `false`  | <code>PUT&#124;POST</code> | Postcode of customer e.g. `5488HM`                            |
+| `house_number`                    | `string`   | `false`  | <code>PUT&#124;POST</code> | House number of customer e.g. `1`                             |
+| `house_number_postfix`            | `string`   | `false`  | <code>PUT&#124;POST</code> | House number postfix of customer e.g. `c`                     |
+| `attn`                            | `string`   | `false`  | <code>PUT&#124;POST</code> | Attn name `Name of address`                                   |
+| `title`                           | `string`   | `false`  | <code>PUT&#124;POST</code> | Name prefix e.g. `Dhr./Mevr. `                                |
+| `initials`                        | `string`   | `false`  | <code>PUT&#124;POST</code> | Initials e.g. `T`                                             |
+| `insertion`                       | `string`   | `false`  | <code>PUT&#124;POST</code> | Insertion e.g. `van`                                          |
+| `first_name`                      | `string`   | `false`  | <code>PUT&#124;POST</code> | First name e.g. `Tim`                                         |
+| `name`                            | `string`   | `false`  | <code>PUT&#124;POST</code> | Last name e.g. `LastName`                                     |
+| `street`                          | `string`   | `false`  | <code>PUT&#124;POST</code> | Street e.g. `Raadhuisplein`                                   |
+| `city`                            | `string`   | `false`  | <code>PUT&#124;POST</code> | City e.g. `Nistelrode`                                        |
+| `country_code_iso_3166`           | `string`   | `false`  | <code>PUT&#124;POST</code> | Country code e.g. `NL`                                        |
+| `email`                           | `string`   | `false`  | <code>PUT&#124;POST</code> | E-mail e.g. `name@domain.nl`                                  |
+| `discount_percentage`             | `decimal`  | `false`  | <code>PUT&#124;POST</code> | Default discount percentage e.g. `10`                         |
+| `datetime_created`                | `datetime` | `true`   | `readonly`                 | Created at if available e.g. `2023-01-03 12:30:44`            |
+| `phone_numbers`                   | `array`    | `false`  | <code>PUT&#124;POST</code> | array of phone numbers                                        |
+| `phone_numbers[].phone_number_id` | `string`   | `false`  | <code>PUT&#124;POST</code> | ID of phone number e.g. `tel` (landline) `mob` (mobile) or ID |
+| `phone_numbers[].customer_id`     | `integer`  | `false`  | `readonly`                 | Customer ID e.g. `6`                                          |
+| `phone_numbers[].phone_number`    | `string`   | `false`  | <code>PUT&#124;POST</code> | Phone number e.g. `0733030050`                                |
+| `phone_numbers[].name`            | `string`   | `false`  | <code>PUT&#124;POST</code> | Name of number e.g. `Dhr./Mevr.  T UnitTest`                  |
 
 
 ## Get Customer 
@@ -340,7 +340,7 @@ Find existing customers
 | **GET parameter**     | **Type** | **Description**                             |
 |-----------------------|----------|---------------------------------------------|
 | `phone_number`        | `string` | Phone number of customer e.g. `0733030050`  |
-| `postal_code`         | `string` | postal_code of customer e.g. '5388GM`       | 
+| `postal_code`         | `string` | postal_code of customer e.g. `5388GM`       | 
 | `housenumber`         | `string` | housenumber of customer e.g. `1`            | 
 | `housenumber_postfix` | `string` | housenumber_postfix of customer e.g. `a`    | 
 | `email`               | `string` | E-mail of customer e.g. `name@domain.nl`    | 

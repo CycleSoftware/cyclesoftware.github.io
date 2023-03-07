@@ -14,6 +14,10 @@ toc_footers:
 
 includes:
 - cs-resources/_customers
+- cs-resources/_repair_objects
+- cs-resources/_service_items
+- cs-resources/_workshop_orders
+- cs-resources/_workshop
 
 
 search: true

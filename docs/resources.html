@@ -281,7 +281,13 @@
             <a href="#workshop-service-items" class="toc-h1 toc-link" data-title="Workshop service items">Workshop service items</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#workshop-service-items-service-items-for-object" class="toc-h2 toc-link" data-title="Service items for object">Service items for object</a>
+                    <a href="#workshop-service-items-service-item-object" class="toc-h2 toc-link" data-title="Service item (object)">Service item (object)</a>
+                  </li>
+                  <li>
+                    <a href="#workshop-service-items-service-items-for-customer" class="toc-h2 toc-link" data-title="Service items for customer">Service items for customer</a>
+                  </li>
+                  <li>
+                    <a href="#workshop-service-items-service-items" class="toc-h2 toc-link" data-title="Service items">Service items</a>
                   </li>
                   <li>
                     <a href="#workshop-service-items-service-items-list" class="toc-h2 toc-link" data-title="Service items list">Service items list</a>
@@ -540,6 +546,8 @@
 <td>Customer ID e.g. <code>1006</code></td>
 </tr>
 </tbody></table>
+
+<p>The result will be a <a href="#customers-customer-object">Customer (object)</a></p>
 
 <blockquote>
 <p>HTTP request</p>
@@ -864,6 +872,8 @@
 <td>Country code of customer e.g. <code>NL</code></td>
 </tr>
 </tbody></table>
+
+<p>The result will be an array of <a href="#customers-customer-object">Customer (object)</a></p>
 
 <blockquote>
 <p>HTTP request</p>
@@ -1508,7 +1518,306 @@
 <ul>
 <li><code>resources</code></li>
 </ul>
-<h2 id='workshop-service-items-service-items-for-object'>Service items for object</h2><h2 id='workshop-service-items-service-items-list'>Service items list</h2><h1 id='workshop-orders'>Workshop orders</h1>
+<h2 id='workshop-service-items-service-item-object'>Service item (object)</h2>
+<table><thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Nullable</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>account_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Account ID within CS <code>1000</code></td>
+</tr>
+<tr>
+<td><code>service_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>ID of service <code>1790811</code></td>
+</tr>
+<tr>
+<td><code>service_item_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Iem ID of service item <code>4823371</code></td>
+</tr>
+<tr>
+<td><code>service_barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Barcode of service item e.g. <code>DSK-1790811-3</code></td>
+</tr>
+<tr>
+<td><code>service_status_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Service status see common api <code>service_item_status</code> e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>invoice_number</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>If positive number, the invoice which triggered creation of this item e.g. <code>20173208</code></td>
+</tr>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>ID of customer e.g. <code>235269422</code></td>
+</tr>
+<tr>
+<td><code>object_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>ID of object e.g. <code>24136</code></td>
+</tr>
+<tr>
+<td><code>is_open</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if still open</td>
+</tr>
+<tr>
+<td><code>is_scheduled</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if scheduled in a workshop order</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Title e.g. <code>3e servicebeurt</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description e.g. <code>3e servicebeurt</code></td>
+</tr>
+<tr>
+<td><code>gross_unit_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Gross price in cents <code>6900</code></td>
+</tr>
+<tr>
+<td><code>unit_discount_amount_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Discount in cents <code>0</code></td>
+</tr>
+<tr>
+<td><code>amount_payed_in_advance_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Amount payed <code>0</code></td>
+</tr>
+<tr>
+<td><code>time_minutes</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Time in minutes for workshop <code>60</code></td>
+</tr>
+<tr>
+<td><code>scheduled_at</code></td>
+<td><code>date</code></td>
+<td><code>false</code></td>
+<td>Scheduled for date e.g. <code>2021-12-22</code></td>
+</tr>
+<tr>
+<td><code>scheduled_at_km_age</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Scheduled after X kilometer</td>
+</tr>
+<tr>
+<td><code>modified_at</code></td>
+<td><code>datetime</code></td>
+<td><code>false</code></td>
+<td>Modification date time <code>2020-06-22 10:51:49</code></td>
+</tr>
+</tbody></table>
+<h2 id='workshop-service-items-service-items-for-customer'>Service items for customer</h2>
+<p>Get service items for customer</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/customers/:customer_id/service-items.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>int</code></td>
+<td>Customer ID e.g. <code>2001</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/customers/2/service-items.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">20471</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5185</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2302569</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6786341</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-2302569-1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">421236</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">175432</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_open"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_scheduled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gross_unit_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">3200</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unit_discount_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2300</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_payed_in_advance_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-22"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"scheduled_at_km_age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-22 07:00:16"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5185</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2302721</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6786899</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-2302721-1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">421268</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">175444</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_open"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_scheduled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gross_unit_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">3200</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unit_discount_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2300</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_payed_in_advance_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-22"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"scheduled_at_km_age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-22 07:00:16"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div><h2 id='workshop-service-items-service-items'>Service items</h2>
+<p>Get service items for service ID</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/customers/:customer_id/service-items/:service_id.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>int</code></td>
+<td>Customer ID e.g. <code>2001</code></td>
+</tr>
+<tr>
+<td><code>service_id</code></td>
+<td><code>int</code></td>
+<td>Service ID e.g. <code>2302569</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/customers/2001/service-items/2302569.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic</span>
+<span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">662</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5185</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2302569</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6786341</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-2302569-1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">421236</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">175432</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_open"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_scheduled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gross_unit_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">3200</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unit_discount_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2300</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_payed_in_advance_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-22"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"scheduled_at_km_age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-22 07:00:16"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5185</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2302569</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6786342</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-2302569-2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">421236</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">175432</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_open"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_scheduled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gross_unit_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">3200</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unit_discount_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2300</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_payed_in_advance_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-22"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"scheduled_at_km_age"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-22 07:00:16"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div><h2 id='workshop-service-items-service-items-list'>Service items list</h2><h1 id='workshop-orders'>Workshop orders</h1>
 <p>Read, create or update workshop orders</p>
 
 <p><strong><em>Scope(s)</em></strong></p>
@@ -1685,14 +1994,14 @@
 <td><code>string[]</code></td>
 <td><code>true</code></td>
 <td><code>POST</code></td>
-<td>On create a list of repair codes. See repair-codes endpoint</td>
+<td>On create a list of repair codes. See <a href="#workshop-repair-codes">Repair codes (object)</a> <code>code</code></td>
 </tr>
 <tr>
 <td><code>service_card_codes</code></td>
 <td><code>string[]</code></td>
 <td><code>true</code></td>
 <td><code>POST</code></td>
-<td>On create a list of service-item codes. See service-items endpoint</td>
+<td>On create a list of service-item codes. See <a href="#workshop-service-items-service-item-object">Service item (object)</a> <code>service_barcode</code></td>
 </tr>
 <tr>
 <td><code>delivery_method_id</code></td>
@@ -2168,7 +2477,7 @@
         <h6>/api/v1/workshop/repair-codes.json</h6>
     </div>
 </div>
-<h3 id='workshop-repair-codes-repair-codes-object'>Repair codes (object)</h3>
+<h3 id='workshop-repair-codes-repair-code-object'>Repair code (object)</h3>
 <table><thead>
 <tr>
 <th><strong>Property</strong></th>
@@ -2178,60 +2487,62 @@
 </tr>
 </thead><tbody>
 <tr>
-<td><code>[].code_id</code></td>
+<td><code>code_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
 <td>ID of repair code e.g. <code>90753</code></td>
 </tr>
 <tr>
-<td><code>[].category</code></td>
+<td><code>category</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td>Category name e.g. <code>Accu</code></td>
 </tr>
 <tr>
-<td><code>[].code</code></td>
+<td><code>code</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td>Code e.g. <code>999</code></td>
 </tr>
 <tr>
-<td><code>[].description</code></td>
+<td><code>description</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td>Description e.g. <code>Test Title</code></td>
 </tr>
 <tr>
-<td><code>[].extra_text</code></td>
+<td><code>extra_text</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td>Description extra e.g. <code>Omschrijving</code></td>
 </tr>
 <tr>
-<td><code>[].price_cents</code></td>
+<td><code>price_cents</code></td>
 <td><code>integer</code></td>
 <td><code>true</code></td>
 <td>Price in cents or null e.g. <code>12000</code></td>
 </tr>
 <tr>
-<td><code>[].time_minutes</code></td>
+<td><code>time_minutes</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
 <td>Time in minutes required for code e.g. <code>60</code></td>
 </tr>
 <tr>
-<td><code>[].workshop_rate_id</code></td>
+<td><code>workshop_rate_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
 <td>Workshop rate see common api <code>workshop_rates</code> e.g. <code>1</code></td>
 </tr>
 <tr>
-<td><code>[].vat_code</code></td>
+<td><code>vat_code</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
 <td>Vat code see common api <code>vat_codes</code> e.g. <code>1</code></td>
 </tr>
 </tbody></table>
+
+<p>The result will return a list of Repair code (object)</p>
 
 <blockquote>
 <p>HTTP request</p>
@@ -2241,7 +2552,6 @@
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>

@@ -9,20 +9,20 @@ Access workshop related information such as trading hours, stores, workshop orde
 
 ## Trading hours (object)
 
-| **Property**                                | **Type**    | **Nullable** | **Description**                                                                           |
-|---------------------------------------------|-------------|--------------|-------------------------------------------------------------------------------------------|
-| `date`                                      | `date`      | `false`      | Date e.g. `2023-03-21`                                                                    |
-| `capacity_minutes`                          | `integer`   | `false`      | Capacity in minutes e.g. `780`                                                            |
-| `scheduled_minutes`                         | `integer`   | `false`      | Scheduled workshop orders in minutes e.g. `0`                                             |
-| `available_minutes`                         | `integer`   | `false`      | Available duration in minutes e.g. `780`                                                  |
-| `timestamp_finished_twsc_repairs`           | `timestamp` | `false`      | Unix timestamp when the scheduled workshop-orders via api are done (`0` if not available) |
-| `day_id`                                    | `integer`   | `false`      | Day number in the week Sunday=`0` and Saturday =`6` e.g. `2`                              |
-| `week_no`                                   | `integer`   | `false`      | Week number e.g. `12`                                                                     |
-| `is_closed`                                 | `boolean`   | `false`      | `true` if store closed e.g. `false`                                                       |
-| `workshop_trading_hours`                    | `array`     | `false`      | Array of trading hours                                                                    |
-| `workshop_trading_hours[].start`            | `string`    | `false`      | Start of trading hours e.g. `07:00`                                                       |
-| `workshop_trading_hours[].finish`           | `string`    | `false`      | End of trading hours e.g. `19:45`                                                         |
-| `workshop_trading_hours[].duration_minutes` | `integer`   | `false`      | Duration of trading hours in minutes e.g. `780`                                           |
+| **Property**                                | **Type**    | **Nullable** | **Description**                                                                               |
+|---------------------------------------------|-------------|--------------|-----------------------------------------------------------------------------------------------|
+| `date`                                      | `date`      | `false`      | Date e.g. `2023-03-21`                                                                        |
+| `capacity_minutes`                          | `integer`   | `false`      | Capacity in minutes e.g. `780`                                                                |
+| `scheduled_minutes`                         | `integer`   | `false`      | Scheduled workshop orders in minutes e.g. `0`                                                 |
+| `available_minutes`                         | `integer`   | `false`      | Available duration in minutes e.g. `780`                                                      |
+| `timestamp_finished_twsc_repairs`           | `timestamp` | `false`      | Unix timestamp when the scheduled workshop-orders via api are finished (`0` if not available) |
+| `day_id`                                    | `integer`   | `false`      | Day number in the week Sunday=`0` and Saturday =`6` e.g. `2`                                  |
+| `week_no`                                   | `integer`   | `false`      | Week number e.g. `12`                                                                         |
+| `is_closed`                                 | `boolean`   | `false`      | `true` if store closed e.g. `false`                                                           |
+| `workshop_trading_hours`                    | `array`     | `false`      | Array of trading hours                                                                        |
+| `workshop_trading_hours[].start`            | `string`    | `false`      | Start of trading hours e.g. `07:00`                                                           |
+| `workshop_trading_hours[].finish`           | `string`    | `false`      | End of trading hours e.g. `19:45`                                                             |
+| `workshop_trading_hours[].duration_minutes` | `integer`   | `false`      | Duration of trading hours in minutes e.g. `780`                                               |
 
 
 ## Trading hours

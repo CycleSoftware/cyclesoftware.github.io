@@ -50,6 +50,8 @@ Get customer
 |-------------------|----------|-------------------------|
 | `customer_id`     | `int`    | Customer ID e.g. `1006` |
 
+The result will be a [Customer (object)](#customers-customer-object)
+
 > HTTP request
 
 ```http
@@ -346,6 +348,7 @@ Find existing customers
 | `query`               | `string` | Query to search for e.g. `name of customer` | 
 | `country_code`        | `string` | Country code of customer e.g. `NL`          | 
 
+The result will be an array of [Customer (object)](#customers-customer-object)
 
 > HTTP request
 

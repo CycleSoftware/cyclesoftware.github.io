@@ -275,6 +275,9 @@
                     <a href="#repair-objects-repair-object-object" class="toc-h2 toc-link" data-title="Repair object (object)">Repair object (object)</a>
                   </li>
                   <li>
+                    <a href="#repair-objects-list-repair-objects" class="toc-h2 toc-link" data-title="List repair objects">List repair objects</a>
+                  </li>
+                  <li>
                     <a href="#repair-objects-get-repair-object" class="toc-h2 toc-link" data-title="Get repair object">Get repair object</a>
                   </li>
                   <li>
@@ -286,13 +289,21 @@
               </ul>
           </li>
           <li>
+            <a href="#workshop-service-items" class="toc-h1 toc-link" data-title="Workshop service items">Workshop service items</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#workshop-service-items-service-items-for-object" class="toc-h2 toc-link" data-title="Service items for object">Service items for object</a>
+                  </li>
+                  <li>
+                    <a href="#workshop-service-items-service-items-list" class="toc-h2 toc-link" data-title="Service items list">Service items list</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#workshop-orders" class="toc-h1 toc-link" data-title="Workshop orders">Workshop orders</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#workshop-orders-stores" class="toc-h2 toc-link" data-title="Stores">Stores</a>
-                  </li>
-                  <li>
-                    <a href="#workshop-orders-workshop-object" class="toc-h2 toc-link" data-title="Workshop (object)">Workshop (object)</a>
+                    <a href="#workshop-orders-workshop-order-object" class="toc-h2 toc-link" data-title="Workshop order (object)">Workshop order (object)</a>
                   </li>
                   <li>
                     <a href="#workshop-orders-get-workshop-order" class="toc-h2 toc-link" data-title="Get workshop order">Get workshop order</a>
@@ -316,6 +327,9 @@
                   </li>
                   <li>
                     <a href="#workshop-trading-hours-per-store" class="toc-h2 toc-link" data-title="Trading hours per store">Trading hours per store</a>
+                  </li>
+                  <li>
+                    <a href="#workshop-repair-codes" class="toc-h2 toc-link" data-title="Repair codes">Repair codes</a>
                   </li>
               </ul>
           </li>
@@ -353,8 +367,8 @@
 <td><code>customer_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td></td>
-<td>e.g. <code>6</code></td>
+<td><code>readonly</code></td>
+<td>Customer ID e.g. <code>6</code></td>
 </tr>
 <tr>
 <td><code>customer_type_name</code></td>
@@ -472,8 +486,8 @@
 <td><code>datetime_created</code></td>
 <td><code>datetime</code></td>
 <td><code>true</code></td>
-<td></td>
-<td>e.g. <code>2023-01-03 12:30:44</code></td>
+<td><code>readonly</code></td>
+<td>Created at if available e.g. <code>2023-01-03 12:30:44</code></td>
 </tr>
 <tr>
 <td><code>phone_numbers</code></td>
@@ -487,28 +501,28 @@
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>POST</code> <code>PUT</code></td>
-<td>e.g. <code>tel</code></td>
+<td>ID of phone number e.g. <code>tel</code></td>
 </tr>
 <tr>
 <td><code>phone_numbers[].customer_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td></td>
-<td>e.g. <code>6</code></td>
+<td><code>readonly</code></td>
+<td>Customer ID e.g. <code>6</code></td>
 </tr>
 <tr>
 <td><code>phone_numbers[].phone_number</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>POST</code> <code>PUT</code></td>
-<td>e.g. <code>0733030050</code></td>
+<td>Phone number e.g. <code>0733030050</code></td>
 </tr>
 <tr>
 <td><code>phone_numbers[].name</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
 <td><code>POST</code> <code>PUT</code></td>
-<td>e.g. <code>Dhr./Mevr.  T UnitTest</code></td>
+<td>Name of number e.g. <code>Dhr./Mevr.  T UnitTest</code></td>
 </tr>
 </tbody></table>
 <h2 id='customers-get-customer'>Get Customer</h2>
@@ -955,7 +969,7 @@
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div><h1 id='repair-objects'>Repair objects</h1>
-<p>Read, create or update repair objects</p>
+<p>Read, create or update repair objects for a customer</p>
 
 <p><strong><em>Scope(s)</em></strong></p>
 
@@ -967,28 +981,546 @@
 <tr>
 <th><strong>Property</strong></th>
 <th><strong>Type</strong></th>
-<th><strong>Nullable</strong></th>
+<th><strong>Type</strong></th>
 <th><strong>Description</strong></th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>date</code></td>
-<td><code>date</code></td>
-<td><code>false</code></td>
-<td>Date e.g. <code>2023-03-21</code></td>
+<td><code>customer_id</code></td>
+<td><code>integer</code></td>
+<td><code>readonly</code></td>
+<td>Customer ID of owner e.g. <code>6</code></td>
+</tr>
+<tr>
+<td><code>object_id</code></td>
+<td><code>integer</code></td>
+<td><code>readonly</code></td>
+<td>ID of the object e.g. <code>208410</code></td>
+</tr>
+<tr>
+<td><code>object_barcode</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>e.g. <code>object_barcode</code></td>
+</tr>
+<tr>
+<td><code>is_active</code></td>
+<td><code>boolean</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Whether this object is still owned by customer e.g. <code>true</code></td>
+</tr>
+<tr>
+<td><code>object_type_name</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>e.g. <code>fiets</code></td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Category name e.g. <code>Racefietsen</code></td>
+</tr>
+<tr>
+<td><code>brand</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Brand name e.g. <code>BrandName</code></td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Model name e.g. <code>ModelName</code></td>
+</tr>
+<tr>
+<td><code>model_year</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Model year e.g. <code>2017</code></td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Color of object e.g. <code>Black</code></td>
+</tr>
+<tr>
+<td><code>variant</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Variant name e.g. <code>Heren</code></td>
+</tr>
+<tr>
+<td><code>phone_number_id</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Phone number ID for communication e.g. <code>12345</code></td>
+</tr>
+<tr>
+<td><code>license_plate</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>License plate number e.g. <code>xx-zz-yy</code></td>
+</tr>
+<tr>
+<td><code>km_mileage</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Kilometer age e.g. <code>200</code></td>
+</tr>
+<tr>
+<td><code>frame_id</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Frame number e.g. <code>frame_id</code></td>
+</tr>
+<tr>
+<td><code>chip_id</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Chip number e.g. <code>chip_id</code></td>
+</tr>
+<tr>
+<td><code>key_id</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Key number e.g. <code>key_id</code></td>
+</tr>
+<tr>
+<td><code>engine_id</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Engine number e.g. <code>engine_id</code></td>
+</tr>
+<tr>
+<td><code>battery_id</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Battery number e.g. <code>1234</code></td>
+</tr>
+<tr>
+<td><code>lock_id</code></td>
+<td><code>string</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Lock number e.g. <code>1234</code></td>
+</tr>
+<tr>
+<td><code>workshop_rate_id</code></td>
+<td><code>integer</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>See common API <code>workshop_rates</code> e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>service_level_id</code></td>
+<td><code>integer</code></td>
+<td><code>PUT</code> <code>POST</code></td>
+<td>Service level ID e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>images</code></td>
+<td><code>array</code></td>
+<td><code>readonly</code></td>
+<td>Array of images</td>
+</tr>
+<tr>
+<td><code>images[].date_modified</code></td>
+<td><code>date ISO</code></td>
+<td><code>readonly</code></td>
+<td>Modification date e.g. <code>2016-05-24T11:15:02+0200</code></td>
+</tr>
+<tr>
+<td><code>images[].url_thumb</code></td>
+<td><code>string</code></td>
+<td><code>readonly</code></td>
+<td>URL to thumbnail e.g. <code>https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg</code></td>
+</tr>
+<tr>
+<td><code>images[].url_large</code></td>
+<td><code>string</code></td>
+<td><code>readonly</code></td>
+<td>URL to large image e.g. <code>https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg</code></td>
 </tr>
 </tbody></table>
-<h2 id='repair-objects-get-repair-object'>Get repair object</h2><h2 id='repair-objects-create-repair-object'>Create repair object</h2><h2 id='repair-objects-update-repair-object'>Update repair object</h2><h1 id='workshop-orders'>Workshop orders</h1>
-<p>Access workshop related information such as trading hours, stores, workshop orders etc.</p>
+<h2 id='repair-objects-list-repair-objects'>List repair objects</h2>
+<p>Get a list of repair objects for a customer</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/customers/:customer_id/objects.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>int</code></td>
+<td>Customer ID to get objects for e.g. <code>1006</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/customers/1006/objects.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1676</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1004</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiets"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hybride fietsen"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apache Deluxe"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scumzilver"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dames"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"license_plate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"km_mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"chip_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"engine_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"battery_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24T11:15:02+0200"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">208410</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object_barcode"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiets"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Racefietsen"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brand"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"model"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heren"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"license_plate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"license_plate"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"km_mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frame_id"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"chip_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chip_id"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"key_id"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"engine_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"engine_id"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"battery_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lock_id"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div><h2 id='repair-objects-get-repair-object'>Get repair object</h2>
+<p>Get a repair object</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/customers/:customer_id/objects/:object_id.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>int</code></td>
+<td>Customer ID e.g. <code>1006</code></td>
+</tr>
+<tr>
+<td><code>object_id</code></td>
+<td><code>int</code></td>
+<td>Repair object ID e.g. <code>1004</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/customers/1006/objects/1004.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic</span>
+<span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">827</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1004</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiets"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hybride fietsen"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apache Deluxe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scumzilver"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dames"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"license_plate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"km_mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"chip_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"engine_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"battery_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24T11:15:02+0200"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='repair-objects-create-repair-object'>Create repair object</h2>
+<p>Create a repair object for a customer</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/customers/:customer_id/objects.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>int</code></td>
+<td>Customer ID e.g. <code>24</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/customers/24/objects.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic</span>
+<span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">620</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">208694</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object_barcode"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiets"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Racefietsen"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brand"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"model"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heren"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"license_plate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"license_plate"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"km_mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frame_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"chip_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chip_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"key_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"engine_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"engine_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"battery_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lock_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">620</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">208694</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object_barcode"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiets"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Racefietsen"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brand"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"model"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heren"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"license_plate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"license_plate"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"km_mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frame_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"chip_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chip_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"key_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"engine_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"engine_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"battery_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lock_id"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='repair-objects-update-repair-object'>Update repair object</h2>
+<p>Update a repair object</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">PUT</i>
+        <h6>/api/v1/customers/:customer_id/objects/:repair_object_id.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>int</code></td>
+<td>Customer ID e.g. <code>1900</code></td>
+</tr>
+<tr>
+<td><code>repair_object_id</code></td>
+<td><code>int</code></td>
+<td>Repair Object ID e.g. <code>152614</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/v1/customers/1900/objects/152614.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic</span>
+<span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">853</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"object_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"barcode_object"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mountainbikes"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cube"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6407189221756"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carbon´n´blue"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dames"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">853</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1900</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">152614</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"barcode_object"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"object_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiets"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mountainbikes"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cube"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6407189221756"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carbon´n´blue"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dames"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"license_plate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"km_mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"chip_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"engine_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"battery_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-12-19T08:35:58+0100"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_T_1215427.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1215427.jpg"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='workshop-service-items'>Workshop service items</h1>
+<p>Read, create or update repair objects for a customer</p>
 
 <p><strong><em>Scope(s)</em></strong></p>
 
 <ul>
 <li><code>resources</code></li>
 </ul>
-<h2 id='workshop-orders-stores'>Stores</h2>
-<p>--&gt; to common?</p>
-<h2 id='workshop-orders-workshop-object'>Workshop (object)</h2>
+<h2 id='workshop-service-items-service-items-for-object'>Service items for object</h2><h2 id='workshop-service-items-service-items-list'>Service items list</h2><h1 id='workshop-orders'>Workshop orders</h1>
+<p>Read, create or update workshop orders</p>
+
+<p><strong><em>Scope(s)</em></strong></p>
+
+<ul>
+<li><code>resources</code></li>
+</ul>
+<h2 id='workshop-orders-workshop-order-object'>Workshop order (object)</h2>
 <table><thead>
 <tr>
 <th><strong>Property</strong></th>
@@ -998,76 +1530,262 @@
 </tr>
 </thead><tbody>
 <tr>
-<td><code>date</code></td>
-<td><code>date</code></td>
-<td><code>false</code></td>
-<td>Date e.g. <code>2023-03-21</code></td>
-</tr>
-<tr>
-<td><code>capacity_minutes</code></td>
+<td><code>workshop_order_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Capacity in minutes e.g. <code>780</code></td>
+<td>e.g. <code>978070</code></td>
 </tr>
 <tr>
-<td><code>scheduled_minutes</code></td>
+<td><code>sales_order_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Scheduled workshop orders in minutes e.g. <code>0</code></td>
+<td>e.g. <code>978070</code></td>
 </tr>
 <tr>
-<td><code>available_minutes</code></td>
+<td><code>customer_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Available duration in minutes e.g. <code>780</code></td>
+<td>e.g. <code>24</code></td>
 </tr>
 <tr>
-<td><code>timestamp_finished_twsc_repairs</code></td>
-<td><code>timestamp</code></td>
-<td><code>false</code></td>
-<td>Unix timestamp when the scheduled workshop-orders via api are done (<code>0</code> if not available)</td>
-</tr>
-<tr>
-<td><code>day_id</code></td>
+<td><code>store_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Day number in the week Sunday=<code>0</code> and Saturday =<code>6</code> e.g. <code>2</code></td>
+<td>e.g. <code>1</code></td>
 </tr>
 <tr>
-<td><code>week_no</code></td>
+<td><code>repair_object_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Week number e.g. <code>12</code></td>
+<td>e.g. <code>1105</code></td>
 </tr>
 <tr>
-<td><code>is_closed</code></td>
+<td><code>is_active</code></td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
-<td><code>true</code> if store closed e.g. <code>false</code></td>
+<td>e.g. <code>true</code></td>
 </tr>
 <tr>
-<td><code>workshop_trading_hours</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
-<td>Array of trading hours</td>
-</tr>
-<tr>
-<td><code>workshop_trading_hours[].start</code></td>
+<td><code>reference_text</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>Start of trading hours e.g. <code>07:00</code></td>
+<td>e.g. <code>work_number</code></td>
 </tr>
 <tr>
-<td><code>workshop_trading_hours[].finish</code></td>
+<td><code>datetime_scheduled_start</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>End of trading hours e.g. <code>19:45</code></td>
+<td>e.g. <code>2023-03-07T12:13:47+01:00</code></td>
 </tr>
 <tr>
-<td><code>workshop_trading_hours[].duration_minutes</code></td>
+<td><code>datetime_scheduled_finished</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>2023-03-07T12:43:47+01:00</code></td>
+</tr>
+<tr>
+<td><code>datetime_created</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>2023-03-07T12:13:47+01:00</code></td>
+</tr>
+<tr>
+<td><code>datetime_modified</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>2023-03-07T12:13:47+01:00</code></td>
+</tr>
+<tr>
+<td><code>mechanic_employee_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>Duration of trading hours in minutes e.g. <code>780</code></td>
+<td>e.g. <code>12</code></td>
+</tr>
+<tr>
+<td><code>created_by_employee_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>last_update_employee_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>phone_number_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>tel</code></td>
+</tr>
+<tr>
+<td><code>repair_description</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>posted repair</code></td>
+</tr>
+<tr>
+<td><code>status_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>7</code></td>
+</tr>
+<tr>
+<td><code>status_text</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>Reparatie voltooid</code></td>
+</tr>
+<tr>
+<td><code>invoice_number</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>borrowed_object_reference</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>total_repair_time_minutes</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>30</code></td>
+</tr>
+<tr>
+<td><code>custom_repair_time_minutes</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>30</code></td>
+</tr>
+<tr>
+<td><code>repair_codes</code></td>
+<td><code>null</code></td>
+<td><code>true</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>service_card_codes</code></td>
+<td><code>null</code></td>
+<td><code>true</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>delivery_method_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>order_items</code></td>
+<td><code>array</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>order_items[].item_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>order_items[].item_type_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>order_items[].special_type_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>order_items[].quantity</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>order_items[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>102</code></td>
+</tr>
+<tr>
+<td><code>order_items[].pos_group_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>order_items[].description</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>In- en uitbouwen electromotor in- en uitbouwen accu</code></td>
+</tr>
+<tr>
+<td><code>order_items[].unit_price_in_vat_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>9000</code></td>
+</tr>
+<tr>
+<td><code>order_items[].unit_discount_amount_in_vat_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>order_items[].price_in_vat_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>9000</code></td>
+</tr>
+<tr>
+<td><code>order_items[].discount_percentage</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>order_items[].vat_code</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>order_items[].vat_percentage</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>9</code></td>
+</tr>
+<tr>
+<td><code>order_items[].vat_amount_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>743</code></td>
+</tr>
+<tr>
+<td><code>order_items[].item_status_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>order_items[].item_status_text</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>Geen status</code></td>
+</tr>
+<tr>
+<td><code>order_items[].unit_work_time_minutes</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>e.g. <code>0</code></td>
 </tr>
 </tbody></table>
 <h2 id='workshop-orders-get-workshop-order'>Get workshop order</h2><h2 id='workshop-orders-create-workshop-order'>Create workshop order</h2><h2 id='workshop-orders-update-workshop-order'>Update workshop order</h2><h1 id='workshop'>Workshop</h1>
@@ -1199,7 +1917,6 @@
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>
@@ -1304,7 +2021,6 @@
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>
@@ -1393,6 +2109,121 @@
                 </span><span class="p">]</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div><h2 id='workshop-repair-codes'>Repair codes</h2>
+<p>Get list of repair codes</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/workshop/repair-codes.json</h6>
+    </div>
+</div>
+<h3 id='workshop-repair-codes-repair-codes-object'>Repair codes (object)</h3>
+<table><thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Nullable</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>[].code_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>ID of repair code e.g. <code>90753</code></td>
+</tr>
+<tr>
+<td><code>[].category</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Category name e.g. <code>Accu</code></td>
+</tr>
+<tr>
+<td><code>[].code</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Code e.g. <code>999</code></td>
+</tr>
+<tr>
+<td><code>[].description</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description e.g. <code>Test Title</code></td>
+</tr>
+<tr>
+<td><code>[].extra_text</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description extra e.g. <code>Omschrijving</code></td>
+</tr>
+<tr>
+<td><code>[].price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Price in cents or null e.g. <code>12000</code></td>
+</tr>
+<tr>
+<td><code>[].time_minutes</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Time in minutes required for code e.g. <code>60</code></td>
+</tr>
+<tr>
+<td><code>[].workshop_rate_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Workshop rate see common api <code>workshop_rates</code> e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>[].vat_code</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Vat code see common api <code>vat_codes</code> e.g. <code>1</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/workshop/repair-codes.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">278</span>
+
+<span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"code_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">90753</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accu"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"999"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Title"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"extra_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Omschrijving"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"code_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">90753</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Frame"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"222"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Title"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"extra_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Omschrijving"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price_cents"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>

@@ -53,7 +53,6 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
-Content-type: application/json; charset=utf-8
 ```
 
 > HTTP Response
@@ -134,7 +133,6 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
-Content-type: application/json; charset=utf-8
 ```
 
 > HTTP Response
@@ -228,3 +226,72 @@ Content-length: 7150
 ]
 ```
 
+## Repair codes
+
+Get list of repair codes
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/workshop/repair-codes.json</h6>
+    </div>
+</div>
+
+### Repair codes (object)
+
+| **Property**          | **Type**  | **Nullable** | **Description**                                        |
+|-----------------------|-----------|--------------|--------------------------------------------------------|
+| `[].code_id`          | `integer` | `false`      | ID of repair code e.g. `90753`                         |
+| `[].category`         | `string`  | `false`      | Category name e.g. `Accu`                              |
+| `[].code`             | `string`  | `false`      | Code e.g. `999`                                        |
+| `[].description`      | `string`  | `false`      | Description e.g. `Test Title`                          |
+| `[].extra_text`       | `string`  | `false`      | Description extra e.g. `Omschrijving`                  |
+| `[].price_cents`      | `integer` | `true`       | Price in cents or null e.g. `12000`                    |
+| `[].time_minutes`     | `integer` | `false`      | Time in minutes required for code e.g. `60`            |
+| `[].workshop_rate_id` | `integer` | `false`      | Workshop rate see common api `workshop_rates` e.g. `1` |
+| `[].vat_code`         | `integer` | `false`      | Vat code see common api `vat_codes` e.g. `1`           |
+
+
+> HTTP request
+
+```http
+GET /api/v1/workshop/repair-codes.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+Content-length: 278
+
+[
+    {
+        "code_id": 90753,
+        "category": "Accu",
+        "code": "999",
+        "description": "Test Title",
+        "extra_text": "Omschrijving",
+        "price_cents": 12000,
+        "time_minutes": 60,
+        "workshop_rate_id": 1,
+        "vat_code": 1
+    },
+     {
+        "code_id": 90753,
+        "category": "Frame",
+        "code": "222",
+        "description": "Test Title",
+        "extra_text": "Omschrijving",
+        "price_cents": null,
+        "time_minutes": 60,
+        "workshop_rate_id": 1,
+        "vat_code": 1
+    }
+]
+```

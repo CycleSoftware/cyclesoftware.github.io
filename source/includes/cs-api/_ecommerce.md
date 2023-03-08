@@ -574,6 +574,11 @@ employee_id=1005&order_status_id=9&book=1&customer_messages=1&allow_resend_messa
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
 Content-length: 900
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
 
 {
     "error": false,

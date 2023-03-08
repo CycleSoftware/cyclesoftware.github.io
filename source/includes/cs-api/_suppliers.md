@@ -42,14 +42,14 @@ Creates a supplier order. To actually dispatch and send the supplier order to th
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">POST</i>
-		<h6>/api/v1/supplier/order/</h6>
+		<h6>/api/v1/supplier/order.json</h6>
 	</div>
 </div>
 
 > HTTP request
 
 ```http
-POST /api/v1/supplier/order/ HTTP/1.1
+POST /api/v1/supplier/order.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
@@ -82,6 +82,11 @@ Content-length: 299
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
 Content-length: 1017
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
 
 {
     "supplier_order_id": 2222,
@@ -126,6 +131,11 @@ Content-length: 1017
 HTTP/1.1 400 
 Content-type: application/json; charset=utf-8
 Content-length: 57
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
 
 {
     "error": true,
@@ -150,7 +160,6 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
-Content-type: application/json; charset=utf-8
 ```
 
 > HTTP Response
@@ -159,6 +168,11 @@ Content-type: application/json; charset=utf-8
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
 Content-length: 1022
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
 
 {
     "supplier_order_id": 2222,
@@ -216,7 +230,6 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
-Content-type: application/json; charset=utf-8
 ```
 
 > HTTP Response
@@ -225,6 +238,11 @@ Content-type: application/json; charset=utf-8
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
 Content-length: 1023
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
 
 {
     "supplier_order_id": 2222,
@@ -269,6 +287,11 @@ Content-length: 1023
 HTTP/1.1 400 
 Content-type: application/json; charset=utf-8
 Content-length: 57
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
 
 {
     "error": true,

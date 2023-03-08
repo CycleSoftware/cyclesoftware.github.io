@@ -178,6 +178,11 @@ Accept: application/json
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
 Content-length: 45
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
 
 {
   "error": false,

@@ -31,7 +31,7 @@ The integration consists of the following topics:
 * Spare parts
 
 <aside class="notice">
-  You can contact <a href="mailto:support@cyclesoftware.nl">support</a> for more information
+  You can contact <a href="mailto:data@cyclesoftware.nl">support</a> for more information
 </aside>
 
 ## Authentication ##

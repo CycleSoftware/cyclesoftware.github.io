@@ -12,27 +12,27 @@ Create and send supplier orders
 
 Properties used in create, get and send endpoints.
 
-| Property                          | Type       | Nullable | Create | Description                                                 |
-|-----------------------------------|------------|----------|--------|-------------------------------------------------------------|
-| `supplier_order_id`               | `integer`  | `false`  |        | Supplier order ID `2222`                                    |
-| `supplier_id`                     | `integer`  | `false`  | X      | Supplier ID see common suppliers endpoint e.g. `2113`       |
-| `store_id`                        | `integer`  | `false`  | X      | Store ID within account e.g. `2`                            |
-| `order_type_id`                   | `integer`  | `false`  |        | Order type see common enum supplier_order_types e.g. `1`    |
-| `status_id`                       | `integer`  | `false`  |        | Order status see common enum supplier_order_status e.g. `0` |
-| `supplier_comment`                | `string`   | `false`  |        | Comment given by supplier e.g. `Some text`                  |
-| `supplier_reference`              | `string`   | `false`  |        | Reference from supplier `ref-from-supplier`                 |
-| `own_reference`                   | `string`   | `false`  |        | Own reference e.g. `Own1212`                                |
-| `created_at`                      | `datetime` | `false`  |        | Creation date `2022-01-12 12:30:30`                         |
-| `items`                           | `array`    | `false`  |        | Array of order items                                        |
-| `items[].supplier_order_item_id`  | `integer`  | `false`  |        | Item ID `10012`                                             |
-| `items[].item_type_id`            | `integer`  | `false`  |        | Item type see common enum transaction_item_types e.g. `1`   |
-| `items[].article_id`              | `string`   | `false`  | X      | Article Number. `ART2`                                      |
-| `items[].barcode`                 | `string`   | `false`  | X      | Barcode e.g. `BARCODE2`                                     |
-| `items[].quantity`                | `integer`  | `false`  | X      | Quantity ordered e.g. `2`                                   |
-| `items[].quantity_delivered`      | `integer`  | `false`  |        | Quantity delivered e.g. `0`                                 |
-| `items[].quantity_open`           | `integer`  | `false`  |        | Quantity open (not delivered) e.g. `2`                      |
-| `items[].supplier_delivery_date`  | `date`     | `false`  |        | Delivery date given by supplier e.g. `2022-01-20`           |
-| `items[].supplier_item_reference` | `string`   | `false`  |        | Reference item from supplier e.g. `ref-item-1`              |
+| Property                          | Type       | POST   | Description                                                 |
+|-----------------------------------|------------|--------|-------------------------------------------------------------|
+| `supplier_order_id`               | `integer`  |        | Supplier order ID `2222`                                    |
+| `supplier_id`                     | `integer`  | `POST` | Supplier ID see common suppliers endpoint e.g. `2113`       |
+| `store_id`                        | `integer`  | `POST` | Store ID within account e.g. `2`                            |
+| `order_type_id`                   | `integer`  |        | Order type see common enum supplier_order_types e.g. `1`    |
+| `status_id`                       | `integer`  |        | Order status see common enum supplier_order_status e.g. `0` |
+| `supplier_comment`                | `string`   |        | Comment given by supplier e.g. `Some text`                  |
+| `supplier_reference`              | `string`   |        | Reference from supplier `ref-from-supplier`                 |
+| `own_reference`                   | `string`   |        | Own reference e.g. `Own1212`                                |
+| `created_at`                      | `datetime` |        | Creation date `2022-01-12 12:30:30`                         |
+| `items`                           | `array`    |        | Array of order items                                        |
+| `items[].supplier_order_item_id`  | `integer`  |        | Item ID `10012`                                             |
+| `items[].item_type_id`            | `integer`  |        | Item type see common enum transaction_item_types e.g. `1`   |
+| `items[].article_id`              | `string`   | `POST` | Article Number. `ART2`                                      |
+| `items[].barcode`                 | `string`   | `POST` | Barcode e.g. `BARCODE2`                                     |
+| `items[].quantity`                | `integer`  | `POST` | Quantity ordered e.g. `2`                                   |
+| `items[].quantity_delivered`      | `integer`  |        | Quantity delivered e.g. `0`                                 |
+| `items[].quantity_open`           | `integer`  |        | Quantity open (not delivered) e.g. `2`                      |
+| `items[].supplier_delivery_date`  | `date`     |        | Delivery date given by supplier e.g. `2022-01-20`           |
+| `items[].supplier_item_reference` | `string`   |        | Reference item from supplier e.g. `ref-item-1`              |
 
 
 ## Create supplier order

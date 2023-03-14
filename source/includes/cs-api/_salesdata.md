@@ -5,7 +5,7 @@ Access sales data
 ***Authentication mechanism***
 
 - Basic HTTP Authentication
-- Scopes: `salesdata`
+- Scopes: `sales-export`
 
 ## Sales transactions ##
 
@@ -122,51 +122,51 @@ Get modified orders within date interval (max 31 days)
 	</div>
 </div>
 
-| GET parameter     | Type      | Description                                                       |
-|-------------------|-----------|-------------------------------------------------------------------|
-| `store_id`        | `integer` | optional store-id                                                 |
-| `offset`          | `integer` | optional offset, see pagination in result                         |
-| `modified_start`  | `date`    | end date e.g. 2020-01-01                                          |
-| `modified_end`    | `date`    | end date e.g. 2020-01-01                                          |
-| `include_deleted` | `boolean` | If `1` deleted sales orders are included with status_id=CANCELLED |
+| GET parameter     | Type       | Description                                                       |
+|-------------------|------------|-------------------------------------------------------------------|
+| `store_id`        | `?integer` | optional store-id                                                 |
+| `offset`          | `?integer` | optional offset, see pagination in result                         |
+| `modified_start`  | `date`     | end date e.g. 2020-01-01                                          |
+| `modified_end`    | `date`     | end date e.g. 2020-01-01                                          |
+| `include_deleted` | `?boolean` | If `1` deleted sales orders are included with status_id=CANCELLED |
 
-| Property                                  | Type       | Nullable | Description                                                                |
-|-------------------------------------------|------------|----------|----------------------------------------------------------------------------|
-| `data[].account_id`                       | `integer`  | `false`  | CS Account e.g. `1`                                                        |
-| `data[].store_id`                         | `integer`  | `false`  | Store id e.g. `1`                                                          |
-| `data[].sales_order_id`                   | `integer`  | `false`  | Sales order number e.g. `50032`                                            |
-| `data[].customer_id`                      | `integer`  | `false`  | Customer number `6776`                                                     |
-| `data[].order_type_id`                    | `integer`  | `false`  | Order type id e.g. `6` (see common enum for list)                          |
-| `data[].order_type_text`                  | `string`   | `false`  | Order type name e.g. `Reparatie`                                           |
-| `data[].order_reference_id`               | `string`   | `false`  | Sales order reference id e.g. `212`                                        |
-| `data[].order_reference_text`             | `string`   | `false`  | Sales order reference id text e.g. `TXT212`                                |
-| `data[].datetime_created`                 | `datetime` | `false`  | Created at `2019-05-22 13:45:37`                                           |
-| `data[].datetime_modified`                | `datetime` | `false`  | Modified at `2022-04-07 15:03:32`                                          |
-| ``data[].datetime_preferred_delivery`      | `date`     | `true`   | Preferred delivery date                                                    |
-| `data[].status_id`                        | `integer`  | `false`  | Sales order status id e.g. `9` (see common enum for list)                  |
-| `data[].status_text`                      | `string`   | `false`  | Sales order status text e.g. `Afgerond` (see common enum for list)         |
-| `data[].cancellation_type_id`             | `integer`  | `false`  | Cancellation type id e.g. `0` (see common enum for list)                   |
-| `data[].cancellation_description`         | `string`   | `true`   | Cancellation description (see common enum for list)                        |
-| `data[].has_invoice`                      | `boolean`  | `false`  | If invoiced `true`                                                         |
-| `data[].invoice_number`                   | `integer`  | `true`   | Invoice number `20173328`                                                  |
-| `data[].delivery_method_id`               | `integer`  | `false`  | Delivery method id `0` (see common enum for list)                          |
-| `data[].delivery_method_description`      | `string`   | `false`  | Delivery method description `Afhalen in winkel` (see common enum for list) |
-| `data[].order_item_id`                    | `integer`  | `false`  | Item id within sales order `0`                                             |
-| `data[].order_item_status`                | `string`   | `false`  | Order item status description `Geen status`  (see common enum for list)    |
-| `data[].assigned_to_customer_id`          | `integer`  | `false`  | Sales order could be assigned to a different customer (lease) `6776`       |
-| `data[].item_type`                        | `string`   | `false`  | Description of item type `Artikelregel` (see common enum for list)         |
-| `data[].barcode`                          | `string`   | `false`  | Barcode of article `8237238723823`                                         |
-| `data[].object_id`                        | `integer`  | `false`  | ID of linked stock object `0`                                              |
-| `data[].pos_group_id`                     | `integer`  | `false`  | POS group id `0`  (see common enum for list)                               |
-| `data[].quantity`                         | `integer`  | `false`  | Quantity `1`                                                               |
-| `data[].description`                      | `string`   | `false`  | Description of article `Tire`                                              |
-| `data[].gross_unit_price_in_vat_in_cents` | `integer`  | `false`  | Gross unit price in cents `9900`                                           |
-| `data[].unit_discount_in_vat_in_cents`    | `integer`  | `false`  | Unit discount amount in cents  `1000`                                      |
-| `data[].nett_line_price_in_vat_in_cents`  | `integer`  | `false`  | Nett line price in cents `8900`                                            |
-| `data[].vat_amount_cents`                 | `integer`  | `false`  | VAT amount in cents e.g. `1546`                                            |
-| `data[].vat_percentage`                   | `decimal`  | `false`  | VAT percentage `21`                                                        |
-| `pagination.count`                        | `integer`  | `false`  | Number of items `3`                                                        |
-| `pagination.next_offset`                  | `integer`  | `true`   | If specified call the api again with offset parameter                      |
+| Property                                  | Type       | Description                                                                |
+|-------------------------------------------|------------|----------------------------------------------------------------------------|
+| `data[].account_id`                       | `integer`  | CS Account e.g. `1`                                                        |
+| `data[].store_id`                         | `integer`  | Store id e.g. `1`                                                          |
+| `data[].sales_order_id`                   | `integer`  | Sales order number e.g. `50032`                                            |
+| `data[].customer_id`                      | `integer`  | Customer number `6776`                                                     |
+| `data[].order_type_id`                    | `integer`  | Order type id e.g. `6` (see common enum for list)                          |
+| `data[].order_type_text`                  | `string`   | Order type name e.g. `Reparatie`                                           |
+| `data[].order_reference_id`               | `string`   | Sales order reference id e.g. `212`                                        |
+| `data[].order_reference_text`             | `string`   | Sales order reference id text e.g. `TXT212`                                |
+| `data[].datetime_created`                 | `datetime` | Created at `2019-05-22 13:45:37`                                           |
+| `data[].datetime_modified`                | `datetime` | Modified at `2022-04-07 15:03:32`                                          |
+| `data[].datetime_preferred_delivery`      | `?date`    | Preferred delivery date                                                    |
+| `data[].status_id`                        | `integer`  | Sales order status id e.g. `9` (see common enum for list)                  |
+| `data[].status_text`                      | `string`   | Sales order status text e.g. `Afgerond` (see common enum for list)         |
+| `data[].cancellation_type_id`             | `integer`  | Cancellation type id e.g. `0` (see common enum for list)                   |
+| `data[].cancellation_description`         | `?string`  | Cancellation description (see common enum for list)                        |
+| `data[].has_invoice`                      | `boolean`  | If invoiced `true`                                                         |
+| `data[].invoice_number`                   | `?integer` | Invoice number `20173328`                                                  |
+| `data[].delivery_method_id`               | `integer`  | Delivery method id `0` (see common enum for list)                          |
+| `data[].delivery_method_description`      | `string`   | Delivery method description `Afhalen in winkel` (see common enum for list) |
+| `data[].order_item_id`                    | `integer`  | Item id within sales order `0`                                             |
+| `data[].order_item_status`                | `string`   | Order item status description `Geen status`  (see common enum for list)    |
+| `data[].assigned_to_customer_id`          | `integer`  | Sales order could be assigned to a different customer (lease) `6776`       |
+| `data[].item_type`                        | `string`   | Description of item type `Artikelregel` (see common enum for list)         |
+| `data[].barcode`                          | `string`   | Barcode of article `8237238723823`                                         |
+| `data[].object_id`                        | `integer`  | ID of linked stock object `0`                                              |
+| `data[].pos_group_id`                     | `integer`  | POS group id `0`  (see common enum for list)                               |
+| `data[].quantity`                         | `integer`  | Quantity `1`                                                               |
+| `data[].description`                      | `string`   | Description of article `Tire`                                              |
+| `data[].gross_unit_price_in_vat_in_cents` | `integer`  | Gross unit price in cents `9900`                                           |
+| `data[].unit_discount_in_vat_in_cents`    | `integer`  | Unit discount amount in cents  `1000`                                      |
+| `data[].nett_line_price_in_vat_in_cents`  | `integer`  | Nett line price in cents `8900`                                            |
+| `data[].vat_amount_cents`                 | `integer`  | VAT amount in cents e.g. `1546`                                            |
+| `data[].vat_percentage`                   | `decimal`  | VAT percentage `21`                                                        |
+| `pagination.count`                        | `integer`  | Number of items `3`                                                        |
+| `pagination.next_offset`                  | `?integer` | If specified call the api again with offset parameter                      |
 
 > HTTP request
 
@@ -317,27 +317,27 @@ Get payments within date interval (max 31 days)
 | `start_date`  | `date` | start date e.g. 2020-01-01 |
 | `end_date`    | `date` | end date e.g. 2020-01-01   |
 
-| Property                      | Type      | Nullable | Description                                                                                                                           |
-|-------------------------------|-----------|----------|---------------------------------------------------------------------------------------------------------------------------------------|
-| `customer_id`                 | `integer` | `true`   | Customer id `332107`                                                                                                                  |
-| `invoice_number`              | `integer` | `true`   | Invoice number `365259` (may be null for advance payments)                                                                            |
-| `related_to_invoice_number`   | `integer` | `true`   | Related to another parent invoice number                                                                                              |
-| `sales_order_id`              | `integer` | `true`   | Sales order id `476953`                                                                                                               |
-| `ecommerce_reference_text`    | `string`  | `true`   | Sales order reference text `reference_129223`                                                                                         |
-| `ecommerce_reference_id`      | `string`  | `true`   | Sales order reference id `129223`                                                                                                     |
-| `payments`                    | `array`   | `false`  | List of payments                                                                                                                      |
-| `payments[].payment_id`       | `integer` | `false`  | ID of payment `65444361`                                                                                                              |
-| `payments[].store_id`         | `integer` | `false`  | Store id `1`                                                                                                                          |
-| `payments[].book_location_id` | `integer` | `false`  | Book location id in POS `1`                                                                                                           |
-| `payments[].method`           | `string`  | `false`  | Payment method description `Contant` `Creditcard` `Chip` `Tegoedbon(nen)` `Spaarpunten` `Retour` `Bank` `PSP` `Rembours` `Ecocheques` |
-| `payments[].method_id`        | `integer` | `false`  | Payment method id `1` (see common enum for list)                                                                                      |
-| `payments[].amount_cents`     | `integer` | `false`  | Amount of payment in cents `6999`                                                                                                     |
-| `payments[].book_date`        | `string`  | `false`  | Date booked `01-04-2022 15:31:44`                                                                                                     |
-| `payments[].created_at`       | `string`  | `false`  | Date created `01-04-2022 15:31:44`                                                                                                    |
-| `psp`                         | `array`   | `false`  | Array of payment service provider information (e.g. PAY.)                                                                             |
-| `psp[].psp_reference`         | `string`  | `false`  | PSP reference `17232323571X84a7d`                                                                                                     |
-| `psp[].psp_reference_2`       | `string`  | `false`  | PSP reference 2 `fb9c911850f4edfe214ff3cdfb214dbef9e8e599`                                                                            |
-| `psp[].amount_cents`          | `integer` | `false`  | Amount of PSP payment `6999`                                                                                                          |
+| Property                      | Type       | Description                                                                                                                           |
+|-------------------------------|------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| `customer_id`                 | `?integer` | Customer id `332107`                                                                                                                  |
+| `invoice_number`              | `?integer` | Invoice number `365259` (may be null for advance payments)                                                                            |
+| `related_to_invoice_number`   | `?integer` | Related to another parent invoice number                                                                                              |
+| `sales_order_id`              | `?integer` | Sales order id `476953`                                                                                                               |
+| `ecommerce_reference_text`    | `?string`  | Sales order reference text `reference_129223`                                                                                         |
+| `ecommerce_reference_id`      | `?string`  | Sales order reference id `129223`                                                                                                     |
+| `payments`                    | `object[]` | List of payments                                                                                                                      |
+| `payments[].payment_id`       | `integer`  | ID of payment `65444361`                                                                                                              |
+| `payments[].store_id`         | `integer`  | Store id `1`                                                                                                                          |
+| `payments[].book_location_id` | `integer`  | Book location id in POS `1`                                                                                                           |
+| `payments[].method`           | `string`   | Payment method description `Contant` `Creditcard` `Chip` `Tegoedbon(nen)` `Spaarpunten` `Retour` `Bank` `PSP` `Rembours` `Ecocheques` |
+| `payments[].method_id`        | `integer`  | Payment method id `1` (see common enum for list)                                                                                      |
+| `payments[].amount_cents`     | `integer`  | Amount of payment in cents `6999`                                                                                                     |
+| `payments[].book_date`        | `string`   | Date booked `01-04-2022 15:31:44`                                                                                                     |
+| `payments[].created_at`       | `string`   | Date created `01-04-2022 15:31:44`                                                                                                    |
+| `psp`                         | `object[]` | Array of payment service provider information (e.g. PAY.)                                                                             |
+| `psp[].psp_reference`         | `string`   | PSP reference `17232323571X84a7d`                                                                                                     |
+| `psp[].psp_reference_2`       | `string`   | PSP reference 2 `fb9c911850f4edfe214ff3cdfb214dbef9e8e599`                                                                            |
+| `psp[].amount_cents`          | `integer`  | Amount of PSP payment `6999`                                                                                                          |
 
 > HTTP request
 
@@ -442,20 +442,20 @@ information known at the insurance company. This information is based on created
 | `start_date`  | `date` | start date e.g. 2020-01-01 |
 | `end_date`    | `date` | end date e.g. 2020-01-01   |
 
-| Property                  | Type      | Nullable | Description                                                                |
-|---------------------------|-----------|----------|----------------------------------------------------------------------------|
-| `insurance_id`            | `integer` | `false`  | ID of insurance application `1182027`                                      |
-| `customer_id`             | `integer` | `false`  | Customer ID e.g. `334357`                                                  |
-| `created_at`              | `date`    | `false`  | Date created e.g. `15-04-2022`                                             |
-| `stock_object_id`         | `integer` | `false`  | Stock object ID `786080`                                                   |
-| `insurance_company`       | `string`  | `false`  | Name of insurance company `KING`                                           |
-| `reference_id`            | `integer` | `false`  | Reference ID `0`                                                           |
-| `policy_number`           | `integer` | `false`  | Policy Number (if available) `12212`                                       |
-| `insurance_starting_date` | `date`    | `false`  | Start date of the insurance `15-04-2022`                                   |
-| `description`             | `string`  | `false`  | Name of the insurance e.g. `E-bike Casco Compleet - 3 jaar - Aut. Incasso` |
-| `policy_costs`            | `integer` | `false`  | Costs of the policy in cents `650`                                         |
-| `insured_amount`          | `integer` | `false`  | Insured amount in cents `299900`                                           |
-| `premium_amount`          | `integer` | `false`  | Insurance premium in cents `19895`                                         |
+| Property                  | Type      | Description                                                                |
+|---------------------------|-----------|----------------------------------------------------------------------------|
+| `insurance_id`            | `integer` | ID of insurance application `1182027`                                      |
+| `customer_id`             | `integer` | Customer ID e.g. `334357`                                                  |
+| `created_at`              | `date`    | Date created e.g. `15-04-2022`                                             |
+| `stock_object_id`         | `integer` | Stock object ID `786080`                                                   |
+| `insurance_company`       | `string`  | Name of insurance company `KING`                                           |
+| `reference_id`            | `integer` | Reference ID `0`                                                           |
+| `policy_number`           | `integer` | Policy Number (if available) `12212`                                       |
+| `insurance_starting_date` | `date`    | Start date of the insurance `15-04-2022`                                   |
+| `description`             | `string`  | Name of the insurance e.g. `E-bike Casco Compleet - 3 jaar - Aut. Incasso` |
+| `policy_costs`            | `integer` | Costs of the policy in cents `650`                                         |
+| `insured_amount`          | `integer` | Insured amount in cents `299900`                                           |
+| `premium_amount`          | `integer` | Insurance premium in cents `19895`                                         |
 
 > HTTP request
 

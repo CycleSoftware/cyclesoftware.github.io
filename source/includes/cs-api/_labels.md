@@ -11,14 +11,13 @@ Attach or detach labels on entities
 
 Properties used in create, get and send endpoints.
 
-| Property         | Type      | Nullable | Description                                                  |
-|------------------|-----------|----------|--------------------------------------------------------------|
-| `error`          | `boolean` | `false`  | `true` if an error occured                                   |
-| `error_message`  | `null`    | `true`   | Error message, `null` if no error occured                    |
-| `entity_type_id` | `integer` | `false`  | Entity type e.g. `7`, see common API `entity_types`          |
-| `entity_id`      | `integer` | `false`  | Entity ID e.g. sales order number when `entity_type_id` is 7 |
-| `labels`         | `array`   | `false`  | Array of labels to add                                       |
-| `labels[]`       | `string`  | `false`  | Name of the label known in CS e.g. `Label `                  |
+| Property         | Type       | Description                                                  |
+|------------------|------------|--------------------------------------------------------------|
+| `error`          | `boolean`  | `true` if an error occured                                   |
+| `error_message`  | `?string`  | Error message, `null` if no error occured                    |
+| `entity_type_id` | `integer`  | Entity type e.g. `7`, see common API `entity_types`          |
+| `entity_id`      | `integer`  | Entity ID e.g. sales order number when `entity_type_id` is 7 |
+| `labels`         | `string[]` | Array of labels in CS e.g. `["Label"]`                       |
 
 ## Get entity labels
 

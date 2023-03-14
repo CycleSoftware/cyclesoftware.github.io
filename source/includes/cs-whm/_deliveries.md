@@ -36,31 +36,31 @@ Get a list of goods to be delivered.
 
 ### Properties ###
 
-| Property                                       | Type       | Nullable | Description                                             |
-|------------------------------------------------|------------|----------|---------------------------------------------------------|
-| `error`                                        | `boolean`  | `false`  | `true` when an error occured                            |
-| `error_message`                                | `string`   | `true`   | Error message if known                                  |
-| `data`                                         | `array`    | `false`  | Array of backlog items                                  |
-| `data[].id`                                    | `integer`  | `false`  | Unique item id `412855`                                 |
-| `data[].supplier_id`                           | `integer`  | `false`  | Supplier ID `2403`                                      |
-| `data[].is_sold_to_customer`                   | `boolean`  | `false`  | Marked as sold to customer `false`                      |
-| `data[].in_transit`                            | `boolean`  | `false`  | Marked as in transit `false`                            |
-| `data[].article_id`                            | `string`   | `false`  | Article ID `LV106`                                      |
-| `data[].barcode`                               | `string`   | `false`  | Barcode of article `8719812004299`                      |
-| `data[].supplier_reference`                    | `string`   | `false`  | Reference of supplier `7171999`                         |
-| `data[].supplier_reference_2`                  | `string`   | `false`  | Reference of supplier 2 `7171999`                       |
-| `data[].delivery_date`                         | `date`     | `false`  | Expected delivery-date `2022-12-26`                     |
-| `data[].original_delivery_date`                | `date`     | `false`  | Original expected delivery-date `2023-01-02`            |
-| `data[].external_remarks`                      | `string`   | `false`  | Remarks from supplier                                   |
-| `data[].internal_remarks`                      | `string`   | `true`   | Internal remarks                                        |
-| `data[].created_at`                            | `datetime` | `false`  | Date-time created                                       |
-| `data[].modified_at`                           | `datetime` | `false`  | Date-time modified                                      |
-| `data[].assignment`                            | `object`   | `true`   | If not null the item is assigned                        |
-| `data[].assignment.assigned_to_entity_type_id` | `integer`  | `false`  | Entity type assignment `20` (see common api)            |
-| `data[].assignment.assigned_to_entity_id`      | `integer`  | `false`  | Entity ID of assignment `564840`                        |
-| `data[].assignment.outbound_order_id`          | `integer`  | `false`  | Assigned outbound order id `440452`                     |
-| `data[].assignment.reference`                  | `string`   | `false`  | Reference of outbound-order `fvs_138443`                |
-| `pagination.next_offset`                       | `integer`  | `true`   | If specified use offset in GET parameter for extra data |
+| Property                                       | Type       | Description                                             |
+|------------------------------------------------|------------|---------------------------------------------------------|
+| `error`                                        | `boolean`  | `true` when an error occured                            |
+| `error_message`                                | `?string`  | Error message if known                                  |
+| `data`                                         | `object[]` | Array of backlog items                                  |
+| `data[].id`                                    | `integer`  | Unique item id `412855`                                 |
+| `data[].supplier_id`                           | `integer`  | Supplier ID `2403`                                      |
+| `data[].is_sold_to_customer`                   | `boolean`  | Marked as sold to customer `false`                      |
+| `data[].in_transit`                            | `boolean`  | Marked as in transit `false`                            |
+| `data[].article_id`                            | `string`   | Article ID `LV106`                                      |
+| `data[].barcode`                               | `string`   | Barcode of article `8719812004299`                      |
+| `data[].supplier_reference`                    | `string`   | Reference of supplier `7171999`                         |
+| `data[].supplier_reference_2`                  | `string`   | Reference of supplier 2 `7171999`                       |
+| `data[].delivery_date`                         | `date`     | Expected delivery-date `2022-12-26`                     |
+| `data[].original_delivery_date`                | `date`     | Original expected delivery-date `2023-01-02`            |
+| `data[].external_remarks`                      | `string`   | Remarks from supplier                                   |
+| `data[].internal_remarks`                      | `?string`  | Internal remarks                                        |
+| `data[].created_at`                            | `datetime` | Date-time created                                       |
+| `data[].modified_at`                           | `datetime` | Date-time modified                                      |
+| `data[].assignment`                            | `?object`  | If not null the item is assigned                        |
+| `data[].assignment.assigned_to_entity_type_id` | `integer`  | Entity type assignment `20` (see common api)            |
+| `data[].assignment.assigned_to_entity_id`      | `integer`  | Entity ID of assignment `564840`                        |
+| `data[].assignment.outbound_order_id`          | `integer`  | Assigned outbound order id `440452`                     |
+| `data[].assignment.reference`                  | `string`   | Reference of outbound-order `fvs_138443`                |
+| `pagination.next_offset`                       | `?integer` | If specified use offset in GET parameter for extra data |
 
 
 

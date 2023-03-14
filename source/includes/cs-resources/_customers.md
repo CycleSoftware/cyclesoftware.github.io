@@ -8,31 +8,31 @@ Find, create and update customers
 
 ## Customer (object)
 
-| Property                          | Type       | Nullable | Modify                     | Description                                                   |
-|-----------------------------------|------------|----------|----------------------------|---------------------------------------------------------------|
-| `customer_id`                     | `integer`  | `false`  | `readonly`                 | Customer ID e.g. `6`                                          |
-| `customer_type_name`              | `string`   | `false`  | <code>PUT&#124;POST</code> | See common enum `customer_types` e.g. `Klant`                 |
-| `customer_reference`              | `string`   | `false`  | <code>PUT&#124;POST</code> | Reference of customer e.g. `OwnRef`                           |
-| `postcode`                        | `string`   | `false`  | <code>PUT&#124;POST</code> | Postcode of customer e.g. `5488HM`                            |
-| `house_number`                    | `string`   | `false`  | <code>PUT&#124;POST</code> | House number of customer e.g. `1`                             |
-| `house_number_postfix`            | `string`   | `false`  | <code>PUT&#124;POST</code> | House number postfix of customer e.g. `c`                     |
-| `attn`                            | `string`   | `false`  | <code>PUT&#124;POST</code> | Attn name `Name of address`                                   |
-| `title`                           | `string`   | `false`  | <code>PUT&#124;POST</code> | Name prefix e.g. `Dhr./Mevr. `                                |
-| `initials`                        | `string`   | `false`  | <code>PUT&#124;POST</code> | Initials e.g. `T`                                             |
-| `insertion`                       | `string`   | `false`  | <code>PUT&#124;POST</code> | Insertion e.g. `van`                                          |
-| `first_name`                      | `string`   | `false`  | <code>PUT&#124;POST</code> | First name e.g. `Tim`                                         |
-| `name`                            | `string`   | `false`  | <code>PUT&#124;POST</code> | Last name e.g. `LastName`                                     |
-| `street`                          | `string`   | `false`  | <code>PUT&#124;POST</code> | Street e.g. `Raadhuisplein`                                   |
-| `city`                            | `string`   | `false`  | <code>PUT&#124;POST</code> | City e.g. `Nistelrode`                                        |
-| `country_code_iso_3166`           | `string`   | `false`  | <code>PUT&#124;POST</code> | Country code e.g. `NL`                                        |
-| `email`                           | `string`   | `false`  | <code>PUT&#124;POST</code> | E-mail e.g. `name@domain.nl`                                  |
-| `discount_percentage`             | `decimal`  | `false`  | <code>PUT&#124;POST</code> | Default discount percentage e.g. `10`                         |
-| `datetime_created`                | `datetime` | `true`   | `readonly`                 | Created at if available e.g. `2023-01-03 12:30:44`            |
-| `phone_numbers`                   | `array`    | `false`  | <code>PUT&#124;POST</code> | array of phone numbers                                        |
-| `phone_numbers[].phone_number_id` | `string`   | `false`  | <code>PUT&#124;POST</code> | ID of phone number e.g. `tel` (landline) `mob` (mobile) or ID |
-| `phone_numbers[].customer_id`     | `integer`  | `false`  | `readonly`                 | Customer ID e.g. `6`                                          |
-| `phone_numbers[].phone_number`    | `string`   | `false`  | <code>PUT&#124;POST</code> | Phone number e.g. `0733030050`                                |
-| `phone_numbers[].name`            | `string`   | `false`  | <code>PUT&#124;POST</code> | Name of number e.g. `Dhr./Mevr.  T UnitTest`                  |
+| Property                          | Type        | Modify                     | Description                                                   |
+|-----------------------------------|-------------|----------------------------|---------------------------------------------------------------|
+| `customer_id`                     | `integer`   | `readonly`                 | Customer ID e.g. `6`                                          |
+| `customer_type_name`              | `string`    | <code>PUT&#124;POST</code> | See common enum `customer_types` e.g. `Klant`                 |
+| `customer_reference`              | `string`    | <code>PUT&#124;POST</code> | Reference of customer e.g. `OwnRef`                           |
+| `postcode`                        | `string`    | <code>PUT&#124;POST</code> | Postcode of customer e.g. `5488HM`                            |
+| `house_number`                    | `string`    | <code>PUT&#124;POST</code> | House number of customer e.g. `1`                             |
+| `house_number_postfix`            | `string`    | <code>PUT&#124;POST</code> | House number postfix of customer e.g. `c`                     |
+| `attn`                            | `string`    | <code>PUT&#124;POST</code> | Attn name `Name of address`                                   |
+| `title`                           | `string`    | <code>PUT&#124;POST</code> | Name prefix e.g. `Dhr./Mevr. `                                |
+| `initials`                        | `string`    | <code>PUT&#124;POST</code> | Initials e.g. `T`                                             |
+| `insertion`                       | `string`    | <code>PUT&#124;POST</code> | Insertion e.g. `van`                                          |
+| `first_name`                      | `string`    | <code>PUT&#124;POST</code> | First name e.g. `Tim`                                         |
+| `name`                            | `string`    | <code>PUT&#124;POST</code> | Last name e.g. `LastName`                                     |
+| `street`                          | `string`    | <code>PUT&#124;POST</code> | Street e.g. `Raadhuisplein`                                   |
+| `city`                            | `string`    | <code>PUT&#124;POST</code> | City e.g. `Nistelrode`                                        |
+| `country_code_iso_3166`           | `string`    | <code>PUT&#124;POST</code> | Country code e.g. `NL`                                        |
+| `email`                           | `string`    | <code>PUT&#124;POST</code> | E-mail e.g. `name@domain.nl`                                  |
+| `discount_percentage`             | `decimal`   | <code>PUT&#124;POST</code> | Default discount percentage e.g. `10`                         |
+| `datetime_created`                | `?datetime` | `readonly`                 | Created at if available e.g. `2023-01-03 12:30:44`            |
+| `phone_numbers`                   | `object[]`  | <code>PUT&#124;POST</code> | array of phone numbers                                        |
+| `phone_numbers[].phone_number_id` | `string`    | <code>PUT&#124;POST</code> | ID of phone number e.g. `tel` (landline) `mob` (mobile) or ID |
+| `phone_numbers[].customer_id`     | `integer`   | `readonly`                 | Customer ID e.g. `6`                                          |
+| `phone_numbers[].phone_number`    | `string`    | <code>PUT&#124;POST</code> | Phone number e.g. `0733030050`                                |
+| `phone_numbers[].name`            | `string`    | <code>PUT&#124;POST</code> | Name of number e.g. `Dhr./Mevr.  T UnitTest`                  |
 
 
 ## Get Customer 
@@ -353,15 +353,15 @@ Find existing customers
     </div>
 </div>
 
-| **GET parameter**     | **Type** | **Description**                             |
-|-----------------------|----------|---------------------------------------------|
-| `phone_number`        | `string` | Phone number of customer e.g. `0733030050`  |
-| `postal_code`         | `string` | postal_code of customer e.g. `5388GM`       | 
-| `housenumber`         | `string` | housenumber of customer e.g. `1`            | 
-| `housenumber_postfix` | `string` | housenumber_postfix of customer e.g. `a`    | 
-| `email`               | `string` | E-mail of customer e.g. `name@domain.nl`    | 
-| `query`               | `string` | Query to search for e.g. `name of customer` | 
-| `country_code`        | `string` | Country code of customer e.g. `NL`          | 
+| **GET parameter**     | **Type**  | **Description**                             |
+|-----------------------|-----------|---------------------------------------------|
+| `phone_number`        | `?string` | Phone number of customer e.g. `0733030050`  |
+| `postal_code`         | `?string` | Postal code of customer e.g. `5388GM`       | 
+| `housenumber`         | `?string` | Housenumber of customer e.g. `1`            | 
+| `housenumber_postfix` | `?string` | Housenumber_postfix of customer e.g. `a`    | 
+| `email`               | `?string` | E-mail of customer e.g. `name@domain.nl`    | 
+| `query`               | `?string` | Query to search for e.g. `name of customer` | 
+| `country_code`        | `?string` | Country code of customer e.g. `NL`          | 
 
 The result will be an array of [Customer (object)](#customers-customer-object)
 

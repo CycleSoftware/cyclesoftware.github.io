@@ -252,16 +252,19 @@
                     <a href="#introduction-errors" class="toc-h2 toc-link" data-title="Errors">Errors</a>
                   </li>
                   <li>
-                    <a href="#introduction-parameters" class="toc-h2 toc-link" data-title="Parameters">Parameters</a>
+                    <a href="#introduction-api-parameters" class="toc-h2 toc-link" data-title="API Parameters">API Parameters</a>
                   </li>
                   <li>
-                    <a href="#introduction-pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
+                    <a href="#introduction-api-pagination" class="toc-h2 toc-link" data-title="API Pagination">API Pagination</a>
                   </li>
                   <li>
-                    <a href="#introduction-limits" class="toc-h2 toc-link" data-title="Limits">Limits</a>
+                    <a href="#introduction-api-types" class="toc-h2 toc-link" data-title="API Types">API Types</a>
                   </li>
                   <li>
-                    <a href="#introduction-libraries-and-tools" class="toc-h2 toc-link" data-title="Libraries and Tools">Libraries and Tools</a>
+                    <a href="#introduction-api-limits" class="toc-h2 toc-link" data-title="API Limits">API Limits</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-api-scopes" class="toc-h2 toc-link" data-title="API Scopes">API Scopes</a>
                   </li>
               </ul>
           </li>
@@ -273,12 +276,6 @@
                   </li>
                   <li>
                     <a href="#authentication-soap-wsdl-authentication" class="toc-h2 toc-link" data-title="SOAP/WSDL Authentication">SOAP/WSDL Authentication</a>
-                  </li>
-                  <li>
-                    <a href="#authentication-oauth2-authentication" class="toc-h2 toc-link" data-title="OAUTH2 Authentication">OAUTH2 Authentication</a>
-                  </li>
-                  <li>
-                    <a href="#authentication-scopes" class="toc-h2 toc-link" data-title="Scopes">Scopes</a>
                   </li>
               </ul>
           </li>
@@ -359,14 +356,6 @@
 
 <p>The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes.
 Successful requests will return a <code>200 OK</code> HTTP status.</p>
-
-<p>Some general information about responses:</p>
-
-<ul>
-<li>Datetimes are returned in format (unless specified otherwise): <code>YYYY-MM-DD HH:MM:SS</code></li>
-<li>Dates are returned in format (unless specified otherwise): <code>YYYY-MM-DD</code></li>
-<li>Amounts could be specified in cents (which will be clear by the fieldname) or with decimal-strings</li>
-</ul>
 <h2 id='introduction-errors'>Errors</h2>
 <p>Occasionally you might encounter errors when accessing the REST API. There are four possible types:</p>
 
@@ -391,6 +380,10 @@ Successful requests will return a <code>200 OK</code> HTTP status.</p>
 <tr>
 <td><code>404 Not Found</code></td>
 <td>Requests to resources that don&#39;t exist or are missing</td>
+</tr>
+<tr>
+<td><code>429 Too Many Requests</code></td>
+<td>API limit reached, see api limiting</td>
 </tr>
 <tr>
 <td><code>500 Internal Server Error</code></td>
@@ -429,10 +422,10 @@ Successful requests will return a <code>200 OK</code> HTTP status.</p>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 </code></pre></div>
 <p>Errors return both an appropriate HTTP status code and response object which contains a <code>error</code>, and <code>error_message</code></p>
-<h2 id='introduction-parameters'>Parameters</h2>
-<p>Almost all endpoints accept optional parameters which can be passed as a HTTP query string parameter,
+<h2 id='introduction-api-parameters'>API Parameters</h2>
+<p>Almost all endpoints accept optional parameters which can be passed as an HTTP query string parameter,
 e.g. <code>GET /v1/endpoint?status=completed</code>. All parameters are documented along each endpoint.</p>
-<h2 id='introduction-pagination'>Pagination</h2>
+<h2 id='introduction-api-pagination'>API Pagination</h2>
 <p>For certain endpoints pagination is implemented. The mechanism differs per endpoint. But the default pagination
 mechanism is as follows:</p>
 
@@ -451,33 +444,173 @@ mechanism is as follows:</p>
 <p><code>GET /v1/endpoint?offset=1000</code></p>
 
 <p>In the response the next_offset is suggested. You can pass the next offset in the <code>offset</code> GET parameter.</p>
-<h2 id='introduction-limits'>Limits</h2>
+<h2 id='introduction-api-types'>API Types</h2>
+<p>Some general information about responses:</p>
+
+<ul>
+<li>Amounts could be specified in cents (which will be clear by the fieldname) or with decimal-strings</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>string</code></td>
+<td>An UTF-8 string of variadic length</td>
+<td><code>Hello world!</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>Boolean <code>true</code> or <code>false</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>integer</code></td>
+<td>64-bit signed integer</td>
+<td><code>1212</code></td>
+</tr>
+<tr>
+<td><code>decimal</code></td>
+<td>Decimal number with 2 decimals e.g. <code>0.22</code></td>
+<td><code>0.22</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>A floating-point number with <code>.</code> used as the separator</td>
+<td><code>123.22</code></td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>Date in <code>yyyy-mm-dd</code> format</td>
+<td><code>2023-01-23</code></td>
+</tr>
+<tr>
+<td><code>datetime</code></td>
+<td>Datetime in <code>yyyy-mm-dd hh:mm:ss</code> format</td>
+<td><code>2023-01-23 12:34:33</code></td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>UNIX timestamp (seconds since Unix Epoch)</td>
+<td><code>1678348370</code></td>
+</tr>
+<tr>
+<td><code>uuid</code></td>
+<td>UUID string</td>
+<td><code>20c5d026-68b3-11ec-90d6-0242ac120003</code></td>
+</tr>
+<tr>
+<td><code>array</code></td>
+<td>List of sub types</td>
+<td><code>[10,22]</code></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td>An object</td>
+<td><code>{&quot;field&quot;: 1}</code></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Some fields may also contain a null value, which is annotated with the ? prefix.
+
+For example, `?datetime` means that the following field may contain a valid `datetime` value, a `null`, or may not be present in the request/response at all.
+</aside>
+
+<aside class="notice">
+Additionally, some fields may be arrays, which is annotated with the `[]` suffix.
+
+For example, `integer[]` represents an integer array.
+</aside>
+
+<aside class="notice">
+Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings. 
+</aside>
+<h2 id='introduction-api-limits'>API Limits</h2>
 <p>Since may 2022 api-limits are introduced. For endpoints that implement limits the following HTTP response headers are
 available.</p>
 
-<ul>
-<li><code>X-RateLimit-Minutely-Limit</code> contains the number of allowed requests per minute</li>
-<li><code>X-RateLimit-Minutely-Remaining</code> contains the number of remaining requests available within moving minutely interval</li>
-<li><code>X-RateLimit-Daily-Limit</code> contains the number of daily allowed requests</li>
-<li><code>X-RateLimit-Daily-Remaining</code> contains the number of daily remaining requests</li>
-<li><code>X-RateLimit-Daily-Reset</code> contains the UNIX timestamp when the daily limit is reset</li>
-</ul>
+<p>If the limit is reached, the server will respond with an <code>HTTP 429 - Too Many Requests</code> error.</p>
 
-<p>If the limit is reached, the server will respond with an <code>HTTP 429 - Too Many Requests</code> error. </p>
-<h2 id='introduction-libraries-and-tools'>Libraries and Tools</h2><h3 id='introduction-libraries-and-tools-official-libraries'>Official libraries</h3>
-<ul>
-<li><a href="https://packagist.org/packages/cyclesoftware/oauth2-twsc">PHP TWSC api</a></li>
-</ul>
+<p>The following HTTP headers are present in an limited endpoint response</p>
+
+<table><thead>
+<tr>
+<th>HTTP Response header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>X-RateLimit-Minutely-Limit</code></td>
+<td>Contains the number of allowed requests per minute</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Minutely-Remaining</code></td>
+<td>Contains the number of remaining requests available within moving minutely interval</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Daily-Limit</code></td>
+<td>Contains the number of daily allowed requests</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Daily-Remaining</code></td>
+<td>Contains the number of daily remaining requests</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Daily-Reset</code></td>
+<td>Contains the UNIX timestamp when the daily limit is reset</td>
+</tr>
+</tbody></table>
+<h2 id='introduction-api-scopes'>API Scopes</h2>
+<table><thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>common</code></td>
+<td>Access common data such as employees, enums, suppliers</td>
+</tr>
+<tr>
+<td><code>e-ecommerce</code></td>
+<td>Access e-commerce related endpoints (stock, order-creation, articledata)</td>
+</tr>
+<tr>
+<td><code>recources</code></td>
+<td>Access object resources such as <code>customers</code>, <code>workshop-orders</code>, <code>repair-objects</code> etc.</td>
+</tr>
+<tr>
+<td><code>stock-export</code></td>
+<td>Bulk export stock data</td>
+</tr>
+<tr>
+<td><code>sales-export</code></td>
+<td>Bulk export sales data</td>
+</tr>
+<tr>
+<td><code>rental</code></td>
+<td>Rental related information</td>
+</tr>
+<tr>
+<td><code>warehouse</code></td>
+<td>Warehouse related data</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td>Access authorized dealer-data for sales-platforms</td>
+</tr>
+</tbody></table>
 <h1 id='authentication'>Authentication</h1>
 <p>CycleSoftware uses different authentication mechanisms. </p>
 <h2 id='authentication-http-basic-authentication'>HTTP Basic Authentication</h2>
 <p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided using the Basic HTTP authentication http header. The api-key is usage is documented per service.</p>
 <h2 id='authentication-soap-wsdl-authentication'>SOAP/WSDL Authentication</h2>
 <p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided within the <code>Authentication</code> element as documented per request. For <code>dealer_id</code> the actual store id within the account or api-key can be provided.</p>
-<h2 id='authentication-oauth2-authentication'>OAUTH2 Authentication</h2>
-<p>TWSC API is available throught Oauth2 authentication</p>
-<h2 id='authentication-scopes'>Scopes</h2>
-<p>Credentials are linked to a set of scopes. Every endpoint is also linked to a set of scopes. If the required scope is not available for the credentials the API will provide an HTTP Unauthorized error.</p>
 <h1 id='stock-locator'>Stock locator</h1>
 <p>Locate stock based on barcodes / article ids in associated accounts</p>
 
@@ -492,122 +625,102 @@ available.</p>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>error_message</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>Error message if occured</td>
 </tr>
 <tr>
 <td><code>error</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if error occured</td>
 </tr>
 <tr>
 <td><code>stores</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>Array of store objects</td>
 </tr>
 <tr>
 <td><code>stores[].store_id</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Account ID in CS e.g.  <code>5185-1</code></td>
 </tr>
 <tr>
 <td><code>stores[].store_gln</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>GLN code <code>8718288145482</code></td>
 </tr>
 <tr>
 <td><code>stores[].store_name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Company name e.g. <code>CS-Unit test</code></td>
 </tr>
 <tr>
 <td><code>stores[].store_address</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Company street e.g. <code>Kievitsven 22</code></td>
 </tr>
 <tr>
 <td><code>stores[].store_postal_code</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Company postal code e.g. <code>5249JJ</code></td>
 </tr>
 <tr>
 <td><code>stores[].store_phone_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Company phone number</td>
 </tr>
 <tr>
 <td><code>stores[].store_country_code</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Company country code e.g. <code>NL</code></td>
 </tr>
 <tr>
 <td><code>stores[].store_email</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>email5185@example.nl</code></td>
 </tr>
 <tr>
 <td><code>stores[].store_coordinates</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>float[]</code></td>
 <td>array with <code>[latitude, longitude]</code></td>
 </tr>
 <tr>
 <td><code>stock</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>List of stocked objects</td>
 </tr>
 <tr>
 <td><code>stock[].store_id</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Account ID in CS e.g. <code>1-1</code></td>
 </tr>
 <tr>
 <td><code>stock[].object_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>ID of object in account <code>18696</code></td>
 </tr>
 <tr>
 <td><code>stock[].barcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Barcode of article <code>8717231204726</code></td>
 </tr>
 <tr>
 <td><code>stock[].article_id</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Article number e.g. <code>30015</code></td>
 </tr>
 <tr>
 <td><code>stock[].brand_name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Brand name <code>Gazelle</code></td>
 </tr>
 <tr>
 <td><code>stock[].is_demo</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if marked as demo bike</td>
 </tr>
 </tbody></table>

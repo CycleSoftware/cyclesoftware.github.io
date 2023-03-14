@@ -107,22 +107,21 @@ Get a list of employees associated with the account
 
 ### Properties ###
 
-| Property                 | Type      | Nullable | Description                                                                                                    |
-|--------------------------|-----------|----------|----------------------------------------------------------------------------------------------------------------|
-| error                    | `boolean` | `false`  | e.g. `false`                                                                                                   |
-| error_message            | `string`  | `true`   | e.g. `Unauthorized`                                                                                            |
-| data                     | `array`   | `false`  | array of objects                                                                                               |
-| data[].employee_id       | `integer` | `false`  | e.g. `4475`                                                                                                    |
-| data[].employee_name     | `string`  | `false`  | e.g. `John`                                                                                                    |
-| data[].verification_hash | `string`  | `false`  | e.g. `8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb` sha256 hash mac with api-key as secret |
-| data[].roles             | `array`   | `false`  | array of strings                                                                                               |
-| data[].roles[]           | `string`  | `false`  | e.g. `employee`                                                                                                |
-| data[].is_active         | `boolean` | `false`  | e.g. `false`                                                                                                   |
-| data[].is_default        | `boolean` | `false`  | e.g. `false`                                                                                                   |
-| data[].is_administrator  | `boolean` | `false`  | e.g. `false`                                                                                                   |
-| data[].avatar            | `string`  | `true`   | URL to avatar or null                                                                                          |
-| data[].authorizations    | `array`   | `false`  | array of strings                                                                                               |
-| data[].authorizations[]  | `string`  | `false`  | e.g. `MAY_ACCEPT_SALES_LEADS`                                                                                  |
+| Property                 | Type       | Description                                                                                                    |
+|--------------------------|------------|----------------------------------------------------------------------------------------------------------------|
+| error                    | `boolean`  | e.g. `false`                                                                                                   |
+| error_message            | `?string`  | e.g. `Unauthorized`                                                                                            |
+| data                     | `object[]` | array of objects                                                                                               |
+| data[].employee_id       | `integer`  | e.g. `4475`                                                                                                    |
+| data[].employee_name     | `string`   | e.g. `John`                                                                                                    |
+| data[].verification_hash | `string`   | e.g. `8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb` sha256 hash mac with api-key as secret |
+| data[].roles             | `object[]` | array of strings                                                                                               |
+| data[].roles[]           | `string`   | e.g. `employee`                                                                                                |
+| data[].is_active         | `boolean`  | e.g. `false`                                                                                                   |
+| data[].is_default        | `boolean`  | e.g. `false`                                                                                                   |
+| data[].is_administrator  | `boolean`  | e.g. `false`                                                                                                   |
+| data[].avatar            | `?string`  | URL to avatar or null                                                                                          |
+| data[].authorization[]   | `string[]` | Array of authorizations e.g. `["MAY_ACCEPT_SALES_LEADS"]`                                                      |
 
 > HTTP Request
 
@@ -222,15 +221,15 @@ Get a list of suppliers
 
 ### Properties ###
 
-| Property                    | Type      | Nullable | Description                                  |
-|-----------------------------|-----------|----------|----------------------------------------------|
-| `error`                     | `boolean` | `false`  | e.g. `false`                                 |
-| `error_message`             | `string`  | `true`   | Error message if occured                     |
-| `data`                      | `array`   | `false`  | Array of suppliers                           |
-| `data[].type`               | `string`  | `false`  | `supplier`, `bike-brand` or `moped-brand`    |
-| `data[].supplier_id`        | `integer` | `false`  | Unique supplier ID `580`                     |
-| `data[].supplier_name`      | `string`  | `false`  | Name of supplier e.g. `Accell NL`            |
-| `data[].parent_supplier_id` | `integer` | `true`   | Brands may be linked to a parent supplier-id |
+| Property                    | Type       | Description                                  |
+|-----------------------------|------------|----------------------------------------------|
+| `error`                     | `boolean`  | e.g. `false`                                 |
+| `error_message`             | `?string`  | Error message if occured                     |
+| `data`                      | `object[]` | Array of suppliers                           |
+| `data[].type`               | `string`   | `supplier`, `bike-brand` or `moped-brand`    |
+| `data[].supplier_id`        | `integer`  | Unique supplier ID `580`                     |
+| `data[].supplier_name`      | `string`   | Name of supplier e.g. `Accell NL`            |
+| `data[].parent_supplier_id` | `?integer` | Brands may be linked to a parent supplier-id |
 
 > HTTP Request
 

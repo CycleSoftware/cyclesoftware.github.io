@@ -9,20 +9,20 @@ Access workshop related information such as trading hours, stores, workshop orde
 
 ## Trading hours (object)
 
-| **Property**                                | **Type**    | **Nullable** | **Description**                                                                               |
-|---------------------------------------------|-------------|--------------|-----------------------------------------------------------------------------------------------|
-| `date`                                      | `date`      | `false`      | Date e.g. `2023-03-21`                                                                        |
-| `capacity_minutes`                          | `integer`   | `false`      | Capacity in minutes e.g. `780`                                                                |
-| `scheduled_minutes`                         | `integer`   | `false`      | Scheduled workshop orders in minutes e.g. `0`                                                 |
-| `available_minutes`                         | `integer`   | `false`      | Available duration in minutes e.g. `780`                                                      |
-| `timestamp_finished_twsc_repairs`           | `timestamp` | `false`      | Unix timestamp when the scheduled workshop-orders via api are finished (`0` if not available) |
-| `day_id`                                    | `integer`   | `false`      | Day number in the week Sunday=`0` and Saturday =`6` e.g. `2`                                  |
-| `week_no`                                   | `integer`   | `false`      | Week number e.g. `12`                                                                         |
-| `is_closed`                                 | `boolean`   | `false`      | `true` if store closed e.g. `false`                                                           |
-| `workshop_trading_hours`                    | `array`     | `false`      | Array of trading hours                                                                        |
-| `workshop_trading_hours[].start`            | `string`    | `false`      | Start of trading hours e.g. `07:00`                                                           |
-| `workshop_trading_hours[].finish`           | `string`    | `false`      | End of trading hours e.g. `19:45`                                                             |
-| `workshop_trading_hours[].duration_minutes` | `integer`   | `false`      | Duration of trading hours in minutes e.g. `780`                                               |
+| **Property**                                | **Type**    | **Description**                                                                               |
+|---------------------------------------------|-------------|-----------------------------------------------------------------------------------------------|
+| `date`                                      | `date`      | Date e.g. `2023-03-21`                                                                        |
+| `capacity_minutes`                          | `integer`   | Capacity in minutes e.g. `780`                                                                |
+| `scheduled_minutes`                         | `integer`   | Scheduled workshop orders in minutes e.g. `0`                                                 |
+| `available_minutes`                         | `integer`   | Available duration in minutes e.g. `780`                                                      |
+| `timestamp_finished_twsc_repairs`           | `timestamp` | Unix timestamp when the scheduled workshop-orders via api are finished (`0` if not available) |
+| `day_id`                                    | `integer`   | Day number in the week Sunday=`0` and Saturday =`6` e.g. `2`                                  |
+| `week_no`                                   | `integer`   | Week number e.g. `12`                                                                         |
+| `is_closed`                                 | `boolean`   | `true` if store closed e.g. `false`                                                           |
+| `workshop_trading_hours`                    | `object[]`  | Array of trading hours                                                                        |
+| `workshop_trading_hours[].start`            | `string`    | Start of trading hours e.g. `07:00`                                                           |
+| `workshop_trading_hours[].finish`           | `string`    | End of trading hours e.g. `19:45`                                                             |
+| `workshop_trading_hours[].duration_minutes` | `integer`   | Duration of trading hours in minutes e.g. `780`                                               |
 
 
 ## Trading hours
@@ -123,11 +123,11 @@ Get the workshop trading hours per store
 
 ### Properties
 
-| **Property**                                                   | **Type**  | **Nullable** | **Description**                |
-|----------------------------------------------------------------|-----------|--------------|--------------------------------|
-| `[].store_id`                                                  | `integer` | `false`      | Store ID e.g. `2`              |
-| `[].store_name`                                                | `string`  | `false`      | Store Name e.g. `Store 1`      |
-| `[].trading_hours`                                             | `array`   | `false`      | array of Trading hours objects |
+| **Property**       | **Type**   | **Description**                |
+|--------------------|------------|--------------------------------|
+| `[].store_id`      | `integer`  | Store ID e.g. `2`              |
+| `[].store_name`    | `string`   | Store Name e.g. `Store 1`      |
+| `[].trading_hours` | `object[]` | array of Trading hours objects |
 
 
 > HTTP request
@@ -249,17 +249,17 @@ Get list of repair codes
 
 ### Repair code (object)
 
-| **Property**       | **Type**  | **Nullable** | **Description**                                        |
-|--------------------|-----------|--------------|--------------------------------------------------------|
-| `code_id`          | `integer` | `false`      | ID of repair code e.g. `90753`                         |
-| `category`         | `string`  | `false`      | Category name e.g. `Accu`                              |
-| `code`             | `string`  | `false`      | Code e.g. `999`                                        |
-| `description`      | `string`  | `false`      | Description e.g. `Test Title`                          |
-| `extra_text`       | `string`  | `false`      | Description extra e.g. `Omschrijving`                  |
-| `price_cents`      | `integer` | `true`       | Price in cents or null e.g. `12000`                    |
-| `time_minutes`     | `integer` | `false`      | Time in minutes required for code e.g. `60`            |
-| `workshop_rate_id` | `integer` | `false`      | Workshop rate see common api `workshop_rates` e.g. `1` |
-| `vat_code`         | `integer` | `false`      | Vat code see common api `vat_codes` e.g. `1`           |
+| **Property**       | **Type**   | **Description**                                        |
+|--------------------|------------|--------------------------------------------------------|
+| `code_id`          | `integer`  | ID of repair code e.g. `90753`                         |
+| `category`         | `string`   | Category name e.g. `Accu`                              |
+| `code`             | `string`   | Code e.g. `999`                                        |
+| `description`      | `string`   | Description e.g. `Test Title`                          |
+| `extra_text`       | `string`   | Description extra e.g. `Omschrijving`                  |
+| `price_cents`      | `?integer` | Price in cents or null e.g. `12000`                    |
+| `time_minutes`     | `integer`  | Time in minutes required for code e.g. `60`            |
+| `workshop_rate_id` | `integer`  | Workshop rate see common api `workshop_rates` e.g. `1` |
+| `vat_code`         | `integer`  | Vat code see common api `vat_codes` e.g. `1`           |
 
 The result will return a list of Repair code (object)
 

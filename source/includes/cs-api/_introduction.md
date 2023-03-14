@@ -32,12 +32,6 @@ The APIs consist of SOAP/WSDL webservices and JSON endpoints.
 The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes.
 Successful requests will return a `200 OK` HTTP status.
 
-Some general information about responses:
-
-* Datetimes are returned in format (unless specified otherwise): `YYYY-MM-DD HH:MM:SS`
-* Dates are returned in format (unless specified otherwise): `YYYY-MM-DD`
-* Amounts could be specified in cents (which will be clear by the fieldname) or with decimal-strings
-
 ## Errors ##
 
 Occasionally you might encounter errors when accessing the REST API. There are four possible types:
@@ -48,6 +42,7 @@ Occasionally you might encounter errors when accessing the REST API. There are f
 | `401 Unauthorized`          | Authentication or permission error, e.g. incorrect credentials          |
 | `403 Forbidden`             | Authentication or permission error                                      |
 | `404 Not Found`             | Requests to resources that don't exist or are missing                   |
+| `429 Too Many Requests`     | API limit reached, see api limiting                                     |
 | `500 Internal Server Error` | Server error                                                            |
 
 > JSON error response
@@ -85,12 +80,12 @@ Occasionally you might encounter errors when accessing the REST API. There are f
 
 Errors return both an appropriate HTTP status code and response object which contains a `error`, and `error_message`
 
-## Parameters ##
+## API Parameters ##
 
-Almost all endpoints accept optional parameters which can be passed as a HTTP query string parameter,
+Almost all endpoints accept optional parameters which can be passed as an HTTP query string parameter,
 e.g. `GET /v1/endpoint?status=completed`. All parameters are documented along each endpoint.
 
-## Pagination ##
+## API Pagination ##
 
 For certain endpoints pagination is implemented. The mechanism differs per endpoint. But the default pagination
 mechanism is as follows:
@@ -112,21 +107,72 @@ mechanism is as follows:
 
 In the response the next_offset is suggested. You can pass the next offset in the `offset` GET parameter.
 
-## Limits ##
+## API Types ##
+
+Some general information about responses:
+
+* Amounts could be specified in cents (which will be clear by the fieldname) or with decimal-strings
+
+| Scope       | Description                                            | Example                                |
+|-------------|--------------------------------------------------------|----------------------------------------|
+| `string`    | An UTF-8 string of variadic length                     | `Hello world!`                         |
+| `boolean`   | Boolean `true` or `false`                              | `true`                                 |
+| `integer`   | 64-bit signed integer                                  | `1212`                                 |
+| `decimal`   | Decimal number with 2 decimals e.g. `0.22`             | `0.22`                                 |
+| `float`     | A floating-point number with `.` used as the separator | `123.22`                               |
+| `date`      | Date in `yyyy-mm-dd` format                            | `2023-01-23`                           |
+| `datetime`  | Datetime in `yyyy-mm-dd hh:mm:ss` format               | `2023-01-23 12:34:33`                  |
+| `timestamp` | UNIX timestamp (seconds since Unix Epoch)              | `1678348370`                           |
+| `uuid`      | UUID string                                            | `20c5d026-68b3-11ec-90d6-0242ac120003` |
+| `array`     | List of sub types                                      | `[10,22]`                              |
+| `object`    | An object                                              | `{"field": 1}`                         |
+
+<aside class="notice">
+Some fields may also contain a null value, which is annotated with the ? prefix.
+
+For example, `?datetime` means that the following field may contain a valid `datetime` value, a `null`, or may not be present in the request/response at all.
+</aside>
+
+<aside class="notice">
+Additionally, some fields may be arrays, which is annotated with the `[]` suffix.
+
+For example, `integer[]` represents an integer array.
+</aside>
+
+
+<aside class="notice">
+Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings. 
+</aside>
+
+
+## API Limits ##
 
 Since may 2022 api-limits are introduced. For endpoints that implement limits the following HTTP response headers are
 available.
 
-- `X-RateLimit-Minutely-Limit` contains the number of allowed requests per minute
-- `X-RateLimit-Minutely-Remaining` contains the number of remaining requests available within moving minutely interval
-- `X-RateLimit-Daily-Limit` contains the number of daily allowed requests
-- `X-RateLimit-Daily-Remaining` contains the number of daily remaining requests
-- `X-RateLimit-Daily-Reset` contains the UNIX timestamp when the daily limit is reset
+If the limit is reached, the server will respond with an `HTTP 429 - Too Many Requests` error.
 
-If the limit is reached, the server will respond with an `HTTP 429 - Too Many Requests` error. 
+The following HTTP headers are present in an limited endpoint response
 
-## Libraries and Tools ##
+| HTTP Response header             | Description                                                                         |
+|----------------------------------|-------------------------------------------------------------------------------------|
+| `X-RateLimit-Minutely-Limit`     | Contains the number of allowed requests per minute                                  |
+| `X-RateLimit-Minutely-Remaining` | Contains the number of remaining requests available within moving minutely interval |
+| `X-RateLimit-Daily-Limit`        | Contains the number of daily allowed requests                                       |
+| `X-RateLimit-Daily-Remaining`    | Contains the number of daily remaining requests                                     |
+| `X-RateLimit-Daily-Reset`        | Contains the UNIX timestamp when the daily limit is reset                           |
 
-### Official libraries ###
 
-- [PHP TWSC api](https://packagist.org/packages/cyclesoftware/oauth2-twsc)
+
+## API Scopes ##
+
+| Scope          | Description                                                                           |
+|----------------|---------------------------------------------------------------------------------------|
+| `common`       | Access common data such as employees, enums, suppliers                                |
+| `e-ecommerce`  | Access e-commerce related endpoints (stock, order-creation, articledata)              |
+| `recources`    | Access object resources such as `customers`, `workshop-orders`, `repair-objects` etc. |
+| `stock-export` | Bulk export stock data                                                                |
+| `sales-export` | Bulk export sales data                                                                |
+| `rental`       | Rental related information                                                            |
+| `warehouse`    | Warehouse related data                                                                |
+| `platform`     | Access authorized dealer-data for sales-platforms                                     |

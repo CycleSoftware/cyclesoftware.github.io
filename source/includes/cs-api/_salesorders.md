@@ -27,39 +27,39 @@ be used if your account has multiple stores. If no mode is specified in the item
 
 ### Request properties ###
 
-| Property                                    | Type      | Nullable | Description                                                                                                           |
-|---------------------------------------------|-----------|----------|-----------------------------------------------------------------------------------------------------------------------|
-| `to_store_id`                               | `integer` | `false`  | The new store id e.g. `2`                                                                                             |
-| `default_mode`                              | `integer` | `false`  | Default transfer mode `2` (see common enum api `sales_order_store_transfer_modes`)                                    |
-| `new_delivery_method_id`                    | `integer` | `true`   | New delivery method `3` (see common enum api  `delivery_methods`)                                                     |
-| `new_delivery_address`                      | `object`  | `true`   | New delivery address for the sales order (`null` if not changed or required)                                          |
-| `new_delivery_address.is_business_address`  | `bool`    | `false`  | `true` if business address                                                                                            |
-| `new_delivery_address.company_name`         | `string`  | `true`   | Company name or `null`                                                                                                |
-| `new_delivery_address.name`                 | `string`  | `false`  | The name of the address                                                                                               |
-| `new_delivery_address.street`               | `string`  | `false`  | Street name of the address                                                                                            |
-| `new_delivery_address.house_number`         | `string`  | `false`  | House number of the address                                                                                           |
-| `new_delivery_address.house_number_postfix` | `string`  | `false`  | House number postfix of the address                                                                                   |
-| `new_delivery_address.postal_code`          | `string`  | `false`  | Postal code of the address                                                                                            |
-| `new_delivery_address.city`                 | `string`  | `false`  | City of the address                                                                                                   |
-| `new_delivery_address.country_code`         | `string`  | `false`  | Country_code of the address                                                                                           |
-| `new_delivery_address.phone_number`         | `string`  | `false`  | Phone_number of the address                                                                                           |
-| `new_delivery_address.email`                | `string`  | `false`  | E-mail of the address com`                                                                                            |
-| `new_delivery_address.notes`                | `string`  | `false`  | Notes of the address                                                                                                  |
-| `items`                                     | `array`   | `false`  | List of sales order items and associated transfer mode                                                                |
-| `items[].item_id`                           | `integer` | `false`  | The sales order item id, also referred to as order_item_line_id in e-commerce APIs                                    |
-| `items[].mode`                              | `integer` | `true`   | Specify the transfer mode for this specific sales order item (see common enum api `sales_order_store_transfer_modes`) |
+| Property                                    | Type       | Description                                                                                                           |
+|---------------------------------------------|------------|-----------------------------------------------------------------------------------------------------------------------|
+| `to_store_id`                               | `integer`  | The new store id e.g. `2`                                                                                             |
+| `default_mode`                              | `integer`  | Default transfer mode `2` (see common enum api `sales_order_store_transfer_modes`)                                    |
+| `new_delivery_method_id`                    | `?integer` | New delivery method `3` (see common enum api  `delivery_methods`)                                                     |
+| `new_delivery_address`                      | `?object`  | New delivery address for the sales order (`null` if not changed or required)                                          |
+| `new_delivery_address.is_business_address`  | `bool`     | `true` if business address                                                                                            |
+| `new_delivery_address.company_name`         | `?string`  | Company name or `null`                                                                                                |
+| `new_delivery_address.name`                 | `string`   | The name of the address                                                                                               |
+| `new_delivery_address.street`               | `string`   | Street name of the address                                                                                            |
+| `new_delivery_address.house_number`         | `string`   | House number of the address                                                                                           |
+| `new_delivery_address.house_number_postfix` | `string`   | House number postfix of the address                                                                                   |
+| `new_delivery_address.postal_code`          | `string`   | Postal code of the address                                                                                            |
+| `new_delivery_address.city`                 | `string`   | City of the address                                                                                                   |
+| `new_delivery_address.country_code`         | `string`   | Country_code of the address                                                                                           |
+| `new_delivery_address.phone_number`         | `string`   | Phone_number of the address                                                                                           |
+| `new_delivery_address.email`                | `string`   | E-mail of the address com`                                                                                            |
+| `new_delivery_address.notes`                | `string`   | Notes of the address                                                                                                  |
+| `items`                                     | `object[]` | List of sales order items and associated transfer mode                                                                |
+| `items[].item_id`                           | `integer`  | The sales order item id, also referred to as order_item_line_id in e-commerce APIs                                    |
+| `items[].mode`                              | `?integer` | Specify the transfer mode for this specific sales order item (see common enum api `sales_order_store_transfer_modes`) |
 
 ### Response properties ###
 
-| Property                       | Type      | Nullable | Description                                                            |
-|--------------------------------|-----------|----------|------------------------------------------------------------------------|
-| `error`                        | `boolean` | `false`  | `true` if an error occcured                                            |
-| `error_message`                | `string`  | `true`   | The error message if `error` is `true`                                 |
-| `created_store_order_id`       | `integer` | `true`   | The internal delivery store order id that was created `45287`          |
-| `affected_supplier_order_ids`  | `array`   | `false`  | List of supplier order ids that may have a new store                   |
-| `cancelled_store_order_ids`    | `array`   | `false`  | List of store orders which were cancelled                              |
-| `cancelled_supplier_order_ids` | `array`   | `false`  | List of supplier orders which were cancelled                           |
-| `updated_outbound_order_ids`   | `array`   | `true`   | List of outbound order ids which were cancelled (if warehouse account) |
+| Property                       | Type         | Description                                                            |
+|--------------------------------|--------------|------------------------------------------------------------------------|
+| `error`                        | `boolean`    | `true` if an error occcured                                            |
+| `error_message`                | `?string`    | The error message if `error` is `true`                                 |
+| `created_store_order_id`       | `?integer`   | The internal delivery store order id that was created `45287`          |
+| `affected_supplier_order_ids`  | `integer[]`  | List of supplier order ids that may have a new store                   |
+| `cancelled_store_order_ids`    | `integer[]`  | List of store orders which were cancelled                              |
+| `cancelled_supplier_order_ids` | `integer[]`  | List of supplier orders which were cancelled                           |
+| `updated_outbound_order_ids`   | `?integer[]` | List of outbound order ids which were cancelled (if warehouse account) |
 
 > HTTP Request
 

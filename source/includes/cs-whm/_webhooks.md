@@ -44,33 +44,33 @@ Every JSON payload has the same structure. The payload object is different per e
 
 ### Properties
 
-| Property                                                | Type       | Nullable | Description                                                             |
-|---------------------------------------------------------|------------|----------|-------------------------------------------------------------------------|
-| `payload.outbound_order_id`                             | `integer`  | `false`  | Outbound order ID e.g. `463681`                                         |
-| `payload.outbound_order_type_id`                        | `integer`  | `false`  | Type of order e.g. `1`                                                  |
-| `payload.outbound_order_status_id`                      | `integer`  | `false`  | Status of order e.g. `1`                                                |
-| `payload.dealer_id`                                     | `integer`  | `false`  | ID of dealer e.g. `4807`                                                |
-| `payload.account_id`                                    | `integer`  | `false`  | ID of account of the order e.g. `4807`                                  |
-| `payload.store_id`                                      | `integer`  | `false`  | ID of store of the order e.g. `1`                                       |
-| `payload.created_at`                                    | `datetime` | `false`  | Created datetime e.g. `2022-07-05 11:07:48`                             |
-| `payload.datetime_preferred_delivery`                   | `datetime` | `true`   | e.g. `2022-07-05 11:07:48` or `null`                                    |
-| `payload.sales_order_id`                                | `integer`  | `true`   | Sales order ID in POS                                                   |
-| `payload.order_reference_text`                          | `string`   | `false`  | String with e-commerce reference from POS                               |
-| `payload.order_items`                                   | `array`    | `false`  | Array of order items                                                    |
-| `payload.order_items[].outbound_order_item_id`          | `integer`  | `false`  | ID of the item e.g. `605491`                                            |
-| `payload.order_items[].item_type_id`                    | `integer`  | `false`  | Item type id, see common api e.g. `2`                                   |
-| `payload.order_items[].is_active`                       | `boolean`  | `false`  | if `false` the item is marked deleted                                   |
-| `payload.order_items[].barcode`                         | `string`   | `false`  | Barcode of item e.g. `8713568215084`                                    |
-| `payload.order_items[].quantity`                        | `integer`  | `false`  | Quantity ordered `1`                                                    |
-| `payload.order_items[].quantity_claimed`                | `integer`  | `false`  | Quantity claimed stock e.g. `0`                                         |
-| `payload.order_items[].quantity_shipped`                | `integer`  | `false`  | Quantity shipped e.g. `0`                                               |
-| `payload.order_items[].is_blocked_for_claiming`         | `boolean`  | `false`  | `true` if blocked for claiming                                          |
-| `payload.order_items[].description`                     | `string`   | `false`  | Description of item                                                     |
-| `payload.order_items[].remark`                          | `string`   | `false`  | Remark of order item                                                    |
-| `payload.order_items[].reference`                       | `string`   | `false`  | Reference of order item                                                 |
-| `payload.order_items[].is_sold_to_customer`             | `boolean`  | `false`  | `true` if sold to customer                                              |
-| `payload.order_items[].is_attached_to_outbound_item_id` | `null`     | `true`   | If not null the outbound_order_item_id of which the item is attached to |
-| `payload.order_items[].is_pooled_within_stores`         | `boolean`  | `false`  | `true` if pool order                                                    |
+| Property                                                | Type        | Description                                                             |
+|---------------------------------------------------------|-------------|-------------------------------------------------------------------------|
+| `payload.outbound_order_id`                             | `integer`   | Outbound order ID e.g. `463681`                                         |
+| `payload.outbound_order_type_id`                        | `integer`   | Type of order e.g. `1`                                                  |
+| `payload.outbound_order_status_id`                      | `integer`   | Status of order e.g. `1`                                                |
+| `payload.dealer_id`                                     | `integer`   | ID of dealer e.g. `4807`                                                |
+| `payload.account_id`                                    | `integer`   | ID of account of the order e.g. `4807`                                  |
+| `payload.store_id`                                      | `integer`   | ID of store of the order e.g. `1`                                       |
+| `payload.created_at`                                    | `datetime`  | Created datetime e.g. `2022-07-05 11:07:48`                             |
+| `payload.datetime_preferred_delivery`                   | `?datetime` | e.g. `2022-07-05 11:07:48` or `null`                                    |
+| `payload.sales_order_id`                                | `?integer`  | Sales order ID in POS                                                   |
+| `payload.order_reference_text`                          | `string`    | String with e-commerce reference from POS                               |
+| `payload.order_items`                                   | `object[]`  | Array of order items                                                    |
+| `payload.order_items[].outbound_order_item_id`          | `integer`   | ID of the item e.g. `605491`                                            |
+| `payload.order_items[].item_type_id`                    | `integer`   | Item type id, see common api e.g. `2`                                   |
+| `payload.order_items[].is_active`                       | `boolean`   | if `false` the item is marked deleted                                   |
+| `payload.order_items[].barcode`                         | `string`    | Barcode of item e.g. `8713568215084`                                    |
+| `payload.order_items[].quantity`                        | `integer`   | Quantity ordered `1`                                                    |
+| `payload.order_items[].quantity_claimed`                | `integer`   | Quantity claimed stock e.g. `0`                                         |
+| `payload.order_items[].quantity_shipped`                | `integer`   | Quantity shipped e.g. `0`                                               |
+| `payload.order_items[].is_blocked_for_claiming`         | `boolean`   | `true` if blocked for claiming                                          |
+| `payload.order_items[].description`                     | `string`    | Description of item                                                     |
+| `payload.order_items[].remark`                          | `string`    | Remark of order item                                                    |
+| `payload.order_items[].reference`                       | `string`    | Reference of order item                                                 |
+| `payload.order_items[].is_sold_to_customer`             | `boolean`   | `true` if sold to customer                                              |
+| `payload.order_items[].is_attached_to_outbound_item_id` | `?integer`  | If not null the outbound_order_item_id of which the item is attached to |
+| `payload.order_items[].is_pooled_within_stores`         | `boolean`   | `true` if pool order                                                    |
 
 > Payload structure
 

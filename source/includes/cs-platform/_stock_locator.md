@@ -9,27 +9,27 @@ Locate stock based on barcodes / article ids in associated accounts
 
 ## Properties ##
 
-| Property                      | Type      | Nullable | Description                         |
-|-------------------------------|-----------|----------|-------------------------------------|
-| `error_message`               | `string`  | `true`   | Error message if occured            |
-| `error`                       | `boolean` | `false`  | `true` if error occured             |
-| `stores`                      | `array`   | `false`  | Array of store objects              |
-| `stores[].store_id`           | `string`  | `false`  | Account ID in CS e.g.  `5185-1`     |
-| `stores[].store_gln`          | `string`  | `false`  | GLN code `8718288145482`            |
-| `stores[].store_name`         | `string`  | `false`  | Company name e.g. `CS-Unit test`    |
-| `stores[].store_address`      | `string`  | `false`  | Company street e.g. `Kievitsven 22` |
-| `stores[].store_postal_code`  | `string`  | `false`  | Company postal code e.g. `5249JJ`   |
-| `stores[].store_phone_number` | `string`  | `false`  | Company phone number                |
-| `stores[].store_country_code` | `string`  | `false`  | Company country code e.g. `NL`      |
-| `stores[].store_email`        | `string`  | `false`  | e.g. `email5185@example.nl`         |
-| `stores[].store_coordinates`  | `array`   | `false`  | array with `[latitude, longitude]`  |
-| `stock`                       | `array`   | `false`  | List of stocked objects             |
-| `stock[].store_id`            | `string`  | `false`  | Account ID in CS e.g. `1-1`         |
-| `stock[].object_id`           | `integer` | `false`  | ID of object in account `18696`     |
-| `stock[].barcode`             | `string`  | `false`  | Barcode of article `8717231204726`  |
-| `stock[].article_id`          | `string`  | `false`  | Article number e.g. `30015`         |
-| `stock[].brand_name`          | `string`  | `false`  | Brand name `Gazelle`                |
-| `stock[].is_demo`             | `boolean` | `false`  | `true` if marked as demo bike       |
+| Property                      | Type       | Description                         |
+|-------------------------------|------------|-------------------------------------|
+| `error_message`               | `?string`  | Error message if occured            |
+| `error`                       | `boolean`  | `true` if error occured             |
+| `stores`                      | `object[]` | Array of store objects              |
+| `stores[].store_id`           | `string`   | Account ID in CS e.g.  `5185-1`     |
+| `stores[].store_gln`          | `string`   | GLN code `8718288145482`            |
+| `stores[].store_name`         | `string`   | Company name e.g. `CS-Unit test`    |
+| `stores[].store_address`      | `string`   | Company street e.g. `Kievitsven 22` |
+| `stores[].store_postal_code`  | `string`   | Company postal code e.g. `5249JJ`   |
+| `stores[].store_phone_number` | `string`   | Company phone number                |
+| `stores[].store_country_code` | `string`   | Company country code e.g. `NL`      |
+| `stores[].store_email`        | `string`   | e.g. `email5185@example.nl`         |
+| `stores[].store_coordinates`  | `float[]`  | array with `[latitude, longitude]`  |
+| `stock`                       | `object[]` | List of stocked objects             |
+| `stock[].store_id`            | `string`   | Account ID in CS e.g. `1-1`         |
+| `stock[].object_id`           | `integer`  | ID of object in account `18696`     |
+| `stock[].barcode`             | `string`   | Barcode of article `8717231204726`  |
+| `stock[].article_id`          | `string`   | Article number e.g. `30015`         |
+| `stock[].brand_name`          | `string`   | Brand name `Gazelle`                |
+| `stock[].is_demo`             | `boolean`  | `true` if marked as demo bike       |
 
 ## Stores ##
 

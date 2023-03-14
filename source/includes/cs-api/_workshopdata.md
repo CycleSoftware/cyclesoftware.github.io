@@ -5,7 +5,7 @@ Access workshop related data
 ***Authentication mechanism***
 
 - Basic HTTP Authentication
-- Scopes: `salesdata`
+- Scopes: `sales-export`
 
 ## Service items ##
 
@@ -30,44 +30,35 @@ Get list of service items for workshop.
 | `modified_end`   | `date`    | end date e.g. 2020-01-01                  |
 | `offset`         | `integer` | offset (omit or `pagination.next_offset`) |
 
-### Limits ###
-
-See [API limits](#introduction-limits) for more information about API rate limiting.
-
-| Type             | Limit     | Description                        |
-|------------------|-----------|------------------------------------|
-| `minutely-limit` | `default` | The default minutely limit applies |
-| `daily-limit`    | `default` | The default daily limit applies    |
-
 
 ### Properties ###
 
-| Property                               | Type       | Nullable | Description                                                                           |
-|----------------------------------------|------------|----------|---------------------------------------------------------------------------------------|
-| `error`                                | `boolean`  | `false`  | e.g. `false`                                                                          |
-| `error_message`                        | `string`   | `true`   | if not null the error message                                                         |
-| `data`                                 | `array`    | `false`  | Array of service item objects                                                         |
-| `data[].account_id`                    | `integer`  | `false`  | Account ID within CS `1000`                                                           |
-| `data[].service_id`                    | `integer`  | `false`  | ID of service `1790811`                                                               |
-| `data[].service_item_id`               | `integer`  | `false`  | Iem ID of service item `4823371`                                                      |
-| `data[].service_barcode`               | `string`   | `false`  | Barcode of service item e.g. `DSK-1790811-3`                                          |
-| `data[].service_status_id`             | `integer`  | `false`  | Service status see common api `service_item_status` e.g. `1`                          |
-| `data[].invoice_number`                | `integer`  | `false`  | If positive number, the invoice which triggered creation of this item e.g. `20173208` |
-| `data[].customer_id`                   | `integer`  | `false`  | ID of customer e.g. `235269422`                                                       |
-| `data[].object_id`                     | `integer`  | `false`  | ID of object e.g. `24136`                                                             |
-| `data[].is_open`                       | `boolean`  | `false`  | `true` if still open                                                                  |
-| `data[].is_scheduled`                  | `boolean`  | `false`  | `true` if scheduled in a workshop order                                               |
-| `data[].title`                         | `string`   | `false`  | Title e.g. `3e servicebeurt`                                                          |
-| `data[].description`                   | `string`   | `false`  | Description e.g. `3e servicebeurt`                                                    |
-| `data[].gross_unit_price_cents`        | `integer`  | `false`  | Gross unit price in cents `6900`                                                      |
-| `data[].unit_discount_amount_cents`    | `integer`  | `false`  | Discount in cents `0`                                                                 |
-| `data[].amount_payed_in_advance_cents` | `integer`  | `false`  | Amount payed `0`                                                                      |
-| `data[].time_minutes`                  | `integer`  | `false`  | Time in minutes for workshop `60`                                                     |
-| `data[].scheduled_at`                  | `date`     | `false`  | Scheduled for date e.g. `2021-12-22`                                                  |
-| `data[].scheduled_at_km_age`           | `integer`  | `false`  | Scheduled after X kilometer                                                           |
-| `data[].modified_at`                   | `datetime` | `false`  | Modification date time `2020-06-22 10:51:49`                                          |
-| `pagination.count`                     | `integer`  | `false`  | Count of results                                                                      |
-| `pagination.next_offset`               | `integer`  | `true`   | null if no next page available, otherwise value for `offset` GET variable             |
+| Property                               | Type       | Description                                                                           |
+|----------------------------------------|------------|---------------------------------------------------------------------------------------|
+| `error`                                | `boolean`  | e.g. `false`                                                                          |
+| `error_message`                        | `?string`  | if not null the error message                                                         |
+| `data`                                 | `object[]` | Array of service item objects                                                         |
+| `data[].account_id`                    | `integer`  | Account ID within CS `1000`                                                           |
+| `data[].service_id`                    | `integer`  | ID of service `1790811`                                                               |
+| `data[].service_item_id`               | `integer`  | Iem ID of service item `4823371`                                                      |
+| `data[].service_barcode`               | `string`   | Barcode of service item e.g. `DSK-1790811-3`                                          |
+| `data[].service_status_id`             | `integer`  | Service status see common api `service_item_status` e.g. `1`                          |
+| `data[].invoice_number`                | `integer`  | If positive number, the invoice which triggered creation of this item e.g. `20173208` |
+| `data[].customer_id`                   | `integer`  | ID of customer e.g. `235269422`                                                       |
+| `data[].object_id`                     | `integer`  | ID of object e.g. `24136`                                                             |
+| `data[].is_open`                       | `boolean`  | `true` if still open                                                                  |
+| `data[].is_scheduled`                  | `boolean`  | `true` if scheduled in a workshop order                                               |
+| `data[].title`                         | `string`   | Title e.g. `3e servicebeurt`                                                          |
+| `data[].description`                   | `string`   | Description e.g. `3e servicebeurt`                                                    |
+| `data[].gross_unit_price_cents`        | `integer`  | Gross unit price in cents `6900`                                                      |
+| `data[].unit_discount_amount_cents`    | `integer`  | Discount in cents `0`                                                                 |
+| `data[].amount_payed_in_advance_cents` | `integer`  | Amount payed `0`                                                                      |
+| `data[].time_minutes`                  | `integer`  | Time in minutes for workshop `60`                                                     |
+| `data[].scheduled_at`                  | `date`     | Scheduled for date e.g. `2021-12-22`                                                  |
+| `data[].scheduled_at_km_age`           | `integer`  | Scheduled after X kilometer                                                           |
+| `data[].modified_at`                   | `datetime` | Modification date time `2020-06-22 10:51:49`                                          |
+| `pagination.count`                     | `integer`  | Count of results                                                                      |
+| `pagination.next_offset`               | `?integer` | null if no next page available, otherwise value for `offset` GET variable             |
 
 ```http
 GET /api/v1/workshop/repair-objects/service-items.json?modified_start=2022-06-01&modified_end=2022-06-25 HTTP/1.1

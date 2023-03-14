@@ -31,18 +31,18 @@ Access payment portal links
 | `payment_amount_cents`   | `integer` | The payment amount in cents. Only applicable for advance order payments endpoint                                                                           |
 | `dynamic_payment_amount` | `bool`    | `true` if the amount in the payment link should depend dynamically on unpayed amount of the order. If a `payment_amount_cents` this option will be ignored |
 
-| Property                         | Type      | Nullable | Description                                                                                         |
-|----------------------------------|-----------|----------|-----------------------------------------------------------------------------------------------------|
-| `error`                          | `boolean` | `false`  | `true` if an error occurred                                                                         |
-| `error_message`                  | `string`  | `true`   | The error message if an error occurred                                                              |
-| `data.sales_order_id`            | `integer` | `true`   | The sales order ID `1000`                                                                           |
-| `data.sales_transaction_number`  | `integer` | `true`   | The sales transaction number (invoice number)                                                       |
-| `data.payment_url`               | `string`  | `false`  | Payment portal URL `https://twsc.nl/p/xM4iatg`                                                      |
-| `data.total_amount_cents`        | `integer` | `false`  | Total amount in cents of the order or invoice `100000`                                              |
-| `data.already_payed_cents`       | `integer` | `false`  | The amount already payed in cents e.g. `50000`                                                      |
-| `data.payment_link_amount_cents` | `integer` | `false`  | The payment amount in the portal e.g. `25000`                                                       |
-| `data.dynamic_payment_amount`    | `bool`    | `false`  | `true` if the amount to be payed is dynamic and depends on unpayed amount of the order or invoice   |
-| `data.qr_code`                   | `string`  | `false`  | The QR code of the payment portal url as data uri `data:image/png;base64,iVBORw0KGgoAAAANSUhEU....` |
+| Property                         | Type       | Description                                                                                         |
+|----------------------------------|------------|-----------------------------------------------------------------------------------------------------|
+| `error`                          | `boolean`  | `true` if an error occurred                                                                         |
+| `error_message`                  | `?string`  | The error message if an error occurred                                                              |
+| `data.sales_order_id`            | `?integer` | The sales order ID `1000`                                                                           |
+| `data.sales_transaction_number`  | `?integer` | The sales transaction number (invoice number)                                                       |
+| `data.payment_url`               | `string`   | Payment portal URL `https://twsc.nl/p/xM4iatg`                                                      |
+| `data.total_amount_cents`        | `integer`  | Total amount in cents of the order or invoice `100000`                                              |
+| `data.already_payed_cents`       | `integer`  | The amount already payed in cents e.g. `50000`                                                      |
+| `data.payment_link_amount_cents` | `integer`  | The payment amount in the portal e.g. `25000`                                                       |
+| `data.dynamic_payment_amount`    | `bool`     | `true` if the amount to be payed is dynamic and depends on unpayed amount of the order or invoice   |
+| `data.qr_code`                   | `string`   | The QR code of the payment portal url as data uri `data:image/png;base64,iVBORw0KGgoAAAANSUhEU....` |
 
 > HTTP request
 

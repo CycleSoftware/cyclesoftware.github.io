@@ -8,27 +8,27 @@ Read, create or update repair objects for a customer
 
 ## Service item (object)
 
-| **Property**                    | **Type**   | **Nullable** | **Description**                                                                       |
-|---------------------------------|------------|--------------|---------------------------------------------------------------------------------------|
-| `account_id`                    | `integer`  | `false`      | Account ID within CS `1000`                                                           |
-| `service_id`                    | `integer`  | `false`      | ID of service `1790811`                                                               |
-| `service_item_id`               | `integer`  | `false`      | Iem ID of service item `4823371`                                                      |
-| `service_barcode`               | `string`   | `false`      | Barcode of service item e.g. `DSK-1790811-3`                                          |
-| `service_status_id`             | `integer`  | `false`      | Service status see common api `service_item_status` e.g. `1`                          |
-| `invoice_number`                | `integer`  | `false`      | If positive number, the invoice which triggered creation of this item e.g. `20173208` |
-| `customer_id`                   | `integer`  | `false`      | ID of customer e.g. `235269422`                                                       |
-| `object_id`                     | `integer`  | `false`      | ID of object e.g. `24136`                                                             |
-| `is_open`                       | `boolean`  | `false`      | `true` if still open                                                                  |
-| `is_scheduled`                  | `boolean`  | `false`      | `true` if scheduled in a workshop order                                               |
-| `title`                         | `string`   | `false`      | Title e.g. `3e servicebeurt`                                                          |
-| `description`                   | `string`   | `false`      | Description e.g. `3e servicebeurt`                                                    |
-| `gross_unit_price_cents`        | `integer`  | `false`      | Gross unit price in cents `6900`                                                      |
-| `unit_discount_amount_cents`    | `integer`  | `false`      | Discount in cents `0`                                                                 |
-| `amount_payed_in_advance_cents` | `integer`  | `false`      | Amount payed `0`                                                                      |
-| `time_minutes`                  | `integer`  | `false`      | Time in minutes for workshop `60`                                                     |
-| `scheduled_at`                  | `date`     | `false`      | Scheduled for date e.g. `2021-12-22`                                                  |
-| `scheduled_at_km_age`           | `integer`  | `false`      | Scheduled after X kilometer                                                           |
-| `modified_at`                   | `datetime` | `false`      | Modification date time `2020-06-22 10:51:49`                                          |
+| **Property**                    | **Type**   | **Description**                                                                       |
+|---------------------------------|------------|---------------------------------------------------------------------------------------|
+| `account_id`                    | `integer`  | Account ID within CS `1000`                                                           |
+| `service_id`                    | `integer`  | ID of service `1790811`                                                               |
+| `service_item_id`               | `integer`  | Iem ID of service item `4823371`                                                      |
+| `service_barcode`               | `string`   | Barcode of service item e.g. `DSK-1790811-3`                                          |
+| `service_status_id`             | `integer`  | Service status see common api `service_item_status` e.g. `1`                          |
+| `invoice_number`                | `integer`  | If positive number, the invoice which triggered creation of this item e.g. `20173208` |
+| `customer_id`                   | `integer`  | ID of customer e.g. `235269422`                                                       |
+| `object_id`                     | `integer`  | ID of object e.g. `24136`                                                             |
+| `is_open`                       | `boolean`  | `true` if still open                                                                  |
+| `is_scheduled`                  | `boolean`  | `true` if scheduled in a workshop order                                               |
+| `title`                         | `string`   | Title e.g. `3e servicebeurt`                                                          |
+| `description`                   | `string`   | Description e.g. `3e servicebeurt`                                                    |
+| `gross_unit_price_cents`        | `integer`  | Gross unit price in cents `6900`                                                      |
+| `unit_discount_amount_cents`    | `integer`  | Discount in cents `0`                                                                 |
+| `amount_payed_in_advance_cents` | `integer`  | Amount payed `0`                                                                      |
+| `time_minutes`                  | `integer`  | Time in minutes for workshop `60`                                                     |
+| `scheduled_at`                  | `date`     | Scheduled for date e.g. `2021-12-22`                                                  |
+| `scheduled_at_km_age`           | `integer`  | Scheduled after X kilometer                                                           |
+| `modified_at`                   | `datetime` | Modification date time `2020-06-22 10:51:49`                                          |
 
 ## Service items for customer
 

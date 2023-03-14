@@ -253,16 +253,19 @@
                     <a href="#introduction-errors" class="toc-h2 toc-link" data-title="Errors">Errors</a>
                   </li>
                   <li>
-                    <a href="#introduction-parameters" class="toc-h2 toc-link" data-title="Parameters">Parameters</a>
+                    <a href="#introduction-api-parameters" class="toc-h2 toc-link" data-title="API Parameters">API Parameters</a>
                   </li>
                   <li>
-                    <a href="#introduction-pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
+                    <a href="#introduction-api-pagination" class="toc-h2 toc-link" data-title="API Pagination">API Pagination</a>
                   </li>
                   <li>
-                    <a href="#introduction-limits" class="toc-h2 toc-link" data-title="Limits">Limits</a>
+                    <a href="#introduction-api-types" class="toc-h2 toc-link" data-title="API Types">API Types</a>
                   </li>
                   <li>
-                    <a href="#introduction-libraries-and-tools" class="toc-h2 toc-link" data-title="Libraries and Tools">Libraries and Tools</a>
+                    <a href="#introduction-api-limits" class="toc-h2 toc-link" data-title="API Limits">API Limits</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-api-scopes" class="toc-h2 toc-link" data-title="API Scopes">API Scopes</a>
                   </li>
               </ul>
           </li>
@@ -274,12 +277,6 @@
                   </li>
                   <li>
                     <a href="#authentication-soap-wsdl-authentication" class="toc-h2 toc-link" data-title="SOAP/WSDL Authentication">SOAP/WSDL Authentication</a>
-                  </li>
-                  <li>
-                    <a href="#authentication-oauth2-authentication" class="toc-h2 toc-link" data-title="OAUTH2 Authentication">OAUTH2 Authentication</a>
-                  </li>
-                  <li>
-                    <a href="#authentication-scopes" class="toc-h2 toc-link" data-title="Scopes">Scopes</a>
                   </li>
               </ul>
           </li>
@@ -511,14 +508,6 @@
 
 <p>The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes.
 Successful requests will return a <code>200 OK</code> HTTP status.</p>
-
-<p>Some general information about responses:</p>
-
-<ul>
-<li>Datetimes are returned in format (unless specified otherwise): <code>YYYY-MM-DD HH:MM:SS</code></li>
-<li>Dates are returned in format (unless specified otherwise): <code>YYYY-MM-DD</code></li>
-<li>Amounts could be specified in cents (which will be clear by the fieldname) or with decimal-strings</li>
-</ul>
 <h2 id='introduction-errors'>Errors</h2>
 <p>Occasionally you might encounter errors when accessing the REST API. There are four possible types:</p>
 
@@ -543,6 +532,10 @@ Successful requests will return a <code>200 OK</code> HTTP status.</p>
 <tr>
 <td><code>404 Not Found</code></td>
 <td>Requests to resources that don&#39;t exist or are missing</td>
+</tr>
+<tr>
+<td><code>429 Too Many Requests</code></td>
+<td>API limit reached, see api limiting</td>
 </tr>
 <tr>
 <td><code>500 Internal Server Error</code></td>
@@ -581,10 +574,10 @@ Successful requests will return a <code>200 OK</code> HTTP status.</p>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 </code></pre></div>
 <p>Errors return both an appropriate HTTP status code and response object which contains a <code>error</code>, and <code>error_message</code></p>
-<h2 id='introduction-parameters'>Parameters</h2>
-<p>Almost all endpoints accept optional parameters which can be passed as a HTTP query string parameter,
+<h2 id='introduction-api-parameters'>API Parameters</h2>
+<p>Almost all endpoints accept optional parameters which can be passed as an HTTP query string parameter,
 e.g. <code>GET /v1/endpoint?status=completed</code>. All parameters are documented along each endpoint.</p>
-<h2 id='introduction-pagination'>Pagination</h2>
+<h2 id='introduction-api-pagination'>API Pagination</h2>
 <p>For certain endpoints pagination is implemented. The mechanism differs per endpoint. But the default pagination
 mechanism is as follows:</p>
 
@@ -603,33 +596,173 @@ mechanism is as follows:</p>
 <p><code>GET /v1/endpoint?offset=1000</code></p>
 
 <p>In the response the next_offset is suggested. You can pass the next offset in the <code>offset</code> GET parameter.</p>
-<h2 id='introduction-limits'>Limits</h2>
+<h2 id='introduction-api-types'>API Types</h2>
+<p>Some general information about responses:</p>
+
+<ul>
+<li>Amounts could be specified in cents (which will be clear by the fieldname) or with decimal-strings</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>string</code></td>
+<td>An UTF-8 string of variadic length</td>
+<td><code>Hello world!</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>Boolean <code>true</code> or <code>false</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>integer</code></td>
+<td>64-bit signed integer</td>
+<td><code>1212</code></td>
+</tr>
+<tr>
+<td><code>decimal</code></td>
+<td>Decimal number with 2 decimals e.g. <code>0.22</code></td>
+<td><code>0.22</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>A floating-point number with <code>.</code> used as the separator</td>
+<td><code>123.22</code></td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>Date in <code>yyyy-mm-dd</code> format</td>
+<td><code>2023-01-23</code></td>
+</tr>
+<tr>
+<td><code>datetime</code></td>
+<td>Datetime in <code>yyyy-mm-dd hh:mm:ss</code> format</td>
+<td><code>2023-01-23 12:34:33</code></td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>UNIX timestamp (seconds since Unix Epoch)</td>
+<td><code>1678348370</code></td>
+</tr>
+<tr>
+<td><code>uuid</code></td>
+<td>UUID string</td>
+<td><code>20c5d026-68b3-11ec-90d6-0242ac120003</code></td>
+</tr>
+<tr>
+<td><code>array</code></td>
+<td>List of sub types</td>
+<td><code>[10,22]</code></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td>An object</td>
+<td><code>{&quot;field&quot;: 1}</code></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Some fields may also contain a null value, which is annotated with the ? prefix.
+
+For example, `?datetime` means that the following field may contain a valid `datetime` value, a `null`, or may not be present in the request/response at all.
+</aside>
+
+<aside class="notice">
+Additionally, some fields may be arrays, which is annotated with the `[]` suffix.
+
+For example, `integer[]` represents an integer array.
+</aside>
+
+<aside class="notice">
+Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings. 
+</aside>
+<h2 id='introduction-api-limits'>API Limits</h2>
 <p>Since may 2022 api-limits are introduced. For endpoints that implement limits the following HTTP response headers are
 available.</p>
 
-<ul>
-<li><code>X-RateLimit-Minutely-Limit</code> contains the number of allowed requests per minute</li>
-<li><code>X-RateLimit-Minutely-Remaining</code> contains the number of remaining requests available within moving minutely interval</li>
-<li><code>X-RateLimit-Daily-Limit</code> contains the number of daily allowed requests</li>
-<li><code>X-RateLimit-Daily-Remaining</code> contains the number of daily remaining requests</li>
-<li><code>X-RateLimit-Daily-Reset</code> contains the UNIX timestamp when the daily limit is reset</li>
-</ul>
+<p>If the limit is reached, the server will respond with an <code>HTTP 429 - Too Many Requests</code> error.</p>
 
-<p>If the limit is reached, the server will respond with an <code>HTTP 429 - Too Many Requests</code> error. </p>
-<h2 id='introduction-libraries-and-tools'>Libraries and Tools</h2><h3 id='introduction-libraries-and-tools-official-libraries'>Official libraries</h3>
-<ul>
-<li><a href="https://packagist.org/packages/cyclesoftware/oauth2-twsc">PHP TWSC api</a></li>
-</ul>
+<p>The following HTTP headers are present in an limited endpoint response</p>
+
+<table><thead>
+<tr>
+<th>HTTP Response header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>X-RateLimit-Minutely-Limit</code></td>
+<td>Contains the number of allowed requests per minute</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Minutely-Remaining</code></td>
+<td>Contains the number of remaining requests available within moving minutely interval</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Daily-Limit</code></td>
+<td>Contains the number of daily allowed requests</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Daily-Remaining</code></td>
+<td>Contains the number of daily remaining requests</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Daily-Reset</code></td>
+<td>Contains the UNIX timestamp when the daily limit is reset</td>
+</tr>
+</tbody></table>
+<h2 id='introduction-api-scopes'>API Scopes</h2>
+<table><thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>common</code></td>
+<td>Access common data such as employees, enums, suppliers</td>
+</tr>
+<tr>
+<td><code>e-ecommerce</code></td>
+<td>Access e-commerce related endpoints (stock, order-creation, articledata)</td>
+</tr>
+<tr>
+<td><code>recources</code></td>
+<td>Access object resources such as <code>customers</code>, <code>workshop-orders</code>, <code>repair-objects</code> etc.</td>
+</tr>
+<tr>
+<td><code>stock-export</code></td>
+<td>Bulk export stock data</td>
+</tr>
+<tr>
+<td><code>sales-export</code></td>
+<td>Bulk export sales data</td>
+</tr>
+<tr>
+<td><code>rental</code></td>
+<td>Rental related information</td>
+</tr>
+<tr>
+<td><code>warehouse</code></td>
+<td>Warehouse related data</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td>Access authorized dealer-data for sales-platforms</td>
+</tr>
+</tbody></table>
 <h1 id='authentication'>Authentication</h1>
 <p>CycleSoftware uses different authentication mechanisms. </p>
 <h2 id='authentication-http-basic-authentication'>HTTP Basic Authentication</h2>
 <p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided using the Basic HTTP authentication http header. The api-key is usage is documented per service.</p>
 <h2 id='authentication-soap-wsdl-authentication'>SOAP/WSDL Authentication</h2>
 <p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided within the <code>Authentication</code> element as documented per request. For <code>dealer_id</code> the actual store id within the account or api-key can be provided.</p>
-<h2 id='authentication-oauth2-authentication'>OAUTH2 Authentication</h2>
-<p>TWSC API is available throught Oauth2 authentication</p>
-<h2 id='authentication-scopes'>Scopes</h2>
-<p>Credentials are linked to a set of scopes. Every endpoint is also linked to a set of scopes. If the required scope is not available for the credentials the API will provide an HTTP Unauthorized error.</p>
 <h1 id='common'>Common</h1>
 <p>Access common data</p>
 
@@ -775,93 +908,73 @@ available.</p>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>error</td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>false</code></td>
 </tr>
 <tr>
 <td>error_message</td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>e.g. <code>Unauthorized</code></td>
 </tr>
 <tr>
 <td>data</td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>array of objects</td>
 </tr>
 <tr>
 <td>data[].employee_id</td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>4475</code></td>
 </tr>
 <tr>
 <td>data[].employee_name</td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>John</code></td>
 </tr>
 <tr>
 <td>data[].verification_hash</td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb</code> sha256 hash mac with api-key as secret</td>
 </tr>
 <tr>
 <td>data[].roles</td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>array of strings</td>
 </tr>
 <tr>
 <td>data[].roles[]</td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>employee</code></td>
 </tr>
 <tr>
 <td>data[].is_active</td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>false</code></td>
 </tr>
 <tr>
 <td>data[].is_default</td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>false</code></td>
 </tr>
 <tr>
 <td>data[].is_administrator</td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>false</code></td>
 </tr>
 <tr>
 <td>data[].avatar</td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>URL to avatar or null</td>
 </tr>
 <tr>
-<td>data[].authorizations</td>
-<td><code>array</code></td>
-<td><code>false</code></td>
-<td>array of strings</td>
-</tr>
-<tr>
-<td>data[].authorizations[]</td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>MAY_ACCEPT_SALES_LEADS</code></td>
+<td>data[].authorization[]</td>
+<td><code>string[]</code></td>
+<td>Array of authorizations e.g. <code>[&quot;MAY_ACCEPT_SALES_LEADS&quot;]</code></td>
 </tr>
 </tbody></table>
 
@@ -955,50 +1068,42 @@ available.</p>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>error</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>false</code></td>
 </tr>
 <tr>
 <td><code>error_message</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>Error message if occured</td>
 </tr>
 <tr>
 <td><code>data</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>Array of suppliers</td>
 </tr>
 <tr>
 <td><code>data[].type</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td><code>supplier</code>, <code>bike-brand</code> or <code>moped-brand</code></td>
 </tr>
 <tr>
 <td><code>data[].supplier_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Unique supplier ID <code>580</code></td>
 </tr>
 <tr>
 <td><code>data[].supplier_name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Name of supplier e.g. <code>Accell NL</code></td>
 </tr>
 <tr>
 <td><code>data[].parent_supplier_id</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>Brands may be linked to a parent supplier-id</td>
 </tr>
 </tbody></table>
@@ -1211,7 +1316,7 @@ available.</p>
 </tr>
 <tr>
 <td><code>Order.OrderItems.OrderItem</code></td>
-<td><code>array</code></td>
+<td><code>object[]</code></td>
 <td>Array of OrderItem objects</td>
 </tr>
 <tr>
@@ -1271,7 +1376,7 @@ available.</p>
 </tr>
 <tr>
 <td><code>UpdateValues.UpdateValue</code></td>
-<td><code>array</code></td>
+<td><code>object[]</code></td>
 <td>Array of UpdateValue objects</td>
 </tr>
 <tr>
@@ -1881,68 +1986,57 @@ invoices.</p>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>error</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if an error occurred</td>
 </tr>
 <tr>
 <td><code>error_message</code></td>
-<td><code>null</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>Error message if occurred</td>
 </tr>
 <tr>
 <td><code>invoices</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
-<td>array of created invoices</td>
+<td><code>object[]</code></td>
+<td>Array of created invoices</td>
 </tr>
 <tr>
 <td><code>invoices[].invoice_number</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Invoice number e.g. <code>20173383</code></td>
 </tr>
 <tr>
 <td><code>invoices[].customer_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Customer number of invoice e.g. <code>9011</code></td>
 </tr>
 <tr>
 <td><code>invoices[].sent_messages.phone_message</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if a phone message was sent</td>
 </tr>
 <tr>
 <td><code>invoices[].sent_messages.email_message</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if an e-mail message was sent</td>
 </tr>
 <tr>
 <td><code>invoices[].documents</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>Array of generated documents</td>
 </tr>
 <tr>
 <td><code>invoices[].documents[].document_mime_type</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Mime type of the document e.g. <code>application/pdf</code></td>
 </tr>
 <tr>
 <td><code>invoices[].documents[].document_base64</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Base64 encoded string of document</td>
 </tr>
 </tbody></table>
@@ -3397,116 +3491,97 @@ not included.</p>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>error</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>false</code></td>
 </tr>
 <tr>
 <td><code>error_message</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
+<td><code>?string</code></td>
 <td>Error message if error is <code>true</code></td>
 </tr>
 <tr>
 <td><code>data.result_items</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>array of result objects</td>
 </tr>
 <tr>
 <td><code>data.result_items[].barcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>4026495856010</code></td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_available</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>if true, there is stock available within stores</td>
 </tr>
 <tr>
 <td><code>data.result_items[].delivery_date</code></td>
-<td><code>date</code></td>
-<td><code>true</code></td>
+<td><code>?date</code></td>
 <td>expected delivery date from supplier or back-orders / expected stock</td>
 </tr>
 <tr>
 <td><code>data.result_items[].delivery_date_backlog</code></td>
-<td><code>date</code></td>
-<td><code>true</code></td>
+<td><code>?date</code></td>
 <td>expected delivery date based on back-orders or expected stock</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_supplier</code></td>
-<td><code>boolean</code></td>
-<td><code>true</code></td>
+<td><code>?boolean</code></td>
 <td><code>true</code> if supplier has stock, <code>false</code> if supplier has no stock, <code>null</code> if not checked</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_quantity</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>quantity available in stores</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>info per store</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].dealer_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>store number <code>1</code></td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].store_name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Name of the store <code>test</code></td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].store_phone</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Phone of the store <code>0733030050</code></td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].quantity</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>quantity available including demo <code>0</code></td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].quantity_demo</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Quantity of demo models</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].quantity_expected</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Quantity expected from supplier</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].delivery_dates</code></td>
 <td><code>string[]</code></td>
-<td><code>false</code></td>
 <td>Delivery dates expected from supplier. <br/>If back-orders are available the date of back-order will be used.<br/>If objects are not assigned to a back-order and have a delivery date this date will be used</td>
 </tr>
 <tr>
 <td><code>data.result_items[].article_id</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Article ID in request url</td>
 </tr>
 </tbody></table>
@@ -3614,134 +3689,112 @@ not included.</p>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>error</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>false</code></td>
 </tr>
 <tr>
 <td><code>error_message</code></td>
-<td><code>null</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td></td>
 </tr>
 <tr>
 <td><code>data</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
-<td></td>
+<td><code>object[]</code></td>
+<td>Array of objects</td>
 </tr>
 <tr>
 <td><code>data[].account_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Account ID of store e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>data[].store_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>ID of the POS store e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>data[].object_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>POS Object ID e.g. <code>22952</code></td>
 </tr>
 <tr>
 <td><code>data[].sales_order_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>POS order id e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>data[].brand_name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Brand name e.g. <code>ZNEN</code></td>
 </tr>
 <tr>
 <td><code>data[].article_id</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Article number e.g. <code>787-25646</code></td>
 </tr>
 <tr>
 <td><code>data[].barcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Barcode e.g. <code>2200082836636</code></td>
 </tr>
 <tr>
 <td><code>data[].description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Object brand + model e.g. <code>ZNEN Scooter 8N 20&quot;</code></td>
 </tr>
 <tr>
 <td><code>data[].frame_id</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Framenumber e.g. <code>FR121212</code></td>
 </tr>
 <tr>
 <td><code>data[].purchase_price_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Purchase price cents e.g. <code>205800</code></td>
 </tr>
 <tr>
 <td><code>data[].dealer_rrp_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>RRP cents e.g. <code>349900</code></td>
 </tr>
 <tr>
 <td><code>data[].is_sold_to_customer</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>Sold indicator e.g. <code>true</code></td>
 </tr>
 <tr>
 <td><code>data[].is_demo</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>Demo indicator e.g. <code>false</code></td>
 </tr>
 <tr>
 <td><code>data[].is_used</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>Used indicator e.g. <code>false</code></td>
 </tr>
 <tr>
 <td><code>data[].has_invoice</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>Has an invoice e.g. <code>true</code></td>
 </tr>
 <tr>
 <td><code>data[].stocked_at</code></td>
-<td><code>date</code></td>
-<td><code>true</code></td>
+<td><code>?date</code></td>
 <td>Date of stocking e.g. <code>2019-01-24</code></td>
 </tr>
 <tr>
 <td><code>data[].custom_variable_1</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Custom variable e.g. <code>Some value</code></td>
 </tr>
 <tr>
 <td><code>data[].is_deleted</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>Is deleted indicator e.g. <code>false</code></td>
 </tr>
 </tbody></table>
@@ -3802,7 +3855,7 @@ not included.</p>
 
 <ul>
 <li>Basic HTTP Authentication</li>
-<li>Scopes: <code>salesdata</code></li>
+<li>Scopes: <code>sales-export</code></li>
 </ul>
 <h2 id='sales-sales-transactions'>Sales transactions</h2>
 <p>Get sales transactions within interval of specified date field (max 31 days).
@@ -3957,12 +4010,12 @@ By default the book-date is used.</p>
 </thead><tbody>
 <tr>
 <td><code>store_id</code></td>
-<td><code>integer</code></td>
+<td><code>?integer</code></td>
 <td>optional store-id</td>
 </tr>
 <tr>
 <td><code>offset</code></td>
-<td><code>integer</code></td>
+<td><code>?integer</code></td>
 <td>optional offset, see pagination in result</td>
 </tr>
 <tr>
@@ -3977,7 +4030,7 @@ By default the book-date is used.</p>
 </tr>
 <tr>
 <td><code>include_deleted</code></td>
-<td><code>boolean</code></td>
+<td><code>?boolean</code></td>
 <td>If <code>1</code> deleted sales orders are included with status_id=CANCELLED</td>
 </tr>
 </tbody></table>
@@ -3986,218 +4039,182 @@ By default the book-date is used.</p>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>data[].account_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>CS Account e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>data[].store_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Store id e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>data[].sales_order_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Sales order number e.g. <code>50032</code></td>
 </tr>
 <tr>
 <td><code>data[].customer_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Customer number <code>6776</code></td>
 </tr>
 <tr>
 <td><code>data[].order_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Order type id e.g. <code>6</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td><code>data[].order_type_text</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Order type name e.g. <code>Reparatie</code></td>
 </tr>
 <tr>
 <td><code>data[].order_reference_id</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Sales order reference id e.g. <code>212</code></td>
 </tr>
 <tr>
 <td><code>data[].order_reference_text</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Sales order reference id text e.g. <code>TXT212</code></td>
 </tr>
 <tr>
 <td><code>data[].datetime_created</code></td>
 <td><code>datetime</code></td>
-<td><code>false</code></td>
 <td>Created at <code>2019-05-22 13:45:37</code></td>
 </tr>
 <tr>
 <td><code>data[].datetime_modified</code></td>
 <td><code>datetime</code></td>
-<td><code>false</code></td>
 <td>Modified at <code>2022-04-07 15:03:32</code></td>
 </tr>
 <tr>
-<td>`<code>data[].datetime_preferred_delivery</code></td>
-<td><code>date</code></td>
-<td><code>true</code></td>
+<td><code>data[].datetime_preferred_delivery</code></td>
+<td><code>?date</code></td>
 <td>Preferred delivery date</td>
 </tr>
 <tr>
 <td><code>data[].status_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Sales order status id e.g. <code>9</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td><code>data[].status_text</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Sales order status text e.g. <code>Afgerond</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td><code>data[].cancellation_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Cancellation type id e.g. <code>0</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td><code>data[].cancellation_description</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>Cancellation description (see common enum for list)</td>
 </tr>
 <tr>
 <td><code>data[].has_invoice</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>If invoiced <code>true</code></td>
 </tr>
 <tr>
 <td><code>data[].invoice_number</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>Invoice number <code>20173328</code></td>
 </tr>
 <tr>
 <td><code>data[].delivery_method_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Delivery method id <code>0</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td><code>data[].delivery_method_description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Delivery method description <code>Afhalen in winkel</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td><code>data[].order_item_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Item id within sales order <code>0</code></td>
 </tr>
 <tr>
 <td><code>data[].order_item_status</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Order item status description <code>Geen status</code>  (see common enum for list)</td>
 </tr>
 <tr>
 <td><code>data[].assigned_to_customer_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Sales order could be assigned to a different customer (lease) <code>6776</code></td>
 </tr>
 <tr>
 <td><code>data[].item_type</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Description of item type <code>Artikelregel</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td><code>data[].barcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Barcode of article <code>8237238723823</code></td>
 </tr>
 <tr>
 <td><code>data[].object_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>ID of linked stock object <code>0</code></td>
 </tr>
 <tr>
 <td><code>data[].pos_group_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>POS group id <code>0</code>  (see common enum for list)</td>
 </tr>
 <tr>
 <td><code>data[].quantity</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Quantity <code>1</code></td>
 </tr>
 <tr>
 <td><code>data[].description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Description of article <code>Tire</code></td>
 </tr>
 <tr>
 <td><code>data[].gross_unit_price_in_vat_in_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Gross unit price in cents <code>9900</code></td>
 </tr>
 <tr>
 <td><code>data[].unit_discount_in_vat_in_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Unit discount amount in cents  <code>1000</code></td>
 </tr>
 <tr>
 <td><code>data[].nett_line_price_in_vat_in_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Nett line price in cents <code>8900</code></td>
 </tr>
 <tr>
 <td><code>data[].vat_amount_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>VAT amount in cents e.g. <code>1546</code></td>
 </tr>
 <tr>
 <td><code>data[].vat_percentage</code></td>
 <td><code>decimal</code></td>
-<td><code>false</code></td>
 <td>VAT percentage <code>21</code></td>
 </tr>
 <tr>
 <td><code>pagination.count</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Number of items <code>3</code></td>
 </tr>
 <tr>
 <td><code>pagination.next_offset</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>If specified call the api again with offset parameter</td>
 </tr>
 </tbody></table>
@@ -4365,122 +4382,102 @@ By default the book-date is used.</p>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>customer_id</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>Customer id <code>332107</code></td>
 </tr>
 <tr>
 <td><code>invoice_number</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>Invoice number <code>365259</code> (may be null for advance payments)</td>
 </tr>
 <tr>
 <td><code>related_to_invoice_number</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>Related to another parent invoice number</td>
 </tr>
 <tr>
 <td><code>sales_order_id</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>Sales order id <code>476953</code></td>
 </tr>
 <tr>
 <td><code>ecommerce_reference_text</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>Sales order reference text <code>reference_129223</code></td>
 </tr>
 <tr>
 <td><code>ecommerce_reference_id</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>Sales order reference id <code>129223</code></td>
 </tr>
 <tr>
 <td><code>payments</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>List of payments</td>
 </tr>
 <tr>
 <td><code>payments[].payment_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>ID of payment <code>65444361</code></td>
 </tr>
 <tr>
 <td><code>payments[].store_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Store id <code>1</code></td>
 </tr>
 <tr>
 <td><code>payments[].book_location_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Book location id in POS <code>1</code></td>
 </tr>
 <tr>
 <td><code>payments[].method</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Payment method description <code>Contant</code> <code>Creditcard</code> <code>Chip</code> <code>Tegoedbon(nen)</code> <code>Spaarpunten</code> <code>Retour</code> <code>Bank</code> <code>PSP</code> <code>Rembours</code> <code>Ecocheques</code></td>
 </tr>
 <tr>
 <td><code>payments[].method_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Payment method id <code>1</code> (see common enum for list)</td>
 </tr>
 <tr>
 <td><code>payments[].amount_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Amount of payment in cents <code>6999</code></td>
 </tr>
 <tr>
 <td><code>payments[].book_date</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Date booked <code>01-04-2022 15:31:44</code></td>
 </tr>
 <tr>
 <td><code>payments[].created_at</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Date created <code>01-04-2022 15:31:44</code></td>
 </tr>
 <tr>
 <td><code>psp</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>Array of payment service provider information (e.g. PAY.)</td>
 </tr>
 <tr>
 <td><code>psp[].psp_reference</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>PSP reference <code>17232323571X84a7d</code></td>
 </tr>
 <tr>
 <td><code>psp[].psp_reference_2</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>PSP reference 2 <code>fb9c911850f4edfe214ff3cdfb214dbef9e8e599</code></td>
 </tr>
 <tr>
 <td><code>psp[].amount_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Amount of PSP payment <code>6999</code></td>
 </tr>
 </tbody></table>
@@ -4602,80 +4599,67 @@ information known at the insurance company. This information is based on created
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>insurance_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>ID of insurance application <code>1182027</code></td>
 </tr>
 <tr>
 <td><code>customer_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Customer ID e.g. <code>334357</code></td>
 </tr>
 <tr>
 <td><code>created_at</code></td>
 <td><code>date</code></td>
-<td><code>false</code></td>
 <td>Date created e.g. <code>15-04-2022</code></td>
 </tr>
 <tr>
 <td><code>stock_object_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Stock object ID <code>786080</code></td>
 </tr>
 <tr>
 <td><code>insurance_company</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Name of insurance company <code>KING</code></td>
 </tr>
 <tr>
 <td><code>reference_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Reference ID <code>0</code></td>
 </tr>
 <tr>
 <td><code>policy_number</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Policy Number (if available) <code>12212</code></td>
 </tr>
 <tr>
 <td><code>insurance_starting_date</code></td>
 <td><code>date</code></td>
-<td><code>false</code></td>
 <td>Start date of the insurance <code>15-04-2022</code></td>
 </tr>
 <tr>
 <td><code>description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Name of the insurance e.g. <code>E-bike Casco Compleet - 3 jaar - Aut. Incasso</code></td>
 </tr>
 <tr>
 <td><code>policy_costs</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Costs of the policy in cents <code>650</code></td>
 </tr>
 <tr>
 <td><code>insured_amount</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Insured amount in cents <code>299900</code></td>
 </tr>
 <tr>
 <td><code>premium_amount</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Insurance premium in cents <code>19895</code></td>
 </tr>
 </tbody></table>
@@ -4765,122 +4749,102 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>to_store_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>The new store id e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>default_mode</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Default transfer mode <code>2</code> (see common enum api <code>sales_order_store_transfer_modes</code>)</td>
 </tr>
 <tr>
 <td><code>new_delivery_method_id</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>New delivery method <code>3</code> (see common enum api  <code>delivery_methods</code>)</td>
 </tr>
 <tr>
 <td><code>new_delivery_address</code></td>
-<td><code>object</code></td>
-<td><code>true</code></td>
+<td><code>?object</code></td>
 <td>New delivery address for the sales order (<code>null</code> if not changed or required)</td>
 </tr>
 <tr>
 <td><code>new_delivery_address.is_business_address</code></td>
 <td><code>bool</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if business address</td>
 </tr>
 <tr>
 <td><code>new_delivery_address.company_name</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>Company name or <code>null</code></td>
 </tr>
 <tr>
 <td><code>new_delivery_address.name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>The name of the address</td>
 </tr>
 <tr>
 <td><code>new_delivery_address.street</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Street name of the address</td>
 </tr>
 <tr>
 <td><code>new_delivery_address.house_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>House number of the address</td>
 </tr>
 <tr>
 <td><code>new_delivery_address.house_number_postfix</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>House number postfix of the address</td>
 </tr>
 <tr>
 <td><code>new_delivery_address.postal_code</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Postal code of the address</td>
 </tr>
 <tr>
 <td><code>new_delivery_address.city</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>City of the address</td>
 </tr>
 <tr>
 <td><code>new_delivery_address.country_code</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Country_code of the address</td>
 </tr>
 <tr>
 <td><code>new_delivery_address.phone_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Phone_number of the address</td>
 </tr>
 <tr>
 <td><code>new_delivery_address.email</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>E-mail of the address com`</td>
 </tr>
 <tr>
 <td><code>new_delivery_address.notes</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Notes of the address</td>
 </tr>
 <tr>
 <td><code>items</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>List of sales order items and associated transfer mode</td>
 </tr>
 <tr>
 <td><code>items[].item_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>The sales order item id, also referred to as order_item_line_id in e-commerce APIs</td>
 </tr>
 <tr>
 <td><code>items[].mode</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>Specify the transfer mode for this specific sales order item (see common enum api <code>sales_order_store_transfer_modes</code>)</td>
 </tr>
 </tbody></table>
@@ -4889,50 +4853,42 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>error</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if an error occcured</td>
 </tr>
 <tr>
 <td><code>error_message</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>The error message if <code>error</code> is <code>true</code></td>
 </tr>
 <tr>
 <td><code>created_store_order_id</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>The internal delivery store order id that was created <code>45287</code></td>
 </tr>
 <tr>
 <td><code>affected_supplier_order_ids</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>integer[]</code></td>
 <td>List of supplier order ids that may have a new store</td>
 </tr>
 <tr>
 <td><code>cancelled_store_order_ids</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>integer[]</code></td>
 <td>List of store orders which were cancelled</td>
 </tr>
 <tr>
 <td><code>cancelled_supplier_order_ids</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>integer[]</code></td>
 <td>List of supplier orders which were cancelled</td>
 </tr>
 <tr>
 <td><code>updated_outbound_order_ids</code></td>
-<td><code>array</code></td>
-<td><code>true</code></td>
+<td><code>?integer[]</code></td>
 <td>List of outbound order ids which were cancelled (if warehouse account)</td>
 </tr>
 </tbody></table>
@@ -5096,45 +5052,33 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>error</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if an error occured</td>
 </tr>
 <tr>
 <td><code>error_message</code></td>
-<td><code>null</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>Error message, <code>null</code> if no error occured</td>
 </tr>
 <tr>
 <td><code>entity_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Entity type e.g. <code>7</code>, see common API <code>entity_types</code></td>
 </tr>
 <tr>
 <td><code>entity_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Entity ID e.g. sales order number when <code>entity_type_id</code> is 7</td>
 </tr>
 <tr>
 <td><code>labels</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
-<td>Array of labels to add</td>
-</tr>
-<tr>
-<td><code>labels[]</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Name of the label known in CS e.g. <code>Label</code></td>
+<td><code>string[]</code></td>
+<td>Array of labels in CS e.g. <code>[&quot;Label&quot;]</code></td>
 </tr>
 </tbody></table>
 <h2 id='labels-get-entity-labels'>Get entity labels</h2>
@@ -5351,68 +5295,57 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>error</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if an error occurred</td>
 </tr>
 <tr>
 <td><code>error_message</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>The error message if an error occurred</td>
 </tr>
 <tr>
 <td><code>data.sales_order_id</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>The sales order ID <code>1000</code></td>
 </tr>
 <tr>
 <td><code>data.sales_transaction_number</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>The sales transaction number (invoice number)</td>
 </tr>
 <tr>
 <td><code>data.payment_url</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Payment portal URL <code>https://twsc.nl/p/xM4iatg</code></td>
 </tr>
 <tr>
 <td><code>data.total_amount_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Total amount in cents of the order or invoice <code>100000</code></td>
 </tr>
 <tr>
 <td><code>data.already_payed_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>The amount already payed in cents e.g. <code>50000</code></td>
 </tr>
 <tr>
 <td><code>data.payment_link_amount_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>The payment amount in the portal e.g. <code>25000</code></td>
 </tr>
 <tr>
 <td><code>data.dynamic_payment_amount</code></td>
 <td><code>bool</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if the amount to be payed is dynamic and depends on unpayed amount of the order or invoice</td>
 </tr>
 <tr>
 <td><code>data.qr_code</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>The QR code of the payment portal url as data uri <code>data:image/png;base64,iVBORw0KGgoAAAANSUhEU....</code></td>
 </tr>
 </tbody></table>
@@ -5468,141 +5401,121 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
-<th>Create</th>
+<th>POST</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>supplier_order_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Supplier order ID <code>2222</code></td>
 </tr>
 <tr>
 <td><code>supplier_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
-<td>X</td>
+<td><code>POST</code></td>
 <td>Supplier ID see common suppliers endpoint e.g. <code>2113</code></td>
 </tr>
 <tr>
 <td><code>store_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
-<td>X</td>
+<td><code>POST</code></td>
 <td>Store ID within account e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>order_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Order type see common enum supplier_order_types e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>status_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Order status see common enum supplier_order_status e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>supplier_comment</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Comment given by supplier e.g. <code>Some text</code></td>
 </tr>
 <tr>
 <td><code>supplier_reference</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Reference from supplier <code>ref-from-supplier</code></td>
 </tr>
 <tr>
 <td><code>own_reference</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Own reference e.g. <code>Own1212</code></td>
 </tr>
 <tr>
 <td><code>created_at</code></td>
 <td><code>datetime</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Creation date <code>2022-01-12 12:30:30</code></td>
 </tr>
 <tr>
 <td><code>items</code></td>
 <td><code>array</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Array of order items</td>
 </tr>
 <tr>
 <td><code>items[].supplier_order_item_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Item ID <code>10012</code></td>
 </tr>
 <tr>
 <td><code>items[].item_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Item type see common enum transaction_item_types e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>items[].article_id</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
-<td>X</td>
+<td><code>POST</code></td>
 <td>Article Number. <code>ART2</code></td>
 </tr>
 <tr>
 <td><code>items[].barcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
-<td>X</td>
+<td><code>POST</code></td>
 <td>Barcode e.g. <code>BARCODE2</code></td>
 </tr>
 <tr>
 <td><code>items[].quantity</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
-<td>X</td>
+<td><code>POST</code></td>
 <td>Quantity ordered e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>items[].quantity_delivered</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Quantity delivered e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>items[].quantity_open</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Quantity open (not delivered) e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>items[].supplier_delivery_date</code></td>
 <td><code>date</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Delivery date given by supplier e.g. <code>2022-01-20</code></td>
 </tr>
 <tr>
 <td><code>items[].supplier_item_reference</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td></td>
 <td>Reference item from supplier e.g. <code>ref-item-1</code></td>
 </tr>
@@ -5951,7 +5864,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 
 <ul>
 <li>Basic HTTP Authentication</li>
-<li>Scopes: <code>salesdata</code></li>
+<li>Scopes: <code>sales-export</code></li>
 </ul>
 <h2 id='workshop-service-items'>Service items</h2>
 <p>Get list of service items for workshop.</p>
@@ -5993,178 +5906,132 @@ be used if your account has multiple stores. If no mode is specified in the item
 <td>offset (omit or <code>pagination.next_offset</code>)</td>
 </tr>
 </tbody></table>
-<h3 id='workshop-service-items-limits'>Limits</h3>
-<p>See <a href="#introduction-limits">API limits</a> for more information about API rate limiting.</p>
-
-<table><thead>
-<tr>
-<th>Type</th>
-<th>Limit</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>minutely-limit</code></td>
-<td><code>default</code></td>
-<td>The default minutely limit applies</td>
-</tr>
-<tr>
-<td><code>daily-limit</code></td>
-<td><code>default</code></td>
-<td>The default daily limit applies</td>
-</tr>
-</tbody></table>
 <h3 id='workshop-service-items-properties'>Properties</h3>
 <table><thead>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>error</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>false</code></td>
 </tr>
 <tr>
 <td><code>error_message</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>if not null the error message</td>
 </tr>
 <tr>
 <td><code>data</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>Array of service item objects</td>
 </tr>
 <tr>
 <td><code>data[].account_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Account ID within CS <code>1000</code></td>
 </tr>
 <tr>
 <td><code>data[].service_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>ID of service <code>1790811</code></td>
 </tr>
 <tr>
 <td><code>data[].service_item_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Iem ID of service item <code>4823371</code></td>
 </tr>
 <tr>
 <td><code>data[].service_barcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Barcode of service item e.g. <code>DSK-1790811-3</code></td>
 </tr>
 <tr>
 <td><code>data[].service_status_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Service status see common api <code>service_item_status</code> e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>data[].invoice_number</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>If positive number, the invoice which triggered creation of this item e.g. <code>20173208</code></td>
 </tr>
 <tr>
 <td><code>data[].customer_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>ID of customer e.g. <code>235269422</code></td>
 </tr>
 <tr>
 <td><code>data[].object_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>ID of object e.g. <code>24136</code></td>
 </tr>
 <tr>
 <td><code>data[].is_open</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if still open</td>
 </tr>
 <tr>
 <td><code>data[].is_scheduled</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td><code>true</code> if scheduled in a workshop order</td>
 </tr>
 <tr>
 <td><code>data[].title</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Title e.g. <code>3e servicebeurt</code></td>
 </tr>
 <tr>
 <td><code>data[].description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Description e.g. <code>3e servicebeurt</code></td>
 </tr>
 <tr>
 <td><code>data[].gross_unit_price_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Gross unit price in cents <code>6900</code></td>
 </tr>
 <tr>
 <td><code>data[].unit_discount_amount_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Discount in cents <code>0</code></td>
 </tr>
 <tr>
 <td><code>data[].amount_payed_in_advance_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Amount payed <code>0</code></td>
 </tr>
 <tr>
 <td><code>data[].time_minutes</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Time in minutes for workshop <code>60</code></td>
 </tr>
 <tr>
 <td><code>data[].scheduled_at</code></td>
 <td><code>date</code></td>
-<td><code>false</code></td>
 <td>Scheduled for date e.g. <code>2021-12-22</code></td>
 </tr>
 <tr>
 <td><code>data[].scheduled_at_km_age</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Scheduled after X kilometer</td>
 </tr>
 <tr>
 <td><code>data[].modified_at</code></td>
 <td><code>datetime</code></td>
-<td><code>false</code></td>
 <td>Modification date time <code>2020-06-22 10:51:49</code></td>
 </tr>
 <tr>
 <td><code>pagination.count</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Count of results</td>
 </tr>
 <tr>
 <td><code>pagination.next_offset</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>null if no next page available, otherwise value for <code>offset</code> GET variable</td>
 </tr>
 </tbody></table>
@@ -6350,206 +6217,148 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
-<th style="text-align: left"></th>
-<th>Description</th>
+<th style="text-align: left">Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>customer.customer_barcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">(deprecated) Reference of the customer e.g. <code>REF1212</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.prefix</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">(deprecated) Name prefix e.g. <code>Dhr./Mevr.</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.country</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">(deprecated) Country (deprecated) see country_code_iso_3166 e.g. <code>NL</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.name_prefix</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td style="text-align: left">(deprecated)</td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.iban</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">IBAN bank account</td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.customer_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Customer ID e.g. <code>6667</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.customer_type_name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Customer type see common enum e.g. <code>Klant</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.customer_reference</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Customer reference e.g. <code>REF1212</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.postcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Postal code e.g. <code>1000AA</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.house_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Housenumber e.g. <code>2522</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.house_number_postfix</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Housenumber postfix e.g. <code>B</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.attn</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Attention of e.g. <code>Name of person</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.title</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Title of customer e.g. <code>Dhr./Mevr.</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.first_name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Initials e.g. <code>Adri</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.initials</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Initials e.g. <code>C.G.</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.insertion</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Name insertion e.g. <code>van</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">(Sur)name e.g. <code>Wijk</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.street</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Street name e.g. <code>Aalsburg</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.city</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">City name e.g. <code>Amsterdam</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.country_code_iso_3166</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Country code e.g. <code>NL</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.email</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Customer E-mail e.g. <code>test@test.nl</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.discount_percentage</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Default discount percentage e.g. <code>0</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.datetime_created</code></td>
-<td><code>string</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td style="text-align: left">datetime created if known (null if unknown)</td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.phone_numbers</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td style="text-align: left">array of phone numbers</td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.phone_numbers[].phone_number_id</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">ID <code>mob</code>, <code>tel</code> or stringed ID e.g. <code>10589</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.phone_numbers[].customer_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Customer ID <code>6667</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.phone_numbers[].phone_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Phone number <code>06-12345678</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>customer.phone_numbers[].name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td style="text-align: left">Name associated with the phone number e.g. <code>Sjaak</code></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -6639,387 +6448,318 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>sales_order_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Sales Order ID e.g. <code>1442</code></td>
 </tr>
 <tr>
 <td><code>store_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Store ID within account e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>sales_employee_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Employee ID see common employees e.g. <code>1619</code></td>
 </tr>
 <tr>
 <td><code>customer_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Customer ID e.g. <code>6667</code></td>
 </tr>
 <tr>
 <td><code>order_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Order type ID, see common enum e.g. <code>3</code></td>
 </tr>
 <tr>
 <td><code>order_type_text</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Order type text, see common enum  <code>Order</code></td>
 </tr>
 <tr>
 <td><code>order_reference_id</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Order reference ID <code>12212</code></td>
 </tr>
 <tr>
 <td><code>order_reference_text</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Order reference text <code>REF12212</code></td>
 </tr>
 <tr>
 <td><code>datetime_created</code></td>
 <td><code>datetime</code></td>
-<td><code>false</code></td>
 <td>Created at e.g. <code>2013-09-05 12:00:00</code></td>
 </tr>
 <tr>
 <td><code>datetime_modified</code></td>
 <td><code>datetime</code></td>
-<td><code>false</code></td>
 <td>Modified at e.g. <code>2022-04-20 12:29:23</code></td>
 </tr>
 <tr>
 <td><code>datetime_preferred_delivery</code></td>
-<td><code>null</code></td>
-<td><code>true</code></td>
+<td><code>?date</code></td>
 <td>Date of preferred delivery e.g. <code>2022-04-20</code> or <code>null</code></td>
 </tr>
 <tr>
 <td><code>datetime_preferred_pickup</code></td>
-<td><code>null</code></td>
-<td><code>true</code></td>
+<td><code>?date</code></td>
 <td>Date of preferred pickup e.g. <code>2022-04-20</code> or <code>null</code></td>
 </tr>
 <tr>
 <td><code>status_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Sales order status id see common enum e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>status_text</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Sales order status text see common enum e.g.  <code>In behandeling</code></td>
 </tr>
 <tr>
 <td><code>cancellation_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Cancellation type id see common enum e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>cancellation_description</code></td>
-<td><code>null</code></td>
-<td><code>true</code></td>
+<td><code>?string</code></td>
 <td>Cancellation type description see common enum</td>
 </tr>
 <tr>
 <td><code>remarks</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Order remarks <code>Omschrijving 1</code></td>
 </tr>
 <tr>
 <td><code>has_invoice</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>True if invoice is associcated with order e.g. <code>false</code></td>
 </tr>
 <tr>
 <td><code>invoice_number</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Invoice number if present <code>0</code></td>
 </tr>
 <tr>
 <td><code>ship_to_customer</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>True if should ship to customer <code>false</code> (deprecated)</td>
 </tr>
 <tr>
 <td><code>delivery_method_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Delivery method ID see common enum e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>delivery_method_description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Delivery method description see common enum e.g. <code>Afhalen in winkel</code></td>
 </tr>
 <tr>
 <td><code>shipment_method_description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Free description of shipment e.g. <code>VERZENDEN</code></td>
 </tr>
 <tr>
 <td><code>payment_method_description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Free description of shipment e.g. <code>IDEAL</code></td>
 </tr>
 <tr>
 <td><code>order_items</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>List of order items</td>
 </tr>
 <tr>
 <td><code>order_items[].item_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>ID of item within the order e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>order_items[].item_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Item type ID see common enum e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>order_items[].special_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>ID if associated object if present e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].quantity</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Quantity e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>order_items[].barcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Barcode of item e.g. <code>4008496261628</code></td>
 </tr>
 <tr>
 <td><code>order_items[].pos_group_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>POS group see common enum e.g. <code>11</code></td>
 </tr>
 <tr>
 <td><code>order_items[].description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Description of item e.g. <code>VARTA BATTERIE 12V38MAH V23GA</code></td>
 </tr>
 <tr>
 <td><code>order_items[].unit_price_in_vat_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Gross unit price in cents <code>225</code></td>
 </tr>
 <tr>
 <td><code>order_items[].unit_discount_amount_in_vat_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Unit discount in cents e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].price_in_vat_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Line price in cents e.g. <code>225</code></td>
 </tr>
 <tr>
 <td><code>order_items[].discount_percentage</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Discount percentage e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].vat_code</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>VAT code see common enum e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>order_items[].vat_percentage</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>VAT percentage e.g. <code>21</code></td>
 </tr>
 <tr>
 <td><code>order_items[].vat_amount_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>VAT amount in cents e.g. <code>39</code></td>
 </tr>
 <tr>
 <td><code>order_items[].item_status_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Item status ID see common enum e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].item_status_text</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Item status text see common enum e.g. <code>Geen status</code></td>
 </tr>
 <tr>
 <td><code>order_items[].unit_work_time_minutes</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Work time for item in minutes e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>cancelled_order_items</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>?object[]</code></td>
 <td>List of cancelled / non-deleted order items (same structure as <code>order_items</code></td>
 </tr>
 <tr>
 <td><code>deleted_order_items</code></td>
-<td><code>array</code></td>
-<td><code>ommitable</code></td>
+<td><code>?object[]</code></td>
 <td>List of deleted order items (same structure as <code>order_items</code>, only present once in webhook</td>
 </tr>
 <tr>
 <td><code>customer</code></td>
 <td><code>object</code></td>
-<td><code>false</code></td>
 <td>See customers webhook definition</td>
 </tr>
 <tr>
 <td><code>delivery_address</code></td>
-<td><code>object</code></td>
-<td><code>true</code></td>
+<td><code>?object</code></td>
 <td>Delivery address if specified, <code>null</code> if not specified</td>
 </tr>
 <tr>
 <td><code>delivery_address.delivery_address_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Delivery address ID e.g. <code>91953</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.customer_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Customer ID e.g. <code>6667</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.is_business</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>If business address <code>true</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.company_name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Company name if specified</td>
 </tr>
 <tr>
 <td><code>delivery_address.name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Name of customer <code>Name 91953</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.street</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Street name e.g. <code>Slangenburg</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.housenumber</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>House number e.g. <code>314</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.housenumber_postfix</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>House number postfix <code>B</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.postcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Postcode e.g. <code>8888ZZ</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.city</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>City <code>Deventer</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.country</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Deprecated, filled with country code <code>NL</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.country_code_iso_3166</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>ISO 3166 Country code e.g. <code>NL</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.phone_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Phonenumber associated with address <code>06 12345678</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.email</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>E-mail associated with address <code>email91953@example.nl</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.remarks</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Remarks for address <code>Some text</code></td>
 </tr>
 <tr>
-<td><code>labels</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
-<td>Array of label strings</td>
-</tr>
-<tr>
 <td><code>labels[]</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>Label associated with the sales order e.g. <code>label1</code></td>
+<td><code>string[]</code></td>
+<td>Label associated with the sales order e.g. <code>[&quot;label1&quot;]</code></td>
 </tr>
 </tbody></table>
 
@@ -7188,86 +6928,72 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>workshop_order_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Workshop order ID e.g. <code>50032</code></td>
 </tr>
 <tr>
 <td><code>repair_object_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Repair object ID e.g. <code>22534</code></td>
 </tr>
 <tr>
 <td><code>reference_text</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Reference of order <code>RefText</code></td>
 </tr>
 <tr>
 <td><code>datetime_scheduled_start</code></td>
 <td><code>datetime</code></td>
-<td><code>false</code></td>
 <td>Scheduled start <code>2019-06-07 14:30:00</code></td>
 </tr>
 <tr>
 <td><code>datetime_scheduled_finished</code></td>
 <td><code>datetime</code></td>
-<td><code>false</code></td>
 <td>Scheduled finished <code>2019-06-07 16:10:00</code></td>
 </tr>
 <tr>
 <td><code>mechanic_employee_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Assigned to mechanic see common employees <code>40899</code></td>
 </tr>
 <tr>
 <td><code>repair_description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Description of workshop order <code>Band plakken</code></td>
 </tr>
 <tr>
 <td><code>status_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Workshop order status ID see common enum e.g. <code>7</code></td>
 </tr>
 <tr>
 <td><code>status_text</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Workshop order status see common enum e.g. <code>Reparatie voltooid</code></td>
 </tr>
 <tr>
 <td><code>borrowed_object_reference</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Reference to borrowed object <code>BORROWEDBIKE1</code></td>
 </tr>
 <tr>
 <td><code>total_repair_time_minutes</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Total time of repair in minutes e.g. <code>100</code> (Custom time + items)</td>
 </tr>
 <tr>
 <td><code>custom_repair_time_minutes</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Custom time of repair in minutes e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>sales_order</code></td>
 <td><code>object</code></td>
-<td><code>false</code></td>
 <td>See structure of sales order webhook `</td>
 </tr>
 </tbody></table>
@@ -7386,230 +7112,192 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable / optional</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>invoice_number</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Sales transaction number / invoice number e.g. <code>20210048</code></td>
 </tr>
 <tr>
 <td><code>credit_invoice_number</code></td>
-<td><code>integer</code></td>
-<td><code>optional</code></td>
+<td><code>?integer</code></td>
 <td>If this transaction is credited the credit invoice number e.g. <code>20210049</code></td>
 </tr>
 <tr>
 <td><code>debit_invoice_number</code></td>
-<td><code>integer</code></td>
-<td><code>optional</code></td>
+<td><code>?integer</code></td>
 <td>If this transaction is a credit the original invoice number e.g. <code>20210047</code></td>
 </tr>
 <tr>
 <td><code>is_final</code></td>
 <td><code>boolean</code></td>
-<td><code>false</code></td>
 <td>True if the transaciton is booked <code>false</code></td>
 </tr>
 <tr>
 <td><code>customer_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Customer ID e.g. <code>1006</code> for anonymous <code>0</code></td>
 </tr>
 <tr>
 <td><code>store_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Store ID within account <code>1</code></td>
 </tr>
 <tr>
 <td><code>sales_employee_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Employee ID e.g. <code>1001</code> see common employees</td>
 </tr>
 <tr>
 <td><code>sales_order_id</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>Sales Order ID</td>
 </tr>
 <tr>
 <td><code>workshop_order_id</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>Workshop Order ID</td>
 </tr>
 <tr>
 <td><code>total_amount_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Total amount in cents e.g. <code>278820</code></td>
 </tr>
 <tr>
 <td><code>unpayed_amount_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Unpayed amount in cents. <code>278820</code></td>
 </tr>
 <tr>
 <td><code>invoice_date</code></td>
 <td><code>date</code></td>
-<td><code>false</code></td>
 <td>(pro-forma) date of the invoice <code>2022-04-29</code></td>
 </tr>
 <tr>
 <td><code>book_date</code></td>
-<td><code>date</code></td>
-<td><code>true</code></td>
+<td><code>?date</code></td>
 <td>Book date of invoice. <code>null</code> if not booked</td>
 </tr>
 <tr>
 <td><code>sales_items</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>Array of sales items</td>
 </tr>
 <tr>
 <td><code>sales_items[].sales_item_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Item identifier <code>115350527</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].item_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Item type, see common enum .e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].special_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>If associated with a stock item this is the stock item id <code>0</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].quantity</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Quantity sold e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].barcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Barcode of the article</td>
 </tr>
 <tr>
 <td><code>sales_items[].pos_group_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>POS group id see common enum e.g. <code>11</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Line description <code>Diversen</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].unit_price_in_vat_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Gross unit price in cents <code>9900</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].unit_discount_amount_in_vat_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Unit discount amount in cents <code>990</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].price_in_vat_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Line price in cents e.g. <code>8910</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].discount_percentage</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Discount percentage <code>10</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].vat_code</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>VAT code, see common enum <code>2</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].vat_percentage</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>VAT percentage <code>21</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].vat_amount_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Line vat amount in cents. <code>1546</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].identification</code></td>
-<td><code>object</code></td>
-<td><code>true</code></td>
+<td><code>?object</code></td>
 <td>Object with serial numbers if associated</td>
 </tr>
 <tr>
 <td><code>sales_items[].identification.stock_object_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Object associated with the item <code>24406</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].identification.frame_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Frame number e.g. <code>FR0000010</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].identification.key_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Key number e.g. <code>SL10000</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].identification.lock_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Lock number e.g. <code>K1212</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].identification.battery_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Battery number e.g. <code>B12122112</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].identification.engine_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Engine number e.g. <code>E3322323</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].identification.serial_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Serial number e.g. <code>S320934</code></td>
 </tr>
 <tr>
 <td><code>sales_items[].identification.license_plate_number</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>License plate number e.g. <code>xx-yy-zz</code></td>
 </tr>
 </tbody></table>
@@ -7676,128 +7364,107 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>store_order_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>internal delivery / store order id e.g. <code>45287</code></td>
 </tr>
 <tr>
 <td><code>store_id_from</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>destination store id</td>
 </tr>
 <tr>
 <td><code>dealer_id_from</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>source dealer_id</td>
 </tr>
 <tr>
 <td><code>store_id_to</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>destination store_id</td>
 </tr>
 <tr>
 <td><code>dealer_id_to</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>destination dealer_id</td>
 </tr>
 <tr>
 <td><code>store_order_type</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td><code>regulier</code> or <code>via warehouse</code></td>
 </tr>
 <tr>
 <td><code>store_order_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>0: regular, 1: via warehouse, 2: regular via warehouse</td>
 </tr>
 <tr>
 <td><code>status_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>0: open, 1: processed, 2: cancelled, 3: invoiced, 5: locked</td>
 </tr>
 <tr>
 <td><code>status</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>Verwerkt</code></td>
 </tr>
 <tr>
 <td><code>remarks</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>Filiaal naar filiaal levering #2341</code></td>
 </tr>
 <tr>
 <td><code>processed_at</code></td>
-<td><code>datetime</code></td>
-<td><code>true</code></td>
+<td><code>?datetime</code></td>
 <td>e.g. <code>2012-05-25 15:17:00</code></td>
 </tr>
 <tr>
 <td><code>related_to_sales_order_ids</code></td>
 <td><code>integer[]</code></td>
-<td><code>false</code></td>
 <td>List of sales order ids related to delivery</td>
 </tr>
 <tr>
 <td><code>related_to_supplier_order_ids</code></td>
 <td><code>integer[]</code></td>
-<td><code>false</code></td>
 <td>List of supplier order ids related to delivery</td>
 </tr>
 <tr>
 <td><code>items</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>list of items within store order</td>
 </tr>
 <tr>
 <td><code>items[].store_order_item_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>items[].barcode</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>F.1000</code></td>
 </tr>
 <tr>
 <td><code>items[].quantity</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>items[].item_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>1: article, 2:object</td>
 </tr>
 <tr>
 <td><code>items[].object_id</code></td>
-<td><code>integer</code></td>
-<td><code>true</code></td>
+<td><code>?integer</code></td>
 <td>e.g. <code>1000</code> or <code>null</code></td>
 </tr>
 <tr>
 <td><code>items[].description</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>e.g. <code>Fiets</code></td>
 </tr>
 </tbody></table>
@@ -7865,56 +7532,47 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Nullable</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>entity_type_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Entity type (sales transaction <code>5</code> or sales order <code>7</code>)</td>
 </tr>
 <tr>
 <td><code>entity_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Sales transaction number or sales order ID e.g. <code>54876</code> (depending on <code>entity_type_id</code></td>
 </tr>
 <tr>
 <td><code>payments</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>object[]</code></td>
 <td>array of payment objects</td>
 </tr>
 <tr>
 <td><code>payments[].payment_method_id</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Payment method ID <code>2</code> (see common api <code>payment_methods</code>)</td>
 </tr>
 <tr>
 <td><code>payments[].payment_method_name</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Payment method description e.g. <code>Contant</code></td>
 </tr>
 <tr>
 <td><code>payments[].book_date</code></td>
 <td><code>datetime</code></td>
-<td><code>false</code></td>
 <td>Book date of the payment <code>2022-11-02 14:12:57</code></td>
 </tr>
 <tr>
 <td><code>payments[].amount_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
 <td>Payment amount in cents <code>4400</code> for 44.00 in <code>payments[].currency</code></td>
 </tr>
 <tr>
 <td><code>payments[].currency</code></td>
 <td><code>string</code></td>
-<td><code>false</code></td>
 <td>Payment currency e.g. <code>EUR</code></td>
 </tr>
 </tbody></table>

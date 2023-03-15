@@ -23,7 +23,7 @@ includes:
   - cs-api/_salesorders
   - cs-api/_labels
   - cs-api/_payments
-  - cs-api/_suppliers
+  - cs-api/_supplier_orders
   - cs-api/_rental
   - cs-api/_workshopdata
   - cs-api/_webhooks

@@ -1,4 +1,4 @@
-# Suppliers #
+# Supplier orders #
 
 Create and send supplier orders
 
@@ -8,7 +8,7 @@ Create and send supplier orders
 - Scope(s): `e-commerce`
 
 
-### Supplier order properties
+### Supplier order (object)
 
 Properties used in create, get and send endpoints.
 
@@ -23,7 +23,7 @@ Properties used in create, get and send endpoints.
 | `supplier_reference`              | `string`   |        | Reference from supplier `ref-from-supplier`                 |
 | `own_reference`                   | `string`   |        | Own reference e.g. `Own1212`                                |
 | `created_at`                      | `datetime` |        | Creation date `2022-01-12 12:30:30`                         |
-| `items`                           | `array`    |        | Array of order items                                        |
+| `items`                           | `object[]` |        | Array of order items                                        |
 | `items[].supplier_order_item_id`  | `integer`  |        | Item ID `10012`                                             |
 | `items[].item_type_id`            | `integer`  |        | Item type see common enum transaction_item_types e.g. `1`   |
 | `items[].article_id`              | `string`   | `POST` | Article Number. `ART2`                                      |

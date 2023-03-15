@@ -405,19 +405,19 @@
               </ul>
           </li>
           <li>
-            <a href="#suppliers" class="toc-h1 toc-link" data-title="Suppliers">Suppliers</a>
+            <a href="#supplier-orders" class="toc-h1 toc-link" data-title="Supplier orders">Supplier orders</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#suppliers-payment-links-supplier-order-properties" class="toc-h2 toc-link" data-title="Supplier order properties">Supplier order properties</a>
+                    <a href="#supplier-orders-payment-links-supplier-order-object" class="toc-h2 toc-link" data-title="Supplier order (object)">Supplier order (object)</a>
                   </li>
                   <li>
-                    <a href="#suppliers-create-supplier-order" class="toc-h2 toc-link" data-title="Create supplier order">Create supplier order</a>
+                    <a href="#supplier-orders-create-supplier-order" class="toc-h2 toc-link" data-title="Create supplier order">Create supplier order</a>
                   </li>
                   <li>
-                    <a href="#suppliers-get-supplier-order" class="toc-h2 toc-link" data-title="Get supplier order">Get supplier order</a>
+                    <a href="#supplier-orders-get-supplier-order" class="toc-h2 toc-link" data-title="Get supplier order">Get supplier order</a>
                   </li>
                   <li>
-                    <a href="#suppliers-send-supplier-order" class="toc-h2 toc-link" data-title="Send supplier order">Send supplier order</a>
+                    <a href="#supplier-orders-send-supplier-order" class="toc-h2 toc-link" data-title="Send supplier order">Send supplier order</a>
                   </li>
               </ul>
           </li>
@@ -5385,7 +5385,7 @@ be used if your account has multiple stores. If no mode is specified in the item
         </span><span class="nl">"qr_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64,iVBORw0KGgoAAAANSUhEU...."</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='suppliers'>Suppliers</h1>
+</span></code></pre></div><h1 id='supplier-orders'>Supplier orders</h1>
 <p>Create and send supplier orders</p>
 
 <p><strong><em>Authentication mechanism</em></strong></p>
@@ -5394,7 +5394,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <li>Basic HTTP Authentication</li>
 <li>Scope(s): <code>e-commerce</code></li>
 </ul>
-<h3 id='suppliers-payment-links-supplier-order-properties'>Supplier order properties</h3>
+<h3 id='supplier-orders-payment-links-supplier-order-object'>Supplier order (object)</h3>
 <p>Properties used in create, get and send endpoints.</p>
 
 <table><thead>
@@ -5461,7 +5461,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 </tr>
 <tr>
 <td><code>items</code></td>
-<td><code>array</code></td>
+<td><code>object[]</code></td>
 <td></td>
 <td>Array of order items</td>
 </tr>
@@ -5520,7 +5520,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <td>Reference item from supplier e.g. <code>ref-item-1</code></td>
 </tr>
 </tbody></table>
-<h2 id='suppliers-create-supplier-order'>Create supplier order</h2>
+<h2 id='supplier-orders-create-supplier-order'>Create supplier order</h2>
 <p>Creates a supplier order. To actually dispatch and send the supplier order to the supplier call the send endpoint with the obtained supplier order ID.</p>
 
 <div class="api-endpoint">
@@ -5623,7 +5623,7 @@ be used if your account has multiple stores. If no mode is specified in the item
     </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad request"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='suppliers-get-supplier-order'>Get supplier order</h2>
+</span></code></pre></div><h2 id='supplier-orders-get-supplier-order'>Get supplier order</h2>
 <div class="api-endpoint">
 <div class="endpoint-data">
         <i class="label label-post">GET</i>
@@ -5687,7 +5687,7 @@ be used if your account has multiple stores. If no mode is specified in the item
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='suppliers-send-supplier-order'>Send supplier order</h2>
+</span></code></pre></div><h2 id='supplier-orders-send-supplier-order'>Send supplier order</h2>
 <p>Send a supplier order.</p>
 
 <div class="api-endpoint">

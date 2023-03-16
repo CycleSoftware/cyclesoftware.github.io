@@ -169,8 +169,8 @@ The following HTTP headers are present in an limited endpoint response
 | Scope          | Description                                                                           |
 |----------------|---------------------------------------------------------------------------------------|
 | `common`       | Access common data such as employees, enums, suppliers                                |
-| `e-ecommerce`  | Access e-commerce related endpoints (stock, order-creation, articledata)              |
-| `recources`    | Access object resources such as `customers`, `workshop-orders`, `repair-objects` etc. |
+| `e-commerce`   | Access e-commerce related endpoints (stock, order-creation, articledata)              |
+| `resources`    | Access object resources such as `customers`, `workshop-orders`, `repair-objects` etc. |
 | `stock-export` | Bulk export stock data                                                                |
 | `sales-export` | Bulk export sales data                                                                |
 | `rental`       | Rental related information                                                            |

@@ -537,7 +537,7 @@ The following optional POST parameters can be used to specify specific behavior.
 | `order_status_id`       | `integer` | `null`                                            | New sales order status. See common endpoint                                                              |
 | `book`                  | `boolean` | `false`                                           | if `true`, the invoice will be booked in administration. Otherwise the invoice will be pro-forma         |
 | `customer_messages`     | `boolean` | `true`                                            | if `true` a phone- of e-mail message will be sent (according to account settings) to inform the customer |
-| `allow_resend_messages` | `integer` | `false`                                           | if `true` a phone- of e-mail message will be sent again if there were previous messages                  |
+| `allow_resend_messages` | `boolean` | `false`                                           | if `true` a phone- of e-mail message will be sent again if there were previous messages                  |
 
 ### Properties ###
 

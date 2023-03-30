@@ -298,3 +298,156 @@ X-RateLimit-Daily-Reset: 1678230000
     "error_message": "Error given by supplier"
 }
 ```
+
+
+
+## Process dropshipment packinglist
+
+Process a packinglist for a dropshipment. 
+
+Be aware! The goods in the packinglist will not be added to the stock!
+
+
+<div class="api-endpoint">
+<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/api/v1/supplier/packinglist/process-dropshipment.json</h6>
+	</div>
+</div>
+
+
+### Process packinglist (request object)
+| Property                                | Type      | Description                      |
+|-----------------------------------------|-----------|----------------------------------|
+| `supplier_id`                           | `integer` | e.g. `2113`                      |
+| `packinglist_number`                    | `string`  | e.g. `PB23323`                   |
+| `store_id`                              | `integer` | e.g. `2`                         |
+| `send_customer_messages`                | `boolean` | e.g. `false` defaults to `false` |
+| `update_sales_order_status_if_possible` | `boolean` | e.g. `false` defaults to `false` |
+
+### Process packinglist (response object)
+
+| Property                                    | Type       | Nullable | Description                |
+|---------------------------------------------|------------|----------|----------------------------|
+| `error`                                     | `boolean`  | `false`  | e.g. `false`               |
+| `error_message`                             | `null`     | `true`   |                            |
+| `result.supplier_id`                        | `integer`  | `false`  | e.g. `2113`                |
+| `result.packinglist_numbers`                | `string[]` | `false`  |                            |
+| `result.articles`                           | `object[]` | `false`  |                            |
+| `result.articles[].barcode`                 | `string`   | `false`  | e.g. `54423933323`         |
+| `result.articles[].stock`                   | `integer`  | `false`  | e.g. `2`                   |
+| `result.articles[].units_delivered`         | `integer`  | `false`  | e.g. `4`                   |
+| `result.delivered_objects`                  | `object[]` | `false`  |                            |
+| `result.delivered_objects[].customer_id`    | `?integer` | `false`  | e.g. `1006`                |
+| `result.delivered_objects[].frame_number`   | `string`   | `false`  | e.g. `FR1443433`           |
+| `result.delivered_objects[].object_id`      | `integer`  | `false`  | e.g. `10002`               |
+| `result.delivered_objects[].sales_order_id` | `?integer` | `true`   |                            |
+| `result.sales_orders`                       | `object[]` | `false`  |                            |
+| `result.sales_orders[].barcode`             | `string`   | `false`  | e.g. `BARCODE2`            |
+| `result.sales_orders[].item_status_id`      | `integer`  | `false`  | e.g. `3`                   |
+| `result.sales_orders[].quantity`            | `integer`  | `false`  | e.g. `2`                   |
+| `result.sales_orders[].sales_order_id`      | `integer`  | `false`  | e.g. `1002`                |
+| `result.sales_orders[].status_id`           | `integer`  | `false`  | e.g. `2`                   |
+| `result.notifications`                      | `object[]` | `false`  |                            |
+| `result.notifications[].entity_id`          | `integer`  | `false`  | e.g. `1002`                |
+| `result.notifications[].entity_type_id`     | `integer`  | `false`  | e.g. `7`                   |
+| `result.notifications[].recipient`          | `string`   | `false`  | e.g. `test@mail.nl`        |
+| `result.notifications[].status_text`        | `string`   | `false`  | e.g. `succesvol verzonden` |
+
+> HTTP request
+
+```http
+POST /api/v1/supplier/packinglist/process-dropshipment.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+
+{
+    "supplier_id": 2113,
+    "packinglist_number": "PB23323",
+    "store_id": 2,
+    "send_customer_messages": false,
+    "update_sales_order_status_if_possible": false
+}
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 1023
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+
+{
+    "error": false,
+    "error_message": null,
+    "result": {
+        "supplier_id": 2113
+        "packinglist_numbers": [
+            "PB23323"
+        ],
+        "articles": [
+            {
+                "barcode": "8723823933323",
+                "stock": 2,
+                "units_delivered": 4
+            },
+            {
+                "barcode": "54423933323",
+                "stock": 2,
+                "units_delivered": 4
+            }
+        ],
+        "delivered_objects": [
+            {
+                "customer_id": 1006,
+                "frame_number": "",
+                "object_id": 10001,
+                "sales_order_id": 1000
+            },
+            {
+                "customer_id": 1006,
+                "frame_number": "FR1443433",
+                "object_id": 10002,
+                "sales_order_id": null
+            }
+        ],
+        "sales_orders": [
+            {
+                "barcode": "BARCODE1",
+                "item_status_id": 3,
+                "quantity": 1,
+                "sales_order_id": 1000,
+                "status_id": 2
+            },
+            {
+                "barcode": "BARCODE2",
+                "item_status_id": 3,
+                "quantity": 2,
+                "sales_order_id": 1002,
+                "status_id": 2
+            }
+        ],
+        "notifications": [
+            {
+                "entity_id": 1000,
+                "entity_type_id": 7,
+                "recipient": "+3173030050",
+                "status_text": "succesvol verzonden"
+            },
+            {
+                "entity_id": 1002,
+                "entity_type_id": 7,
+                "recipient": "test@mail.nl",
+                "status_text": "succesvol verzonden"
+            }
+        ]
+    }
+}
+```

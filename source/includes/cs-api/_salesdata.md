@@ -64,7 +64,6 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
-Content-type: application/json; charset=utf-8
 ```
 
 > HTTP Response
@@ -176,7 +175,6 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
-Content-type: application/json; charset=utf-8
 ```
 
 > HTTP Response
@@ -347,7 +345,6 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
-Content-type: application/json; charset=utf-8
 ```
 
 > HTTP Response
@@ -465,7 +462,6 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
-Content-type: application/json; charset=utf-8
 ```
 
 > HTTP Response

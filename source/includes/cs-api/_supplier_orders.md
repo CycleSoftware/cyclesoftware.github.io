@@ -299,14 +299,13 @@ X-RateLimit-Daily-Reset: 1678230000
 }
 ```
 
-
-
 ## Process dropshipment packinglist
 
-Process a packinglist for a dropshipment. 
+Process a packinglist for a dropshipment delivery. 
 
+<aside class="notice">
 Be aware! The goods in the packinglist will not be added to the stock!
-
+</aside>
 
 <div class="api-endpoint">
 <div class="endpoint-data">
@@ -317,42 +316,42 @@ Be aware! The goods in the packinglist will not be added to the stock!
 
 
 ### Process packinglist (request object)
-| Property                                | Type      | Description                      |
-|-----------------------------------------|-----------|----------------------------------|
-| `supplier_id`                           | `integer` | e.g. `2113`                      |
-| `packinglist_number`                    | `string`  | e.g. `PB23323`                   |
-| `store_id`                              | `integer` | e.g. `2`                         |
-| `send_customer_messages`                | `boolean` | e.g. `false` defaults to `false` |
-| `update_sales_order_status_if_possible` | `boolean` | e.g. `false` defaults to `false` |
+| Property                                | Type      | Description                                                          |
+|-----------------------------------------|-----------|----------------------------------------------------------------------|
+| `supplier_id`                           | `integer` | Supplier ID see common suppliers endpoint e.g. `2113`                |
+| `packinglist_number`                    | `string`  | Packinglist number to process e.g. `PB23323`                         |
+| `store_id`                              | `integer` | Store ID where to process the packinglist e.g. `2`                   |
+| `send_customer_messages`                | `boolean` | `true` if notifications should be enabled defaults to `false`        |
+| `update_sales_order_status_if_possible` | `boolean` | `true` if sales-order statuses should be updated defaults to `false` |
 
 ### Process packinglist (response object)
 
-| Property                                    | Type       | Nullable | Description                |
-|---------------------------------------------|------------|----------|----------------------------|
-| `error`                                     | `boolean`  | `false`  | e.g. `false`               |
-| `error_message`                             | `null`     | `true`   |                            |
-| `result.supplier_id`                        | `integer`  | `false`  | e.g. `2113`                |
-| `result.packinglist_numbers`                | `string[]` | `false`  |                            |
-| `result.articles`                           | `object[]` | `false`  |                            |
-| `result.articles[].barcode`                 | `string`   | `false`  | e.g. `54423933323`         |
-| `result.articles[].stock`                   | `integer`  | `false`  | e.g. `2`                   |
-| `result.articles[].units_delivered`         | `integer`  | `false`  | e.g. `4`                   |
-| `result.delivered_objects`                  | `object[]` | `false`  |                            |
-| `result.delivered_objects[].customer_id`    | `?integer` | `false`  | e.g. `1006`                |
-| `result.delivered_objects[].frame_number`   | `string`   | `false`  | e.g. `FR1443433`           |
-| `result.delivered_objects[].object_id`      | `integer`  | `false`  | e.g. `10002`               |
-| `result.delivered_objects[].sales_order_id` | `?integer` | `true`   |                            |
-| `result.sales_orders`                       | `object[]` | `false`  |                            |
-| `result.sales_orders[].barcode`             | `string`   | `false`  | e.g. `BARCODE2`            |
-| `result.sales_orders[].item_status_id`      | `integer`  | `false`  | e.g. `3`                   |
-| `result.sales_orders[].quantity`            | `integer`  | `false`  | e.g. `2`                   |
-| `result.sales_orders[].sales_order_id`      | `integer`  | `false`  | e.g. `1002`                |
-| `result.sales_orders[].status_id`           | `integer`  | `false`  | e.g. `2`                   |
-| `result.notifications`                      | `object[]` | `false`  |                            |
-| `result.notifications[].entity_id`          | `integer`  | `false`  | e.g. `1002`                |
-| `result.notifications[].entity_type_id`     | `integer`  | `false`  | e.g. `7`                   |
-| `result.notifications[].recipient`          | `string`   | `false`  | e.g. `test@mail.nl`        |
-| `result.notifications[].status_text`        | `string`   | `false`  | e.g. `succesvol verzonden` |
+| Property                                    | Type       | Description                                                                   |
+|---------------------------------------------|------------|-------------------------------------------------------------------------------|
+| `error`                                     | `boolean`  | `true` if error occurd                                                        |
+| `error_message`                             | `?string`  | The error message or `null`                                                   |
+| `result.supplier_id`                        | `integer`  | Supplier ID e.g. `2113`                                                       |
+| `result.packinglist_numbers`                | `string[]` | The processed packinglist numbers. Usually array with 1 element               |
+| `result.articles`                           | `object[]` | The articles that are processed                                               |
+| `result.articles[].barcode`                 | `string`   | Barcode of article e.g. `54423933323`                                         |
+| `result.articles[].stock`                   | `integer`  | Stock level e.g. `2`                                                          |
+| `result.articles[].units_delivered`         | `integer`  | The units delivered / processed e.g. `4`                                      |
+| `result.delivered_objects`                  | `object[]` | Array of delivered objects                                                    |
+| `result.delivered_objects[].customer_id`    | `?integer` | Customer ID of owner e.g. `1006` or `null`                                    |
+| `result.delivered_objects[].frame_number`   | `string`   | Frame number of object e.g. `FR1443433`                                       |
+| `result.delivered_objects[].object_id`      | `integer`  | Object ID of object e.g. `10002`                                              |
+| `result.delivered_objects[].sales_order_id` | `?integer` | Sales order ID related to the object or `null`                                |
+| `result.sales_orders`                       | `object[]` | Array of related sales orders                                                 |
+| `result.sales_orders[].barcode`             | `string`   | Barcode of item e.g. `BARCODE2`                                               |
+| `result.sales_orders[].item_status_id`      | `integer`  | Item status ID see common api `sales_order_item_status` e.g. `3`              |
+| `result.sales_orders[].quantity`            | `integer`  | Quantity of sales order item e.g. `2`                                         |
+| `result.sales_orders[].sales_order_id`      | `integer`  | The sales order ID e.g. `1002`                                                |
+| `result.sales_orders[].status_id`           | `integer`  | The status ID of the sales order see common api `sales_order_status` e.g. `2` |
+| `result.notifications`                      | `object[]` | Array of sent notifications                                                   |
+| `result.notifications[].entity_id`          | `integer`  | Entity ID (usually sales order ID see `entity_type_id`) e.g. `1002`           |
+| `result.notifications[].entity_type_id`     | `integer`  | Entity type see common api `entity_types` e.g. `7`                            |
+| `result.notifications[].recipient`          | `string`   | Recipient of message phone number or e-mail address e.g. `test@mail.nl`       |
+| `result.notifications[].status_text`        | `string`   | Status text of the message e.g. `succesvol verzonden`                         |
 
 > HTTP request
 
@@ -362,6 +361,8 @@ Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
 Accept: application/json
+Content-type: application/json; charset=utf-8
+Content-length: 172
 
 {
     "supplier_id": 2113,
@@ -377,7 +378,7 @@ Accept: application/json
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 1023
+Content-length: 1759
 X-RateLimit-Minutely-Limit: 360
 X-RateLimit-Minutely-Remaining: 59
 X-RateLimit-Daily-Limit: 15000

@@ -419,6 +419,9 @@
                   <li>
                     <a href="#supplier-orders-send-supplier-order" class="toc-h2 toc-link" data-title="Send supplier order">Send supplier order</a>
                   </li>
+                  <li>
+                    <a href="#supplier-orders-process-dropshipment-packinglist" class="toc-h2 toc-link" data-title="Process dropshipment packinglist">Process dropshipment packinglist</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -680,7 +683,7 @@ For example, `integer[]` represents an integer array.
 </aside>
 
 <aside class="notice">
-Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings.
+Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings. 
 </aside>
 <h2 id='introduction-api-limits'>API Limits</h2>
 <p>Since may 2022 api-limits are introduced. For endpoints that implement limits the following HTTP response headers are
@@ -854,7 +857,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response (limited)</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">571</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -991,7 +994,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1220</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -1120,7 +1123,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">331</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -1703,7 +1706,7 @@ available.</p>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200
+HTTP/1.1 200 
 Content-type: application/xml; charset=utf-8
 Content-length: 2083
 
@@ -1840,7 +1843,7 @@ Content-length: 2083
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200
+HTTP/1.1 200 
 Content-type: application/xml; charset=utf-8
 Content-length: 2446
 
@@ -1976,7 +1979,7 @@ invoices.</p>
 </tr>
 <tr>
 <td><code>allow_resend_messages</code></td>
-<td><code>integer</code></td>
+<td><code>boolean</code></td>
 <td><code>false</code></td>
 <td>if <code>true</code> a phone- of e-mail message will be sent again if there were previous messages</td>
 </tr>
@@ -2057,7 +2060,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">900</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -2196,7 +2199,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200
+HTTP/1.1 200 
 Content-type: application/xml; charset=utf-8
 Content-length: 2464
 
@@ -3594,12 +3597,11 @@ not included.</p>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1574</span>
 
@@ -3946,12 +3948,11 @@ By default the book-date is used.</p>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">722</span>
 
@@ -4227,12 +4228,11 @@ By default the book-date is used.</p>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1655</span>
 
@@ -4490,12 +4490,11 @@ By default the book-date is used.</p>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1655</span>
 
@@ -4672,12 +4671,11 @@ information known at the insurance company. This information is based on created
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">903</span>
 
@@ -4938,7 +4936,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5023,7 +5021,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5103,7 +5101,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">158</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5127,7 +5125,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Error Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">57</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5167,7 +5165,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">989</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5214,7 +5212,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">160</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5362,7 +5360,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">425</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5562,7 +5560,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1017</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5610,7 +5608,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Error Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">57</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5643,7 +5641,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1022</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5709,7 +5707,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1023</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5757,7 +5755,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Error Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">57</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5769,6 +5767,280 @@ be used if your account has multiple stores. If no mode is specified in the item
 <span class="p">{</span><span class="w">
     </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Error given by supplier"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='supplier-orders-process-dropshipment-packinglist'>Process dropshipment packinglist</h2>
+<p>Process a packinglist for a dropshipment delivery. </p>
+
+<aside class="notice">
+Be aware! The goods in the packinglist will not be added to the stock!
+</aside>
+
+<div class="api-endpoint">
+<div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/supplier/packinglist/process-dropshipment.json</h6>
+    </div>
+</div>
+<h3 id='supplier-orders-process-dropshipment-packinglist-process-packinglist-request-object'>Process packinglist (request object)</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>supplier_id</code></td>
+<td><code>integer</code></td>
+<td>Supplier ID see common suppliers endpoint e.g. <code>2113</code></td>
+</tr>
+<tr>
+<td><code>packinglist_number</code></td>
+<td><code>string</code></td>
+<td>Packinglist number to process e.g. <code>PB23323</code></td>
+</tr>
+<tr>
+<td><code>store_id</code></td>
+<td><code>integer</code></td>
+<td>Store ID where to process the packinglist e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>send_customer_messages</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if notifications should be enabled defaults to <code>false</code></td>
+</tr>
+<tr>
+<td><code>update_sales_order_status_if_possible</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if sales-order statuses should be updated defaults to <code>false</code></td>
+</tr>
+</tbody></table>
+<h3 id='supplier-orders-process-dropshipment-packinglist-process-packinglist-response-object'>Process packinglist (response object)</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if error occurd</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>?string</code></td>
+<td>The error message or <code>null</code></td>
+</tr>
+<tr>
+<td><code>result.supplier_id</code></td>
+<td><code>integer</code></td>
+<td>Supplier ID e.g. <code>2113</code></td>
+</tr>
+<tr>
+<td><code>result.packinglist_numbers</code></td>
+<td><code>string[]</code></td>
+<td>The processed packinglist numbers. Usually array with 1 element</td>
+</tr>
+<tr>
+<td><code>result.articles</code></td>
+<td><code>object[]</code></td>
+<td>The articles that are processed</td>
+</tr>
+<tr>
+<td><code>result.articles[].barcode</code></td>
+<td><code>string</code></td>
+<td>Barcode of article e.g. <code>54423933323</code></td>
+</tr>
+<tr>
+<td><code>result.articles[].stock</code></td>
+<td><code>integer</code></td>
+<td>Stock level e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>result.articles[].units_delivered</code></td>
+<td><code>integer</code></td>
+<td>The units delivered / processed e.g. <code>4</code></td>
+</tr>
+<tr>
+<td><code>result.delivered_objects</code></td>
+<td><code>object[]</code></td>
+<td>Array of delivered objects</td>
+</tr>
+<tr>
+<td><code>result.delivered_objects[].customer_id</code></td>
+<td><code>?integer</code></td>
+<td>Customer ID of owner e.g. <code>1006</code> or <code>null</code></td>
+</tr>
+<tr>
+<td><code>result.delivered_objects[].frame_number</code></td>
+<td><code>string</code></td>
+<td>Frame number of object e.g. <code>FR1443433</code></td>
+</tr>
+<tr>
+<td><code>result.delivered_objects[].object_id</code></td>
+<td><code>integer</code></td>
+<td>Object ID of object e.g. <code>10002</code></td>
+</tr>
+<tr>
+<td><code>result.delivered_objects[].sales_order_id</code></td>
+<td><code>?integer</code></td>
+<td>Sales order ID related to the object or <code>null</code></td>
+</tr>
+<tr>
+<td><code>result.sales_orders</code></td>
+<td><code>object[]</code></td>
+<td>Array of related sales orders</td>
+</tr>
+<tr>
+<td><code>result.sales_orders[].barcode</code></td>
+<td><code>string</code></td>
+<td>Barcode of item e.g. <code>BARCODE2</code></td>
+</tr>
+<tr>
+<td><code>result.sales_orders[].item_status_id</code></td>
+<td><code>integer</code></td>
+<td>Item status ID see common api <code>sales_order_item_status</code> e.g. <code>3</code></td>
+</tr>
+<tr>
+<td><code>result.sales_orders[].quantity</code></td>
+<td><code>integer</code></td>
+<td>Quantity of sales order item e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>result.sales_orders[].sales_order_id</code></td>
+<td><code>integer</code></td>
+<td>The sales order ID e.g. <code>1002</code></td>
+</tr>
+<tr>
+<td><code>result.sales_orders[].status_id</code></td>
+<td><code>integer</code></td>
+<td>The status ID of the sales order see common api <code>sales_order_status</code> e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>result.notifications</code></td>
+<td><code>object[]</code></td>
+<td>Array of sent notifications</td>
+</tr>
+<tr>
+<td><code>result.notifications[].entity_id</code></td>
+<td><code>integer</code></td>
+<td>Entity ID (usually sales order ID see <code>entity_type_id</code>) e.g. <code>1002</code></td>
+</tr>
+<tr>
+<td><code>result.notifications[].entity_type_id</code></td>
+<td><code>integer</code></td>
+<td>Entity type see common api <code>entity_types</code> e.g. <code>7</code></td>
+</tr>
+<tr>
+<td><code>result.notifications[].recipient</code></td>
+<td><code>string</code></td>
+<td>Recipient of message phone number or e-mail address e.g. <code>test@mail.nl</code></td>
+</tr>
+<tr>
+<td><code>result.notifications[].status_text</code></td>
+<td><code>string</code></td>
+<td>Status text of the message e.g. <code>succesvol verzonden</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/supplier/packinglist/process-dropshipment.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">172</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2113</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"packinglist_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PB23323"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"send_customer_messages"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"update_sales_order_status_if_possible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1759</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2113</span><span class="w">
+        </span><span class="nl">"packinglist_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"PB23323"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"articles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8723823933323"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"units_delivered"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54423933323"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"units_delivered"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"delivered_objects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10001</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR1443433"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10002</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"sales_orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BARCODE1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"item_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BARCODE2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"item_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1002</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"notifications"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+3173030050"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succesvol verzonden"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1002</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"recipient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@mail.nl"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succesvol verzonden"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='rental'>Rental</h1>
 <p>Access rental object data</p>
@@ -5802,7 +6074,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1530</span>
 
@@ -6040,12 +6312,11 @@ be used if your account has multiple stores. If no mode is specified in the item
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 </code></pre></div>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">2392</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>

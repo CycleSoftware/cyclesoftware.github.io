@@ -53,17 +53,14 @@ Read, create or update workshop orders
 | `order_items[].item_status_id`                    | `integer`   | <code>POST&#124;PUT</code> | Status ID of item see common enum `sales_order_item_status` e.g. `0`                                                               |
 | `order_items[].item_status_text`                  | `string`    | `readonly`                 | Status text of item see common enum `sales_order_item_status` e.g. `Geen status`                                                   |
 | `order_items[].unit_work_time_minutes`            | `integer`   | <code>POST&#124;PUT</code> | Unit of work time in minutes e.g. `0`                                                                                              |
+| `order_items[].assigned_to_customer_id`           | `integer`   | <code>POST&#124;PUT</code> | The customer ID which will receive the e.g. `1006` (Split order / invoicing)                                                       |
+| `order_items[].invoice_number`                    | `?integer`  | `readonly`                 | Invoice number when invoice is created e.g. `20230303`                                                                             |
 
 ## List workshop orders
 
 List workshop orders for a specific customer
 
-
 @TODO
-
-
-
-
 
 ## Get workshop order
 
@@ -133,7 +130,8 @@ X-RateLimit-Daily-Reset: 1678230000
             "vat_amount_cents": 743,
             "item_status_id": 0,
             "item_status_text": "Geen status",
-            "unit_work_time_minutes": 0
+            "unit_work_time_minutes": 0,
+            "assigned_to_customer_id": 24
         },
         {
             "item_id": 2,
@@ -152,7 +150,8 @@ X-RateLimit-Daily-Reset: 1678230000
             "vat_amount_cents": 743,
             "item_status_id": 0,
             "item_status_text": "Geen status",
-            "unit_work_time_minutes": 0
+            "unit_work_time_minutes": 0,
+            "assigned_to_customer_id": 24
         },
         {
             "item_id": 3,
@@ -171,7 +170,8 @@ X-RateLimit-Daily-Reset: 1678230000
             "vat_amount_cents": 991,
             "item_status_id": 0,
             "item_status_text": "Geen status",
-            "unit_work_time_minutes": 60
+            "unit_work_time_minutes": 60,
+            "assigned_to_customer_id": 24
         }
     ]
 }
@@ -358,7 +358,6 @@ X-RateLimit-Daily-Reset: 1678230000
     ]
 }
 ```
-
 
 ## Update workshop order
 

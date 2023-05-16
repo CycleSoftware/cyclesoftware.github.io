@@ -6933,6 +6933,16 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <td>Work time for item in minutes e.g. <code>0</code></td>
 </tr>
 <tr>
+<td><code>order_items[].assigned_to_customer_id</code></td>
+<td><code>integer</code></td>
+<td>The customer ID which will be invoiced e.g. <code>1006</code> (also see <code>order_item_invoice_customer_id</code> in SaveOrder)</td>
+</tr>
+<tr>
+<td><code>order_items[].invoice_number</code></td>
+<td><code>?integer</code></td>
+<td>The invoice number if invoiced e.g. <code>2993</code> not present if no invoice exists</td>
+</tr>
+<tr>
 <td><code>cancelled_order_items</code></td>
 <td><code>?object[]</code></td>
 <td>List of cancelled / non-deleted order items (same structure as <code>order_items</code></td>
@@ -7015,7 +7025,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <tr>
 <td><code>delivery_address.phone_number</code></td>
 <td><code>string</code></td>
-<td>Phonenumber associated with address <code>06 12345678</code></td>
+<td>Phone number associated with address <code>06 12345678</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.email</code></td>
@@ -7085,7 +7095,8 @@ Be aware! The goods in the packinglist will not be added to the stock!
         </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1040</span><span class="p">,</span><span class="w">
         </span><span class="nl">"item_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"item_status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6667</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -7104,7 +7115,8 @@ Be aware! The goods in the packinglist will not be added to the stock!
         </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w">
         </span><span class="nl">"item_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"item_status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w">  </span><span class="mi">6667</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">

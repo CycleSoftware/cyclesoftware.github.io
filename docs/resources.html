@@ -2098,6 +2098,18 @@
 <td><code>POST&#124;PUT</code></td>
 <td>Unit of work time in minutes e.g. <code>0</code></td>
 </tr>
+<tr>
+<td><code>order_items[].assigned_to_customer_id</code></td>
+<td><code>integer</code></td>
+<td><code>POST&#124;PUT</code></td>
+<td>The customer ID which will receive the e.g. <code>1006</code> (Split order / invoicing)</td>
+</tr>
+<tr>
+<td><code>order_items[].invoice_number</code></td>
+<td><code>?integer</code></td>
+<td><code>readonly</code></td>
+<td>Invoice number when invoice is created e.g. <code>20230303</code></td>
+</tr>
 </tbody></table>
 <h2 id='workshop-orders-list-workshop-orders'>List workshop orders</h2>
 <p>List workshop orders for a specific customer</p>
@@ -2169,7 +2181,8 @@
             </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">743</span><span class="p">,</span><span class="w">
             </span><span class="nl">"item_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"item_status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -2188,7 +2201,8 @@
             </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">743</span><span class="p">,</span><span class="w">
             </span><span class="nl">"item_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"item_status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
@@ -2207,7 +2221,8 @@
             </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">991</span><span class="p">,</span><span class="w">
             </span><span class="nl">"item_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"item_status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="w">
+            </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">

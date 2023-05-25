@@ -360,6 +360,17 @@ Content-length: 2083
 
 Update some header fields in the sales order. The following fields can be updated:
 
+| Property                            | Type     | Description                                                                                                                      |
+|-------------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------|
+| `order_reference_text`              | `string` | Order reference text value                                                                                                       |
+| `order_is_payed`                    | `bool`   | Mark as payed. If the value in the order is  `true` it cannot be reverted                                                        |
+| `order_payment_method_description`  | `string` | If the description matches a payment method in CS this will be used in payment processing. See common endpoint `payment_methods` |
+| `order_ship_to_customer`            | `bool`   | `true` if the order will be shipped to the customer, `false` for pickup in store                                                 |
+| `order_shipment_method_description` | `string` | Description of shipment method                                                                                                   |
+| `order_date_preferred_delivery`     | `date`   | Date of preferred delivery e.g. `2023-01-01`                                                                                     |
+| `order_track_trace_reference`       | `string` | Track and Trace ID                                                                                                               |
+| `order_remarks`                     | `string` | General remarks about the order                                                                                                  |
+
 ```php
 <?php
 

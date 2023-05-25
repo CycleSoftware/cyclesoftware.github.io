@@ -1755,6 +1755,55 @@ Content-length: 2083
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 </code></pre></div><h2 id='e-commerce-updateorder'>UpdateOrder</h2>
 <p>Update some header fields in the sales order. The following fields can be updated:</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>order_reference_text</code></td>
+<td><code>string</code></td>
+<td>Order reference text value</td>
+</tr>
+<tr>
+<td><code>order_is_payed</code></td>
+<td><code>bool</code></td>
+<td>Mark as payed. If the value in the order is  <code>true</code> it cannot be reverted</td>
+</tr>
+<tr>
+<td><code>order_payment_method_description</code></td>
+<td><code>string</code></td>
+<td>If the description matches a payment method in CS this will be used in payment processing. See common endpoint <code>payment_methods</code></td>
+</tr>
+<tr>
+<td><code>order_ship_to_customer</code></td>
+<td><code>bool</code></td>
+<td><code>true</code> if the order will be shipped to the customer, <code>false</code> for pickup in store</td>
+</tr>
+<tr>
+<td><code>order_shipment_method_description</code></td>
+<td><code>string</code></td>
+<td>Description of shipment method</td>
+</tr>
+<tr>
+<td><code>order_date_preferred_delivery</code></td>
+<td><code>date</code></td>
+<td>Date of preferred delivery e.g. <code>2023-01-01</code></td>
+</tr>
+<tr>
+<td><code>order_track_trace_reference</code></td>
+<td><code>string</code></td>
+<td>Track and Trace ID</td>
+</tr>
+<tr>
+<td><code>order_remarks</code></td>
+<td><code>string</code></td>
+<td>General remarks about the order</td>
+</tr>
+</tbody></table>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>

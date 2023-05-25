@@ -113,3 +113,117 @@ Every JSON payload has the same structure. The payload object is different per e
 }
 ```
 
+
+## Warehouse stock item ##
+
+<aside class="notice">
+  When a stock item is deleted no webhook will be delivered
+</aside>
+
+| Event name                                   | Description                                    |
+|----------------------------------------------|------------------------------------------------|
+| `warehouse_stock_item.updated`               | Fired when the stock item is updated           |
+| `warehouse_stock_item.released_for_shipment` | Fired when stock item is released for shipment |
+
+### Properties
+
+| Property                              | Type       | Description                                                         |
+|---------------------------------------|------------|---------------------------------------------------------------------|
+| `warehouse_stock_item_id`             | `integer`  | Warehouse stock Item ID `285`                                       |
+| `warehouse_outbound_order_id`         | `integer`  | Outbound order ID `121212` (`0` if not associated to an order)      |
+| `warehouse_outbound_order_item_id`    | `integer`  | Outbound order Item ID `333233` (`0` if not associated to an order) |
+| `warehouse_outbound_shipment_id`      | `integer`  | Shipment ID  `0` if not shipped                                     |
+| `warehouse_outbound_shipment_item_id` | `integer`  | Shipment Item ID `0` if not shipped                                 |
+| `warehouse_location.location`         | `string`   | Location in warehouse e.g. `R-1-2`                                  |
+| `warehouse_location.rack_name`        | `string`   | Rack name in warehouse `R`                                          |
+| `supplier_id`                         | `integer`  | Supplier ID of object e.g. `2113` (see common API suppliers)        |
+| `article_id`                          | `string`   | Article number of stock item e.g. `4961`                            |
+| `barcode`                             | `string`   | Barcode of stock item e.g. `2000100281620`                          |
+| `battery_id`                          | `string`   | Battery ID e.g. `BAT22222`                                          |
+| `customer_id`                         | `integer`  | Customer ID in POS e.g. `1006`                                      |
+| `customer_order_id`                   | `integer`  | Sales order ID in POS e.g. `333`                                    |
+| `employee_first_name`                 | `string`   | Employee name e.g. `First`                                          |
+| `employee_last_name`                  | `string`   | Employee last name e.g. `Last`                                      |
+| `frame_id`                            | `string`   | Frame ID e.g. `3232`                                                |
+| `is_assembled`                        | `boolean`  | `true` if item is assembled                                         |
+| `is_shipped`                          | `boolean`  | `true` if item is shipped                                           |
+| `is_delivered`                        | `boolean`  | `true` if item is delivered                                         |
+| `key_id`                              | `string`   | Key ID of object e.g. `2323`                                        |
+| `lock_id`                             | `string`   | Lock ID of object e.g. `2323`                                       |
+| `license_plate_number`                | `string`   | License plate of object e.g. `xx-yy-zz`                             |
+| `order_reference_id`                  | `string`   | POS/OBO order reference ID `fvs12222`                               |
+| `order_reference_text`                | `string`   | POS/OBO order reference text e.g. `REF`                             |
+| `labels`                              | `string[]` | Labels associated with object e.g. `Label 1`                        |
+| `sub_order_items`                     | `object[]` | Arrey of sub order items associated to item                         |
+| `sub_order_items[].article_id`        | `string`   | Article ID e.g. `a3223`                                             |
+| `sub_order_items[].barcode`           | `string`   | Article barcode e.g. `883273232332`                                 |
+| `sub_order_items[].is_active`         | `boolean`  | `true` if order item is active                                      |
+| `sub_order_items[].is_included`       | `boolean`  | `true` if item is included with item                                |
+| `sub_order_items[].quantity`          | `integer`  | Quantity of sub item e.g. `3`                                       |
+| `sub_order_items[].quantity_claimed`  | `integer`  | Quantity stock claimed e.g. `3`                                     |
+| `sub_order_items[].reference`         | `string`   | Reference of item `ref-1`                                           |
+| `sub_order_items[].remark`            | `string`   | Remark of item `remark-1`                                           |
+
+> Payload structure
+
+```json
+{
+  "id": "180c1fd6-04ab-4215-b55a-0d8710961c95",
+  "account_id": 4743,
+  "event_name": "warehouse_outbound_order.created_or_updated",
+  "event_timestamp": 1657012068.444,
+  "payload": {
+    "warehouse_stock_item_id": 285,
+    "warehouse_outbound_order_id": 121212,
+    "warehouse_outbound_order_item_id": 333233,
+    "warehouse_outbound_shipment_id": 0,
+    "warehouse_outbound_shipment_item_id": 0,
+    "article_id": "4961",
+    "barcode": "2000100281620",
+    "battery_id": "BAT22222",
+    "customer_id": 1006,
+    "customer_order_id": 333,
+    "employee_first_name": "First",
+    "employee_last_name": "Last",
+    "frame_id": "3232",
+    "is_assembled": true,
+    "is_shipped": false,
+    "is_delivered": false,
+    "key_id": "2323",
+    "lock_id": "2323",
+    "license_plate_number": "xx-yy-zz",
+    "order_reference_id": "fvs12222",
+    "order_reference_text": "REF",
+    "sub_order_items": [
+      {
+        "article_id": "a3223",
+        "barcode": "883273232332",
+        "is_active": true,
+        "is_included": true,
+        "quantity": 2,
+        "quantity_claimed": 2,
+        "reference": "ref-1",
+        "remark": "remark-1"
+      },
+      {
+        "article_id": "a3223",
+        "barcode": "883273232332",
+        "is_active": true,
+        "is_included": true,
+        "quantity": 3,
+        "quantity_claimed": 3,
+        "reference": "ref-1",
+        "remark": "remark-1"
+      }
+    ],
+    "supplier_id": 2113,
+    "warehouse_location": {
+      "location": "R-1-2",
+      "rack_name": "R"
+    },
+    "labels": [
+      "Label 1"
+    ]
+  }
+}
+```

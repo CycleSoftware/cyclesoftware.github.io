@@ -340,6 +340,9 @@
                   <li>
                     <a href="#webhooks-outbound-orders" class="toc-h2 toc-link" data-title="Outbound orders">Outbound orders</a>
                   </li>
+                  <li>
+                    <a href="#webhooks-warehouse-stock-item" class="toc-h2 toc-link" data-title="Warehouse stock item">Warehouse stock item</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -2166,6 +2169,268 @@ available.</p>
         </span><span class="nl">"is_attached_to_outbound_item_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"is_pooled_within_stores"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
       </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='webhooks-warehouse-stock-item'>Warehouse stock item</h2>
+<aside class="notice">
+  When a stock item is deleted no webhook will be delivered
+</aside>
+
+<table><thead>
+<tr>
+<th>Event name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>warehouse_stock_item.updated</code></td>
+<td>Fired when the stock item is updated</td>
+</tr>
+<tr>
+<td><code>warehouse_stock_item.released_for_shipment</code></td>
+<td>Fired when stock item is released for shipment</td>
+</tr>
+</tbody></table>
+<h3 id='webhooks-warehouse-stock-item-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>warehouse_stock_item_id</code></td>
+<td><code>integer</code></td>
+<td>Warehouse stock Item ID <code>285</code></td>
+</tr>
+<tr>
+<td><code>warehouse_outbound_order_id</code></td>
+<td><code>integer</code></td>
+<td>Outbound order ID <code>121212</code> (<code>0</code> if not associated to an order)</td>
+</tr>
+<tr>
+<td><code>warehouse_outbound_order_item_id</code></td>
+<td><code>integer</code></td>
+<td>Outbound order Item ID <code>333233</code> (<code>0</code> if not associated to an order)</td>
+</tr>
+<tr>
+<td><code>warehouse_outbound_shipment_id</code></td>
+<td><code>integer</code></td>
+<td>Shipment ID  <code>0</code> if not shipped</td>
+</tr>
+<tr>
+<td><code>warehouse_outbound_shipment_item_id</code></td>
+<td><code>integer</code></td>
+<td>Shipment Item ID <code>0</code> if not shipped</td>
+</tr>
+<tr>
+<td><code>warehouse_location.location</code></td>
+<td><code>string</code></td>
+<td>Location in warehouse e.g. <code>R-1-2</code></td>
+</tr>
+<tr>
+<td><code>warehouse_location.rack_name</code></td>
+<td><code>string</code></td>
+<td>Rack name in warehouse <code>R</code></td>
+</tr>
+<tr>
+<td><code>supplier_id</code></td>
+<td><code>integer</code></td>
+<td>Supplier ID of object e.g. <code>2113</code> (see common API suppliers)</td>
+</tr>
+<tr>
+<td><code>article_id</code></td>
+<td><code>string</code></td>
+<td>Article number of stock item e.g. <code>4961</code></td>
+</tr>
+<tr>
+<td><code>barcode</code></td>
+<td><code>string</code></td>
+<td>Barcode of stock item e.g. <code>2000100281620</code></td>
+</tr>
+<tr>
+<td><code>battery_id</code></td>
+<td><code>string</code></td>
+<td>Battery ID e.g. <code>BAT22222</code></td>
+</tr>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>integer</code></td>
+<td>Customer ID in POS e.g. <code>1006</code></td>
+</tr>
+<tr>
+<td><code>customer_order_id</code></td>
+<td><code>integer</code></td>
+<td>Sales order ID in POS e.g. <code>333</code></td>
+</tr>
+<tr>
+<td><code>employee_first_name</code></td>
+<td><code>string</code></td>
+<td>Employee name e.g. <code>First</code></td>
+</tr>
+<tr>
+<td><code>employee_last_name</code></td>
+<td><code>string</code></td>
+<td>Employee last name e.g. <code>Last</code></td>
+</tr>
+<tr>
+<td><code>frame_id</code></td>
+<td><code>string</code></td>
+<td>Frame ID e.g. <code>3232</code></td>
+</tr>
+<tr>
+<td><code>is_assembled</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if item is assembled</td>
+</tr>
+<tr>
+<td><code>is_shipped</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if item is shipped</td>
+</tr>
+<tr>
+<td><code>is_delivered</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if item is delivered</td>
+</tr>
+<tr>
+<td><code>key_id</code></td>
+<td><code>string</code></td>
+<td>Key ID of object e.g. <code>2323</code></td>
+</tr>
+<tr>
+<td><code>lock_id</code></td>
+<td><code>string</code></td>
+<td>Lock ID of object e.g. <code>2323</code></td>
+</tr>
+<tr>
+<td><code>license_plate_number</code></td>
+<td><code>string</code></td>
+<td>License plate of object e.g. <code>xx-yy-zz</code></td>
+</tr>
+<tr>
+<td><code>order_reference_id</code></td>
+<td><code>string</code></td>
+<td>POS/OBO order reference ID <code>fvs12222</code></td>
+</tr>
+<tr>
+<td><code>order_reference_text</code></td>
+<td><code>string</code></td>
+<td>POS/OBO order reference text e.g. <code>REF</code></td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td><code>string[]</code></td>
+<td>Labels associated with object e.g. <code>Label 1</code></td>
+</tr>
+<tr>
+<td><code>sub_order_items</code></td>
+<td><code>object[]</code></td>
+<td>Arrey of sub order items associated to item</td>
+</tr>
+<tr>
+<td><code>sub_order_items[].article_id</code></td>
+<td><code>string</code></td>
+<td>Article ID e.g. <code>a3223</code></td>
+</tr>
+<tr>
+<td><code>sub_order_items[].barcode</code></td>
+<td><code>string</code></td>
+<td>Article barcode e.g. <code>883273232332</code></td>
+</tr>
+<tr>
+<td><code>sub_order_items[].is_active</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if order item is active</td>
+</tr>
+<tr>
+<td><code>sub_order_items[].is_included</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if item is included with item</td>
+</tr>
+<tr>
+<td><code>sub_order_items[].quantity</code></td>
+<td><code>integer</code></td>
+<td>Quantity of sub item e.g. <code>3</code></td>
+</tr>
+<tr>
+<td><code>sub_order_items[].quantity_claimed</code></td>
+<td><code>integer</code></td>
+<td>Quantity stock claimed e.g. <code>3</code></td>
+</tr>
+<tr>
+<td><code>sub_order_items[].reference</code></td>
+<td><code>string</code></td>
+<td>Reference of item <code>ref-1</code></td>
+</tr>
+<tr>
+<td><code>sub_order_items[].remark</code></td>
+<td><code>string</code></td>
+<td>Remark of item <code>remark-1</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Payload structure</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"180c1fd6-04ab-4215-b55a-0d8710961c95"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4743</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warehouse_outbound_order.created_or_updated"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"event_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mf">1657012068.444</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"warehouse_stock_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">285</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"warehouse_outbound_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">121212</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"warehouse_outbound_order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">333233</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"warehouse_outbound_shipment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"warehouse_outbound_shipment_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4961"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000100281620"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"battery_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BAT22222"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"customer_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">333</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"employee_first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"employee_last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Last"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3232"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"is_assembled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"is_shipped"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"is_delivered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2323"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2323"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"license_plate_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xx-yy-zz"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fvs12222"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"order_reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REF"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sub_order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3223"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"883273232332"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_included"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity_claimed"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ref-1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"remark-1"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a3223"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"883273232332"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_included"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity_claimed"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ref-1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"remark-1"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2113</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"warehouse_location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R-1-2"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"rack_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Label 1"</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">

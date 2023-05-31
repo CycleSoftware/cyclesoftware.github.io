@@ -316,6 +316,9 @@
             <a href="#outbound-orders" class="toc-h1 toc-link" data-title="Outbound orders">Outbound orders</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#outbound-orders-open-order-items" class="toc-h2 toc-link" data-title="Open order items">Open order items</a>
+                  </li>
+                  <li>
                     <a href="#outbound-orders-convert-pool-to-regular" class="toc-h2 toc-link" data-title="Convert pool to regular">Convert pool to regular</a>
                   </li>
               </ul>
@@ -1818,7 +1821,212 @@ available.</p>
 <li>Basic HTTP Authentication</li>
 <li>Scope(s): <code>warehouse</code></li>
 </ul>
-<h2 id='outbound-orders-convert-pool-to-regular'>Convert pool to regular</h2>
+<h2 id='outbound-orders-open-order-items'>Open order items</h2>
+<p>Get a list of open outbound order items: <code>quantity shipped &lt; quantity</code></p>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:page</code></td>
+<td><code>integer</code></td>
+<td>Pagination page <i class="label label-info">required</i></td>
+</tr>
+</tbody></table>
+<h3 id='outbound-orders-open-order-items-http-request-examples'>HTTP request examples</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/warehouse/outbound/order/open-orders.json?page=:page</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code> if no error occured</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>?string</code></td>
+<td>Error message if present</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>object[]</code></td>
+<td>Array of OBO items</td>
+</tr>
+<tr>
+<td><code>data[].dealer_id</code></td>
+<td><code>integer</code></td>
+<td>The dealer ID e.g. <code>99</code></td>
+</tr>
+<tr>
+<td><code>data[].outbound_order_id</code></td>
+<td><code>integer</code></td>
+<td>Outbound order ID e.g. <code>204915</code></td>
+</tr>
+<tr>
+<td><code>data[].outbound_order_item_id</code></td>
+<td><code>integer</code></td>
+<td>Outbound order item ID  e.g. <code>307229</code></td>
+</tr>
+<tr>
+<td><code>data[].created_at</code></td>
+<td><code>datetime</code></td>
+<td>Date time created <code>2019-08-15 12:48:10</code></td>
+</tr>
+<tr>
+<td><code>data[].ecommerce_reference_id</code></td>
+<td><code>string</code></td>
+<td>Reference ID</td>
+</tr>
+<tr>
+<td><code>data[].ecommerce_reference_text</code></td>
+<td><code>string</code></td>
+<td>Reference Text</td>
+</tr>
+<tr>
+<td><code>data[].barcode</code></td>
+<td><code>string</code></td>
+<td>Barcode e.g. <code>8717231260616</code></td>
+</tr>
+<tr>
+<td><code>data[].description</code></td>
+<td><code>string</code></td>
+<td>Description e.g. <code>Esprit C3 H 59 T3</code></td>
+</tr>
+<tr>
+<td><code>data[].quantity</code></td>
+<td><code>integer</code></td>
+<td>Quantity of item e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>data[].quantity_claimed</code></td>
+<td><code>integer</code></td>
+<td>Quantity claimed e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].quantity_shipped</code></td>
+<td><code>integer</code></td>
+<td>Quantity shipped e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].reference</code></td>
+<td><code>string</code></td>
+<td>Reference to POS order</td>
+</tr>
+<tr>
+<td><code>data[].is_sold_to_customer</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if sold to customer</td>
+</tr>
+<tr>
+<td><code>data[].is_blocked_for_claiming</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if item is blocked for claiming</td>
+</tr>
+<tr>
+<td><code>data[].is_pooled_within_stores</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if item is sourced within stores</td>
+</tr>
+<tr>
+<td><code>pagination.page</code></td>
+<td><code>integer</code></td>
+<td>Pagination page <code>1</code></td>
+</tr>
+<tr>
+<td><code>pagination.count</code></td>
+<td><code>integer</code></td>
+<td>Count result items <code>262</code></td>
+</tr>
+<tr>
+<td><code>pagination.has_next_page</code></td>
+<td><code>boolean</code></td>
+<td>If <code>true</code> call endpoint again with <code>page=page+1</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/warehouse/outbound/order/open-orders.json?page=1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1441</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4807</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"outbound_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">225</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"outbound_order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">277</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-01-03 15:05:16"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ecommerce_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FV_121212"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ecommerce_reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FV_121212"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8717231228326"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gazelle MS GRACE Dames Black 2014 49"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_claimed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_shipped"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POS12121076"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_blocked_for_claiming"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_pooled_within_stores"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4807</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"outbound_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">231</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"outbound_order_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">283</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-01-07 15:49:15"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ecommerce_reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ecommerce_reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8713568224574"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_claimed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_shipped"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F.1080"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_blocked_for_claiming"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_pooled_within_stores"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"has_next_page"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='outbound-orders-convert-pool-to-regular'>Convert pool to regular</h2>
 <p>Convert a POOL order to a regular order.</p>
 
 <table><thead>

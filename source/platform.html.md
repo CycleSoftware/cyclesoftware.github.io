@@ -12,6 +12,7 @@ toc_footers:
 includes:
 - cs-api/introduction
 - cs-api/authentication
+- cs-platform/platform_keys
 - cs-platform/stock_locator
 - cs-platform/leads
 

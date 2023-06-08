@@ -280,6 +280,17 @@
               </ul>
           </li>
           <li>
+            <a href="#platform-keys" class="toc-h1 toc-link" data-title="Platform keys">Platform keys</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#platform-keys-properties" class="toc-h2 toc-link" data-title="Properties">Properties</a>
+                  </li>
+                  <li>
+                    <a href="#platform-keys-keys" class="toc-h2 toc-link" data-title="Keys">Keys</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#stock-locator" class="toc-h1 toc-link" data-title="Stock locator">Stock locator</a>
               <ul class="toc-list-h2">
                   <li>
@@ -611,7 +622,193 @@ available.</p>
 <p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided using the Basic HTTP authentication http header. The api-key is usage is documented per service.</p>
 <h2 id='authentication-soap-wsdl-authentication'>SOAP/WSDL Authentication</h2>
 <p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided within the <code>Authentication</code> element as documented per request. For <code>dealer_id</code> the actual store id within the account or api-key can be provided.</p>
-<h1 id='stock-locator'>Stock locator</h1>
+<h1 id='platform-keys'>Platform keys</h1>
+<p>Get list of associated stores</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>IP filtering</li>
+<li>Scope(s): <code>platform</code></li>
+</ul>
+<h2 id='platform-keys-properties'>Properties</h2>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error_message</code></td>
+<td><code>?string</code></td>
+<td>Error if occurred</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if an error has occurred</td>
+</tr>
+<tr>
+<td><code>keys</code></td>
+<td><code>object[]</code></td>
+<td>List of entries</td>
+</tr>
+<tr>
+<td><code>keys[].key</code></td>
+<td><code>string</code></td>
+<td>The API key e.g. <code>Ls6m1ZOgt5JbClmZZHAr8GNhk1qL4Dx0SB7hyyWf</code></td>
+</tr>
+<tr>
+<td><code>keys[].is_active</code></td>
+<td><code>boolean</code></td>
+<td>Whether the API access is enabled <code>true</code></td>
+</tr>
+<tr>
+<td><code>keys[].store.store_id</code></td>
+<td><code>string</code></td>
+<td>CS store ID <code>1-1</code></td>
+</tr>
+<tr>
+<td><code>keys[].store.store_gln</code></td>
+<td><code>string</code></td>
+<td>Global Location Number e.g. <code>8718288145482</code></td>
+</tr>
+<tr>
+<td><code>keys[].store.store_name</code></td>
+<td><code>string</code></td>
+<td>Store name e.g. <code>CycleSoftware Store</code></td>
+</tr>
+<tr>
+<td><code>keys[].store.store_address</code></td>
+<td><code>string</code></td>
+<td>Store address e.g. <code>Raadhuisplein 1c</code></td>
+</tr>
+<tr>
+<td><code>keys[].store.store_postal_code</code></td>
+<td><code>string</code></td>
+<td>Postal code e.g. <code>5388GM</code></td>
+</tr>
+<tr>
+<td><code>keys[].store.store_city</code></td>
+<td><code>string</code></td>
+<td>City e.g. <code>Nistelrode</code></td>
+</tr>
+<tr>
+<td><code>keys[].store.store_country_code</code></td>
+<td><code>string</code></td>
+<td>Country code e.g. <code>NL</code></td>
+</tr>
+<tr>
+<td><code>keys[].store.store_phone_number</code></td>
+<td><code>string</code></td>
+<td>Phone number e.g. <code>0733030050</code></td>
+</tr>
+<tr>
+<td><code>keys[].store.store_email</code></td>
+<td><code>string</code></td>
+<td>E-mail address.g. <code>email1@example.nl</code></td>
+</tr>
+<tr>
+<td><code>keys[].store.store_coordinates</code></td>
+<td><code>array</code></td>
+<td>The store coordinates []</td>
+</tr>
+<tr>
+<td><code>keys[].store.store_coordinates</code></td>
+<td><code>float[]</code></td>
+<td>array with <code>[latitude, longitude]</code></td>
+</tr>
+<tr>
+<td><code>keys[].store.store_meta_data</code></td>
+<td><code>object</code></td>
+<td>Meta data for this entry</td>
+</tr>
+<tr>
+<td><code>keys[].store.store_meta_data.drg_dealer_number</code></td>
+<td><code>string</code></td>
+<td>Dynamo Retail Group dealer number e.g. <code>999</code></td>
+</tr>
+</tbody></table>
+<h2 id='platform-keys-keys'>Keys</h2>
+<p>Get a list of authentication keys</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/platform/authentication/keys.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/platform/authentication/keys.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1626</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ls6m1ZOgt5JbClmZZHAr8GNhk1qL4Dx0SB7hyyWf"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-3"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_gln"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CycleSoftware"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kievitsven 22Z"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5249JJ"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rosmalen"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"073 303 0050"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email1@example.nl"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">0</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"store_meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"drg_dealer_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"999"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLs6m1ZOgt5JbClmZZHAr8GNhk1qL4Dx0SB7hyyWf"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_gln"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8718288145482"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CycleSoftware"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raadhuisplein 1c"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5388GM"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nistelrode"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0733030050"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email1@example.nl"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_coordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mf">51.701163</span><span class="p">,</span><span class="w">
+                    </span><span class="mf">5.5619904</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"store_meta_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"drg_dealer_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"888"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='stock-locator'>Stock locator</h1>
 <p>Locate stock based on barcodes / article ids in associated accounts</p>
 
 <p><strong><em>Authentication mechanism</em></strong></p>

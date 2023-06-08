@@ -13,20 +13,24 @@ toc_footers:
   - <a href="https://github.com/CycleSoftware/cyclesoftware.github.io">Contribute to the documentation</a>
 
 includes:
-  - cs-api/_introduction
-  - cs-api/_authentication
-  - cs-api/_common
-  - cs-api/_ecommerce
-  - cs-api/_articledata
-  - cs-api/_stockinfo
-  - cs-api/_salesdata
-  - cs-api/_salesorders
-  - cs-api/_labels
-  - cs-api/_payments
-  - cs-api/_supplier_orders
-  - cs-api/_rental
-  - cs-api/_workshopdata
-  - cs-api/_webhooks
+- cs-api/_introduction
+- cs-api/_authentication
+- cs-api/_common
+- cs-api/_articledata
+- cs-api/_customers
+- cs-api/_ecommerce
+- cs-api/_labels
+- cs-api/_payments
+- cs-api/_rental
+- cs-api/_repair_objects
+- cs-api/_salesdata
+- cs-api/_salesorders
+- cs-api/_service_items
+- cs-api/_stockinfo
+- cs-api/_supplier_orders
+- cs-api/_workshop
+- cs-api/_workshop_orders
+- cs-api/_webhooks
 
 search: true
 ---

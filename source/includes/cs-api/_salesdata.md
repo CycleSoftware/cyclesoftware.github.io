@@ -1,4 +1,4 @@
-# Sales #
+# Sales data #
 
 Access sales data
 

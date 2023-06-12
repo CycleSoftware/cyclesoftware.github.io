@@ -10,9 +10,16 @@ Welcome to the CycleSoftware API documentation
 - [Stock platform API docs](platform.html)
 - [TWSC API docs](https://github.com/CycleSoftware/oauth2-twsc/)
 
-## API endpoint ##
+## API endpoints ##
 
-Use the following domain: `https://api.cyclesoftware.nl/` unless otherwise specified.
+Use the API endpoint hosts according to the country of your account;
+
+| Country | API endpoint host      |
+|---------|------------------------|
+| `NL`    | 'api.cyclesoftware.nl` |
+| `BE`    | 'api.cyclesoftware.be` |
+| `FR`    | 'api.cyclesoftware.fr` |
+| `other` | 'api.cyclesoftware.nl` |
 
 ## Requirements ##
 
@@ -22,7 +29,7 @@ To use the APIs you'll need API credentials. The API credentials are provided by
 * Where possible use Accept-encoding: gzip. For data api's this might be required.
 
 <aside class="notice">
-  You can contact <a href="mailto:support@cyclesoftware.nl">support</a> for more information about the API credentials
+  Contact <a href="mailto:support@cyclesoftware.nl">support</a> for more information about the API credentials
 </aside>
 
 ## Request/Response Format ##
@@ -130,7 +137,8 @@ Some general information about responses:
 <aside class="notice">
 Some fields may also contain a null value, which is annotated with the ? prefix.
 
-For example, `?datetime` means that the following field may contain a valid `datetime` value, a `null`, or may not be present in the request/response at all.
+For example, `?datetime` means that the following field may contain a valid `datetime` value, a `null`, or may not be
+present in the request/response at all.
 </aside>
 
 <aside class="notice">
@@ -143,7 +151,6 @@ For example, `integer[]` represents an integer array.
 <aside class="notice">
 Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings. 
 </aside>
-
 
 ## API Limits ##
 
@@ -161,8 +168,6 @@ The following HTTP headers are present in an limited endpoint response
 | `X-RateLimit-Daily-Limit`        | Contains the number of daily allowed requests                                       |
 | `X-RateLimit-Daily-Remaining`    | Contains the number of daily remaining requests                                     |
 | `X-RateLimit-Daily-Reset`        | Contains the UNIX timestamp when the daily limit is reset                           |
-
-
 
 ## API Scopes ##
 

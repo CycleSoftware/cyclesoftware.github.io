@@ -14,12 +14,12 @@ Welcome to the CycleSoftware API documentation
 
 Use the API endpoint hosts according to the country of your account;
 
-| Country | API endpoint host      |
-|---------|------------------------|
-| `NL`    | 'api.cyclesoftware.nl` |
-| `BE`    | 'api.cyclesoftware.be` |
-| `FR`    | 'api.cyclesoftware.fr` |
-| `other` | 'api.cyclesoftware.nl` |
+| Country code | API endpoint host      |
+|--------------|------------------------|
+| `NL`         | `api.cyclesoftware.nl` |
+| `BE`         | `api.cyclesoftware.be` |
+| `FR`         | `api.cyclesoftware.fr` |
+| `other`      | `api.cyclesoftware.nl` |
 
 ## Requirements ##
 

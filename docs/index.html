@@ -241,7 +241,7 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#introduction-api-endpoint" class="toc-h2 toc-link" data-title="API endpoint">API endpoint</a>
+                    <a href="#introduction-api-endpoints" class="toc-h2 toc-link" data-title="API endpoints">API endpoints</a>
                   </li>
                   <li>
                     <a href="#introduction-requirements" class="toc-h2 toc-link" data-title="Requirements">Requirements</a>
@@ -579,8 +579,32 @@
 <li><a href="platform.html">Stock platform API docs</a></li>
 <li><a href="https://github.com/CycleSoftware/oauth2-twsc/">TWSC API docs</a></li>
 </ul>
-<h2 id='introduction-api-endpoint'>API endpoint</h2>
-<p>Use the following domain: <code>https://api.cyclesoftware.nl/</code> unless otherwise specified.</p>
+<h2 id='introduction-api-endpoints'>API endpoints</h2>
+<p>Use the API endpoint hosts according to the country of your account;</p>
+
+<table><thead>
+<tr>
+<th>Country code</th>
+<th>API endpoint host</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>NL</code></td>
+<td><code>api.cyclesoftware.nl</code></td>
+</tr>
+<tr>
+<td><code>BE</code></td>
+<td><code>api.cyclesoftware.be</code></td>
+</tr>
+<tr>
+<td><code>FR</code></td>
+<td><code>api.cyclesoftware.fr</code></td>
+</tr>
+<tr>
+<td><code>other</code></td>
+<td><code>api.cyclesoftware.nl</code></td>
+</tr>
+</tbody></table>
 <h2 id='introduction-requirements'>Requirements</h2>
 <p>To use the APIs you&#39;ll need API credentials. The API credentials are provided by CS or available in your account.</p>
 
@@ -590,7 +614,7 @@
 </ul>
 
 <aside class="notice">
-  You can contact <a href="mailto:support@cyclesoftware.nl">support</a> for more information about the API credentials
+  Contact <a href="mailto:support@cyclesoftware.nl">support</a> for more information about the API credentials
 </aside>
 <h2 id='introduction-request-response-format'>Request/Response Format</h2>
 <p>The APIs consist of SOAP/WSDL webservices and JSON endpoints.</p>
@@ -759,7 +783,8 @@ mechanism is as follows:</p>
 <aside class="notice">
 Some fields may also contain a null value, which is annotated with the ? prefix.
 
-For example, `?datetime` means that the following field may contain a valid `datetime` value, a `null`, or may not be present in the request/response at all.
+For example, `?datetime` means that the following field may contain a valid `datetime` value, a `null`, or may not be
+present in the request/response at all.
 </aside>
 
 <aside class="notice">

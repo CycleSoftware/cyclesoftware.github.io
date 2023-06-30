@@ -496,6 +496,13 @@ Use `/app/api/v3/articledata/definition/` and `/app/api/groups/`  for more infor
 | `url_thumb`     | url to thumb image  | 100        |
 | `url_large`     | url to large image  | 100        |
 
+<aside class="notice">
+When a image is requested we send a http header back called 'Etag' we advice to store this hash with the image url.
+When the image is requested again we check if the Etag has changed, if not we return a 304 http status code and no image
+data.
+This will save you bandwidth and time.
+</aside>
+
 **Supplier_data object**
 
 | **Property**                        | **Description**                              |

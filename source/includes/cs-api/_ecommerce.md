@@ -1039,7 +1039,7 @@ Content-length: 1648
         <customer_cs_customer_id>235238848</customer_cs_customer_id>
         <customer_reference>unique-reference-customer</customer_reference>
         <customer_name_prefix>Dhr.</customer_name_prefix>
-        <customer_name_first_name>Adri</customer_name_first_name>
+        <customer_first_name>Adri</customer_first_name>
         <customer_name_initials>A</customer_name_initials>
         <customer_middle_name>Van</customer_middle_name>
         <customer_last_name>Name 235238848</customer_last_name>
@@ -1076,7 +1076,7 @@ Content-length: 1448
         <customer_cs_customer_id>235238848</customer_cs_customer_id>
         <customer_reference>REF46</customer_reference>
         <customer_name_prefix>Dhr.</customer_name_prefix>
-        <customer_name_first_name>Adri</customer_name_first_name>
+        <customer_first_name>Adri</customer_first_name>
         <customer_name_initials>A</customer_name_initials>
         <customer_middle_name>Van</customer_middle_name>
         <customer_last_name>Name 235238848</customer_last_name>

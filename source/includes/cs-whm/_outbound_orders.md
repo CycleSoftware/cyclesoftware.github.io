@@ -174,7 +174,7 @@ X-RateLimit-Daily-Reset: 1678230000
 
 ## Cancel order ##
 
-Cancels an outbound order. Be aware, this will not cancel the supplier order in POS account.
+Cancels an outbound order and will attempt to cancel the related supplier order in POS.
 
 | URL parameter        | Type      | Description                                                |
 |----------------------|-----------|------------------------------------------------------------|
@@ -206,7 +206,7 @@ Content-type: application/json; charset=utf-8
 ```http
 HTTP/1.1 200 
 Content-type: application/json; charset=utf-8
-Content-length: 269
+Content-length: 265
 X-RateLimit-Minutely-Limit: 360
 X-RateLimit-Minutely-Remaining: 59
 X-RateLimit-Daily-Limit: 15000

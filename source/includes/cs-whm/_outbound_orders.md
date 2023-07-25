@@ -170,3 +170,61 @@ X-RateLimit-Daily-Reset: 1678230000
   "error_message": null
 }
 ```
+
+
+## Cancel order ##
+
+Cancels an outbound order and will attempt to cancel the related supplier order in POS.
+
+| URL parameter        | Type      | Description                                                |
+|----------------------|-----------|------------------------------------------------------------|
+| `:outbound_order_id` | `integer` | Outbound order id <i class="label label-info">required</i> |
+
+### HTTP request examples ###
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/api/v1/warehouse/outbound/order/:outbound_order_id/cancel.json</h6>
+	</div>
+</div>
+
+
+> HTTP Request
+
+```http
+POST /api/v1/warehouse/outbound/order/1013123/cancel.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+Content-type: application/json; charset=utf-8
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 265
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+
+{
+    "error": false,
+    "error_message": null,
+    "result": [
+        {
+            "outbound_order_item_id": 111,
+            "unclaimed_stock": 2
+        },
+        {
+            "outbound_order_item_id": 333,
+            "unclaimed_stock": 3
+        }
+    ]
+}
+```

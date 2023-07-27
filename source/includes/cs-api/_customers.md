@@ -34,8 +34,7 @@ Find, create and update customers
 | `phone_numbers[].phone_number`    | `string`    | <code>PUT&#124;POST</code> | Phone number e.g. `0733030050`                                |
 | `phone_numbers[].name`            | `string`    | <code>PUT&#124;POST</code> | Name of number e.g. `Dhr./Mevr.  T UnitTest`                  |
 
-
-## Get Customer 
+## Get Customer
 
 Get customer
 
@@ -243,7 +242,6 @@ Update a customer
 |-------------------|----------|----------------------|
 | `customer_id`     | `int`    | Customer ID e.g. `4` |
 
-
 > HTTP request
 
 ```http
@@ -339,8 +337,6 @@ Content-length: 873
     ]
 }
 ```
-
-
 
 ## Find customers
 
@@ -446,7 +442,7 @@ X-RateLimit-Daily-Reset: 1678230000
         "street": "Belgische weg",
         "city": "Belgcity",
         "country_code_iso_3166": "BE",
-        "email": "gielwijgergangs@gmail.com",
+        "email": "gielwijgergangs@example.com",
         "discount_percentage": 0,
         "datetime_created": null,
         "phone_numbers": [
@@ -467,3 +463,142 @@ X-RateLimit-Daily-Reset: 1678230000
 ]
 ```
 
+## List customers
+
+List customers
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/customers/list.json?modified_since=:modified_since&offset=:offset</h6>
+    </div>
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/customers/list.json?offset=:offset</h6>
+    </div>
+</div>
+
+| **GET parameter** | **Type**    | **Description**                                                          |
+|-------------------|-------------|--------------------------------------------------------------------------|
+| `offset`          | `?integer`  | Optional offset, see pagination `pagination.next_offset` in result       |
+| `modified_since`  | `?datetime` | Filter on modified customers since `datetime` e.g. `2023-01-12 12:30:00` |
+
+### Properties ###
+
+| Property                                      | Type       | Description                                                                 |
+|-----------------------------------------------|------------|-----------------------------------------------------------------------------|
+| `error`                                       | `boolean`  | `true` if an error occured e.g. `false`                                     |
+| `error_message`                               | `?string`  | The error message if occured.                                               |
+| `customers`                                   | `object[]` | Array of [Customer (object)](#customers-customer-object)                    |
+| `pagination.count`                            | `integer`  | Number of customers the `customers` element e.g. `500`                      |
+| `pagination.next_offset`                      | `?integer` | `null` if no next page available, otherwise value for `offset` GET variable |
+
+> HTTP request
+
+```http
+GET /api/v1/customers/list.json?modified_since=2019-01-01%2012:00:00 HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+Content-type: application/json; charset=utf-8
+
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+Content-length: 2689
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+
+{
+    "error": false,
+    "error_message": null,
+    "customers": [
+        {
+            "customer_id": 8,
+            "customer_type_name": "Klant",
+            "customer_reference": "REF46",
+            "postcode": "8448PE",
+            "house_number": "32",
+            "house_number_postfix": "B",
+            "attn": "",
+            "title": "Dhr.",
+            "initials": "A",
+            "insertion": "Van",
+            "first_name": "Adri",
+            "name": "Name 235238848",
+            "street": "Mauritslaan",
+            "city": "Heerenveen",
+            "country_code_iso_3166": "NL",
+            "email": "test235238848@cyclesoftware.nl",
+            "discount_percentage": 0,
+            "datetime_created": null,
+            "phone_numbers": [
+                {
+                    "phone_number_id": "mob",
+                    "customer_id": 8,
+                    "phone_number": "0733030050",
+                    "name": "Adri Van Name 235238848"
+                },
+                {
+                    "phone_number_id": "tel",
+                    "customer_id": 8,
+                    "phone_number": "",
+                    "name": "Adri Van Name 235238848"
+                },
+                {
+                    "phone_number_id": "453383",
+                    "customer_id": 8,
+                    "phone_number": "06 24238848",
+                    "name": "Extra 1"
+                }
+            ]
+        },
+        {
+            "customer_id": 11,
+            "customer_type_name": "E-commerce",
+            "customer_reference": "REFBE1",
+            "postcode": "1000",
+            "house_number": "2",
+            "house_number_postfix": "B",
+            "attn": "",
+            "title": "Dhr.",
+            "initials": "G",
+            "insertion": "van",
+            "first_name": "Giel",
+            "name": "Wijgergangs",
+            "street": "Belgische weg",
+            "city": "Belgcity",
+            "country_code_iso_3166": "BE",
+            "email": "gielwijgergangs@example.com",
+            "discount_percentage": 0,
+            "datetime_created": null,
+            "phone_numbers": [
+                {
+                    "phone_number_id": "mob",
+                    "customer_id": 11,
+                    "phone_number": "06 22903913",
+                    "name": "Giel van Wijgergangs"
+                },
+                {
+                    "phone_number_id": "tel",
+                    "customer_id": 11,
+                    "phone_number": "073 303 0050",
+                    "name": "Giel van Wijgergangs"
+                }
+            ]
+        }
+    ],
+    "pagination": {
+        "count": 2,
+        "next_offset": null
+    }
+}
+```

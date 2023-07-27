@@ -253,7 +253,7 @@ Get list of service items for workshop.
 | `data[].scheduled_at_km_age`           | `integer`  | Scheduled after X kilometer                                                           |
 | `data[].modified_at`                   | `datetime` | Modification date time `2020-06-22 10:51:49`                                          |
 | `pagination.count`                     | `integer`  | Count of results                                                                      |
-| `pagination.next_offset`               | `?integer` | null if no next page available, otherwise value for `offset` GET variable             |
+| `pagination.next_offset`               | `?integer` | `null` if no next page available, otherwise value for `offset` GET variable           |
 
 ```http
 GET /api/v1/workshop/repair-objects/service-items.json?modified_start=2022-06-01&modified_end=2022-06-25 HTTP/1.1

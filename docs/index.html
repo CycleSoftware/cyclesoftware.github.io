@@ -323,13 +323,16 @@
                   <li>
                     <a href="#customers-find-customers" class="toc-h2 toc-link" data-title="Find customers">Find customers</a>
                   </li>
+                  <li>
+                    <a href="#customers-list-customers" class="toc-h2 toc-link" data-title="List customers">List customers</a>
+                  </li>
               </ul>
           </li>
           <li>
             <a href="#e-commerce" class="toc-h1 toc-link" data-title="E-commerce">E-commerce</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#e-commerce-find-customers-definition" class="toc-h2 toc-link" data-title="Definition">Definition</a>
+                    <a href="#e-commerce-list-customers-definition" class="toc-h2 toc-link" data-title="Definition">Definition</a>
                   </li>
                   <li>
                     <a href="#e-commerce-properties" class="toc-h2 toc-link" data-title="Properties">Properties</a>
@@ -817,7 +820,7 @@ For example, `integer[]` represents an integer array.
 </aside>
 
 <aside class="notice">
-Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings. 
+Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings.
 </aside>
 <h2 id='introduction-api-limits'>API Limits</h2>
 <p>Since may 2022 api-limits are introduced. For endpoints that implement limits the following HTTP response headers are
@@ -991,7 +994,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response (limited)</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">571</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -1128,7 +1131,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1220</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -1257,7 +1260,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">331</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -2786,7 +2789,7 @@ This will save you bandwidth and time.
         </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belgische weg"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belgcity"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gielwijgergangs@gmail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gielwijgergangs@example.com"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -2805,6 +2808,180 @@ This will save you bandwidth and time.
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
+</span></code></pre></div><h2 id='customers-list-customers'>List customers</h2>
+<p>List customers</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/customers/list.json?modified_since=:modified_since&offset=:offset</h6>
+    </div>
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/customers/list.json?offset=:offset</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>GET parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>offset</code></td>
+<td><code>?integer</code></td>
+<td>Optional offset, see pagination <code>pagination.next_offset</code> in result</td>
+</tr>
+<tr>
+<td><code>modified_since</code></td>
+<td><code>?datetime</code></td>
+<td>Filter on modified customers since <code>datetime</code> e.g. <code>2023-01-12 12:30:00</code></td>
+</tr>
+</tbody></table>
+<h3 id='customers-list-customers-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if an error occured e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>?string</code></td>
+<td>The error message if occured.</td>
+</tr>
+<tr>
+<td><code>customers</code></td>
+<td><code>object[]</code></td>
+<td>Array of <a href="#customers-customer-object">Customer (object)</a></td>
+</tr>
+<tr>
+<td><code>pagination.count</code></td>
+<td><code>integer</code></td>
+<td>Number of customers the <code>customers</code> element e.g. <code>500</code></td>
+</tr>
+<tr>
+<td><code>pagination.next_offset</code></td>
+<td><code>?integer</code></td>
+<td><code>null</code> if no next page available, otherwise value for <code>offset</code> GET variable</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/customers/list.json?modified_since=2019-01-01%2012:00:00</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">2689</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"customers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Klant"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REF46"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8448PE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"attn"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dhr."</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"initials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"insertion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Van"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adri"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name 235238848"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mauritslaan"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heerenveen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test235238848@cyclesoftware.nl"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0733030050"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adri Van Name 235238848"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tel"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adri Van Name 235238848"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"453383"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06 24238848"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Extra 1"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REFBE1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"attn"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dhr."</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"initials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"insertion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"van"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giel"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wijgergangs"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belgische weg"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belgcity"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gielwijgergangs@example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06 22903913"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giel van Wijgergangs"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tel"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"073 303 0050"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giel van Wijgergangs"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='e-commerce'>E-commerce</h1>
 <p>The e-commerce APIs are designed for pushing e-commerce orders to CycleSoftware.</p>
 
@@ -2841,7 +3018,7 @@ This will save you bandwidth and time.
 <ul>
 <li><code>e-commerce</code></li>
 </ul>
-<h3 id='e-commerce-find-customers-definition'>Definition</h3>
+<h3 id='e-commerce-list-customers-definition'>Definition</h3>
 <p>The latest definition of the WSDL specification can be found at:</p>
 
 <div class="api-endpoint">
@@ -3362,7 +3539,7 @@ This will save you bandwidth and time.
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200 
+HTTP/1.1 200
 Content-type: application/xml; charset=utf-8
 Content-length: 2083
 
@@ -3548,7 +3725,7 @@ Content-length: 2083
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200 
+HTTP/1.1 200
 Content-type: application/xml; charset=utf-8
 Content-length: 2446
 
@@ -3765,7 +3942,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">900</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -3904,7 +4081,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200 
+HTTP/1.1 200
 Content-type: application/xml; charset=utf-8
 Content-length: 2464
 
@@ -4322,7 +4499,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">158</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -4346,7 +4523,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Error Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">57</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -4386,7 +4563,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">989</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -4433,7 +4610,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">160</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -4828,7 +5005,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1357</span>
 
@@ -4917,7 +5094,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1357</span>
 
@@ -5005,7 +5182,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5146,7 +5323,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">425</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5201,7 +5378,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1530</span>
 
@@ -5919,7 +6096,7 @@ By default the book-date is used.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">722</span>
 
@@ -6199,7 +6376,7 @@ By default the book-date is used.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1655</span>
 
@@ -6461,7 +6638,7 @@ By default the book-date is used.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1655</span>
 
@@ -6642,7 +6819,7 @@ information known at the insurance company. This information is based on created
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">903</span>
 
@@ -6903,7 +7080,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -6988,7 +7165,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -7468,7 +7645,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <tr>
 <td><code>pagination.next_offset</code></td>
 <td><code>?integer</code></td>
-<td>null if no next page available, otherwise value for <code>offset</code> GET variable</td>
+<td><code>null</code> if no next page available, otherwise value for <code>offset</code> GET variable</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/workshop/repair-objects/service-items.json?modified_start=2022-06-01&amp;modified_end=2022-06-25</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -7480,7 +7657,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">2392</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -7718,7 +7895,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1574</span>
 
@@ -8144,7 +8321,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1017</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -8192,7 +8369,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Error Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">57</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -8225,7 +8402,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1022</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -8291,7 +8468,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1023</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -8339,7 +8516,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Error Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">57</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -8551,7 +8728,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1759</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>

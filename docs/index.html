@@ -463,6 +463,9 @@
                     <a href="#sales-orders-update-sales-order-store" class="toc-h2 toc-link" data-title="Update sales order store">Update sales order store</a>
                   </li>
                   <li>
+                    <a href="#sales-orders-update-delivery-method" class="toc-h2 toc-link" data-title="Update delivery method">Update delivery method</a>
+                  </li>
+                  <li>
                     <a href="#sales-orders-cancel-sales-order" class="toc-h2 toc-link" data-title="Cancel sales order">Cancel sales order</a>
                   </li>
               </ul>
@@ -820,7 +823,7 @@ For example, `integer[]` represents an integer array.
 </aside>
 
 <aside class="notice">
-Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings.
+Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings. 
 </aside>
 <h2 id='introduction-api-limits'>API Limits</h2>
 <p>Since may 2022 api-limits are introduced. For endpoints that implement limits the following HTTP response headers are
@@ -994,7 +997,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response (limited)</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">571</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -1131,7 +1134,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1220</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -1260,7 +1263,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">331</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -3539,7 +3542,7 @@ This will save you bandwidth and time.
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200
+HTTP/1.1 200 
 Content-type: application/xml; charset=utf-8
 Content-length: 2083
 
@@ -3725,7 +3728,7 @@ Content-length: 2083
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200
+HTTP/1.1 200 
 Content-type: application/xml; charset=utf-8
 Content-length: 2446
 
@@ -3942,7 +3945,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">900</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -4081,7 +4084,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 
 
-HTTP/1.1 200
+HTTP/1.1 200 
 Content-type: application/xml; charset=utf-8
 Content-length: 2464
 
@@ -4499,7 +4502,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">158</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -4523,7 +4526,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Error Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">57</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -4563,7 +4566,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">989</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -4610,7 +4613,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">160</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5005,7 +5008,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1357</span>
 
@@ -5094,7 +5097,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1357</span>
 
@@ -5182,7 +5185,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5323,7 +5326,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">425</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -5378,7 +5381,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1530</span>
 
@@ -6096,7 +6099,7 @@ By default the book-date is used.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">722</span>
 
@@ -6376,7 +6379,7 @@ By default the book-date is used.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1655</span>
 
@@ -6638,7 +6641,7 @@ By default the book-date is used.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1655</span>
 
@@ -6819,7 +6822,7 @@ information known at the insurance company. This information is based on created
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">903</span>
 
@@ -6864,7 +6867,8 @@ information known at the insurance company. This information is based on created
 </ul>
 <h2 id='sales-orders-update-sales-order-store'>Update sales order store</h2>
 <p>Update the store of a sales order with the possibility to change the delivery type and address. This API call may only
-be used if your account has multiple stores. If no mode is specified in the items array objects the default mode will be used.</p>
+be used if your account has multiple stores. If no mode is specified in the items array objects the default mode will be
+used.</p>
 
 <table><thead>
 <tr>
@@ -7080,7 +7084,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -7110,8 +7114,183 @@ be used if your account has multiple stores. If no mode is specified in the item
         </span><span class="mi">32324</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='sales-orders-update-delivery-method'>Update delivery method</h2>
+<p>Update sales order delivery type and/or address.</p>
+
+<table><thead>
+<tr>
+<th>URL parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:sales_order_id</code></td>
+<td><code>integer</code></td>
+<td>Sales order id also referred to as <code>order_id</code> in SOAP APIs <i class="label label-info">required</i></td>
+</tr>
+</tbody></table>
+<h3 id='sales-orders-update-delivery-method-http-request-example'>HTTP request example</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/sales/orders/:sales_order_id/update-delivery-method.json</h6>
+    </div>
+</div>
+<h3 id='sales-orders-update-delivery-method-request-properties'>Request properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>new_delivery_method_id</code></td>
+<td><code>?integer</code></td>
+<td>New delivery method e.e. <code>3</code> (see common enum api  <code>delivery_methods</code>)</td>
+</tr>
+<tr>
+<td><code>new_delivery_address</code></td>
+<td><code>?object</code></td>
+<td>New delivery address for the sales order (<code>null</code> if not changed or required)</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.is_business_address</code></td>
+<td><code>bool</code></td>
+<td><code>true</code> if business address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.company_name</code></td>
+<td><code>?string</code></td>
+<td>Company name or <code>null</code></td>
+</tr>
+<tr>
+<td><code>new_delivery_address.name</code></td>
+<td><code>string</code></td>
+<td>The name of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.street</code></td>
+<td><code>string</code></td>
+<td>Street name of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.house_number</code></td>
+<td><code>string</code></td>
+<td>House number of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.house_number_postfix</code></td>
+<td><code>string</code></td>
+<td>House number postfix of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.postal_code</code></td>
+<td><code>string</code></td>
+<td>Postal code of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.city</code></td>
+<td><code>string</code></td>
+<td>City of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.country_code</code></td>
+<td><code>string</code></td>
+<td>Country_code of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.phone_number</code></td>
+<td><code>string</code></td>
+<td>Phone_number of the address</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.email</code></td>
+<td><code>string</code></td>
+<td>E-mail of the address com`</td>
+</tr>
+<tr>
+<td><code>new_delivery_address.notes</code></td>
+<td><code>string</code></td>
+<td>Notes of the address</td>
+</tr>
+</tbody></table>
+<h3 id='sales-orders-update-delivery-method-response-properties'>Response properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if an error occcured</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>?string</code></td>
+<td>The error message if <code>error</code> is <code>true</code></td>
+</tr>
+<tr>
+<td><code>created_delivery_address_id</code></td>
+<td><code>?integer</code></td>
+<td>The ID of the delivery address e.g. <code>45287</code>, <code>null</code> if no address is created</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/sales/orders/102323/update-delivery-method.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">484</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"new_delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"new_delivery_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"address_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_business_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name 1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Streetname"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"postal_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000AA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"073031111"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some note"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">91</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_delivery_address_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45287</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='sales-orders-cancel-sales-order'>Cancel sales order</h2>
-<p>Mark a sales order as cancelled. An order may only be cancelled if there is no payment amount left and the sales orders is not invoiced.</p>
+<p>Mark a sales order as cancelled. An order may only be cancelled if there is no payment amount left and the sales orders
+is not invoiced.</p>
 
 <table><thead>
 <tr>
@@ -7165,7 +7344,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">45</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -7657,7 +7836,7 @@ be used if your account has multiple stores. If no mode is specified in the item
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">2392</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -7895,7 +8074,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1574</span>
 
@@ -8321,7 +8500,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1017</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -8369,7 +8548,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Error Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">57</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -8402,7 +8581,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1022</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -8468,7 +8647,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1023</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -8516,7 +8695,7 @@ not included.</p>
 <blockquote>
 <p>HTTP Error Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">400</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">57</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -8728,7 +8907,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1759</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>

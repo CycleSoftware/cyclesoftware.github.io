@@ -968,6 +968,14 @@ available.</p>
 <td>Workshop order status descriptions</td>
 </tr>
 <tr>
+<td><code>workshop_order_types</code></td>
+<td>Workshop order type descriptions</td>
+</tr>
+<tr>
+<td><code>workshop_rates</code></td>
+<td>Workshop rates descriptions</td>
+</tr>
+<tr>
 <td><code>customer_types</code></td>
 <td>Customer type descriptions</td>
 </tr>
@@ -9577,6 +9585,12 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <td>Delivery method see common enum <code>delivery_methods</code> e.g. <code>0</code></td>
 </tr>
 <tr>
+<td><code>workshop_order_type_id</code></td>
+<td><code>integer</code></td>
+<td><code>readonly</code></td>
+<td>Workshop order type id see common enum <code>workshop_order_types</code> e.g. <code>1</code></td>
+</tr>
+<tr>
 <td><code>order_items</code></td>
 <td><code>?array</code></td>
 <td><code>POST&#124;PUT</code></td>
@@ -9749,6 +9763,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
     </span><span class="nl">"total_repair_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
     </span><span class="nl">"custom_repair_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workshop_order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -9930,6 +9945,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
     </span><span class="nl">"total_repair_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
     </span><span class="nl">"custom_repair_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workshop_order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -10090,6 +10106,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
     </span><span class="nl">"total_repair_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
     </span><span class="nl">"custom_repair_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
     </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workshop_order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">

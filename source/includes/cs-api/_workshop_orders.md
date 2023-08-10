@@ -35,6 +35,7 @@ Read, create or update workshop orders
 | `repair_codes`                                    | `?string[]` | `POST`                     | On create a list of repair codes. See [Repair codes (object)](#workshop-repair-codes) `code`                                       |
 | `service_card_codes`                              | `?string[]` | `POST`                     | On create a list of service-item codes. See [Service item (object)](#workshop-service-items-service-item-object) `service_barcode` |
 | `delivery_method_id`                              | `integer`   | <code>POST&#124;PUT</code> | Delivery method see common enum `delivery_methods` e.g. `0`                                                                        |
+| `workshop_order_type_id`                          | `integer`   | `readonly`                 | Workshop order type id see common enum `workshop_order_types` e.g. `1`                                                             |
 | `order_items`                                     | `?array`    | <code>POST&#124;PUT</code> | Array of order items                                                                                                               |
 | `order_items[].item_id`                           | `integer`   | `readonly`                 | Unique item id within the order e.g. `2`                                                                                           |
 | `order_items[].item_type_id`                      | `integer`   | <code>POST&#124;PUT</code> | Order item type see common enum `transaction_item_types` e.g. `1`                                                                  |
@@ -112,6 +113,7 @@ X-RateLimit-Daily-Reset: 1678230000
     "total_repair_time_minutes": 60,
     "custom_repair_time_minutes": 0,
     "delivery_method_id": 0,
+    "workshop_order_type_id": 1,
     "order_items": [
         {
             "item_id": 1,
@@ -297,6 +299,7 @@ X-RateLimit-Daily-Reset: 1678230000
     "total_repair_time_minutes": 60,
     "custom_repair_time_minutes": 0,
     "delivery_method_id": 0,
+    "workshop_order_type_id": 1,
     "order_items": [
         {
             "item_id": 1,
@@ -461,6 +464,7 @@ X-RateLimit-Daily-Reset: 1678230000
     "total_repair_time_minutes": 30,
     "custom_repair_time_minutes": 30,
     "delivery_method_id": 0,
+    "workshop_order_type_id": 1,
     "order_items": [
         {
             "item_id": 1,

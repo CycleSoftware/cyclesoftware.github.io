@@ -31,6 +31,8 @@ Get a set of enums with identifiers and descriptions used in various APIs
 | `delivery_methods`        | Delivery method descriptions                                                                |
 | `vat_codes`               | VAT codes                                                                                   |
 | `workshop_order_status`   | Workshop order status descriptions                                                          |
+| `workshop_order_types`    | Workshop order type descriptions                                                            |
+| `workshop_rates`          | Workshop rates descriptions                                                                 |
 | `customer_types`          | Customer type descriptions                                                                  |
 | `transaction_item_types`  | Transaction item type descriptions (item_type / row_type)                                   |
 | `service_item_status`     | Status descriptions for object service items                                                |

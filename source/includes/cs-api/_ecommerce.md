@@ -23,7 +23,7 @@ The latest definition of the WSDL specification can be found at:
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">WSDL-SOAP</i>
-		<h6>/app/cs/api/ecommerce/soap_2_9/?wsdl</h6>
+		<h6>/app/cs/api/ecommerce/soap_2_10/?wsdl</h6>
 	</div>
 </div>
 
@@ -100,7 +100,7 @@ Creates a new order in CycleSoftware
 
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -214,7 +214,7 @@ catch (\SoapFault $e) {
 > HTTP Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -318,6 +318,7 @@ Content-length: 2083
       <order_id>3688</order_id>
       <customer_id>1498</customer_id>
       <created_new_order>1</created_new_order>
+      <order_type_id>1</order_type_id>
       <remarks>
       </remarks>
       <OrderItems>
@@ -356,6 +357,274 @@ Content-length: 2083
 </SOAP-ENV:Envelope>
 ```
 
+## SaveQuote ##
+
+Creates a new quote in CycleSoftware
+
+```php
+<?php
+
+
+try {
+    $client = new \SoapClient(
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
+        [
+            'trace' => true,
+            'use' => SOAP_LITERAL,
+            'encoding' => 'UTF-8',
+        ]
+    );
+   $input = (object)[
+        'Authentication' =>
+            (object)[
+                'username' => 'your-username',
+                'password' => 'your-password',
+                'dealer_id' => '1', // store-id within account
+            ],
+        'Order' =>
+            (object)[
+                'order_reference_text' => '5640c085abba9',
+                'order_reference_id' => '319813049',
+                'order_is_payed' => '0',
+                'order_payment_method_description' => 'psp',
+                'order_ship_to_customer' => '1',
+                'order_shipment_method_description' => 'tnt',
+                'order_date_preferred_delivery' => '2015-12-01',
+                'order_remarks' => 'remark example',
+                'order_vat_country_code' => 'NL',
+                'order_sales_employee_id ' => null,
+                'Customer' =>
+                    (object)[
+                        'customer_cs_customer_id' => '11',
+                        'customer_reference' => 'unique-reference-customer',
+                        'customer_name_prefix' => 'Dhr.',
+                        'customer_name_initials' => 'J',
+                        'customer_first_name' => 'Jan',
+                        'customer_middle_name' => 'van',
+                        'customer_last_name' => 'Dijk',
+                        'customer_postal_code' => '1000AA',
+                        'customer_housenumber' => '2',
+                        'customer_housenumber_suffix' => 'B',
+                        'customer_street_name' => 'Steenweg',
+                        'customer_city' => 'Amsterdam',
+                        'customer_phone' => '0733030050',
+                        'customer_mobile' => '0612345678',
+                        'customer_country_code_iso_3166' => 'NL',
+                        'customer_email' => 'test@test.com',
+                        'customer_newsletter' => '1',
+                        'customer_date_of_birth' => '',
+                        'customer_iban' => '',
+                        'DeliveryAddress' =>
+                            (object)[
+                                'delivery_address_use_delivery_address' => '1',
+                                'delivery_address_name' => 'Bedrijfsnaam',
+                                'delivery_address_street_name' => 'Steenweg',
+                                'delivery_address_postal_code' => '1000AA',
+                                'delivery_address_housenumber' => '2',
+                                'delivery_address_housenumber_suffix' => 'B',
+                                'delivery_address_city' => 'Amsterdam',
+                                'delivery_address_country_code_iso_3166' => 'NL',
+                                'delivery_address_remarks' => 'Extra opmerking',
+                            ],
+                    ],
+                'OrderItems' =>
+                    (object)[
+                        'OrderItem' =>
+                            [
+                                    (object)[
+                                        'order_item_is_bicycle' => '0',
+                                        'order_item_barcode' => '88237237239',
+                                        'order_item_quantity' => '-1',
+                                        'order_item_description' => 'Some article',
+                                        'order_item_unit_price_in_vat' => '1021',
+                                        'order_item_unit_discount_amount_in_vat' => '21',
+                                        'order_item_vat_code' => '2',
+                                        'order_item_supplier_order_mode' => '0',
+                                        'order_item_invoice_customer_id' => 4,
+                                    ],
+                                    (object)[
+                                        'order_item_is_bicycle' => '0',
+                                        'order_item_barcode' => '47348340934',
+                                        'order_item_quantity' => '1',
+                                        'order_item_description' => 'Some Article',
+                                        'order_item_unit_price_in_vat' => '1521',
+                                        'order_item_unit_discount_amount_in_vat' => '21',
+                                        'order_item_vat_code' => '2',
+                                        'order_item_supplier_order_mode' => '0',
+                                        'order_item_invoice_customer_id' => '2',
+                                    ],
+                                    (object)[
+                                        'order_item_is_bicycle' => '0',
+                                        'order_item_barcode' => '43934939344',
+                                        'order_item_quantity' => '3',
+                                        'order_item_description' => 'Some article',
+                                        'order_item_unit_price_in_vat' => '1021',
+                                        'order_item_unit_discount_amount_in_vat' => '21',
+                                        'order_item_vat_code' => '2',
+                                        'order_item_supplier_order_mode' => '0',
+                                        'order_item_invoice_customer_id' => null,
+                                    ],
+                            ],
+                    ],
+            ],
+    ];
+    $result = $client->SaveQuote($input);
+    $order_id = $result->order_id;
+    $customer_id = $result->customer_id;
+    var_dump($result);
+}
+catch (\SoapFault $e) {
+    var_dump($e->getMessage());
+}
+```
+
+> HTTP Request
+
+```http
+POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
+Host: api.cyclesoftware.nl
+Accept-encoding: gzip
+Accept: text/xml
+Content-type: text/xml; charset=utf-8
+User-agent: SoapClient
+Soapaction: "SaveQuote"
+Content-length: 4614
+
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/">
+  <SOAP-ENV:Body>
+    <ns1:SaveQuoteRequest>
+      <Authentication>
+        <username>your-username</username>
+        <password>your-password</password>
+        <dealer_id>1</dealer_id>
+      </Authentication>
+      <Order>
+        <order_reference_id>319813049</order_reference_id>
+        <order_reference_text>5640c085abba9</order_reference_text>
+        <order_is_payed>0</order_is_payed>
+        <order_payment_method_description>psp</order_payment_method_description>
+        <order_ship_to_customer>1</order_ship_to_customer>
+        <order_shipment_method_description>tnt</order_shipment_method_description>
+        <order_date_preferred_delivery>2015-12-01</order_date_preferred_delivery>
+        <order_remarks>remark example</order_remarks>
+        <order_vat_country_code>NL</order_vat_country_code>
+        <order_sales_employee_id/>
+        <Customer>
+          <customer_cs_customer_id>0</customer_cs_customer_id>
+          <customer_reference>unique-reference-customer</customer_reference>
+          <customer_name_prefix>J</customer_name_prefix>
+          <customer_middle_name>van</customer_middle_name>
+          <customer_last_name>Dijk</customer_last_name>
+          <customer_postal_code>1000AA</customer_postal_code>
+          <customer_housenumber>2</customer_housenumber>
+          <customer_housenumber_suffix>B</customer_housenumber_suffix>
+          <customer_street_name>Steenweg</customer_street_name>
+          <customer_city>Amsterdam</customer_city>
+          <customer_phone>0733030050</customer_phone>
+          <customer_mobile>0612345678</customer_mobile>
+          <customer_country_code_iso_3166>NL</customer_country_code_iso_3166>
+          <customer_email>test@test.com</customer_email>
+          <customer_newsletter>1</customer_newsletter>
+          <customer_iban>NL69INGB0123456789</customer_iban>
+          <customer_date_of_birth>1988-09-29</customer_date_of_birth>
+          <DeliveryAddress>
+            <delivery_address_use_delivery_address>1</delivery_address_use_delivery_address>
+            <delivery_address_name>CycleSoftware</delivery_address_name>
+            <delivery_address_street_name>Kievitsven</delivery_address_street_name>
+            <delivery_address_postal_code>5249JJ</delivery_address_postal_code>
+            <delivery_address_housenumber>4</delivery_address_housenumber>
+            <delivery_address_housenumber_suffix>b</delivery_address_housenumber_suffix>
+            <delivery_address_city>Rosmalen</delivery_address_city>
+            <delivery_address_country_code_iso_3166>NL</delivery_address_country_code_iso_3166>
+            <delivery_address_remarks>Bam</delivery_address_remarks>
+          </DeliveryAddress>
+        </Customer>
+        <OrderItems>
+          <OrderItem>
+            <order_item_is_bicycle>0</order_item_is_bicycle>
+            <order_item_barcode>1000</order_item_barcode>
+            <order_item_quantity>2</order_item_quantity>
+            <order_item_description>DescriptionTest</order_item_description>
+            <order_item_unit_price_in_vat>12.99</order_item_unit_price_in_vat>
+            <order_item_unit_discount_amount_in_vat>2.99</order_item_unit_discount_amount_in_vat>
+            <order_item_vat_code>2</order_item_vat_code>
+            <order_item_supplier_order_mode>0</order_item_supplier_order_mode>
+            <order_item_supplier_id>0</order_item_supplier_id>
+            <order_item_object_id>0</order_item_object_id>
+            <order_item_invoice_customer_id>0</order_item_invoice_customer_id>
+          </OrderItem>
+          <OrderItem>
+            <order_item_is_bicycle>0</order_item_is_bicycle>
+            <order_item_barcode>1000</order_item_barcode>
+            <order_item_quantity>2</order_item_quantity>
+            <order_item_description>DescriptionTest</order_item_description>
+            <order_item_unit_price_in_vat>12.99</order_item_unit_price_in_vat>
+            <order_item_unit_discount_amount_in_vat>2.99</order_item_unit_discount_amount_in_vat>
+            <order_item_vat_code>2</order_item_vat_code>
+            <order_item_supplier_order_mode>0</order_item_supplier_order_mode>
+            <order_item_supplier_id>0</order_item_supplier_id>
+            <order_item_object_id>0</order_item_object_id>
+            <order_item_invoice_customer_id>1000</order_item_invoice_customer_id>
+          </OrderItem>
+        </OrderItems>
+      </Order>
+    </ns1:SaveQuoteRequest>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+
+HTTP/1.1 200 
+Content-type: application/xml; charset=utf-8
+Content-length: 2083
+
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <SaveQuoteResponse>
+      <order_id>3688</order_id>
+      <customer_id>1498</customer_id>
+      <created_new_order>1</created_new_order>
+      <order_type_id>5</order_type_id>
+      <remarks>
+      </remarks>
+      <OrderItems>
+        <OrderItem>
+          <order_item_status_id>0</order_item_status_id>
+          <order_item_status_text>Geen status</order_item_status_text>
+          <order_item_is_bicycle>0</order_item_is_bicycle>
+          <order_item_object_id>0</order_item_object_id>
+          <order_item_barcode>1000</order_item_barcode>
+          <order_item_quantity>2</order_item_quantity>
+          <order_item_description>Test product</order_item_description>
+          <order_item_unit_price_in_vat>12.99</order_item_unit_price_in_vat>
+          <order_item_unit_discount_amount_in_vat>2.99</order_item_unit_discount_amount_in_vat>
+          <order_item_vat_code>2</order_item_vat_code>
+          <order_item_line_id>1</order_item_line_id>
+          <order_item_object_id/>
+          <order_item_invoice_customer_id/>
+        </OrderItem>
+        <OrderItem>
+          <order_item_status_id>0</order_item_status_id>
+          <order_item_status_text>Geen status</order_item_status_text>
+          <order_item_is_bicycle>0</order_item_is_bicycle>
+          <order_item_object_id>0</order_item_object_id>
+          <order_item_barcode>1000</order_item_barcode>
+          <order_item_quantity>2</order_item_quantity>
+          <order_item_description>Test product</order_item_description>
+          <order_item_unit_price_in_vat>12.99</order_item_unit_price_in_vat>
+          <order_item_unit_discount_amount_in_vat>2.99</order_item_unit_discount_amount_in_vat>
+          <order_item_vat_code>2</order_item_vat_code>
+          <order_item_line_id>2</order_item_line_id>
+          <order_item_object_id/>
+          <order_item_invoice_customer_id>1000</order_item_invoice_customer_id>
+        </OrderItem>
+    </SaveQuoteResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+```
+
+
 ## UpdateOrder ##
 
 Update some header fields in the sales order. The following fields can be updated:
@@ -376,7 +645,7 @@ Update some header fields in the sales order. The following fields can be update
 
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -425,7 +694,7 @@ catch (\SoapFault $e) {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -634,7 +903,7 @@ Add new order items to an existing order.
 ```php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -686,7 +955,7 @@ catch (\SoapFault $e) {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -788,7 +1057,7 @@ Get an invoice document based on the invoice-number.
 <?php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
         [
           'trace' => true,
           'use' => SOAP_LITERAL,
@@ -811,7 +1080,7 @@ try {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -857,7 +1126,7 @@ Get an invoice document based on the sales order id or order reference.
 <?php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
         [
           'trace' => true,
           'use' => SOAP_LITERAL,
@@ -881,7 +1150,7 @@ try {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -966,7 +1235,7 @@ This method creates or updates an existing customer. Existing customers are matc
 <?php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -1014,7 +1283,7 @@ try {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_9/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml

@@ -341,6 +341,9 @@
                     <a href="#e-commerce-saveorder" class="toc-h2 toc-link" data-title="SaveOrder">SaveOrder</a>
                   </li>
                   <li>
+                    <a href="#e-commerce-savequote" class="toc-h2 toc-link" data-title="SaveQuote">SaveQuote</a>
+                  </li>
+                  <li>
                     <a href="#e-commerce-updateorder" class="toc-h2 toc-link" data-title="UpdateOrder">UpdateOrder</a>
                   </li>
                   <li>
@@ -3035,7 +3038,7 @@ This will save you bandwidth and time.
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">WSDL-SOAP</i>
-        <h6>/app/cs/api/ecommerce/soap_2_9/?wsdl</h6>
+        <h6>/app/cs/api/ecommerce/soap_2_10/?wsdl</h6>
     </div>
 </div>
 <h2 id='e-commerce-properties'>Properties</h2>
@@ -3344,7 +3347,7 @@ This will save you bandwidth and time.
 
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -3457,7 +3460,7 @@ This will save you bandwidth and time.
 <blockquote>
 <p>HTTP Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -3561,6 +3564,7 @@ Content-length: 2083
       <span class="nt">&lt;order_id&gt;</span>3688<span class="nt">&lt;/order_id&gt;</span>
       <span class="nt">&lt;customer_id&gt;</span>1498<span class="nt">&lt;/customer_id&gt;</span>
       <span class="nt">&lt;created_new_order&gt;</span>1<span class="nt">&lt;/created_new_order&gt;</span>
+      <span class="nt">&lt;order_type_id&gt;</span>1<span class="nt">&lt;/order_type_id&gt;</span>
       <span class="nt">&lt;remarks&gt;</span>
       <span class="nt">&lt;/remarks&gt;</span>
       <span class="nt">&lt;OrderItems&gt;</span>
@@ -3595,6 +3599,267 @@ Content-length: 2083
           <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
         <span class="nt">&lt;/OrderItem&gt;</span>
     <span class="nt">&lt;/SaveOrderResponse&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div><h2 id='e-commerce-savequote'>SaveQuote</h2>
+<p>Creates a new quote in CycleSoftware</p>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
+            <span class="s1">'encoding'</span> <span class="o">=&gt;</span> <span class="s1">'UTF-8'</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">);</span>
+   <span class="nv">$input</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+        <span class="s1">'Authentication'</span> <span class="o">=&gt;</span>
+            <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'your-username'</span><span class="p">,</span>
+                <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'your-password'</span><span class="p">,</span>
+                <span class="s1">'dealer_id'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span> <span class="c1">// store-id within account</span>
+            <span class="p">],</span>
+        <span class="s1">'Order'</span> <span class="o">=&gt;</span>
+            <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                <span class="s1">'order_reference_text'</span> <span class="o">=&gt;</span> <span class="s1">'5640c085abba9'</span><span class="p">,</span>
+                <span class="s1">'order_reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'319813049'</span><span class="p">,</span>
+                <span class="s1">'order_is_payed'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
+                <span class="s1">'order_payment_method_description'</span> <span class="o">=&gt;</span> <span class="s1">'psp'</span><span class="p">,</span>
+                <span class="s1">'order_ship_to_customer'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
+                <span class="s1">'order_shipment_method_description'</span> <span class="o">=&gt;</span> <span class="s1">'tnt'</span><span class="p">,</span>
+                <span class="s1">'order_date_preferred_delivery'</span> <span class="o">=&gt;</span> <span class="s1">'2015-12-01'</span><span class="p">,</span>
+                <span class="s1">'order_remarks'</span> <span class="o">=&gt;</span> <span class="s1">'remark example'</span><span class="p">,</span>
+                <span class="s1">'order_vat_country_code'</span> <span class="o">=&gt;</span> <span class="s1">'NL'</span><span class="p">,</span>
+                <span class="s1">'order_sales_employee_id '</span> <span class="o">=&gt;</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="s1">'Customer'</span> <span class="o">=&gt;</span>
+                    <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                        <span class="s1">'customer_cs_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'11'</span><span class="p">,</span>
+                        <span class="s1">'customer_reference'</span> <span class="o">=&gt;</span> <span class="s1">'unique-reference-customer'</span><span class="p">,</span>
+                        <span class="s1">'customer_name_prefix'</span> <span class="o">=&gt;</span> <span class="s1">'Dhr.'</span><span class="p">,</span>
+                        <span class="s1">'customer_name_initials'</span> <span class="o">=&gt;</span> <span class="s1">'J'</span><span class="p">,</span>
+                        <span class="s1">'customer_first_name'</span> <span class="o">=&gt;</span> <span class="s1">'Jan'</span><span class="p">,</span>
+                        <span class="s1">'customer_middle_name'</span> <span class="o">=&gt;</span> <span class="s1">'van'</span><span class="p">,</span>
+                        <span class="s1">'customer_last_name'</span> <span class="o">=&gt;</span> <span class="s1">'Dijk'</span><span class="p">,</span>
+                        <span class="s1">'customer_postal_code'</span> <span class="o">=&gt;</span> <span class="s1">'1000AA'</span><span class="p">,</span>
+                        <span class="s1">'customer_housenumber'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span>
+                        <span class="s1">'customer_housenumber_suffix'</span> <span class="o">=&gt;</span> <span class="s1">'B'</span><span class="p">,</span>
+                        <span class="s1">'customer_street_name'</span> <span class="o">=&gt;</span> <span class="s1">'Steenweg'</span><span class="p">,</span>
+                        <span class="s1">'customer_city'</span> <span class="o">=&gt;</span> <span class="s1">'Amsterdam'</span><span class="p">,</span>
+                        <span class="s1">'customer_phone'</span> <span class="o">=&gt;</span> <span class="s1">'0733030050'</span><span class="p">,</span>
+                        <span class="s1">'customer_mobile'</span> <span class="o">=&gt;</span> <span class="s1">'0612345678'</span><span class="p">,</span>
+                        <span class="s1">'customer_country_code_iso_3166'</span> <span class="o">=&gt;</span> <span class="s1">'NL'</span><span class="p">,</span>
+                        <span class="s1">'customer_email'</span> <span class="o">=&gt;</span> <span class="s1">'test@test.com'</span><span class="p">,</span>
+                        <span class="s1">'customer_newsletter'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
+                        <span class="s1">'customer_date_of_birth'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+                        <span class="s1">'customer_iban'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+                        <span class="s1">'DeliveryAddress'</span> <span class="o">=&gt;</span>
+                            <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                                <span class="s1">'delivery_address_use_delivery_address'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
+                                <span class="s1">'delivery_address_name'</span> <span class="o">=&gt;</span> <span class="s1">'Bedrijfsnaam'</span><span class="p">,</span>
+                                <span class="s1">'delivery_address_street_name'</span> <span class="o">=&gt;</span> <span class="s1">'Steenweg'</span><span class="p">,</span>
+                                <span class="s1">'delivery_address_postal_code'</span> <span class="o">=&gt;</span> <span class="s1">'1000AA'</span><span class="p">,</span>
+                                <span class="s1">'delivery_address_housenumber'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span>
+                                <span class="s1">'delivery_address_housenumber_suffix'</span> <span class="o">=&gt;</span> <span class="s1">'B'</span><span class="p">,</span>
+                                <span class="s1">'delivery_address_city'</span> <span class="o">=&gt;</span> <span class="s1">'Amsterdam'</span><span class="p">,</span>
+                                <span class="s1">'delivery_address_country_code_iso_3166'</span> <span class="o">=&gt;</span> <span class="s1">'NL'</span><span class="p">,</span>
+                                <span class="s1">'delivery_address_remarks'</span> <span class="o">=&gt;</span> <span class="s1">'Extra opmerking'</span><span class="p">,</span>
+                            <span class="p">],</span>
+                    <span class="p">],</span>
+                <span class="s1">'OrderItems'</span> <span class="o">=&gt;</span>
+                    <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                        <span class="s1">'OrderItem'</span> <span class="o">=&gt;</span>
+                            <span class="p">[</span>
+                                    <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                                        <span class="s1">'order_item_is_bicycle'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_barcode'</span> <span class="o">=&gt;</span> <span class="s1">'88237237239'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_quantity'</span> <span class="o">=&gt;</span> <span class="s1">'-1'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_description'</span> <span class="o">=&gt;</span> <span class="s1">'Some article'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_unit_price_in_vat'</span> <span class="o">=&gt;</span> <span class="s1">'1021'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_unit_discount_amount_in_vat'</span> <span class="o">=&gt;</span> <span class="s1">'21'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_vat_code'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_supplier_order_mode'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_invoice_customer_id'</span> <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span>
+                                    <span class="p">],</span>
+                                    <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                                        <span class="s1">'order_item_is_bicycle'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_barcode'</span> <span class="o">=&gt;</span> <span class="s1">'47348340934'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_quantity'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_description'</span> <span class="o">=&gt;</span> <span class="s1">'Some Article'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_unit_price_in_vat'</span> <span class="o">=&gt;</span> <span class="s1">'1521'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_unit_discount_amount_in_vat'</span> <span class="o">=&gt;</span> <span class="s1">'21'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_vat_code'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_supplier_order_mode'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_invoice_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span>
+                                    <span class="p">],</span>
+                                    <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                                        <span class="s1">'order_item_is_bicycle'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_barcode'</span> <span class="o">=&gt;</span> <span class="s1">'43934939344'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_quantity'</span> <span class="o">=&gt;</span> <span class="s1">'3'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_description'</span> <span class="o">=&gt;</span> <span class="s1">'Some article'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_unit_price_in_vat'</span> <span class="o">=&gt;</span> <span class="s1">'1021'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_unit_discount_amount_in_vat'</span> <span class="o">=&gt;</span> <span class="s1">'21'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_vat_code'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_supplier_order_mode'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
+                                        <span class="s1">'order_item_invoice_customer_id'</span> <span class="o">=&gt;</span> <span class="kc">null</span><span class="p">,</span>
+                                    <span class="p">],</span>
+                            <span class="p">],</span>
+                    <span class="p">],</span>
+            <span class="p">],</span>
+    <span class="p">];</span>
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="nf">SaveQuote</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
+    <span class="nv">$order_id</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="n">order_id</span><span class="p">;</span>
+    <span class="nv">$customer_id</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="n">customer_id</span><span class="p">;</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$result</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="err">\</span><span class="nc">SoapFault</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">text/xml; charset=utf-8</span>
+<span class="na">User-agent</span><span class="p">:</span> <span class="s">SoapClient</span>
+<span class="na">Soapaction</span><span class="p">:</span> <span class="s">"SaveQuote"</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">4614</span>
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span> <span class="na">xmlns:ns1=</span><span class="s">"http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;ns1:SaveQuoteRequest&gt;</span>
+      <span class="nt">&lt;Authentication&gt;</span>
+        <span class="nt">&lt;username&gt;</span>your-username<span class="nt">&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;</span>your-password<span class="nt">&lt;/password&gt;</span>
+        <span class="nt">&lt;dealer_id&gt;</span>1<span class="nt">&lt;/dealer_id&gt;</span>
+      <span class="nt">&lt;/Authentication&gt;</span>
+      <span class="nt">&lt;Order&gt;</span>
+        <span class="nt">&lt;order_reference_id&gt;</span>319813049<span class="nt">&lt;/order_reference_id&gt;</span>
+        <span class="nt">&lt;order_reference_text&gt;</span>5640c085abba9<span class="nt">&lt;/order_reference_text&gt;</span>
+        <span class="nt">&lt;order_is_payed&gt;</span>0<span class="nt">&lt;/order_is_payed&gt;</span>
+        <span class="nt">&lt;order_payment_method_description&gt;</span>psp<span class="nt">&lt;/order_payment_method_description&gt;</span>
+        <span class="nt">&lt;order_ship_to_customer&gt;</span>1<span class="nt">&lt;/order_ship_to_customer&gt;</span>
+        <span class="nt">&lt;order_shipment_method_description&gt;</span>tnt<span class="nt">&lt;/order_shipment_method_description&gt;</span>
+        <span class="nt">&lt;order_date_preferred_delivery&gt;</span>2015-12-01<span class="nt">&lt;/order_date_preferred_delivery&gt;</span>
+        <span class="nt">&lt;order_remarks&gt;</span>remark example<span class="nt">&lt;/order_remarks&gt;</span>
+        <span class="nt">&lt;order_vat_country_code&gt;</span>NL<span class="nt">&lt;/order_vat_country_code&gt;</span>
+        <span class="nt">&lt;order_sales_employee_id/&gt;</span>
+        <span class="nt">&lt;Customer&gt;</span>
+          <span class="nt">&lt;customer_cs_customer_id&gt;</span>0<span class="nt">&lt;/customer_cs_customer_id&gt;</span>
+          <span class="nt">&lt;customer_reference&gt;</span>unique-reference-customer<span class="nt">&lt;/customer_reference&gt;</span>
+          <span class="nt">&lt;customer_name_prefix&gt;</span>J<span class="nt">&lt;/customer_name_prefix&gt;</span>
+          <span class="nt">&lt;customer_middle_name&gt;</span>van<span class="nt">&lt;/customer_middle_name&gt;</span>
+          <span class="nt">&lt;customer_last_name&gt;</span>Dijk<span class="nt">&lt;/customer_last_name&gt;</span>
+          <span class="nt">&lt;customer_postal_code&gt;</span>1000AA<span class="nt">&lt;/customer_postal_code&gt;</span>
+          <span class="nt">&lt;customer_housenumber&gt;</span>2<span class="nt">&lt;/customer_housenumber&gt;</span>
+          <span class="nt">&lt;customer_housenumber_suffix&gt;</span>B<span class="nt">&lt;/customer_housenumber_suffix&gt;</span>
+          <span class="nt">&lt;customer_street_name&gt;</span>Steenweg<span class="nt">&lt;/customer_street_name&gt;</span>
+          <span class="nt">&lt;customer_city&gt;</span>Amsterdam<span class="nt">&lt;/customer_city&gt;</span>
+          <span class="nt">&lt;customer_phone&gt;</span>0733030050<span class="nt">&lt;/customer_phone&gt;</span>
+          <span class="nt">&lt;customer_mobile&gt;</span>0612345678<span class="nt">&lt;/customer_mobile&gt;</span>
+          <span class="nt">&lt;customer_country_code_iso_3166&gt;</span>NL<span class="nt">&lt;/customer_country_code_iso_3166&gt;</span>
+          <span class="nt">&lt;customer_email&gt;</span>test@test.com<span class="nt">&lt;/customer_email&gt;</span>
+          <span class="nt">&lt;customer_newsletter&gt;</span>1<span class="nt">&lt;/customer_newsletter&gt;</span>
+          <span class="nt">&lt;customer_iban&gt;</span>NL69INGB0123456789<span class="nt">&lt;/customer_iban&gt;</span>
+          <span class="nt">&lt;customer_date_of_birth&gt;</span>1988-09-29<span class="nt">&lt;/customer_date_of_birth&gt;</span>
+          <span class="nt">&lt;DeliveryAddress&gt;</span>
+            <span class="nt">&lt;delivery_address_use_delivery_address&gt;</span>1<span class="nt">&lt;/delivery_address_use_delivery_address&gt;</span>
+            <span class="nt">&lt;delivery_address_name&gt;</span>CycleSoftware<span class="nt">&lt;/delivery_address_name&gt;</span>
+            <span class="nt">&lt;delivery_address_street_name&gt;</span>Kievitsven<span class="nt">&lt;/delivery_address_street_name&gt;</span>
+            <span class="nt">&lt;delivery_address_postal_code&gt;</span>5249JJ<span class="nt">&lt;/delivery_address_postal_code&gt;</span>
+            <span class="nt">&lt;delivery_address_housenumber&gt;</span>4<span class="nt">&lt;/delivery_address_housenumber&gt;</span>
+            <span class="nt">&lt;delivery_address_housenumber_suffix&gt;</span>b<span class="nt">&lt;/delivery_address_housenumber_suffix&gt;</span>
+            <span class="nt">&lt;delivery_address_city&gt;</span>Rosmalen<span class="nt">&lt;/delivery_address_city&gt;</span>
+            <span class="nt">&lt;delivery_address_country_code_iso_3166&gt;</span>NL<span class="nt">&lt;/delivery_address_country_code_iso_3166&gt;</span>
+            <span class="nt">&lt;delivery_address_remarks&gt;</span>Bam<span class="nt">&lt;/delivery_address_remarks&gt;</span>
+          <span class="nt">&lt;/DeliveryAddress&gt;</span>
+        <span class="nt">&lt;/Customer&gt;</span>
+        <span class="nt">&lt;OrderItems&gt;</span>
+          <span class="nt">&lt;OrderItem&gt;</span>
+            <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+            <span class="nt">&lt;order_item_barcode&gt;</span>1000<span class="nt">&lt;/order_item_barcode&gt;</span>
+            <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+            <span class="nt">&lt;order_item_description&gt;</span>DescriptionTest<span class="nt">&lt;/order_item_description&gt;</span>
+            <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>12.99<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+            <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+            <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+            <span class="nt">&lt;order_item_supplier_order_mode&gt;</span>0<span class="nt">&lt;/order_item_supplier_order_mode&gt;</span>
+            <span class="nt">&lt;order_item_supplier_id&gt;</span>0<span class="nt">&lt;/order_item_supplier_id&gt;</span>
+            <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+            <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>0<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
+          <span class="nt">&lt;/OrderItem&gt;</span>
+          <span class="nt">&lt;OrderItem&gt;</span>
+            <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+            <span class="nt">&lt;order_item_barcode&gt;</span>1000<span class="nt">&lt;/order_item_barcode&gt;</span>
+            <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+            <span class="nt">&lt;order_item_description&gt;</span>DescriptionTest<span class="nt">&lt;/order_item_description&gt;</span>
+            <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>12.99<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+            <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+            <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+            <span class="nt">&lt;order_item_supplier_order_mode&gt;</span>0<span class="nt">&lt;/order_item_supplier_order_mode&gt;</span>
+            <span class="nt">&lt;order_item_supplier_id&gt;</span>0<span class="nt">&lt;/order_item_supplier_id&gt;</span>
+            <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+            <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
+          <span class="nt">&lt;/OrderItem&gt;</span>
+        <span class="nt">&lt;/OrderItems&gt;</span>
+      <span class="nt">&lt;/Order&gt;</span>
+    <span class="nt">&lt;/ns1:SaveQuoteRequest&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+
+
+HTTP/1.1 200 
+Content-type: application/xml; charset=utf-8
+Content-length: 2083
+
+<span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;SaveQuoteResponse&gt;</span>
+      <span class="nt">&lt;order_id&gt;</span>3688<span class="nt">&lt;/order_id&gt;</span>
+      <span class="nt">&lt;customer_id&gt;</span>1498<span class="nt">&lt;/customer_id&gt;</span>
+      <span class="nt">&lt;created_new_order&gt;</span>1<span class="nt">&lt;/created_new_order&gt;</span>
+      <span class="nt">&lt;order_type_id&gt;</span>5<span class="nt">&lt;/order_type_id&gt;</span>
+      <span class="nt">&lt;remarks&gt;</span>
+      <span class="nt">&lt;/remarks&gt;</span>
+      <span class="nt">&lt;OrderItems&gt;</span>
+        <span class="nt">&lt;OrderItem&gt;</span>
+          <span class="nt">&lt;order_item_status_id&gt;</span>0<span class="nt">&lt;/order_item_status_id&gt;</span>
+          <span class="nt">&lt;order_item_status_text&gt;</span>Geen status<span class="nt">&lt;/order_item_status_text&gt;</span>
+          <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+          <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+          <span class="nt">&lt;order_item_barcode&gt;</span>1000<span class="nt">&lt;/order_item_barcode&gt;</span>
+          <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+          <span class="nt">&lt;order_item_description&gt;</span>Test product<span class="nt">&lt;/order_item_description&gt;</span>
+          <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>12.99<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+          <span class="nt">&lt;order_item_line_id&gt;</span>1<span class="nt">&lt;/order_item_line_id&gt;</span>
+          <span class="nt">&lt;order_item_object_id/&gt;</span>
+          <span class="nt">&lt;order_item_invoice_customer_id/&gt;</span>
+        <span class="nt">&lt;/OrderItem&gt;</span>
+        <span class="nt">&lt;OrderItem&gt;</span>
+          <span class="nt">&lt;order_item_status_id&gt;</span>0<span class="nt">&lt;/order_item_status_id&gt;</span>
+          <span class="nt">&lt;order_item_status_text&gt;</span>Geen status<span class="nt">&lt;/order_item_status_text&gt;</span>
+          <span class="nt">&lt;order_item_is_bicycle&gt;</span>0<span class="nt">&lt;/order_item_is_bicycle&gt;</span>
+          <span class="nt">&lt;order_item_object_id&gt;</span>0<span class="nt">&lt;/order_item_object_id&gt;</span>
+          <span class="nt">&lt;order_item_barcode&gt;</span>1000<span class="nt">&lt;/order_item_barcode&gt;</span>
+          <span class="nt">&lt;order_item_quantity&gt;</span>2<span class="nt">&lt;/order_item_quantity&gt;</span>
+          <span class="nt">&lt;order_item_description&gt;</span>Test product<span class="nt">&lt;/order_item_description&gt;</span>
+          <span class="nt">&lt;order_item_unit_price_in_vat&gt;</span>12.99<span class="nt">&lt;/order_item_unit_price_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_unit_discount_amount_in_vat&gt;</span>2.99<span class="nt">&lt;/order_item_unit_discount_amount_in_vat&gt;</span>
+          <span class="nt">&lt;order_item_vat_code&gt;</span>2<span class="nt">&lt;/order_item_vat_code&gt;</span>
+          <span class="nt">&lt;order_item_line_id&gt;</span>2<span class="nt">&lt;/order_item_line_id&gt;</span>
+          <span class="nt">&lt;order_item_object_id/&gt;</span>
+          <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
+        <span class="nt">&lt;/OrderItem&gt;</span>
+    <span class="nt">&lt;/SaveQuoteResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 </code></pre></div><h2 id='e-commerce-updateorder'>UpdateOrder</h2>
@@ -3652,7 +3917,7 @@ Content-length: 2083
 
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -3700,7 +3965,7 @@ Content-length: 2083
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -4000,7 +4265,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <p>Add new order items to an existing order.</p>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -4051,7 +4316,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -4148,7 +4413,7 @@ Content-length: 2464
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
           <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
           <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -4170,7 +4435,7 @@ Content-length: 2464
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -4211,7 +4476,7 @@ Content-length: 396
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
           <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
           <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -4234,7 +4499,7 @@ Content-length: 396
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -4314,7 +4579,7 @@ Content-length: 2595
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_9/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -4361,7 +4626,7 @@ Content-length: 2595
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_9/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>

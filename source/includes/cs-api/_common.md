@@ -37,6 +37,7 @@ Get a set of enums with identifiers and descriptions used in various APIs
 | `transaction_item_types`  | Transaction item type descriptions (item_type / row_type)                                   |
 | `service_item_status`     | Status descriptions for object service items                                                |
 | `entity_types`            | Entity types and descriptions, used as reference to an object in API requests and responses |
+| `voucher_types`           | Voucher types and descriptions                                                              |
 
 
 > HTTP Request

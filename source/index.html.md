@@ -31,6 +31,7 @@ includes:
 - cs-api/_supplier_orders
 - cs-api/_workshop
 - cs-api/_workshop_orders
+- cs-api/_vouchers
 - cs-api/_webhooks
 
 search: true

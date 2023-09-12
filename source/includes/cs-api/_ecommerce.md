@@ -92,7 +92,6 @@ The latest definition of the WSDL specification can be found at:
 | `Payments.Payment[].payment_method_id`                                  | `integer&#124;string` | The payment method ID or description e.g. `1` or `PSP` . See common enum API `payment_methods`                                                                                                                                                                                                      |
 | `Payments.Payment[].payment_amount`                                     | `decimal`             | The payment amount e.g. `100.00`                                                                                                                                                                                                                                                                    |
 | `Payments.Payment[].voucher_or_discount_code`                           | `?string`             | The voucher code e.g. `1000-2000-3000-4000`                                                                                                                                                                                                                                                         |
-| `Payments.Payment[].loyalty_points`                                     | `?integer`            | The number of loyalty points to use e.g.`100`                                                                                                                                                                                                                                                       |
 | `Payments.Payment[].payment_for_customer_id`                            | `?integer`            | The customer ID to assign the payment to when using `order_item_invoice_customer_id`                                                                                                                                                                                                                |
 
 ## SaveOrder ##
@@ -213,21 +212,18 @@ try {
                                         'payment_amount' => '-1021.00',
                                         'voucher_or_discount_code' => null,
                                         'payment_for_customer_id' => '4',
-                                        'loyalty_points' => null,
                                     ],
                                     (object)[
                                         'payment_method_id' => '5',
                                         'payment_amount' => '1521.00',
                                         'voucher_or_discount_code' => '1000-2000-3000-4000',
                                         'payment_for_customer_id' => '2',
-                                        'loyalty_points' => null,
                                     ],
                                     (object)[
                                         'payment_method_id' => '3',
                                         'payment_amount' => '3063.00',
                                         'voucher_or_discount_code' => null,
                                         'payment_for_customer_id' => null,
-                                        'loyalty_points' => null,
                                     ],
                             ],
                     ],

@@ -1,6 +1,7 @@
 # Introduction #
 
-Welcome to the CycleSoftware Supplier integration documentation. In this documentation we will outline the different components which CycleSoftware can integrate to facilitate supplier services within CycleSoftware.
+Welcome to the CycleSoftware Supplier integration documentation. In this documentation we will outline the different
+components which CycleSoftware can integrate to facilitate supplier services within CycleSoftware.
 
 ## Definitions ##
 
@@ -31,18 +32,25 @@ The integration consists of the following topics:
 * Spare parts
 
 <aside class="notice">
-  You can contact <a href="mailto:data@cyclesoftware.nl">support</a> for more information
+  You can contact us by e-mail for more information
+
+<a href="mailto:data@cyclesoftware.nl">Dutch</a> -
+<a href="mailto:data@cyclesoftware.be">Belgium</a> -
+<a href="mailto:data@cyclesoftware.fr">French</a>
 </aside>
 
 ## Authentication ##
 
-Every store in CycleSoftware can setup it's credentials for communication to the supplier. For example a customer number or a combination of username+password.
+Every store in CycleSoftware can setup it's credentials for communication to the supplier. For example a customer number
+or a combination of username+password.
 
-To enhance the onboarding process we can setup an e-mail address. When a store wants to integrate you'll receive an e-mail with the onboarding request for a specific store.
+To enhance the onboarding process we can setup an e-mail address. When a store wants to integrate you'll receive an
+e-mail with the onboarding request for a specific store.
 
 ## Examples ##
 
-In this documentation you'll find examples. This is just to illustrate which requests and responses are integrated. It is not necessary to use the same field names or structure.
+In this documentation you'll find examples. This is just to illustrate which requests and responses are integrated. It
+is not necessary to use the same field names or structure.
 
 We support a wide range of different integration content types:
 

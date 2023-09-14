@@ -6,7 +6,13 @@ The supplier will provide a webservice or FTP location with a fixed file-format 
 
 ## Import templates ##
 
-If you are unable to provide the article data trough a webservice or ftp it is possible to send them by e-mail to us on data@cyclesoftware.nl this will uassually be imported within 10 days.
+If you are unable to provide the article data trough a webservice or ftp it is possible to send them by e-mail to us this will uassually be imported within 10 days.
+
+Dutch: data@cyclesoftware.nl
+
+Belgium: data@cyclesoftware.be
+
+France: data@cyclesoftware.fr
 
 You can use or example import template witch you can download in your language.
 

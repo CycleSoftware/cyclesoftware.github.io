@@ -36,7 +36,7 @@ The latest definition of the WSDL specification can be found at:
 | `Authentication[].dealer_id`                                            | `string`              | store-id or api-key. e.g. `1`                                                                                                                                                                                                                                                                       |
 | `Order.order_reference_id`                                              | `string`              | Unique order reference id `319813049`                                                                                                                                                                                                                                                               |
 | `Order.order_reference_text`                                            | `string`              | Unique order reference text `5640c085abba9`                                                                                                                                                                                                                                                         |
-| `Order.order_payment_method_description`                                | `string`              | Use “psp” for payments using a Payment service Provider (e.g. iDEAL, Bancontact etc.): `psp`,`pin`,`bancontact`,`contant`,`chip`,`creditcard`,`bank`,`rembours`,`ecocheques`                                                                                                                        |
+| `Order.order_payment_method_description`                                | `string`              | Legacy payment description field. This field will not trigger a payment (e.g. `iDEAL`, `Bancontact`)                                                                                                                                                                                                |
 | `Order.order_ship_to_customer`                                          | `boolean`             | boolean `1` or `0`                                                                                                                                                                                                                                                                                  |
 | `Order.order_shipment_method_description`                               | `string`              | e.g. `tnt`                                                                                                                                                                                                                                                                                          |
 | `Order.order_date_preferred_delivery`                                   | `date`                | e.g. `2015-12-01`                                                                                                                                                                                                                                                                                   |
@@ -66,7 +66,7 @@ The latest definition of the WSDL specification can be found at:
 | `Order.OrderItems.OrderItem[].order_item_object_id`                     | `integer`             | Reserve this specific object for this order item                                                                                                                                                                                                                                                    |
 | `Order.OrderItems.OrderItem[].order_item_invoice_customer_id`           | `integer`             | If supplied with integer value > 0 this order item will be invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder should be the “rider” or “consumer”                                                                                                                     |
 | `UpdateValues.UpdateValue`                                              | `object[]`            | Array of UpdateValue objects                                                                                                                                                                                                                                                                        |
-| `UpdateValues.UpdateValue[].name`                                       | `string`              | Field to update: `order_reference_text`, `order_is_payed`,`order_payment_method_description`,`order_ship_to_customer`,`order_shipment_method_description`,`order_date_preferred_delivery`,`order_track_trace_reference`,`order_remarks`                                                             |
+| `UpdateValues.UpdateValue[].name`                                       | `string`              | Field to update: `order_reference_text`, `order_payment_method_description`,`order_ship_to_customer`,`order_shipment_method_description`,`order_date_preferred_delivery`,`order_track_trace_reference`,`order_remarks`                                                                              |
 | `UpdateValues.UpdateValue[].value`                                      | `string`              | e.g. `Will pickup at 13.00`                                                                                                                                                                                                                                                                         |
 | `Customer.customer_type_name`                                           | `string`              | One of the following: `Klant`, `Leverancier`, `E-commerce`, `Zakelijk`, `Lease-rijder`, `Lease-maatschappij`, `Werkgever`                                                                                                                                                                           |
 | `Customer.customer_cs_customer_id`                                      | `string`              | e.g. `235238848`                                                                                                                                                                                                                                                                                    |
@@ -332,7 +332,18 @@ Content-length: 4614
       </Order>
       <Payments>
         <Payment>
-            ......@todo
+          <payment_method_id>12</payment_method_id>
+          <payment_amount>10.00</payment_amount>
+          <payment_for_customer_id>1000</payment_for_customer_id>
+        </Payment>
+        <Payment>
+          <payment_method_id>12</payment_method_id>
+          <payment_amount>10.00</payment_amount>
+        </Payment>
+        <Payment>
+          <payment_method_id>5</payment_method_id>
+          <payment_amount>0.01</payment_amount>
+          <voucher_or_discount_code>1000-2000-3000-4000</voucher_or_discount_code>
         </Payment>
       </Payments>
     </ns1:SaveOrderRequest>
@@ -659,16 +670,16 @@ Content-length: 2083
 
 Update some header fields in the sales order. The following fields can be updated:
 
-| Property                            | Type     | Description                                                                                                                      |
-|-------------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------|
-| `order_reference_text`              | `string` | Order reference text value                                                                                                       |
-| `order_is_payed`                    | `bool`   | Mark as payed. If the value in the order is  `true` it cannot be reverted                                                        |
-| `order_payment_method_description`  | `string` | If the description matches a payment method in CS this will be used in payment processing. See common endpoint `payment_methods` |
-| `order_ship_to_customer`            | `bool`   | `true` if the order will be shipped to the customer, `false` for pickup in store                                                 |
-| `order_shipment_method_description` | `string` | Description of shipment method                                                                                                   |
-| `order_date_preferred_delivery`     | `date`   | Date of preferred delivery e.g. `2023-01-01`                                                                                     |
-| `order_track_trace_reference`       | `string` | Track and Trace ID                                                                                                               |
-| `order_remarks`                     | `string` | General remarks about the order                                                                                                  |
+| Property                            | Type       | Description                                                                                       |
+|-------------------------------------|------------|---------------------------------------------------------------------------------------------------|
+| `order_reference_text`              | `string`   | Order reference text value                                                                        |
+| `order_payment_method_description`  | `string`   | Legacy field with description of the payment method, this will not process a payment on the order |
+| `order_ship_to_customer`            | `bool`     | `true` if the order will be shipped to the customer, `false` for pickup in store                  |
+| `order_shipment_method_description` | `string`   | Description of shipment method                                                                    |
+| `order_date_preferred_delivery`     | `date`     | Date of preferred delivery e.g. `2023-01-01`                                                      |
+| `order_track_trace_reference`       | `string`   | Track and Trace ID                                                                                |
+| `order_remarks`                     | `string`   | General remarks about the order                                                                   |
+| `AddPayments`                       | `object[]` | Add payments to the order, see `Payments.Payment` structure                                       |
 
 ```php
 <?php
@@ -711,6 +722,21 @@ try {
                                 'value' => '615beab217c76',
                             ],
                     ],
+            ],
+        'AddPayments' =>  (object)[
+            'Payment' => [
+                    (object)[
+                        'payment_method_id' => '2',
+                        'payment_amount' => '100.00',
+                        'voucher_or_discount_code' => null,
+                        'payment_for_customer_id' => '4',
+                    ],
+                    (object)[
+                        'payment_method_id' => '5',
+                        'payment_amount' => '1521.00',
+                        'voucher_or_discount_code' => '1000-2000-3000-4000',
+                    ],
+                ],
             ],
     ];
     $result = $client->UpdateOrder($input);
@@ -755,6 +781,22 @@ Content-length: 846
           <value>Will pickup at 13.00</value>
         </UpdateValue>
       </UpdateValues>
+      <AddPayments>
+        <Payment>
+          <payment_method_id>12</payment_method_id>
+          <payment_amount>10.00</payment_amount>
+          <payment_for_customer_id>1000</payment_for_customer_id>
+        </Payment>
+        <Payment>
+          <payment_method_id>12</payment_method_id>
+          <payment_amount>10.00</payment_amount>
+        </Payment>
+        <Payment>
+          <payment_method_id>5</payment_method_id>
+          <payment_amount>0.01</payment_amount>
+          <voucher_or_discount_code>1000-2000-3000-4000</voucher_or_discount_code>
+        </Payment>
+      </AddPayments>
     </ns1:UpdateOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

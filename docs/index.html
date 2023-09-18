@@ -559,13 +559,24 @@
               </ul>
           </li>
           <li>
+            <a href="#vouchers" class="toc-h1 toc-link" data-title="Vouchers">Vouchers</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#vouchers-voucher-object" class="toc-h2 toc-link" data-title="Voucher (object)">Voucher (object)</a>
+                  </li>
+                  <li>
+                    <a href="#vouchers-voucher-info" class="toc-h2 toc-link" data-title="Voucher info">Voucher info</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#webhooks-update-workshop-order-webhook-request" class="toc-h2 toc-link" data-title="Webhook request">Webhook request</a>
+                    <a href="#webhooks-voucher-info-webhook-request" class="toc-h2 toc-link" data-title="Webhook request">Webhook request</a>
                   </li>
                   <li>
-                    <a href="#webhooks-update-workshop-order-payload-structure" class="toc-h2 toc-link" data-title="Payload structure">Payload structure</a>
+                    <a href="#webhooks-voucher-info-payload-structure" class="toc-h2 toc-link" data-title="Payload structure">Payload structure</a>
                   </li>
                   <li>
                     <a href="#webhooks-customers" class="toc-h2 toc-link" data-title="Customers">Customers</a>
@@ -993,6 +1004,10 @@ available.</p>
 <tr>
 <td><code>entity_types</code></td>
 <td>Entity types and descriptions, used as reference to an object in API requests and responses</td>
+</tr>
+<tr>
+<td><code>voucher_types</code></td>
+<td>Voucher types and descriptions</td>
 </tr>
 </tbody></table>
 
@@ -3038,7 +3053,7 @@ This will save you bandwidth and time.
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">WSDL-SOAP</i>
-        <h6>/app/cs/api/ecommerce/soap_2_10/?wsdl</h6>
+        <h6>/app/cs/api/ecommerce/soap_2_11/?wsdl</h6>
     </div>
 </div>
 <h2 id='e-commerce-properties'>Properties</h2>
@@ -3075,14 +3090,9 @@ This will save you bandwidth and time.
 <td>Unique order reference text <code>5640c085abba9</code></td>
 </tr>
 <tr>
-<td><code>Order.order_is_payed</code></td>
-<td><code>boolean</code></td>
-<td>boolean <code>1</code> or <code>0</code></td>
-</tr>
-<tr>
 <td><code>Order.order_payment_method_description</code></td>
 <td><code>string</code></td>
-<td>Use “psp” for payments using a Payment service Provider (e.g. iDEAL, Bancontact etc.): <code>psp</code>,<code>pin</code>,<code>bancontact</code>,<code>contant</code>,<code>chip</code>,<code>creditcard</code>,<code>bank</code>,<code>rembours</code>,<code>ecocheques</code></td>
+<td>Legacy payment description field. This field will not trigger a payment (e.g. <code>iDEAL</code>, <code>Bancontact</code>)</td>
 </tr>
 <tr>
 <td><code>Order.order_ship_to_customer</code></td>
@@ -3232,7 +3242,7 @@ This will save you bandwidth and time.
 <tr>
 <td><code>UpdateValues.UpdateValue[].name</code></td>
 <td><code>string</code></td>
-<td>Field to update: <code>order_reference_text</code>, <code>order_is_payed</code>,<code>order_payment_method_description</code>,<code>order_ship_to_customer</code>,<code>order_shipment_method_description</code>,<code>order_date_preferred_delivery</code>,<code>order_track_trace_reference</code>,<code>order_remarks</code></td>
+<td>Field to update: <code>order_reference_text</code>, <code>order_payment_method_description</code>,<code>order_ship_to_customer</code>,<code>order_shipment_method_description</code>,<code>order_date_preferred_delivery</code>,<code>order_track_trace_reference</code>,<code>order_remarks</code></td>
 </tr>
 <tr>
 <td><code>UpdateValues.UpdateValue[].value</code></td>
@@ -3339,6 +3349,31 @@ This will save you bandwidth and time.
 <td><code>string</code></td>
 <td>e.g. <code>NL69INGB0123456789</code></td>
 </tr>
+<tr>
+<td><code>Payments.Payment</code></td>
+<td><code>object[]</code></td>
+<td>Array of Payment objects</td>
+</tr>
+<tr>
+<td><code>Payments.Payment[].payment_method_id</code></td>
+<td><code>integer&amp;#124;string</code></td>
+<td>The payment method ID or description e.g. <code>1</code> or <code>PSP</code> . See common enum API <code>payment_methods</code></td>
+</tr>
+<tr>
+<td><code>Payments.Payment[].payment_amount</code></td>
+<td><code>decimal</code></td>
+<td>The payment amount e.g. <code>100.00</code></td>
+</tr>
+<tr>
+<td><code>Payments.Payment[].voucher_or_discount_code</code></td>
+<td><code>?string</code></td>
+<td>The voucher code e.g. <code>1000-2000-3000-4000</code></td>
+</tr>
+<tr>
+<td><code>Payments.Payment[].payment_for_customer_id</code></td>
+<td><code>?integer</code></td>
+<td>The customer ID to assign the payment to when using <code>order_item_invoice_customer_id</code></td>
+</tr>
 </tbody></table>
 <h2 id='e-commerce-saveorder'>SaveOrder</h2>
 <p>Creates a new order in CycleSoftware</p>
@@ -3347,7 +3382,7 @@ This will save you bandwidth and time.
 
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -3365,7 +3400,6 @@ This will save you bandwidth and time.
             <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
                 <span class="s1">'order_reference_text'</span> <span class="o">=&gt;</span> <span class="s1">'5640c085abba9'</span><span class="p">,</span>
                 <span class="s1">'order_reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'319813049'</span><span class="p">,</span>
-                <span class="s1">'order_is_payed'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
                 <span class="s1">'order_payment_method_description'</span> <span class="o">=&gt;</span> <span class="s1">'psp'</span><span class="p">,</span>
                 <span class="s1">'order_ship_to_customer'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
                 <span class="s1">'order_shipment_method_description'</span> <span class="o">=&gt;</span> <span class="s1">'tnt'</span><span class="p">,</span>
@@ -3447,6 +3481,32 @@ This will save you bandwidth and time.
                             <span class="p">],</span>
                     <span class="p">],</span>
             <span class="p">],</span>
+        <span class="s1">'Payments'</span> <span class="o">=&gt;</span>
+                    <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                        <span class="s1">'Payment'</span> <span class="o">=&gt;</span>
+                            <span class="p">[</span>
+                                    <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                                        <span class="s1">'payment_method_id'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span>
+                                        <span class="s1">'payment_amount'</span> <span class="o">=&gt;</span> <span class="s1">'-1021.00'</span><span class="p">,</span>
+                                        <span class="s1">'voucher_or_discount_code'</span> <span class="o">=&gt;</span> <span class="kc">null</span><span class="p">,</span>
+                                        <span class="s1">'payment_for_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'4'</span><span class="p">,</span>
+                                    <span class="p">],</span>
+                                    <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                                        <span class="s1">'payment_method_id'</span> <span class="o">=&gt;</span> <span class="s1">'5'</span><span class="p">,</span>
+                                        <span class="s1">'payment_amount'</span> <span class="o">=&gt;</span> <span class="s1">'1521.00'</span><span class="p">,</span>
+                                        <span class="s1">'voucher_or_discount_code'</span> <span class="o">=&gt;</span> <span class="s1">'1000-2000-3000-4000'</span><span class="p">,</span>
+                                        <span class="s1">'payment_for_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span>
+                                    <span class="p">],</span>
+                                    <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                                        <span class="s1">'payment_method_id'</span> <span class="o">=&gt;</span> <span class="s1">'3'</span><span class="p">,</span>
+                                        <span class="s1">'payment_amount'</span> <span class="o">=&gt;</span> <span class="s1">'3063.00'</span><span class="p">,</span>
+                                        <span class="s1">'voucher_or_discount_code'</span> <span class="o">=&gt;</span> <span class="kc">null</span><span class="p">,</span>
+                                        <span class="s1">'payment_for_customer_id'</span> <span class="o">=&gt;</span> <span class="kc">null</span><span class="p">,</span>
+                                    <span class="p">],</span>
+                            <span class="p">],</span>
+                    <span class="p">],</span>
+            <span class="p">],</span>
+<span class="p">]</span>
     <span class="p">];</span>
     <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="nf">SaveOrder</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
     <span class="nv">$order_id</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="n">order_id</span><span class="p">;</span>
@@ -3460,7 +3520,7 @@ This will save you bandwidth and time.
 <blockquote>
 <p>HTTP Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_11/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -3481,7 +3541,6 @@ This will save you bandwidth and time.
       <span class="nt">&lt;Order&gt;</span>
         <span class="nt">&lt;order_reference_id&gt;</span>319813049<span class="nt">&lt;/order_reference_id&gt;</span>
         <span class="nt">&lt;order_reference_text&gt;</span>5640c085abba9<span class="nt">&lt;/order_reference_text&gt;</span>
-        <span class="nt">&lt;order_is_payed&gt;</span>1<span class="nt">&lt;/order_is_payed&gt;</span>
         <span class="nt">&lt;order_payment_method_description&gt;</span>psp<span class="nt">&lt;/order_payment_method_description&gt;</span>
         <span class="nt">&lt;order_ship_to_customer&gt;</span>1<span class="nt">&lt;/order_ship_to_customer&gt;</span>
         <span class="nt">&lt;order_shipment_method_description&gt;</span>tnt<span class="nt">&lt;/order_shipment_method_description&gt;</span>
@@ -3548,6 +3607,22 @@ This will save you bandwidth and time.
           <span class="nt">&lt;/OrderItem&gt;</span>
         <span class="nt">&lt;/OrderItems&gt;</span>
       <span class="nt">&lt;/Order&gt;</span>
+      <span class="nt">&lt;Payments&gt;</span>
+        <span class="nt">&lt;Payment&gt;</span>
+          <span class="nt">&lt;payment_method_id&gt;</span>12<span class="nt">&lt;/payment_method_id&gt;</span>
+          <span class="nt">&lt;payment_amount&gt;</span>10.00<span class="nt">&lt;/payment_amount&gt;</span>
+          <span class="nt">&lt;payment_for_customer_id&gt;</span>1000<span class="nt">&lt;/payment_for_customer_id&gt;</span>
+        <span class="nt">&lt;/Payment&gt;</span>
+        <span class="nt">&lt;Payment&gt;</span>
+          <span class="nt">&lt;payment_method_id&gt;</span>12<span class="nt">&lt;/payment_method_id&gt;</span>
+          <span class="nt">&lt;payment_amount&gt;</span>10.00<span class="nt">&lt;/payment_amount&gt;</span>
+        <span class="nt">&lt;/Payment&gt;</span>
+        <span class="nt">&lt;Payment&gt;</span>
+          <span class="nt">&lt;payment_method_id&gt;</span>5<span class="nt">&lt;/payment_method_id&gt;</span>
+          <span class="nt">&lt;payment_amount&gt;</span>0.01<span class="nt">&lt;/payment_amount&gt;</span>
+          <span class="nt">&lt;voucher_or_discount_code&gt;</span>1000-2000-3000-4000<span class="nt">&lt;/voucher_or_discount_code&gt;</span>
+        <span class="nt">&lt;/Payment&gt;</span>
+      <span class="nt">&lt;/Payments&gt;</span>
     <span class="nt">&lt;/ns1:SaveOrderRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
@@ -3608,7 +3683,7 @@ Content-length: 2083
 
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -3626,7 +3701,6 @@ Content-length: 2083
             <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
                 <span class="s1">'order_reference_text'</span> <span class="o">=&gt;</span> <span class="s1">'5640c085abba9'</span><span class="p">,</span>
                 <span class="s1">'order_reference_id'</span> <span class="o">=&gt;</span> <span class="s1">'319813049'</span><span class="p">,</span>
-                <span class="s1">'order_is_payed'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
                 <span class="s1">'order_payment_method_description'</span> <span class="o">=&gt;</span> <span class="s1">'psp'</span><span class="p">,</span>
                 <span class="s1">'order_ship_to_customer'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
                 <span class="s1">'order_shipment_method_description'</span> <span class="o">=&gt;</span> <span class="s1">'tnt'</span><span class="p">,</span>
@@ -3721,7 +3795,7 @@ Content-length: 2083
 <blockquote>
 <p>HTTP Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_11/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -3742,7 +3816,6 @@ Content-length: 2083
       <span class="nt">&lt;Order&gt;</span>
         <span class="nt">&lt;order_reference_id&gt;</span>319813049<span class="nt">&lt;/order_reference_id&gt;</span>
         <span class="nt">&lt;order_reference_text&gt;</span>5640c085abba9<span class="nt">&lt;/order_reference_text&gt;</span>
-        <span class="nt">&lt;order_is_payed&gt;</span>0<span class="nt">&lt;/order_is_payed&gt;</span>
         <span class="nt">&lt;order_payment_method_description&gt;</span>psp<span class="nt">&lt;/order_payment_method_description&gt;</span>
         <span class="nt">&lt;order_ship_to_customer&gt;</span>1<span class="nt">&lt;/order_ship_to_customer&gt;</span>
         <span class="nt">&lt;order_shipment_method_description&gt;</span>tnt<span class="nt">&lt;/order_shipment_method_description&gt;</span>
@@ -3878,14 +3951,9 @@ Content-length: 2083
 <td>Order reference text value</td>
 </tr>
 <tr>
-<td><code>order_is_payed</code></td>
-<td><code>bool</code></td>
-<td>Mark as payed. If the value in the order is  <code>true</code> it cannot be reverted</td>
-</tr>
-<tr>
 <td><code>order_payment_method_description</code></td>
 <td><code>string</code></td>
-<td>If the description matches a payment method in CS this will be used in payment processing. See common endpoint <code>payment_methods</code></td>
+<td>Legacy field with description of the payment method, this will not process a payment on the order</td>
 </tr>
 <tr>
 <td><code>order_ship_to_customer</code></td>
@@ -3912,12 +3980,17 @@ Content-length: 2083
 <td><code>string</code></td>
 <td>General remarks about the order</td>
 </tr>
+<tr>
+<td><code>AddPayments</code></td>
+<td><code>object[]</code></td>
+<td>Add payments to the order, see <code>Payments.Payment</code> structure</td>
+</tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -3954,6 +4027,21 @@ Content-length: 2083
                             <span class="p">],</span>
                     <span class="p">],</span>
             <span class="p">],</span>
+        <span class="s1">'AddPayments'</span> <span class="o">=&gt;</span>  <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+            <span class="s1">'Payment'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                    <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                        <span class="s1">'payment_method_id'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span>
+                        <span class="s1">'payment_amount'</span> <span class="o">=&gt;</span> <span class="s1">'100.00'</span><span class="p">,</span>
+                        <span class="s1">'voucher_or_discount_code'</span> <span class="o">=&gt;</span> <span class="kc">null</span><span class="p">,</span>
+                        <span class="s1">'payment_for_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'4'</span><span class="p">,</span>
+                    <span class="p">],</span>
+                    <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                        <span class="s1">'payment_method_id'</span> <span class="o">=&gt;</span> <span class="s1">'5'</span><span class="p">,</span>
+                        <span class="s1">'payment_amount'</span> <span class="o">=&gt;</span> <span class="s1">'1521.00'</span><span class="p">,</span>
+                        <span class="s1">'voucher_or_discount_code'</span> <span class="o">=&gt;</span> <span class="s1">'1000-2000-3000-4000'</span><span class="p">,</span>
+                    <span class="p">],</span>
+                <span class="p">],</span>
+            <span class="p">],</span>
     <span class="p">];</span>
     <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="nf">UpdateOrder</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$result</span><span class="p">);</span>
@@ -3965,7 +4053,7 @@ Content-length: 2083
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_11/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -3996,6 +4084,22 @@ Content-length: 2083
           <span class="nt">&lt;value&gt;</span>Will pickup at 13.00<span class="nt">&lt;/value&gt;</span>
         <span class="nt">&lt;/UpdateValue&gt;</span>
       <span class="nt">&lt;/UpdateValues&gt;</span>
+      <span class="nt">&lt;AddPayments&gt;</span>
+        <span class="nt">&lt;Payment&gt;</span>
+          <span class="nt">&lt;payment_method_id&gt;</span>12<span class="nt">&lt;/payment_method_id&gt;</span>
+          <span class="nt">&lt;payment_amount&gt;</span>10.00<span class="nt">&lt;/payment_amount&gt;</span>
+          <span class="nt">&lt;payment_for_customer_id&gt;</span>1000<span class="nt">&lt;/payment_for_customer_id&gt;</span>
+        <span class="nt">&lt;/Payment&gt;</span>
+        <span class="nt">&lt;Payment&gt;</span>
+          <span class="nt">&lt;payment_method_id&gt;</span>12<span class="nt">&lt;/payment_method_id&gt;</span>
+          <span class="nt">&lt;payment_amount&gt;</span>10.00<span class="nt">&lt;/payment_amount&gt;</span>
+        <span class="nt">&lt;/Payment&gt;</span>
+        <span class="nt">&lt;Payment&gt;</span>
+          <span class="nt">&lt;payment_method_id&gt;</span>5<span class="nt">&lt;/payment_method_id&gt;</span>
+          <span class="nt">&lt;payment_amount&gt;</span>0.01<span class="nt">&lt;/payment_amount&gt;</span>
+          <span class="nt">&lt;voucher_or_discount_code&gt;</span>1000-2000-3000-4000<span class="nt">&lt;/voucher_or_discount_code&gt;</span>
+        <span class="nt">&lt;/Payment&gt;</span>
+      <span class="nt">&lt;/AddPayments&gt;</span>
     <span class="nt">&lt;/ns1:UpdateOrderRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
@@ -4265,7 +4369,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <p>Add new order items to an existing order.</p>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -4316,7 +4420,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_11/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -4413,7 +4517,7 @@ Content-length: 2464
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
           <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
           <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -4435,7 +4539,7 @@ Content-length: 2464
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_11/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -4476,7 +4580,7 @@ Content-length: 396
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
           <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
           <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -4499,7 +4603,7 @@ Content-length: 396
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_11/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -4579,7 +4683,7 @@ Content-length: 2595
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>
-        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl'</span><span class="p">,</span>
+        <span class="s1">'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl'</span><span class="p">,</span>
         <span class="p">[</span>
             <span class="s1">'trace'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
             <span class="s1">'use'</span> <span class="o">=&gt;</span> <span class="no">SOAP_LITERAL</span><span class="p">,</span>
@@ -4626,7 +4730,7 @@ Content-length: 2595
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_10/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/app/cs/api/ecommerce/soap_2_11/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
 <span class="na">Accept</span><span class="p">:</span> <span class="s">text/xml</span>
@@ -5526,6 +5630,16 @@ Content-length: 1448
 <td><code>bool</code></td>
 <td><code>true</code> if the amount in the payment link should depend dynamically on unpayed amount of the order. If a <code>payment_amount_cents</code> this option will be ignored</td>
 </tr>
+<tr>
+<td><code>dynamic_payment_amount</code></td>
+<td><code>bool</code></td>
+<td><code>true</code> if the amount in the payment link should depend dynamically on unpayed amount of the order. If a <code>payment_amount_cents</code> this option will be ignored</td>
+</tr>
+<tr>
+<td><code>payment_for_customer_id</code></td>
+<td><code>integer</code></td>
+<td>If the the order is a split order, you can provide the customer_id for this payment</td>
+</tr>
 </tbody></table>
 
 <table><thead>
@@ -5549,6 +5663,11 @@ Content-length: 1448
 <td><code>data.sales_order_id</code></td>
 <td><code>?integer</code></td>
 <td>The sales order ID <code>1000</code></td>
+</tr>
+<tr>
+<td><code>data.customer_id</code></td>
+<td><code>?integer</code></td>
+<td>The customer ID who makes the payment <code>10006</code></td>
 </tr>
 <tr>
 <td><code>data.sales_transaction_number</code></td>
@@ -5613,6 +5732,7 @@ Content-length: 1448
     </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1012</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10006</span><span class="p">,</span><span class="w">
         </span><span class="nl">"sales_transaction_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"payment_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twsc.nl/p/xM4iatg"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">250000</span><span class="p">,</span><span class="w">
@@ -10413,9 +10533,129 @@ Be aware! The goods in the packinglist will not be added to the stock!
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='vouchers'>Vouchers</h1>
+<p>Read vouchers</p>
+
+<p><strong><em>Scope(s)</em></strong></p>
+
+<ul>
+<li><code>resources</code></li>
+</ul>
+<h2 id='vouchers-voucher-object'>Voucher (object)</h2>
+<table><thead>
+<tr>
+<th><strong>Property</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if an error occurred.</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>?string</code></td>
+<td>Error message if occurred.</td>
+</tr>
+<tr>
+<td><code>data.code</code></td>
+<td><code>string</code></td>
+<td>Voucher code e.g. <code>5455-7407-8042-8985</code></td>
+</tr>
+<tr>
+<td><code>data.type_id</code></td>
+<td><code>integer</code></td>
+<td>Voucher type ID e.g. <code>1</code> (see <code>voucher_types</code> in common enum API)</td>
+</tr>
+<tr>
+<td><code>data.type_description</code></td>
+<td><code>string</code></td>
+<td>Voucher type description <code>Waardebon</code></td>
+</tr>
+<tr>
+<td><code>data.is_active</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code> if the voucher is not useable</td>
+</tr>
+<tr>
+<td><code>data.amount_initial_cents</code></td>
+<td><code>integer</code></td>
+<td>The amount in cents when the voucher was issued <code>2000</code></td>
+</tr>
+<tr>
+<td><code>data.amount_spent_cents</code></td>
+<td><code>integer</code></td>
+<td>The amount in cents spent for the voucher <code>1500</code></td>
+</tr>
+<tr>
+<td><code>data.amount_balance_cents</code></td>
+<td><code>integer</code></td>
+<td>The amount which can be used in cents e.g. <code>500</code></td>
+</tr>
+</tbody></table>
+<h2 id='vouchers-voucher-info'>Voucher info</h2>
+<p>Get voucher by code</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/vouchers/:code.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>code</code></td>
+<td><code>string</code></td>
+<td>The voucher code ID e.g. <code>1000-2000-3000-4000</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/vouchers/1000-2000-3000-4000.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">309</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000-2000-3000-4000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Waardebon"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_initial_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_spent_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount_balance_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='webhooks'>Webhooks</h1>
 <p>Receive updates from CycleSoftware for specific entities.</p>
-<h3 id='webhooks-update-workshop-order-webhook-request'>Webhook request</h3>
+<h3 id='webhooks-voucher-info-webhook-request'>Webhook request</h3>
 <p>The payload is a raw POST of a JSON string to your server. Several headers are included:</p>
 
 <table><thead>
@@ -10437,7 +10677,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <td>HMAC of the payload using your hash secret</td>
 </tr>
 </tbody></table>
-<h3 id='webhooks-update-workshop-order-payload-structure'>Payload structure</h3>
+<h3 id='webhooks-voucher-info-payload-structure'>Payload structure</h3>
 <p>Every JSON payload has the same structure. The payload object is different per event.</p>
 
 <table><thead>

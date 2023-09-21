@@ -23,72 +23,76 @@ The latest definition of the WSDL specification can be found at:
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">WSDL-SOAP</i>
-		<h6>/app/cs/api/ecommerce/soap_2_10/?wsdl</h6>
+		<h6>/app/cs/api/ecommerce/soap_2_11/?wsdl</h6>
 	</div>
 </div>
 
 ## Properties ##
 
-| Property                                                                | Type       | Description                                                                                                                                                                                                                                                                                         |
-|-------------------------------------------------------------------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Authentication[].username`                                             | `string`   | e.g. `your-username`                                                                                                                                                                                                                                                                                |
-| `Authentication[].password`                                             | `string`   | e.g. `your-password`                                                                                                                                                                                                                                                                                |
-| `Authentication[].dealer_id`                                            | `string`   | store-id or api-key. e.g. `1`                                                                                                                                                                                                                                                                       |
-| `Order.order_reference_id`                                              | `string`   | Unique order reference id `319813049`                                                                                                                                                                                                                                                               |
-| `Order.order_reference_text`                                            | `string`   | Unique order reference text `5640c085abba9`                                                                                                                                                                                                                                                         |
-| `Order.order_is_payed`                                                  | `boolean`  | boolean `1` or `0`                                                                                                                                                                                                                                                                                  |
-| `Order.order_payment_method_description`                                | `string`   | Use “psp” for payments using a Payment service Provider (e.g. iDEAL, Bancontact etc.): `psp`,`pin`,`bancontact`,`contant`,`chip`,`creditcard`,`bank`,`rembours`,`ecocheques`                                                                                                                        |
-| `Order.order_ship_to_customer`                                          | `boolean`  | boolean `1` or `0`                                                                                                                                                                                                                                                                                  |
-| `Order.order_shipment_method_description`                               | `string`   | e.g. `tnt`                                                                                                                                                                                                                                                                                          |
-| `Order.order_date_preferred_delivery`                                   | `date`     | e.g. `2015-12-01`                                                                                                                                                                                                                                                                                   |
-| `Order.order_remarks`                                                   | `string`   | e.g. `remark example`                                                                                                                                                                                                                                                                               |
-| `Order.order_vat_country_code`                                          | `string`   | Apply the VAT rates of this country code. CS will only apply the VAT rates if enabled in account settings and if order_ship_to_customer is true. If the VAT rates are not applied or the same as the country of the account, it will default back to null in the OrderStatusResponse                |
-| `Order.order_sales_employee_id`                                         | `integer`  | e.g. `10001` see Common / Employees endpoint for employee_id values                                                                                                                                                                                                                                 |
-| `Order.Customer`                                                        | `object`   | see Customer.* property                                                                                                                                                                                                                                                                             |
-| `Order.Customer.DeliveryAddress.delivery_address_use_delivery_address`  | `boolean`  | Boolean `1` or `0`                                                                                                                                                                                                                                                                                  |
-| `Order.Customer.DeliveryAddress.delivery_address_name`                  | `string`   | e.g. `CycleSoftware`                                                                                                                                                                                                                                                                                |
-| `Order.Customer.DeliveryAddress.delivery_address_street_name`           | `string`   | e.g. `Kievitsven`                                                                                                                                                                                                                                                                                   |
-| `Order.Customer.DeliveryAddress.delivery_address_postal_code`           | `string`   | e.g. `5249JJ`                                                                                                                                                                                                                                                                                       |
-| `Order.Customer.DeliveryAddress.delivery_address_housenumber`           | `string`   | e.g. `4`                                                                                                                                                                                                                                                                                            |
-| `Order.Customer.DeliveryAddress.delivery_address_housenumber_suffix`    | `string`   | e.g. `b`                                                                                                                                                                                                                                                                                            |
-| `Order.Customer.DeliveryAddress.delivery_address_city`                  | `string`   | e.g. `Rosmalen`                                                                                                                                                                                                                                                                                     |
-| `Order.Customer.DeliveryAddress.delivery_address_country_code_iso_3166` | `string`   | e.g. `NL`                                                                                                                                                                                                                                                                                           |
-| `Order.Customer.DeliveryAddress.delivery_address_remarks`               | `string`   | e.g. `Bam`                                                                                                                                                                                                                                                                                          |
-| `Order.OrderItems.OrderItem`                                            | `object[]` | Array of OrderItem objects                                                                                                                                                                                                                                                                          |
-| `Order.OrderItems.OrderItem[].order_item_is_bicycle`                    | `boolean`  | Indicate whether this order item is a sold bicycle (0 or 1)                                                                                                                                                                                                                                         |
-| `Order.OrderItems.OrderItem[].order_item_barcode`                       | `string`   | e.g. `1000`                                                                                                                                                                                                                                                                                         |
-| `Order.OrderItems.OrderItem[].order_item_quantity`                      | `integer`  | e.g. `2`                                                                                                                                                                                                                                                                                            |
-| `Order.OrderItems.OrderItem[].order_item_description`                   | `string`   | e.g. `Test product`                                                                                                                                                                                                                                                                                 |
-| `Order.OrderItems.OrderItem[].order_item_unit_price_in_vat`             | `decimal`  | e.g. `12.99`                                                                                                                                                                                                                                                                                        |
-| `Order.OrderItems.OrderItem[].order_item_unit_discount_amount_in_vat`   | `decimal`  | e.g. `2.99`                                                                                                                                                                                                                                                                                         |
-| `Order.OrderItems.OrderItem[].order_item_vat_code`                      | `integer`  | `0`: no VAT, `1`: Low VAT, `2` High VAT                                                                                                                                                                                                                                                             |
-| `Order.OrderItems.OrderItem[].order_item_supplier_order_mode`           | `string`   | 0: no supplier order or reservation on objects<br/>1:automatically create supplier order for this sales order<br/>2: automatically reserve available stock objects based on the object_id in order_item_object_id or order_item_barcode field.<br/>4: Same as mode=2 with pool orders via warehouse |
-| `Order.OrderItems.OrderItem[].order_item_supplier_id`                   | `integer`  | When order_item_supplier_mode = 1, make the supplier order for this supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/                                                                                                                                       |
-| `Order.OrderItems.OrderItem[].order_item_object_id`                     | `integer`  | Reserve this specific object for this order item                                                                                                                                                                                                                                                    |
-| `Order.OrderItems.OrderItem[].order_item_invoice_customer_id`           | `integer`  | If supplied with integer value > 0 this order item will be invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder should be the “rider” or “consumer”                                                                                                                     |
-| `UpdateValues.UpdateValue`                                              | `object[]` | Array of UpdateValue objects                                                                                                                                                                                                                                                                        |
-| `UpdateValues.UpdateValue[].name`                                       | `string`   | Field to update: `order_reference_text`, `order_is_payed`,`order_payment_method_description`,`order_ship_to_customer`,`order_shipment_method_description`,`order_date_preferred_delivery`,`order_track_trace_reference`,`order_remarks`                                                             |
-| `UpdateValues.UpdateValue[].value`                                      | `string`   | e.g. `Will pickup at 13.00`                                                                                                                                                                                                                                                                         |
-| `Customer.customer_type_name`                                           | `string`   | One of the following: `Klant`, `Leverancier`, `E-commerce`, `Zakelijk`, `Lease-rijder`, `Lease-maatschappij`, `Werkgever`                                                                                                                                                                           |
-| `Customer.customer_cs_customer_id`                                      | `string`   | e.g. `235238848`                                                                                                                                                                                                                                                                                    |
-| `Customer.customer_reference`                                           | `string`   | Should be an unique reference to the customer to prevent re-use / overwrites of existing customers                                                                                                                                                                                                  |
-| `Customer.customer_name_prefix`                                         | `string`   | e.g. `Dhr.`                                                                                                                                                                                                                                                                                         |
-| `Customer.customer_first_name`                                          | `string`   | e.g. `Adri`                                                                                                                                                                                                                                                                                         |
-| `Customer.customer_name_initials`                                       | `string`   | e.g. `A`                                                                                                                                                                                                                                                                                            |
-| `Customer.customer_middle_name`                                         | `string`   | e.g. `Van`                                                                                                                                                                                                                                                                                          |
-| `Customer.customer_last_name`                                           | `string`   | e.g. `Name 235238848`                                                                                                                                                                                                                                                                               |
-| `Customer.customer_postal_code`                                         | `string`   | e.g. `8448PE`                                                                                                                                                                                                                                                                                       |
-| `Customer.customer_housenumber`                                         | `string`   | e.g. `32`                                                                                                                                                                                                                                                                                           |
-| `Customer.customer_housenumber_suffix`                                  | `string`   | e.g. `B`                                                                                                                                                                                                                                                                                            |
-| `Customer.customer_street_name`                                         | `string`   | e.g. `Mauritslaan`                                                                                                                                                                                                                                                                                  |
-| `Customer.customer_city`                                                | `string`   | e.g. `Heerenveen`                                                                                                                                                                                                                                                                                   |
-| `Customer.customer_phone`                                               | `string`   | e.g. `073-1234567`                                                                                                                                                                                                                                                                                  |
-| `Customer.customer_mobile`                                              | `string`   | e.g. `06-124235335`                                                                                                                                                                                                                                                                                 |
-| `Customer.customer_country_code_iso_3166`                               | `string`   | Country code iso3166 e.g. `NL`                                                                                                                                                                                                                                                                      |
-| `Customer.customer_email`                                               | `string`   | e.g. `test235238848@cyclesoftware.nl`                                                                                                                                                                                                                                                               |
-| `Customer.customer_newsletter`                                          | `boolean`  | Toggle newsletter option boolean `1` or `0`                                                                                                                                                                                                                                                         |
-| `Customer.customer_date_of_birth`                                       | `date`     | e.g. `1980-01-01`                                                                                                                                                                                                                                                                                   |
-| `Customer.customer_iban`                                                | `string`   | e.g. `NL69INGB0123456789`                                                                                                                                                                                                                                                                           |
+| Property                                                                | Type                  | Description                                                                                                                                                                                                                                                                                         |
+|-------------------------------------------------------------------------|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Authentication[].username`                                             | `string`              | e.g. `your-username`                                                                                                                                                                                                                                                                                |
+| `Authentication[].password`                                             | `string`              | e.g. `your-password`                                                                                                                                                                                                                                                                                |
+| `Authentication[].dealer_id`                                            | `string`              | store-id or api-key. e.g. `1`                                                                                                                                                                                                                                                                       |
+| `Order.order_reference_id`                                              | `string`              | Unique order reference id `319813049`                                                                                                                                                                                                                                                               |
+| `Order.order_reference_text`                                            | `string`              | Unique order reference text `5640c085abba9`                                                                                                                                                                                                                                                         |
+| `Order.order_payment_method_description`                                | `string`              | Legacy payment description field. This field will not trigger a payment (e.g. `iDEAL`, `Bancontact`)                                                                                                                                                                                                |
+| `Order.order_ship_to_customer`                                          | `boolean`             | boolean `1` or `0`                                                                                                                                                                                                                                                                                  |
+| `Order.order_shipment_method_description`                               | `string`              | e.g. `tnt`                                                                                                                                                                                                                                                                                          |
+| `Order.order_date_preferred_delivery`                                   | `date`                | e.g. `2015-12-01`                                                                                                                                                                                                                                                                                   |
+| `Order.order_remarks`                                                   | `string`              | e.g. `remark example`                                                                                                                                                                                                                                                                               |
+| `Order.order_vat_country_code`                                          | `string`              | Apply the VAT rates of this country code. CS will only apply the VAT rates if enabled in account settings and if order_ship_to_customer is true. If the VAT rates are not applied or the same as the country of the account, it will default back to null in the OrderStatusResponse                |
+| `Order.order_sales_employee_id`                                         | `integer`             | e.g. `10001` see Common / Employees endpoint for employee_id values                                                                                                                                                                                                                                 |
+| `Order.Customer`                                                        | `object`              | see Customer.* property                                                                                                                                                                                                                                                                             |
+| `Order.Customer.DeliveryAddress.delivery_address_use_delivery_address`  | `boolean`             | Boolean `1` or `0`                                                                                                                                                                                                                                                                                  |
+| `Order.Customer.DeliveryAddress.delivery_address_name`                  | `string`              | e.g. `CycleSoftware`                                                                                                                                                                                                                                                                                |
+| `Order.Customer.DeliveryAddress.delivery_address_street_name`           | `string`              | e.g. `Kievitsven`                                                                                                                                                                                                                                                                                   |
+| `Order.Customer.DeliveryAddress.delivery_address_postal_code`           | `string`              | e.g. `5249JJ`                                                                                                                                                                                                                                                                                       |
+| `Order.Customer.DeliveryAddress.delivery_address_housenumber`           | `string`              | e.g. `4`                                                                                                                                                                                                                                                                                            |
+| `Order.Customer.DeliveryAddress.delivery_address_housenumber_suffix`    | `string`              | e.g. `b`                                                                                                                                                                                                                                                                                            |
+| `Order.Customer.DeliveryAddress.delivery_address_city`                  | `string`              | e.g. `Rosmalen`                                                                                                                                                                                                                                                                                     |
+| `Order.Customer.DeliveryAddress.delivery_address_country_code_iso_3166` | `string`              | e.g. `NL`                                                                                                                                                                                                                                                                                           |
+| `Order.Customer.DeliveryAddress.delivery_address_remarks`               | `string`              | e.g. `Bam`                                                                                                                                                                                                                                                                                          |
+| `Order.OrderItems.OrderItem`                                            | `object[]`            | Array of OrderItem objects                                                                                                                                                                                                                                                                          |
+| `Order.OrderItems.OrderItem[].order_item_is_bicycle`                    | `boolean`             | Indicate whether this order item is a sold bicycle (0 or 1)                                                                                                                                                                                                                                         |
+| `Order.OrderItems.OrderItem[].order_item_barcode`                       | `string`              | e.g. `1000`                                                                                                                                                                                                                                                                                         |
+| `Order.OrderItems.OrderItem[].order_item_quantity`                      | `integer`             | e.g. `2`                                                                                                                                                                                                                                                                                            |
+| `Order.OrderItems.OrderItem[].order_item_description`                   | `string`              | e.g. `Test product`                                                                                                                                                                                                                                                                                 |
+| `Order.OrderItems.OrderItem[].order_item_unit_price_in_vat`             | `decimal`             | e.g. `12.99`                                                                                                                                                                                                                                                                                        |
+| `Order.OrderItems.OrderItem[].order_item_unit_discount_amount_in_vat`   | `decimal`             | e.g. `2.99`                                                                                                                                                                                                                                                                                         |
+| `Order.OrderItems.OrderItem[].order_item_vat_code`                      | `integer`             | `0`: no VAT, `1`: Low VAT, `2` High VAT                                                                                                                                                                                                                                                             |
+| `Order.OrderItems.OrderItem[].order_item_supplier_order_mode`           | `string`              | 0: no supplier order or reservation on objects<br/>1:automatically create supplier order for this sales order<br/>2: automatically reserve available stock objects based on the object_id in order_item_object_id or order_item_barcode field.<br/>4: Same as mode=2 with pool orders via warehouse |
+| `Order.OrderItems.OrderItem[].order_item_supplier_id`                   | `integer`             | When order_item_supplier_mode = 1, make the supplier order for this supplier. Supplier IDs can be looked up in   https://api.cyclesoftware.nl/app/api/groups/                                                                                                                                       |
+| `Order.OrderItems.OrderItem[].order_item_object_id`                     | `integer`             | Reserve this specific object for this order item                                                                                                                                                                                                                                                    |
+| `Order.OrderItems.OrderItem[].order_item_invoice_customer_id`           | `integer`             | If supplied with integer value > 0 this order item will be invoiced to this customer id (SplitOrder) All the customer info in the SaveOrder should be the “rider” or “consumer”                                                                                                                     |
+| `UpdateValues.UpdateValue`                                              | `object[]`            | Array of UpdateValue objects                                                                                                                                                                                                                                                                        |
+| `UpdateValues.UpdateValue[].name`                                       | `string`              | Field to update: `order_reference_text`, `order_payment_method_description`,`order_ship_to_customer`,`order_shipment_method_description`,`order_date_preferred_delivery`,`order_track_trace_reference`,`order_remarks`                                                                              |
+| `UpdateValues.UpdateValue[].value`                                      | `string`              | e.g. `Will pickup at 13.00`                                                                                                                                                                                                                                                                         |
+| `Customer.customer_type_name`                                           | `string`              | One of the following: `Klant`, `Leverancier`, `E-commerce`, `Zakelijk`, `Lease-rijder`, `Lease-maatschappij`, `Werkgever`                                                                                                                                                                           |
+| `Customer.customer_cs_customer_id`                                      | `string`              | e.g. `235238848`                                                                                                                                                                                                                                                                                    |
+| `Customer.customer_reference`                                           | `string`              | Should be an unique reference to the customer to prevent re-use / overwrites of existing customers                                                                                                                                                                                                  |
+| `Customer.customer_name_prefix`                                         | `string`              | e.g. `Dhr.`                                                                                                                                                                                                                                                                                         |
+| `Customer.customer_first_name`                                          | `string`              | e.g. `Adri`                                                                                                                                                                                                                                                                                         |
+| `Customer.customer_name_initials`                                       | `string`              | e.g. `A`                                                                                                                                                                                                                                                                                            |
+| `Customer.customer_middle_name`                                         | `string`              | e.g. `Van`                                                                                                                                                                                                                                                                                          |
+| `Customer.customer_last_name`                                           | `string`              | e.g. `Name 235238848`                                                                                                                                                                                                                                                                               |
+| `Customer.customer_postal_code`                                         | `string`              | e.g. `8448PE`                                                                                                                                                                                                                                                                                       |
+| `Customer.customer_housenumber`                                         | `string`              | e.g. `32`                                                                                                                                                                                                                                                                                           |
+| `Customer.customer_housenumber_suffix`                                  | `string`              | e.g. `B`                                                                                                                                                                                                                                                                                            |
+| `Customer.customer_street_name`                                         | `string`              | e.g. `Mauritslaan`                                                                                                                                                                                                                                                                                  |
+| `Customer.customer_city`                                                | `string`              | e.g. `Heerenveen`                                                                                                                                                                                                                                                                                   |
+| `Customer.customer_phone`                                               | `string`              | e.g. `073-1234567`                                                                                                                                                                                                                                                                                  |
+| `Customer.customer_mobile`                                              | `string`              | e.g. `06-124235335`                                                                                                                                                                                                                                                                                 |
+| `Customer.customer_country_code_iso_3166`                               | `string`              | Country code iso3166 e.g. `NL`                                                                                                                                                                                                                                                                      |
+| `Customer.customer_email`                                               | `string`              | e.g. `test235238848@cyclesoftware.nl`                                                                                                                                                                                                                                                               |
+| `Customer.customer_newsletter`                                          | `boolean`             | Toggle newsletter option boolean `1` or `0`                                                                                                                                                                                                                                                         |
+| `Customer.customer_date_of_birth`                                       | `date`                | e.g. `1980-01-01`                                                                                                                                                                                                                                                                                   |
+| `Customer.customer_iban`                                                | `string`              | e.g. `NL69INGB0123456789`                                                                                                                                                                                                                                                                           |
+| `Payments.Payment`                                                      | `object[]`            | Array of Payment objects                                                                                                                                                                                                                                                                            |
+| `Payments.Payment[].payment_method_id`                                  | `integer&#124;string` | The payment method ID or description e.g. `1` or `PSP` . See common enum API `payment_methods`                                                                                                                                                                                                      |
+| `Payments.Payment[].payment_amount`                                     | `decimal`             | The payment amount e.g. `100.00`                                                                                                                                                                                                                                                                    |
+| `Payments.Payment[].voucher_or_discount_code`                           | `?string`             | The voucher code e.g. `1000-2000-3000-4000`                                                                                                                                                                                                                                                         |
+| `Payments.Payment[].payment_for_customer_id`                            | `?integer`            | The customer ID to assign the payment to when using `order_item_invoice_customer_id`                                                                                                                                                                                                                |
 
 ## SaveOrder ##
 
@@ -100,7 +104,7 @@ Creates a new order in CycleSoftware
 
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -118,7 +122,6 @@ try {
             (object)[
                 'order_reference_text' => '5640c085abba9',
                 'order_reference_id' => '319813049',
-                'order_is_payed' => '1',
                 'order_payment_method_description' => 'psp',
                 'order_ship_to_customer' => '1',
                 'order_shipment_method_description' => 'tnt',
@@ -200,6 +203,32 @@ try {
                             ],
                     ],
             ],
+        'Payments' =>
+                    (object)[
+                        'Payment' =>
+                            [
+                                    (object)[
+                                        'payment_method_id' => '2',
+                                        'payment_amount' => '-1021.00',
+                                        'voucher_or_discount_code' => null,
+                                        'payment_for_customer_id' => '4',
+                                    ],
+                                    (object)[
+                                        'payment_method_id' => '5',
+                                        'payment_amount' => '1521.00',
+                                        'voucher_or_discount_code' => '1000-2000-3000-4000',
+                                        'payment_for_customer_id' => '2',
+                                    ],
+                                    (object)[
+                                        'payment_method_id' => '3',
+                                        'payment_amount' => '3063.00',
+                                        'voucher_or_discount_code' => null,
+                                        'payment_for_customer_id' => null,
+                                    ],
+                            ],
+                    ],
+            ],
+]
     ];
     $result = $client->SaveOrder($input);
     $order_id = $result->order_id;
@@ -214,7 +243,7 @@ catch (\SoapFault $e) {
 > HTTP Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -235,7 +264,6 @@ Content-length: 4614
       <Order>
         <order_reference_id>319813049</order_reference_id>
         <order_reference_text>5640c085abba9</order_reference_text>
-        <order_is_payed>1</order_is_payed>
         <order_payment_method_description>psp</order_payment_method_description>
         <order_ship_to_customer>1</order_ship_to_customer>
         <order_shipment_method_description>tnt</order_shipment_method_description>
@@ -302,6 +330,22 @@ Content-length: 4614
           </OrderItem>
         </OrderItems>
       </Order>
+      <Payments>
+        <Payment>
+          <payment_method_id>12</payment_method_id>
+          <payment_amount>10.00</payment_amount>
+          <payment_for_customer_id>1000</payment_for_customer_id>
+        </Payment>
+        <Payment>
+          <payment_method_id>12</payment_method_id>
+          <payment_amount>10.00</payment_amount>
+        </Payment>
+        <Payment>
+          <payment_method_id>5</payment_method_id>
+          <payment_amount>0.01</payment_amount>
+          <voucher_or_discount_code>1000-2000-3000-4000</voucher_or_discount_code>
+        </Payment>
+      </Payments>
     </ns1:SaveOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -367,7 +411,7 @@ Creates a new quote in CycleSoftware
 
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -385,7 +429,6 @@ try {
             (object)[
                 'order_reference_text' => '5640c085abba9',
                 'order_reference_id' => '319813049',
-                'order_is_payed' => '0',
                 'order_payment_method_description' => 'psp',
                 'order_ship_to_customer' => '1',
                 'order_shipment_method_description' => 'tnt',
@@ -481,7 +524,7 @@ catch (\SoapFault $e) {
 > HTTP Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -502,7 +545,6 @@ Content-length: 4614
       <Order>
         <order_reference_id>319813049</order_reference_id>
         <order_reference_text>5640c085abba9</order_reference_text>
-        <order_is_payed>0</order_is_payed>
         <order_payment_method_description>psp</order_payment_method_description>
         <order_ship_to_customer>1</order_ship_to_customer>
         <order_shipment_method_description>tnt</order_shipment_method_description>
@@ -624,28 +666,27 @@ Content-length: 2083
 </SOAP-ENV:Envelope>
 ```
 
-
 ## UpdateOrder ##
 
 Update some header fields in the sales order. The following fields can be updated:
 
-| Property                            | Type     | Description                                                                                                                      |
-|-------------------------------------|----------|----------------------------------------------------------------------------------------------------------------------------------|
-| `order_reference_text`              | `string` | Order reference text value                                                                                                       |
-| `order_is_payed`                    | `bool`   | Mark as payed. If the value in the order is  `true` it cannot be reverted                                                        |
-| `order_payment_method_description`  | `string` | If the description matches a payment method in CS this will be used in payment processing. See common endpoint `payment_methods` |
-| `order_ship_to_customer`            | `bool`   | `true` if the order will be shipped to the customer, `false` for pickup in store                                                 |
-| `order_shipment_method_description` | `string` | Description of shipment method                                                                                                   |
-| `order_date_preferred_delivery`     | `date`   | Date of preferred delivery e.g. `2023-01-01`                                                                                     |
-| `order_track_trace_reference`       | `string` | Track and Trace ID                                                                                                               |
-| `order_remarks`                     | `string` | General remarks about the order                                                                                                  |
+| Property                            | Type       | Description                                                                                       |
+|-------------------------------------|------------|---------------------------------------------------------------------------------------------------|
+| `order_reference_text`              | `string`   | Order reference text value                                                                        |
+| `order_payment_method_description`  | `string`   | Legacy field with description of the payment method, this will not process a payment on the order |
+| `order_ship_to_customer`            | `bool`     | `true` if the order will be shipped to the customer, `false` for pickup in store                  |
+| `order_shipment_method_description` | `string`   | Description of shipment method                                                                    |
+| `order_date_preferred_delivery`     | `date`     | Date of preferred delivery e.g. `2023-01-01`                                                      |
+| `order_track_trace_reference`       | `string`   | Track and Trace ID                                                                                |
+| `order_remarks`                     | `string`   | General remarks about the order                                                                   |
+| `AddPayments`                       | `object[]` | Add payments to the order, see `Payments.Payment` structure                                       |
 
 ```php
 <?php
 
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -682,6 +723,21 @@ try {
                             ],
                     ],
             ],
+        'AddPayments' =>  (object)[
+            'Payment' => [
+                    (object)[
+                        'payment_method_id' => '2',
+                        'payment_amount' => '100.00',
+                        'voucher_or_discount_code' => null,
+                        'payment_for_customer_id' => '4',
+                    ],
+                    (object)[
+                        'payment_method_id' => '5',
+                        'payment_amount' => '1521.00',
+                        'voucher_or_discount_code' => '1000-2000-3000-4000',
+                    ],
+                ],
+            ],
     ];
     $result = $client->UpdateOrder($input);
     var_dump($result);
@@ -694,7 +750,7 @@ catch (\SoapFault $e) {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -725,6 +781,22 @@ Content-length: 846
           <value>Will pickup at 13.00</value>
         </UpdateValue>
       </UpdateValues>
+      <AddPayments>
+        <Payment>
+          <payment_method_id>12</payment_method_id>
+          <payment_amount>10.00</payment_amount>
+          <payment_for_customer_id>1000</payment_for_customer_id>
+        </Payment>
+        <Payment>
+          <payment_method_id>12</payment_method_id>
+          <payment_amount>10.00</payment_amount>
+        </Payment>
+        <Payment>
+          <payment_method_id>5</payment_method_id>
+          <payment_amount>0.01</payment_amount>
+          <voucher_or_discount_code>1000-2000-3000-4000</voucher_or_discount_code>
+        </Payment>
+      </AddPayments>
     </ns1:UpdateOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -903,7 +975,7 @@ Add new order items to an existing order.
 ```php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -955,7 +1027,7 @@ catch (\SoapFault $e) {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -1057,7 +1129,7 @@ Get an invoice document based on the invoice-number.
 <?php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
         [
           'trace' => true,
           'use' => SOAP_LITERAL,
@@ -1080,7 +1152,7 @@ try {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -1126,7 +1198,7 @@ Get an invoice document based on the sales order id or order reference.
 <?php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
         [
           'trace' => true,
           'use' => SOAP_LITERAL,
@@ -1150,7 +1222,7 @@ try {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -1235,7 +1307,7 @@ This method creates or updates an existing customer. Existing customers are matc
 <?php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_10/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -1283,7 +1355,7 @@ try {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_10/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml

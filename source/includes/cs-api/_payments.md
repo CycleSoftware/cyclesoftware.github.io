@@ -26,16 +26,19 @@ Access payment portal links
 |---------------|-----------|----------------------------------------------------------|
 | `id`          | `integer` | Sales order ID or the invoice / sales transaction number |
 
-| GET parameter            | Type      | Description                                                                                                                                                |
-|--------------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `payment_amount_cents`   | `integer` | The payment amount in cents. Only applicable for advance order payments endpoint                                                                           |
-| `dynamic_payment_amount` | `bool`    | `true` if the amount in the payment link should depend dynamically on unpayed amount of the order. If a `payment_amount_cents` this option will be ignored |
+| GET parameter             | Type      | Description                                                                                                                                                |
+|---------------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `payment_amount_cents`    | `integer` | The payment amount in cents. Only applicable for advance order payments endpoint                                                                           |
+| `dynamic_payment_amount`  | `bool`    | `true` if the amount in the payment link should depend dynamically on unpayed amount of the order. If a `payment_amount_cents` this option will be ignored |
+| `dynamic_payment_amount`  | `bool`    | `true` if the amount in the payment link should depend dynamically on unpayed amount of the order. If a `payment_amount_cents` this option will be ignored |
+| `payment_for_customer_id` | `integer` | If the the order is a split order, you can provide the customer_id for this payment                                                                        |
 
 | Property                         | Type       | Description                                                                                         |
 |----------------------------------|------------|-----------------------------------------------------------------------------------------------------|
 | `error`                          | `boolean`  | `true` if an error occurred                                                                         |
 | `error_message`                  | `?string`  | The error message if an error occurred                                                              |
 | `data.sales_order_id`            | `?integer` | The sales order ID `1000`                                                                           |
+| `data.customer_id`               | `?integer` | The customer ID who makes the payment `10006`                                                       |
 | `data.sales_transaction_number`  | `?integer` | The sales transaction number (invoice number)                                                       |
 | `data.payment_url`               | `string`   | Payment portal URL `https://twsc.nl/p/xM4iatg`                                                      |
 | `data.total_amount_cents`        | `integer`  | Total amount in cents of the order or invoice `100000`                                              |
@@ -71,6 +74,7 @@ X-RateLimit-Daily-Reset: 1678230000
     "error_message": null,
     "data": {
         "sales_order_id": 1012,
+        "customer_id": 10006,
         "sales_transaction_number": null,
         "payment_url": "https://twsc.nl/p/xM4iatg",
         "total_amount_cents": 250000,

@@ -8852,7 +8852,8 @@ not included.</p>
 </tr>
 </tbody></table>
 <h2 id='supplier-orders-create-supplier-order'>Create supplier order</h2>
-<p>Creates a supplier order. To actually dispatch and send the supplier order to the supplier call the send endpoint with the obtained supplier order ID.</p>
+<p>Creates a supplier order. To actually dispatch and send the supplier order to the supplier call the send endpoint with
+the obtained supplier order ID.</p>
 
 <div class="api-endpoint">
     <div class="endpoint-data">
@@ -9102,7 +9103,7 @@ not included.</p>
     </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Error given by supplier"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='supplier-orders-process-dropshipment-packinglist'>Process dropshipment packinglist</h2>
-<p>Process a packinglist for a dropshipment delivery. </p>
+<p>Process a packinglist for a dropshipment delivery.</p>
 
 <aside class="notice">
 Be aware! The goods in the packinglist will not be added to the stock!
@@ -9146,6 +9147,11 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <td><code>update_sales_order_status_if_possible</code></td>
 <td><code>boolean</code></td>
 <td><code>true</code> if sales-order statuses should be updated defaults to <code>false</code></td>
+</tr>
+<tr>
+<td><code>ignore_already_processed</code></td>
+<td><code>boolean</code></td>
+<td>Defaults to <code>false. if</code>true` already processed errors are ignored</td>
 </tr>
 </tbody></table>
 <h3 id='supplier-orders-process-dropshipment-packinglist-process-packinglist-response-object'>Process packinglist (response object)</h3>

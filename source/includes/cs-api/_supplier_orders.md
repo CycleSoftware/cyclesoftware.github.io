@@ -7,7 +7,6 @@ Create and send supplier orders
 - Basic HTTP Authentication
 - Scope(s): `e-commerce`
 
-
 ### Supplier order (object)
 
 Properties used in create, get and send endpoints.
@@ -34,10 +33,10 @@ Properties used in create, get and send endpoints.
 | `items[].supplier_delivery_date`  | `date`     |        | Delivery date given by supplier e.g. `2022-01-20`           |
 | `items[].supplier_item_reference` | `string`   |        | Reference item from supplier e.g. `ref-item-1`              |
 
-
 ## Create supplier order
 
-Creates a supplier order. To actually dispatch and send the supplier order to the supplier call the send endpoint with the obtained supplier order ID.
+Creates a supplier order. To actually dispatch and send the supplier order to the supplier call the send endpoint with
+the obtained supplier order ID.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -301,7 +300,7 @@ X-RateLimit-Daily-Reset: 1678230000
 
 ## Process dropshipment packinglist
 
-Process a packinglist for a dropshipment delivery. 
+Process a packinglist for a dropshipment delivery.
 
 <aside class="notice">
 Be aware! The goods in the packinglist will not be added to the stock!
@@ -314,8 +313,8 @@ Be aware! The goods in the packinglist will not be added to the stock!
 	</div>
 </div>
 
-
 ### Process packinglist (request object)
+
 | Property                                | Type      | Description                                                          |
 |-----------------------------------------|-----------|----------------------------------------------------------------------|
 | `supplier_id`                           | `integer` | Supplier ID see common suppliers endpoint e.g. `2113`                |
@@ -323,6 +322,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 | `store_id`                              | `integer` | Store ID where to process the packinglist e.g. `2`                   |
 | `send_customer_messages`                | `boolean` | `true` if notifications should be enabled defaults to `false`        |
 | `update_sales_order_status_if_possible` | `boolean` | `true` if sales-order statuses should be updated defaults to `false` |
+| `ignore_already_processed`              | `boolean` | Defaults to `false. if `true` already processed errors are ignored   |
 
 ### Process packinglist (response object)
 

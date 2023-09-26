@@ -86,7 +86,7 @@ Attributes marked with * are mandatory
 ** When electricbike is yes battery included is mandatory
 
 # Stock indication #
-To provide supplier stock information in CycleSoftware we are able to connect using webservices or by indexing a text file. The following information is advices:
+To provide supplier stock information in CycleSoftware we are able to connect using webservices or by indexing a text file. The following information is adviced:
 
 -	Article number
 -	Stock indication
@@ -287,10 +287,10 @@ Content-type: application/json; charset=utf-8
 
 # Open order items #
 
-In many situations the store as pre-ordered bicycles. 
+In many situations the store pre-ordered bicycles. 
 To provide correct stock information to the dealer it is advised to provide a service where the open order items can be retrieved.
 
-In addition it is advised to provide a service the remarks for a specific item.
+In addition it is advised to provide a service where the remarks for a specific item can be retrieved.
 
 Normally the open-order-items endpoint will provide all open items, but if possible a filter with "article number" 
 

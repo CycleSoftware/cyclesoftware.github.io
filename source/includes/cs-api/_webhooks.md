@@ -146,72 +146,73 @@ Every JSON payload has the same structure. The payload object is different per e
 
 ### Properties
 
-| Property                                          | Type        | Description                                                                                                 |
-|---------------------------------------------------|-------------|-------------------------------------------------------------------------------------------------------------|
-| `sales_order_id`                                  | `integer`   | Sales Order ID e.g. `1442`                                                                                  |
-| `store_id`                                        | `integer`   | Store ID within account e.g. `1`                                                                            |
-| `sales_employee_id`                               | `integer`   | Employee ID see common employees e.g. `1619`                                                                |
-| `customer_id`                                     | `integer`   | Customer ID e.g. `6667`                                                                                     |
-| `order_type_id`                                   | `integer`   | Order type ID, see common enum e.g. `3`                                                                     |
-| `order_type_text`                                 | `string`    | Order type text, see common enum  `Order`                                                                   |
-| `order_reference_id`                              | `string`    | Order reference ID `12212`                                                                                  |
-| `order_reference_text`                            | `string`    | Order reference text `REF12212`                                                                             |
-| `datetime_created`                                | `datetime`  | Created at e.g. `2013-09-05 12:00:00`                                                                       |
-| `datetime_modified`                               | `datetime`  | Modified at e.g. `2022-04-20 12:29:23`                                                                      |
-| `datetime_preferred_delivery`                     | `?date`     | Date of preferred delivery e.g. `2022-04-20` or `null`                                                      |
-| `datetime_preferred_pickup`                       | `?date`     | Date of preferred pickup e.g. `2022-04-20` or `null`                                                        |
-| `status_id`                                       | `integer`   | Sales order status id see common enum e.g. `2`                                                              |
-| `status_text`                                     | `string`    | Sales order status text see common enum e.g.  `In behandeling`                                              |
-| `cancellation_type_id`                            | `integer`   | Cancellation type id see common enum e.g. `0`                                                               |
-| `cancellation_description`                        | `?string`   | Cancellation type description see common enum                                                               |
-| `remarks`                                         | `string`    | Order remarks `Omschrijving 1`                                                                              |
-| `has_invoice`                                     | `boolean`   | True if invoice is associcated with order e.g. `false`                                                      |
-| `invoice_number`                                  | `integer`   | Invoice number if present `0`                                                                               |
-| `ship_to_customer`                                | `boolean`   | True if should ship to customer `false` (deprecated)                                                        |
-| `delivery_method_id`                              | `integer`   | Delivery method ID see common enum e.g. `0`                                                                 |
-| `delivery_method_description`                     | `string`    | Delivery method description see common enum e.g. `Afhalen in winkel`                                        |
-| `shipment_method_description`                     | `string`    | Free description of shipment e.g. `VERZENDEN`                                                               |
-| `payment_method_description`                      | `string`    | Free description of shipment e.g. `IDEAL`                                                                   |
-| `order_items`                                     | `object[]`  | List of order items                                                                                         |
-| `order_items[].item_id`                           | `integer`   | ID of item within the order e.g. `2`                                                                        |
-| `order_items[].item_type_id`                      | `integer`   | Item type ID see common enum e.g. `1`                                                                       |
-| `order_items[].special_type_id`                   | `integer`   | ID if associated object if present e.g. `0`                                                                 |
-| `order_items[].quantity`                          | `integer`   | Quantity e.g. `1`                                                                                           |
-| `order_items[].barcode`                           | `string`    | Barcode of item e.g. `4008496261628`                                                                        |
-| `order_items[].pos_group_id`                      | `integer`   | POS group see common enum e.g. `11`                                                                         |
-| `order_items[].description`                       | `string`    | Description of item e.g. `VARTA BATTERIE 12V38MAH V23GA`                                                    |
-| `order_items[].unit_price_in_vat_cents`           | `integer`   | Gross unit price in cents `225`                                                                             |
-| `order_items[].unit_discount_amount_in_vat_cents` | `integer`   | Unit discount in cents e.g. `0`                                                                             |
-| `order_items[].price_in_vat_cents`                | `integer`   | Line price in cents e.g. `225`                                                                              |
-| `order_items[].discount_percentage`               | `integer`   | Discount percentage e.g. `0`                                                                                |
-| `order_items[].vat_code`                          | `integer`   | VAT code see common enum e.g. `2`                                                                           |
-| `order_items[].vat_percentage`                    | `integer`   | VAT percentage e.g. `21`                                                                                    |
-| `order_items[].vat_amount_cents`                  | `integer`   | VAT amount in cents e.g. `39`                                                                               |
-| `order_items[].item_status_id`                    | `integer`   | Item status ID see common enum e.g. `0`                                                                     |
-| `order_items[].item_status_text`                  | `string`    | Item status text see common enum e.g. `Geen status`                                                         |
-| `order_items[].unit_work_time_minutes`            | `integer`   | Work time for item in minutes e.g. `0`                                                                      |
-| `order_items[].assigned_to_customer_id`           | `integer`   | The customer ID which will be invoiced e.g. `1006` (also see `order_item_invoice_customer_id` in SaveOrder) |
-| `order_items[].invoice_number`                    | `?integer`  | The invoice number if invoiced e.g. `2993` not present if no invoice exists                                 |
-| `cancelled_order_items`                           | `?object[]` | List of cancelled / non-deleted order items (same structure as `order_items`                                |
-| `deleted_order_items`                             | `?object[]` | List of deleted order items (same structure as `order_items`, only present once in webhook                  |
-| `customer`                                        | `object`    | See customers webhook definition                                                                            |
-| `delivery_address`                                | `?object`   | Delivery address if specified, `null` if not specified                                                      |
-| `delivery_address.delivery_address_id`            | `integer`   | Delivery address ID e.g. `91953`                                                                            |
-| `delivery_address.customer_id`                    | `integer`   | Customer ID e.g. `6667`                                                                                     |
-| `delivery_address.is_business`                    | `boolean`   | If business address `true`                                                                                  |
-| `delivery_address.company_name`                   | `string`    | Company name if specified                                                                                   |
-| `delivery_address.name`                           | `string`    | Name of customer `Name 91953`                                                                               |
-| `delivery_address.street`                         | `string`    | Street name e.g. `Slangenburg`                                                                              |
-| `delivery_address.housenumber`                    | `string`    | House number e.g. `314`                                                                                     |
-| `delivery_address.housenumber_postfix`            | `string`    | House number postfix `B`                                                                                    |
-| `delivery_address.postcode`                       | `string`    | Postcode e.g. `8888ZZ`                                                                                      |
-| `delivery_address.city`                           | `string`    | City `Deventer`                                                                                             |
-| `delivery_address.country`                        | `string`    | Deprecated, filled with country code `NL`                                                                   |
-| `delivery_address.country_code_iso_3166`          | `string`    | ISO 3166 Country code e.g. `NL`                                                                             |
-| `delivery_address.phone_number`                   | `string`    | Phone number associated with address `06 12345678`                                                          |
-| `delivery_address.email`                          | `string`    | E-mail associated with address `email91953@example.nl`                                                      |
-| `delivery_address.remarks`                        | `string`    | Remarks for address `Some text`                                                                             |
-| `labels[]`                                        | `string[]`  | Label associated with the sales order e.g. `["label1"]`                                                     |
+| Property                                          | Type        |     | Description                                                                                                 |
+|---------------------------------------------------|-------------|:----|-------------------------------------------------------------------------------------------------------------|
+| `sales_order_id`                                  | `integer`   |     | Sales Order ID e.g. `1442`                                                                                  |
+| `store_id`                                        | `integer`   |     | Store ID within account e.g. `1`                                                                            |
+| `sales_employee_id`                               | `integer`   |     | Employee ID see common employees e.g. `1619`                                                                |
+| `last_update_employee_id`                         | `?integer`  |     | Last update by employee ID  e.g. `1619`                                                                     |
+| `customer_id`                                     | `integer`   |     | Customer ID e.g. `6667`                                                                                     |
+| `order_type_id`                                   | `integer`   |     | Order type ID, see common enum e.g. `3`                                                                     |
+| `order_type_text`                                 | `string`    |     | Order type text, see common enum  `Order`                                                                   |
+| `order_reference_id`                              | `string`    |     | Order reference ID `12212`                                                                                  |
+| `order_reference_text`                            | `string`    |     | Order reference text `REF12212`                                                                             |
+| `datetime_created`                                | `datetime`  |     | Created at e.g. `2013-09-05 12:00:00`                                                                       |
+| `datetime_modified`                               | `datetime`  |     | Modified at e.g. `2022-04-20 12:29:23`                                                                      |
+| `datetime_preferred_delivery`                     | `?date`     |     | Date of preferred delivery e.g. `2022-04-20` or `null`                                                      |
+| `datetime_preferred_pickup`                       | `?date`     |     | Date of preferred pickup e.g. `2022-04-20` or `null`                                                        |
+| `status_id`                                       | `integer`   |     | Sales order status id see common enum e.g. `2`                                                              |
+| `status_text`                                     | `string`    |     | Sales order status text see common enum e.g.  `In behandeling`                                              |
+| `cancellation_type_id`                            | `integer`   |     | Cancellation type id see common enum e.g. `0`                                                               |
+| `cancellation_description`                        | `?string`   |     | Cancellation type description see common enum                                                               |
+| `remarks`                                         | `string`    |     | Order remarks `Omschrijving 1`                                                                              |
+| `has_invoice`                                     | `boolean`   |     | True if invoice is associcated with order e.g. `false`                                                      |
+| `invoice_number`                                  | `integer`   |     | Invoice number if present `0`                                                                               |
+| `ship_to_customer`                                | `boolean`   |     | True if should ship to customer `false` (deprecated)                                                        |
+| `delivery_method_id`                              | `integer`   |     | Delivery method ID see common enum e.g. `0`                                                                 |
+| `delivery_method_description`                     | `string`    |     | Delivery method description see common enum e.g. `Afhalen in winkel`                                        |
+| `shipment_method_description`                     | `string`    |     | Free description of shipment e.g. `VERZENDEN`                                                               |
+| `payment_method_description`                      | `string`    |     | Free description of shipment e.g. `IDEAL`                                                                   |
+| `order_items`                                     | `object[]`  |     | List of order items                                                                                         |
+| `order_items[].item_id`                           | `integer`   |     | ID of item within the order e.g. `2`                                                                        |
+| `order_items[].item_type_id`                      | `integer`   |     | Item type ID see common enum e.g. `1`                                                                       |
+| `order_items[].special_type_id`                   | `integer`   |     | ID if associated object if present e.g. `0`                                                                 |
+| `order_items[].quantity`                          | `integer`   |     | Quantity e.g. `1`                                                                                           |
+| `order_items[].barcode`                           | `string`    |     | Barcode of item e.g. `4008496261628`                                                                        |
+| `order_items[].pos_group_id`                      | `integer`   |     | POS group see common enum e.g. `11`                                                                         |
+| `order_items[].description`                       | `string`    |     | Description of item e.g. `VARTA BATTERIE 12V38MAH V23GA`                                                    |
+| `order_items[].unit_price_in_vat_cents`           | `integer`   |     | Gross unit price in cents `225`                                                                             |
+| `order_items[].unit_discount_amount_in_vat_cents` | `integer`   |     | Unit discount in cents e.g. `0`                                                                             |
+| `order_items[].price_in_vat_cents`                | `integer`   |     | Line price in cents e.g. `225`                                                                              |
+| `order_items[].discount_percentage`               | `integer`   |     | Discount percentage e.g. `0`                                                                                |
+| `order_items[].vat_code`                          | `integer`   |     | VAT code see common enum e.g. `2`                                                                           |
+| `order_items[].vat_percentage`                    | `integer`   |     | VAT percentage e.g. `21`                                                                                    |
+| `order_items[].vat_amount_cents`                  | `integer`   |     | VAT amount in cents e.g. `39`                                                                               |
+| `order_items[].item_status_id`                    | `integer`   |     | Item status ID see common enum e.g. `0`                                                                     |
+| `order_items[].item_status_text`                  | `string`    |     | Item status text see common enum e.g. `Geen status`                                                         |
+| `order_items[].unit_work_time_minutes`            | `integer`   |     | Work time for item in minutes e.g. `0`                                                                      |
+| `order_items[].assigned_to_customer_id`           | `integer`   |     | The customer ID which will be invoiced e.g. `1006` (also see `order_item_invoice_customer_id` in SaveOrder) |
+| `order_items[].invoice_number`                    | `?integer`  |     | The invoice number if invoiced e.g. `2993` not present if no invoice exists                                 |
+| `cancelled_order_items`                           | `?object[]` |     | List of cancelled / non-deleted order items (same structure as `order_items`                                |
+| `deleted_order_items`                             | `?object[]` |     | List of deleted order items (same structure as `order_items`, only present once in webhook                  |
+| `customer`                                        | `object`    |     | See customers webhook definition                                                                            |
+| `delivery_address`                                | `?object`   |     | Delivery address if specified, `null` if not specified                                                      |
+| `delivery_address.delivery_address_id`            | `integer`   |     | Delivery address ID e.g. `91953`                                                                            |
+| `delivery_address.customer_id`                    | `integer`   |     | Customer ID e.g. `6667`                                                                                     |
+| `delivery_address.is_business`                    | `boolean`   |     | If business address `true`                                                                                  |
+| `delivery_address.company_name`                   | `string`    |     | Company name if specified                                                                                   |
+| `delivery_address.name`                           | `string`    |     | Name of customer `Name 91953`                                                                               |
+| `delivery_address.street`                         | `string`    |     | Street name e.g. `Slangenburg`                                                                              |
+| `delivery_address.housenumber`                    | `string`    |     | House number e.g. `314`                                                                                     |
+| `delivery_address.housenumber_postfix`            | `string`    |     | House number postfix `B`                                                                                    |
+| `delivery_address.postcode`                       | `string`    |     | Postcode e.g. `8888ZZ`                                                                                      |
+| `delivery_address.city`                           | `string`    |     | City `Deventer`                                                                                             |
+| `delivery_address.country`                        | `string`    |     | Deprecated, filled with country code `NL`                                                                   |
+| `delivery_address.country_code_iso_3166`          | `string`    |     | ISO 3166 Country code e.g. `NL`                                                                             |
+| `delivery_address.phone_number`                   | `string`    |     | Phone number associated with address `06 12345678`                                                          |
+| `delivery_address.email`                          | `string`    |     | E-mail associated with address `email91953@example.nl`                                                      |
+| `delivery_address.remarks`                        | `string`    |     | Remarks for address `Some text`                                                                             |
+| `labels[]`                                        | `string[]`  |     | Label associated with the sales order e.g. `["label1"]`                                                     |
 
 > Payload structure
 
@@ -224,7 +225,8 @@ Every JSON payload has the same structure. The payload object is different per e
   "payload": {
     "sales_order_id": 1442,
     "store_id": 1,
-    "sales_employee_id": 1619,
+    "sales_employee_id": 1323,
+    "last_update_employee_id": 1323,
     "customer_id": 6667,
     "order_type_id": 3,
     "order_type_text": "Order",
@@ -408,6 +410,7 @@ Every JSON payload has the same structure. The payload object is different per e
       "sales_order_id": 50032,
       "store_id": 1,
       "sales_employee_id": 1001,
+      "last_update_employee_id": 1001,
       "customer_id": 6776,
       "order_type_id": 6,
       "order_type_text": "Reparatie",

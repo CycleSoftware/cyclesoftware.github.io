@@ -6639,6 +6639,16 @@ By default the book-date is used.</p>
 <td>Preferred delivery date</td>
 </tr>
 <tr>
+<td><code>data[].sales_employee_id</code></td>
+<td><code>?integer</code></td>
+<td>Sales employee ID <code>9</code></td>
+</tr>
+<tr>
+<td><code>data[].last_update_employee_id</code></td>
+<td><code>?integer</code></td>
+<td>Last updated by employee ID  e.g. <code>9</code></td>
+</tr>
+<tr>
 <td><code>data[].status_id</code></td>
 <td><code>integer</code></td>
 <td>Sales order status id e.g. <code>9</code> (see common enum for list)</td>
@@ -6790,6 +6800,8 @@ By default the book-date is used.</p>
             </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:04:00"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"datetime_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:04:00"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"datetime_preferred_delivery"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_update_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span><span class="p">,</span><span class="w">
             </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nl">"status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In behandeling"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"cancellation_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -6825,6 +6837,8 @@ By default the book-date is used.</p>
             </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:03:15"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"datetime_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:03:15"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"datetime_preferred_delivery"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_update_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span><span class="p">,</span><span class="w">
             </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nl">"status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In behandeling"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"cancellation_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -6860,6 +6874,8 @@ By default the book-date is used.</p>
             </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:03:15"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"datetime_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-13 17:03:15"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"datetime_preferred_delivery"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_update_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2001</span><span class="p">,</span><span class="w">
             </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nl">"status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In behandeling"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"cancellation_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -10982,327 +10998,398 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <tr>
 <th>Property</th>
 <th>Type</th>
+<th style="text-align: left"></th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code>sales_order_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Sales Order ID e.g. <code>1442</code></td>
 </tr>
 <tr>
 <td><code>store_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Store ID within account e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>sales_employee_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Employee ID see common employees e.g. <code>1619</code></td>
+</tr>
+<tr>
+<td><code>last_update_employee_id</code></td>
+<td><code>?integer</code></td>
+<td style="text-align: left"></td>
+<td>Last update by employee ID  e.g. <code>1619</code></td>
 </tr>
 <tr>
 <td><code>customer_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Customer ID e.g. <code>6667</code></td>
 </tr>
 <tr>
 <td><code>order_type_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Order type ID, see common enum e.g. <code>3</code></td>
 </tr>
 <tr>
 <td><code>order_type_text</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Order type text, see common enum  <code>Order</code></td>
 </tr>
 <tr>
 <td><code>order_reference_id</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Order reference ID <code>12212</code></td>
 </tr>
 <tr>
 <td><code>order_reference_text</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Order reference text <code>REF12212</code></td>
 </tr>
 <tr>
 <td><code>datetime_created</code></td>
 <td><code>datetime</code></td>
+<td style="text-align: left"></td>
 <td>Created at e.g. <code>2013-09-05 12:00:00</code></td>
 </tr>
 <tr>
 <td><code>datetime_modified</code></td>
 <td><code>datetime</code></td>
+<td style="text-align: left"></td>
 <td>Modified at e.g. <code>2022-04-20 12:29:23</code></td>
 </tr>
 <tr>
 <td><code>datetime_preferred_delivery</code></td>
 <td><code>?date</code></td>
+<td style="text-align: left"></td>
 <td>Date of preferred delivery e.g. <code>2022-04-20</code> or <code>null</code></td>
 </tr>
 <tr>
 <td><code>datetime_preferred_pickup</code></td>
 <td><code>?date</code></td>
+<td style="text-align: left"></td>
 <td>Date of preferred pickup e.g. <code>2022-04-20</code> or <code>null</code></td>
 </tr>
 <tr>
 <td><code>status_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Sales order status id see common enum e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>status_text</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Sales order status text see common enum e.g.  <code>In behandeling</code></td>
 </tr>
 <tr>
 <td><code>cancellation_type_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Cancellation type id see common enum e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>cancellation_description</code></td>
 <td><code>?string</code></td>
+<td style="text-align: left"></td>
 <td>Cancellation type description see common enum</td>
 </tr>
 <tr>
 <td><code>remarks</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Order remarks <code>Omschrijving 1</code></td>
 </tr>
 <tr>
 <td><code>has_invoice</code></td>
 <td><code>boolean</code></td>
+<td style="text-align: left"></td>
 <td>True if invoice is associcated with order e.g. <code>false</code></td>
 </tr>
 <tr>
 <td><code>invoice_number</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Invoice number if present <code>0</code></td>
 </tr>
 <tr>
 <td><code>ship_to_customer</code></td>
 <td><code>boolean</code></td>
+<td style="text-align: left"></td>
 <td>True if should ship to customer <code>false</code> (deprecated)</td>
 </tr>
 <tr>
 <td><code>delivery_method_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Delivery method ID see common enum e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>delivery_method_description</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Delivery method description see common enum e.g. <code>Afhalen in winkel</code></td>
 </tr>
 <tr>
 <td><code>shipment_method_description</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Free description of shipment e.g. <code>VERZENDEN</code></td>
 </tr>
 <tr>
 <td><code>payment_method_description</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Free description of shipment e.g. <code>IDEAL</code></td>
 </tr>
 <tr>
 <td><code>order_items</code></td>
 <td><code>object[]</code></td>
+<td style="text-align: left"></td>
 <td>List of order items</td>
 </tr>
 <tr>
 <td><code>order_items[].item_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>ID of item within the order e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>order_items[].item_type_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Item type ID see common enum e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>order_items[].special_type_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>ID if associated object if present e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].quantity</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Quantity e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>order_items[].barcode</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Barcode of item e.g. <code>4008496261628</code></td>
 </tr>
 <tr>
 <td><code>order_items[].pos_group_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>POS group see common enum e.g. <code>11</code></td>
 </tr>
 <tr>
 <td><code>order_items[].description</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Description of item e.g. <code>VARTA BATTERIE 12V38MAH V23GA</code></td>
 </tr>
 <tr>
 <td><code>order_items[].unit_price_in_vat_cents</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Gross unit price in cents <code>225</code></td>
 </tr>
 <tr>
 <td><code>order_items[].unit_discount_amount_in_vat_cents</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Unit discount in cents e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].price_in_vat_cents</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Line price in cents e.g. <code>225</code></td>
 </tr>
 <tr>
 <td><code>order_items[].discount_percentage</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Discount percentage e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].vat_code</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>VAT code see common enum e.g. <code>2</code></td>
 </tr>
 <tr>
 <td><code>order_items[].vat_percentage</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>VAT percentage e.g. <code>21</code></td>
 </tr>
 <tr>
 <td><code>order_items[].vat_amount_cents</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>VAT amount in cents e.g. <code>39</code></td>
 </tr>
 <tr>
 <td><code>order_items[].item_status_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Item status ID see common enum e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].item_status_text</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Item status text see common enum e.g. <code>Geen status</code></td>
 </tr>
 <tr>
 <td><code>order_items[].unit_work_time_minutes</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Work time for item in minutes e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>order_items[].assigned_to_customer_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>The customer ID which will be invoiced e.g. <code>1006</code> (also see <code>order_item_invoice_customer_id</code> in SaveOrder)</td>
 </tr>
 <tr>
 <td><code>order_items[].invoice_number</code></td>
 <td><code>?integer</code></td>
+<td style="text-align: left"></td>
 <td>The invoice number if invoiced e.g. <code>2993</code> not present if no invoice exists</td>
 </tr>
 <tr>
 <td><code>cancelled_order_items</code></td>
 <td><code>?object[]</code></td>
+<td style="text-align: left"></td>
 <td>List of cancelled / non-deleted order items (same structure as <code>order_items</code></td>
 </tr>
 <tr>
 <td><code>deleted_order_items</code></td>
 <td><code>?object[]</code></td>
+<td style="text-align: left"></td>
 <td>List of deleted order items (same structure as <code>order_items</code>, only present once in webhook</td>
 </tr>
 <tr>
 <td><code>customer</code></td>
 <td><code>object</code></td>
+<td style="text-align: left"></td>
 <td>See customers webhook definition</td>
 </tr>
 <tr>
 <td><code>delivery_address</code></td>
 <td><code>?object</code></td>
+<td style="text-align: left"></td>
 <td>Delivery address if specified, <code>null</code> if not specified</td>
 </tr>
 <tr>
 <td><code>delivery_address.delivery_address_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Delivery address ID e.g. <code>91953</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.customer_id</code></td>
 <td><code>integer</code></td>
+<td style="text-align: left"></td>
 <td>Customer ID e.g. <code>6667</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.is_business</code></td>
 <td><code>boolean</code></td>
+<td style="text-align: left"></td>
 <td>If business address <code>true</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.company_name</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Company name if specified</td>
 </tr>
 <tr>
 <td><code>delivery_address.name</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Name of customer <code>Name 91953</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.street</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Street name e.g. <code>Slangenburg</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.housenumber</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>House number e.g. <code>314</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.housenumber_postfix</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>House number postfix <code>B</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.postcode</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Postcode e.g. <code>8888ZZ</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.city</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>City <code>Deventer</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.country</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Deprecated, filled with country code <code>NL</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.country_code_iso_3166</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>ISO 3166 Country code e.g. <code>NL</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.phone_number</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Phone number associated with address <code>06 12345678</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.email</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>E-mail associated with address <code>email91953@example.nl</code></td>
 </tr>
 <tr>
 <td><code>delivery_address.remarks</code></td>
 <td><code>string</code></td>
+<td style="text-align: left"></td>
 <td>Remarks for address <code>Some text</code></td>
 </tr>
 <tr>
 <td><code>labels[]</code></td>
 <td><code>string[]</code></td>
+<td style="text-align: left"></td>
 <td>Label associated with the sales order e.g. <code>[&quot;label1&quot;]</code></td>
 </tr>
 </tbody></table>
@@ -11318,7 +11405,8 @@ Be aware! The goods in the packinglist will not be added to the stock!
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1442</span><span class="p">,</span><span class="w">
     </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sales_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1619</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sales_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1323</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"last_update_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1323</span><span class="p">,</span><span class="w">
     </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6667</span><span class="p">,</span><span class="w">
     </span><span class="nl">"order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
     </span><span class="nl">"order_type_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
@@ -11569,6 +11657,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
       </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50032</span><span class="p">,</span><span class="w">
       </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nl">"sales_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"last_update_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
       </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6776</span><span class="p">,</span><span class="w">
       </span><span class="nl">"order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
       </span><span class="nl">"order_type_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reparatie"</span><span class="p">,</span><span class="w">

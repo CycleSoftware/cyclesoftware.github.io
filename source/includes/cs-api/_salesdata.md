@@ -142,6 +142,8 @@ Get modified orders within date interval (max 31 days)
 | `data[].datetime_created`                 | `datetime` | Created at `2019-05-22 13:45:37`                                           |
 | `data[].datetime_modified`                | `datetime` | Modified at `2022-04-07 15:03:32`                                          |
 | `data[].datetime_preferred_delivery`      | `?date`    | Preferred delivery date                                                    |
+| `data[].sales_employee_id`                | `?integer` | Sales employee ID `9`                                                      |
+| `data[].last_update_employee_id`          | `?integer` | Last updated by employee ID  e.g. `9`                                      |
 | `data[].status_id`                        | `integer`  | Sales order status id e.g. `9` (see common enum for list)                  |
 | `data[].status_text`                      | `string`   | Sales order status text e.g. `Afgerond` (see common enum for list)         |
 | `data[].cancellation_type_id`             | `integer`  | Cancellation type id e.g. `0` (see common enum for list)                   |
@@ -198,6 +200,8 @@ Content-length: 1655
             "datetime_created": "2022-04-13 17:04:00",
             "datetime_modified": "2022-04-13 17:04:00",
             "datetime_preferred_delivery": null,
+            "sales_employee_id": 2001,
+            "last_update_employee_id": 2001,
             "status_id": 2,
             "status_text": "In behandeling",
             "cancellation_type_id": 0,
@@ -233,6 +237,8 @@ Content-length: 1655
             "datetime_created": "2022-04-13 17:03:15",
             "datetime_modified": "2022-04-13 17:03:15",
             "datetime_preferred_delivery": null,
+            "sales_employee_id": 2001,
+            "last_update_employee_id": 2001,
             "status_id": 2,
             "status_text": "In behandeling",
             "cancellation_type_id": 0,
@@ -268,6 +274,8 @@ Content-length: 1655
             "datetime_created": "2022-04-13 17:03:15",
             "datetime_modified": "2022-04-13 17:03:15",
             "datetime_preferred_delivery": null,
+            "sales_employee_id": 2001,
+            "last_update_employee_id": 2001,
             "status_id": 2,
             "status_text": "In behandeling",
             "cancellation_type_id": 0,

@@ -7788,6 +7788,11 @@ is not invoiced.</p>
 <td>Account ID within CS <code>1000</code></td>
 </tr>
 <tr>
+<td><code>store_id</code></td>
+<td><code>integer</code></td>
+<td>Store ID of service item <code>1</code></td>
+</tr>
+<tr>
 <td><code>service_id</code></td>
 <td><code>integer</code></td>
 <td>ID of service <code>1790811</code></td>
@@ -7926,6 +7931,7 @@ is not invoiced.</p>
 <span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5185</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2302569</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6786341</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-2302569-1"</span><span class="p">,</span><span class="w">
@@ -7947,6 +7953,7 @@ is not invoiced.</p>
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5185</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2302721</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6786899</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-2302721-1"</span><span class="p">,</span><span class="w">
@@ -8021,6 +8028,7 @@ is not invoiced.</p>
 <span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5185</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2302569</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6786341</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-2302569-1"</span><span class="p">,</span><span class="w">
@@ -8043,6 +8051,7 @@ is not invoiced.</p>
 
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5185</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2302569</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6786342</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-2302569-2"</span><span class="p">,</span><span class="w">
@@ -8134,6 +8143,11 @@ is not invoiced.</p>
 <td><code>data[].account_id</code></td>
 <td><code>integer</code></td>
 <td>Account ID within CS <code>1000</code></td>
+</tr>
+<tr>
+<td><code>data[].store_id</code></td>
+<td><code>integer</code></td>
+<td>Store ID of associated to service item <code>1</code></td>
 </tr>
 <tr>
 <td><code>data[].service_id</code></td>
@@ -8260,6 +8274,7 @@ is not invoiced.</p>
     </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1790811</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4823367</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-1790811-1"</span><span class="p">,</span><span class="w">
@@ -8281,6 +8296,7 @@ is not invoiced.</p>
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4823369</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-1790811-2"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -8301,6 +8317,7 @@ is not invoiced.</p>
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4823371</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-1790811-3"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">

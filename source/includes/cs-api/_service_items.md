@@ -11,6 +11,7 @@ Read, create or update repair objects for a customer
 | **Property**                    | **Type**   | **Description**                                                                       |
 |---------------------------------|------------|---------------------------------------------------------------------------------------|
 | `account_id`                    | `integer`  | Account ID within CS `1000`                                                           |
+| `store_id`                      | `integer`  | Store ID of service item `1`                                                          |
 | `service_id`                    | `integer`  | ID of service `1790811`                                                               |
 | `service_item_id`               | `integer`  | Iem ID of service item `4823371`                                                      |
 | `service_barcode`               | `string`   | Barcode of service item e.g. `DSK-1790811-3`                                          |
@@ -70,6 +71,7 @@ X-RateLimit-Daily-Reset: 1678230000
 [
     {
         "account_id": 5185,
+        "store_id": 1,
         "service_id": 2302569,
         "service_item_id": 6786341,
         "service_barcode": "DSK-2302569-1",
@@ -91,6 +93,7 @@ X-RateLimit-Daily-Reset: 1678230000
     },
     {
         "account_id": 5185,
+        "store_id": 1,
         "service_id": 2302721,
         "service_item_id": 6786899,
         "service_barcode": "DSK-2302721-1",
@@ -155,6 +158,7 @@ X-RateLimit-Daily-Reset: 1678230000
 [
     {
         "account_id": 5185,
+        "store_id": 1,
         "service_id": 2302569,
         "service_item_id": 6786341,
         "service_barcode": "DSK-2302569-1",
@@ -177,6 +181,7 @@ X-RateLimit-Daily-Reset: 1678230000
     
     {
         "account_id": 5185,
+        "store_id": 1,
         "service_id": 2302569,
         "service_item_id": 6786342,
         "service_barcode": "DSK-2302569-2",
@@ -234,6 +239,7 @@ Get list of service items for workshop.
 | `error_message`                        | `?string`  | if not null the error message                                                         |
 | `data`                                 | `object[]` | Array of service item objects                                                         |
 | `data[].account_id`                    | `integer`  | Account ID within CS `1000`                                                           |
+| `data[].store_id`                      | `integer`  | Store ID of associated to service item `1`                                            |
 | `data[].service_id`                    | `integer`  | ID of service `1790811`                                                               |
 | `data[].service_item_id`               | `integer`  | Iem ID of service item `4823371`                                                      |
 | `data[].service_barcode`               | `string`   | Barcode of service item e.g. `DSK-1790811-3`                                          |
@@ -281,6 +287,7 @@ X-RateLimit-Daily-Reset: 1678230000
     "data": [
         {
             "account_id": 1000,
+            "store_id": 1,
             "service_id": 1790811,
             "service_item_id": 4823367,
             "service_barcode": "DSK-1790811-1",
@@ -302,6 +309,7 @@ X-RateLimit-Daily-Reset: 1678230000
         },
         {
             "account_id": 1000,
+            "store_id": 1,
             "service_item_id": 4823369,
             "service_barcode": "DSK-1790811-2",
             "service_status_id": 1,
@@ -322,6 +330,7 @@ X-RateLimit-Daily-Reset: 1678230000
         },
         {
             "account_id": 1000,
+            "store_id": 1,
             "service_item_id": 4823371,
             "service_barcode": "DSK-1790811-3",
             "service_status_id": 1,

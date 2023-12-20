@@ -1278,7 +1278,7 @@ available.</p>
 <tr>
 <td><code>data.result_items[].stock_quantity</code></td>
 <td><code>integer</code></td>
-<td>available quantity within stores+warehouse</td>
+<td>available quantity within stores+warehouse (new+demo+used+rental)</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_quantity_stores</code></td>
@@ -1313,12 +1313,22 @@ available.</p>
 <tr>
 <td><code>data.result_items[].stock_stores[].quantity</code></td>
 <td><code>integer</code></td>
-<td>quantity including demo models available</td>
+<td>quantity including demo, used, rental models available</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].quantity_demo</code></td>
 <td><code>integer</code></td>
 <td>quantity of demo models available</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].quantity_used</code></td>
+<td><code>integer</code></td>
+<td>quantity of used models available</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].quantity_rental</code></td>
+<td><code>integer</code></td>
+<td>quantity of rental models available</td>
 </tr>
 <tr>
 <td><code>data.result_items[].supplier_id</code></td>
@@ -1399,14 +1409,18 @@ available.</p>
             </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ridderkerk"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"store_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"010-1234567"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_used"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_rental"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="nl">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">857361</span><span class="p">,</span><span class="w">
             </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Breda"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"store_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"010-1234567"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_used"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"quantity_rental"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">

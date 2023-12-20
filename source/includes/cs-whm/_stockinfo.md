@@ -26,29 +26,31 @@ Get a list of stock items released for shipment
 
 ### Properties ###
 
-| Property                                           | Type       | Description                                                    |
-|----------------------------------------------------|------------|----------------------------------------------------------------|
-| `error`                                            | `boolean`  | true if errors occurred                                        |
-| `error_message`                                    | `?string`  | Error message if occurred                                      |
-| `data.status`                                      | `boolean`  | true if no errors occurred                                     |
-| `data.result_items`                                | `object[]` | Result per requested barcode                                   |
-| `data.result_items[].barcode`                      | `string`   | Article barcode                                                |
-| `data.result_items[].stock_available`              | `boolean`  | Overall status whether stock is available                      |
-| `data.result_items[].delivery_date`                | `?date`    | expected delivery date from supplier                           |
-| `data.result_items[].delivery_date_supplier`       | `?date`    | expected delivery date from supplier                           |
-| `data.result_items[].delivery_date_backlog`        | `?date`    | expected delivery date from registered backlog orders supplier |
-| `data.result_items[].stock_supplier`               | `?boolean` | true if stock available at supplier, null if not checked       |
-| `data.result_items[].stock_quantity`               | `integer`  | available quantity within stores+warehouse                     |
-| `data.result_items[].stock_quantity_stores`        | `integer`  | available quantity within stores                               |
-| `data.result_items[].stock_quantity_warehouse`     | `integer`  | available quantity within warehouse                            |
-| `data.result_items[].stock_stores`                 | `object[]` | array with stock info per store                                |
-| `data.result_items[].stock_stores[].dealer_id`     | `integer`  | dealer-id of store                                             |
-| `data.result_items[].stock_stores[].store_name`    | `string`   | name of store                                                  |
-| `data.result_items[].stock_stores[].store_phone`   | `string`   | phone number of store                                          |
-| `data.result_items[].stock_stores[].quantity`      | `integer`  | quantity including demo models available                       |
-| `data.result_items[].stock_stores[].quantity_demo` | `integer`  | quantity of demo models available                              |
-| `data.result_items[].supplier_id`                  | `?string`  | used supplier_id in request                                    |
-| `data.result_items[].article_id`                   | `string`   | used "barcode" in request e.g. `8719461035781`                 |
+| Property                                             | Type       | Description                                                       |
+|------------------------------------------------------|------------|-------------------------------------------------------------------|
+| `error`                                              | `boolean`  | true if errors occurred                                           |
+| `error_message`                                      | `?string`  | Error message if occurred                                         |
+| `data.status`                                        | `boolean`  | true if no errors occurred                                        |
+| `data.result_items`                                  | `object[]` | Result per requested barcode                                      |
+| `data.result_items[].barcode`                        | `string`   | Article barcode                                                   |
+| `data.result_items[].stock_available`                | `boolean`  | Overall status whether stock is available                         |
+| `data.result_items[].delivery_date`                  | `?date`    | expected delivery date from supplier                              |
+| `data.result_items[].delivery_date_supplier`         | `?date`    | expected delivery date from supplier                              |
+| `data.result_items[].delivery_date_backlog`          | `?date`    | expected delivery date from registered backlog orders supplier    |
+| `data.result_items[].stock_supplier`                 | `?boolean` | true if stock available at supplier, null if not checked          |
+| `data.result_items[].stock_quantity`                 | `integer`  | available quantity within stores+warehouse (new+demo+used+rental) |
+| `data.result_items[].stock_quantity_stores`          | `integer`  | available quantity within stores                                  |
+| `data.result_items[].stock_quantity_warehouse`       | `integer`  | available quantity within warehouse                               |
+| `data.result_items[].stock_stores`                   | `object[]` | array with stock info per store                                   |
+| `data.result_items[].stock_stores[].dealer_id`       | `integer`  | dealer-id of store                                                |
+| `data.result_items[].stock_stores[].store_name`      | `string`   | name of store                                                     |
+| `data.result_items[].stock_stores[].store_phone`     | `string`   | phone number of store                                             |
+| `data.result_items[].stock_stores[].quantity`        | `integer`  | quantity including demo, used, rental models available            |
+| `data.result_items[].stock_stores[].quantity_demo`   | `integer`  | quantity of demo models available                                 |
+| `data.result_items[].stock_stores[].quantity_used`   | `integer`  | quantity of used models available                                 |
+| `data.result_items[].stock_stores[].quantity_rental` | `integer`  | quantity of rental models available                               |
+| `data.result_items[].supplier_id`                    | `?string`  | used supplier_id in request                                       |
+| `data.result_items[].article_id`                     | `string`   | used "barcode" in request e.g. `8719461035781`                    |
 
 ### HTTP request examples ###
 
@@ -121,14 +123,18 @@ Get a list of stock items released for shipment
             "store_name": "Ridderkerk",
             "store_phone": "010-1234567",
             "quantity": 1,
-            "quantity_demo": 1
+            "quantity_demo": 1,
+            "quantity_used": 0,
+            "quantity_rental": 0
           },
           {
             "dealer_id": 857361,
             "store_name": "Breda",
             "store_phone": "010-1234567",
             "quantity": 1,
-            "quantity_demo": 1
+            "quantity_demo": 1,
+            "quantity_used": 0,
+            "quantity_rental": 0
           }
         ],
         "supplier_id": null,

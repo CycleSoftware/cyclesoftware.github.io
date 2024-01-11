@@ -18,6 +18,7 @@ Get a list of stock items released for shipment
 | `only_supplier_stock`                       | `integer` | if set to 1 only remote supplier stock is checked, store and warehouse stock is ignored <i class="label label-info">optional</i> |
 | `only_supplier_id`                          | `integer` | if a supplier_id is given only this supplier will be included for supplier stock checks <i class="label label-info">optional</i> |
 | `remote_supplier_check_if_not_in_warehouse` | `integer` | if set to 1 supplier check will always be checked there is no stock in warehouse <i class="label label-info">optional</i>        |
+| `always_remote_supplier_check`              | `integer` | if set to 1 supplier check will always be checked <i class="label label-info">optional</i>                                       |
 
 
 | POST parameter | Type       | Description       |

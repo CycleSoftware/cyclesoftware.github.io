@@ -34,6 +34,67 @@ By default the book-date is used.
 |---------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `date_field`  | `string` | `kassadatum` (default) interval as booked date<br/> `datetime_modified` interval as modification dates<br/>`factuurdatum` interval as invoice proforma date |
 
+## Sales transactions (V2-Beta) ##
+
+Get sales transactions and related data such as customers, article and object data.
+By default the book-date is used.
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v2/salesdata/transactions.json?date_field=:date_field&date_start=:date_start&date_end=:date_end&only_booked_transactions=:only_booked_transactions&store_id=:store_id&dealer_ids=:dealer_ids</h6>
+	</div>
+</div>
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v2/salesdata/transactions.json?token=:pagination_token</h6>
+	</div>
+</div>
+
+| GET parameter              | Type      | Description                                                                                                                 |
+|----------------------------|-----------|-----------------------------------------------------------------------------------------------------------------------------|
+| `date_field`               | `?string` | Type of date field `book_date`,`modified_at`, `transaction_date`, defaults to `book_date`                                   |
+| `date_start`               | `?date`   | Start date of interval for date_field e.g. `2024-01-01`                                                                     |
+| `date_end`                 | `?date`   | End date of interval for date_field e.g. `2024-01-01`                                                                       |
+| `only_booked_transactions` | `?bool`   | If `true` only `final` / `booked` transactions will be given                                                                |
+| `store_id`                 | `?int`    | Store ID for filtering                                                                                                      |
+| `dealer_ids`               | `?string` | CSV of dealer_ids (only applicable for `warehouse` accounts)                                                                |
+| `token`                    | `?string` | The token of next result set in pagination. In `pagination.next_url` the full URL for next result set if given if available |
+
+# Properties
+
+| Property                                  | Type       | Description                                                                |
+|-------------------------------------------|------------|----------------------------------------------------------------------------|
+| `data[].account_id`                       | `integer`  | CS Account e.g. `1`                                                        |
+| `data[].store_id`                         | `integer`  | Store id e.g. `1`                                                          |
+| `data[].sales_order_id`                   | `integer`  | Sales order number e.g. `50032`                                            |
+| `data[].customer_id`                      | `integer`  | Customer number `6776`                                                     |
+
+
+> HTTP request
+
+```http
+GET /api/v2/salesdata/transactions.json?date_field=modified_at&date_start=2024-01-01&date_end=2024-01-15&only_booked_transactions=true&store_id=1 HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 722
+
+
+```
+
+
+
+
 ## Pro-forma invoices ##
 
 Get a list of proforma sales transactions / invoices.

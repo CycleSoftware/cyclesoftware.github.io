@@ -446,16 +446,24 @@
                     <a href="#sales-data-sales-transactions" class="toc-h2 toc-link" data-title="Sales transactions">Sales transactions</a>
                   </li>
                   <li>
-                    <a href="#sales-data-pro-forma-invoices" class="toc-h2 toc-link" data-title="Pro-forma invoices">Pro-forma invoices</a>
+                    <a href="#sales-data-sales-transactions-v2-beta" class="toc-h2 toc-link" data-title="Sales transactions (V2-Beta)">Sales transactions (V2-Beta)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#properties" class="toc-h1 toc-link" data-title="Properties">Properties</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#properties-pro-forma-invoices" class="toc-h2 toc-link" data-title="Pro-forma invoices">Pro-forma invoices</a>
                   </li>
                   <li>
-                    <a href="#sales-data-sales-orders" class="toc-h2 toc-link" data-title="Sales orders">Sales orders</a>
+                    <a href="#properties-sales-orders" class="toc-h2 toc-link" data-title="Sales orders">Sales orders</a>
                   </li>
                   <li>
-                    <a href="#sales-data-payments" class="toc-h2 toc-link" data-title="Payments">Payments</a>
+                    <a href="#properties-payments" class="toc-h2 toc-link" data-title="Payments">Payments</a>
                   </li>
                   <li>
-                    <a href="#sales-data-insurances" class="toc-h2 toc-link" data-title="Insurances">Insurances</a>
+                    <a href="#properties-insurances" class="toc-h2 toc-link" data-title="Insurances">Insurances</a>
                   </li>
               </ul>
           </li>
@@ -1008,6 +1016,10 @@ available.</p>
 <tr>
 <td><code>voucher_types</code></td>
 <td>Voucher types and descriptions</td>
+</tr>
+<tr>
+<td><code>consignment_status</code></td>
+<td>Object consignment type and descriptions</td>
 </tr>
 </tbody></table>
 
@@ -6449,7 +6461,1218 @@ By default the book-date is used.</p>
 <td><code>kassadatum</code> (default) interval as booked date<br/> <code>datetime_modified</code> interval as modification dates<br/><code>factuurdatum</code> interval as invoice proforma date</td>
 </tr>
 </tbody></table>
-<h2 id='sales-data-pro-forma-invoices'>Pro-forma invoices</h2>
+<h2 id='sales-data-sales-transactions-v2-beta'>Sales transactions (V2-Beta)</h2>
+<p>Get sales transactions and related data such as customers, article and object data.
+By default the book-date is used.</p>
+
+<p>This endpoint is currently in BETA test phase and will replace the v1 version. Properties may change throughout the
+beta-phase.</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v2/salesdata/transactions.json?date_field=:date_field&date_start=:date_start&date_end=:date_end&only_booked_transactions=:only_booked_transactions&store_id=:store_id&dealer_ids=:dealer_ids</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v2/salesdata/transactions.json?token=:pagination_token</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>date_field</code></td>
+<td><code>?string</code></td>
+<td>Type of date field <code>book_date</code>,<code>modified_at</code>, <code>transaction_date</code>, defaults to <code>book_date</code></td>
+</tr>
+<tr>
+<td><code>date_start</code></td>
+<td><code>?date</code></td>
+<td>Start date of interval for date_field e.g. <code>2024-01-01</code></td>
+</tr>
+<tr>
+<td><code>date_end</code></td>
+<td><code>?date</code></td>
+<td>End date of interval for date_field e.g. <code>2024-01-01</code></td>
+</tr>
+<tr>
+<td><code>only_booked_transactions</code></td>
+<td><code>?bool</code></td>
+<td>If <code>true</code> only <code>final</code> / <code>booked</code> transactions will be given</td>
+</tr>
+<tr>
+<td><code>store_id</code></td>
+<td><code>?int</code></td>
+<td>Store ID for filtering</td>
+</tr>
+<tr>
+<td><code>dealer_ids</code></td>
+<td><code>?string</code></td>
+<td>CSV of dealer_ids (only applicable for <code>warehouse</code> accounts), dealer_ids are converted to account to get all data from that account</td>
+</tr>
+<tr>
+<td><code>token</code></td>
+<td><code>?string</code></td>
+<td>The token of next result set in pagination. In <code>pagination.next_url</code> the full URL for next result set if given if available</td>
+</tr>
+</tbody></table>
+<h1 id='properties'>Properties</h1>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>data</code></td>
+<td><code>object[]</code></td>
+<td>Array with data objects</td>
+</tr>
+<tr>
+<td><code>data[].account_id</code></td>
+<td><code>integer</code></td>
+<td>Account ID within CycleSoftware e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>data[].store_id</code></td>
+<td><code>integer</code></td>
+<td>Store ID within account e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_transaction_number</code></td>
+<td><code>integer</code></td>
+<td>Sales transaction number / invoice number e.g. <code>233233</code></td>
+</tr>
+<tr>
+<td><code>data[].type_name</code></td>
+<td><code>string</code></td>
+<td>Type name of transaction e.g. <code>normaal</code></td>
+</tr>
+<tr>
+<td><code>data[].is_final</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> when the transaction is booked</td>
+</tr>
+<tr>
+<td><code>data[].book_location_id</code></td>
+<td><code>?integer</code></td>
+<td>Book location ID e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>data[].transaction_date</code></td>
+<td><code>date</code></td>
+<td>Transaction date e.g. <code>2009-08-17</code></td>
+</tr>
+<tr>
+<td><code>data[].created_at</code></td>
+<td><code>datetime</code></td>
+<td>Creation date-time e.g. <code>2009-08-17 00:00:00</code></td>
+</tr>
+<tr>
+<td><code>data[].modified_at</code></td>
+<td><code>datetime</code></td>
+<td>Modified date-time e.g. <code>2016-06-27 09:12:39</code></td>
+</tr>
+<tr>
+<td><code>data[].booked_at</code></td>
+<td><code>?datetime</code></td>
+<td>Book date time e.g. <code>2009-08-17 15:24:00</code></td>
+</tr>
+<tr>
+<td><code>data[].vat_number</code></td>
+<td><code>?string</code></td>
+<td>VAT-number of customer</td>
+</tr>
+<tr>
+<td><code>data[].vat_country_code</code></td>
+<td><code>?string</code></td>
+<td>VAT country code if VAT from other country is applied</td>
+</tr>
+<tr>
+<td><code>data[].total_amount_cents</code></td>
+<td><code>integer</code></td>
+<td>Total amount in cents of the transaction e.g. <code>99900</code></td>
+</tr>
+<tr>
+<td><code>data[].unpayed_amount_cents</code></td>
+<td><code>integer</code></td>
+<td>Total amount that is unpayed e.g. <code>5000</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_employee_name</code></td>
+<td><code>string</code></td>
+<td>Employee name of sales person e.g. <code>John</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_employee_id</code></td>
+<td><code>integer</code></td>
+<td>Employee ID of sales person e.g. <code>3</code></td>
+</tr>
+<tr>
+<td><code>data[].booked_by_employee_name</code></td>
+<td><code>string</code></td>
+<td>Employee name who booked the transaction e.g. <code>John</code></td>
+</tr>
+<tr>
+<td><code>data[].booked_by_employee_id</code></td>
+<td><code>integer</code></td>
+<td>Employee ID who booked the transaction e.g. <code>3</code></td>
+</tr>
+<tr>
+<td><code>data[].last_update_by_employee_name</code></td>
+<td><code>string</code></td>
+<td>Employee name who last updated the transaction e.g. <code>John</code></td>
+</tr>
+<tr>
+<td><code>data[].last_update_by_employee_id</code></td>
+<td><code>integer</code></td>
+<td>Employee ID who last updated the transaction e.g. <code>3</code></td>
+</tr>
+<tr>
+<td><code>data[].customer_phone_number_id</code></td>
+<td><code>?string</code></td>
+<td>Preferred phone number ID of customer for communication e.g. <code>mob</code></td>
+</tr>
+<tr>
+<td><code>data[].customer</code></td>
+<td><code>?object</code></td>
+<td>Object with customer details if known <code>null</code> otherwise. See Customer (object)</td>
+</tr>
+<tr>
+<td><code>data[].debit_sales_transaction_number</code></td>
+<td><code>?integer</code></td>
+<td>If transaction is a credit this is referring to the debit transaction e.g. <code>1199</code></td>
+</tr>
+<tr>
+<td><code>data[].credit_sales_transaction_number</code></td>
+<td><code>?integer</code></td>
+<td>If transaction has a credit this is referring to the credit transaction e.g. <code>1199</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_order</code></td>
+<td><code>?object</code></td>
+<td>Object with information about the sales order</td>
+</tr>
+<tr>
+<td><code>data[].sales_order.delivery_method_id</code></td>
+<td><code>integer</code></td>
+<td>Delivery method ID e.g. <code>0</code> (see common enum <code>delivery_methods</code>)</td>
+</tr>
+<tr>
+<td><code>data[].sales_order.reference_id</code></td>
+<td><code>string</code></td>
+<td>Reference ID of the sales order</td>
+</tr>
+<tr>
+<td><code>data[].sales_order.reference_text</code></td>
+<td><code>string</code></td>
+<td>Reference text of the sales order</td>
+</tr>
+<tr>
+<td><code>data[].sales_order.sales_order_id</code></td>
+<td><code>integer</code></td>
+<td>Sales order ID <code>48143</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_order.sales_order_status_id</code></td>
+<td><code>integer</code></td>
+<td>Sales order status ID e.g. <code>9</code> (see common enum <code>sales_order_status</code>)</td>
+</tr>
+<tr>
+<td><code>data[].sales_order.sales_order_type_id</code></td>
+<td><code>integer</code></td>
+<td>Sales order type  ID e.g. <code>6</code> (see common enum <code>sales_order_types</code>)</td>
+</tr>
+<tr>
+<td><code>data[].sales_order.track_trace_reference</code></td>
+<td><code>string</code></td>
+<td>Track and trace reference</td>
+</tr>
+<tr>
+<td><code>data[].workshop_order</code></td>
+<td><code>?object</code></td>
+<td>Workshop / repair related information</td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.workshop_order_id</code></td>
+<td><code>integer</code></td>
+<td>Workshop order ID e.g. <code>40573</code></td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.repair_object_id</code></td>
+<td><code>integer</code></td>
+<td>Repair object ID e.g. <code>425</code></td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.workshop_order_type_id</code></td>
+<td><code>integer</code></td>
+<td>Workshop type ID e.g. <code>1</code> (see common enum <code>workshop_order_types</code>)</td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.workshop_order_status_id</code></td>
+<td><code>integer</code></td>
+<td>Workshop status ID e.g. <code>8</code> (see common enum <code>workshop_order_status</code>)</td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.workshop_rate_id</code></td>
+<td><code>integer</code></td>
+<td>Workshop rate ID e.g. <code>1</code> (see common enum <code>workshop_rates</code>)</td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.delivery_method_id</code></td>
+<td><code>integer</code></td>
+<td>Delivery method ID e.g. <code>0</code> (see common enum <code>delivery_methods</code>)</td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.reference_text</code></td>
+<td><code>string</code></td>
+<td>Reference of order e.g. <code>85</code></td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.km_age</code></td>
+<td><code>?integer</code></td>
+<td>KM age of object if registered with this order</td>
+</tr>
+<tr>
+<td><code>data[].sales_items</code></td>
+<td><code>object[]</code></td>
+<td>Array with sold items</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].sales_item_id</code></td>
+<td><code>integer</code></td>
+<td>Unique sales item ID e.g. <code>63883</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].item_type_id</code></td>
+<td><code>integer</code></td>
+<td>Item type ID e.g. <code>1</code> (see common enum <code>item_types</code>)</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].pos_group_id</code></td>
+<td><code>integer</code></td>
+<td>POS group ID e.g. <code>1</code> (see common enum <code>pos_groups</code>)</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].pos_group_name</code></td>
+<td><code>string</code></td>
+<td>POS group name e.g. <code>Diversen</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].barcode</code></td>
+<td><code>string</code></td>
+<td>Barcode or article identification e.g. <code>8713504001924</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].quantity</code></td>
+<td><code>integer</code></td>
+<td>Number of items sold e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].gross_unit_price_in_vat_cents</code></td>
+<td><code>integer</code></td>
+<td>Gross unit price including VAT in cents e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].gross_unit_price_ex_vat_cents</code></td>
+<td><code>integer</code></td>
+<td>Gross unit price excluding VAT in cents e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].unit_discount_in_vat_cents</code></td>
+<td><code>integer</code></td>
+<td>Unit discount amount including VAT in cents e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].unit_discount_ex_vat_cents</code></td>
+<td><code>integer</code></td>
+<td>Unit discount amount excluding VAT in cents e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].line_discount_in_vat_cents</code></td>
+<td><code>integer</code></td>
+<td>Line discount amount including VAT in cents .g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].line_discount_ex_vat_cents</code></td>
+<td><code>integer</code></td>
+<td>Line discount amount excluding VAT in cents e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].nett_line_price_in_vat_cents</code></td>
+<td><code>integer</code></td>
+<td>Nett line price including VAT in cents e.g. <code>12100</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].nett_line_price_ex_vat_cents</code></td>
+<td><code>integer</code></td>
+<td>Nett line price excluding VAT in cents e.g. <code>10000</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].ex_vat_based_prices</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if the prices were based on the amounts excluding VAT</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].discount_percentage</code></td>
+<td><code>decimal</code></td>
+<td>Discount percentage e.g. <code>10</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].vat_code</code></td>
+<td><code>integer</code></td>
+<td>VAT code e.g. <code>2</code> (see common enum <code>vat_codes</code>)</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].vat_percentage</code></td>
+<td><code>integer&amp;vert;decimal</code></td>
+<td>VAT percentage e.g. <code>21</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].vat_amount_cents</code></td>
+<td><code>integer</code></td>
+<td>Line VAT amount in cents e.g. <code>21</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].purchase_price_ex_vat_cents</code></td>
+<td><code>?integer</code></td>
+<td>Purchase price recorded on creation of <code>sales_item</code> e.g. <code>4900</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].description</code></td>
+<td><code>string</code></td>
+<td>Sales item description e.g. <code>Cyclon All weather spray 250ml</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].description_extended</code></td>
+<td><code>?string</code></td>
+<td>Extended description e.g. <code>Something extra</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article</code></td>
+<td><code>?object</code></td>
+<td>Object with sold article information</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.brand_name</code></td>
+<td><code>string</code></td>
+<td>Brand name from article details e.g. <code>CYCLON</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.description</code></td>
+<td><code>string</code></td>
+<td>Article description for article details or first supplier e.g. <code>Cyclon All weather spray 250ml</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.dst_main_id</code></td>
+<td><code>?string</code></td>
+<td>DST category ID e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.dst_main_name</code></td>
+<td><code>?string</code></td>
+<td>DST category name e.g. <code>O&amp;A</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.dst_sub_id</code></td>
+<td><code>?string</code></td>
+<td>DST sub category ID e.g. <code>N</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.dst_sub_name</code></td>
+<td><code>?string</code></td>
+<td>DST sub category name e.g. <code>Onderdelen/Reparatie</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.dst_sub_sub_id</code></td>
+<td><code>?string</code></td>
+<td>DST sub-sub category ID e.g. <code>8</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.dst_sub_sub_name</code></td>
+<td><code>?string</code></td>
+<td>DST sub-sub category name e.g. <code>Smeer-, poets- en onderhoudsmiddelen</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.sales_price_cents</code></td>
+<td><code>integer</code></td>
+<td>Recommended retail price in cents set in article details or determined from first supplier e.g. <code>1375</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.purchase_price_ex_vat_cents</code></td>
+<td><code>integer</code></td>
+<td>Purchase price in cents set in article details or determined from first supplier e.g. <code>688</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.suppliers</code></td>
+<td><code>object[]</code></td>
+<td>List of suppliers for article (priority sorted)</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.suppliers[].supplier_id</code></td>
+<td><code>integer</code></td>
+<td>Supplier ID e.g. <code>2</code> (see common suppliers endpoint)</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.suppliers[].supplier_name</code></td>
+<td><code>string</code></td>
+<td>Supplier name e.g. <code>Kruitbosch</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.suppliers[].article_id</code></td>
+<td><code>string</code></td>
+<td>Article number <code>CCS250</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.suppliers[].purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td>Gross purchase price in cents e.g. <code>688</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].article.suppliers[].rrp_cents</code></td>
+<td><code>integer</code></td>
+<td>Recommended retail price in cents e.g. <code>1375</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object</code></td>
+<td><code>?object</code></td>
+<td>Sold object information, may be <code>null</code> if not related to an object</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.object_id</code></td>
+<td><code>integer</code></td>
+<td>Unique object ID within account e.g. <code>15651</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.object_barcode</code></td>
+<td><code>string</code></td>
+<td>Internal barcode e.g. <code>F23232323</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.barcode</code></td>
+<td><code>string</code></td>
+<td>Barcode of article e.g. <code>8723723723</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.article_id</code></td>
+<td><code>string</code></td>
+<td>Article number e.g. <code>A2323</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.object_type_id</code></td>
+<td><code>integer</code></td>
+<td>Object type e.g. <code>1</code> Bike <code>2</code> Moped</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.is_demo</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if demo-bike</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.stock_location_name</code></td>
+<td><code>string</code></td>
+<td>Stock location name e.g. <code>store-floor</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.brand_name</code></td>
+<td><code>string</code></td>
+<td>Brand description e.g. <code>Giant</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.brand_id</code></td>
+<td><code>integer</code></td>
+<td>Brand / supplier ID e.g. <code>2121</code> (see common suppliers endpoint)</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.model_name</code></td>
+<td><code>string</code></td>
+<td>Model name e.g. <code>Foxx</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.category_name</code></td>
+<td><code>string</code></td>
+<td>Category description e.g. <code>Stadsfietsen</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.is_elo_bike</code></td>
+<td><code>boolean</code></td>
+<td>Electric bike e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.frame_type</code></td>
+<td><code>string</code></td>
+<td>Frame type e.g. <code>Jongens</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.color</code></td>
+<td><code>string</code></td>
+<td>Color e.g. <code>Blauw</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.basic_color</code></td>
+<td><code>string</code></td>
+<td>Basic color description e.g. <code>BLUE</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.basic_color_secondary</code></td>
+<td><code>string</code></td>
+<td>2nd Basic color description e.g. <code>BLACK</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.year</code></td>
+<td><code>integer</code></td>
+<td>Model year e.g. <code>2023</code> //@TODO NULL?</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.object_status</code></td>
+<td><code>string</code></td>
+<td>Status description new vs used e.g. <code>Gebruikt</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.size</code></td>
+<td><code>?string</code></td>
+<td>Size e.g. <code>Meisjes 20</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.frame_height</code></td>
+<td><code>string</code></td>
+<td>Frame height in cm e.g. <code>38</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.wheel_size</code></td>
+<td><code>?string</code></td>
+<td>Wheel size inches e.g. <code>24</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.frame_size_supplier</code></td>
+<td><code>string</code></td>
+<td>Frame size description supplier e.g. <code>L</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.tyre_size</code></td>
+<td><code>?string</code></td>
+<td>Tyre size description</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.material_description</code></td>
+<td><code>string</code></td>
+<td>Description of material e.g. <code>CARBON</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.gross_weight_kg</code></td>
+<td><code>?decimal</code></td>
+<td>Gross weight e.g. <code>20</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.weight_kg</code></td>
+<td><code>?decimal</code></td>
+<td>Weight e.g. <code>17</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.gear_count</code></td>
+<td><code>?integer</code></td>
+<td>Number of gears e.g. <code>20</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.description_extra</code></td>
+<td><code>string</code></td>
+<td>Extra description e.g. <code>Some text</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.ecommerce_price_cents</code></td>
+<td><code>integer</code></td>
+<td>E-commerce price in cents e.g. <code>999900</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.road_worthy_costs_cents</code></td>
+<td><code>integer</code></td>
+<td>Costs for making road worthy in cents e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.internal_workshop_costs_ex_vat_cents</code></td>
+<td><code>?integer</code></td>
+<td>Costs made in internal workshop in cents</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.purchased_from_customer_id</code></td>
+<td><code>integer</code></td>
+<td>If purchased from a customer, this is the customer id e.g. <code>4071</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.description</code></td>
+<td><code>string</code></td>
+<td>Description e.g. <code>Some text to desribe</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.supplier_order_reference</code></td>
+<td><code>?string</code></td>
+<td>Supplier order reference e.g. <code>12435647</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.supplier_invoice_reference</code></td>
+<td><code>?string</code></td>
+<td>Supplier invoice reference e.g. <code>INV322323</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.kilometer_age</code></td>
+<td><code>integer</code></td>
+<td>KM age of object e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].object.consignment_status</code></td>
+<td><code>integer</code></td>
+<td>Consignment status see see common enum for list e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification</code></td>
+<td><code>?object</code></td>
+<td>Object with identification such as serial numbers</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.stock_object_id</code></td>
+<td><code>integer</code></td>
+<td>Unique stock object ID within account e.g. <code>15651</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.frame_number</code></td>
+<td><code>?string</code></td>
+<td>Frame number e.g. <code>WOW238C</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.key_number</code></td>
+<td><code>?string</code></td>
+<td>Key number e.g. <code>97804</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.key_number_2</code></td>
+<td><code>?string</code></td>
+<td>Key number 2 e.g. <code>97804-2</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.lock_number</code></td>
+<td><code>?string</code></td>
+<td>Lock number e.g. <code>R334320-08</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.lock_number_2</code></td>
+<td><code>?string</code></td>
+<td>Lock number 2 e.g. <code>R334320-08-2</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.battery_number</code></td>
+<td><code>?string</code></td>
+<td>Battery number e.g. <code>BA223432323-1231-08</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.battery_number_2</code></td>
+<td><code>?string</code></td>
+<td>Battery number 2 e.g. <code>BA223432323-1231-08-2</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.engine_number</code></td>
+<td><code>?string</code></td>
+<td>Engine number e.g. <code>E43434343443</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.serial_number</code></td>
+<td><code>?string</code></td>
+<td>Serial number e.g. <code>975-0528-1296-2005-06</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.imei_number</code></td>
+<td><code>?string</code></td>
+<td>IMEI number e.g. <code>975-0528-1296-2005-06</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.license_plate_number</code></td>
+<td><code>?string</code></td>
+<td>License plate number e.g. <code>DT-GX-22</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].identification.velopass_code</code></td>
+<td><code>?string</code></td>
+<td>Velopass code e.g. <code>VP3D3G4KD3</code></td>
+</tr>
+<tr>
+<td><code>pagination.next_url</code></td>
+<td><code>?string</code></td>
+<td>URL to next result set <code>null</code> if no more data  e.g. <code>https://api.cyclesoftware.nl/api/v2/salesdata/transactions.json?token=NDA3MzcwNT....lBVmUw</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/salesdata/transactions.json?date_field=modified_at&amp;date_start=2024-01-01&amp;date_end=2024-01-15&amp;only_booked_transactions=true&amp;store_id=1</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">19744</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_transaction_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">22222890</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reparatie"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_final"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"book_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"transaction_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-22"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-22 11:52:57"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-09 18:29:01"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"booked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-09 18:29:01"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">18994</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unpayed_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sander"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49075</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"booked_by_employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giel"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"booked_by_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_update_by_employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giel"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_update_by_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235268968</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"customer_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sander"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Langeveld"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"housenumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"housenumber_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Het dorp"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3420"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"loyalty_points"</span><span class="p">:</span><span class="w"> </span><span class="mi">430</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sander@example.nl"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"global_discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0412345678"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Basis mobiel"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl_NL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"sales_order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">55339</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sales_order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sales_order_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"track_trace_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"workshop_order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"workshop_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">55339</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"repair_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">19224</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"workshop_order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"workshop_order_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"sales_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"sales_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">170603180</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reparatie"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">13000</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">11927</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">13000</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">11927</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"ex_vat_based_prices"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1073</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reparatie"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description_extended"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"article"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"sales_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">170603182</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Onderdelen"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8710177990203"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2095</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1731</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">-904</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">-747</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">-747</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">-747</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2999</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2479</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"ex_vat_based_prices"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">520</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jumbo pomp op plank met slang"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description_extended"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"article"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jumbo"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POMP JUMBO VOET M/PLANK+SLANG"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_main_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_main_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O&amp;A"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pompen"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_sub_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_sub_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Voetpomp"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2500</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"suppliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5229</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accell NL"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"650353"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1815</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Agu"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"131026"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2995</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">117</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aalten B.V."</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"46551850"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2695</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"sales_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">170603184</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banden"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8714692239588"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2995</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2475</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2995</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2475</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2475</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2475</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"ex_vat_based_prices"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23-622 Band vouw zwart 28919 Vredestein"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description_extended"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"article"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VREDESTEIN"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23-622 Band vouw zwart 28919 Vredestein"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_main_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_main_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O&amp;A"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banden"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_sub_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_sub_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Buitenbanden/tubes"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2995</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"suppliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5229</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accell NL"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"685167"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2995</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"sales_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">170603186</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banden"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8714692239588"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2995</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2475</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2995</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2475</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"ex_vat_based_prices"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">520</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23-622 Band vouw zwart 28919 Vredestein"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description_extended"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"article"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VREDESTEIN"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23-622 Band vouw zwart 28919 Vredestein"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_main_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_main_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O&amp;A"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banden"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_sub_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_sub_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Buitenbanden/tubes"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2995</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"suppliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5229</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accell NL"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"685167"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2995</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rutteman"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23vr622fiopz"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2995</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_transaction_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">22222924</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiets"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_final"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"book_location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"transaction_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-27"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-27 09:52:52"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-06 16:41:29"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"booked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-06 16:40:05"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">831150</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unpayed_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">798400</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sander"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49075</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"booked_by_employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"David"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"booked_by_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65043</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_update_by_employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"David"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"last_update_by_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65043</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235270696</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"customer_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Betelgeuze"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"housenumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"122"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"housenumber_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Utrecht"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3322AW"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"loyalty_points"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"robin@example.nl"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"global_discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"country_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"iban"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"date_of_birth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06-12650321"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Basis mobiel"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"816991"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0612650321"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl_NL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"sales_order"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"workshop_order"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"sales_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"sales_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">170918009</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fietsen"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4712878754607"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">829900</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">761376</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">829900</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">761376</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"ex_vat_based_prices"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">68524</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIANT Stormguard E+, Hematite, XL, XL, 2023, FR000004"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description_extended"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"article"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIANT"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIANT Stormguard E+ Hematite XL 2023"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_main_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_main_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fietsen"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crosshybrides"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_sub_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"dst_sub_sub_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crosshybride (elektrisch)"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">829900</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"suppliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2121</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giant"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2203712108"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">829900</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">34614</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"object_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4712878754607"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2203712108"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"object_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"stock_location_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIANT"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2121</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stormguard E+"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"category_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Crosshybrides - elektrisch"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"is_elo_bike"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"frame_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNI"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hematite"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"basic_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"basic_color_secondary"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"object_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nieuw"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XL"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"frame_height"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"wheel_size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"frame_size_supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XL"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"tyre_size"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"material_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALUMINIUM"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"gross_weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"gear_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"description_extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stormguard E+ 1 25km/h XL Hematite/Black"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">829900</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"road_worthy_costs_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"internal_workshop_costs_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"purchased_from_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stormguard E+ 1 25km/h"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"supplier_order_reference"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"supplier_invoice_reference"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"kilometer_age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"consignment_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"stock_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">34614</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"frame_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR000004"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"key_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"key_number_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"lock_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"lock_number_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"battery_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"battery_number_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"engine_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"serial_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"imei_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"license_plate_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"velopass_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"sales_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">170918011</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pos_group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Verwijderingsbijdrage"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1250</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"gross_unit_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1033</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"unit_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"line_discount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1250</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"nett_line_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1033</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"ex_vat_based_prices"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">217</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Verwijderingsbijdrage accu"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description_extended"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"article"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v2/salesdata/transactions.json?token=...."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='properties-pro-forma-invoices'>Pro-forma invoices</h2>
 <p>Get a list of proforma sales transactions / invoices.</p>
 
 <div class="api-endpoint">
@@ -6525,7 +7748,7 @@ By default the book-date is used.</p>
     </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='sales-data-sales-orders'>Sales orders</h2>
+</span></code></pre></div><h2 id='properties-sales-orders'>Sales orders</h2>
 <p>Get modified orders within date interval (max 31 days)</p>
 
 <div class="api-endpoint">
@@ -6905,7 +8128,7 @@ By default the book-date is used.</p>
         </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='sales-data-payments'>Payments</h2>
+</span></code></pre></div><h2 id='properties-payments'>Payments</h2>
 <p>Get payments within date interval (max 31 days)</p>
 
 <div class="api-endpoint">
@@ -7120,7 +8343,7 @@ By default the book-date is used.</p>
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre></div><h2 id='sales-data-insurances'>Insurances</h2>
+</span></code></pre></div><h2 id='properties-insurances'>Insurances</h2>
 <p>Get insurances for objects created within date interval (max 31 days). The information may not be up-to-date with the
 information known at the insurance company. This information is based on created insurance applications.</p>
 

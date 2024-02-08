@@ -401,6 +401,9 @@ The output consists of the following fields:
 -	Frame number
 -	Serial number
 -	Battery number
+- Lock number
+- Key number
+- Engine number
 
 <p>Attributes marked with * are mandatory</p>
 

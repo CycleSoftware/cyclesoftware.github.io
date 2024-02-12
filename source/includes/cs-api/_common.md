@@ -38,6 +38,7 @@ Get a set of enums with identifiers and descriptions used in various APIs
 | `service_item_status`     | Status descriptions for object service items                                                |
 | `entity_types`            | Entity types and descriptions, used as reference to an object in API requests and responses |
 | `voucher_types`           | Voucher types and descriptions                                                              |
+| `consignment_status`      | Object consignment type and descriptions                                                    |
 
 
 > HTTP Request

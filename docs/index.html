@@ -448,22 +448,17 @@
                   <li>
                     <a href="#sales-data-sales-transactions-v2-beta" class="toc-h2 toc-link" data-title="Sales transactions (V2-Beta)">Sales transactions (V2-Beta)</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#properties" class="toc-h1 toc-link" data-title="Properties">Properties</a>
-              <ul class="toc-list-h2">
                   <li>
-                    <a href="#properties-pro-forma-invoices" class="toc-h2 toc-link" data-title="Pro-forma invoices">Pro-forma invoices</a>
+                    <a href="#sales-data-pro-forma-invoices" class="toc-h2 toc-link" data-title="Pro-forma invoices">Pro-forma invoices</a>
                   </li>
                   <li>
-                    <a href="#properties-sales-orders" class="toc-h2 toc-link" data-title="Sales orders">Sales orders</a>
+                    <a href="#sales-data-sales-orders" class="toc-h2 toc-link" data-title="Sales orders">Sales orders</a>
                   </li>
                   <li>
-                    <a href="#properties-payments" class="toc-h2 toc-link" data-title="Payments">Payments</a>
+                    <a href="#sales-data-payments" class="toc-h2 toc-link" data-title="Payments">Payments</a>
                   </li>
                   <li>
-                    <a href="#properties-insurances" class="toc-h2 toc-link" data-title="Insurances">Insurances</a>
+                    <a href="#sales-data-insurances" class="toc-h2 toc-link" data-title="Insurances">Insurances</a>
                   </li>
               </ul>
           </li>
@@ -6525,7 +6520,7 @@ beta-phase.</p>
 <td>The token of next result set in pagination. In <code>pagination.next_url</code> the full URL for next result set if given if available</td>
 </tr>
 </tbody></table>
-<h1 id='properties'>Properties</h1>
+<h3 id='sales-data-sales-transactions-v2-beta-properties'>Properties</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -6841,7 +6836,7 @@ beta-phase.</p>
 <tr>
 <td><code>data[].sales_items[].vat_amount_cents</code></td>
 <td><code>integer</code></td>
-<td>Line VAT amount in cents e.g. <code>21</code></td>
+<td>Line VAT amount in cents e.g. <code>21</code>, for margin VAT always <code>0</code></td>
 </tr>
 <tr>
 <td><code>data[].sales_items[].purchase_price_ex_vat_cents</code></td>
@@ -7672,7 +7667,7 @@ beta-phase.</p>
         </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v2/salesdata/transactions.json?token=...."</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='properties-pro-forma-invoices'>Pro-forma invoices</h2>
+</span></code></pre></div><h2 id='sales-data-pro-forma-invoices'>Pro-forma invoices</h2>
 <p>Get a list of proforma sales transactions / invoices.</p>
 
 <div class="api-endpoint">
@@ -7748,7 +7743,7 @@ beta-phase.</p>
     </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='properties-sales-orders'>Sales orders</h2>
+</span></code></pre></div><h2 id='sales-data-sales-orders'>Sales orders</h2>
 <p>Get modified orders within date interval (max 31 days)</p>
 
 <div class="api-endpoint">
@@ -8128,7 +8123,7 @@ beta-phase.</p>
         </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='properties-payments'>Payments</h2>
+</span></code></pre></div><h2 id='sales-data-payments'>Payments</h2>
 <p>Get payments within date interval (max 31 days)</p>
 
 <div class="api-endpoint">
@@ -8343,7 +8338,7 @@ beta-phase.</p>
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre></div><h2 id='properties-insurances'>Insurances</h2>
+</span></code></pre></div><h2 id='sales-data-insurances'>Insurances</h2>
 <p>Get insurances for objects created within date interval (max 31 days). The information may not be up-to-date with the
 information known at the insurance company. This information is based on created insurance applications.</p>
 

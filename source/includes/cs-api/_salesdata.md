@@ -65,7 +65,7 @@ beta-phase.
 | `dealer_ids`               | `?string` | CSV of dealer_ids (only applicable for `warehouse` accounts), dealer_ids are converted to account to get all data from that account |
 | `token`                    | `?string` | The token of next result set in pagination. In `pagination.next_url` the full URL for next result set if given if available         |
 
-# Properties
+### Properties
 
 | Property                                                           | Type                   | Description                                                                                                                                      |
 |--------------------------------------------------------------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -130,7 +130,7 @@ beta-phase.
 | `data[].sales_items[].discount_percentage`                         | `decimal`              | Discount percentage e.g. `10`                                                                                                                    |
 | `data[].sales_items[].vat_code`                                    | `integer`              | VAT code e.g. `2` (see common enum `vat_codes`)                                                                                                  |
 | `data[].sales_items[].vat_percentage`                              | `integer&vert;decimal` | VAT percentage e.g. `21`                                                                                                                         |
-| `data[].sales_items[].vat_amount_cents`                            | `integer`              | Line VAT amount in cents e.g. `21`                                                                                                               |
+| `data[].sales_items[].vat_amount_cents`                            | `integer`              | Line VAT amount in cents e.g. `21`, for margin VAT always `0`                                                                                    |
 | `data[].sales_items[].purchase_price_ex_vat_cents`                 | `?integer`             | Purchase price recorded on creation of `sales_item` e.g. `4900`                                                                                  |
 | `data[].sales_items[].description`                                 | `string`               | Sales item description e.g. `Cyclon All weather spray 250ml`                                                                                     |
 | `data[].sales_items[].description_extended`                        | `?string`              | Extended description e.g. `Something extra`                                                                                                      |

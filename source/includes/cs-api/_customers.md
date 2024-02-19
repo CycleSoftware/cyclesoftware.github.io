@@ -349,15 +349,16 @@ Find existing customers
     </div>
 </div>
 
-| **GET parameter**     | **Type**  | **Description**                             |
-|-----------------------|-----------|---------------------------------------------|
-| `phone_number`        | `?string` | Phone number of customer e.g. `0733030050`  |
-| `postal_code`         | `?string` | Postal code of customer e.g. `5388GM`       | 
-| `housenumber`         | `?string` | Housenumber of customer e.g. `1`            | 
-| `housenumber_postfix` | `?string` | Housenumber_postfix of customer e.g. `a`    | 
-| `email`               | `?string` | E-mail of customer e.g. `name@domain.nl`    | 
-| `query`               | `?string` | Query to search for e.g. `name of customer` | 
-| `country_code`        | `?string` | Country code of customer e.g. `NL`          | 
+| **GET parameter**     | **Type**   | **Description**                                         |
+|-----------------------|------------|---------------------------------------------------------|
+| `phone_number`        | `?string`  | Phone number of customer e.g. `0733030050`              |
+| `postal_code`         | `?string`  | Postal code of customer e.g. `5388GM`                   | 
+| `housenumber`         | `?string`  | Housenumber of customer e.g. `1`                        | 
+| `housenumber_postfix` | `?string`  | Housenumber_postfix of customer e.g. `a`                | 
+| `email`               | `?string`  | E-mail of customer e.g. `name@domain.nl`                | 
+| `query`               | `?string`  | Query to search for e.g. `name of customer`             | 
+| `country_code`        | `?string`  | Country code of customer e.g. `NL`                      | 
+| `customer_type_id`    | `?integer` | Customer type e.g. `2` see common enum `customer_types` | 
 
 The result will be an array of [Customer (object)](#customers-customer-object)
 

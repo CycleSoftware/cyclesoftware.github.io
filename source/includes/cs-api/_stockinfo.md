@@ -48,6 +48,7 @@ not included.
 | `data.result_items[].stock_stores[].quantity_expected` | `integer`  | Quantity expected from supplier                                                                                                                                                                               |
 | `data.result_items[].stock_stores[].delivery_dates`    | `string[]` | Delivery dates expected from supplier. <br/>If back-orders are available the date of back-order will be used.<br/>If objects are not assigned to a back-order and have a delivery date this date will be used |
 | `data.result_items[].article_id`                       | `string`   | Article ID in request url                                                                                                                                                                                     |
+| `data.result_items[].is_rental`                        | `boolean`  | ...                                                                                                                                                                                                           |
 
 > HTTP request
 

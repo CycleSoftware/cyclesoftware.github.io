@@ -300,6 +300,7 @@ Get a list of stocked objects in POS
 | `data[].custom_variable_4`                | `string`   | Custom variable from article                          |
 | `data[].custom_variable_5`                | `string`   | Custom variable from article                          |
 | `data[].is_deleted`                       | `boolean`  | Item is deleted                                       |
+| `data[].is_rental`                        | `boolean`  | `true` if is rental                                   |
 
 ### HTTP request examples ###
 
@@ -340,7 +341,8 @@ Get a list of stocked objects in POS
       "custom_variable_3": "Custom var 3",
       "custom_variable_4": "Custom var 4",
       "custom_variable_5": "Custom var 5",
-      "is_deleted": false
+      "is_deleted": false,
+      "is_rental": false
     },
     {
       "account_id": 1000,
@@ -364,7 +366,8 @@ Get a list of stocked objects in POS
       "custom_variable_3": "Custom var 3",
       "custom_variable_4": "Custom var 4",
       "custom_variable_5": "Custom var 5",
-      "is_deleted": false
+      "is_deleted": false,
+      "is_rental": true
     }
   ]
 }

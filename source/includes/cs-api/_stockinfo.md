@@ -48,7 +48,6 @@ not included.
 | `data.result_items[].stock_stores[].quantity_expected` | `integer`  | Quantity expected from supplier                                                                                                                                                                               |
 | `data.result_items[].stock_stores[].delivery_dates`    | `string[]` | Delivery dates expected from supplier. <br/>If back-orders are available the date of back-order will be used.<br/>If objects are not assigned to a back-order and have a delivery date this date will be used |
 | `data.result_items[].article_id`                       | `string`   | Article ID in request url                                                                                                                                                                                     |
-| `data.result_items[].is_rental`                        | `boolean`  | ...                                                                                                                                                                                                           |
 
 > HTTP request
 
@@ -177,6 +176,7 @@ Get a list of stocked objects with status available or pro-forma sold.
 | `data[].stocked_at`           | `?date`    | Date of stocking e.g. `2019-01-24`              |
 | `data[].custom_variable_1`    | `string`   | Custom variable e.g. `Some value`               |
 | `data[].is_deleted`           | `boolean`  | Is deleted indicator e.g. `false`               |
+| `data[].is_rental`            | `boolean`  | Rental indicator e.g. `false`                   |
 
 > Response
 
@@ -203,7 +203,8 @@ Get a list of stocked objects with status available or pro-forma sold.
       "has_invoice": true,
       "stocked_at": "2015-11-25",
       "custom_variable_1": "",
-      "is_deleted": false
+      "is_deleted": false,
+      "is_rental": false
     },
     {
       "account_id": 1,
@@ -223,7 +224,8 @@ Get a list of stocked objects with status available or pro-forma sold.
       "has_invoice": true,
       "stocked_at": "2019-01-24",
       "custom_variable_1": "",
-      "is_deleted": false
+      "is_deleted": false,
+      "is_rental": true
     }
   ]
 }

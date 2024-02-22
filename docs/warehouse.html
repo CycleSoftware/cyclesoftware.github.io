@@ -588,7 +588,7 @@ For example, `integer[]` represents an integer array.
 </aside>
 
 <aside class="notice">
-Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings.
+Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings. 
 </aside>
 <h2 id='introduction-api-limits'>API Limits</h2>
 <p>Since may 2022 api-limits are introduced. For endpoints that implement limits the following HTTP response headers are
@@ -858,7 +858,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1330</span>
 
@@ -1793,6 +1793,16 @@ available.</p>
 <td><code>boolean</code></td>
 <td>Item is deleted</td>
 </tr>
+<tr>
+<td><code>data[].is_rental</code></td>
+<td><code>boolean</code></td>
+<td>If rental object <code>true</code></td>
+</tr>
+<tr>
+<td><code>data[].is_used</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if not a new object</td>
+</tr>
 </tbody></table>
 <h3 id='stock-stock-list-pos-http-request-examples'>HTTP request examples</h3>
 <div class="api-endpoint">
@@ -1832,6 +1842,7 @@ available.</p>
       </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 4"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_used"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_rental"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -1857,7 +1868,8 @@ available.</p>
       </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 4"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"is_rental"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="nl">"is_used"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_rental"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2021,7 +2033,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">1441</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -2112,7 +2124,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">722</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
@@ -2162,7 +2174,7 @@ available.</p>
 <blockquote>
 <p>HTTP Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
 <span class="na">Content-length</span><span class="p">:</span> <span class="s">265</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>

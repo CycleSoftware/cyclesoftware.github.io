@@ -274,33 +274,34 @@ Get a list of stocked objects in POS
 
 ### Properties ###
 
-| Property                                  | Type       | Description                                           |
-|-------------------------------------------|------------|-------------------------------------------------------|
-| `error`                                   | `boolean`  | `true` if error occurred e.g. `false`                 |
-| `error_message`                           | `?string`  | Error message or null                                 |
-| `data[].account_id`                       | `integer`  | Account ID of store `5393`                            |
-| `data[].store_id`                         | `integer`  | ID of the POS store `2`                               |
-| `data[].object_id`                        | `integer`  | POS Object ID `20648`                                 |
-| `data[].sales_order_id`                   | `integer`  | POS order id `1000`                                   |
-| `data[].supplier`                         | `string`   | Supplier name `Gazelle`                               |
-| `data[].article_id`                       | `string`   | Article number `A1935`                                |
-| `data[].barcode`                          | `string`   | Barcode `8717231254776`                               |
-| `data[].description`                      | `string`   | Description `Gazelle Eclipse C8 LTD`                  |
-| `data[].frame_id`                         | `string`   | Framenumber `60516151`                                |
-| `data[].purchase_price_cents`             | `integer`  | Purchase price in cents `50980`                       |
-| `data[].purchase_price_cents_packinglist` | `integer`  | Purchase price in cents from last packinglist `50980` |
-| `data[].dealer_rrp_cents`                 | `integer`  | RRP in cents `94900`                                  |
-| `data[].is_sold_to_customer`              | `boolean`  | `true` if sold to customer                            |
-| `data[].is_demo`                          | `boolean`  | `true` if marked as demo                              |
-| `data[].has_invoice`                      | `boolean`  | `true` if invoiced                                    |
-| `data[].stocked_at`                       | `date`     | Custom variable from article                          |
-| `data[].custom_variable_1`                | `string`   | Custom variable from article                          |
-| `data[].custom_variable_2`                | `string`   | Custom variable from article                          |
-| `data[].custom_variable_3`                | `string`   | Custom variable from article                          |
-| `data[].custom_variable_4`                | `string`   | Custom variable from article                          |
-| `data[].custom_variable_5`                | `string`   | Custom variable from article                          |
-| `data[].is_deleted`                       | `boolean`  | Item is deleted                                       |
-| `data[].is_rental`                        | `boolean`  | `true` if is rental                                   |
+| Property                                  | Type      | Description                                           |
+|-------------------------------------------|-----------|-------------------------------------------------------|
+| `error`                                   | `boolean` | `true` if error occurred e.g. `false`                 |
+| `error_message`                           | `?string` | Error message or null                                 |
+| `data[].account_id`                       | `integer` | Account ID of store `5393`                            |
+| `data[].store_id`                         | `integer` | ID of the POS store `2`                               |
+| `data[].object_id`                        | `integer` | POS Object ID `20648`                                 |
+| `data[].sales_order_id`                   | `integer` | POS order id `1000`                                   |
+| `data[].supplier`                         | `string`  | Supplier name `Gazelle`                               |
+| `data[].article_id`                       | `string`  | Article number `A1935`                                |
+| `data[].barcode`                          | `string`  | Barcode `8717231254776`                               |
+| `data[].description`                      | `string`  | Description `Gazelle Eclipse C8 LTD`                  |
+| `data[].frame_id`                         | `string`  | Framenumber `60516151`                                |
+| `data[].purchase_price_cents`             | `integer` | Purchase price in cents `50980`                       |
+| `data[].purchase_price_cents_packinglist` | `integer` | Purchase price in cents from last packinglist `50980` |
+| `data[].dealer_rrp_cents`                 | `integer` | RRP in cents `94900`                                  |
+| `data[].is_sold_to_customer`              | `boolean` | `true` if sold to customer                            |
+| `data[].is_demo`                          | `boolean` | `true` if marked as demo                              |
+| `data[].has_invoice`                      | `boolean` | `true` if invoiced                                    |
+| `data[].stocked_at`                       | `date`    | Custom variable from article                          |
+| `data[].custom_variable_1`                | `string`  | Custom variable from article                          |
+| `data[].custom_variable_2`                | `string`  | Custom variable from article                          |
+| `data[].custom_variable_3`                | `string`  | Custom variable from article                          |
+| `data[].custom_variable_4`                | `string`  | Custom variable from article                          |
+| `data[].custom_variable_5`                | `string`  | Custom variable from article                          |
+| `data[].is_deleted`                       | `boolean` | Item is deleted                                       |
+| `data[].is_rental`                        | `boolean` | If rental object `true`                               |
+| `data[].is_used`                          | `boolean` | `true` if not a new object                            |
 
 ### HTTP request examples ###
 
@@ -342,6 +343,7 @@ Get a list of stocked objects in POS
       "custom_variable_4": "Custom var 4",
       "custom_variable_5": "Custom var 5",
       "is_deleted": false,
+      "is_used": false,
       "is_rental": false
     },
     {
@@ -367,6 +369,7 @@ Get a list of stocked objects in POS
       "custom_variable_4": "Custom var 4",
       "custom_variable_5": "Custom var 5",
       "is_deleted": false,
+      "is_used": true,
       "is_rental": true
     }
   ]

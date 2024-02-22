@@ -176,6 +176,7 @@ Get a list of stocked objects with status available or pro-forma sold.
 | `data[].stocked_at`           | `?date`    | Date of stocking e.g. `2019-01-24`              |
 | `data[].custom_variable_1`    | `string`   | Custom variable e.g. `Some value`               |
 | `data[].is_deleted`           | `boolean`  | Is deleted indicator e.g. `false`               |
+| `data[].is_rental`            | `boolean`  | Rental indicator e.g. `false`                   |
 
 > Response
 
@@ -202,7 +203,8 @@ Get a list of stocked objects with status available or pro-forma sold.
       "has_invoice": true,
       "stocked_at": "2015-11-25",
       "custom_variable_1": "",
-      "is_deleted": false
+      "is_deleted": false,
+      "is_rental": false
     },
     {
       "account_id": 1,
@@ -222,7 +224,8 @@ Get a list of stocked objects with status available or pro-forma sold.
       "has_invoice": true,
       "stocked_at": "2019-01-24",
       "custom_variable_1": "",
-      "is_deleted": false
+      "is_deleted": false,
+      "is_rental": true
     }
   ]
 }

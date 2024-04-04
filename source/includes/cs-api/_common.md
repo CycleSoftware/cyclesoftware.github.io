@@ -111,21 +111,22 @@ Get a list of employees associated with the account
 
 ### Properties ###
 
-| Property                 | Type       | Description                                                                                                    |
-|--------------------------|------------|----------------------------------------------------------------------------------------------------------------|
-| error                    | `boolean`  | e.g. `false`                                                                                                   |
-| error_message            | `?string`  | e.g. `Unauthorized`                                                                                            |
-| data                     | `object[]` | array of objects                                                                                               |
-| data[].employee_id       | `integer`  | e.g. `4475`                                                                                                    |
-| data[].employee_name     | `string`   | e.g. `John`                                                                                                    |
-| data[].verification_hash | `string`   | e.g. `8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb` sha256 hash mac with api-key as secret |
-| data[].roles             | `object[]` | array of strings                                                                                               |
-| data[].roles[]           | `string`   | e.g. `employee`                                                                                                |
-| data[].is_active         | `boolean`  | e.g. `false`                                                                                                   |
-| data[].is_default        | `boolean`  | e.g. `false`                                                                                                   |
-| data[].is_administrator  | `boolean`  | e.g. `false`                                                                                                   |
-| data[].avatar            | `?string`  | URL to avatar or null                                                                                          |
-| data[].authorization[]   | `string[]` | Array of authorizations e.g. `["MAY_ACCEPT_SALES_LEADS"]`                                                      |
+| Property                          | Type        | Description                                                                                                    |
+|-----------------------------------|-------------|----------------------------------------------------------------------------------------------------------------|
+| error                             | `boolean`   | e.g. `false`                                                                                                   |
+| error_message                     | `?string`   | e.g. `Unauthorized`                                                                                            |
+| data                              | `object[]`  | array of objects                                                                                               |
+| data[].employee_id                | `integer`   | e.g. `4475`                                                                                                    |
+| data[].employee_name              | `string`    | e.g. `John`                                                                                                    |
+| data[].verification_hash          | `string`    | e.g. `8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb` sha256 hash mac with api-key as secret |
+| data[].roles                      | `string[]`  | array of strings                                                                                               |
+| data[].roles[]                    | `string`    | e.g. `employee`                                                                                                |
+| data[].is_active                  | `boolean`   | e.g. `false`                                                                                                   |
+| data[].is_default                 | `boolean`   | e.g. `false`                                                                                                   |
+| data[].is_administrator           | `boolean`   | e.g. `false`                                                                                                   |
+| data[].avatar                     | `?string`   | URL to avatar or null                                                                                          |
+| data[].authorization[]            | `string[]`  | Array of authorizations e.g. `["MAY_ACCEPT_SALES_LEADS"]`                                                      |
+| data[].authorizations_warehouse[] | `?string[]` | Array of authorizations for warehouse if warehouse account e.g. `["AUTH_ACCOUNTING"]`                          |
 
 > HTTP Request
 

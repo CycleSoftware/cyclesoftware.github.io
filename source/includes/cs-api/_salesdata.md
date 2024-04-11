@@ -7,7 +7,9 @@ Access sales data
 - Basic HTTP Authentication
 - Scopes: `sales-export`
 
-## Sales transactions ##
+## Sales transactions - V1 ##
+
+This API endpoint is deprecated, please use V2.
 
 Get sales transactions within interval of specified date field (max 31 days).
 By default the book-date is used.
@@ -34,7 +36,7 @@ By default the book-date is used.
 |---------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `date_field`  | `string` | `kassadatum` (default) interval as booked date<br/> `datetime_modified` interval as modification dates<br/>`factuurdatum` interval as invoice proforma date |
 
-## Sales transactions (V2-Beta) ##
+## Sales transactions - V2 ##
 
 Get sales transactions and related data such as customers, article and object data.
 By default the book-date is used.

@@ -443,10 +443,10 @@
             <a href="#sales-data" class="toc-h1 toc-link" data-title="Sales data">Sales data</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#sales-data-sales-transactions" class="toc-h2 toc-link" data-title="Sales transactions">Sales transactions</a>
+                    <a href="#sales-data-sales-transactions-v1" class="toc-h2 toc-link" data-title="Sales transactions - V1">Sales transactions - V1</a>
                   </li>
                   <li>
-                    <a href="#sales-data-sales-transactions-v2-beta" class="toc-h2 toc-link" data-title="Sales transactions (V2-Beta)">Sales transactions (V2-Beta)</a>
+                    <a href="#sales-data-sales-transactions-v2" class="toc-h2 toc-link" data-title="Sales transactions - V2">Sales transactions - V2</a>
                   </li>
                   <li>
                     <a href="#sales-data-pro-forma-invoices" class="toc-h2 toc-link" data-title="Pro-forma invoices">Pro-forma invoices</a>
@@ -6416,7 +6416,9 @@ Content-length: 1448
 <li>Basic HTTP Authentication</li>
 <li>Scopes: <code>sales-export</code></li>
 </ul>
-<h2 id='sales-data-sales-transactions'>Sales transactions</h2>
+<h2 id='sales-data-sales-transactions-v1'>Sales transactions - V1</h2>
+<p>This API endpoint is deprecated, please use V2.</p>
+
 <p>Get sales transactions within interval of specified date field (max 31 days).
 By default the book-date is used.</p>
 
@@ -6466,7 +6468,7 @@ By default the book-date is used.</p>
 <td><code>kassadatum</code> (default) interval as booked date<br/> <code>datetime_modified</code> interval as modification dates<br/><code>factuurdatum</code> interval as invoice proforma date</td>
 </tr>
 </tbody></table>
-<h2 id='sales-data-sales-transactions-v2-beta'>Sales transactions (V2-Beta)</h2>
+<h2 id='sales-data-sales-transactions-v2'>Sales transactions - V2</h2>
 <p>Get sales transactions and related data such as customers, article and object data.
 By default the book-date is used.</p>
 
@@ -6530,7 +6532,7 @@ beta-phase.</p>
 <td>The token of next result set in pagination. In <code>pagination.next_url</code> the full URL for next result set if given if available</td>
 </tr>
 </tbody></table>
-<h3 id='sales-data-sales-transactions-v2-beta-properties'>Properties</h3>
+<h3 id='sales-data-sales-transactions-v2-properties'>Properties</h3>
 <table><thead>
 <tr>
 <th>Property</th>

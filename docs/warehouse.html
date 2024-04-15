@@ -335,13 +335,21 @@
               </ul>
           </li>
           <li>
+            <a href="#warehouse" class="toc-h1 toc-link" data-title="Warehouse">Warehouse</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#warehouse-available-locations" class="toc-h2 toc-link" data-title="Available locations">Available locations</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#webhooks-delivery-status-for-object-item-id-webhook-request" class="toc-h2 toc-link" data-title="Webhook request">Webhook request</a>
+                    <a href="#webhooks-available-locations-webhook-request" class="toc-h2 toc-link" data-title="Webhook request">Webhook request</a>
                   </li>
                   <li>
-                    <a href="#webhooks-delivery-status-for-object-item-id-payload-structure" class="toc-h2 toc-link" data-title="Payload structure">Payload structure</a>
+                    <a href="#webhooks-available-locations-payload-structure" class="toc-h2 toc-link" data-title="Payload structure">Payload structure</a>
                   </li>
                   <li>
                     <a href="#webhooks-outbound-orders" class="toc-h2 toc-link" data-title="Outbound orders">Outbound orders</a>
@@ -2244,9 +2252,210 @@ available.</p>
   </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='warehouse'>Warehouse</h1>
+<p>Access warehouse data</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>warehouse</code></li>
+</ul>
+<h2 id='warehouse-available-locations'>Available locations</h2>
+<p>Get an overview of capacity and available stock locations</p>
+<h3 id='warehouse-available-locations-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if error occurred</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>null</code></td>
+<td>Error message if present</td>
+</tr>
+<tr>
+<td><code>data.availability</code></td>
+<td><code>object[]</code></td>
+<td>Overal availability</td>
+</tr>
+<tr>
+<td><code>data.availability[].code</code></td>
+<td><code>string</code></td>
+<td>Location type code e.g. <code>elo</code></td>
+</tr>
+<tr>
+<td><code>data.availability[].description</code></td>
+<td><code>string</code></td>
+<td>Location type description e.g. <code>Elektrische fietsen</code></td>
+</tr>
+<tr>
+<td><code>data.availability[].available_locations</code></td>
+<td><code>integer</code></td>
+<td>Available locations <code>830</code></td>
+</tr>
+<tr>
+<td><code>data.availability_per_warehouse_group</code></td>
+<td><code>object[]</code></td>
+<td>Availability per warehouse group</td>
+</tr>
+<tr>
+<td><code>data.availability_per_warehouse_group[].warehouse_group_name</code></td>
+<td><code>string</code></td>
+<td>e.g. <code>Groep 1</code></td>
+</tr>
+<tr>
+<td><code>data.availability_per_warehouse_group[].availability</code></td>
+<td><code>object[]</code></td>
+<td>Availability within group</td>
+</tr>
+<tr>
+<td><code>data.availability_per_warehouse_group[].availability[].code</code></td>
+<td><code>string</code></td>
+<td>Location type code e.g. <code>elo</code></td>
+</tr>
+<tr>
+<td><code>data.availability_per_warehouse_group[].availability[].description</code></td>
+<td><code>string</code></td>
+<td>Location type description <code>Elektrische fietsen</code></td>
+</tr>
+<tr>
+<td><code>data.availability_per_warehouse_group[].availability[].available_locations</code></td>
+<td><code>integer</code></td>
+<td>Available locations e.g. <code>0</code></td>
+</tr>
+</tbody></table>
+<h3 id='warehouse-available-locations-http-request-examples'>HTTP request examples</h3>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/warehouse/availability.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"availability"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elo"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elektrische fietsen"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">830</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elo_city"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elektrische fietsen &amp; Stadsfietsen"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">118</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cargo"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bakfietsen"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stadsfietsen"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">4158</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"child_to_20"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinderfietsen t/m 20inch"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">161</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"child_above_20"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinderfietsen vanaf 20inch"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"availability_per_warehouse_group"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"warehouse_group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Groep 1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"availability"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elo"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elektrische fietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elo_city"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elektrische fietsen &amp; Stadsfietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cargo"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bakfietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stadsfietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"child_to_20"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinderfietsen t/m 20inch"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"child_above_20"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinderfietsen vanaf 20inch"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"warehouse_group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Groep 2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"availability"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elo"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elektrische fietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">720</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elo_city"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elektrische fietsen &amp; Stadsfietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cargo"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bakfietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stadsfietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">3951</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"child_to_20"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinderfietsen t/m 20inch"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">161</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"child_above_20"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kinderfietsen vanaf 20inch"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"available_locations"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='webhooks'>Webhooks</h1>
 <p>Receive updates from CycleSoftware for specific entities.</p>
-<h3 id='webhooks-delivery-status-for-object-item-id-webhook-request'>Webhook request</h3>
+<h3 id='webhooks-available-locations-webhook-request'>Webhook request</h3>
 <p>The payload is a raw POST of a JSON string to your server. Several headers are included:</p>
 
 <table><thead>
@@ -2268,7 +2477,7 @@ available.</p>
 <td>HMAC of the payload using your hash secret</td>
 </tr>
 </tbody></table>
-<h3 id='webhooks-delivery-status-for-object-item-id-payload-structure'>Payload structure</h3>
+<h3 id='webhooks-available-locations-payload-structure'>Payload structure</h3>
 <p>Every JSON payload has the same structure. The payload object is different per event.</p>
 
 <table><thead>

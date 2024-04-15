@@ -17,6 +17,7 @@ includes:
 - cs-whm/stockinfo
 - cs-whm/outbound_orders
 - cs-whm/shipments
+- cs-whm/warehouse
 - cs-whm/webhooks
 
 search: true

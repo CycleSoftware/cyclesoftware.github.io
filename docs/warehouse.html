@@ -1601,12 +1601,34 @@ available.</p>
 <td><code>string</code></td>
 <td>Custom variable from article</td>
 </tr>
+<tr>
+<td><code>data[].warehouse_group_name</code></td>
+<td><code>?string</code></td>
+<td>Warehouse group name if set e.g. <code>Hall</code></td>
+</tr>
+<tr>
+<td><code>data[].warehouse_location</code></td>
+<td><code>?string</code></td>
+<td>Warehouse location if not shipped <code>B-1-1</code></td>
+</tr>
+<tr>
+<td><code>pagination.next_offset</code></td>
+<td><code>?int</code></td>
+<td><code>null</code> if no next offset exists. Offset to be used in next url call <code>?offset=:next_offset</code></td>
+</tr>
 </tbody></table>
 <h3 id='stock-stock-list-warehouse-http-request-examples'>HTTP request examples</h3>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
         <h6>/api/v1/warehouse/stock/items.json</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/warehouse/stock/items.json?offset=:offset</h6>
     </div>
 </div>
 
@@ -1633,7 +1655,7 @@ available.</p>
       </span><span class="nl">"is_blocked_for_claiming"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_claimed_for_obo"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_sold_to_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"is_shipped"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_shipped"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nl">"stocked_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-24 08:53:20"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"shipped_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-13 07:59:29"</span><span class="p">,</span><span class="w">
@@ -1641,7 +1663,9 @@ available.</p>
       </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 2"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 3"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 4"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="w">
+      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"warehouse_group_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hall"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"warehouse_location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A-1-1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"stock_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">203013</span><span class="p">,</span><span class="w">
@@ -1667,9 +1691,14 @@ available.</p>
       </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 2"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 3"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 4"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="w">
+      </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom var 5"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"warehouse_group_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"warehouse_location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='stock-stock-list-pos'>Stock list POS</h2>
 <p>Get a list of stocked objects in POS</p>
@@ -1811,12 +1840,24 @@ available.</p>
 <td><code>boolean</code></td>
 <td><code>true</code> if not a new object</td>
 </tr>
+<tr>
+<td><code>pagination.next_url</code></td>
+<td><code>?string</code></td>
+<td><code>null</code> if all data processed. Contains URL to next result set if more data is availabile</td>
+</tr>
 </tbody></table>
 <h3 id='stock-stock-list-pos-http-request-examples'>HTTP request examples</h3>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
         <h6>/api/v1/warehouse/stock/pos-items.json</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/warehouse/stock/pos-items.json?token=:token</h6>
     </div>
 </div>
 
@@ -1879,7 +1920,10 @@ available.</p>
       </span><span class="nl">"is_used"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nl">"is_rental"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v1/warehouse/stock/pos-items.json?token=1243"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='outbound-orders'>Outbound orders</h1>
 <p>Outbound orders related APIs</p>

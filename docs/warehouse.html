@@ -1612,23 +1612,23 @@ available.</p>
 <td>Warehouse location if not shipped <code>B-1-1</code></td>
 </tr>
 <tr>
-<td><code>pagination.next_offset</code></td>
-<td><code>?int</code></td>
-<td><code>null</code> if no next offset exists. Offset to be used in next url call <code>?offset=:next_offset</code></td>
+<td><code>pagination.next_url</code></td>
+<td><code>?string</code></td>
+<td><code>null</code> if all data processed. Contains URL to next result set if more data is available</td>
 </tr>
 </tbody></table>
 <h3 id='stock-stock-list-warehouse-http-request-examples'>HTTP request examples</h3>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v1/warehouse/stock/items.json</h6>
+        <h6>/api/v2/warehouse/stock/items.json</h6>
     </div>
 </div>
 
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v1/warehouse/stock/items.json?offset=:offset</h6>
+        <h6>/api/v2/warehouse/stock/items.json?offset=:offset</h6>
     </div>
 </div>
 
@@ -1697,7 +1697,7 @@ available.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='stock-stock-list-pos'>Stock list POS</h2>
@@ -1734,6 +1734,11 @@ available.</p>
 <td><code>data[].object_id</code></td>
 <td><code>integer</code></td>
 <td>POS Object ID <code>20648</code></td>
+</tr>
+<tr>
+<td><code>data[].warehouse_stock_item_id</code></td>
+<td><code>?integer</code></td>
+<td>Item ID in warehouse e.g <code>2220648</code> (only for WHM dealers), registered since march 2024</td>
 </tr>
 <tr>
 <td><code>data[].sales_order_id</code></td>
@@ -1850,14 +1855,14 @@ available.</p>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v1/warehouse/stock/pos-items.json</h6>
+        <h6>/api/v2/warehouse/stock/pos-items.json</h6>
     </div>
 </div>
 
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v1/warehouse/stock/pos-items.json?token=:token</h6>
+        <h6>/api/v2/warehouse/stock/pos-items.json?token=:token</h6>
     </div>
 </div>
 
@@ -1872,6 +1877,7 @@ available.</p>
       </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
       </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
       </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1076</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"warehouse_stock_item_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nl">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE100086"</span><span class="p">,</span><span class="w">
@@ -1898,6 +1904,7 @@ available.</p>
       </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
       </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4673</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"warehouse_stock_item_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nl">"supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gazelle"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A0828"</span><span class="p">,</span><span class="w">
@@ -1922,7 +1929,7 @@ available.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v1/warehouse/stock/pos-items.json?token=1243"</span><span class="w">
+    </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v2/warehouse/stock/pos-items.json?token=1243"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='outbound-orders'>Outbound orders</h1>

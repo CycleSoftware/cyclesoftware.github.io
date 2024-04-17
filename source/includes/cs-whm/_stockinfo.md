@@ -20,7 +20,6 @@ Get a list of stock items released for shipment
 | `remote_supplier_check_if_not_in_warehouse` | `integer` | if set to 1 supplier check will always be checked there is no stock in warehouse <i class="label label-info">optional</i>        |
 | `always_remote_supplier_check`              | `integer` | if set to 1 supplier check will always be checked <i class="label label-info">optional</i>                                       |
 
-
 | POST parameter | Type       | Description       |
 |----------------|------------|-------------------|
 | `barcodes`     | `string[]` | array of barcodes |
@@ -166,42 +165,51 @@ Get a list of objects in warehouse
 
 ### Properties ###
 
-| Property                                  | Type        | Description                                                            |
-|-------------------------------------------|-------------|------------------------------------------------------------------------|
-| `error`                                   | `boolean`   | `true` if error occurred                                               |
-| `error_message`                           | `?string`   | Error if occurred                                                      |
-| `data`                                    | `object[]`  | array of objects                                                       |
-| `data[].stock_item_id`                    | `integer`   | Object ID within warehouse `325817`                                    |
-| `data[].outbound_order_id`                | `integer`   | Outbound order ID                                                      |
-| `data[].supplier`                         | `string`    | Supplier name                                                          |
-| `data[].article_id`                       | `string`    | Article number `735-18460`                                             |
-| `data[].barcode`                          | `string`    | Barcode `4063518126705`                                                |
-| `data[].description`                      | `string`    | Description of article `Ravenna E8F Herenfiets 28" grey 60 cm diamant` |
-| `data[].frame_id`                         | `string`    | Framenumber `AA01148291`                                               |
-| `data[].purchase_price_cents`             | `integer`   | Purchase price in cents                                                |
-| `data[].purchase_price_cents_packinglist` | `integer`   | Purchase price in cents from last packinglist                          |
-| `data[].dealer_rrp_cents`                 | `integer`   | RRP in cents                                                           |
-| `data[].claimed_for_account_id`           | `?integer`  | If claimed the account_id                                              |
-| `data[].claimed_for_store_id`             | `?integer`  | If claimed the store_id                                                |
-| `data[].is_blocked_for_claiming`          | `boolean`   | `true` if blocked for claiming                                         |
-| `data[].is_claimed_for_obo`               | `boolean`   | `true` if claimed for outbound order                                   |
-| `data[].is_sold_to_customer`              | `boolean`   | `true` if sold to a customer                                           |
-| `data[].is_shipped`                       | `boolean`   | `true` if shipped                                                      |
-| `data[].is_deleted`                       | `boolean`   | `true` if item was deleted                                             |
-| `data[].stocked_at`                       | `datetime`  | Datetime stocked `2021-10-22 11:33:03`                                 |
-| `data[].shipped_at`                       | `?datetime` | Datetime shipped                                                       |
-| `data[].custom_variable_1`                | `string`    | Custom variable from article                                           |
-| `data[].custom_variable_2`                | `string`    | Custom variable from article                                           |
-| `data[].custom_variable_3`                | `string`    | Custom variable from article                                           |
-| `data[].custom_variable_4`                | `string`    | Custom variable from article                                           |
-| `data[].custom_variable_5`                | `string`    | Custom variable from article                                           |
-
+| Property                                  | Type        | Description                                                                             |
+|-------------------------------------------|-------------|-----------------------------------------------------------------------------------------|
+| `error`                                   | `boolean`   | `true` if error occurred                                                                |
+| `error_message`                           | `?string`   | Error if occurred                                                                       |
+| `data`                                    | `object[]`  | array of objects                                                                        |
+| `data[].stock_item_id`                    | `integer`   | Object ID within warehouse `325817`                                                     |
+| `data[].outbound_order_id`                | `integer`   | Outbound order ID                                                                       |
+| `data[].supplier`                         | `string`    | Supplier name                                                                           |
+| `data[].article_id`                       | `string`    | Article number `735-18460`                                                              |
+| `data[].barcode`                          | `string`    | Barcode `4063518126705`                                                                 |
+| `data[].description`                      | `string`    | Description of article `Ravenna E8F Herenfiets 28" grey 60 cm diamant`                  |
+| `data[].frame_id`                         | `string`    | Framenumber `AA01148291`                                                                |
+| `data[].purchase_price_cents`             | `integer`   | Purchase price in cents                                                                 |
+| `data[].purchase_price_cents_packinglist` | `integer`   | Purchase price in cents from last packinglist                                           |
+| `data[].dealer_rrp_cents`                 | `integer`   | RRP in cents                                                                            |
+| `data[].claimed_for_account_id`           | `?integer`  | If claimed the account_id                                                               |
+| `data[].claimed_for_store_id`             | `?integer`  | If claimed the store_id                                                                 |
+| `data[].is_blocked_for_claiming`          | `boolean`   | `true` if blocked for claiming                                                          |
+| `data[].is_claimed_for_obo`               | `boolean`   | `true` if claimed for outbound order                                                    |
+| `data[].is_sold_to_customer`              | `boolean`   | `true` if sold to a customer                                                            |
+| `data[].is_shipped`                       | `boolean`   | `true` if shipped                                                                       |
+| `data[].is_deleted`                       | `boolean`   | `true` if item was deleted                                                              |
+| `data[].stocked_at`                       | `datetime`  | Datetime stocked `2021-10-22 11:33:03`                                                  |
+| `data[].shipped_at`                       | `?datetime` | Datetime shipped                                                                        |
+| `data[].custom_variable_1`                | `string`    | Custom variable from article                                                            |
+| `data[].custom_variable_2`                | `string`    | Custom variable from article                                                            |
+| `data[].custom_variable_3`                | `string`    | Custom variable from article                                                            |
+| `data[].custom_variable_4`                | `string`    | Custom variable from article                                                            |
+| `data[].custom_variable_5`                | `string`    | Custom variable from article                                                            |
+| `data[].warehouse_group_name`             | `?string`   | Warehouse group name if set e.g. `Hall`                                                 |
+| `data[].warehouse_location`               | `?string`   | Warehouse location if not shipped `B-1-1`                                               |
+| `pagination.next_url`                     | `?string`   | `null` if all data processed. Contains URL to next result set if more data is available |
 ### HTTP request examples ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
-		<h6>/api/v1/warehouse/stock/items.json</h6>
+		<h6>/api/v2/warehouse/stock/items.json</h6>
+	</div>
+</div>
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v2/warehouse/stock/items.json?offset=:offset</h6>
 	</div>
 </div>
 
@@ -228,7 +236,7 @@ Get a list of objects in warehouse
       "is_blocked_for_claiming": false,
       "is_claimed_for_obo": true,
       "is_sold_to_customer": true,
-      "is_shipped": true,
+      "is_shipped": false,
       "is_deleted": false,
       "stocked_at": "2018-04-24 08:53:20",
       "shipped_at": "2021-04-13 07:59:29",
@@ -236,7 +244,9 @@ Get a list of objects in warehouse
       "custom_variable_2": "Custom var 2",
       "custom_variable_3": "Custom var 3",
       "custom_variable_4": "Custom var 4",
-      "custom_variable_5": "Custom var 5"
+      "custom_variable_5": "Custom var 5",
+      "warehouse_group_name": "Hall",
+      "warehouse_location": "A-1-1"
     },
     {
       "stock_item_id": 203013,
@@ -262,9 +272,14 @@ Get a list of objects in warehouse
       "custom_variable_2": "Custom var 2",
       "custom_variable_3": "Custom var 3",
       "custom_variable_4": "Custom var 4",
-      "custom_variable_5": "Custom var 5"
+      "custom_variable_5": "Custom var 5",
+      "warehouse_group_name": null,
+      "warehouse_location": null
     }
-  ]
+  ],
+  "pagination": {
+    "next_url": null
+  }
 }
 ```
 
@@ -274,41 +289,50 @@ Get a list of stocked objects in POS
 
 ### Properties ###
 
-| Property                                  | Type      | Description                                           |
-|-------------------------------------------|-----------|-------------------------------------------------------|
-| `error`                                   | `boolean` | `true` if error occurred e.g. `false`                 |
-| `error_message`                           | `?string` | Error message or null                                 |
-| `data[].account_id`                       | `integer` | Account ID of store `5393`                            |
-| `data[].store_id`                         | `integer` | ID of the POS store `2`                               |
-| `data[].object_id`                        | `integer` | POS Object ID `20648`                                 |
-| `data[].sales_order_id`                   | `integer` | POS order id `1000`                                   |
-| `data[].supplier`                         | `string`  | Supplier name `Gazelle`                               |
-| `data[].article_id`                       | `string`  | Article number `A1935`                                |
-| `data[].barcode`                          | `string`  | Barcode `8717231254776`                               |
-| `data[].description`                      | `string`  | Description `Gazelle Eclipse C8 LTD`                  |
-| `data[].frame_id`                         | `string`  | Framenumber `60516151`                                |
-| `data[].purchase_price_cents`             | `integer` | Purchase price in cents `50980`                       |
-| `data[].purchase_price_cents_packinglist` | `integer` | Purchase price in cents from last packinglist `50980` |
-| `data[].dealer_rrp_cents`                 | `integer` | RRP in cents `94900`                                  |
-| `data[].is_sold_to_customer`              | `boolean` | `true` if sold to customer                            |
-| `data[].is_demo`                          | `boolean` | `true` if marked as demo                              |
-| `data[].has_invoice`                      | `boolean` | `true` if invoiced                                    |
-| `data[].stocked_at`                       | `date`    | Custom variable from article                          |
-| `data[].custom_variable_1`                | `string`  | Custom variable from article                          |
-| `data[].custom_variable_2`                | `string`  | Custom variable from article                          |
-| `data[].custom_variable_3`                | `string`  | Custom variable from article                          |
-| `data[].custom_variable_4`                | `string`  | Custom variable from article                          |
-| `data[].custom_variable_5`                | `string`  | Custom variable from article                          |
-| `data[].is_deleted`                       | `boolean` | Item is deleted                                       |
-| `data[].is_rental`                        | `boolean` | If rental object `true`                               |
-| `data[].is_used`                          | `boolean` | `true` if not a new object                            |
+| Property                                  | Type       | Description                                                                              |
+|-------------------------------------------|------------|------------------------------------------------------------------------------------------|
+| `error`                                   | `boolean`  | `true` if error occurred e.g. `false`                                                    |
+| `error_message`                           | `?string`  | Error message or null                                                                    |
+| `data[].account_id`                       | `integer`  | Account ID of store `5393`                                                               |
+| `data[].store_id`                         | `integer`  | ID of the POS store `2`                                                                  |
+| `data[].object_id`                        | `integer`  | POS Object ID `20648`                                                                    |
+| `data[].warehouse_stock_item_id`          | `?integer` | Item ID in warehouse e.g `2220648` (only for WHM dealers), registered since march 2024   |
+| `data[].sales_order_id`                   | `integer`  | POS order id `1000`                                                                      |
+| `data[].supplier`                         | `string`   | Supplier name `Gazelle`                                                                  |
+| `data[].article_id`                       | `string`   | Article number `A1935`                                                                   |
+| `data[].barcode`                          | `string`   | Barcode `8717231254776`                                                                  |
+| `data[].description`                      | `string`   | Description `Gazelle Eclipse C8 LTD`                                                     |
+| `data[].frame_id`                         | `string`   | Framenumber `60516151`                                                                   |
+| `data[].purchase_price_cents`             | `integer`  | Purchase price in cents `50980`                                                          |
+| `data[].purchase_price_cents_packinglist` | `integer`  | Purchase price in cents from last packinglist `50980`                                    |
+| `data[].dealer_rrp_cents`                 | `integer`  | RRP in cents `94900`                                                                     |
+| `data[].is_sold_to_customer`              | `boolean`  | `true` if sold to customer                                                               |
+| `data[].is_demo`                          | `boolean`  | `true` if marked as demo                                                                 |
+| `data[].has_invoice`                      | `boolean`  | `true` if invoiced                                                                       |
+| `data[].stocked_at`                       | `date`     | Custom variable from article                                                             |
+| `data[].custom_variable_1`                | `string`   | Custom variable from article                                                             |
+| `data[].custom_variable_2`                | `string`   | Custom variable from article                                                             |
+| `data[].custom_variable_3`                | `string`   | Custom variable from article                                                             |
+| `data[].custom_variable_4`                | `string`   | Custom variable from article                                                             |
+| `data[].custom_variable_5`                | `string`   | Custom variable from article                                                             |
+| `data[].is_deleted`                       | `boolean`  | Item is deleted                                                                          |
+| `data[].is_rental`                        | `boolean`  | If rental object `true`                                                                  |
+| `data[].is_used`                          | `boolean`  | `true` if not a new object                                                               |
+| `pagination.next_url`                     | `?string`  | `null` if all data processed. Contains URL to next result set if more data is availabile |
 
 ### HTTP request examples ###
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
-		<h6>/api/v1/warehouse/stock/pos-items.json</h6>
+		<h6>/api/v2/warehouse/stock/pos-items.json</h6>
+	</div>
+</div>
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v2/warehouse/stock/pos-items.json?token=:token</h6>
 	</div>
 </div>
 
@@ -324,6 +348,7 @@ Get a list of stocked objects in POS
       "account_id": 1000,
       "store_id": 6,
       "object_id": 1076,
+      "warehouse_stock_item_id": null,
       "sales_order_id": 0,
       "supplier": "Batavus",
       "article_id": "BE100086",
@@ -350,6 +375,7 @@ Get a list of stocked objects in POS
       "account_id": 1000,
       "store_id": 2,
       "object_id": 4673,
+      "warehouse_stock_item_id": null,
       "sales_order_id": 0,
       "supplier": "Gazelle",
       "article_id": "A0828",
@@ -372,6 +398,9 @@ Get a list of stocked objects in POS
       "is_used": true,
       "is_rental": true
     }
-  ]
+  ],
+  "pagination": {
+    "next_url": "https://api.cyclesoftware.nl/api/v2/warehouse/stock/pos-items.json?token=1243"
+  }
 }
 ```

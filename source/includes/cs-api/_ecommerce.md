@@ -883,13 +883,14 @@ See [API limits](#introduction-limits) for more information about API rate limit
 
 The following optional POST parameters can be used to specify specific behavior.
 
-| POST parameter          | Type      | Default                                           | Description                                                                                              |
-|-------------------------|-----------|---------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| `employee_id`           | `integer` | The sales employee registered for the sales-order | Employee ID for registration                                                                             |
-| `order_status_id`       | `integer` | `null`                                            | New sales order status. See common endpoint                                                              |
-| `book`                  | `boolean` | `false`                                           | if `true`, the invoice will be booked in administration. Otherwise the invoice will be pro-forma         |
-| `customer_messages`     | `boolean` | `true`                                            | if `true` a phone- of e-mail message will be sent (according to account settings) to inform the customer |
-| `allow_resend_messages` | `boolean` | `false`                                           | if `true` a phone- of e-mail message will be sent again if there were previous messages                  |
+| POST parameter                 | Type      | Default                                           | Description                                                                                              |
+|--------------------------------|-----------|---------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| `employee_id`                  | `integer` | The sales employee registered for the sales-order | Employee ID for registration                                                                             |
+| `order_status_id`              | `integer` | `null`                                            | New sales order status. See common endpoint                                                              |
+| `book`                         | `boolean` | `false`                                           | if `true`, the invoice will be booked in administration. Otherwise the invoice will be pro-forma         |
+| `customer_messages`            | `boolean` | `true`                                            | if `true` a phone- of e-mail message will be sent (according to account settings) to inform the customer |
+| `allow_resend_messages`        | `boolean` | `false`                                           | if `true` a phone- of e-mail message will be sent again if there were previous messages                  |
+| `apply_service_vat_correction` | `boolean` | `true` (after 15-06-2024)                         | if `true` service VAT correction will be applied if active in account settings                           |
 
 ### Properties ###
 

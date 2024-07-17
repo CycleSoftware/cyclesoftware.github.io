@@ -599,6 +599,8 @@ Get article data available for e-commerce environments or for a specific `barcod
 - value representation..
 
 
+### Article property definitions ###
+- refer to definitions endpoint..
 
 
 > HTTP Request

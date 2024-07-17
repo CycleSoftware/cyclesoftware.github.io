@@ -558,3 +558,56 @@ This will save you bandwidth and time.
 | `brand_brake_system_front`          | Brand of primary brake front                 |
 | `model_brake_system_front`          | Type of primary brake front                  |
 | `type_brake_system_front`           | Model of primary brake front                 |
+
+
+## Articledata - v4 (BETA) ##
+
+Get article data available for e-commerce environments or for a specific `barcode`.
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/beta-v4/articledata/entries.json</h6>
+	</div>
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/beta-v4/articledata/entries.json?token=:token</h6>
+	</div>
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/beta-v4/articledata/entries.json?barcode=:barcode</h6>
+	</div>
+</div>
+
+| GET parameter        | Type      | Description |
+|----------------------|-----------|-------------|
+| `:modified_since`    | `integer` |             |
+| `:barcode`           | `barcode` |             |
+| `:exclude_ecommerce` | `boolean` |             |
+| `:exclude_articles`  | `boolean` |             |
+| `:exclude_objects`   | `boolean` |             |
+
+
+
+**Pagination**
+
+
+> HTTP Request
+
+```http
+GET /api/beta-v4/articledata/entries.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+```
+
+> HTTP Response
+
+```json
+{
+
+}
+```
+
+

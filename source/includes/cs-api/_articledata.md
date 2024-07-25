@@ -707,7 +707,7 @@ Every property has it's own value structure. See the properties endpoint for exa
 | `string`                         | String value                                                               |
 | `string[]`                       | Array of strings                                                           |
 | `image[]`                        | Array of images                                                            |
-| `battery[]`                      | Array of batteries                                                         |
+| `battery[]`                      | Array of battery options                                                   |
 | `document[]`                     | Array of documents                                                         |
 | `bundle[]`                       | Array of product bundles                                                   |
 
@@ -789,7 +789,7 @@ Accept: application/json
               "value": {
                 "nl": "Fietsen",
                 "en": "Bikes",
-                "fr": "V\u00e9los"
+                "fr": "Vélos"
               }
             }
           ]
@@ -809,7 +809,7 @@ Accept: application/json
               "value": {
                 "nl": "Stadsfietsen",
                 "en": "Citybike",
-                "fr": "V\u00e9los De Ville"
+                "fr": "Vélos De Ville"
               }
             }
           ]
@@ -829,7 +829,7 @@ Accept: application/json
               "value": {
                 "nl": "Stadsfiets",
                 "en": "City bike without gear or with hub gear",
-                "fr": "V\u00e9lo de Ville"
+                "fr": "Vélo de Ville"
               }
             }
           ]
@@ -951,7 +951,7 @@ Accept: application/json
               "value": {
                 "nl": "Fiets",
                 "en": "Bicycle",
-                "fr": "V\u00e9lo"
+                "fr": "Vélo"
               }
             }
           ]
@@ -1158,7 +1158,7 @@ Accept: application/json
               "value": {
                 "nl": "O&A",
                 "en": "Parts and accessories",
-                "fr": "Pi\u00e8ces et accessoires"
+                "fr": "Pièces et accessoires"
               }
             }
           ]
@@ -1175,7 +1175,7 @@ Accept: application/json
               "value": {
                 "nl": "Onderdelen/Reparatie",
                 "en": "Parts/Repair",
-                "fr": "Pi\u00e8ces de rechange"
+                "fr": "Pièces de rechange"
               }
             }
           ]
@@ -1192,7 +1192,7 @@ Accept: application/json
               "value": {
                 "nl": "Standaarden",
                 "en": "Kickstand",
-                "fr": "B\u00e9quilles"
+                "fr": "Béquilles"
               }
             }
           ]
@@ -1309,20 +1309,20 @@ Accept: application/json
 
 Get definition of properties with types and examples.
 
-| Property                              | Type      | Description                                                                                                                         |
-|---------------------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `error`                               | `boolean` | `true` if an error occurred                                                                                                         |
-| `error_message`                       | `?string` | Error message if occurred                                                                                                           |
-| `data<:property_name>.property_id`    | `integer` | ID of property e.g. `310`                                                                                                           |
-| `data<:property_name>.property_name`  | `string`  | Property definition e.g. `article_main_group`                                                                                       |
-| `data<:property_name>.data_type`      | `string`  | Data type e.g. `boolean`, `integer`, or referring to codelist`codelist:article_main_group`                                          |
-| `data<:property_name>.unit`           | `?string` | Unit e.g. `cm`, `kg` or `null` if no unit applicable                                                                                |
-| `data<:property_name>.description`    | `object`  | Object with localized descriptions of property                                                                                      |
-| `data<:property_name>.description.nl` | `string`  | e.g. `Hoofdgroep`                                                                                                                   |
-| `data<:property_name>.description.en` | `string`  | e.g. `Main group`                                                                                                                   |
-| `data<:property_name>.description.fr` | `string`  | e.g. `Groupe principal`                                                                                                             |
-| `data<:property_name>.example_value`  | `mixed`   | An example value found in article data endpoint. e.g. `1`                                                                           |
-| `data<:property_name>.code_list`      | `?string` | If codelist associated the URL to code list e.g. `https://s01.cyclesoftware.nl/api/v4/articledata/codelist/article_main_group.json` |
+| Property                              | Type               | Description                                                                                                                         |
+|---------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| `error`                               | `boolean`          | `true` if an error occurred                                                                                                         |
+| `error_message`                       | `?string`          | Error message if occurred                                                                                                           |
+| `data<:property_name>.property_id`    | `integer`          | ID of property e.g. `310`                                                                                                           |
+| `data<:property_name>.property_name`  | `string`           | Property definition e.g. `article_main_group`                                                                                       |
+| `data<:property_name>.data_type`      | `string`           | Data type e.g. `boolean`, `integer`, or referring to codelist`codelist:article_main_group`                                          |
+| `data<:property_name>.unit`           | `?string`          | Unit e.g. `cm`, `kg` or `null` if no unit applicable                                                                                |
+| `data<:property_name>.description`    | `localized-string` | Object with localized descriptions of property                                                                                      |
+| `data<:property_name>.description.nl` | `string`           | e.g. `Hoofdgroep`                                                                                                                   |
+| `data<:property_name>.description.en` | `string`           | e.g. `Main group`                                                                                                                   |
+| `data<:property_name>.description.fr` | `string`           | e.g. `Groupe principal`                                                                                                             |
+| `data<:property_name>.example_value`  | `mixed`            | An example value found in article data endpoint. e.g. `1` or an object                                                              |
+| `data<:property_name>.code_list`      | `?string`          | If codelist associated the URL to code list e.g. `https://s01.cyclesoftware.nl/api/v4/articledata/codelist/article_main_group.json` |
 
 > HTTP Request
 
@@ -1362,7 +1362,7 @@ Accept: application/json
       "description": {
         "nl": "Handvatbediening",
         "en": "Handle operation",
-        "fr": "Fonctionnement de la poign\u00e9e"
+        "fr": "Fonctionnement de la poignée"
       },
       "example_value": true
     },
@@ -1374,7 +1374,7 @@ Accept: application/json
       "description": {
         "nl": "Modeljaar",
         "en": "Model year",
-        "fr": "Ann\u00e9e mod\u00e8le"
+        "fr": "Année modèle"
       },
       "example_value": 2024
     },
@@ -1386,7 +1386,7 @@ Accept: application/json
       "description": {
         "nl": "High resolution afbeelding URL",
         "en": "Highres image URL",
-        "fr": "URL de l'image haute r\u00e9solution"
+        "fr": "URL de l'image haute résolution"
       },
       "example_value": [
         "http://meridaxtraazz.nl/bikeimages/merida/2013/2048/3140.jpg"
@@ -1412,13 +1412,13 @@ Accept: application/json
       "description": {
         "nl": "Kassabontekst",
         "en": "Receipt text",
-        "fr": "Texte du re\u00e7u"
+        "fr": "Texte du reçu"
       },
       "example_value": {
         "user": "Kassabontekst stored in account",
         "nl": "Omschrijving - Kassabontekst",
         "en": "Description - Receipt text",
-        "fr": "Description - Texte du re\u00e7u"
+        "fr": "Description - Texte du reçu"
       }
     }
   }
@@ -1428,6 +1428,22 @@ Accept: application/json
 ## Code lists - V4 ##
 
 Get code list entries.
+
+### Properties ###
+| Property                    | Type               |     | Description                              |
+|-----------------------------|--------------------|:----|------------------------------------------|
+| `error`                     | `boolean`          |     | `true` if an error occurred e.g. `false` |
+| `error_message`             | `?string`          |     | Error message if available               |
+| `data`                      | `object[]`         |     | Array of code list entries               |
+| `data[].code`               | `string`           |     | Code value e.g. `2A`                     |
+| `data[].code_international` | `string`           |     | International code value e.g. `BLACK`    |
+| `data[].codelist`           | `string`           |     | e.g. `codelist:name-of-list`             |
+| `data[].description`        | `localized-string` |     | Object with localized descriptions       |
+| `data[].description.de`     | `string`           |     | e.g. `Description in German`             |
+| `data[].description.en`     | `string`           |     | e.g. `Description in English`            |
+| `data[].description.fr`     | `string`           |     | e.g. `Description in French`             |
+| `data[].description.nl`     | `string`           |     | e.g. `Description in Dutch`              |
+
 
 > HTTP Request
 
@@ -1449,83 +1465,101 @@ Accept: application/json
     {
       "codelist": "codelist:article_main_group",
       "code": "1",
-      "description_international": "1",
-      "description_nl": "Fietsen",
-      "description_fr": "V\u00e9los",
-      "description_en": "Bikes",
-      "description_de": "Radfahren"
+      "code_international": "1",
+      "description": {
+        "nl": "Fietsen",
+        "fr": "Vélos",
+        "en": "Bikes",
+        "de": "Radfahren"
+      }
     },
     {
       "codelist": "codelist:article_main_group",
       "code": "2",
-      "description_international": "2",
-      "description_nl": "O&A",
-      "description_fr": "Pi\u00e8ces et accessoires",
-      "description_en": "Parts and accessories",
-      "description_de": "Teile und Zubeh\u00f6r"
+      "code_international": "2",
+      "description": {
+        "nl": "O&A",
+        "fr": "Pièces et accessoires",
+        "en": "Parts and accessories",
+        "de": "Teile und Zubehör"
+      }
     },
     {
       "codelist": "codelist:article_main_group",
       "code": "3",
-      "description_international": "3",
-      "description_nl": "Kleding",
-      "description_fr": "V\u00eatements",
-      "description_en": "Clothing",
-      "description_de": "Kleidung"
+      "code_international": "3",
+      "description": {
+        "nl": "Kleding",
+        "fr": "Vêtements",
+        "en": "Clothing",
+        "de": "Kleidung"
+      }
     },
     {
       "codelist": "codelist:article_main_group",
       "code": "4",
-      "description_international": "4",
-      "description_nl": "Fitness",
-      "description_fr": "Fitness",
-      "description_en": "Fitness",
-      "description_de": "Fitness"
+      "code_international": "4",
+      "description": {
+        "nl": "Fitness",
+        "fr": "Fitness",
+        "en": "Fitness",
+        "de": "Fitness"
+      }
     },
     {
       "codelist": "codelist:article_main_group",
       "code": "5",
-      "description_international": "5",
-      "description_nl": "Occasions/Doorlevering",
-      "description_fr": "Occasions / Livraison",
-      "description_en": "Second hand / b2b sales",
-      "description_de": "Anl\u00e4sse / Lieferung"
+      "code_international": "5",
+      "description": {
+        "nl": "Occasions/Doorlevering",
+        "fr": "Occasions / Livraison",
+        "en": "Second hand / b2b sales",
+        "de": "Anlässe / Lieferung"
+      }
     },
     {
       "codelist": "codelist:article_main_group",
       "code": "6",
-      "description_international": "6",
-      "description_nl": "Overigen",
-      "description_fr": "Autres",
-      "description_en": "Miscellaneous",
-      "description_de": "Andere"
+      "code_international": "6",
+      "description": {
+        "nl": "Overigen",
+        "fr": "Autres",
+        "en": "Miscellaneous",
+        "de": "Andere"
+      }
     },
     {
       "codelist": "codelist:article_main_group",
       "code": "7",
-      "description_international": "7",
-      "description_nl": "Bromfietsen",
-      "description_fr": "Cyclomoteurs",
-      "description_en": "Mopeds",
-      "description_de": "Mopeds"
+      "code_international": "7",
+      "description": {
+        "nl": "Bromfietsen",
+        "fr": "Cyclomoteurs",
+        "en": "Mopeds",
+        "de": "Mopeds"
+      }
     },
     {
       "codelist": "codelist:article_main_group",
       "code": "8",
-      "description_international": "8",
-      "description_nl": "Bromfietsonderdelen",
-      "description_fr": "Pi\u00e8ces de cyclomoteur",
-      "description_en": "Moped parts",
-      "description_de": "Moped Teile"
+      "code_international": "8",
+      "description": {
+        "nl": "Bromfietsonderdelen",
+        "fr": "Pièces de cyclomoteur",
+        "en": "Moped parts",
+        "de": "Moped Teile"
+      }
     },
     {
       "codelist": "codelist:article_main_group",
       "code": "9",
-      "description_international": "9",
-      "description_nl": "Tarieven",
-      "description_fr": "Tarifs",
-      "description_en": "Rates",
-      "description_de": "Preise"
+      "code_international": "9",
+      "description": {
+        "nl": "Tarieven",
+        "fr": "Tarifs",
+        "en": "Rates",
+        "de": "Preise"
+      }
     }
   ]
 }

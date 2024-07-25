@@ -2585,18 +2585,18 @@ This will save you bandwidth and time.
 <td><code>data[].properties&lt;:property_name&gt;.values</code></td>
 <td><code>object[]</code></td>
 <td><code>false</code></td>
-<td>Different values for the property</td>
+<td>Different values for the property (different values may be present sourced from different suppliers and or objects)</td>
 </tr>
 <tr>
 <td><code>data[].properties&lt;:property_name&gt;.values[].supplier_ids</code></td>
-<td><code>integer[]</code></td>
-<td><code>false</code></td>
+<td><code>?integer[]</code></td>
+<td><code>true</code></td>
 <td>The list of supplier-ids which have this property in their article definition</td>
 </tr>
 <tr>
 <td><code>data[].properties&lt;:property_name&gt;.values[].object_ids</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
+<td><code>?integer[]</code></td>
+<td><code>true</code></td>
 <td>The list of object-ids which have this property in their definition</td>
 </tr>
 <tr>
@@ -2612,40 +2612,10 @@ This will save you bandwidth and time.
 <td>If the data-type refers to a code list, this is the international code value e.g. <code>1</code></td>
 </tr>
 <tr>
-<td><code>data[].properties&lt;:property_name&gt;.values[].value.nl</code></td>
+<td><code>data[].properties&lt;:property_name&gt;.values[].value</code></td>
 <td><code>mixed</code></td>
 <td><code>false</code></td>
-<td>Value will have the structure associated with the <code>type</code> .e.g <code>localized-string</code>, <code>string</code>, <code>decimal</code></td>
-</tr>
-<tr>
-<td><code>data[].properties&lt;:property_name&gt;.values[].value.en</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>Bikes</code></td>
-</tr>
-<tr>
-<td><code>data[].properties&lt;:property_name&gt;.values[].value.fr</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>Vélos</code></td>
-</tr>
-<tr>
-<td><code>data[].properties&lt;:property_name&gt;.values[].value.user</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>Ridley Elykx A Black Powder Coating // Aluminium B</code></td>
-</tr>
-<tr>
-<td><code>data[].properties&lt;:property_name&gt;.values[].value</code></td>
-<td><code>array</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>2021</code></td>
-</tr>
-<tr>
-<td><code>data[].properties&lt;:property_name&gt;.values[].value[]</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>https://images.cyclingfactory.be/SBIELARID023_image_2048x.jpg</code></td>
+<td>The value of the property, the structure depends on <code>data[].properties&lt;:property_name&gt;.type</code> e.g. <code>2021</code></td>
 </tr>
 <tr>
 <td><code>data[].stock</code></td>
@@ -2720,24 +2690,6 @@ This will save you bandwidth and time.
 <td>Bulk location name e.g. <code>Magazijn</code></td>
 </tr>
 <tr>
-<td><code>data[].properties&lt;:property_name&gt;.values[].value[].date_modified</code></td>
-<td><code>datetime</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>2012-05-08 08:02:58</code></td>
-</tr>
-<tr>
-<td><code>data[].properties&lt;:property_name&gt;.values[].value[].url_thumb</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_T_18563.jpg</code></td>
-</tr>
-<tr>
-<td><code>data[].properties&lt;:property_name&gt;.values[].value[].url_large</code></td>
-<td><code>string</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_L_18563.jpg</code></td>
-</tr>
-<tr>
 <td><code>pagination.next_url</code></td>
 <td><code>?string</code></td>
 <td><code>true</code></td>
@@ -2751,233 +2703,175 @@ This will save you bandwidth and time.
 <tr>
 <th>Data-type</th>
 <th>Description</th>
-<th>Example</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><code>array[object(date_modified:datetime,url_large:string,url_thumb:string)]</code></td>
-<td>-</td>
-<td></td>
-</tr>
-<tr>
-<td><code>array[object(productbundle_contents:int,productbundle_item:string)]</code></td>
-<td>-</td>
-<td></td>
-</tr>
-<tr>
-<td><code>array[object(url:string,type:string)]</code></td>
-<td>-</td>
-<td></td>
-</tr>
-<tr>
 <td><code>codelist:article_group</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/article_group.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:article_main_group</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/article_main_group.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:article_sub_group</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/article_sub_group.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:base_color</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/base_color.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:battery_position</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/battery_position.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:battery_type</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/battery_type.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:brake_system</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/brake_system.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:brand</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/brand.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:customer_group</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/customer_group.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:display_handling</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/display_handling.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:display_type</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/display_type.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:ebike_system</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/ebike_system.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:electric_bicycle_type</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/electric_bicycle_type.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:etrto_wheelsize</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/etrto_wheelsize.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:frame</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/frame.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:frame_material</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/frame_material.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:function</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/function.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:gear_system</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/gear_system.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:keyword</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/keyword.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:moped_category</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/moped_category.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:moped_engine</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/moped_engine.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:moped_transmission</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/moped_transmission.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:motor_position</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/motor_position.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:position</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/position.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:qualitymark</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/qualitymark.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:sensor_type[]</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/sensor_type.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:status</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/status.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:supplier</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/supplier.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:surcharge</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/surcharge.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>codelist:vat</code></td>
 <td><code>https://api.cyclesoftware.nl/api/v4/codelists/vat.json</code></td>
-<td></td>
 </tr>
 <tr>
 <td><code>boolean</code></td>
 <td>Boolean value</td>
-<td></td>
 </tr>
 <tr>
 <td><code>date</code></td>
 <td>Date (Y-m-d)</td>
-<td></td>
 </tr>
 <tr>
 <td><code>decimal</code></td>
 <td>Decimal or float value</td>
-<td></td>
 </tr>
 <tr>
 <td><code>integer</code></td>
 <td>Integer value</td>
-<td></td>
 </tr>
 <tr>
 <td><code>localized-strings</code></td>
 <td>Localized string object</td>
-<td></td>
 </tr>
 <tr>
 <td><code>object[]</code></td>
 <td>Array of objects</td>
-<td></td>
 </tr>
 <tr>
 <td><code>string</code></td>
 <td>String value</td>
-<td></td>
 </tr>
 <tr>
 <td><code>string[]</code></td>
 <td>Array of strings</td>
-<td></td>
 </tr>
 <tr>
 <td><code>image[]</code></td>
-<td>Property <code>images</code></td>
-<td></td>
+<td>Array of images</td>
 </tr>
 <tr>
 <td><code>battery[]</code></td>
-<td>Property <code>images</code></td>
-<td></td>
+<td>Array of batteries</td>
 </tr>
 <tr>
 <td><code>document[]</code></td>
-<td>Property <code>images</code></td>
-<td></td>
+<td>Array of documents</td>
 </tr>
 <tr>
 <td><code>bundle[]</code></td>
-<td>Property <code>images</code></td>
-<td></td>
+<td>Array of product bundles</td>
 </tr>
 </tbody></table>
 
@@ -2994,6 +2888,582 @@ This will save you bandwidth and time.
 <p>HTTP Response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-07-24 16:23:45"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5400928076890"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pricing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"objects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"object_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F.1-232432"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">232432</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"expected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"is_used"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"suppliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11043281</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13005</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BELGIAN CYCLING FACTORY"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SBIELARID023"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"model_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"parent_barcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"package"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"package_contents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"min_order_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:article_main_group"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"object_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">232432</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fietsen"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bikes"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"V</span><span class="se">\u</span><span class="s2">00e9los"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:article_group"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"object_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">232432</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1A"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1A"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stadsfietsen"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Citybike"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"V</span><span class="se">\u</span><span class="s2">00e9los De Ville"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:article_sub_group"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"object_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">232432</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1A00"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1A00"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stadsfiets"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City bike without gear or with hub gear"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"V</span><span class="se">\u</span><span class="s2">00e9lo de Ville"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"object_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">232432</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"basic_color"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:base_color"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"object_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">232432</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLACK"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zwart"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Black"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Noir"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Black Powder Coating // Alumin"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"object_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">232432</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ridley Elykx A Black Powder Coating // Aluminium B"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ridley Elykx A Black Powder Coating // Aluminium Bikes Only // PC8 2021"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"frametype"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:frame"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"object_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">232432</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNI"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNI"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Uni"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unisex"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Uni"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"framesize_description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localized-strings"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"object_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">232432</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"gears"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"object_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">232432</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:keyword"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIETS"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BICYCLE"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fiets"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bicycle"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"V</span><span class="se">\u</span><span class="s2">00e9lo"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:brand"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ridley"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localized-strings"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elykx A"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string[]"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"https://images.cyclingfactory.be/SBIELARID023_image_2048x.jpg"</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"color_description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localized-strings"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"pos_description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localized-strings"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ridley Elykx A Black Powder Coating // Aluminium"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"gearsystem_rear_model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localized-strings"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13005</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shimano XT"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-07-24 16:26:35"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0008022142197"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pricing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">3995</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">4075</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pos_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pos_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-07-03"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pos_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-19"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">4075</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ecommerce_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">3900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ecommerce_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-07-01"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ecommerce_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-19"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"location_x"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"location_y"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"location_capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"location_bulk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Magazijn"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"suppliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7177049</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5229</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACCELL NL"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"680862"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"model_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"parent_barcode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">3995</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"package"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"package_contents"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"min_order_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"order_unit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image[]"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-08 08:02:58"</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_T_18563.jpg"</span><span class="p">,</span><span class="w">
+                  </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_L_18563.jpg"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"pos_description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localized-strings"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDAARD URSUS 26 JUMBO"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDAARD URSUS 26 TWEEPOOT ZWART nl_NL"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDAARD URSUS 26 JUMBO"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:brand"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"URSUS"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:article_main_group"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O&amp;A"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Parts and accessories"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pi</span><span class="se">\u</span><span class="s2">00e8ces et accessoires"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:article_group"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2N"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2N"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Onderdelen/Reparatie"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Parts/Repair"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pi</span><span class="se">\u</span><span class="s2">00e8ces de rechange"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:article_sub_group"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2N01"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2N01"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standaarden"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kickstand"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B</span><span class="se">\u</span><span class="s2">00e9quilles"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:keyword"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDAARD"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KICKSTAND"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standaard"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kickstand"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Standard"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localized-strings"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JUMBO"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string[]"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"http://www.accentry.com/upload/Juncker/680862.JPG"</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"basic_color"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"codelist:base_color"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLACK"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zwart"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Black"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Noir"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"color_description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localized-strings"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDAARD URSUS 26 JUMBO TWEEPOOT ZWART"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"long_description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"localized-strings"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"supplier_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">5229</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDAARD URSUS 26 JUMBO TWEEPOOT ZWART"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/api/v4/articledata/entries.json?token=ABC"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='article-data-properties-v4'>Properties - V4</h2>
 <p>Get definition of properties with types and examples.</p>

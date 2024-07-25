@@ -595,132 +595,121 @@ Get article data available for e-commerce environments or for a specific `barcod
 
 ### Response properties ###
 
-| Property                                                           | Type        | Omittable | Description                                                                                                                                |
-|--------------------------------------------------------------------|-------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `data`                                                             | `object[]`  | `false`   |                                                                                                                                            |
-| `data[].modified_at`                                               | `datetime`  | `false`   | Last modification of underlying data e.g. `2024-07-24 16:23:45`                                                                            |
-| `data[].barcode`                                                   | `string`    | `false`   | The barcode of the article e.g. `5400928076890` (usually an EAN code)                                                                      |
-| `data[].pricing`                                                   | `object`    | `false`   | Object with pricing information about the article`                                                                                         |
-| `data[].pricing.currency`                                          | `string`    | `false`   | The currency code e.g. `EUR`                                                                                                               |
-| `data[].pricing.rrp_cents`                                         | `integer`   | `false`   | Recommended retail price in cents e.g. `269900`                                                                                            |
-| `data[].pricing.pos_sales_price_cents`                             | `integer`   | `false`   | POS sales price in cents e.g. `269900`                                                                                                     |
-| `data[].pricing.ecommerce_price_cents`                             | `integer`   | `true`    | E-commerce sales price in cents e.g. `269900`                                                                                              |
-| `data[].pricing.purchase_price_cents`                              | `integer`   | `true`    | Purchase price in cents (excluding VAT) e.g. `99500`                                                                                       |
-| `data[].pricing.pos_group_id`                                      | `integer`   | `false`   | POS group ID e.g. `1` (see common enum)                                                                                                    |
-| `data[].pricing.vat_code`                                          | `?integer`  | `true`    | VAT code if specified e.g. `2`, if no specified the default VAT-code of POS group is applied                                               |
-| `data[].pricing.pos_promo_price_cents`                             | `?integer`  | `true`    | POS promo price in cents e.g. `4000`                                                                                                       |
-| `data[].pricing.pos_promo_price_from`                              | `?date`     | `true`    | POS promo start date e.g. `2024-07-03`                                                                                                     |
-| `data[].pricing.pos_promo_price_until`                             | `?date`     | `true`    | POS promo end date e.g. `2024-10-19`                                                                                                       |
-| `data[].pricing.ecommerce_promo_price_cents`                       | `?integer`  | `true`    | E-commerce promo price in cents e.g. `3900`                                                                                                |
-| `data[].pricing.ecommerce_promo_price_from`                        | `?date`     | `true`    | E-commerce promo start date e.g. `2024-07-01`                                                                                              |
-| `data[].pricing.ecommerce_promo_price_until`                       | `?date`     | `true`    | E-commerce promo end date e.g. `2024-10-19`                                                                                                |
-| `data[].objects`                                                   | `?object[]` | `false`   | When the article is an object (bicycle, moped) this element is present and contains unique objects                                         |
-| `data[].objects[].object_code`                                     | `string`    | `false`   | e.g. `F.1-232432`                                                                                                                          |
-| `data[].objects[].object_id`                                       | `integer`   | `false`   | e.g. `232432`                                                                                                                              |
-| `data[].objects[].store_id`                                        | `integer`   | `false`   | e.g. `1`                                                                                                                                   |
-| `data[].objects[].available`                                       | `boolean`   | `false`   | e.g. `true`                                                                                                                                |
-| `data[].objects[].expected_at`                                     | `null`      | `true`    |                                                                                                                                            |
-| `data[].objects[].is_demo`                                         | `boolean`   | `false`   | e.g. `false`                                                                                                                               |
-| `data[].objects[].is_used`                                         | `boolean`   | `false`   | e.g. `false`                                                                                                                               |
-| `data[].objects[].currency`                                        | `string`    | `false`   | e.g. `EUR`                                                                                                                                 |
-| `data[].objects[].ecommerce_price_cents`                           | `integer`   | `false`   | e.g. `269900`                                                                                                                              |
-| `data[].objects[].pos_sales_price_cents`                           | `integer`   | `false`   | e.g. `269900`                                                                                                                              |
-| `data[].objects[].purchase_price_cents`                            | `integer`   | `false`   | e.g. `0`                                                                                                                                   |
-| `data[].objects[].km_age`                                          | `null`      | `true`    |                                                                                                                                            |
-| `data[].suppliers`                                                 | `object[]`  | `false`   | List of suppliers associated with the article                                                                                              |
-| `data[].suppliers[]._id`                                           | `integer`   | `false`   | Internal ID e.g. `11043281`                                                                                                                |
-| `data[].suppliers[].supplier_id`                                   | `integer`   | `false`   | Supplier ID e.g. `13005` (see common supplier list)                                                                                        |
-| `data[].suppliers[].supplier_name`                                 | `string`    | `false`   | Supplier code name e.g. `BELGIAN CYCLING FACTORY`                                                                                          |
-| `data[].suppliers[].article_id`                                    | `string`    | `false`   | Article number e.g. `SBIELARID023`                                                                                                         |
-| `data[].suppliers[].model_id`                                      | `null`      | `true`    | Model ID, if other entries have the same model_id they could be grouped                                                                    |
-| `data[].suppliers[].parent_barcode`                                | `null`      | `true`    | Parent barcode (if grouped within model_id)                                                                                                |
-| `data[].suppliers[].currency`                                      | `string`    | `false`   | Currency code e.g. `EUR`                                                                                                                   |
-| `data[].suppliers[].rrp_cents`                                     | `integer`   | `false`   | Recommended retail price in cents e.g. `269900`                                                                                            |
-| `data[].suppliers[].purchase_price_cents`                          | `integer`   | `false`   | Purchase price in cents e.g. `0`                                                                                                           |
-| `data[].suppliers[].package.package_contents`                      | `integer`   | `false`   | Number of consumer goods within delivery from supplier e.g. `1`                                                                            |
-| `data[].suppliers[].package.min_order_quantity`                    | `integer`   | `false`   | Minimal order quantity for this supplier e.g. `1`                                                                                          |
-| `data[].suppliers[].package.order_unit`                            | `integer`   | `false`   | Order unit for this supplier e.g. `1`                                                                                                      |
-| `data[].properties<:property_name>.type`                           | `string`    | `false`   | The data type of the property e.g. `codelist:article_main_group` (see `Data-types` for possible types)                                     |
-| `data[].properties<:property_name>.unit`                           | `?string`   | `true`    | The unit of data e.g. `kg` or `cm` if available.                                                                                           |
-| `data[].properties<:property_name>.values`                         | `object[]`  | `false`   | Different values for the property                                                                                                          |
-| `data[].properties<:property_name>.values[].supplier_ids`          | `integer[]` | `false`   | The list of supplier-ids which have this property in their article definition                                                              |
-| `data[].properties<:property_name>.values[].object_ids`            | `array`     | `false`   | The list of object-ids which have this property in their definition                                                                        |
-| `data[].properties<:property_name>.values[].code`                  | `?string`   | `true`    | If the data-type refers to a code list, this is the code value e.g. `1`                                                                    |
-| `data[].properties<:property_name>.values[].code_international`    | `?string`   | `true`    | If the data-type refers to a code list, this is the international code value e.g. `1`                                                      |
-| `data[].properties<:property_name>.values[].value.nl`              | `mixed`     | `false`   | Value will have the structure associated with the `type` .e.g `localized-string`, `string`, `decimal`                                      |
-| `data[].properties<:property_name>.values[].value.en`              | `string`    | `false`   | e.g. `Bikes`                                                                                                                               |
-| `data[].properties<:property_name>.values[].value.fr`              | `string`    | `false`   | e.g. `Vélos`                                                                                                                               |
-| `data[].properties<:property_name>.values[].value.user`            | `string`    | `false`   | e.g. `Ridley Elykx A Black Powder Coating // Aluminium B`                                                                                  |
-| `data[].properties<:property_name>.values[].value`                 | `array`     | `false`   | e.g. `2021`                                                                                                                                |
-| `data[].properties<:property_name>.values[].value[]`               | `string`    | `false`   | e.g. `https://images.cyclingfactory.be/SBIELARID023_image_2048x.jpg`                                                                       |
-| `data[].stock`                                                     | `?object`   | `false`   | Only present for non object entries, contains stock information within stores                                                              |
-| `data[].stock.available`                                           | `boolean`   | `false`   | `true` if there is stock available within stores e.g. `false`                                                                              |
-| `data[].stock.stores`                                              | `object`    | `false`   | Array with object information per store-id                                                                                                 |
-| `data[].stock.stores[].store_id`                                   | `integer`   | `false`   | Store ID e.g. `1`                                                                                                                          |
-| `data[].stock.stores[].stock_level`                                | `integer`   | `false`   | Stock level in this store e.g. `0`                                                                                                         |
-| `data[].stock.stores[].locations`                                  | `array`     | `false`   | Stock locations associated with this article                                                                                               |
-| `data[].stock.stores[].locations[].store_id`                       | `integer`   | `false`   | e.g. `1`                                                                                                                                   |
-| `data[].stock.stores[].locations[].location_id`                    | `integer`   | `false`   | ID of the location e.g. `3`                                                                                                                |
-| `data[].stock.stores[].locations[].location_x`                     | `integer`   | `false`   | Location x-axis e.g. `1`                                                                                                                   |
-| `data[].stock.stores[].locations[].location_y`                     | `integer`   | `false`   | Location y-axis e.g. `2`                                                                                                                   |
-| `data[].stock.stores[].locations[].location_capacity`              | `integer`   | `false`   | Capacity e.g. `33`                                                                                                                         |
-| `data[].stock.stores[].locations[].location_bulk`                  | `string`    | `false`   | Bulk location name e.g. `Magazijn`                                                                                                         |
-| `data[].properties<:property_name>.values[].value[].date_modified` | `datetime`  | `false`   | e.g. `2012-05-08 08:02:58`                                                                                                                 |
-| `data[].properties<:property_name>.values[].value[].url_thumb`     | `string`    | `false`   | e.g. `https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_T_18563.jpg`                                                                    |
-| `data[].properties<:property_name>.values[].value[].url_large`     | `string`    | `false`   | e.g. `https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_L_18563.jpg`                                                                    |
-| `pagination.next_url`                                              | `?string`   | `true`    | If there is more data this is the URL to the next API request. `https://api.cyclesoftware.nl/api/v4/articledata/entries.json?token=abc...` |
+| Property                                                           | Type         | Omittable | Description                                                                                                                                |
+|--------------------------------------------------------------------|--------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| `data`                                                             | `object[]`   | `false`   |                                                                                                                                            |
+| `data[].modified_at`                                               | `datetime`   | `false`   | Last modification of underlying data e.g. `2024-07-24 16:23:45`                                                                            |
+| `data[].barcode`                                                   | `string`     | `false`   | The barcode of the article e.g. `5400928076890` (usually an EAN code)                                                                      |
+| `data[].pricing`                                                   | `object`     | `false`   | Object with pricing information about the article`                                                                                         |
+| `data[].pricing.currency`                                          | `string`     | `false`   | The currency code e.g. `EUR`                                                                                                               |
+| `data[].pricing.rrp_cents`                                         | `integer`    | `false`   | Recommended retail price in cents e.g. `269900`                                                                                            |
+| `data[].pricing.pos_sales_price_cents`                             | `integer`    | `false`   | POS sales price in cents e.g. `269900`                                                                                                     |
+| `data[].pricing.ecommerce_price_cents`                             | `integer`    | `true`    | E-commerce sales price in cents e.g. `269900`                                                                                              |
+| `data[].pricing.purchase_price_cents`                              | `integer`    | `true`    | Purchase price in cents (excluding VAT) e.g. `99500`                                                                                       |
+| `data[].pricing.pos_group_id`                                      | `integer`    | `false`   | POS group ID e.g. `1` (see common enum)                                                                                                    |
+| `data[].pricing.vat_code`                                          | `?integer`   | `true`    | VAT code if specified e.g. `2`, if no specified the default VAT-code of POS group is applied                                               |
+| `data[].pricing.pos_promo_price_cents`                             | `?integer`   | `true`    | POS promo price in cents e.g. `4000`                                                                                                       |
+| `data[].pricing.pos_promo_price_from`                              | `?date`      | `true`    | POS promo start date e.g. `2024-07-03`                                                                                                     |
+| `data[].pricing.pos_promo_price_until`                             | `?date`      | `true`    | POS promo end date e.g. `2024-10-19`                                                                                                       |
+| `data[].pricing.ecommerce_promo_price_cents`                       | `?integer`   | `true`    | E-commerce promo price in cents e.g. `3900`                                                                                                |
+| `data[].pricing.ecommerce_promo_price_from`                        | `?date`      | `true`    | E-commerce promo start date e.g. `2024-07-01`                                                                                              |
+| `data[].pricing.ecommerce_promo_price_until`                       | `?date`      | `true`    | E-commerce promo end date e.g. `2024-10-19`                                                                                                |
+| `data[].objects`                                                   | `?object[]`  | `false`   | When the article is an object (bicycle, moped) this element is present and contains unique objects                                         |
+| `data[].objects[].object_code`                                     | `string`     | `false`   | e.g. `F.1-232432`                                                                                                                          |
+| `data[].objects[].object_id`                                       | `integer`    | `false`   | e.g. `232432`                                                                                                                              |
+| `data[].objects[].store_id`                                        | `integer`    | `false`   | e.g. `1`                                                                                                                                   |
+| `data[].objects[].available`                                       | `boolean`    | `false`   | e.g. `true`                                                                                                                                |
+| `data[].objects[].expected_at`                                     | `null`       | `true`    |                                                                                                                                            |
+| `data[].objects[].is_demo`                                         | `boolean`    | `false`   | e.g. `false`                                                                                                                               |
+| `data[].objects[].is_used`                                         | `boolean`    | `false`   | e.g. `false`                                                                                                                               |
+| `data[].objects[].currency`                                        | `string`     | `false`   | e.g. `EUR`                                                                                                                                 |
+| `data[].objects[].ecommerce_price_cents`                           | `integer`    | `false`   | e.g. `269900`                                                                                                                              |
+| `data[].objects[].pos_sales_price_cents`                           | `integer`    | `false`   | e.g. `269900`                                                                                                                              |
+| `data[].objects[].purchase_price_cents`                            | `integer`    | `false`   | e.g. `0`                                                                                                                                   |
+| `data[].objects[].km_age`                                          | `null`       | `true`    |                                                                                                                                            |
+| `data[].suppliers`                                                 | `object[]`   | `false`   | List of suppliers associated with the article                                                                                              |
+| `data[].suppliers[]._id`                                           | `integer`    | `false`   | Internal ID e.g. `11043281`                                                                                                                |
+| `data[].suppliers[].supplier_id`                                   | `integer`    | `false`   | Supplier ID e.g. `13005` (see common supplier list)                                                                                        |
+| `data[].suppliers[].supplier_name`                                 | `string`     | `false`   | Supplier code name e.g. `BELGIAN CYCLING FACTORY`                                                                                          |
+| `data[].suppliers[].article_id`                                    | `string`     | `false`   | Article number e.g. `SBIELARID023`                                                                                                         |
+| `data[].suppliers[].model_id`                                      | `null`       | `true`    | Model ID, if other entries have the same model_id they could be grouped                                                                    |
+| `data[].suppliers[].parent_barcode`                                | `null`       | `true`    | Parent barcode (if grouped within model_id)                                                                                                |
+| `data[].suppliers[].currency`                                      | `string`     | `false`   | Currency code e.g. `EUR`                                                                                                                   |
+| `data[].suppliers[].rrp_cents`                                     | `integer`    | `false`   | Recommended retail price in cents e.g. `269900`                                                                                            |
+| `data[].suppliers[].purchase_price_cents`                          | `integer`    | `false`   | Purchase price in cents e.g. `0`                                                                                                           |
+| `data[].suppliers[].package.package_contents`                      | `integer`    | `false`   | Number of consumer goods within delivery from supplier e.g. `1`                                                                            |
+| `data[].suppliers[].package.min_order_quantity`                    | `integer`    | `false`   | Minimal order quantity for this supplier e.g. `1`                                                                                          |
+| `data[].suppliers[].package.order_unit`                            | `integer`    | `false`   | Order unit for this supplier e.g. `1`                                                                                                      |
+| `data[].properties<:property_name>.type`                           | `string`     | `false`   | The data type of the property e.g. `codelist:article_main_group` (see `Data-types` for possible types)                                     |
+| `data[].properties<:property_name>.unit`                           | `?string`    | `true`    | The unit of data e.g. `kg` or `cm` if available.                                                                                           |
+| `data[].properties<:property_name>.values`                         | `object[]`   | `false`   | Different values for the property (different values may be present sourced from different suppliers and or objects)                        |
+| `data[].properties<:property_name>.values[].supplier_ids`          | `?integer[]` | `true`    | The list of supplier-ids which have this property in their article definition                                                              |
+| `data[].properties<:property_name>.values[].object_ids`            | `?integer[]` | `true`    | The list of object-ids which have this property in their definition                                                                        |
+| `data[].properties<:property_name>.values[].code`                  | `?string`    | `true`    | If the data-type refers to a code list, this is the code value e.g. `1`                                                                    |
+| `data[].properties<:property_name>.values[].code_international`    | `?string`    | `true`    | If the data-type refers to a code list, this is the international code value e.g. `1`                                                      |
+| `data[].properties<:property_name>.values[].value`                 | `mixed`      | `false`   | The value of the property, the structure depends on `data[].properties<:property_name>.type` e.g. `2021`                                   |
+| `data[].stock`                                                     | `?object`    | `false`   | Only present for non object entries, contains stock information within stores                                                              |
+| `data[].stock.available`                                           | `boolean`    | `false`   | `true` if there is stock available within stores e.g. `false`                                                                              |
+| `data[].stock.stores`                                              | `object`     | `false`   | Array with object information per store-id                                                                                                 |
+| `data[].stock.stores[].store_id`                                   | `integer`    | `false`   | Store ID e.g. `1`                                                                                                                          |
+| `data[].stock.stores[].stock_level`                                | `integer`    | `false`   | Stock level in this store e.g. `0`                                                                                                         |
+| `data[].stock.stores[].locations`                                  | `array`      | `false`   | Stock locations associated with this article                                                                                               |
+| `data[].stock.stores[].locations[].store_id`                       | `integer`    | `false`   | e.g. `1`                                                                                                                                   |
+| `data[].stock.stores[].locations[].location_id`                    | `integer`    | `false`   | ID of the location e.g. `3`                                                                                                                |
+| `data[].stock.stores[].locations[].location_x`                     | `integer`    | `false`   | Location x-axis e.g. `1`                                                                                                                   |
+| `data[].stock.stores[].locations[].location_y`                     | `integer`    | `false`   | Location y-axis e.g. `2`                                                                                                                   |
+| `data[].stock.stores[].locations[].location_capacity`              | `integer`    | `false`   | Capacity e.g. `33`                                                                                                                         |
+| `data[].stock.stores[].locations[].location_bulk`                  | `string`     | `false`   | Bulk location name e.g. `Magazijn`                                                                                                         |
+| `pagination.next_url`                                              | `?string`    | `true`    | If there is more data this is the URL to the next API request. `https://api.cyclesoftware.nl/api/v4/articledata/entries.json?token=abc...` |
 
 ### Data-types ###
 
 Every property has it's own value structure. See the properties endpoint for example values.
 
-| Data-type                                                                 | Description                                                                | Example |
-|---------------------------------------------------------------------------|----------------------------------------------------------------------------|---------|
-| `array[object(date_modified:datetime,url_large:string,url_thumb:string)]` | -                                                                          |
-| `array[object(productbundle_contents:int,productbundle_item:string)]`     | -                                                                          |
-| `array[object(url:string,type:string)]`                                   | -                                                                          |
-| `codelist:article_group`                                                  | `https://api.cyclesoftware.nl/api/v4/codelists/article_group.json`         |
-| `codelist:article_main_group`                                             | `https://api.cyclesoftware.nl/api/v4/codelists/article_main_group.json`    |
-| `codelist:article_sub_group`                                              | `https://api.cyclesoftware.nl/api/v4/codelists/article_sub_group.json`     |
-| `codelist:base_color`                                                     | `https://api.cyclesoftware.nl/api/v4/codelists/base_color.json`            |
-| `codelist:battery_position`                                               | `https://api.cyclesoftware.nl/api/v4/codelists/battery_position.json`      |
-| `codelist:battery_type`                                                   | `https://api.cyclesoftware.nl/api/v4/codelists/battery_type.json`          |
-| `codelist:brake_system`                                                   | `https://api.cyclesoftware.nl/api/v4/codelists/brake_system.json`          |
-| `codelist:brand`                                                          | `https://api.cyclesoftware.nl/api/v4/codelists/brand.json`                 |
-| `codelist:customer_group`                                                 | `https://api.cyclesoftware.nl/api/v4/codelists/customer_group.json`        |
-| `codelist:display_handling`                                               | `https://api.cyclesoftware.nl/api/v4/codelists/display_handling.json`      |
-| `codelist:display_type`                                                   | `https://api.cyclesoftware.nl/api/v4/codelists/display_type.json`          |
-| `codelist:ebike_system`                                                   | `https://api.cyclesoftware.nl/api/v4/codelists/ebike_system.json`          |
-| `codelist:electric_bicycle_type`                                          | `https://api.cyclesoftware.nl/api/v4/codelists/electric_bicycle_type.json` |
-| `codelist:etrto_wheelsize`                                                | `https://api.cyclesoftware.nl/api/v4/codelists/etrto_wheelsize.json`       |
-| `codelist:frame`                                                          | `https://api.cyclesoftware.nl/api/v4/codelists/frame.json`                 |
-| `codelist:frame_material`                                                 | `https://api.cyclesoftware.nl/api/v4/codelists/frame_material.json`        |
-| `codelist:function`                                                       | `https://api.cyclesoftware.nl/api/v4/codelists/function.json`              |
-| `codelist:gear_system`                                                    | `https://api.cyclesoftware.nl/api/v4/codelists/gear_system.json`           |
-| `codelist:keyword`                                                        | `https://api.cyclesoftware.nl/api/v4/codelists/keyword.json`               |
-| `codelist:moped_category`                                                 | `https://api.cyclesoftware.nl/api/v4/codelists/moped_category.json`        |
-| `codelist:moped_engine`                                                   | `https://api.cyclesoftware.nl/api/v4/codelists/moped_engine.json`          |
-| `codelist:moped_transmission`                                             | `https://api.cyclesoftware.nl/api/v4/codelists/moped_transmission.json`    |
-| `codelist:motor_position`                                                 | `https://api.cyclesoftware.nl/api/v4/codelists/motor_position.json`        |
-| `codelist:position`                                                       | `https://api.cyclesoftware.nl/api/v4/codelists/position.json`              |
-| `codelist:qualitymark`                                                    | `https://api.cyclesoftware.nl/api/v4/codelists/qualitymark.json`           |
-| `codelist:sensor_type[]`                                                  | `https://api.cyclesoftware.nl/api/v4/codelists/sensor_type.json`           |
-| `codelist:status`                                                         | `https://api.cyclesoftware.nl/api/v4/codelists/status.json`                |
-| `codelist:supplier`                                                       | `https://api.cyclesoftware.nl/api/v4/codelists/supplier.json`              |
-| `codelist:surcharge`                                                      | `https://api.cyclesoftware.nl/api/v4/codelists/surcharge.json`             |
-| `codelist:vat`                                                            | `https://api.cyclesoftware.nl/api/v4/codelists/vat.json`                   |
-| `boolean`                                                                 | Boolean value                                                              |
-| `date`                                                                    | Date (Y-m-d)                                                               |
-| `decimal`                                                                 | Decimal or float value                                                     |
-| `integer`                                                                 | Integer value                                                              |
-| `localized-strings`                                                       | Localized string object                                                    |
-| `object[]`                                                                | Array of objects                                                           |
-| `string`                                                                  | String value                                                               |
-| `string[]`                                                                | Array of strings                                                           |
-| `image[]`                                                                 | Property `images`                                                          |
-| `battery[]`                                                               | Property `images`                                                          |
-| `document[]`                                                              | Property `images`                                                          |
-| `bundle[]`                                                                | Property `images`                                                          |
+| Data-type                        | Description                                                                |
+|----------------------------------|----------------------------------------------------------------------------|
+| `codelist:article_group`         | `https://api.cyclesoftware.nl/api/v4/codelists/article_group.json`         |
+| `codelist:article_main_group`    | `https://api.cyclesoftware.nl/api/v4/codelists/article_main_group.json`    |
+| `codelist:article_sub_group`     | `https://api.cyclesoftware.nl/api/v4/codelists/article_sub_group.json`     |
+| `codelist:base_color`            | `https://api.cyclesoftware.nl/api/v4/codelists/base_color.json`            |
+| `codelist:battery_position`      | `https://api.cyclesoftware.nl/api/v4/codelists/battery_position.json`      |
+| `codelist:battery_type`          | `https://api.cyclesoftware.nl/api/v4/codelists/battery_type.json`          |
+| `codelist:brake_system`          | `https://api.cyclesoftware.nl/api/v4/codelists/brake_system.json`          |
+| `codelist:brand`                 | `https://api.cyclesoftware.nl/api/v4/codelists/brand.json`                 |
+| `codelist:customer_group`        | `https://api.cyclesoftware.nl/api/v4/codelists/customer_group.json`        |
+| `codelist:display_handling`      | `https://api.cyclesoftware.nl/api/v4/codelists/display_handling.json`      |
+| `codelist:display_type`          | `https://api.cyclesoftware.nl/api/v4/codelists/display_type.json`          |
+| `codelist:ebike_system`          | `https://api.cyclesoftware.nl/api/v4/codelists/ebike_system.json`          |
+| `codelist:electric_bicycle_type` | `https://api.cyclesoftware.nl/api/v4/codelists/electric_bicycle_type.json` |
+| `codelist:etrto_wheelsize`       | `https://api.cyclesoftware.nl/api/v4/codelists/etrto_wheelsize.json`       |
+| `codelist:frame`                 | `https://api.cyclesoftware.nl/api/v4/codelists/frame.json`                 |
+| `codelist:frame_material`        | `https://api.cyclesoftware.nl/api/v4/codelists/frame_material.json`        |
+| `codelist:function`              | `https://api.cyclesoftware.nl/api/v4/codelists/function.json`              |
+| `codelist:gear_system`           | `https://api.cyclesoftware.nl/api/v4/codelists/gear_system.json`           |
+| `codelist:keyword`               | `https://api.cyclesoftware.nl/api/v4/codelists/keyword.json`               |
+| `codelist:moped_category`        | `https://api.cyclesoftware.nl/api/v4/codelists/moped_category.json`        |
+| `codelist:moped_engine`          | `https://api.cyclesoftware.nl/api/v4/codelists/moped_engine.json`          |
+| `codelist:moped_transmission`    | `https://api.cyclesoftware.nl/api/v4/codelists/moped_transmission.json`    |
+| `codelist:motor_position`        | `https://api.cyclesoftware.nl/api/v4/codelists/motor_position.json`        |
+| `codelist:position`              | `https://api.cyclesoftware.nl/api/v4/codelists/position.json`              |
+| `codelist:qualitymark`           | `https://api.cyclesoftware.nl/api/v4/codelists/qualitymark.json`           |
+| `codelist:sensor_type[]`         | `https://api.cyclesoftware.nl/api/v4/codelists/sensor_type.json`           |
+| `codelist:status`                | `https://api.cyclesoftware.nl/api/v4/codelists/status.json`                |
+| `codelist:supplier`              | `https://api.cyclesoftware.nl/api/v4/codelists/supplier.json`              |
+| `codelist:surcharge`             | `https://api.cyclesoftware.nl/api/v4/codelists/surcharge.json`             |
+| `codelist:vat`                   | `https://api.cyclesoftware.nl/api/v4/codelists/vat.json`                   |
+| `boolean`                        | Boolean value                                                              |
+| `date`                           | Date (Y-m-d)                                                               |
+| `decimal`                        | Decimal or float value                                                     |
+| `integer`                        | Integer value                                                              |
+| `localized-strings`              | Localized string object                                                    |
+| `object[]`                       | Array of objects                                                           |
+| `string`                         | String value                                                               |
+| `string[]`                       | Array of strings                                                           |
+| `image[]`                        | Array of images                                                            |
+| `battery[]`                      | Array of batteries                                                         |
+| `document[]`                     | Array of documents                                                         |
+| `bundle[]`                       | Array of product bundles                                                   |
 
 
 > HTTP Request
@@ -737,6 +726,582 @@ Accept: application/json
 
 ```json
 {
+  "data": [
+    {
+      "modified_at": "2024-07-24 16:23:45",
+      "barcode": "5400928076890",
+      "pricing": {
+        "currency": "EUR",
+        "rrp_cents": 269900,
+        "pos_sales_price_cents": 269900,
+        "ecommerce_price_cents": 269900,
+        "purchase_price_cents": 100,
+        "pos_group_id": 1,
+        "vat_code": 2
+      },
+      "objects": [
+        {
+          "object_code": "F.1-232432",
+          "object_id": 232432,
+          "store_id": 1,
+          "available": true,
+          "expected_at": null,
+          "is_demo": false,
+          "is_used": false,
+          "currency": "EUR",
+          "ecommerce_price_cents": 269900,
+          "pos_sales_price_cents": 269900,
+          "purchase_price_cents": 100,
+          "km_age": null
+        }
+      ],
+      "suppliers": [
+        {
+          "_id": 11043281,
+          "supplier_id": 13005,
+          "supplier_name": "BELGIAN CYCLING FACTORY",
+          "article_id": "SBIELARID023",
+          "model_id": null,
+          "parent_barcode": null,
+          "currency": "EUR",
+          "rrp_cents": 269900,
+          "purchase_price_cents": 100,
+          "package": {
+            "package_contents": 1,
+            "min_order_quantity": 1,
+            "order_unit": 1
+          }
+        }
+      ],
+      "properties": {
+        "article_main_group": {
+          "type": "codelist:article_main_group",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "object_ids": [
+                232432
+              ],
+              "code": "1",
+              "code_international": "1",
+              "value": {
+                "nl": "Fietsen",
+                "en": "Bikes",
+                "fr": "V\u00e9los"
+              }
+            }
+          ]
+        },
+        "article_group": {
+          "type": "codelist:article_group",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "object_ids": [
+                232432
+              ],
+              "code": "1A",
+              "code_international": "1A",
+              "value": {
+                "nl": "Stadsfietsen",
+                "en": "Citybike",
+                "fr": "V\u00e9los De Ville"
+              }
+            }
+          ]
+        },
+        "article_sub_group": {
+          "type": "codelist:article_sub_group",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "object_ids": [
+                232432
+              ],
+              "code": "1A00",
+              "code_international": "1A00",
+              "value": {
+                "nl": "Stadsfiets",
+                "en": "City bike without gear or with hub gear",
+                "fr": "V\u00e9lo de Ville"
+              }
+            }
+          ]
+        },
+        "model_year": {
+          "type": "integer",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "object_ids": [
+                232432
+              ],
+              "value": 2021
+            }
+          ]
+        },
+        "basic_color": {
+          "type": "codelist:base_color",
+          "values": [
+            {
+              "object_ids": [
+                232432
+              ],
+              "code": "ZWART",
+              "code_international": "BLACK",
+              "value": {
+                "nl": "Zwart",
+                "en": "Black",
+                "fr": "Noir"
+              }
+            },
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "value": "Black Powder Coating // Alumin"
+            }
+          ]
+        },
+        "description": {
+          "type": "string",
+          "values": [
+            {
+              "object_ids": [
+                232432
+              ],
+              "value": {
+                "user": "Ridley Elykx A Black Powder Coating // Aluminium B"
+              }
+            },
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "value": {
+                "nl": "Ridley Elykx A Black Powder Coating // Aluminium Bikes Only // PC8 2021"
+              }
+            }
+          ]
+        },
+        "frametype": {
+          "type": "codelist:frame",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "object_ids": [
+                232432
+              ],
+              "code": "UNI",
+              "code_international": "UNI",
+              "value": {
+                "nl": "Uni",
+                "en": "Unisex",
+                "fr": "Uni"
+              }
+            }
+          ]
+        },
+        "framesize_description": {
+          "type": "localized-strings",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "object_ids": [
+                232432
+              ],
+              "value": {
+                "user": "L"
+              }
+            }
+          ]
+        },
+        "gears": {
+          "type": "integer",
+          "values": [
+            {
+              "object_ids": [
+                232432
+              ],
+              "value": 0
+            }
+          ]
+        },
+        "keyword": {
+          "type": "codelist:keyword",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "code": "FIETS",
+              "code_international": "BICYCLE",
+              "value": {
+                "nl": "Fiets",
+                "en": "Bicycle",
+                "fr": "V\u00e9lo"
+              }
+            }
+          ]
+        },
+        "brand": {
+          "type": "codelist:brand",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "value": "Ridley"
+            }
+          ]
+        },
+        "model": {
+          "type": "localized-strings",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "value": {
+                "nl": "Elykx A"
+              }
+            }
+          ]
+        },
+        "image_url": {
+          "type": "string[]",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "value": [
+                "https://images.cyclingfactory.be/SBIELARID023_image_2048x.jpg"
+              ]
+            }
+          ]
+        },
+        "color_description": {
+          "type": "localized-strings",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "value": {
+                "nl": "ZWART"
+              }
+            }
+          ]
+        },
+        "pos_description": {
+          "type": "localized-strings",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "value": {
+                "nl": "Ridley Elykx A Black Powder Coating // Aluminium"
+              }
+            }
+          ]
+        },
+        "gearsystem_rear_model": {
+          "type": "localized-strings",
+          "values": [
+            {
+              "supplier_ids": [
+                13005
+              ],
+              "value": {
+                "nl": "Shimano XT"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "modified_at": "2024-07-24 16:26:35",
+      "barcode": "0008022142197",
+      "pricing": {
+        "currency": "EUR",
+        "rrp_cents": 3995,
+        "pos_sales_price_cents": 4075,
+        "pos_promo_price_cents": 4000,
+        "pos_promo_price_from": "2024-07-03",
+        "pos_promo_price_until": "2024-10-19",
+        "ecommerce_price_cents": 4075,
+        "ecommerce_promo_price_cents": 3900,
+        "ecommerce_promo_price_from": "2024-07-01",
+        "ecommerce_promo_price_until": "2024-10-19",
+        "purchase_price_cents": 100,
+        "pos_group_id": 21
+      },
+      "stock": {
+        "available": false,
+        "stores": [
+          {
+            "store_id": 1,
+            "stock_level": 0,
+            "locations": [
+              {
+                "store_id": 1,
+                "location_id": 3,
+                "location_x": 1,
+                "location_y": 2,
+                "location_capacity": 33,
+                "location_bulk": "Magazijn"
+              }
+            ]
+          },
+          {
+            "store_id": 2,
+            "stock_level": 0,
+            "locations": []
+          },
+          {
+            "store_id": 3,
+            "stock_level": 0,
+            "locations": []
+          }
+        ]
+      },
+      "suppliers": [
+        {
+          "_id": 7177049,
+          "supplier_id": 5229,
+          "supplier_name": "ACCELL NL",
+          "article_id": "680862",
+          "model_id": null,
+          "parent_barcode": null,
+          "currency": "EUR",
+          "rrp_cents": 3995,
+          "purchase_price_cents": 100,
+          "package": {
+            "package_contents": 1,
+            "min_order_quantity": 1,
+            "order_unit": 1
+          }
+        }
+      ],
+      "properties": {
+        "images": {
+          "type": "image[]",
+          "values": [
+            {
+              "value": [
+                {
+                  "date_modified": "2012-05-08 08:02:58",
+                  "url_thumb": "https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_T_18563.jpg",
+                  "url_large": "https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_L_18563.jpg"
+                }
+              ]
+            }
+          ]
+        },
+        "pos_description": {
+          "type": "localized-strings",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "value": {
+                "user": "STANDAARD URSUS 26 JUMBO",
+                "nl": "STANDAARD URSUS 26 TWEEPOOT ZWART nl_NL"
+              }
+            },
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "value": {
+                "nl": "STANDAARD URSUS 26 JUMBO"
+              }
+            }
+          ]
+        },
+        "brand": {
+          "type": "codelist:brand",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "value": "URSUS"
+            }
+          ]
+        },
+        "article_main_group": {
+          "type": "codelist:article_main_group",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "code": "2",
+              "code_international": "2",
+              "value": {
+                "nl": "O&A",
+                "en": "Parts and accessories",
+                "fr": "Pi\u00e8ces et accessoires"
+              }
+            }
+          ]
+        },
+        "article_group": {
+          "type": "codelist:article_group",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "code": "2N",
+              "code_international": "2N",
+              "value": {
+                "nl": "Onderdelen/Reparatie",
+                "en": "Parts/Repair",
+                "fr": "Pi\u00e8ces de rechange"
+              }
+            }
+          ]
+        },
+        "article_sub_group": {
+          "type": "codelist:article_sub_group",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "code": "2N01",
+              "code_international": "2N01",
+              "value": {
+                "nl": "Standaarden",
+                "en": "Kickstand",
+                "fr": "B\u00e9quilles"
+              }
+            }
+          ]
+        },
+        "keyword": {
+          "type": "codelist:keyword",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "code": "STANDAARD",
+              "code_international": "KICKSTAND",
+              "value": {
+                "nl": "Standaard",
+                "en": "Kickstand",
+                "fr": "Standard"
+              }
+            }
+          ]
+        },
+        "model": {
+          "type": "localized-strings",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "value": {
+                "nl": "JUMBO"
+              }
+            }
+          ]
+        },
+        "image_url": {
+          "type": "string[]",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "value": [
+                "http://www.accentry.com/upload/Juncker/680862.JPG"
+              ]
+            }
+          ]
+        },
+        "basic_color": {
+          "type": "codelist:base_color",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "code": "ZWART",
+              "code_international": "BLACK",
+              "value": {
+                "nl": "Zwart",
+                "en": "Black",
+                "fr": "Noir"
+              }
+            }
+          ]
+        },
+        "color_description": {
+          "type": "localized-strings",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "value": {
+                "nl": "ZWART"
+              }
+            }
+          ]
+        },
+        "description": {
+          "type": "string",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "value": {
+                "nl": "STANDAARD URSUS 26 JUMBO TWEEPOOT ZWART"
+              }
+            }
+          ]
+        },
+        "long_description": {
+          "type": "localized-strings",
+          "values": [
+            {
+              "supplier_ids": [
+                5229
+              ],
+              "value": {
+                "nl": "STANDAARD URSUS 26 JUMBO TWEEPOOT ZWART"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "pagination": {
+    "next_url": "https://s01.cyclesoftware.nl/api/v4/articledata/entries.json?token=ABC"
+  }
 }
 ```
 

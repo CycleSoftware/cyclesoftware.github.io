@@ -491,6 +491,9 @@
                   <li>
                     <a href="#service-items-service-items-list" class="toc-h2 toc-link" data-title="Service items list">Service items list</a>
                   </li>
+                  <li>
+                    <a href="#service-items-service-item-close" class="toc-h2 toc-link" data-title="Service item close">Service item close</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -9593,6 +9596,153 @@ is not invoiced.</p>
         </span><span class="nl">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
         </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='service-items-service-item-close'>Service item close</h2>
+<p>To update the status of a service item to a closed status</p>
+
+<p>Get list of service items for workshop.</p>
+
+<ul>
+<li>Scopes: <code>resources</code> or <code>service-data</code></li>
+</ul>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">PUT</i>
+        <h6>/api/v1/workshop/service-items/:service_barcode/close.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>URL parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:service_barcode</code></td>
+<td><code>string</code></td>
+<td>The code of the service item e.g. <code>DSK-100022-2</code></td>
+</tr>
+</tbody></table>
+<h3 id='service-items-service-item-close-request-properties'>Request properties</h3>
+<table><thead>
+<tr>
+<th>Request object</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>service_status_id</code></td>
+<td><code>integer</code></td>
+<td>The service status ID, defaults to <code>4</code> (closed), see <code>service_item_status</code> in common enum endpoint. Allowed values (<code>4</code>, <code>5</code>)</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td><code>string</code></td>
+<td>Own reference to closing</td>
+</tr>
+</tbody></table>
+<h3 id='service-items-service-item-close-response-properties'>Response properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if an error occurred. e.g. &#96;false&#96;</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>object[]</code></td>
+<td>Array of service items associated with the <code>:service_barcode</code>, see definition in <code>Service items list</code> endpoint</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/v1/workshop/service-items/DSK-2080494-1/close.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">54</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"service_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> 
+  </span><span class="nl">"reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ref-11"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1749</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2080494</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5941806</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-2080494-1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"service_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20174986</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235269290</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25918</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_scheduled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rijklaar maken"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rijklaar maken"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"gross_unit_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unit_discount_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"amount_payed_in_advance_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-05"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"scheduled_at_km_age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-05 09:37:13"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"service_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2080494</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"service_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5941807</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"service_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DSK-2080494-2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"service_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20174986</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">235269290</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25918</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_open"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_scheduled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Servicebeurt 1, 99,00 (100% korting) (Totaal zorgeloos servicepakket)"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Servicebeurt 1, 99,00 (100% korting)"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"gross_unit_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">9900</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unit_discount_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">9900</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"amount_payed_in_advance_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-03-29"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"scheduled_at_km_age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-17 14:32:04"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='stock'>Stock</h1>
 <p>Access stock data</p>

@@ -204,7 +204,6 @@ X-RateLimit-Daily-Reset: 1678230000
 ]
 ```
 
-
 ## Service items list ##
 
 Get list of service items for workshop.
@@ -229,7 +228,6 @@ Get list of service items for workshop.
 | `modified_start` | `date`    | end date e.g. 2020-01-01                  |
 | `modified_end`   | `date`    | end date e.g. 2020-01-01                  |
 | `offset`         | `integer` | offset (omit or `pagination.next_offset`) |
-
 
 ### Properties ###
 
@@ -356,3 +354,119 @@ X-RateLimit-Daily-Reset: 1678230000
     }
 }
 ```
+
+## Service item close
+
+To update the status of a service item to a closed status
+
+Get list of service items for workshop.
+
+- Scopes: `resources` or `service-data`
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">PUT</i>
+		<h6>/api/v1/workshop/service-items/:service_barcode/close.json</h6>
+	</div>
+</div>
+
+| URL parameter      | Type     | Description                                      |
+|--------------------|----------|--------------------------------------------------|
+| `:service_barcode` | `string` | The code of the service item e.g. `DSK-100022-2` |
+
+### Request properties ###
+
+| Request object      | Type      | Description                                                                                                                   |
+|---------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------|
+| `service_status_id` | `integer` | The service status ID, defaults to `4` (closed), see `service_item_status` in common enum endpoint. Allowed values (`4`, `5`) |
+| `reference`         | `string`  | Own reference to closing                                                                                                      |
+
+### Response properties ###
+
+| Property        | Type       | Description                                                                                                    |
+|-----------------|------------|----------------------------------------------------------------------------------------------------------------|
+| `error`         | `boolean`  | `true` if an error occurred. e.g. &#96;false&#96;                                                              |
+| `error_message` | `string`   | `true`                                                                                                         |                                               |
+| `data`          | `object[]` | Array of service items associated with the `:service_barcode`, see definition in `Service items list` endpoint |
+
+```http
+PUT /api/v1/workshop/service-items/DSK-2080494-1/close.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+Content-type: application/json
+Content-length: 54
+
+{
+  "service_status_id": 4, 
+  "reference": "Ref-11"
+}
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 1749
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+
+{
+    "error": false,
+    "error_message": null,
+    "data": [
+        {
+            "account_id": 1,
+            "store_id": 1,
+            "service_id": 2080494,
+            "service_item_id": 5941806,
+            "service_barcode": "DSK-2080494-1",
+            "service_status_id": 4,
+            "invoice_number": 20174986,
+            "customer_id": 235269290,
+            "object_id": 25918,
+            "is_open": false,
+            "is_scheduled": false,
+            "description": "Rijklaar maken",
+            "title": "Rijklaar maken",
+            "gross_unit_price_cents": 0,
+            "unit_discount_amount_cents": 0,
+            "amount_payed_in_advance_cents": 0,
+            "time_minutes": 60,
+            "scheduled_at": "2024-01-05",
+            "scheduled_at_km_age": 0,
+            "modified_at": "2024-01-05 09:37:13"
+        },
+        {
+            "account_id": 1,
+            "store_id": 1,
+            "service_id": 2080494,
+            "service_item_id": 5941807,
+            "service_barcode": "DSK-2080494-2",
+            "service_status_id": 4,
+            "invoice_number": 20174986,
+            "customer_id": 235269290,
+            "object_id": 25918,
+            "is_open": false,
+            "is_scheduled": false,
+            "description": "Servicebeurt 1, 99,00 (100% korting) (Totaal zorgeloos servicepakket)",
+            "title": "Servicebeurt 1, 99,00 (100% korting)",
+            "gross_unit_price_cents": 9900,
+            "unit_discount_amount_cents": 9900,
+            "amount_payed_in_advance_cents": 0,
+            "time_minutes": 60,
+            "scheduled_at": "2024-03-29",
+            "scheduled_at_km_age": 0,
+            "modified_at": "2024-01-17 14:32:04"
+        }
+    ]
+}
+```
+
+
+

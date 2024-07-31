@@ -579,19 +579,19 @@ Get article data available for e-commerce environments or for a specific `barcod
 	</div>
 </div>
 
-| GET parameter        | Type      | Description |
-|----------------------|-----------|-------------|
-| `:modified_since`    | `integer` |             |
-| `:barcode`           | `barcode` |             |
-| `:exclude_ecommerce` | `boolean` |             |
-| `:exclude_articles`  | `boolean` |             |
-| `:exclude_objects`   | `boolean` |             |
-| `:per_store_id`      | `boolean` |             |
+| GET parameter        | Type      | Description                                                                       |
+|----------------------|-----------|-----------------------------------------------------------------------------------|
+| `:modified_since`    | `integer` | Only return entries with modification after this value                            |
+| `:barcode`           | `barcode` | Only return entry for specific barcode                                            |
+| `:exclude_ecommerce` | `boolean` | If `true` exclude ecommerce information (defaults to `false`)                     |
+| `:exclude_articles`  | `boolean` | If `true` exclude articles (defaults to `false`)                                  |
+| `:exclude_objects`   | `boolean` | If `true` exclude objects / bicycles (defaults to `false`)                        |
+| `:per_store_id`      | `boolean` | If `true` only return for store associated with credentials (defaults to `false`) |
 
 **Important***
 
-- stock only present for non-objects
-- objects lists the available stock objects
+- Stock only present for non-objects
+- Objects lists the available stock objects
 
 ### Response properties ###
 
@@ -662,54 +662,6 @@ Get article data available for e-commerce environments or for a specific `barcod
 | `data[].stock.stores[].locations[].location_bulk`                  | `string`     | `false`   | Bulk location name e.g. `Magazijn`                                                                                                         |
 | `pagination.next_url`                                              | `?string`    | `true`    | If there is more data this is the URL to the next API request. `https://api.cyclesoftware.nl/api/v4/articledata/entries.json?token=abc...` |
 
-### Data-types ###
-
-Every property has it's own value structure. See the properties endpoint for example values.
-
-| Data-type                        | Description                                                                |
-|----------------------------------|----------------------------------------------------------------------------|
-| `codelist:article_group`         | `https://api.cyclesoftware.nl/api/v4/codelists/article_group.json`         |
-| `codelist:article_main_group`    | `https://api.cyclesoftware.nl/api/v4/codelists/article_main_group.json`    |
-| `codelist:article_sub_group`     | `https://api.cyclesoftware.nl/api/v4/codelists/article_sub_group.json`     |
-| `codelist:base_color`            | `https://api.cyclesoftware.nl/api/v4/codelists/base_color.json`            |
-| `codelist:battery_position`      | `https://api.cyclesoftware.nl/api/v4/codelists/battery_position.json`      |
-| `codelist:battery_type`          | `https://api.cyclesoftware.nl/api/v4/codelists/battery_type.json`          |
-| `codelist:brake_system`          | `https://api.cyclesoftware.nl/api/v4/codelists/brake_system.json`          |
-| `codelist:brand`                 | `https://api.cyclesoftware.nl/api/v4/codelists/brand.json`                 |
-| `codelist:customer_group`        | `https://api.cyclesoftware.nl/api/v4/codelists/customer_group.json`        |
-| `codelist:display_handling`      | `https://api.cyclesoftware.nl/api/v4/codelists/display_handling.json`      |
-| `codelist:display_type`          | `https://api.cyclesoftware.nl/api/v4/codelists/display_type.json`          |
-| `codelist:ebike_system`          | `https://api.cyclesoftware.nl/api/v4/codelists/ebike_system.json`          |
-| `codelist:electric_bicycle_type` | `https://api.cyclesoftware.nl/api/v4/codelists/electric_bicycle_type.json` |
-| `codelist:etrto_wheelsize`       | `https://api.cyclesoftware.nl/api/v4/codelists/etrto_wheelsize.json`       |
-| `codelist:frame`                 | `https://api.cyclesoftware.nl/api/v4/codelists/frame.json`                 |
-| `codelist:frame_material`        | `https://api.cyclesoftware.nl/api/v4/codelists/frame_material.json`        |
-| `codelist:function`              | `https://api.cyclesoftware.nl/api/v4/codelists/function.json`              |
-| `codelist:gear_system`           | `https://api.cyclesoftware.nl/api/v4/codelists/gear_system.json`           |
-| `codelist:keyword`               | `https://api.cyclesoftware.nl/api/v4/codelists/keyword.json`               |
-| `codelist:moped_category`        | `https://api.cyclesoftware.nl/api/v4/codelists/moped_category.json`        |
-| `codelist:moped_engine`          | `https://api.cyclesoftware.nl/api/v4/codelists/moped_engine.json`          |
-| `codelist:moped_transmission`    | `https://api.cyclesoftware.nl/api/v4/codelists/moped_transmission.json`    |
-| `codelist:motor_position`        | `https://api.cyclesoftware.nl/api/v4/codelists/motor_position.json`        |
-| `codelist:position`              | `https://api.cyclesoftware.nl/api/v4/codelists/position.json`              |
-| `codelist:qualitymark`           | `https://api.cyclesoftware.nl/api/v4/codelists/qualitymark.json`           |
-| `codelist:sensor_type[]`         | `https://api.cyclesoftware.nl/api/v4/codelists/sensor_type.json`           |
-| `codelist:status`                | `https://api.cyclesoftware.nl/api/v4/codelists/status.json`                |
-| `codelist:supplier`              | `https://api.cyclesoftware.nl/api/v4/codelists/supplier.json`              |
-| `codelist:surcharge`             | `https://api.cyclesoftware.nl/api/v4/codelists/surcharge.json`             |
-| `codelist:vat`                   | `https://api.cyclesoftware.nl/api/v4/codelists/vat.json`                   |
-| `boolean`                        | Boolean value                                                              |
-| `date`                           | Date (Y-m-d)                                                               |
-| `decimal`                        | Decimal or float value                                                     |
-| `integer`                        | Integer value                                                              |
-| `localized-strings`              | Localized string object                                                    |
-| `object[]`                       | Array of objects                                                           |
-| `string`                         | String value                                                               |
-| `string[]`                       | Array of strings                                                           |
-| `image[]`                        | Array of images                                                            |
-| `battery[]`                      | Array of battery options                                                   |
-| `document[]`                     | Array of documents                                                         |
-| `bundle[]`                       | Array of product bundles                                                   |
 
 
 > HTTP Request
@@ -1304,6 +1256,168 @@ Accept: application/json
   }
 }
 ```
+
+## Data-types - V4
+
+Every property has it's own value structure. See the properties endpoint for example values.
+
+| Data-type                        | Description                                                                |
+|----------------------------------|----------------------------------------------------------------------------|
+| `codelist:article_group`         | `https://api.cyclesoftware.nl/api/v4/codelists/article_group.json`         |
+| `codelist:article_main_group`    | `https://api.cyclesoftware.nl/api/v4/codelists/article_main_group.json`    |
+| `codelist:article_sub_group`     | `https://api.cyclesoftware.nl/api/v4/codelists/article_sub_group.json`     |
+| `codelist:base_color`            | `https://api.cyclesoftware.nl/api/v4/codelists/base_color.json`            |
+| `codelist:battery_position`      | `https://api.cyclesoftware.nl/api/v4/codelists/battery_position.json`      |
+| `codelist:battery_type`          | `https://api.cyclesoftware.nl/api/v4/codelists/battery_type.json`          |
+| `codelist:brake_system`          | `https://api.cyclesoftware.nl/api/v4/codelists/brake_system.json`          |
+| `codelist:brand`                 | `https://api.cyclesoftware.nl/api/v4/codelists/brand.json`                 |
+| `codelist:customer_group`        | `https://api.cyclesoftware.nl/api/v4/codelists/customer_group.json`        |
+| `codelist:display_handling`      | `https://api.cyclesoftware.nl/api/v4/codelists/display_handling.json`      |
+| `codelist:display_type`          | `https://api.cyclesoftware.nl/api/v4/codelists/display_type.json`          |
+| `codelist:ebike_system`          | `https://api.cyclesoftware.nl/api/v4/codelists/ebike_system.json`          |
+| `codelist:electric_bicycle_type` | `https://api.cyclesoftware.nl/api/v4/codelists/electric_bicycle_type.json` |
+| `codelist:etrto_wheelsize`       | `https://api.cyclesoftware.nl/api/v4/codelists/etrto_wheelsize.json`       |
+| `codelist:frame`                 | `https://api.cyclesoftware.nl/api/v4/codelists/frame.json`                 |
+| `codelist:frame_material`        | `https://api.cyclesoftware.nl/api/v4/codelists/frame_material.json`        |
+| `codelist:function`              | `https://api.cyclesoftware.nl/api/v4/codelists/function.json`              |
+| `codelist:gear_system`           | `https://api.cyclesoftware.nl/api/v4/codelists/gear_system.json`           |
+| `codelist:keyword`               | `https://api.cyclesoftware.nl/api/v4/codelists/keyword.json`               |
+| `codelist:moped_category`        | `https://api.cyclesoftware.nl/api/v4/codelists/moped_category.json`        |
+| `codelist:moped_engine`          | `https://api.cyclesoftware.nl/api/v4/codelists/moped_engine.json`          |
+| `codelist:moped_transmission`    | `https://api.cyclesoftware.nl/api/v4/codelists/moped_transmission.json`    |
+| `codelist:motor_position`        | `https://api.cyclesoftware.nl/api/v4/codelists/motor_position.json`        |
+| `codelist:position`              | `https://api.cyclesoftware.nl/api/v4/codelists/position.json`              |
+| `codelist:qualitymark`           | `https://api.cyclesoftware.nl/api/v4/codelists/qualitymark.json`           |
+| `codelist:sensor_type[]`         | `https://api.cyclesoftware.nl/api/v4/codelists/sensor_type.json`           |
+| `codelist:status`                | `https://api.cyclesoftware.nl/api/v4/codelists/status.json`                |
+| `codelist:supplier`              | `https://api.cyclesoftware.nl/api/v4/codelists/supplier.json`              |
+| `codelist:surcharge`             | `https://api.cyclesoftware.nl/api/v4/codelists/surcharge.json`             |
+| `codelist:vat`                   | `https://api.cyclesoftware.nl/api/v4/codelists/vat.json`                   |
+| `boolean`                        | Boolean value                                                              |
+| `date`                           | Date (Y-m-d)                                                               |
+| `decimal`                        | Decimal or float value                                                     |
+| `integer`                        | Integer value                                                              |
+| `localized-strings`              | Localized string object                                                    |
+| `object[]`                       | Array of objects                                                           |
+| `string`                         | String value                                                               |
+| `string[]`                       | Array of strings                                                           |
+| `image[]`                        | Array of images                                                            |
+| `battery[]`                      | Array of battery options                                                   |
+| `document[]`                     | Array of documents                                                         |
+| `bundle[]`                       | Array of product bundles                                                   |
+
+### Localized-strings type ###
+```json
+{
+  "user": "User defined description",
+  "nl": "Description in Dutch",
+  "en": "Description in English",
+  "fr": "Description in French"
+}
+```
+This object provides translations for a description in the available languages. If a language is not available the key is omitted from the body.
+
+| Property | Type     | Nullable | Description                                                          |
+|----------|----------|----------|----------------------------------------------------------------------|
+| `user`   | `string` | `true`   | The user defined description e.g. `User defined description`         |
+| `nl`     | `string` | `true`   | The description for language code `nl` e.g. `Description in Dutch`   |
+| `en`     | `string` | `true`   | The description for language code `en` e.g. `Description in English` |
+| `fr`     | `string` | `true`   | The description for language code `fr` e.g. `Description in French`  |
+
+
+
+### Image type ###
+```json
+{
+  "date_modified": "2012-05-08 08:02:58",
+  "url_thumb": "https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_T_18563.jpg",
+  "url_large": "https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_L_18563.jpg"
+}
+```
+| Property        | Type       | Description                                                                                |
+|-----------------|------------|--------------------------------------------------------------------------------------------|
+| `date_modified` | `datetime` | Modification datetime e.g. `2012-05-08 08:02:58`                                           |
+| `url_thumb`     | `string`   | URL to thumb image e.g. `https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_T_18563.jpg` |
+| `url_large`     | `string`   | URL to large image e.g. `https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_L_18563.jpg` |
+
+
+
+### Battery type ###
+
+```json
+{
+  "battery_additional_costs": 200,
+  "battery_ampere_hour": 1,
+  "battery_brand": "BOSCH",
+  "battery_capacity": 400,
+  "battery_chargeable_in_bike": false,
+  "battery_fast_recharge_time": 2,
+  "battery_included_in_base_price": false,
+  "battery_location": "FRAME",
+  "battery_model": "Model name 1",
+  "battery_ranges": [
+    {
+      "range_avg": 50,
+      "range_description": "Fast",
+      "range_max": 100,
+      "range_min": 10
+    },
+    {
+      "range_avg": 30,
+      "range_description": "Medium",
+      "range_max": 150,
+      "range_min": 75
+    }
+  ],
+  "battery_recharge_time": 3,
+  "battery_removeable": true,
+  "battery_type": "LI-ION",
+  "battery_voltage": 20,
+  "battery_weight": 5
+}
+```
+
+| Property                             | Type      | Omittable | Description                                                                 |
+|--------------------------------------|-----------|-----------|-----------------------------------------------------------------------------|
+| `battery_additional_costs`           | `integer` | `true`    | Additional costs against retail price e.g. `200`                            |
+| `battery_ampere_hour`                | `integer` | `true`    | Battery ampére e.g. `20`                                                    |
+| `battery_brand`                      | `string`  | `true`    | Brand name of battery e.g. `BOSCH`                                          |
+| `battery_capacity`                   | `integer` | `true`    | Capacity in `Wh` e.g. `400`                                                 |
+| `battery_chargeable_in_bike`         | `boolean` | `true`    | `true` if you can charge in the bike e.g. `false`                           |
+| `battery_fast_recharge_time`         | `integer` | `true`    | Time in hours to recharche in fast mode e.g. `2`                            |
+| `battery_recharge_time`              | `integer` | `true`    | Default recharche time e.g. `3` hours                                       |
+| `battery_included_in_base_price`     | `boolean` | `true`    | Wether the price of this option is included in the retail price e.g. `true` |
+| `battery_location`                   | `string`  | `true`    | Location see `codelist:battery_position` e.g. `FRAME`                       |
+| `battery_model`                      | `string`  | `true`    | The model description of battery e.g. `Model name 1`                        |
+| `battery_ranges`                     | `array`   | `true`    | Array of ranges for different modes                                         |
+| `battery_ranges[].range_avg`         | `integer` | `true`    | Average range in `km` e.g. `50`                                             |
+| `battery_ranges[].range_description` | `string`  | `true`    | e.g. `Fast`                                                                 |
+| `battery_ranges[].range_max`         | `integer` | `true`    | Maximum range in `km`e.g. `100`                                             |
+| `battery_ranges[].range_min`         | `integer` | `true`    | Minimal range in `km`e.g. `10`                                              |
+| `battery_removeable`                 | `boolean` | `true`    | `true` if you can demount the battery from bike e.g. `true`                 |
+| `battery_type`                       | `string`  | `true`    | Battery type see code list `codelist:battery_type` e.g. `LI-ION`            |
+| `battery_voltage`                    | `integer` | `true`    | Voltage of battery e.g. `20`                                                |
+| `battery_weight`                     | `integer` | `true`    | Weight in `kg` e.g. `5`                                                     |
+
+
+
+### Document type ###
+
+```json
+{
+  "url": "https://url.to.guid",
+  "type": "USER GUIDE"
+}
+```
+
+Refers to a document with documentation
+
+| Property | Type     | Description                                |
+|----------|----------|--------------------------------------------|
+| `url`    | `string` | URL to document e.g. `https://url.to.guid` |
+| `type`   | `string` | Type e.g. `USER GUIDE`                     |
+
+
 
 ## Properties - V4 ##
 

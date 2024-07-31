@@ -307,6 +307,9 @@
                     <a href="#article-data-articledata-v4" class="toc-h2 toc-link" data-title="Articledata - V4">Articledata - V4</a>
                   </li>
                   <li>
+                    <a href="#article-data-data-types-v4" class="toc-h2 toc-link" data-title="Data-types - V4">Data-types - V4</a>
+                  </li>
+                  <li>
                     <a href="#article-data-properties-v4" class="toc-h2 toc-link" data-title="Properties - V4">Properties - V4</a>
                   </li>
                   <li>
@@ -2270,40 +2273,40 @@ This will save you bandwidth and time.
 <tr>
 <td><code>:modified_since</code></td>
 <td><code>integer</code></td>
-<td></td>
+<td>Only return entries with modification after this value</td>
 </tr>
 <tr>
 <td><code>:barcode</code></td>
 <td><code>barcode</code></td>
-<td></td>
+<td>Only return entry for specific barcode</td>
 </tr>
 <tr>
 <td><code>:exclude_ecommerce</code></td>
 <td><code>boolean</code></td>
-<td></td>
+<td>If <code>true</code> exclude ecommerce information (defaults to <code>false</code>)</td>
 </tr>
 <tr>
 <td><code>:exclude_articles</code></td>
 <td><code>boolean</code></td>
-<td></td>
+<td>If <code>true</code> exclude articles (defaults to <code>false</code>)</td>
 </tr>
 <tr>
 <td><code>:exclude_objects</code></td>
 <td><code>boolean</code></td>
-<td></td>
+<td>If <code>true</code> exclude objects / bicycles (defaults to <code>false</code>)</td>
 </tr>
 <tr>
 <td><code>:per_store_id</code></td>
 <td><code>boolean</code></td>
-<td></td>
+<td>If <code>true</code> only return for store associated with credentials (defaults to <code>false</code>)</td>
 </tr>
 </tbody></table>
 
 <p><strong>Important</strong>*</p>
 
 <ul>
-<li>stock only present for non-objects</li>
-<li>objects lists the available stock objects</li>
+<li>Stock only present for non-objects</li>
+<li>Objects lists the available stock objects</li>
 </ul>
 <h3 id='article-data-articledata-v4-response-properties'>Response properties</h3>
 <table><thead>
@@ -2697,184 +2700,6 @@ This will save you bandwidth and time.
 <td><code>?string</code></td>
 <td><code>true</code></td>
 <td>If there is more data this is the URL to the next API request. <code>https://api.cyclesoftware.nl/api/v4/articledata/entries.json?token=abc...</code></td>
-</tr>
-</tbody></table>
-<h3 id='article-data-articledata-v4-data-types'>Data-types</h3>
-<p>Every property has it&#39;s own value structure. See the properties endpoint for example values.</p>
-
-<table><thead>
-<tr>
-<th>Data-type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>codelist:article_group</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/article_group.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:article_main_group</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/article_main_group.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:article_sub_group</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/article_sub_group.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:base_color</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/base_color.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:battery_position</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/battery_position.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:battery_type</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/battery_type.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:brake_system</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/brake_system.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:brand</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/brand.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:customer_group</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/customer_group.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:display_handling</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/display_handling.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:display_type</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/display_type.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:ebike_system</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/ebike_system.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:electric_bicycle_type</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/electric_bicycle_type.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:etrto_wheelsize</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/etrto_wheelsize.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:frame</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/frame.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:frame_material</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/frame_material.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:function</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/function.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:gear_system</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/gear_system.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:keyword</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/keyword.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:moped_category</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/moped_category.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:moped_engine</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/moped_engine.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:moped_transmission</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/moped_transmission.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:motor_position</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/motor_position.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:position</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/position.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:qualitymark</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/qualitymark.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:sensor_type[]</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/sensor_type.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:status</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/status.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:supplier</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/supplier.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:surcharge</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/surcharge.json</code></td>
-</tr>
-<tr>
-<td><code>codelist:vat</code></td>
-<td><code>https://api.cyclesoftware.nl/api/v4/codelists/vat.json</code></td>
-</tr>
-<tr>
-<td><code>boolean</code></td>
-<td>Boolean value</td>
-</tr>
-<tr>
-<td><code>date</code></td>
-<td>Date (Y-m-d)</td>
-</tr>
-<tr>
-<td><code>decimal</code></td>
-<td>Decimal or float value</td>
-</tr>
-<tr>
-<td><code>integer</code></td>
-<td>Integer value</td>
-</tr>
-<tr>
-<td><code>localized-strings</code></td>
-<td>Localized string object</td>
-</tr>
-<tr>
-<td><code>object[]</code></td>
-<td>Array of objects</td>
-</tr>
-<tr>
-<td><code>string</code></td>
-<td>String value</td>
-</tr>
-<tr>
-<td><code>string[]</code></td>
-<td>Array of strings</td>
-</tr>
-<tr>
-<td><code>image[]</code></td>
-<td>Array of images</td>
-</tr>
-<tr>
-<td><code>battery[]</code></td>
-<td>Array of battery options</td>
-</tr>
-<tr>
-<td><code>document[]</code></td>
-<td>Array of documents</td>
-</tr>
-<tr>
-<td><code>bundle[]</code></td>
-<td>Array of product bundles</td>
 </tr>
 </tbody></table>
 
@@ -3468,7 +3293,435 @@ This will save you bandwidth and time.
     </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/api/v4/articledata/entries.json?token=ABC"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='article-data-properties-v4'>Properties - V4</h2>
+</span></code></pre></div><h2 id='article-data-data-types-v4'>Data-types - V4</h2>
+<p>Every property has it&#39;s own value structure. See the properties endpoint for example values.</p>
+
+<table><thead>
+<tr>
+<th>Data-type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>codelist:article_group</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/article_group.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:article_main_group</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/article_main_group.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:article_sub_group</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/article_sub_group.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:base_color</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/base_color.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:battery_position</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/battery_position.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:battery_type</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/battery_type.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:brake_system</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/brake_system.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:brand</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/brand.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:customer_group</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/customer_group.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:display_handling</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/display_handling.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:display_type</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/display_type.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:ebike_system</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/ebike_system.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:electric_bicycle_type</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/electric_bicycle_type.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:etrto_wheelsize</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/etrto_wheelsize.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:frame</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/frame.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:frame_material</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/frame_material.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:function</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/function.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:gear_system</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/gear_system.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:keyword</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/keyword.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:moped_category</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/moped_category.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:moped_engine</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/moped_engine.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:moped_transmission</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/moped_transmission.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:motor_position</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/motor_position.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:position</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/position.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:qualitymark</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/qualitymark.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:sensor_type[]</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/sensor_type.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:status</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/status.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:supplier</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/supplier.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:surcharge</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/surcharge.json</code></td>
+</tr>
+<tr>
+<td><code>codelist:vat</code></td>
+<td><code>https://api.cyclesoftware.nl/api/v4/codelists/vat.json</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>Boolean value</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>Date (Y-m-d)</td>
+</tr>
+<tr>
+<td><code>decimal</code></td>
+<td>Decimal or float value</td>
+</tr>
+<tr>
+<td><code>integer</code></td>
+<td>Integer value</td>
+</tr>
+<tr>
+<td><code>localized-strings</code></td>
+<td>Localized string object</td>
+</tr>
+<tr>
+<td><code>object[]</code></td>
+<td>Array of objects</td>
+</tr>
+<tr>
+<td><code>string</code></td>
+<td>String value</td>
+</tr>
+<tr>
+<td><code>string[]</code></td>
+<td>Array of strings</td>
+</tr>
+<tr>
+<td><code>image[]</code></td>
+<td>Array of images</td>
+</tr>
+<tr>
+<td><code>battery[]</code></td>
+<td>Array of battery options</td>
+</tr>
+<tr>
+<td><code>document[]</code></td>
+<td>Array of documents</td>
+</tr>
+<tr>
+<td><code>bundle[]</code></td>
+<td>Array of product bundles</td>
+</tr>
+</tbody></table>
+<h3 id='article-data-data-types-v4-localized-strings-type'>Localized-strings type</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User defined description"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description in Dutch"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description in English"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description in French"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This object provides translations for a description in the available languages. If a language is not available the key is omitted from the body.</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>user</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The user defined description e.g. <code>User defined description</code></td>
+</tr>
+<tr>
+<td><code>nl</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The description for language code <code>nl</code> e.g. <code>Description in Dutch</code></td>
+</tr>
+<tr>
+<td><code>en</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The description for language code <code>en</code> e.g. <code>Description in English</code></td>
+</tr>
+<tr>
+<td><code>fr</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The description for language code <code>fr</code> e.g. <code>Description in French</code></td>
+</tr>
+</tbody></table>
+<h3 id='article-data-data-types-v4-image-type'>Image type</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-08 08:02:58"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_T_18563.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_L_18563.jpg"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>date_modified</code></td>
+<td><code>datetime</code></td>
+<td>Modification datetime e.g. <code>2012-05-08 08:02:58</code></td>
+</tr>
+<tr>
+<td><code>url_thumb</code></td>
+<td><code>string</code></td>
+<td>URL to thumb image e.g. <code>https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_T_18563.jpg</code></td>
+</tr>
+<tr>
+<td><code>url_large</code></td>
+<td><code>string</code></td>
+<td>URL to large image e.g. <code>https://cdn.cyclesoftware.nl/app/img/Y/artPic_public_L_18563.jpg</code></td>
+</tr>
+</tbody></table>
+<h3 id='article-data-data-types-v4-battery-type'>Battery type</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"battery_additional_costs"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_ampere_hour"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOSCH"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_capacity"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_chargeable_in_bike"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_fast_recharge_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_included_in_base_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FRAME"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Model name 1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_ranges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"range_avg"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"range_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fast"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"range_max"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"range_min"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"range_avg"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"range_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medium"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"range_max"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"range_min"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"battery_recharge_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_removeable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LI-ION"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_voltage"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"battery_weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Omittable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>battery_additional_costs</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Additional costs against retail price e.g. <code>200</code></td>
+</tr>
+<tr>
+<td><code>battery_ampere_hour</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Battery ampére e.g. <code>20</code></td>
+</tr>
+<tr>
+<td><code>battery_brand</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Brand name of battery e.g. <code>BOSCH</code></td>
+</tr>
+<tr>
+<td><code>battery_capacity</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Capacity in <code>Wh</code> e.g. <code>400</code></td>
+</tr>
+<tr>
+<td><code>battery_chargeable_in_bike</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td><code>true</code> if you can charge in the bike e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>battery_fast_recharge_time</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Time in hours to recharche in fast mode e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>battery_recharge_time</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Default recharche time e.g. <code>3</code> hours</td>
+</tr>
+<tr>
+<td><code>battery_included_in_base_price</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td>Wether the price of this option is included in the retail price e.g. <code>true</code></td>
+</tr>
+<tr>
+<td><code>battery_location</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Location see <code>codelist:battery_position</code> e.g. <code>FRAME</code></td>
+</tr>
+<tr>
+<td><code>battery_model</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The model description of battery e.g. <code>Model name 1</code></td>
+</tr>
+<tr>
+<td><code>battery_ranges</code></td>
+<td><code>array</code></td>
+<td><code>true</code></td>
+<td>Array of ranges for different modes</td>
+</tr>
+<tr>
+<td><code>battery_ranges[].range_avg</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Average range in <code>km</code> e.g. <code>50</code></td>
+</tr>
+<tr>
+<td><code>battery_ranges[].range_description</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>e.g. <code>Fast</code></td>
+</tr>
+<tr>
+<td><code>battery_ranges[].range_max</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Maximum range in <code>km</code>e.g. <code>100</code></td>
+</tr>
+<tr>
+<td><code>battery_ranges[].range_min</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Minimal range in <code>km</code>e.g. <code>10</code></td>
+</tr>
+<tr>
+<td><code>battery_removeable</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code></td>
+<td><code>true</code> if you can demount the battery from bike e.g. <code>true</code></td>
+</tr>
+<tr>
+<td><code>battery_type</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Battery type see code list <code>codelist:battery_type</code> e.g. <code>LI-ION</code></td>
+</tr>
+<tr>
+<td><code>battery_voltage</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Voltage of battery e.g. <code>20</code></td>
+</tr>
+<tr>
+<td><code>battery_weight</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>Weight in <code>kg</code> e.g. <code>5</code></td>
+</tr>
+</tbody></table>
+<h3 id='article-data-data-types-v4-document-type'>Document type</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://url.to.guid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER GUIDE"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Refers to a document with documentation</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>url</code></td>
+<td><code>string</code></td>
+<td>URL to document e.g. <code>https://url.to.guid</code></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td>Type e.g. <code>USER GUIDE</code></td>
+</tr>
+</tbody></table>
+<h2 id='article-data-properties-v4'>Properties - V4</h2>
 <p>Get definition of properties with types and examples.</p>
 
 <table><thead>

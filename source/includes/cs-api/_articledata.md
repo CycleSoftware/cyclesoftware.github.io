@@ -1317,12 +1317,12 @@ Every property has it's own value structure. See the properties endpoint for exa
 ```
 This object provides translations for a description in the available languages. If a language is not available the key is omitted from the body.
 
-| Property | Type     | Nullable | Description                                                          |
-|----------|----------|----------|----------------------------------------------------------------------|
-| `user`   | `string` | `true`   | The user defined description e.g. `User defined description`         |
-| `nl`     | `string` | `true`   | The description for language code `nl` e.g. `Description in Dutch`   |
-| `en`     | `string` | `true`   | The description for language code `en` e.g. `Description in English` |
-| `fr`     | `string` | `true`   | The description for language code `fr` e.g. `Description in French`  |
+| Property | Type     | Nullable | Description                                                                                                |
+|----------|----------|----------|------------------------------------------------------------------------------------------------------------|
+| `user`   | `string` | `true`   | The user defined description e.g. `User defined description` (primarily used when language code is unsure) |
+| `nl`     | `string` | `true`   | The description for language code `nl` e.g. `Description in Dutch`                                         |
+| `en`     | `string` | `true`   | The description for language code `en` e.g. `Description in English`                                       |
+| `fr`     | `string` | `true`   | The description for language code `fr` e.g. `Description in French`                                        |
 
 
 

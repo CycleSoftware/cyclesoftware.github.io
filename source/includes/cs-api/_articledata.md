@@ -582,7 +582,7 @@ Get article data available for e-commerce environments or for a specific `barcod
 | GET parameter        | Type      | Description                                                                       |
 |----------------------|-----------|-----------------------------------------------------------------------------------|
 | `:modified_since`    | `integer` | Only return entries with modification after this value                            |
-| `:barcode`           | `barcode` | Only return entry for specific barcode                                            |
+| `:barcode`           | `string`  | Only return entry for specific barcode                                            |
 | `:exclude_ecommerce` | `boolean` | If `true` exclude ecommerce information (defaults to `false`)                     |
 | `:exclude_articles`  | `boolean` | If `true` exclude articles (defaults to `false`)                                  |
 | `:exclude_objects`   | `boolean` | If `true` exclude objects / bicycles (defaults to `false`)                        |

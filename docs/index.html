@@ -2277,7 +2277,7 @@ This will save you bandwidth and time.
 </tr>
 <tr>
 <td><code>:barcode</code></td>
-<td><code>barcode</code></td>
+<td><code>string</code></td>
 <td>Only return entry for specific barcode</td>
 </tr>
 <tr>
@@ -12721,7 +12721,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <tr>
 <td><code>capacity_minutes</code></td>
 <td><code>integer</code></td>
-<td>Capacity in minutes e.g. <code>780</code></td>
+<td>Capacity in minutes for online scheduling e.g. <code>780</code></td>
 </tr>
 <tr>
 <td><code>scheduled_minutes</code></td>
@@ -12731,7 +12731,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <tr>
 <td><code>available_minutes</code></td>
 <td><code>integer</code></td>
-<td>Available duration in minutes e.g. <code>780</code></td>
+<td>Available time in workshop for online scheduling duration in minutes e.g. <code>780</code></td>
 </tr>
 <tr>
 <td><code>timestamp_finished_twsc_repairs</code></td>
@@ -12773,6 +12773,51 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <td><code>integer</code></td>
 <td>Duration of trading hours in minutes e.g. <code>780</code></td>
 </tr>
+<tr>
+<td><code>availability_per_employee</code></td>
+<td><code>object[]</code></td>
+<td>Availability per employee (since version <code>v2</code>)</td>
+</tr>
+<tr>
+<td><code>availability_per_employee[].employee_id</code></td>
+<td><code>integer</code></td>
+<td>Employee ID e.g. <code>56768</code> (see employees endpoint)</td>
+</tr>
+<tr>
+<td><code>availability_per_employee[].capacity_minutes</code></td>
+<td><code>integer</code></td>
+<td>The capacity in minutes availble for online scheduling e.g. <code>302</code></td>
+</tr>
+<tr>
+<td><code>availability_per_employee[].scheduled_minutes</code></td>
+<td><code>integer</code></td>
+<td>The sum of workshop orders total time in minutes e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>availability_per_employee[].available_minutes</code></td>
+<td><code>integer</code></td>
+<td>The available minutes for online scheduling e.g. <code>302</code></td>
+</tr>
+<tr>
+<td><code>availability_per_employee[].available_slots</code></td>
+<td><code>object[]</code></td>
+<td>List of available time blocks. The blocks are blocked if a workshop order is scheduled. If workshop orders overlap, extra blocks are marked unavailable.</td>
+</tr>
+<tr>
+<td><code>availability_per_employee[].available_slots[].start</code></td>
+<td><code>string</code></td>
+<td>Start time of available block e.g. <code>07:30</code></td>
+</tr>
+<tr>
+<td><code>availability_per_employee[].available_slots[].finish</code></td>
+<td><code>string</code></td>
+<td>End time of available block e.g. <code>20:30</code></td>
+</tr>
+<tr>
+<td><code>availability_per_employee[].available_slots[].duration_minutes</code></td>
+<td><code>integer</code></td>
+<td>The duration of the available block in minutes e.g. <code>780</code> (if the employee is not fully available for online scheduling, this time might be higher than <code>available_minutes</code></td>
+</tr>
 </tbody></table>
 <h2 id='workshop-trading-hours'>Trading hours</h2>
 <p>Workshop trading hours for default or specific store</p>
@@ -12780,7 +12825,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v1/workshop/trading-hours.json?store_id=:store_id&day_count=:day_count</h6>
+        <h6>/api/v2/workshop/trading-hours.json?store_id=:store_id&day_count=:day_count</h6>
     </div>
 </div>
 
@@ -12803,12 +12848,12 @@ Be aware! The goods in the packinglist will not be added to the stock!
 </tr>
 </tbody></table>
 <h3 id='workshop-trading-hours-properties'>Properties</h3>
-<p>The response is an array of Trading hours objects.</p>
+<p>The response is an object with in <code>data</code> the trading hours objects.</p>
 
 <blockquote>
 <p>HTTP request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/workshop/trading-hours.json?store_id=1&amp;day_count=2</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/workshop/trading-hours.json?store_id=1&amp;day_count=2</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
@@ -12819,56 +12864,114 @@ Be aware! The goods in the packinglist will not be added to the stock!
 </blockquote>
 <div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
-<span class="na">Content-length</span><span class="p">:</span> <span class="s">5318</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">2224</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
 <span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
 <span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
 <span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
 <span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
 
-<span class="p">[</span><span class="w">
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-08"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"timestamp_finished_twsc_repairs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"day_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"week_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"workshop_trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-19"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">796</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">796</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"timestamp_finished_twsc_repairs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"day_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"week_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"workshop_trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:15"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"availability_per_employee"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56768</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">302</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">302</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available_slots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:00"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19:45"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+              </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:30"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">494</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">494</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available_slots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:30"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-09"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"timestamp_finished_twsc_repairs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"day_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"week_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"workshop_trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-20"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"timestamp_finished_twsc_repairs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"day_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"week_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"workshop_trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:15"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"availability_per_employee"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56768</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available_slots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:00"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19:45"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+              </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:30"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"available_slots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:30"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='workshop-trading-hours-per-store'>Trading hours per store</h2>
 <p>Get the workshop trading hours per store</p>
 
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v1/workshop/trading-hours-per-store.json?day_count=:day_count</h6>
+        <h6>/api/v2/workshop/trading-hours-per-store.json?day_count=:day_count&offset=:offset</h6>
     </div>
 </div>
 
@@ -12884,6 +12987,11 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <td><code>integer</code></td>
 <td>Number of days to retrieve information for e.g. <code>3</code></td>
 </tr>
+<tr>
+<td><code>offset</code></td>
+<td><code>integer</code></td>
+<td>Offset given in <code>pagination.next_url</code> pagination e.g. <code>3</code></td>
+</tr>
 </tbody></table>
 <h3 id='workshop-trading-hours-per-store-properties'>Properties</h3>
 <table><thead>
@@ -12894,26 +13002,31 @@ Be aware! The goods in the packinglist will not be added to the stock!
 </tr>
 </thead><tbody>
 <tr>
-<td><code>[].store_id</code></td>
+<td><code>data[].store_id</code></td>
 <td><code>integer</code></td>
 <td>Store ID e.g. <code>2</code></td>
 </tr>
 <tr>
-<td><code>[].store_name</code></td>
+<td><code>data[].store_name</code></td>
 <td><code>string</code></td>
 <td>Store Name e.g. <code>Store 1</code></td>
 </tr>
 <tr>
-<td><code>[].trading_hours</code></td>
+<td><code>data[].trading_hours</code></td>
 <td><code>object[]</code></td>
 <td>array of Trading hours objects</td>
+</tr>
+<tr>
+<td><code>pagination.next_url</code></td>
+<td><code>?string</code></td>
+<td>If there is more data this is the URL to the next API request.</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>HTTP request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/workshop/trading-hours-per-store.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v2/workshop/trading-hours-per-store.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
@@ -12924,95 +13037,172 @@ Be aware! The goods in the packinglist will not be added to the stock!
 </blockquote>
 <div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
 <span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
-<span class="na">Content-length</span><span class="p">:</span> <span class="s">7150</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">6075</span>
 <span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
 <span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
 <span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
 <span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
 <span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
 
-<span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Store 1"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-08"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"timestamp_finished_twsc_repairs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"day_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"week_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"workshop_trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:00"</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19:45"</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-09"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"timestamp_finished_twsc_repairs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"day_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"week_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"workshop_trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:00"</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19:45"</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Store 2"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-         </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-08"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"timestamp_finished_twsc_repairs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"day_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"week_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"workshop_trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:00"</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19:45"</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-09"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"timestamp_finished_twsc_repairs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"day_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"week_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"workshop_trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                    </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:00"</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19:45"</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cycle Store 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-19"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">796</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">796</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"timestamp_finished_twsc_repairs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"day_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"week_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"workshop_trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:15"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"availability_per_employee"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56768</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">302</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">302</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_slots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">]</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">494</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">494</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_slots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">]</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-20"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"timestamp_finished_twsc_repairs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"day_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"week_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"workshop_trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:15"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"availability_per_employee"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56768</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_slots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">]</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1001</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_slots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">]</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cycle Store 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-20"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"timestamp_finished_twsc_repairs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"day_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"week_no"</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"is_closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"workshop_trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:15"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"availability_per_employee"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">526768</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_slots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">]</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10201</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"capacity_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"scheduled_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"available_slots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="p">{</span><span class="w">
+                                    </span><span class="nl">"start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"finish"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:30"</span><span class="p">,</span><span class="w">
+                                    </span><span class="nl">"duration_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">780</span><span class="w">
+                                </span><span class="p">}</span><span class="w">
+                            </span><span class="p">]</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"trading_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='workshop-repair-codes'>Repair codes</h2>
 <p>Get list of repair codes</p>
 

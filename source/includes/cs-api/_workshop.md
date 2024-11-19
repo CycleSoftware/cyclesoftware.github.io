@@ -15,7 +15,6 @@ Access workshop related information such as trading hours, stores, workshop orde
 | `capacity_minutes`                                               | `integer`   | Capacity in minutes for online scheduling e.g. `780`                                                                                                                        |
 | `scheduled_minutes`                                              | `integer`   | Scheduled workshop orders in minutes e.g. `0`                                                                                                                               |
 | `available_minutes`                                              | `integer`   | Available time in workshop for online scheduling duration in minutes e.g. `780`                                                                                             |
-| `timestamp_finished_twsc_repairs`                                | `timestamp` | Unix timestamp when the scheduled workshop-orders via api are finished (`0` if not available)                                                                               |
 | `day_id`                                                         | `integer`   | Day number in the week Sunday=`0` and Saturday =`6` e.g. `2`                                                                                                                |
 | `week_no`                                                        | `integer`   | Week number e.g. `12`                                                                                                                                                       |
 | `is_closed`                                                      | `boolean`   | `true` if store closed e.g. `false`                                                                                                                                         |
@@ -82,7 +81,6 @@ X-RateLimit-Daily-Reset: 1678230000
       "capacity_minutes": 796,
       "scheduled_minutes": 0,
       "available_minutes": 796,
-      "timestamp_finished_twsc_repairs": 0,
       "day_id": 2,
       "week_no": 47,
       "is_closed": false,
@@ -127,7 +125,6 @@ X-RateLimit-Daily-Reset: 1678230000
       "capacity_minutes": 780,
       "scheduled_minutes": 0,
       "available_minutes": 780,
-      "timestamp_finished_twsc_repairs": 0,
       "day_id": 3,
       "week_no": 47,
       "is_closed": false,
@@ -232,7 +229,6 @@ X-RateLimit-Daily-Reset: 1678230000
                     "capacity_minutes": 796,
                     "scheduled_minutes": 0,
                     "available_minutes": 796,
-                    "timestamp_finished_twsc_repairs": 0,
                     "day_id": 2,
                     "week_no": 47,
                     "is_closed": false,
@@ -277,7 +273,6 @@ X-RateLimit-Daily-Reset: 1678230000
                     "capacity_minutes": 780,
                     "scheduled_minutes": 0,
                     "available_minutes": 780,
-                    "timestamp_finished_twsc_repairs": 0,
                     "day_id": 3,
                     "week_no": 47,
                     "is_closed": false,
@@ -328,7 +323,6 @@ X-RateLimit-Daily-Reset: 1678230000
                     "capacity_minutes": 780,
                     "scheduled_minutes": 0,
                     "available_minutes": 780,
-                    "timestamp_finished_twsc_repairs": 0,
                     "day_id": 3,
                     "week_no": 47,
                     "is_closed": false,

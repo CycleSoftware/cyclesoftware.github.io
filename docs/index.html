@@ -2429,73 +2429,151 @@ This will save you bandwidth and time.
 <td><code>data[].objects[].object_code</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>F.1-232432</code></td>
+<td>The object code with account and object_id e.g. <code>F.1-232432</code></td>
 </tr>
 <tr>
 <td><code>data[].objects[].object_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>232432</code></td>
+<td>The unique object_id within account e.g. <code>232432</code></td>
 </tr>
 <tr>
 <td><code>data[].objects[].store_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>1</code></td>
+<td>Store ID e.g. <code>1</code></td>
 </tr>
 <tr>
 <td><code>data[].objects[].available</code></td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>true</code></td>
+<td><code>true</code> if the object is available (in stock, not sold and not reserved) e.g. <code>true</code></td>
 </tr>
 <tr>
 <td><code>data[].objects[].expected_at</code></td>
-<td><code>null</code></td>
+<td><code>date</code></td>
 <td><code>true</code></td>
-<td></td>
+<td>Expected delivery date or null .e.g. <code>2024-10-01</code></td>
 </tr>
 <tr>
 <td><code>data[].objects[].is_demo</code></td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>false</code></td>
+<td><code>true</code> if object is a demo object e.g. <code>false</code></td>
 </tr>
 <tr>
 <td><code>data[].objects[].is_used</code></td>
 <td><code>boolean</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>false</code></td>
+<td><code>true</code> if the object is used e.g. <code>false</code></td>
 </tr>
 <tr>
 <td><code>data[].objects[].currency</code></td>
 <td><code>string</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>EUR</code></td>
+<td>Currency code e.g. <code>EUR</code></td>
 </tr>
 <tr>
 <td><code>data[].objects[].ecommerce_price_cents</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>269900</code></td>
+<td>E-commerce price in cents e.g. <code>269900</code></td>
 </tr>
 <tr>
 <td><code>data[].objects[].pos_sales_price_cents</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
-<td>e.g. <code>269900</code></td>
+<td>POS sales price in cents e.g. <code>269900</code></td>
 </tr>
 <tr>
 <td><code>data[].objects[].purchase_price_cents</code></td>
 <td><code>integer</code></td>
-<td><code>false</code></td>
-<td>e.g. <code>0</code></td>
+<td><code>true</code></td>
+<td>Purchase price in cents e.g. <code>0</code></td>
 </tr>
 <tr>
 <td><code>data[].objects[].km_age</code></td>
-<td><code>null</code></td>
+<td><code>?integer</code></td>
+<td><code>false</code></td>
+<td>KM age e.g. <code>100</code> or <code>null</code> when not available</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification</code></td>
+<td><code>object</code></td>
+<td><code>false</code></td>
+<td>Object with identifications, may be an empty object if no values available</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.battery_number</code></td>
+<td><code>string</code></td>
 <td><code>true</code></td>
-<td></td>
+<td>The battery number if set</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.battery_number_2</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The battery number_2 if set</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.engine_number</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The engine number if set</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.frame_number</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The frame number if set</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.imei_number</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The imei number if set</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.key_number</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The key number if set</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.key_number_2</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The key number_2 if set</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.license_plate_number</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The license plat if set if set</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.lock_number</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The lock number if set</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.lock_number_2</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The lock number_2 if set</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.serial_number</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The serial number if set</td>
+</tr>
+<tr>
+<td><code>data[].objects[].identification.velopass_code</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>The velopass code if set</td>
 </tr>
 <tr>
 <td><code>data[].suppliers</code></td>
@@ -2742,7 +2820,11 @@ This will save you bandwidth and time.
           </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
           </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
           </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+              </span><span class="nl">"frame_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0023232"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"key_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"K3323"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="nl">"suppliers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">

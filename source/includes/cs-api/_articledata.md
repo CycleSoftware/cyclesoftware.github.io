@@ -717,7 +717,11 @@ Accept: application/json
           "ecommerce_price_cents": 269900,
           "pos_sales_price_cents": 269900,
           "purchase_price_cents": 100,
-          "km_age": null
+          "km_age": null,
+          "identification": { 
+              "frame_number": "0023232",
+              "key_number": "K3323"
+          }
         }
       ],
       "suppliers": [

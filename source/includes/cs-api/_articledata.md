@@ -560,8 +560,6 @@ This will save you bandwidth and time.
 
 ## Articledata - V4 ##
 
-This endpoint is currently in beta-phase. 
-
 Get article data available for e-commerce environments or for a specific `barcode`.
 
 <div class="api-endpoint">

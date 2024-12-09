@@ -36,3 +36,5 @@ Get supplier data available for a specific `supplier_id`.
 ### Response properties ###
 
 For documentation of properties see <a href="https://docs.cyclesoftware.nl/#article-data-articledata-v4">article data endpoint</a>
+
+The `data[].stock` and `data[].objects` are not available in the response for this endpoint.

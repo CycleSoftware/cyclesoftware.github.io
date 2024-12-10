@@ -1096,8 +1096,8 @@ information known at the insurance company. This information is based on created
 | `created_at`              | `date`    | Date created e.g. `15-04-2022`                                             |
 | `stock_object_id`         | `integer` | Stock object ID `786080`                                                   |
 | `insurance_company`       | `string`  | Name of insurance company `KING`                                           |
-| `reference_id`            | `integer` | Reference ID `0`                                                           |
-| `policy_number`           | `integer` | Policy Number (if available) `12212`                                       |
+| `reference_id`            | `string`  | Reference ID `0`                                                           |
+| `policy_number`           | `string`  | Policy Number (if available) `12212`                                       |
 | `insurance_starting_date` | `date`    | Start date of the insurance `15-04-2022`                                   |
 | `description`             | `string`  | Name of the insurance e.g. `E-bike Casco Compleet - 3 jaar - Aut. Incasso` |
 | `policy_costs`            | `integer` | Costs of the policy in cents `650`                                         |

@@ -5,7 +5,7 @@ The supplier data APIs are designed for pulling article-information for a specif
 ***Authentication***
 
 - Basic HTTP Authentication
-- Scope(s): `e-commerce`, `articledata`
+- Scope(s): `supplier-data`
 
 ## Supplier data - V4 ##
 

@@ -1,0 +1,685 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>CycleSoftware Supplier Data API documentation</title>
+
+    <link rel="icon" href="images/favicon-32x32-fe8fe4b0.png" sizes="32x32" />
+    <link rel="icon" href="images/favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="images/favicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="images/favicon-270x270.png" />
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nn {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nl {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ni {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .bp {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vg {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vi {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .w {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen-b22ce35b.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-c5541673.js"></script>
+  </head>
+
+  <body class="supplier_data" data-languages="[&quot;code&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <a href="#" class="logo">
+        <img src="images/logo-transparant-e28903f5.png" alt="" />
+      </a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="code">Code</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#introduction-api-endpoints" class="toc-h2 toc-link" data-title="API endpoints">API endpoints</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-requirements" class="toc-h2 toc-link" data-title="Requirements">Requirements</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-request-response-format" class="toc-h2 toc-link" data-title="Request/Response Format">Request/Response Format</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-errors" class="toc-h2 toc-link" data-title="Errors">Errors</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-api-parameters" class="toc-h2 toc-link" data-title="API Parameters">API Parameters</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-api-pagination" class="toc-h2 toc-link" data-title="API Pagination">API Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-api-types" class="toc-h2 toc-link" data-title="API Types">API Types</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-api-limits" class="toc-h2 toc-link" data-title="API Limits">API Limits</a>
+                  </li>
+                  <li>
+                    <a href="#introduction-api-scopes" class="toc-h2 toc-link" data-title="API Scopes">API Scopes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#authentication-http-basic-authentication" class="toc-h2 toc-link" data-title="HTTP Basic Authentication">HTTP Basic Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#authentication-soap-wsdl-authentication" class="toc-h2 toc-link" data-title="SOAP/WSDL Authentication">SOAP/WSDL Authentication</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#supplier-data" class="toc-h1 toc-link" data-title="Supplier data">Supplier data</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#supplier-data-supplier-data-v4" class="toc-h2 toc-link" data-title="Supplier data - V4">Supplier data - V4</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href="/" target="_blank">Main documentation</a></li>
+            <li><a href="https://cyclesoftware.nl/" target="_blank">CycleSoftware</a></li>
+            <li><a href="https://github.com/CycleSoftware/cyclesoftware.github.io">Contributing to the Docs</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the CycleSoftware API documentation</p>
+
+<p><strong>Documentation overview</strong></p>
+
+<ul>
+<li><a href="./">CycleSoftware API docs</a></li>
+<li><a href="warehouse.html">Warehouse API docs</a></li>
+<li><a href="supplier.html">Supplier integration API docs</a></li>
+<li><a href="platform.html">Stock platform API docs</a></li>
+<li><a href="https://github.com/CycleSoftware/oauth2-twsc/">TWSC API docs</a></li>
+</ul>
+<h2 id='introduction-api-endpoints'>API endpoints</h2>
+<p>Use the API endpoint hosts according to the country of your account;</p>
+
+<table><thead>
+<tr>
+<th>Country code</th>
+<th>API endpoint host</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>NL</code></td>
+<td><code>api.cyclesoftware.nl</code></td>
+</tr>
+<tr>
+<td><code>BE</code></td>
+<td><code>api.cyclesoftware.be</code></td>
+</tr>
+<tr>
+<td><code>FR</code></td>
+<td><code>api.cyclesoftware.fr</code></td>
+</tr>
+<tr>
+<td><code>other</code></td>
+<td><code>api.cyclesoftware.nl</code></td>
+</tr>
+</tbody></table>
+<h2 id='introduction-requirements'>Requirements</h2>
+<p>To use the APIs you&#39;ll need API credentials. The API credentials are provided by CS or available in your account.</p>
+
+<ul>
+<li>You should access the API over HTTPS</li>
+<li>Where possible use Accept-encoding: gzip. For data api&#39;s this might be required.</li>
+</ul>
+
+<aside class="notice">
+  Contact <a href="mailto:support@cyclesoftware.nl">support</a> for more information about the API credentials
+</aside>
+<h2 id='introduction-request-response-format'>Request/Response Format</h2>
+<p>The APIs consist of SOAP/WSDL webservices and JSON endpoints.</p>
+
+<p>The default response format is JSON. Requests with a message-body use plain JSON to set or update resource attributes.
+Successful requests will return a <code>200 OK</code> HTTP status.</p>
+<h2 id='introduction-errors'>Errors</h2>
+<p>Occasionally you might encounter errors when accessing the REST API. There are four possible types:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Error Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>400 Bad Request</code></td>
+<td>Invalid request, e.g. using an unsupported HTTP method, or GET variable</td>
+</tr>
+<tr>
+<td><code>401 Unauthorized</code></td>
+<td>Authentication or permission error, e.g. incorrect credentials</td>
+</tr>
+<tr>
+<td><code>403 Forbidden</code></td>
+<td>Authentication or permission error</td>
+</tr>
+<tr>
+<td><code>404 Not Found</code></td>
+<td>Requests to resources that don&#39;t exist or are missing</td>
+</tr>
+<tr>
+<td><code>429 Too Many Requests</code></td>
+<td>API limit reached, see api limiting</td>
+</tr>
+<tr>
+<td><code>500 Internal Server Error</code></td>
+<td>Server error</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>JSON error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unauthorized"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>XML error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="nt">&lt;result&gt;</span>
+  <span class="nt">&lt;error&gt;</span>1<span class="nt">&lt;/error&gt;</span>
+  <span class="nt">&lt;error_message&gt;</span>Unauthorized<span class="nt">&lt;/error_message&gt;</span>
+<span class="nt">&lt;/result&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>SOAP error response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;SOAP-ENV:Envelope</span> <span class="na">xmlns:SOAP-ENV=</span><span class="s">"http://schemas.xmlsoap.org/soap/envelope/"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;SOAP-ENV:Body&gt;</span>
+    <span class="nt">&lt;SOAP-ENV:Fault&gt;</span>
+      <span class="nt">&lt;faultcode&gt;</span>400<span class="nt">&lt;/faultcode&gt;</span>
+      <span class="nt">&lt;faultstring&gt;</span>The problem description<span class="nt">&lt;/faultstring&gt;</span>
+    <span class="nt">&lt;/SOAP-ENV:Fault&gt;</span>
+  <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
+<span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
+</code></pre></div>
+<p>Errors return both an appropriate HTTP status code and response object which contains a <code>error</code>, and <code>error_message</code></p>
+<h2 id='introduction-api-parameters'>API Parameters</h2>
+<p>Almost all endpoints accept optional parameters which can be passed as an HTTP query string parameter,
+e.g. <code>GET /v1/endpoint?status=completed</code>. All parameters are documented along each endpoint.</p>
+<h2 id='introduction-api-pagination'>API Pagination</h2>
+<p>For certain endpoints pagination is implemented. The mechanism differs per endpoint. But the default pagination
+mechanism is as follows:</p>
+
+<blockquote>
+<p>JSON response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"next_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET /v1/endpoint?offset=1000</code></p>
+
+<p>In the response the next_offset is suggested. You can pass the next offset in the <code>offset</code> GET parameter.</p>
+<h2 id='introduction-api-types'>API Types</h2>
+<p>Some general information about responses:</p>
+
+<ul>
+<li>Amounts could be specified in cents (which will be clear by the fieldname) or with decimal-strings</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>string</code></td>
+<td>An UTF-8 string of variadic length</td>
+<td><code>Hello world!</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td>Boolean <code>true</code> or <code>false</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>integer</code></td>
+<td>64-bit signed integer</td>
+<td><code>1212</code></td>
+</tr>
+<tr>
+<td><code>decimal</code></td>
+<td>Decimal number with 2 decimals e.g. <code>0.22</code></td>
+<td><code>0.22</code></td>
+</tr>
+<tr>
+<td><code>float</code></td>
+<td>A floating-point number with <code>.</code> used as the separator</td>
+<td><code>123.22</code></td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>Date in <code>yyyy-mm-dd</code> format</td>
+<td><code>2023-01-23</code></td>
+</tr>
+<tr>
+<td><code>datetime</code></td>
+<td>Datetime in <code>yyyy-mm-dd hh:mm:ss</code> format</td>
+<td><code>2023-01-23 12:34:33</code></td>
+</tr>
+<tr>
+<td><code>timestamp</code></td>
+<td>UNIX timestamp (seconds since Unix Epoch)</td>
+<td><code>1678348370</code></td>
+</tr>
+<tr>
+<td><code>uuid</code></td>
+<td>UUID string</td>
+<td><code>20c5d026-68b3-11ec-90d6-0242ac120003</code></td>
+</tr>
+<tr>
+<td><code>array</code></td>
+<td>List of sub types</td>
+<td><code>[10,22]</code></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td>An object</td>
+<td><code>{&quot;field&quot;: 1}</code></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Some fields may also contain a null value, which is annotated with the ? prefix.
+
+For example, `?datetime` means that the following field may contain a valid `datetime` value, a `null`, or may not be
+present in the request/response at all.
+</aside>
+
+<aside class="notice">
+Additionally, some fields may be arrays, which is annotated with the `[]` suffix.
+
+For example, `integer[]` represents an integer array.
+</aside>
+
+<aside class="notice">
+Fields containing a monetary amount are usually specified in cents (which will be clear by the fieldname) or with decimal-strings. 
+</aside>
+<h2 id='introduction-api-limits'>API Limits</h2>
+<p>Since may 2022 api-limits are introduced. For endpoints that implement limits the following HTTP response headers are
+available.</p>
+
+<p>If the limit is reached, the server will respond with an <code>HTTP 429 - Too Many Requests</code> error.</p>
+
+<p>The following HTTP headers are present in an limited endpoint response</p>
+
+<table><thead>
+<tr>
+<th>HTTP Response header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>X-RateLimit-Minutely-Limit</code></td>
+<td>Contains the number of allowed requests per minute</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Minutely-Remaining</code></td>
+<td>Contains the number of remaining requests available within moving minutely interval</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Daily-Limit</code></td>
+<td>Contains the number of daily allowed requests</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Daily-Remaining</code></td>
+<td>Contains the number of daily remaining requests</td>
+</tr>
+<tr>
+<td><code>X-RateLimit-Daily-Reset</code></td>
+<td>Contains the UNIX timestamp when the daily limit is reset</td>
+</tr>
+</tbody></table>
+<h2 id='introduction-api-scopes'>API Scopes</h2>
+<table><thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>common</code></td>
+<td>Access common data such as employees, enums, suppliers</td>
+</tr>
+<tr>
+<td><code>e-commerce</code></td>
+<td>Access e-commerce related endpoints (stock, order-creation, articledata)</td>
+</tr>
+<tr>
+<td><code>resources</code></td>
+<td>Access object resources such as <code>customers</code>, <code>workshop-orders</code>, <code>repair-objects</code> etc.</td>
+</tr>
+<tr>
+<td><code>stock-export</code></td>
+<td>Bulk export stock data</td>
+</tr>
+<tr>
+<td><code>sales-export</code></td>
+<td>Bulk export sales data</td>
+</tr>
+<tr>
+<td><code>rental</code></td>
+<td>Rental related information</td>
+</tr>
+<tr>
+<td><code>warehouse</code></td>
+<td>Warehouse related data</td>
+</tr>
+<tr>
+<td><code>platform</code></td>
+<td>Access authorized dealer-data for sales-platforms</td>
+</tr>
+</tbody></table>
+<h1 id='authentication'>Authentication</h1>
+<p>CycleSoftware uses different authentication mechanisms. </p>
+<h2 id='authentication-http-basic-authentication'>HTTP Basic Authentication</h2>
+<p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided using the Basic HTTP authentication http header. The api-key is usage is documented per service.</p>
+<h2 id='authentication-soap-wsdl-authentication'>SOAP/WSDL Authentication</h2>
+<p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided within the <code>Authentication</code> element as documented per request. For <code>dealer_id</code> the actual store id within the account or api-key can be provided.</p>
+<h1 id='supplier-data'>Supplier data</h1>
+<p>The supplier data APIs are designed for pulling article-information for a specific supplier</p>
+
+<p><strong><em>Authentication</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>supplier-data</code></li>
+</ul>
+<h2 id='supplier-data-supplier-data-v4'>Supplier data - V4</h2>
+<p>Get supplier data available for a specific <code>supplier_id</code>.</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v4/supplierdata/:supplier_id.json</h6>
+    </div>
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v4/supplierdata/:supplier_id.json?token=:token</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>URL parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:supplier_id</code></td>
+<td><code>integer</code></td>
+<td>The supplier ID, see <a href="https://docs.cyclesoftware.nl/#common-supplier-list">common suppliers endpoint</a> <i class="label label-info">required</i></td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:modified_since</code></td>
+<td><code>integer</code></td>
+<td>Only return entries with modification after this value</td>
+</tr>
+<tr>
+<td><code>:exclude_articles</code></td>
+<td><code>boolean</code></td>
+<td>If <code>true</code> exclude articles (defaults to <code>false</code>)</td>
+</tr>
+<tr>
+<td><code>:exclude_objects</code></td>
+<td><code>boolean</code></td>
+<td>If <code>true</code> exclude objects / bicycles (defaults to <code>false</code>)</td>
+</tr>
+</tbody></table>
+<h3 id='supplier-data-supplier-data-v4-response-properties'>Response properties</h3>
+<p>For documentation of properties see <a href="https://docs.cyclesoftware.nl/#article-data-articledata-v4">article data endpoint</a></p>
+
+<p>The <code>data[].stock</code> and <code>data[].objects</code> are not available in the response for this endpoint.</p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="code">Code</a>
+          </div>
+      </div>
+	</div>
+
+
+  </body>
+</html>

@@ -9,6 +9,12 @@ The articledata APIs are designed for pulling article-information for e-commerce
 
 ## Articledata - V3 ##
 
+From 16-1-2025 we maintain a backwards compatible `v2` & `v3` version of the articledata API.
+
+The backwards compatible versions have minor differences compared to the legacy implementation. The pagination uses a different token and bicycles may appear in a seperate entry when they contain a barcode.
+
+We advice to migrate to `v4` but will provide the backwards compatible versions.
+
 Get article data available for e-commerce environments or for a specific `barcode`.
 
 <div class="api-endpoint">
@@ -29,7 +35,7 @@ Get article data available for e-commerce environments or for a specific `barcod
 **Pagination**
 
 In every response you'll find a path to the next resultset. In the example the next resultset
-is `/app/api/v3/articledata/750-750-0/`. If `next_resultset` is null no additional data is available.
+is `/app/api/v3/articledata/NDg2NjM0NGIzMDg3NjFjZTA1OGVhMGVlYmUzODVlZW/`. If `next_resultset` is null no additional data is available.
 
 > HTTP Request
 
@@ -48,7 +54,7 @@ Accept: application/json
   "error": false,
   "error_message": "",
   "results": 750,
-  "next_resultset": "/app/api/v3/articledata/750-750-0/",
+  "next_resultset": "/app/api/v3/articledata/NDg2NjM0NGIzMDg3NjFjZTA1OGVhMGVlYmUzODVlZW/",
   "property_definition": "/app/api/v3/articledata/definition/",
   "supplier_data_columns": [
     "reference",
@@ -127,11 +133,11 @@ Accept: application/json
       "promo_startdate": null,
       "promo_enddate": null,
       "sales_text": "",
-      "custom_variable_1": null,
-      "custom_variable_2": null,
-      "custom_variable_3": null,
-      "custom_variable_4": null,
-      "custom_variable_5": null,
+      "custom_variable_1": "",
+      "custom_variable_2": "",
+      "custom_variable_3": "",
+      "custom_variable_4": "",
+      "custom_variable_5": "",
       "custom_variable_6": "",
       "images": [
         {
@@ -208,11 +214,11 @@ Accept: application/json
       "promo_startdate": null,
       "promo_enddate": null,
       "sales_text": "",
-      "custom_variable_1": null,
-      "custom_variable_2": null,
-      "custom_variable_3": null,
-      "custom_variable_4": null,
-      "custom_variable_5": null,
+      "custom_variable_1": "",
+      "custom_variable_2": "",
+      "custom_variable_3": "",
+      "custom_variable_4": "",
+      "custom_variable_5": "",
       "custom_variable_6": "",
       "images": [
         {
@@ -356,11 +362,11 @@ Accept: application/json
       "promo_startdate": null,
       "promo_enddate": null,
       "sales_text": "",
-      "custom_variable_1": null,
-      "custom_variable_2": null,
-      "custom_variable_3": null,
-      "custom_variable_4": null,
-      "custom_variable_5": null,
+      "custom_variable_1": "",
+      "custom_variable_2": "",
+      "custom_variable_3": "",
+      "custom_variable_4": "",
+      "custom_variable_5": "",
       "custom_variable_6": "",
       "images": [],
       "product_group_main": "O&A",

@@ -90,7 +90,6 @@ Content-Length: 688
         "country_code": "NL",
         "phone_number": "073031111",
         "email": "test@test.com",
-        "notes": "Some note"
     },
     "items": [
         {

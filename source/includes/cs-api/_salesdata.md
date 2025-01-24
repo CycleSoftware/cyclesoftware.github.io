@@ -41,9 +41,6 @@ By default the book-date is used.
 Get sales transactions and related data such as customers, article and object data.
 By default the book-date is used.
 
-This endpoint is currently in BETA test phase and will replace the v1 version. Properties may change throughout the
-beta-phase.
-
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
@@ -65,6 +62,7 @@ beta-phase.
 | `only_booked_transactions` | `?bool`   | If `true` only `final` / `booked` transactions will be given                                                                        |
 | `store_id`                 | `?int`    | Store ID for filtering                                                                                                              |
 | `dealer_ids`               | `?string` | CSV of dealer_ids (only applicable for `warehouse` accounts), dealer_ids are converted to account to get all data from that account |
+| `sales_order_id`           | `?int`    | Filters transactions on `sales_order_id`, multiple transactions can be returned (split-orders)                                      |
 | `token`                    | `?string` | The token of next result set in pagination. In `pagination.next_url` the full URL for next result set if given if available         |
 
 ### Properties

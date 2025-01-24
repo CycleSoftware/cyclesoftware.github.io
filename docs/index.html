@@ -8430,9 +8430,6 @@ By default the book-date is used.</p>
 <p>Get sales transactions and related data such as customers, article and object data.
 By default the book-date is used.</p>
 
-<p>This endpoint is currently in BETA test phase and will replace the v1 version. Properties may change throughout the
-beta-phase.</p>
-
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
@@ -8483,6 +8480,11 @@ beta-phase.</p>
 <td><code>dealer_ids</code></td>
 <td><code>?string</code></td>
 <td>CSV of dealer_ids (only applicable for <code>warehouse</code> accounts), dealer_ids are converted to account to get all data from that account</td>
+</tr>
+<tr>
+<td><code>sales_order_id</code></td>
+<td><code>?int</code></td>
+<td>Filters transactions on <code>sales_order_id</code>, multiple transactions can be returned (split-orders)</td>
 </tr>
 <tr>
 <td><code>token</code></td>

@@ -8,31 +8,34 @@ Find, create and update customers
 
 ## Customer (object)
 
-| Property                          | Type        | Modify                     | Description                                                   |
-|-----------------------------------|-------------|----------------------------|---------------------------------------------------------------|
-| `customer_id`                     | `integer`   | `readonly`                 | Customer ID e.g. `6`                                          |
-| `customer_type_name`              | `string`    | <code>PUT&#124;POST</code> | See common enum `customer_types` e.g. `Klant`                 |
-| `customer_reference`              | `string`    | <code>PUT&#124;POST</code> | Reference of customer e.g. `OwnRef`                           |
-| `postcode`                        | `string`    | <code>PUT&#124;POST</code> | Postcode of customer e.g. `5488HM`                            |
-| `house_number`                    | `string`    | <code>PUT&#124;POST</code> | House number of customer e.g. `1`                             |
-| `house_number_postfix`            | `string`    | <code>PUT&#124;POST</code> | House number postfix of customer e.g. `c`                     |
-| `attn`                            | `string`    | <code>PUT&#124;POST</code> | Attn name `Name of address`                                   |
-| `title`                           | `string`    | <code>PUT&#124;POST</code> | Name prefix e.g. `Dhr./Mevr. `                                |
-| `initials`                        | `string`    | <code>PUT&#124;POST</code> | Initials e.g. `T`                                             |
-| `insertion`                       | `string`    | <code>PUT&#124;POST</code> | Insertion e.g. `van`                                          |
-| `first_name`                      | `string`    | <code>PUT&#124;POST</code> | First name e.g. `Tim`                                         |
-| `name`                            | `string`    | <code>PUT&#124;POST</code> | Last name e.g. `LastName`                                     |
-| `street`                          | `string`    | <code>PUT&#124;POST</code> | Street e.g. `Raadhuisplein`                                   |
-| `city`                            | `string`    | <code>PUT&#124;POST</code> | City e.g. `Nistelrode`                                        |
-| `country_code_iso_3166`           | `string`    | <code>PUT&#124;POST</code> | Country code e.g. `NL`                                        |
-| `email`                           | `string`    | <code>PUT&#124;POST</code> | E-mail e.g. `name@domain.nl`                                  |
-| `discount_percentage`             | `decimal`   | <code>PUT&#124;POST</code> | Default discount percentage e.g. `10`                         |
-| `datetime_created`                | `?datetime` | `readonly`                 | Created at if available e.g. `2023-01-03 12:30:44`            |
-| `phone_numbers`                   | `object[]`  | <code>PUT&#124;POST</code> | array of phone numbers                                        |
-| `phone_numbers[].phone_number_id` | `string`    | <code>PUT&#124;POST</code> | ID of phone number e.g. `tel` (landline) `mob` (mobile) or ID |
-| `phone_numbers[].customer_id`     | `integer`   | `readonly`                 | Customer ID e.g. `6`                                          |
-| `phone_numbers[].phone_number`    | `string`    | <code>PUT&#124;POST</code> | Phone number e.g. `0733030050`                                |
-| `phone_numbers[].name`            | `string`    | <code>PUT&#124;POST</code> | Name of number e.g. `Dhr./Mevr.  T UnitTest`                  |
+| Property                          | Type        | Modify                     | Description                                                                |
+|-----------------------------------|-------------|----------------------------|----------------------------------------------------------------------------|
+| `customer_id`                     | `integer`   | `readonly`                 | Customer ID e.g. `6`                                                       |
+| `customer_type_name`              | `string`    | <code>PUT&#124;POST</code> | See common enum `customer_types` e.g. `Klant`                              |
+| `customer_reference`              | `string`    | <code>PUT&#124;POST</code> | Reference of customer e.g. `OwnRef`                                        |
+| `postcode`                        | `string`    | <code>PUT&#124;POST</code> | Postcode of customer e.g. `5488HM`                                         |
+| `house_number`                    | `string`    | <code>PUT&#124;POST</code> | House number of customer e.g. `1`                                          |
+| `house_number_postfix`            | `string`    | <code>PUT&#124;POST</code> | House number postfix of customer e.g. `c`                                  |
+| `company_name`                    | `string`    | <code>PUT&#124;POST</code> | Company name `CycleSoftware` (Always empty when customer_type is Business) |
+| `attn`                            | `string`    | <code>PUT&#124;POST</code> | Attn name `Name of address`                                                |
+| `title`                           | `string`    | <code>PUT&#124;POST</code> | Name prefix e.g. `Dhr./Mevr. `                                             |
+| `initials`                        | `string`    | <code>PUT&#124;POST</code> | Initials e.g. `T`                                                          |
+| `insertion`                       | `string`    | <code>PUT&#124;POST</code> | Insertion e.g. `van`                                                       |
+| `first_name`                      | `string`    | <code>PUT&#124;POST</code> | First name e.g. `Tim`                                                      |
+| `name`                            | `string`    | <code>PUT&#124;POST</code> | Last name e.g. `LastName`                                                  |
+| `street`                          | `string`    | <code>PUT&#124;POST</code> | Street e.g. `Raadhuisplein`                                                |
+| `city`                            | `string`    | <code>PUT&#124;POST</code> | City e.g. `Nistelrode`                                                     |
+| `country_code_iso_3166`           | `string`    | <code>PUT&#124;POST</code> | Country code e.g. `NL`                                                     |
+| `email`                           | `string`    | <code>PUT&#124;POST</code> | E-mail e.g. `name@domain.nl`                                               |
+| `vat_number`                      | `string`    | <code>PUT&#124;POST</code> | Vat number `NL855630693B01`                                                |
+| `coc_number`                      | `string`    | <code>PUT&#124;POST</code> | Chamber of commerce number `64356582`                                      |
+| `discount_percentage`             | `decimal`   | <code>PUT&#124;POST</code> | Default discount percentage e.g. `10`                                      |
+| `datetime_created`                | `?datetime` | `readonly`                 | Created at if available e.g. `2023-01-03 12:30:44`                         |
+| `phone_numbers`                   | `object[]`  | <code>PUT&#124;POST</code> | array of phone numbers                                                     |
+| `phone_numbers[].phone_number_id` | `string`    | <code>PUT&#124;POST</code> | ID of phone number e.g. `tel` (landline) `mob` (mobile) or ID              |
+| `phone_numbers[].customer_id`     | `integer`   | `readonly`                 | Customer ID e.g. `6`                                                       |
+| `phone_numbers[].phone_number`    | `string`    | <code>PUT&#124;POST</code> | Phone number e.g. `0733030050`                                             |
+| `phone_numbers[].name`            | `string`    | <code>PUT&#124;POST</code> | Name of number e.g. `Dhr./Mevr.  T UnitTest`                               |
 
 ## Get Customer
 
@@ -80,6 +83,7 @@ Content-length: 914
     "postcode": "5388GM",
     "house_number": "1",
     "house_number_postfix": "c",
+    "company_name": "Company name",
     "attn": "Name of address",
     "title": "Dhr./Mevr. ",
     "initials": "T",
@@ -90,6 +94,8 @@ Content-length: 914
     "city": "Nistelrode",
     "country_code_iso_3166": "NL",
     "email": "name@domain.nl",
+    "vat_number": "NL855630693B01",
+    "coc_number": "64356582",
     "discount_percentage": 0,
     "datetime_created": "2023-01-03 12:30:44",
     "phone_numbers": [
@@ -138,6 +144,7 @@ Content-length: 1030
     "postcode": "18000",
     "house_number": "1",
     "house_number_postfix": "2",
+    "company_name": "CycleSoftware",
     "attn": "attn",
     "title": "M",
     "initials": "A",
@@ -148,6 +155,8 @@ Content-length: 1030
     "city": "city",
     "country_code_iso_3166": "sr",
     "email": "email@mail.com",
+    "vat_number": "NL855630693B01",
+    "coc_number": "64356582",
     "discount_percentage": 10,
     "datetime_created": null,
     "phone_numbers": [
@@ -192,6 +201,7 @@ Content-length: 1030
     "postcode": "18000",
     "house_number": "1",
     "house_number_postfix": "2",
+    "company_name": "CycleSoftware",
     "attn": "attn",
     "title": "M",
     "initials": "A",
@@ -202,6 +212,8 @@ Content-length: 1030
     "city": "city",
     "country_code_iso_3166": "sr",
     "email": "email@mail.com",
+    "vat_number": "NL855630693B01",
+    "coc_number": "64356582",
     "discount_percentage": 10,
     "datetime_created": null,
     "phone_numbers": [
@@ -261,6 +273,7 @@ Content-length: 873
     "postcode": "5243RB",
     "house_number": "38",
     "house_number_postfix": "",
+    "company_name": "",
     "attn": "",
     "title": "Dhr./Mevr. ",
     "initials": "G",
@@ -271,6 +284,8 @@ Content-length: 873
     "city": "Rosmalen",
     "country_code_iso_3166": "NL",
     "email": "test@hotmail.com",
+    "vat_number": "",
+    "coc_number": "",    
     "discount_percentage": 0,
     "datetime_created": null,
     "phone_numbers": [
@@ -309,6 +324,7 @@ Content-length: 873
     "postcode": "5243RB",
     "house_number": "38",
     "house_number_postfix": "",
+    "company_name": "",
     "attn": "",
     "title": "Dhr./Mevr. ",
     "initials": "G",
@@ -319,6 +335,8 @@ Content-length: 873
     "city": "Rosmalen",
     "country_code_iso_3166": "NL",
     "email": "test@hotmail.com",
+    "vat_number": "",
+    "coc_number": "",   
     "discount_percentage": 0,
     "datetime_created": null,
     "phone_numbers": [
@@ -394,6 +412,7 @@ X-RateLimit-Daily-Reset: 1678230000
         "postcode": "8448PE",
         "house_number": "32",
         "house_number_postfix": "B",
+        "company_name": "",
         "attn": "",
         "title": "Dhr.",
         "initials": "A",
@@ -404,6 +423,8 @@ X-RateLimit-Daily-Reset: 1678230000
         "city": "Heerenveen",
         "country_code_iso_3166": "NL",
         "email": "test235238848@cyclesoftware.nl",
+        "vat_number": "",
+        "coc_number": "",   
         "discount_percentage": 0,
         "datetime_created": null,
         "phone_numbers": [
@@ -444,6 +465,8 @@ X-RateLimit-Daily-Reset: 1678230000
         "city": "Belgcity",
         "country_code_iso_3166": "BE",
         "email": "gielwijgergangs@example.com",
+        "vat_number": "",
+        "coc_number": "",   
         "discount_percentage": 0,
         "datetime_created": null,
         "phone_numbers": [
@@ -486,13 +509,13 @@ List customers
 
 ### Properties ###
 
-| Property                                      | Type       | Description                                                                 |
-|-----------------------------------------------|------------|-----------------------------------------------------------------------------|
-| `error`                                       | `boolean`  | `true` if an error occured e.g. `false`                                     |
-| `error_message`                               | `?string`  | The error message if occured.                                               |
-| `customers`                                   | `object[]` | Array of [Customer (object)](#customers-customer-object)                    |
-| `pagination.count`                            | `integer`  | Number of customers the `customers` element e.g. `500`                      |
-| `pagination.next_offset`                      | `?integer` | `null` if no next page available, otherwise value for `offset` GET variable |
+| Property                 | Type       | Description                                                                 |
+|--------------------------|------------|-----------------------------------------------------------------------------|
+| `error`                  | `boolean`  | `true` if an error occured e.g. `false`                                     |
+| `error_message`          | `?string`  | The error message if occured.                                               |
+| `customers`              | `object[]` | Array of [Customer (object)](#customers-customer-object)                    |
+| `pagination.count`       | `integer`  | Number of customers the `customers` element e.g. `500`                      |
+| `pagination.next_offset` | `?integer` | `null` if no next page available, otherwise value for `offset` GET variable |
 
 > HTTP request
 
@@ -529,6 +552,7 @@ X-RateLimit-Daily-Reset: 1678230000
             "postcode": "8448PE",
             "house_number": "32",
             "house_number_postfix": "B",
+            "company_name": "",
             "attn": "",
             "title": "Dhr.",
             "initials": "A",
@@ -539,6 +563,8 @@ X-RateLimit-Daily-Reset: 1678230000
             "city": "Heerenveen",
             "country_code_iso_3166": "NL",
             "email": "test235238848@cyclesoftware.nl",
+            "vat_number": "",
+            "coc_number": "",   
             "discount_percentage": 0,
             "datetime_created": null,
             "phone_numbers": [
@@ -569,6 +595,7 @@ X-RateLimit-Daily-Reset: 1678230000
             "postcode": "1000",
             "house_number": "2",
             "house_number_postfix": "B",
+            "company_name": "",
             "attn": "",
             "title": "Dhr.",
             "initials": "G",
@@ -579,6 +606,8 @@ X-RateLimit-Daily-Reset: 1678230000
             "city": "Belgcity",
             "country_code_iso_3166": "BE",
             "email": "gielwijgergangs@example.com",
+            "vat_number": "",
+            "coc_number": "",
             "discount_percentage": 0,
             "datetime_created": null,
             "phone_numbers": [

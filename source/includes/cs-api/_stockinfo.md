@@ -28,26 +28,33 @@ not included.
 
 ### Properties ###
 
-| Property                                               | Type       | Description                                                                                                                                                                                                   |
-|--------------------------------------------------------|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `error`                                                | `boolean`  | e.g. `false`                                                                                                                                                                                                  |
-| `error_message`                                        | `?string`  | Error message if error is `true`                                                                                                                                                                              |
-| `data.result_items`                                    | `object[]` | array of result objects                                                                                                                                                                                       |
-| `data.result_items[].barcode`                          | `string`   | e.g. `4026495856010`                                                                                                                                                                                          |
-| `data.result_items[].stock_available`                  | `boolean`  | if true, there is stock available within stores                                                                                                                                                               |
-| `data.result_items[].delivery_date`                    | `?date`    | expected delivery date from supplier or back-orders / expected stock                                                                                                                                          |
-| `data.result_items[].delivery_date_backlog`            | `?date`    | expected delivery date based on back-orders or expected stock                                                                                                                                                 |
-| `data.result_items[].stock_supplier`                   | `?boolean` | `true` if supplier has stock, `false` if supplier has no stock, `null` if not checked                                                                                                                         |
-| `data.result_items[].stock_quantity`                   | `integer`  | quantity available in stores                                                                                                                                                                                  |
-| `data.result_items[].stock_stores`                     | `object[]` | info per store                                                                                                                                                                                                |
-| `data.result_items[].stock_stores[].dealer_id`         | `integer`  | store number `1`                                                                                                                                                                                              |
-| `data.result_items[].stock_stores[].store_name`        | `string`   | Name of the store `test`                                                                                                                                                                                      |
-| `data.result_items[].stock_stores[].store_phone`       | `string`   | Phone of the store `0733030050`                                                                                                                                                                               |
-| `data.result_items[].stock_stores[].quantity`          | `integer`  | quantity available including demo `0`                                                                                                                                                                         |
-| `data.result_items[].stock_stores[].quantity_demo`     | `integer`  | Quantity of demo models                                                                                                                                                                                       |
-| `data.result_items[].stock_stores[].quantity_expected` | `integer`  | Quantity expected from supplier                                                                                                                                                                               |
-| `data.result_items[].stock_stores[].delivery_dates`    | `string[]` | Delivery dates expected from supplier. <br/>If back-orders are available the date of back-order will be used.<br/>If objects are not assigned to a back-order and have a delivery date this date will be used |
-| `data.result_items[].article_id`                       | `string`   | Article ID in request url                                                                                                                                                                                     |
+| Property                                                     | Type       | Description                                                                                                                                                                                                   |
+|--------------------------------------------------------------|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `error`                                                      | `boolean`  | e.g. `false`                                                                                                                                                                                                  |
+| `error_message`                                              | `?string`  | Error message if error is `true`                                                                                                                                                                              |
+| `data.result_items`                                          | `object[]` | array of result objects                                                                                                                                                                                       |
+| `data.result_items[].barcode`                                | `string`   | e.g. `4026495856010`                                                                                                                                                                                          |
+| `data.result_items[].stock_available`                        | `boolean`  | if true, there is stock available within stores                                                                                                                                                               |
+| `data.result_items[].delivery_date`                          | `?date`    | expected delivery date from supplier or back-orders / expected stock                                                                                                                                          |
+| `data.result_items[].delivery_date_backlog`                  | `?date`    | expected delivery date based on back-orders or expected stock                                                                                                                                                 |
+| `data.result_items[].stock_supplier`                         | `?boolean` | `true` if supplier has stock, `false` if supplier has no stock, `null` if not checked                                                                                                                         |
+| `data.result_items[].stock_quantity`                         | `integer`  | quantity available in stores                                                                                                                                                                                  |
+| `data.result_items[].stock_stores`                           | `object[]` | info per store                                                                                                                                                                                                |
+| `data.result_items[].stock_stores[].dealer_id`               | `integer`  | store number `1`                                                                                                                                                                                              |
+| `data.result_items[].stock_stores[].store_name`              | `string`   | Name of the store `test`                                                                                                                                                                                      |
+| `data.result_items[].stock_stores[].store_phone`             | `string`   | Phone of the store `0733030050`                                                                                                                                                                               |
+| `data.result_items[].stock_stores[].quantity`                | `integer`  | Sum of available quantity `new`+`demo`+`used`+`rental` e.g. `4`                                                                                                                                               |
+| `data.result_items[].stock_stores[].quantity_new`            | `integer`  | Quantity of new models                                                                                                                                                                                        |
+| `data.result_items[].stock_stores[].quantity_demo`           | `integer`  | Quantity of demo models                                                                                                                                                                                       |
+| `data.result_items[].stock_stores[].quantity_used`           | `integer`  | Quantity of used models                                                                                                                                                                                       |
+| `data.result_items[].stock_stores[].quantity_rental`         | `integer`  | Quantity of rental models                                                                                                                                                                                     |
+| `data.result_items[].stock_stores[].quantity_expected`       | `integer`  | Quantity expected from supplier                                                                                                                                                                               |
+| `data.result_items[].stock_stores[].objects`                 | `object[]` | List of stock objects, empty for articles                                                                                                                                                                     | 
+| `data.result_items[].stock_stores[].objects[].object_id`     | `integer`  | Object ID e.g. `10001`                                                                                                                                                                                        |
+| `data.result_items[].stock_stores[].objects[].status`        | `string`   | Status of object e.g. `new`, `demo`, `rental`, `expected`                                                                                                                                                     |
+| `data.result_items[].stock_stores[].objects[].delivery_date` | `?date`    | Delivery date if known and status `expected` e.g. `19-02-2025`                                                                                                                                                |
+| `data.result_items[].stock_stores[].delivery_dates`          | `string[]` | Delivery dates expected from supplier. <br/>If back-orders are available the date of back-order will be used.<br/>If objects are not assigned to a back-order and have a delivery date this date will be used |
+| `data.result_items[].article_id`                             | `string`   | Article ID in request url                                                                                                                                                                                     |
 
 > HTTP request
 
@@ -76,16 +83,50 @@ Content-length: 1574
                 "stock_available": true,
                 "delivery_date": null,
                 "stock_supplier": null,
-                "stock_quantity": 3,
+                "stock_quantity": 4,
                 "stock_stores": [
                     {
                         "dealer_id": 1,
                         "store_name": "test",
                         "store_phone": "0733030050",
-                        "quantity": 3,
-                        "quantity_demo": 0,
-                        "quantity_expected": 0,
-                        "delivery_dates": []
+                        "quantity": 4,
+                        "quantity_new": 1,
+                        "quantity_demo": 1,
+                        "quantity_used": 1,
+                        "quantity_rental": 1,
+                        "quantity_expected": 2,
+                        "objects": [
+                          {
+                            "object_id": 36564,
+                            "status": "new"
+                          },
+                          {
+                            "object_id": 365634,
+                            "status": "rental"
+                          },
+                          {
+                            "object_id": 365635,
+                            "status": "demo"
+                          },
+                          {
+                            "object_id": 365633,
+                            "status": "used"
+                          },
+                          {
+                            "object_id": 189186,
+                            "status": "expected",
+                            "delivery_date": "01-04-2025"
+                          },
+                          {
+                            "object_id": 189188,
+                            "status": "expected",
+                            "delivery_date": "01-05-2025"
+                          },
+                        ],
+                        "delivery_dates": [
+                          "01-04-2025",
+                          "01-05-2025",
+                        ]
                     }
                 ],
                 "article_id": "4026495843614"

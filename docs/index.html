@@ -8482,9 +8482,9 @@ By default the book-date is used.</p>
 <td>CSV of dealer_ids (only applicable for <code>warehouse</code> accounts), dealer_ids are converted to account to get all data from that account</td>
 </tr>
 <tr>
-<td><code>sales_order_id</code></td>
-<td><code>?int</code></td>
-<td>Filters transactions on <code>sales_order_id</code>, multiple transactions can be returned (split-orders)</td>
+<td><code>sales_order_ids</code></td>
+<td><code>?string</code></td>
+<td>Filter sales transaction on a CSV of sales order IDs e.g. <code>1000,2000</code>. Max 25 sales-order-ids are allowed. Multiple transactions per <code>sales_order_id</code> can be returned (split-orders)</td>
 </tr>
 <tr>
 <td><code>token</code></td>

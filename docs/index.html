@@ -11820,7 +11820,12 @@ not included.</p>
 <tr>
 <td><code>data.result_items[].stock_stores[].quantity</code></td>
 <td><code>integer</code></td>
-<td>quantity available including demo <code>0</code></td>
+<td>Sum of available quantity <code>new</code>+<code>demo</code>+<code>used</code>+<code>rental</code> e.g. <code>4</code> (quantity of objects have priority over article stock if both are present)</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].quantity_new</code></td>
+<td><code>integer</code></td>
+<td>Quantity of new models</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].quantity_demo</code></td>
@@ -11828,9 +11833,39 @@ not included.</p>
 <td>Quantity of demo models</td>
 </tr>
 <tr>
+<td><code>data.result_items[].stock_stores[].quantity_used</code></td>
+<td><code>integer</code></td>
+<td>Quantity of used models</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].quantity_rental</code></td>
+<td><code>integer</code></td>
+<td>Quantity of rental models</td>
+</tr>
+<tr>
 <td><code>data.result_items[].stock_stores[].quantity_expected</code></td>
 <td><code>integer</code></td>
 <td>Quantity expected from supplier</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].objects</code></td>
+<td><code>object[]</code></td>
+<td>List of stock objects, empty for articles</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].objects[].object_id</code></td>
+<td><code>integer</code></td>
+<td>Object ID e.g. <code>10001</code></td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].objects[].status</code></td>
+<td><code>string</code></td>
+<td>Status of object e.g. <code>new</code>, <code>demo</code>, <code>rental</code>, <code>expected</code></td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].objects[].delivery_date</code></td>
+<td><code>?date</code></td>
+<td>Delivery date if known and status <code>expected</code> e.g. <code>19-02-2025</code></td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].delivery_dates</code></td>
@@ -11870,16 +11905,50 @@ not included.</p>
                 </span><span class="nl">"stock_available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"stock_supplier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"stock_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"stock_stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                     </span><span class="p">{</span><span class="w">
                         </span><span class="nl">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                         </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
                         </span><span class="nl">"store_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0733030050"</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"quantity_expected"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"delivery_dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_new"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_used"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_rental"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_expected"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"objects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36564</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">365634</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rental"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">365635</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">365633</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"used"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">189186</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"expected"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2025"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">189188</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"expected"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-05-2025"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"delivery_dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                          </span><span class="s2">"01-04-2025"</span><span class="p">,</span><span class="w">
+                          </span><span class="s2">"01-05-2025"</span><span class="p">,</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
                     </span><span class="p">}</span><span class="w">
                 </span><span class="p">],</span><span class="w">
                 </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="w">

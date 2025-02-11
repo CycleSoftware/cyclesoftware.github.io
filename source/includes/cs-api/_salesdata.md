@@ -54,16 +54,16 @@ By default the book-date is used.
 	</div>
 </div>
 
-| GET parameter              | Type      | Description                                                                                                                         |
-|----------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `date_field`               | `?string` | Type of date field `book_date`,`modified_at`, `transaction_date`, defaults to `book_date`                                           |
-| `date_start`               | `?date`   | Start date of interval for date_field e.g. `2024-01-01`                                                                             |
-| `date_end`                 | `?date`   | End date of interval for date_field e.g. `2024-01-01`                                                                               |
-| `only_booked_transactions` | `?bool`   | If `true` only `final` / `booked` transactions will be given                                                                        |
-| `store_id`                 | `?int`    | Store ID for filtering                                                                                                              |
-| `dealer_ids`               | `?string` | CSV of dealer_ids (only applicable for `warehouse` accounts), dealer_ids are converted to account to get all data from that account |
-| `sales_order_id`           | `?int`    | Filters transactions on `sales_order_id`, multiple transactions can be returned (split-orders)                                      |
-| `token`                    | `?string` | The token of next result set in pagination. In `pagination.next_url` the full URL for next result set if given if available         |
+| GET parameter              | Type      | Description                                                                                                                                                                          |
+|----------------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `date_field`               | `?string` | Type of date field `book_date`,`modified_at`, `transaction_date`, defaults to `book_date`                                                                                            |
+| `date_start`               | `?date`   | Start date of interval for date_field e.g. `2024-01-01`                                                                                                                              |
+| `date_end`                 | `?date`   | End date of interval for date_field e.g. `2024-01-01`                                                                                                                                |
+| `only_booked_transactions` | `?bool`   | If `true` only `final` / `booked` transactions will be given                                                                                                                         |
+| `store_id`                 | `?int`    | Store ID for filtering                                                                                                                                                               |
+| `dealer_ids`               | `?string` | CSV of dealer_ids (only applicable for `warehouse` accounts), dealer_ids are converted to account to get all data from that account                                                  |
+| `sales_order_ids`          | `?string` | Filter sales transaction on a CSV of sales order IDs e.g. `1000,2000`. Max 25 sales-order-ids are allowed. Multiple transactions per `sales_order_id` can be returned (split-orders) |
+| `token`                    | `?string` | The token of next result set in pagination. In `pagination.next_url` the full URL for next result set if given if available                                                          |
 
 ### Properties
 

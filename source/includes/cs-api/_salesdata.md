@@ -113,6 +113,26 @@ By default the book-date is used.
 | `data[].workshop_order.delivery_method_id`                           | `integer`              | Delivery method ID e.g. `0` (see common enum `delivery_methods`)                                                                                 |
 | `data[].workshop_order.reference_text`                               | `string`               | Reference of order e.g. `85`                                                                                                                     |
 | `data[].workshop_order.km_age`                                       | `?integer`             | KM age of object if registered with this order                                                                                                   |
+| `data[].workshop_order.object`                                       | `object`               | Information about of repair object                                                                                                               |
+| `workshop_order.object.color`                                        | `string`               | Color of repair object e.g. `Zwart`                                                                                                              |
+| `workshop_order.object.brand_name`                                   | `string`               | Brand of repair object e.g. `Batavus`                                                                                                            |
+| `workshop_order.object.model_name`                                   | `string`               | Model name of repair object e.g. `Cosmo CS 1`                                                                                                    |
+| `workshop_order.object.object_id`                                    | `integer`              | Object ID of repair object e.g. `16782`                                                                                                          |
+| `workshop_order.object.size`                                         | `string`               | Size description of repair object e.g. `L`                                                                                                       |
+| `workshop_order.object.year`                                         | `?int`                 | Model year of repair object or `null`                                                                                                            |
+| `data[].workshop_order.identification`                               | `object`               | Identifications of repair object                                                                                                                 |
+| `workshop_order.identification.battery_number`                       | `?string`              | The battery number if set                                                                                                                        |
+| `workshop_order.identification.battery_number_2`                     | `?string`              | The battery number_2 if set                                                                                                                      |
+| `workshop_order.identification.engine_number`                        | `?string`              | The engine number if set                                                                                                                         |
+| `workshop_order.identification.frame_number`                         | `?string`              | The frame number if set                                                                                                                          |
+| `workshop_order.identification.imei_number`                          | `?string`              | The imei number if set                                                                                                                           |
+| `workshop_order.identification.key_number`                           | `?string`              | The key number if set                                                                                                                            |
+| `workshop_order.identification.key_number_2`                         | `?string`              | The key number_2 if set                                                                                                                          |
+| `workshop_order.identification.license_plate_number`                 | `?string`              | The license plat if set if se                                                                                                                    |
+| `workshop_order.identification.lock_number`                          | `?string`              | The lock number if set                                                                                                                           |
+| `workshop_order.identification.lock_number_2`                        | `?string`              | The lock number_2 if set                                                                                                                         |
+| `workshop_order.identification.serial_number`                        | `?string`              | The serial number if set                                                                                                                         |
+| `workshop_order.identification.velopass_code`                        | `?string`              | The velopass code if set                                                                                                                         |
 | `data[].sales_items`                                                 | `object[]`             | Array with sold items                                                                                                                            |
 | `data[].sales_items[].sales_item_id`                                 | `integer`              | Unique sales item ID e.g. `63883`                                                                                                                |
 | `data[].sales_items[].item_type_id`                                  | `integer`              | Item type ID e.g. `1` (see common enum `item_types`)                                                                                             |
@@ -291,7 +311,29 @@ Content-length: 19744
                 "workshop_rate_id": 1,
                 "delivery_method_id": 0,
                 "reference_text": "",
-                "km_age": null
+                "km_age": null,
+                "object": {
+                      "brand_name": "Giant",
+                      "color": "Zwart",
+                      "model_name": "Cosmo CS 1",
+                      "object_id": 19224,
+                      "size": "L",
+                      "year": 2019
+                },
+                "identification": {
+                     "battery_number": "BATT3333",
+                     "battery_number_2": null,
+                     "engine_number": null,
+                     "frame_number": "FR12121212",
+                     "imei_number": null,
+                     "key_number": null,
+                     "key_number_2": null,
+                     "license_plate_number": null,
+                     "lock_number": null,
+                     "lock_number_2": null,
+                     "serial_number": null,
+                     "velopass_code": null
+              },
             },
             "sales_items": [
                 {

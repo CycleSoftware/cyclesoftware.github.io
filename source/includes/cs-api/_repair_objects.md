@@ -38,6 +38,123 @@ Read, create or update repair objects for a customer
 | `images[].url_large`     | `string`                        | `readonly`                 | URL to large image e.g. `https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg` |
 
 
+
+## Search repair objects
+
+Search for repair objects given a query parameter
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/workshop/repair-objects/search.json?query=:query</h6>
+    </div>
+</div>
+
+| **URI parameter** | **Type** | **Description**          |
+|-------------------|----------|--------------------------|
+| `query`           | `string` | Search query e.g. `1006` |
+
+This endpoint will return a list of in the `data` element [Repair object (object)](#repair-objects-repair-object-object).
+
+### Properties ###
+
+| Property              | Type       | Description                                                                                                                                                       |
+|-----------------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `error`               | `boolean`  | e.g. `false`                                                                                                                                                      |
+| `error_message`       | `?string`  | e.g. `Unauthorized`                                                                                                                                               |
+| `data`                | `object[]` | Array of [Repair object (object)](#repair-objects-repair-object-object)                                                                                           |
+| `pagination.next_url` | `?string`  | If there is more data this is the URL to the next API request. `https://api.cyclesoftware.nl/api/v1/workshop/repair-objects/search.json?offset=1000&query=abc...` |
+
+
+> HTTP request
+
+```http
+GET /api/v1/customers/1006/objects.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+Content-length: 1676
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+
+{
+    "error": false,
+    "error_message": null,
+    "data": [
+        {
+            "customer_id": 1006,
+            "object_id": 1004,
+            "object_barcode": "",
+            "is_active": true,
+            "object_type_name": "fiets",
+            "category": "Hybride fietsen",
+            "brand": "Batavus",
+            "model": "Apache Deluxe",
+            "model_year": "",
+            "color": "Scumzilver",
+            "variant": "Dames",
+            "phone_number_id": "mob",
+            "license_plate": "",
+            "km_mileage": "0",
+            "frame_id": "",
+            "chip_id": "",
+            "key_id": "",
+            "engine_id": "",
+            "battery_id": "",
+            "lock_id": "",
+            "workshop_rate_id": 1,
+            "service_level_id": 0,
+            "images": [
+                {
+                    "date_modified": "2016-05-24 11:15:02",
+                    "url_thumb": "https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg",
+                    "url_large": "https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"
+                }
+            ]
+        },
+        {
+            "customer_id": 1006,
+            "object_id": 208410,
+            "object_barcode": "object_barcode",
+            "is_active": true,
+            "object_type_name": "fiets",
+            "category": "Racefietsen",
+            "brand": "brand",
+            "model": "model",
+            "model_year": "2017",
+            "color": "color",
+            "variant": "Heren",
+            "phone_number_id": "12345",
+            "license_plate": "license_plate",
+            "km_mileage": "200",
+            "frame_id": "frame_id",
+            "chip_id": "chip_id",
+            "key_id": "key_id",
+            "engine_id": "engine_id",
+            "battery_id": "1234",
+            "lock_id": "lock_id",
+            "workshop_rate_id": 1,
+            "service_level_id": 0,
+            "images": []
+        }
+    ],
+    "pagination": {
+        "next_url": "https://api.cyclesoftware.nl/api/v1/workshop/repair-objects/search.json?offset=1000&query=abc"
+    }
+}
+```
+
 ## List repair objects 
 
 Get a list of repair objects for a customer

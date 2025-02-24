@@ -8721,6 +8721,106 @@ By default the book-date is used.</p>
 <td>KM age of object if registered with this order</td>
 </tr>
 <tr>
+<td><code>data[].workshop_order.object</code></td>
+<td><code>object</code></td>
+<td>Information about of repair object</td>
+</tr>
+<tr>
+<td><code>workshop_order.object.color</code></td>
+<td><code>string</code></td>
+<td>Color of repair object e.g. <code>Zwart</code></td>
+</tr>
+<tr>
+<td><code>workshop_order.object.brand_name</code></td>
+<td><code>string</code></td>
+<td>Brand of repair object e.g. <code>Batavus</code></td>
+</tr>
+<tr>
+<td><code>workshop_order.object.model_name</code></td>
+<td><code>string</code></td>
+<td>Model name of repair object e.g. <code>Cosmo CS 1</code></td>
+</tr>
+<tr>
+<td><code>workshop_order.object.object_id</code></td>
+<td><code>integer</code></td>
+<td>Object ID of repair object e.g. <code>16782</code></td>
+</tr>
+<tr>
+<td><code>workshop_order.object.size</code></td>
+<td><code>string</code></td>
+<td>Size description of repair object e.g. <code>L</code></td>
+</tr>
+<tr>
+<td><code>workshop_order.object.year</code></td>
+<td><code>?int</code></td>
+<td>Model year of repair object or <code>null</code></td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.identification</code></td>
+<td><code>object</code></td>
+<td>Identifications of repair object</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.battery_number</code></td>
+<td><code>?string</code></td>
+<td>The battery number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.battery_number_2</code></td>
+<td><code>?string</code></td>
+<td>The battery number_2 if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.engine_number</code></td>
+<td><code>?string</code></td>
+<td>The engine number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.frame_number</code></td>
+<td><code>?string</code></td>
+<td>The frame number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.imei_number</code></td>
+<td><code>?string</code></td>
+<td>The imei number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.key_number</code></td>
+<td><code>?string</code></td>
+<td>The key number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.key_number_2</code></td>
+<td><code>?string</code></td>
+<td>The key number_2 if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.license_plate_number</code></td>
+<td><code>?string</code></td>
+<td>The license plat if set if se</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.lock_number</code></td>
+<td><code>?string</code></td>
+<td>The lock number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.lock_number_2</code></td>
+<td><code>?string</code></td>
+<td>The lock number_2 if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.serial_number</code></td>
+<td><code>?string</code></td>
+<td>The serial number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.velopass_code</code></td>
+<td><code>?string</code></td>
+<td>The velopass code if set</td>
+</tr>
+<tr>
 <td><code>data[].sales_items</code></td>
 <td><code>object[]</code></td>
 <td>Array with sold items</td>
@@ -9278,7 +9378,29 @@ By default the book-date is used.</p>
                 </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                      </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giant"</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zwart"</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cosmo CS 1"</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">19224</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L"</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                     </span><span class="nl">"battery_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BATT3333"</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"battery_number_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"engine_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"frame_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR12121212"</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"imei_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"key_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"key_number_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"license_plate_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"lock_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"lock_number_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"serial_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"velopass_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+              </span><span class="p">},</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nl">"sales_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">

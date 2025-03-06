@@ -96,7 +96,7 @@ The latest definition of the WSDL specification can be found at:
 | `InsurancePayout`                                                       | `?object`             | Allows for third party insurance involvement. This option can not be used with split orders.                                                                                                                                                                                                        |
 | `InsurancePayout.insurance_payout_type`                                 | `string`              | Any of `insurance`, `damage`, `delete`. `delete` applies when updating the order                                                                                                                                                                                                                    |
 | `InsurancePayout.insurance_customer_id`                                 | `integer`             | The customer ID of the insurance provider                                                                                                                                                                                                                                                           |
-| `InsurancePayout.insurance_payout_amount`                               | `decimal`             | The nett amount payed by insurance company                                                                                                                                                                                                                                                          |
+| `InsurancePayout.insurance_payout_amount`                               | `decimal`             | The nett amount paid by insurance company                                                                                                                                                                                                                                                           |
 | `InsurancePayout.insurance_own_risk_amount`                             | `decimal`             | The own risk amount for the customer                                                                                                                                                                                                                                                                |
 | `InsurancePayout.insurance_reference`                                   | `?string`             | Reference of the insurance order                                                                                                                                                                                                                                                                    |
 
@@ -241,7 +241,7 @@ try {
         // Optional in case of insurance  
         $input->InsurancePayout = (object)[
             'insurance_payout_type' => 'damage', // damage, insurance or delete
-            'insurance_customer_id' => '2', // the customer ID of the Insurance company.
+            'insurance_customer_id' => '200002', // the customer ID of the Insurance company.
             'insurance_payout_amount' => '1000.00', // nett payment by insurance
             'insurance_own_risk_amount' => '250.00',
             'insurance_reference' => 'Reference1',
@@ -364,6 +364,13 @@ Content-length: 4614
           <voucher_or_discount_code>1000-2000-3000-4000</voucher_or_discount_code>
         </Payment>
       </Payments>
+      <InsurancePayout>
+        <insurance_payout_type>damage</insurance_payout_type>
+        <insurance_customer_id>200002</insurance_customer_id>
+        <insurance_payout_amount>1000.00</insurance_payout_amount>
+        <insurance_own_risk_amount>250.00</insurance_own_risk_amount>
+        <insurance_reference>Reference1</insurance_reference>
+    </InsurancePayout>
     </ns1:SaveOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -414,6 +421,14 @@ Content-length: 2083
           <order_item_object_id/>
           <order_item_invoice_customer_id>1000</order_item_invoice_customer_id>
         </OrderItem>
+      </OrderItems>
+      <InsurancePayout>
+        <insurance_payout_type>damage</insurance_payout_type>
+        <insurance_customer_id>200002</insurance_customer_id>
+        <insurance_payout_amount>1000.00</insurance_payout_amount>
+        <insurance_own_risk_amount>250.00</insurance_own_risk_amount>
+        <insurance_reference>Reference1</insurance_reference>
+    </InsurancePayout>
     </SaveOrderResponse>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -679,6 +694,7 @@ Content-length: 2083
           <order_item_object_id/>
           <order_item_invoice_customer_id>1000</order_item_invoice_customer_id>
         </OrderItem>
+      </OrderItems>
     </SaveQuoteResponse>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -826,6 +842,13 @@ Content-length: 846
           <voucher_or_discount_code>1000-2000-3000-4000</voucher_or_discount_code>
         </Payment>
       </AddPayments>
+      <InsurancePayout>
+        <insurance_payout_type>damage</insurance_payout_type>
+        <insurance_customer_id>2</insurance_customer_id>
+        <insurance_payout_amount>1000.00</insurance_payout_amount>
+        <insurance_own_risk_amount>250.00</insurance_own_risk_amount>
+        <insurance_reference>Reference1</insurance_reference>
+    </InsurancePayout>
     </ns1:UpdateOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -879,6 +902,13 @@ Content-length: 2446
           <order_item_invoice_customer_id>1000</order_item_invoice_customer_id>
         </OrderResultItem>
       </OrderResultItems>
+      <InsurancePayout>
+        <insurance_payout_type>damage</insurance_payout_type>
+        <insurance_customer_id>2</insurance_customer_id>
+        <insurance_payout_amount>1000.00</insurance_payout_amount>
+        <insurance_own_risk_amount>250.00</insurance_own_risk_amount>
+        <insurance_reference>Reference1</insurance_reference>
+      </InsurancePayout>
     </ns1:OrderStatusResponse>
   </SOAP-ENV:Body>
 ```

@@ -95,10 +95,10 @@ The latest definition of the WSDL specification can be found at:
 | `Payments.Payment[].payment_for_customer_id`                            | `?integer`            | The customer ID to assign the payment to when using `order_item_invoice_customer_id`                                                                                                                                                                                                                |
 | `InsurancePayout`                                                       | `?object`             | Allows for third party insurance involvement. This option can not be used with split orders.                                                                                                                                                                                                        |
 | `InsurancePayout.insurance_payout_type`                                 | `string`              | Any of `insurance`, `damage`, `delete`. `delete` applies when updating the order                                                                                                                                                                                                                    |
-| `InsurancePayout.insurance_customer_id`                                 | `integer`             | The customer ID of the insurance provider                                                                                                                                                                                                                                                           |
-| `InsurancePayout.insurance_payout_amount`                               | `decimal`             | The nett amount paid by insurance company                                                                                                                                                                                                                                                           |
-| `InsurancePayout.insurance_own_risk_amount`                             | `decimal`             | The own risk amount for the customer                                                                                                                                                                                                                                                                |
-| `InsurancePayout.insurance_reference`                                   | `?string`             | Reference of the insurance order                                                                                                                                                                                                                                                                    |
+| `InsurancePayout.insurance_customer_id`                                 | `integer`             | The customer ID of the insurance provider `123823`                                                                                                                                                                                                                                                  |
+| `InsurancePayout.insurance_payout_amount`                               | `decimal`             | The nett amount paid by insurance company e.g. `1250.00`                                                                                                                                                                                                                                            |
+| `InsurancePayout.insurance_own_risk_amount`                             | `decimal`             | The own risk amount for the customer e.g. `250.00`                                                                                                                                                                                                                                                  |
+| `InsurancePayout.insurance_reference`                                   | `?string`             | Reference of the insurance order e.g. `ANWB-12222`                                                                                                                                                                                                                                                  |
 
 ## SaveOrder ##
 
@@ -370,7 +370,7 @@ Content-length: 4614
         <insurance_payout_amount>1000.00</insurance_payout_amount>
         <insurance_own_risk_amount>250.00</insurance_own_risk_amount>
         <insurance_reference>Reference1</insurance_reference>
-    </InsurancePayout>
+      </InsurancePayout>
     </ns1:SaveOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -428,7 +428,7 @@ Content-length: 2083
         <insurance_payout_amount>1000.00</insurance_payout_amount>
         <insurance_own_risk_amount>250.00</insurance_own_risk_amount>
         <insurance_reference>Reference1</insurance_reference>
-    </InsurancePayout>
+      </InsurancePayout>
     </SaveOrderResponse>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -848,7 +848,7 @@ Content-length: 846
         <insurance_payout_amount>1000.00</insurance_payout_amount>
         <insurance_own_risk_amount>250.00</insurance_own_risk_amount>
         <insurance_reference>Reference1</insurance_reference>
-    </InsurancePayout>
+      </InsurancePayout>
     </ns1:UpdateOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

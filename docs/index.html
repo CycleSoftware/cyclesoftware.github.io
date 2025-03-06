@@ -5353,22 +5353,22 @@ This will save you bandwidth and time.
 <tr>
 <td><code>InsurancePayout.insurance_customer_id</code></td>
 <td><code>integer</code></td>
-<td>The customer ID of the insurance provider</td>
+<td>The customer ID of the insurance provider <code>123823</code></td>
 </tr>
 <tr>
 <td><code>InsurancePayout.insurance_payout_amount</code></td>
 <td><code>decimal</code></td>
-<td>The nett amount paid by insurance company</td>
+<td>The nett amount paid by insurance company e.g. <code>1250.00</code></td>
 </tr>
 <tr>
 <td><code>InsurancePayout.insurance_own_risk_amount</code></td>
 <td><code>decimal</code></td>
-<td>The own risk amount for the customer</td>
+<td>The own risk amount for the customer e.g. <code>250.00</code></td>
 </tr>
 <tr>
 <td><code>InsurancePayout.insurance_reference</code></td>
 <td><code>?string</code></td>
-<td>Reference of the insurance order</td>
+<td>Reference of the insurance order e.g. <code>ANWB-12222</code></td>
 </tr>
 </tbody></table>
 <h2 id='e-commerce-saveorder'>SaveOrder</h2>
@@ -5637,7 +5637,7 @@ This will save you bandwidth and time.
         <span class="nt">&lt;insurance_payout_amount&gt;</span>1000.00<span class="nt">&lt;/insurance_payout_amount&gt;</span>
         <span class="nt">&lt;insurance_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/insurance_own_risk_amount&gt;</span>
         <span class="nt">&lt;insurance_reference&gt;</span>Reference1<span class="nt">&lt;/insurance_reference&gt;</span>
-    <span class="nt">&lt;/InsurancePayout&gt;</span>
+      <span class="nt">&lt;/InsurancePayout&gt;</span>
     <span class="nt">&lt;/ns1:SaveOrderRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
@@ -5695,7 +5695,7 @@ Content-length: 2083
         <span class="nt">&lt;insurance_payout_amount&gt;</span>1000.00<span class="nt">&lt;/insurance_payout_amount&gt;</span>
         <span class="nt">&lt;insurance_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/insurance_own_risk_amount&gt;</span>
         <span class="nt">&lt;insurance_reference&gt;</span>Reference1<span class="nt">&lt;/insurance_reference&gt;</span>
-    <span class="nt">&lt;/InsurancePayout&gt;</span>
+      <span class="nt">&lt;/InsurancePayout&gt;</span>
     <span class="nt">&lt;/SaveOrderResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
@@ -6145,7 +6145,7 @@ Content-length: 2083
         <span class="nt">&lt;insurance_payout_amount&gt;</span>1000.00<span class="nt">&lt;/insurance_payout_amount&gt;</span>
         <span class="nt">&lt;insurance_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/insurance_own_risk_amount&gt;</span>
         <span class="nt">&lt;insurance_reference&gt;</span>Reference1<span class="nt">&lt;/insurance_reference&gt;</span>
-    <span class="nt">&lt;/InsurancePayout&gt;</span>
+      <span class="nt">&lt;/InsurancePayout&gt;</span>
     <span class="nt">&lt;/ns1:UpdateOrderRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>

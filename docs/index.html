@@ -5341,32 +5341,32 @@ This will save you bandwidth and time.
 <td>The customer ID to assign the payment to when using <code>order_item_invoice_customer_id</code></td>
 </tr>
 <tr>
-<td><code>InsurancePayout</code></td>
+<td><code>ThirdPartyFinanceProvider</code></td>
 <td><code>?object</code></td>
 <td>Allows for third party insurance involvement. This option can not be used with split orders.</td>
 </tr>
 <tr>
-<td><code>InsurancePayout.insurance_payout_type</code></td>
+<td><code>ThirdPartyFinanceProvider.third_party_payout_type</code></td>
 <td><code>string</code></td>
 <td>Any of <code>insurance</code>, <code>damage</code>, <code>delete</code>. <code>delete</code> applies when updating the order</td>
 </tr>
 <tr>
-<td><code>InsurancePayout.insurance_customer_id</code></td>
+<td><code>ThirdPartyFinanceProvider.third_party_customer_id</code></td>
 <td><code>integer</code></td>
 <td>The customer ID of the insurance provider <code>123823</code></td>
 </tr>
 <tr>
-<td><code>InsurancePayout.insurance_payout_amount</code></td>
+<td><code>ThirdPartyFinanceProvider.third_party_payout_amount</code></td>
 <td><code>decimal</code></td>
 <td>The nett amount paid by insurance company e.g. <code>1250.00</code></td>
 </tr>
 <tr>
-<td><code>InsurancePayout.insurance_own_risk_amount</code></td>
+<td><code>ThirdPartyFinanceProvider.third_party_own_risk_amount</code></td>
 <td><code>decimal</code></td>
 <td>The own risk amount for the customer e.g. <code>250.00</code></td>
 </tr>
 <tr>
-<td><code>InsurancePayout.insurance_reference</code></td>
+<td><code>ThirdPartyFinanceProvider.third_party_reference</code></td>
 <td><code>?string</code></td>
 <td>Reference of the insurance order e.g. <code>ANWB-12222</code></td>
 </tr>
@@ -5507,12 +5507,12 @@ This will save you bandwidth and time.
 
     <span class="k">if</span> <span class="p">(</span><span class="nv">$insurance</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// Optional in case of insurance  </span>
-        <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">InsurancePayout</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
-            <span class="s1">'insurance_payout_type'</span> <span class="o">=&gt;</span> <span class="s1">'damage'</span><span class="p">,</span> <span class="c1">// damage, insurance or delete</span>
-            <span class="s1">'insurance_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'200002'</span><span class="p">,</span> <span class="c1">// the customer ID of the Insurance company.</span>
-            <span class="s1">'insurance_payout_amount'</span> <span class="o">=&gt;</span> <span class="s1">'1000.00'</span><span class="p">,</span> <span class="c1">// nett payment by insurance</span>
-            <span class="s1">'insurance_own_risk_amount'</span> <span class="o">=&gt;</span> <span class="s1">'250.00'</span><span class="p">,</span>
-            <span class="s1">'insurance_reference'</span> <span class="o">=&gt;</span> <span class="s1">'Reference1'</span><span class="p">,</span>
+        <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">ThirdPartyFinanceProvider</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+            <span class="s1">'third_party_payout_type'</span> <span class="o">=&gt;</span> <span class="s1">'damage'</span><span class="p">,</span> <span class="c1">// damage, insurance or delete</span>
+            <span class="s1">'third_party_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'200002'</span><span class="p">,</span> <span class="c1">// the customer ID of the Insurance company.</span>
+            <span class="s1">'third_party_payout_amount'</span> <span class="o">=&gt;</span> <span class="s1">'1000.00'</span><span class="p">,</span> <span class="c1">// nett payment by insurance</span>
+            <span class="s1">'third_party_own_risk_amount'</span> <span class="o">=&gt;</span> <span class="s1">'250.00'</span><span class="p">,</span>
+            <span class="s1">'third_party_reference'</span> <span class="o">=&gt;</span> <span class="s1">'Reference1'</span><span class="p">,</span>
         <span class="p">];</span>
     <span class="p">}</span>
 
@@ -5631,13 +5631,13 @@ This will save you bandwidth and time.
           <span class="nt">&lt;voucher_or_discount_code&gt;</span>1000-2000-3000-4000<span class="nt">&lt;/voucher_or_discount_code&gt;</span>
         <span class="nt">&lt;/Payment&gt;</span>
       <span class="nt">&lt;/Payments&gt;</span>
-      <span class="nt">&lt;InsurancePayout&gt;</span>
-        <span class="nt">&lt;insurance_payout_type&gt;</span>damage<span class="nt">&lt;/insurance_payout_type&gt;</span>
-        <span class="nt">&lt;insurance_customer_id&gt;</span>200002<span class="nt">&lt;/insurance_customer_id&gt;</span>
-        <span class="nt">&lt;insurance_payout_amount&gt;</span>1000.00<span class="nt">&lt;/insurance_payout_amount&gt;</span>
-        <span class="nt">&lt;insurance_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/insurance_own_risk_amount&gt;</span>
-        <span class="nt">&lt;insurance_reference&gt;</span>Reference1<span class="nt">&lt;/insurance_reference&gt;</span>
-      <span class="nt">&lt;/InsurancePayout&gt;</span>
+      <span class="nt">&lt;ThirdPartyFinanceProvider&gt;</span>
+        <span class="nt">&lt;third_party_payout_type&gt;</span>damage<span class="nt">&lt;/third_party_payout_type&gt;</span>
+        <span class="nt">&lt;third_party_customer_id&gt;</span>200002<span class="nt">&lt;/third_party_customer_id&gt;</span>
+        <span class="nt">&lt;third_party_payout_amount&gt;</span>1000.00<span class="nt">&lt;/third_party_payout_amount&gt;</span>
+        <span class="nt">&lt;third_party_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/third_party_own_risk_amount&gt;</span>
+        <span class="nt">&lt;third_party_reference&gt;</span>Reference1<span class="nt">&lt;/third_party_reference&gt;</span>
+      <span class="nt">&lt;/ThirdPartyFinanceProvider&gt;</span>
     <span class="nt">&lt;/ns1:SaveOrderRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
@@ -5689,13 +5689,13 @@ Content-length: 2083
           <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
         <span class="nt">&lt;/OrderItem&gt;</span>
       <span class="nt">&lt;/OrderItems&gt;</span>
-      <span class="nt">&lt;InsurancePayout&gt;</span>
-        <span class="nt">&lt;insurance_payout_type&gt;</span>damage<span class="nt">&lt;/insurance_payout_type&gt;</span>
-        <span class="nt">&lt;insurance_customer_id&gt;</span>200002<span class="nt">&lt;/insurance_customer_id&gt;</span>
-        <span class="nt">&lt;insurance_payout_amount&gt;</span>1000.00<span class="nt">&lt;/insurance_payout_amount&gt;</span>
-        <span class="nt">&lt;insurance_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/insurance_own_risk_amount&gt;</span>
-        <span class="nt">&lt;insurance_reference&gt;</span>Reference1<span class="nt">&lt;/insurance_reference&gt;</span>
-      <span class="nt">&lt;/InsurancePayout&gt;</span>
+      <span class="nt">&lt;ThirdPartyFinanceProvider&gt;</span>
+        <span class="nt">&lt;third_party_payout_type&gt;</span>damage<span class="nt">&lt;/third_party_payout_type&gt;</span>
+        <span class="nt">&lt;third_party_customer_id&gt;</span>200002<span class="nt">&lt;/third_party_customer_id&gt;</span>
+        <span class="nt">&lt;third_party_payout_amount&gt;</span>1000.00<span class="nt">&lt;/third_party_payout_amount&gt;</span>
+        <span class="nt">&lt;third_party_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/third_party_own_risk_amount&gt;</span>
+        <span class="nt">&lt;third_party_reference&gt;</span>Reference1<span class="nt">&lt;/third_party_reference&gt;</span>
+      <span class="nt">&lt;/ThirdPartyFinanceProvider&gt;</span>
     <span class="nt">&lt;/SaveOrderResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
@@ -6010,9 +6010,9 @@ Content-length: 2083
 <td>Add payments to the order, see <code>Payments.Payment</code> structure</td>
 </tr>
 <tr>
-<td><code>InsurancePayout</code></td>
+<td><code>ThirdPartyFinanceProvider</code></td>
 <td><code>?object</code></td>
-<td>Add insurance payout details to the order, see <code>InsurancePayout</code> structure in <code>SaveOrder</code></td>
+<td>Add insurance payout details to the order, see <code>ThirdPartyFinanceProvider</code> structure in <code>SaveOrder</code></td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
@@ -6074,12 +6074,12 @@ Content-length: 2083
     <span class="p">];</span>
     <span class="k">if</span> <span class="p">(</span><span class="nv">$insurance</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// Optional in case of insurance  </span>
-        <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">InsurancePayout</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
-            <span class="s1">'insurance_payout_type'</span> <span class="o">=&gt;</span> <span class="s1">'damage'</span><span class="p">,</span> <span class="c1">// damage, insurance or delete</span>
-            <span class="s1">'insurance_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span> <span class="c1">// the customer ID of the Insurance company.</span>
-            <span class="s1">'insurance_payout_amount'</span> <span class="o">=&gt;</span> <span class="s1">'1000.00'</span><span class="p">,</span> <span class="c1">// nett payment by insurance</span>
-            <span class="s1">'insurance_own_risk_amount'</span> <span class="o">=&gt;</span> <span class="s1">'250.00'</span><span class="p">,</span>
-            <span class="s1">'insurance_reference'</span> <span class="o">=&gt;</span> <span class="s1">'Reference1'</span><span class="p">,</span>
+        <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">ThirdPartyFinanceProvider</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+            <span class="s1">'third_party_payout_type'</span> <span class="o">=&gt;</span> <span class="s1">'damage'</span><span class="p">,</span> <span class="c1">// damage, insurance or delete</span>
+            <span class="s1">'third_party_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span> <span class="c1">// the customer ID of the Insurance company.</span>
+            <span class="s1">'third_party_payout_amount'</span> <span class="o">=&gt;</span> <span class="s1">'1000.00'</span><span class="p">,</span> <span class="c1">// nett payment by insurance</span>
+            <span class="s1">'third_party_own_risk_amount'</span> <span class="o">=&gt;</span> <span class="s1">'250.00'</span><span class="p">,</span>
+            <span class="s1">'third_party_reference'</span> <span class="o">=&gt;</span> <span class="s1">'Reference1'</span><span class="p">,</span>
         <span class="p">];</span>
     <span class="p">}</span>
     <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="nf">UpdateOrder</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
@@ -6139,13 +6139,13 @@ Content-length: 2083
           <span class="nt">&lt;voucher_or_discount_code&gt;</span>1000-2000-3000-4000<span class="nt">&lt;/voucher_or_discount_code&gt;</span>
         <span class="nt">&lt;/Payment&gt;</span>
       <span class="nt">&lt;/AddPayments&gt;</span>
-      <span class="nt">&lt;InsurancePayout&gt;</span>
-        <span class="nt">&lt;insurance_payout_type&gt;</span>damage<span class="nt">&lt;/insurance_payout_type&gt;</span>
-        <span class="nt">&lt;insurance_customer_id&gt;</span>2<span class="nt">&lt;/insurance_customer_id&gt;</span>
-        <span class="nt">&lt;insurance_payout_amount&gt;</span>1000.00<span class="nt">&lt;/insurance_payout_amount&gt;</span>
-        <span class="nt">&lt;insurance_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/insurance_own_risk_amount&gt;</span>
-        <span class="nt">&lt;insurance_reference&gt;</span>Reference1<span class="nt">&lt;/insurance_reference&gt;</span>
-      <span class="nt">&lt;/InsurancePayout&gt;</span>
+      <span class="nt">&lt;ThirdPartyFinanceProvider&gt;</span>
+        <span class="nt">&lt;third_party_payout_type&gt;</span>damage<span class="nt">&lt;/third_party_payout_type&gt;</span>
+        <span class="nt">&lt;third_party_customer_id&gt;</span>2<span class="nt">&lt;/third_party_customer_id&gt;</span>
+        <span class="nt">&lt;third_party_payout_amount&gt;</span>1000.00<span class="nt">&lt;/third_party_payout_amount&gt;</span>
+        <span class="nt">&lt;third_party_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/third_party_own_risk_amount&gt;</span>
+        <span class="nt">&lt;third_party_reference&gt;</span>Reference1<span class="nt">&lt;/third_party_reference&gt;</span>
+      <span class="nt">&lt;/ThirdPartyFinanceProvider&gt;</span>
     <span class="nt">&lt;/ns1:UpdateOrderRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
@@ -6199,13 +6199,13 @@ Content-length: 2446
           <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
         <span class="nt">&lt;/OrderResultItem&gt;</span>
       <span class="nt">&lt;/OrderResultItems&gt;</span>
-      <span class="nt">&lt;InsurancePayout&gt;</span>
-        <span class="nt">&lt;insurance_payout_type&gt;</span>damage<span class="nt">&lt;/insurance_payout_type&gt;</span>
-        <span class="nt">&lt;insurance_customer_id&gt;</span>2<span class="nt">&lt;/insurance_customer_id&gt;</span>
-        <span class="nt">&lt;insurance_payout_amount&gt;</span>1000.00<span class="nt">&lt;/insurance_payout_amount&gt;</span>
-        <span class="nt">&lt;insurance_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/insurance_own_risk_amount&gt;</span>
-        <span class="nt">&lt;insurance_reference&gt;</span>Reference1<span class="nt">&lt;/insurance_reference&gt;</span>
-      <span class="nt">&lt;/InsurancePayout&gt;</span>
+      <span class="nt">&lt;ThirdPartyFinanceProvider&gt;</span>
+        <span class="nt">&lt;third_party_payout_type&gt;</span>damage<span class="nt">&lt;/third_party_payout_type&gt;</span>
+        <span class="nt">&lt;third_party_customer_id&gt;</span>2<span class="nt">&lt;/third_party_customer_id&gt;</span>
+        <span class="nt">&lt;third_party_payout_amount&gt;</span>1000.00<span class="nt">&lt;/third_party_payout_amount&gt;</span>
+        <span class="nt">&lt;third_party_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/third_party_own_risk_amount&gt;</span>
+        <span class="nt">&lt;third_party_reference&gt;</span>Reference1<span class="nt">&lt;/third_party_reference&gt;</span>
+      <span class="nt">&lt;/ThirdPartyFinanceProvider&gt;</span>
     <span class="nt">&lt;/ns1:OrderStatusResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 </code></pre></div><h2 id='e-commerce-create-invoice-s'>Create invoice(s)</h2>

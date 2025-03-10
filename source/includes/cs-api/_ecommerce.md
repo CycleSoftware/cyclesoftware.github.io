@@ -93,12 +93,12 @@ The latest definition of the WSDL specification can be found at:
 | `Payments.Payment[].payment_amount`                                     | `decimal`             | The payment amount e.g. `100.00`                                                                                                                                                                                                                                                                    |
 | `Payments.Payment[].voucher_or_discount_code`                           | `?string`             | The voucher code e.g. `1000-2000-3000-4000`                                                                                                                                                                                                                                                         |
 | `Payments.Payment[].payment_for_customer_id`                            | `?integer`            | The customer ID to assign the payment to when using `order_item_invoice_customer_id`                                                                                                                                                                                                                |
-| `InsurancePayout`                                                       | `?object`             | Allows for third party insurance involvement. This option can not be used with split orders.                                                                                                                                                                                                        |
-| `InsurancePayout.insurance_payout_type`                                 | `string`              | Any of `insurance`, `damage`, `delete`. `delete` applies when updating the order                                                                                                                                                                                                                    |
-| `InsurancePayout.insurance_customer_id`                                 | `integer`             | The customer ID of the insurance provider `123823`                                                                                                                                                                                                                                                  |
-| `InsurancePayout.insurance_payout_amount`                               | `decimal`             | The nett amount paid by insurance company e.g. `1250.00`                                                                                                                                                                                                                                            |
-| `InsurancePayout.insurance_own_risk_amount`                             | `decimal`             | The own risk amount for the customer e.g. `250.00`                                                                                                                                                                                                                                                  |
-| `InsurancePayout.insurance_reference`                                   | `?string`             | Reference of the insurance order e.g. `ANWB-12222`                                                                                                                                                                                                                                                  |
+| `ThirdPartyFinanceProvider`                                             | `?object`             | Allows for third party insurance involvement. This option can not be used with split orders.                                                                                                                                                                                                        |
+| `ThirdPartyFinanceProvider.third_party_payout_type`                     | `string`              | Any of `insurance`, `damage`, `delete`. `delete` applies when updating the order                                                                                                                                                                                                                    |
+| `ThirdPartyFinanceProvider.third_party_customer_id`                     | `integer`             | The customer ID of the insurance provider `123823`                                                                                                                                                                                                                                                  |
+| `ThirdPartyFinanceProvider.third_party_payout_amount`                   | `decimal`             | The nett amount paid by insurance company e.g. `1250.00`                                                                                                                                                                                                                                            |
+| `ThirdPartyFinanceProvider.third_party_own_risk_amount`                 | `decimal`             | The own risk amount for the customer e.g. `250.00`                                                                                                                                                                                                                                                  |
+| `ThirdPartyFinanceProvider.third_party_reference`                       | `?string`             | Reference of the insurance order e.g. `ANWB-12222`                                                                                                                                                                                                                                                  |
 
 ## SaveOrder ##
 
@@ -239,12 +239,12 @@ try {
     
     if ($insurance) {
         // Optional in case of insurance  
-        $input->InsurancePayout = (object)[
-            'insurance_payout_type' => 'damage', // damage, insurance or delete
-            'insurance_customer_id' => '200002', // the customer ID of the Insurance company.
-            'insurance_payout_amount' => '1000.00', // nett payment by insurance
-            'insurance_own_risk_amount' => '250.00',
-            'insurance_reference' => 'Reference1',
+        $input->ThirdPartyFinanceProvider = (object)[
+            'third_party_payout_type' => 'damage', // damage, insurance or delete
+            'third_party_customer_id' => '200002', // the customer ID of the Insurance company.
+            'third_party_payout_amount' => '1000.00', // nett payment by insurance
+            'third_party_own_risk_amount' => '250.00',
+            'third_party_reference' => 'Reference1',
         ];
     }
     
@@ -364,13 +364,13 @@ Content-length: 4614
           <voucher_or_discount_code>1000-2000-3000-4000</voucher_or_discount_code>
         </Payment>
       </Payments>
-      <InsurancePayout>
-        <insurance_payout_type>damage</insurance_payout_type>
-        <insurance_customer_id>200002</insurance_customer_id>
-        <insurance_payout_amount>1000.00</insurance_payout_amount>
-        <insurance_own_risk_amount>250.00</insurance_own_risk_amount>
-        <insurance_reference>Reference1</insurance_reference>
-      </InsurancePayout>
+      <ThirdPartyFinanceProvider>
+        <third_party_payout_type>damage</third_party_payout_type>
+        <third_party_customer_id>200002</third_party_customer_id>
+        <third_party_payout_amount>1000.00</third_party_payout_amount>
+        <third_party_own_risk_amount>250.00</third_party_own_risk_amount>
+        <third_party_reference>Reference1</third_party_reference>
+      </ThirdPartyFinanceProvider>
     </ns1:SaveOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -422,13 +422,13 @@ Content-length: 2083
           <order_item_invoice_customer_id>1000</order_item_invoice_customer_id>
         </OrderItem>
       </OrderItems>
-      <InsurancePayout>
-        <insurance_payout_type>damage</insurance_payout_type>
-        <insurance_customer_id>200002</insurance_customer_id>
-        <insurance_payout_amount>1000.00</insurance_payout_amount>
-        <insurance_own_risk_amount>250.00</insurance_own_risk_amount>
-        <insurance_reference>Reference1</insurance_reference>
-      </InsurancePayout>
+      <ThirdPartyFinanceProvider>
+        <third_party_payout_type>damage</third_party_payout_type>
+        <third_party_customer_id>200002</third_party_customer_id>
+        <third_party_payout_amount>1000.00</third_party_payout_amount>
+        <third_party_own_risk_amount>250.00</third_party_own_risk_amount>
+        <third_party_reference>Reference1</third_party_reference>
+      </ThirdPartyFinanceProvider>
     </SaveOrderResponse>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -714,7 +714,7 @@ Update some header fields in the sales order. The following fields can be update
 | `order_track_trace_reference`       | `string`   | Track and Trace ID                                                                                |
 | `order_remarks`                     | `string`   | General remarks about the order                                                                   |
 | `AddPayments`                       | `object[]` | Add payments to the order, see `Payments.Payment` structure                                       |
-| `InsurancePayout`                   | `?object`  | Add insurance payout details to the order, see `InsurancePayout` structure in `SaveOrder`         |
+| `ThirdPartyFinanceProvider`                   | `?object`  | Add insurance payout details to the order, see `ThirdPartyFinanceProvider` structure in `SaveOrder`         |
 
 ```php
 <?php
@@ -776,12 +776,12 @@ try {
     ];
     if ($insurance) {
         // Optional in case of insurance  
-        $input->InsurancePayout = (object)[
-            'insurance_payout_type' => 'damage', // damage, insurance or delete
-            'insurance_customer_id' => '2', // the customer ID of the Insurance company.
-            'insurance_payout_amount' => '1000.00', // nett payment by insurance
-            'insurance_own_risk_amount' => '250.00',
-            'insurance_reference' => 'Reference1',
+        $input->ThirdPartyFinanceProvider = (object)[
+            'third_party_payout_type' => 'damage', // damage, insurance or delete
+            'third_party_customer_id' => '2', // the customer ID of the Insurance company.
+            'third_party_payout_amount' => '1000.00', // nett payment by insurance
+            'third_party_own_risk_amount' => '250.00',
+            'third_party_reference' => 'Reference1',
         ];
     }
     $result = $client->UpdateOrder($input);
@@ -842,13 +842,13 @@ Content-length: 846
           <voucher_or_discount_code>1000-2000-3000-4000</voucher_or_discount_code>
         </Payment>
       </AddPayments>
-      <InsurancePayout>
-        <insurance_payout_type>damage</insurance_payout_type>
-        <insurance_customer_id>2</insurance_customer_id>
-        <insurance_payout_amount>1000.00</insurance_payout_amount>
-        <insurance_own_risk_amount>250.00</insurance_own_risk_amount>
-        <insurance_reference>Reference1</insurance_reference>
-      </InsurancePayout>
+      <ThirdPartyFinanceProvider>
+        <third_party_payout_type>damage</third_party_payout_type>
+        <third_party_customer_id>2</third_party_customer_id>
+        <third_party_payout_amount>1000.00</third_party_payout_amount>
+        <third_party_own_risk_amount>250.00</third_party_own_risk_amount>
+        <third_party_reference>Reference1</third_party_reference>
+      </ThirdPartyFinanceProvider>
     </ns1:UpdateOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -902,13 +902,13 @@ Content-length: 2446
           <order_item_invoice_customer_id>1000</order_item_invoice_customer_id>
         </OrderResultItem>
       </OrderResultItems>
-      <InsurancePayout>
-        <insurance_payout_type>damage</insurance_payout_type>
-        <insurance_customer_id>2</insurance_customer_id>
-        <insurance_payout_amount>1000.00</insurance_payout_amount>
-        <insurance_own_risk_amount>250.00</insurance_own_risk_amount>
-        <insurance_reference>Reference1</insurance_reference>
-      </InsurancePayout>
+      <ThirdPartyFinanceProvider>
+        <third_party_payout_type>damage</third_party_payout_type>
+        <third_party_customer_id>2</third_party_customer_id>
+        <third_party_payout_amount>1000.00</third_party_payout_amount>
+        <third_party_own_risk_amount>250.00</third_party_own_risk_amount>
+        <third_party_reference>Reference1</third_party_reference>
+      </ThirdPartyFinanceProvider>
     </ns1:OrderStatusResponse>
   </SOAP-ENV:Body>
 ```

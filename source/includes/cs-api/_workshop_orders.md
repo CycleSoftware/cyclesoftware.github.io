@@ -26,7 +26,7 @@ Read, create or update workshop orders
 | `last_update_employee_id`                         | `integer`   | `POST`                     | Last update by employee ID (see common employees) e.g. `1`                                                                         |
 | `phone_number_id`                                 | `string`    | `POST`                     | Phone number ID for communication e.g. `tel`                                                                                       |
 | `repair_description`                              | `string`    | <code>POST&#124;PUT</code> | Description of repair e.g. `posted repair`                                                                                         |
-| `status_id`                                       | `integer`   | `POST`                     | Status see common enum `workshop_order_status` e.g. `7`                                                                            |
+| `status_id`                                       | `integer`   | <code>POST&#124;PUT</code> | Status see common enum `workshop_order_status` e.g. `7`                                                                            |
 | `status_text`                                     | `string`    | `readonly`                 | Status text see common enum `workshop_order_status` e.g. `Reparatie voltooid`                                                      |
 | `invoice_number`                                  | `integer`   | `readonly`                 | Sales transaction / invoice number `0` if not invoiced                                                                             |
 | `borrowed_object_reference`                       | `string`    | <code>POST&#124;PUT</code> | Borrowed object reference                                                                                                          |
@@ -513,10 +513,16 @@ X-RateLimit-Daily-Reset: 1678230000
 
 Update a workshop order
 
+
+| GET parameter            | Type   | Description                                                                       |
+|--------------------------|--------|-----------------------------------------------------------------------------------|
+| `send_customer_messages` | `bool` | `true` send e-mail and phone messages to the customer when `status_id` is changed |
+
+
 > HTTP request
 
 ```http
-PUT /api/v1/customers/24/workshop-order/397876.json HTTP/1.1
+PUT /api/v1/customers/24/workshop-order/397876.json?send_customer_messages=1 HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic
 Basic VXNlcm5hbWU6UGFzc3dvcmQ=
@@ -532,6 +538,7 @@ Content-length: 2237
     "borrowed_object_reference": "",
     "total_repair_time_minutes": 30,
     "delivery_method_id": 0,
+    "status_id": 4,
     "order_items": [
         {
             "item_id": 1,

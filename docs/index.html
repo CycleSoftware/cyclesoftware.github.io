@@ -6005,6 +6005,16 @@ Content-length: 2083
 <td>General remarks about the order</td>
 </tr>
 <tr>
+<td><code>order_status_id</code></td>
+<td><code>integer</code></td>
+<td>Status ID of the order see common enum <code>sales_order_status</code> for possible values, this could trigger customer messages if <code>order_send_customer_messages</code> not provider</td>
+</tr>
+<tr>
+<td><code>order_send_customer_messages</code></td>
+<td><code>boolean</code></td>
+<td>If status ID triggers customer messages, you can provide <code>false</code> to prevent customer messages being sent.</td>
+</tr>
+<tr>
 <td><code>AddPayments</code></td>
 <td><code>object[]</code></td>
 <td>Add payments to the order, see <code>Payments.Payment</code> structure</td>
@@ -6053,6 +6063,16 @@ Content-length: 2083
                             <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
                                 <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'order_track_trace_reference'</span><span class="p">,</span>
                                 <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'615beab217c76'</span><span class="p">,</span>
+                            <span class="p">],</span>
+                        <span class="mi">2</span> <span class="o">=&gt;</span>
+                            <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'order_status_id'</span><span class="p">,</span>
+                                <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'4'</span><span class="p">,</span> <span class="c1">// see common enum endpoint </span>
+                            <span class="p">],</span>
+                        <span class="mi">2</span> <span class="o">=&gt;</span>
+                            <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'order_send_customer_messages'</span><span class="p">,</span>
+                                <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'true'</span><span class="p">,</span> <span class="c1">// allow customer message to be sent..</span>
                             <span class="p">],</span>
                     <span class="p">],</span>
             <span class="p">],</span>
@@ -6122,6 +6142,14 @@ Content-length: 2083
           <span class="nt">&lt;name&gt;</span>order_remarks<span class="nt">&lt;/name&gt;</span>
           <span class="nt">&lt;value&gt;</span>Will pickup at 13.00<span class="nt">&lt;/value&gt;</span>
         <span class="nt">&lt;/UpdateValue&gt;</span>
+        <span class="nt">&lt;UpdateValue&gt;</span>
+          <span class="nt">&lt;name&gt;</span>order_status_id<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;value&gt;</span>4<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/UpdateValue&gt;</span>
+        <span class="nt">&lt;UpdateValue&gt;</span>
+          <span class="nt">&lt;name&gt;</span>order_send_customer_messages<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/UpdateValue&gt;</span>
       <span class="nt">&lt;/UpdateValues&gt;</span>
       <span class="nt">&lt;AddPayments&gt;</span>
         <span class="nt">&lt;Payment&gt;</span>
@@ -6162,7 +6190,7 @@ Content-length: 2446
       <span class="nt">&lt;order_id&gt;</span>3623<span class="nt">&lt;/order_id&gt;</span>
       <span class="nt">&lt;order_reference_text&gt;</span>563c8b1bc4ada<span class="nt">&lt;/order_reference_text&gt;</span>
       <span class="nt">&lt;order_reference_id&gt;</span>-663982782<span class="nt">&lt;/order_reference_id&gt;</span>
-      <span class="nt">&lt;order_status_text&gt;</span>In behandeling<span class="nt">&lt;/order_status_text&gt;</span>
+      <span class="nt">&lt;order_status_text&gt;</span>Staat klaar<span class="nt">&lt;/order_status_text&gt;</span>
       <span class="nt">&lt;order_track_trace_reference&gt;</span>563c8b1bc4ada<span class="nt">&lt;/order_track_trace_reference&gt;</span>
       <span class="nt">&lt;order_date_preferred_delivery&gt;</span>2015-11-09 15:50:35<span class="nt">&lt;/order_date_preferred_delivery&gt;</span>
       <span class="nt">&lt;order_vat_country_code/&gt;</span>

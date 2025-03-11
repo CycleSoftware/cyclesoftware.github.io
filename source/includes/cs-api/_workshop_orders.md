@@ -522,7 +522,7 @@ Update a workshop order
 > HTTP request
 
 ```http
-PUT /api/v1/customers/24/workshop-order/397876.json?send_customer_messages=1 HTTP/1.1
+PUT /api/v1/customers/24/workshop-order/397876.json?send_customer_messages=true HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic
 Basic VXNlcm5hbWU6UGFzc3dvcmQ=

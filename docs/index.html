@@ -13929,7 +13929,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <tr>
 <td><code>status_id</code></td>
 <td><code>integer</code></td>
-<td><code>POST</code></td>
+<td><code>POST&#124;PUT</code></td>
 <td>Status see common enum <code>workshop_order_status</code> e.g. <code>7</code></td>
 </tr>
 <tr>
@@ -14600,10 +14600,24 @@ Be aware! The goods in the packinglist will not be added to the stock!
 </span></code></pre></div><h2 id='workshop-orders-update-workshop-order'>Update workshop order</h2>
 <p>Update a workshop order</p>
 
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>send_customer_messages</code></td>
+<td><code>bool</code></td>
+<td><code>true</code> send e-mail and phone messages to the customer when <code>status_id</code> is changed</td>
+</tr>
+</tbody></table>
+
 <blockquote>
 <p>HTTP request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/v1/customers/24/workshop-order/397876.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/v1/customers/24/workshop-order/397876.json?send_customer_messages=true</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic</span>
 <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
@@ -14619,6 +14633,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
     </span><span class="nl">"borrowed_object_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"total_repair_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
     </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
     </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">

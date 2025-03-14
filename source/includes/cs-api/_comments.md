@@ -208,6 +208,77 @@ Content-length: 637
 }
 ```
 
+## Search Comments
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/comments/:customer_id/search.json</h6>
+    </div>
+</div>
+
+| **URI parameter** | **Type**  | **Description**         |
+|-------------------|-----------|-------------------------|
+| `customer_id`     | `integer` | Customer ID e.g. `1006` |
+
+| **GET parameter** | **Type**   | **Description**                                                                        |
+|-------------------|------------|----------------------------------------------------------------------------------------|
+| * `query`         | `string`   | Query to search for e.g. `partial comment`                                             | 
+| `entity_type_id`  | `?integer` | Entity type e.g. `7`, see common API `entity_types`<br/> Must be when entity_id is set |
+| `entity_id`       | `?integer` | Entity ID e.g. sales order number when `entity_type_id` is 7                           |
+
+Fields marked with * are mandatory
+
+The result will be a [Comments (object)](#comment-object)
+
+> HTTP request
+
+```http
+GET /api/v1/comments/1006/get.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+Content-length: 637
+
+{
+    "error": false,
+    "error_message": null,
+    "comments": [
+        {
+            "comment_id": 227445,
+            "comment_type_id": 1,
+            "comment_type_name": "Note",
+            "employee_id": 46933,
+            "entity_id": 1006,
+            "entity_type_id": 7,
+            "entity_type_name": "Order",
+            "comment_type_label": "info",
+            "customer_id": 1006,
+            "created_at": "2020-05-13 09:32:55",
+            "modified_at": "2020-05-13 09:32:55",
+            "comment": "Default 10% discount"
+        }
+    ],
+    "pagination": {
+        "count": 1,
+        "next_offset": null
+    }
+}
+```
+
 ## Delete Comment
 
 <div class="api-endpoint">

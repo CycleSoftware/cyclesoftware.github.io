@@ -32,9 +32,9 @@ Find, create and update comments
     </div>
 </div>
 
-| **URI parameter** | **Type**  | **Description**      |
-|-------------------|-----------|----------------------| 
-| `comment_id`      | `integer` | Comment ID e.g. `6`  |
+| **URI parameter** | **Type**  | **Description**     |
+|-------------------|-----------|---------------------| 
+| `comment_id`      | `integer` | Comment ID e.g. `6` |
 
 The result will be a [Comments (object)](#comment-object)
 
@@ -78,10 +78,6 @@ Content-length: 637
             "modified_at": "2020-05-13 09:32:55",
             "comment": "Default 10% discount"
         }
-    "pagination": {
-        "count": 1,
-        "next_offset": null
-    }
 }
 ```
 
@@ -209,5 +205,139 @@ Content-length: 637
         "count": 1,
         "next_offset": null
     }
+}
+```
+
+## Delete Comment
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">DELETE</i>
+        <h6>/api/v1/comment/:comment_id.json</h6>
+    </div>
+</div>
+
+| **URI parameter** | **Type**  | **Description**     |
+|-------------------|-----------|---------------------|
+| `comment_id`      | `integer` | Comment ID e.g. `6` |
+
+> HTTP request
+
+```http
+DELETE /api/v1/comment/6.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+Content-length: 55
+
+{
+    "error": false,
+    "error_message": null
+    ]
+}
+```
+
+## Update Comment
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">PUT</i>
+        <h6>/api/v1/comment/update.json</h6>
+    </div>
+</div>
+
+> HTTP request
+
+```http
+PUT /api/v1/comment/update.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+
+{
+    "comment_id": 227445,
+    "comment_type_id": 1,
+    "employee_id": 46933,
+    "comment": "Default 5% discount"
+}
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+Content-length: 55
+
+{
+    "error": false,
+    "error_message": null
+    ]
+}
+```
+
+## Create Comment
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/comment/create.json</h6>
+    </div>
+</div>
+
+> HTTP request
+
+```http
+POST /api/v1/comment/create.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+
+{
+    "comment_type_id": 1,
+    "employee_id": 46933,
+    "entity_id": 1006,
+    "entity_type_id": 7,
+    "customer_id": 1006,
+    "comment": "Default 8% discount"
+}
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+Content-length: 55
+
+{
+    "error": false,
+    "error_message": null
+    ]
 }
 ```

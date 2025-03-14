@@ -15,6 +15,7 @@ toc_footers:
 includes:
 - cs-api/_introduction
 - cs-api/_authentication
+- cs-api/_comments
 - cs-api/_common
 - cs-api/_articledata
 - cs-api/_customers

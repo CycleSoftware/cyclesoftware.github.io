@@ -221,11 +221,11 @@ Content-length: 637
 |-------------------|-----------|-------------------------|
 | `customer_id`     | `integer` | Customer ID e.g. `1006` |
 
-| **GET parameter** | **Type**   | **Description**                                                                        |
-|-------------------|------------|----------------------------------------------------------------------------------------|
-| * `query`         | `string`   | Query to search for e.g. `partial comment`                                             | 
-| `entity_type_id`  | `?integer` | Entity type e.g. `7`, see common API `entity_types`<br/> Must be when entity_id is set |
-| `entity_id`       | `?integer` | Entity ID e.g. sales order number when `entity_type_id` is 7                           |
+| **GET parameter** | **Type**   | **Description**                                                                            |
+|-------------------|------------|--------------------------------------------------------------------------------------------|
+| * `query`         | `string`   | Query to search for e.g. `partial comment`                                                 | 
+| `entity_type_id`  | `?integer` | Entity type e.g. `7`, see common API `entity_types`<br/> Must be set when entity_id is set |
+| `entity_id`       | `?integer` | Entity ID e.g. sales order number when `entity_type_id` is 7                               |
 
 Fields marked with * are mandatory
 

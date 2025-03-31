@@ -15,7 +15,7 @@ Find, create and update comments
 | `comment_type_name`  | `string`    | `readonly`                 | Comment Type ID description e.g. `Note`, `Warning`                       |
 | `employee_id`        | `integer`   | <code>PUT&#124;POST</code> | Employee ID e.g. `21` (see employees endpoint)                           |
 | `entity_id`          | `integer`   | <code>POST</code>          | Entity ID e.g. sales order number when `entity_type_id` is 7             |
-| `entity_type_id`     | `integer`   | <code>POST</code>          | Entity type e.g. `7`, see common API `entity_types`                      |
+| * `entity_type_id`   | `integer`   | <code>POST</code>          | Entity type e.g. `7`, see common API `entity_types`                      |
 | `entity_type_name`   | `string`    | `readonly`                 | Entity Type ID description sales order number when `entity_type_id` is 7 |
 | `comment_type_label` | `string`    | `readonly`                 | Comment Type label see common API `comment_types`                        |
 | `customer_id`        | `integer`   | <code>POST</code>          | Customer ID e.g. `1006`                                                  |
@@ -23,11 +23,13 @@ Find, create and update comments
 | `created_at`         | `?datetime` | `readonly`                 | Created at if available e.g. `2023-01-03 12:30:44`                       |
 | `modified_at`        | `?datetime` | `readonly`                 | Modified at if available e.g. `2023-01-03 12:30:44`                      |
 
+* Currently the following entity type id's are allowed (1,3,4,5,6,7) see common API entity_types
+
 ## Get Comment by Comment ID
 
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">GET</i>
+        <i class="label label-get">GET</i>
         <h6>/api/v1/comments/:comment_id/get.json</h6>
     </div>
 </div>
@@ -85,7 +87,7 @@ Content-length: 637
 
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">GET</i>
+        <i class="label label-get">GET</i>
         <h6>/api/v1/comments/:entity_type_id/:entity_id/get.json</h6>
     </div>
 </div>
@@ -149,7 +151,7 @@ Content-length: 637
 
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">GET</i>
+        <i class="label label-get">GET</i>
         <h6>/api/v1/customers/:customer_id/comments.json</h6>
     </div>
 </div>
@@ -212,8 +214,8 @@ Content-length: 637
 
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">GET</i>
-        <h6>/api/v1/comments/:customer_id/search.json</h6>
+        <i class="label label-get">GET</i>
+        <h6>/api/v1/customers/:customer_id/search/comments.json</h6>
     </div>
 </div>
 
@@ -283,7 +285,7 @@ Content-length: 637
 
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">DELETE</i>
+        <i class="label label-delete">DELETE</i>
         <h6>/api/v1/comments/:comment_id.json</h6>
     </div>
 </div>
@@ -325,7 +327,7 @@ Content-length: 55
 
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">PUT</i>
+        <i class="label label-put">PUT</i>
         <h6>/api/v1/comment/227445.json</h6>
     </div>
 </div>

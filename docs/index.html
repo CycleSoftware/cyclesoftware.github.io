@@ -212,7 +212,7 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen-b22ce35b.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-ab12f221.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-c5541673.js"></script>
   </head>
@@ -1018,7 +1018,7 @@ available.</p>
 <td>Entity ID e.g. sales order number when <code>entity_type_id</code> is 7</td>
 </tr>
 <tr>
-<td><code>entity_type_id</code></td>
+<td>* <code>entity_type_id</code></td>
 <td><code>integer</code></td>
 <td><code>POST</code></td>
 <td>Entity type e.g. <code>7</code>, see common API <code>entity_types</code></td>
@@ -1060,10 +1060,14 @@ available.</p>
 <td>Modified at if available e.g. <code>2023-01-03 12:30:44</code></td>
 </tr>
 </tbody></table>
+
+<ul>
+<li>Currently the following entity type id&#39;s are allowed (1,3,4,5,6,7) see common API entity_types</li>
+</ul>
 <h2 id='comments-get-comment-by-comment-id'>Get Comment by Comment ID</h2>
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">GET</i>
+        <i class="label label-get">GET</i>
         <h6>/api/v1/comments/:comment_id/get.json</h6>
     </div>
 </div>
@@ -1127,7 +1131,7 @@ available.</p>
 </span></code></pre></div><h2 id='comments-get-comments-by-enity-type-id-and-entity-id'>Get Comments by Enity Type ID and Entity ID</h2>
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">GET</i>
+        <i class="label label-get">GET</i>
         <h6>/api/v1/comments/:entity_type_id/:entity_id/get.json</h6>
     </div>
 </div>
@@ -1201,7 +1205,7 @@ available.</p>
 </span></code></pre></div><h2 id='comments-get-comments-by-customer-id'>Get Comments by Customer ID</h2>
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">GET</i>
+        <i class="label label-get">GET</i>
         <h6>/api/v1/customers/:customer_id/comments.json</h6>
     </div>
 </div>
@@ -1270,8 +1274,8 @@ available.</p>
 </span></code></pre></div><h2 id='comments-search-comments'>Search Comments</h2>
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">GET</i>
-        <h6>/api/v1/comments/:customer_id/search.json</h6>
+        <i class="label label-get">GET</i>
+        <h6>/api/v1/customers/:customer_id/search/comments.json</h6>
     </div>
 </div>
 
@@ -1365,7 +1369,7 @@ available.</p>
 </span></code></pre></div><h2 id='comments-delete-comment'>Delete Comment</h2>
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">DELETE</i>
+        <i class="label label-delete">DELETE</i>
         <h6>/api/v1/comments/:comment_id.json</h6>
     </div>
 </div>
@@ -1413,7 +1417,7 @@ available.</p>
 </span></code></pre></div><h2 id='comments-update-comment'>Update Comment</h2>
 <div class="api-endpoint">
     <div class="endpoint-data">
-        <i class="label label-post">PUT</i>
+        <i class="label label-put">PUT</i>
         <h6>/api/v1/comment/227445.json</h6>
     </div>
 </div>

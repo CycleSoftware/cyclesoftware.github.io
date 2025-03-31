@@ -150,7 +150,7 @@ Content-length: 637
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v1/comments/:customer_id/get.json</h6>
+        <h6>/api/v1/customers/:customer_id/comments.json</h6>
     </div>
 </div>
 
@@ -163,7 +163,7 @@ The result will be a [Comments (object)](#comment-object)
 > HTTP request
 
 ```http
-GET /api/v1/comments/1006/get.json HTTP/1.1
+GET /api/v1/customers/1006/comments.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
@@ -284,7 +284,7 @@ Content-length: 637
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">DELETE</i>
-        <h6>/api/v1/comment/:comment_id.json</h6>
+        <h6>/api/v1/comments/:comment_id.json</h6>
     </div>
 </div>
 
@@ -295,7 +295,7 @@ Content-length: 637
 > HTTP request
 
 ```http
-DELETE /api/v1/comment/6.json HTTP/1.1
+DELETE /api/v1/comments/6.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
@@ -326,14 +326,14 @@ Content-length: 55
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">PUT</i>
-        <h6>/api/v1/comment/update.json</h6>
+        <h6>/api/v1/comment/227445.json</h6>
     </div>
 </div>
 
 > HTTP request
 
 ```http
-PUT /api/v1/comment/update.json HTTP/1.1
+PUT /api/v1/comment/227445.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip

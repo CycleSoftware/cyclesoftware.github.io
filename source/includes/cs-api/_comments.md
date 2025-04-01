@@ -130,7 +130,7 @@ Content-length: 637
     "error": false,
     "error_message": null,
     "results": 1,
-    "next_resultset": /api/v1/comments/7/1006.json?offset=1,
+    "next_resultset": "/api/v1/comments/7/1006.json?offset=1",
     "comments": [
         {
             "comment_id": 227445,
@@ -196,7 +196,7 @@ Content-length: 637
     "error": false,
     "error_message": null,
     "results": 1,
-    "next_resultset": /api/v1/customers/1006/comments.json?offset=1,
+    "next_resultset": "/api/v1/customers/1006/comments.json?offset=1",
     "comments": [
         {
             "comment_id": 227445,

@@ -30,7 +30,7 @@ Find, create and update comments
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-get">GET</i>
-        <h6>/api/v1/comments/:comment_id/get.json</h6>
+        <h6>/api/v1/comments/:comment_id.json</h6>
     </div>
 </div>
 
@@ -43,7 +43,7 @@ The result will be a [Comments (object)](#comment-object)
 > HTTP request
 
 ```http
-GET /api/v1/comment/227445.json HTTP/1.1
+GET /api/v1/comments/227445.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
@@ -88,7 +88,7 @@ Content-length: 637
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-get">GET</i>
-        <h6>/api/v1/comments/:entity_type_id/:entity_id/get.json</h6>
+        <h6>/api/v1/comments/:entity_type_id/:entity_id.json</h6>
     </div>
 </div>
 
@@ -99,10 +99,15 @@ Content-length: 637
 
 The result will be a [Comments (object)](#comment-object)
 
+**Pagination**
+
+In every response you'll find a path to the next resultset. In the example the next resultset
+is `/api/v1/comments/7/1006.json?offset=1`. If `next_resultset` is null no additional data is available.
+
 > HTTP request
 
 ```http
-GET /api/v1/comments/7/1006/get.json HTTP/1.1
+GET /api/v1/comments/7/1006.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
@@ -124,6 +129,8 @@ Content-length: 637
 {
     "error": false,
     "error_message": null,
+    "results": 1,
+    "next_resultset": /api/v1/comments/7/1006.json?offset=1,
     "comments": [
         {
             "comment_id": 227445,
@@ -139,11 +146,7 @@ Content-length: 637
             "modified_at": "2020-05-13 09:32:55",
             "comment": "Default 10% discount"
         }
-    ],
-    "pagination": {
-        "count": 1,
-        "next_offset": null
-    }
+    ]
 }
 ```
 
@@ -161,6 +164,11 @@ Content-length: 637
 | `customer_id`     | `integer` | Customer ID e.g. `1006` |
 
 The result will be a [Comments (object)](#comment-object)
+
+**Pagination**
+
+In every response you'll find a path to the next resultset. In the example the next resultset
+is `/api/v1/customers/1006/comments.json?offset=1`. If `next_resultset` is null no additional data is available.
 
 > HTTP request
 
@@ -187,6 +195,8 @@ Content-length: 637
 {
     "error": false,
     "error_message": null,
+    "results": 1,
+    "next_resultset": /api/v1/customers/1006/comments.json?offset=1,
     "comments": [
         {
             "comment_id": 227445,
@@ -202,11 +212,7 @@ Content-length: 637
             "modified_at": "2020-05-13 09:32:55",
             "comment": "Default 10% discount"
         }
-    ],
-    "pagination": {
-        "count": 1,
-        "next_offset": null
-    }
+    ]
 }
 ```
 

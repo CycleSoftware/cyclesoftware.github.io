@@ -212,7 +212,7 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen-b22ce35b.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-ab12f221.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-c5541673.js"></script>
   </head>
@@ -277,6 +277,32 @@
                   </li>
                   <li>
                     <a href="#authentication-soap-wsdl-authentication" class="toc-h2 toc-link" data-title="SOAP/WSDL Authentication">SOAP/WSDL Authentication</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#comments" class="toc-h1 toc-link" data-title="Comments">Comments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#comments-comment-object" class="toc-h2 toc-link" data-title="Comment (object)">Comment (object)</a>
+                  </li>
+                  <li>
+                    <a href="#comments-get-comment-by-comment-id" class="toc-h2 toc-link" data-title="Get Comment by Comment ID">Get Comment by Comment ID</a>
+                  </li>
+                  <li>
+                    <a href="#comments-get-comments-by-enity-type-id-and-entity-id" class="toc-h2 toc-link" data-title="Get Comments by Enity Type ID and Entity ID">Get Comments by Enity Type ID and Entity ID</a>
+                  </li>
+                  <li>
+                    <a href="#comments-get-comments-by-customer-id" class="toc-h2 toc-link" data-title="Get Comments by Customer ID">Get Comments by Customer ID</a>
+                  </li>
+                  <li>
+                    <a href="#comments-delete-comment" class="toc-h2 toc-link" data-title="Delete Comment">Delete Comment</a>
+                  </li>
+                  <li>
+                    <a href="#comments-update-comment" class="toc-h2 toc-link" data-title="Update Comment">Update Comment</a>
+                  </li>
+                  <li>
+                    <a href="#comments-create-comment" class="toc-h2 toc-link" data-title="Create Comment">Create Comment</a>
                   </li>
               </ul>
           </li>
@@ -941,7 +967,446 @@ available.</p>
 <p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided using the Basic HTTP authentication http header. The api-key is usage is documented per service.</p>
 <h2 id='authentication-soap-wsdl-authentication'>SOAP/WSDL Authentication</h2>
 <p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided within the <code>Authentication</code> element as documented per request. For <code>dealer_id</code> the actual store id within the account or api-key can be provided.</p>
-<h1 id='common'>Common</h1>
+<h1 id='comments'>Comments</h1>
+<p>Find, create and update comments</p>
+
+<p><strong><em>Scope(s)</em></strong></p>
+
+<ul>
+<li><code>resources</code>, <code>crm</code></li>
+</ul>
+<h2 id='comments-comment-object'>Comment (object)</h2>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Modify</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>comment_id</code></td>
+<td><code>integer</code></td>
+<td><code>readonly</code></td>
+<td>Comment ID e.g. <code>6</code></td>
+</tr>
+<tr>
+<td><code>comment_type_id</code></td>
+<td><code>integer</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Comment Type ID e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>comment_type_name</code></td>
+<td><code>string</code></td>
+<td><code>readonly</code></td>
+<td>Comment Type ID description e.g. <code>Note</code>, <code>Warning</code></td>
+</tr>
+<tr>
+<td><code>employee_id</code></td>
+<td><code>integer</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Employee ID e.g. <code>21</code> (see employees endpoint)</td>
+</tr>
+<tr>
+<td><code>entity_id</code></td>
+<td><code>integer</code></td>
+<td><code>POST</code></td>
+<td>Entity ID e.g. sales order number when <code>entity_type_id</code> is 7</td>
+</tr>
+<tr>
+<td>* <code>entity_type_id</code></td>
+<td><code>integer</code></td>
+<td><code>POST</code></td>
+<td>Entity type e.g. <code>7</code>, see common API <code>entity_types</code></td>
+</tr>
+<tr>
+<td><code>entity_type_name</code></td>
+<td><code>string</code></td>
+<td><code>readonly</code></td>
+<td>Entity Type ID description sales order number when <code>entity_type_id</code> is 7</td>
+</tr>
+<tr>
+<td><code>comment_type_label</code></td>
+<td><code>string</code></td>
+<td><code>readonly</code></td>
+<td>Comment Type label see common API <code>comment_types</code></td>
+</tr>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>integer</code></td>
+<td><code>POST</code></td>
+<td>Customer ID e.g. <code>1006</code></td>
+</tr>
+<tr>
+<td><code>comment</code></td>
+<td><code>string</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Comment e.g. <code>Customer has 10% default discount</code></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>?datetime</code></td>
+<td><code>readonly</code></td>
+<td>Created at if available e.g. <code>2023-01-03 12:30:44</code></td>
+</tr>
+<tr>
+<td><code>modified_at</code></td>
+<td><code>?datetime</code></td>
+<td><code>readonly</code></td>
+<td>Modified at if available e.g. <code>2023-01-03 12:30:44</code></td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>Currently the following entity type id&#39;s are allowed (1,3,4,5,6,7) see common API entity_types</li>
+</ul>
+<h2 id='comments-get-comment-by-comment-id'>Get Comment by Comment ID</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/api/v1/comments/:comment_id.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>comment_id</code></td>
+<td><code>integer</code></td>
+<td>Comment ID e.g. <code>6</code></td>
+</tr>
+</tbody></table>
+
+<p>The result will be a <a href="#comment-object">Comments (object)</a></p>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/comments/227445.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">637</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"comment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">227445</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Note"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46933</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default 10% discount"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='comments-get-comments-by-enity-type-id-and-entity-id'>Get Comments by Enity Type ID and Entity ID</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/api/v1/comments/:entity_type_id/:entity_id.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>entity_type_id</code></td>
+<td><code>integer</code></td>
+<td>Entity type e.g. <code>7</code>, see common API <code>entity_types</code></td>
+</tr>
+<tr>
+<td><code>entity_id</code></td>
+<td><code>integer</code></td>
+<td>Entity ID e.g. sales order number when <code>entity_type_id</code> is 7</td>
+</tr>
+</tbody></table>
+
+<p>The result will be a <a href="#comment-object">Comments (object)</a></p>
+
+<p><strong>Pagination</strong></p>
+
+<p>In every response you&#39;ll find a path to the next resultset. In the example the next resultset
+is <code>/api/v1/comments/7/1006.json?offset=1</code>. If <code>next_resultset</code> is null no additional data is available.</p>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/comments/7/1006.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">637</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"next_resultset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/v1/comments/7/1006.json?offset=1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"comment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">227445</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Note"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46933</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default 10% discount"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='comments-get-comments-by-customer-id'>Get Comments by Customer ID</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/api/v1/customers/:customer_id/comments.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>integer</code></td>
+<td>Customer ID e.g. <code>1006</code></td>
+</tr>
+</tbody></table>
+
+<p>The result will be a <a href="#comment-object">Comments (object)</a></p>
+
+<p><strong>Pagination</strong></p>
+
+<p>In every response you&#39;ll find a path to the next resultset. In the example the next resultset
+is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_resultset</code> is null no additional data is available.</p>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/customers/1006/comments.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">637</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"next_resultset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/v1/customers/1006/comments.json?offset=1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"comment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">227445</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Note"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46933</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default 10% discount"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='comments-delete-comment'>Delete Comment</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-delete">DELETE</i>
+        <h6>/api/v1/comments/:comment_id.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>comment_id</code></td>
+<td><code>integer</code></td>
+<td>Comment ID e.g. <code>6</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/v1/comments/6.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">55</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="err">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='comments-update-comment'>Update Comment</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-put">PUT</i>
+        <h6>/api/v1/comment/227445.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/v1/comment/227445.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+{
+    "comment_id": 227445,
+    "comment_type_id": 1,
+    "employee_id": 46933,
+    "comment": "Default 5% discount"
+}
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">55</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="err">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='comments-create-comment'>Create Comment</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/comment/create.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/comment/create.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+{
+    "comment_type_id": 1,
+    "employee_id": 46933,
+    "entity_id": 1006,
+    "entity_type_id": 7,
+    "customer_id": 1006,
+    "comment": "Default 8% discount"
+}
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">55</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="err">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='common'>Common</h1>
 <p>Access common data</p>
 
 <p><strong><em>Authentication mechanism</em></strong></p>

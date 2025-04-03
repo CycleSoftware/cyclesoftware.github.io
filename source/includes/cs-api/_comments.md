@@ -8,20 +8,20 @@ Find, create and update comments
 
 ## Comment (object)
 
-| Property             | Type        | Modify                     | Description                                                                                      |
-|----------------------|-------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| `comment_id`         | `integer`   | `readonly`                 | Comment ID e.g. `6`                                                                              |
-| `comment_type_id`    | `integer`   | <code>PUT&#124;POST</code> | Comment Type ID e.g. `2`                                                                         |
-| `comment_type_name`  | `string`    | `readonly`                 | Comment Type ID description e.g. `Note`, `Warning`                                               |
-| `employee_id`        | `integer`   | <code>PUT&#124;POST</code> | Employee ID e.g. `21` (see employees endpoint)                                                   |
-| `entity_id`          | `integer`   | <code>POST</code>          | Entity ID e.g. sales order number when `entity_type_id` is 7                                     |
-| `entity_type_id`     | `integer`   | <code>POST</code>          | Currently the following entity type id's are allowed (1,3,4,5,6,7) see common API entity_types   |
-| `entity_type_name`   | `string`    | `readonly`                 | Entity Type ID description sales order number when `entity_type_id` is 7                         |
-| `comment_type_label` | `string`    | `readonly`                 | Comment Type label see common API `comment_types`                                                |
-| `customer_id`        | `integer`   | <code>POST</code>          | Customer ID e.g. `1006`                                                                          |
-| `comment`            | `string`    | <code>PUT&#124;POST</code> | Comment e.g. `Customer has 10% default discount`                                                 |
-| `created_at`         | `?datetime` | `readonly`                 | Created at if available e.g. `2023-01-03 12:30:44`                                               |
-| `modified_at`        | `?datetime` | `readonly`                 | Modified at if available e.g. `2023-01-03 12:30:44`                                              |
+| Property             | Type        | Modify                     | Description                                                                                                              |
+|----------------------|-------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| `comment_id`         | `integer`   | `readonly`                 | Comment ID e.g. `6`                                                                                                      |
+| `comment_type_id`    | `integer`   | <code>PUT&#124;POST</code> | Comment Type ID e.g. `2`                                                                                                 |
+| `comment_type_name`  | `string`    | `readonly`                 | Comment Type ID description e.g. `Note`, `Warning`                                                                       |
+| `employee_id`        | `integer`   | <code>PUT&#124;POST</code> | Employee ID e.g. `21` (see employees endpoint)                                                                           |
+| `entity_id`          | `integer`   | <code>POST</code>          | Entity ID e.g. sales order number when `entity_type_id` is 7                                                             |
+| `entity_type_id`     | `integer`   | <code>POST</code>          | Currently the following entity type id's are allowed (<code>1,3,4,5,6,7</code>) see common API <code>entity_types</code> |
+| `entity_type_name`   | `string`    | `readonly`                 | Entity Type ID description sales order number when `entity_type_id` is 7                                                 |
+| `comment_type_label` | `string`    | `readonly`                 | Comment Type label see common API `comment_types`                                                                        |
+| `customer_id`        | `integer`   | <code>POST</code>          | Customer ID e.g. `1006`                                                                                                  |
+| `comment`            | `string`    | <code>PUT&#124;POST</code> | Comment e.g. `Customer has 10% default discount`                                                                         |
+| `created_at`         | `?datetime` | `readonly`                 | Created at if available e.g. `2023-01-03 12:30:44`                                                                       |
+| `modified_at`        | `?datetime` | `readonly`                 | Modified at if available e.g. `2023-01-03 12:30:44`                                                                      |
 
 ## Get comment by comment ID
 

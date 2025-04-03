@@ -90,10 +90,10 @@ Content-length: 637
     </div>
 </div>
 
-| **URI parameter** | **Type**  | **Description**                                              |
-|-------------------|-----------|--------------------------------------------------------------|
-| `entity_type_id`  | `integer` | Entity type e.g. `7`, see common API `entity_types`          |
-| `entity_id`       | `integer` | Entity ID e.g. sales order number when `entity_type_id` is 7 |
+| **URI parameter** | **Type**  | **Description**                                                |
+|-------------------|-----------|----------------------------------------------------------------|
+| `entity_type_id`  | `integer` | Entity type e.g. `7`, see common API `entity_types`            |
+| `entity_id`       | `integer` | Entity ID e.g. sales order number when `entity_type_id` is `7` |
 
 The result will be a [Comments (object)](#comment-object)
 

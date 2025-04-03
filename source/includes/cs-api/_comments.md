@@ -81,7 +81,7 @@ Content-length: 637
 }
 ```
 
-## Get comments by enity type ID and entity ID
+## Get comments by entity type ID and entity ID
 
 <div class="api-endpoint">
     <div class="endpoint-data">

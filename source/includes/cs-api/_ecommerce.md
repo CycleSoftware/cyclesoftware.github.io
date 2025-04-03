@@ -758,12 +758,12 @@ try {
                                 'name' => 'order_track_trace_reference',
                                 'value' => '615beab217c76',
                             ],
-                        2 =>
+                        3 =>
                             (object)[
                                 'name' => 'order_status_id',
                                 'value' => '4', // see common enum endpoint 
                             ],
-                        2 =>
+                        4 =>
                             (object)[
                                 'name' => 'order_send_customer_messages',
                                 'value' => 'true', // allow customer message to be sent..

@@ -39,6 +39,7 @@ Find, create and update customers
 
 ## Get Customer
 
+
 Get customer
 
 <div class="api-endpoint">

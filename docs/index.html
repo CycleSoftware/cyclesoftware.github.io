@@ -4691,6 +4691,12 @@ This will save you bandwidth and time.
 <td>House number postfix of customer e.g. <code>c</code></td>
 </tr>
 <tr>
+<td><code>company_name</code></td>
+<td><code>string</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Company name <code>CycleSoftware</code> (Always empty when customer_type is Business)</td>
+</tr>
+<tr>
 <td><code>attn</code></td>
 <td><code>string</code></td>
 <td><code>PUT&#124;POST</code></td>
@@ -4749,6 +4755,18 @@ This will save you bandwidth and time.
 <td><code>string</code></td>
 <td><code>PUT&#124;POST</code></td>
 <td>E-mail e.g. <code>name@domain.nl</code></td>
+</tr>
+<tr>
+<td><code>vat_number</code></td>
+<td><code>string</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Vat number <code>NL855630693B01</code></td>
+</tr>
+<tr>
+<td><code>coc_number</code></td>
+<td><code>string</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Chamber of commerce number <code>64356582</code></td>
 </tr>
 <tr>
 <td><code>discount_percentage</code></td>
@@ -4847,6 +4865,7 @@ This will save you bandwidth and time.
     </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5388GM"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Company name"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"attn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name of address"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dhr./Mevr. "</span><span class="p">,</span><span class="w">
     </span><span class="nl">"initials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"T"</span><span class="p">,</span><span class="w">
@@ -4857,6 +4876,8 @@ This will save you bandwidth and time.
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nistelrode"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name@domain.nl"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL855630693B01"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"64356582"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-03 12:30:44"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -4901,6 +4922,7 @@ This will save you bandwidth and time.
     </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18000"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CycleSoftware"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"attn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attn"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"initials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
@@ -4911,6 +4933,8 @@ This will save you bandwidth and time.
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sr"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@mail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL855630693B01"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"64356582"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -4954,6 +4978,7 @@ This will save you bandwidth and time.
     </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18000"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CycleSoftware"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"attn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attn"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"initials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
@@ -4964,6 +4989,8 @@ This will save you bandwidth and time.
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sr"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@mail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL855630693B01"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"64356582"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5030,6 +5057,7 @@ This will save you bandwidth and time.
     </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5243RB"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"attn"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dhr./Mevr. "</span><span class="p">,</span><span class="w">
     </span><span class="nl">"initials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G"</span><span class="p">,</span><span class="w">
@@ -5040,6 +5068,8 @@ This will save you bandwidth and time.
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rosmalen"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@hotmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">    
     </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5077,6 +5107,7 @@ This will save you bandwidth and time.
     </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5243RB"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"38"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"attn"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dhr./Mevr. "</span><span class="p">,</span><span class="w">
     </span><span class="nl">"initials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G"</span><span class="p">,</span><span class="w">
@@ -5087,6 +5118,8 @@ This will save you bandwidth and time.
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rosmalen"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@hotmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">   
     </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5196,6 +5229,7 @@ This will save you bandwidth and time.
         </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8448PE"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nl">"attn"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dhr."</span><span class="p">,</span><span class="w">
         </span><span class="nl">"initials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
@@ -5206,6 +5240,8 @@ This will save you bandwidth and time.
         </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heerenveen"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test235238848@cyclesoftware.nl"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">   
         </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5246,6 +5282,8 @@ This will save you bandwidth and time.
         </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belgcity"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gielwijgergangs@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">   
         </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5365,6 +5403,7 @@ This will save you bandwidth and time.
             </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8448PE"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nl">"attn"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dhr."</span><span class="p">,</span><span class="w">
             </span><span class="nl">"initials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
@@ -5375,6 +5414,8 @@ This will save you bandwidth and time.
             </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heerenveen"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test235238848@cyclesoftware.nl"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">   
             </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5405,6 +5446,7 @@ This will save you bandwidth and time.
             </span><span class="nl">"postcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"house_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"house_number_postfix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nl">"attn"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dhr."</span><span class="p">,</span><span class="w">
             </span><span class="nl">"initials"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G"</span><span class="p">,</span><span class="w">
@@ -5415,6 +5457,8 @@ This will save you bandwidth and time.
             </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belgcity"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gielwijgergangs@example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">

@@ -212,7 +212,7 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen-b22ce35b.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-ab12f221.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-c5541673.js"></script>
   </head>
@@ -277,6 +277,32 @@
                   </li>
                   <li>
                     <a href="#authentication-soap-wsdl-authentication" class="toc-h2 toc-link" data-title="SOAP/WSDL Authentication">SOAP/WSDL Authentication</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#comments" class="toc-h1 toc-link" data-title="Comments">Comments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#comments-comment-object" class="toc-h2 toc-link" data-title="Comment (object)">Comment (object)</a>
+                  </li>
+                  <li>
+                    <a href="#comments-get-comment-by-comment-id" class="toc-h2 toc-link" data-title="Get comment by comment ID">Get comment by comment ID</a>
+                  </li>
+                  <li>
+                    <a href="#comments-get-comments-by-entity-type-id-and-entity-id" class="toc-h2 toc-link" data-title="Get comments by entity type ID and entity ID">Get comments by entity type ID and entity ID</a>
+                  </li>
+                  <li>
+                    <a href="#comments-get-comments-by-customer-id" class="toc-h2 toc-link" data-title="Get comments by customer ID">Get comments by customer ID</a>
+                  </li>
+                  <li>
+                    <a href="#comments-delete-comment" class="toc-h2 toc-link" data-title="Delete comment">Delete comment</a>
+                  </li>
+                  <li>
+                    <a href="#comments-update-comment" class="toc-h2 toc-link" data-title="Update comment">Update comment</a>
+                  </li>
+                  <li>
+                    <a href="#comments-create-comment" class="toc-h2 toc-link" data-title="Create comment">Create comment</a>
                   </li>
               </ul>
           </li>
@@ -436,6 +462,9 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#repair-objects-repair-object-object" class="toc-h2 toc-link" data-title="Repair object (object)">Repair object (object)</a>
+                  </li>
+                  <li>
+                    <a href="#repair-objects-search-repair-objects" class="toc-h2 toc-link" data-title="Search repair objects">Search repair objects</a>
                   </li>
                   <li>
                     <a href="#repair-objects-list-repair-objects" class="toc-h2 toc-link" data-title="List repair objects">List repair objects</a>
@@ -938,7 +967,442 @@ available.</p>
 <p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided using the Basic HTTP authentication http header. The api-key is usage is documented per service.</p>
 <h2 id='authentication-soap-wsdl-authentication'>SOAP/WSDL Authentication</h2>
 <p>The credentials consist of a <code>username</code>, <code>password</code> and <code>api-key</code>. The <code>username</code> and <code>password</code> should be provided within the <code>Authentication</code> element as documented per request. For <code>dealer_id</code> the actual store id within the account or api-key can be provided.</p>
-<h1 id='common'>Common</h1>
+<h1 id='comments'>Comments</h1>
+<p>Find, create and update comments</p>
+
+<p><strong><em>Scope(s)</em></strong></p>
+
+<ul>
+<li><code>resources</code>, <code>crm</code></li>
+</ul>
+<h2 id='comments-comment-object'>Comment (object)</h2>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Modify</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>comment_id</code></td>
+<td><code>integer</code></td>
+<td><code>readonly</code></td>
+<td>Comment ID e.g. <code>6</code></td>
+</tr>
+<tr>
+<td><code>comment_type_id</code></td>
+<td><code>integer</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Comment type ID e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>comment_type_name</code></td>
+<td><code>string</code></td>
+<td><code>readonly</code></td>
+<td>Comment type ID description e.g. <code>Note</code>, <code>Warning</code></td>
+</tr>
+<tr>
+<td><code>employee_id</code></td>
+<td><code>integer</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Employee ID e.g. <code>21</code> (see employees endpoint)</td>
+</tr>
+<tr>
+<td><code>entity_id</code></td>
+<td><code>integer</code></td>
+<td><code>POST</code></td>
+<td>Entity ID e.g. sales order number when <code>entity_type_id</code> is <code>7</code></td>
+</tr>
+<tr>
+<td><code>entity_type_id</code></td>
+<td><code>integer</code></td>
+<td><code>POST</code></td>
+<td>Currently the following entity type id&#39;s are allowed (<code>1,3,4,5,6,7</code>) see common API <code>entity_types</code></td>
+</tr>
+<tr>
+<td><code>entity_type_name</code></td>
+<td><code>string</code></td>
+<td><code>readonly</code></td>
+<td>Entity type ID description sales order number when <code>entity_type_id</code> is <code>7</code></td>
+</tr>
+<tr>
+<td><code>comment_type_label</code></td>
+<td><code>string</code></td>
+<td><code>readonly</code></td>
+<td>Comment type label see common API <code>comment_types</code></td>
+</tr>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>integer</code></td>
+<td><code>POST</code></td>
+<td>Customer ID e.g. <code>1006</code></td>
+</tr>
+<tr>
+<td><code>comment</code></td>
+<td><code>string</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Comment e.g. <code>Customer has 10% default discount</code></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td><code>?datetime</code></td>
+<td><code>readonly</code></td>
+<td>Created at if available e.g. <code>2023-01-03 12:30:44</code></td>
+</tr>
+<tr>
+<td><code>modified_at</code></td>
+<td><code>?datetime</code></td>
+<td><code>readonly</code></td>
+<td>Modified at if available e.g. <code>2023-01-03 12:30:44</code></td>
+</tr>
+</tbody></table>
+<h2 id='comments-get-comment-by-comment-id'>Get comment by comment ID</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/api/v1/comments/:comment_id.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>comment_id</code></td>
+<td><code>integer</code></td>
+<td>Comment ID e.g. <code>6</code></td>
+</tr>
+</tbody></table>
+
+<p>The result will be a <a href="#comment-object">Comments (object)</a></p>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/comments/227445.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">637</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"comment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">227445</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Note"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46933</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default 10% discount"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='comments-get-comments-by-entity-type-id-and-entity-id'>Get comments by entity type ID and entity ID</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/api/v1/comments/:entity_type_id/:entity_id.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>entity_type_id</code></td>
+<td><code>integer</code></td>
+<td>Entity type e.g. <code>7</code>, see common API <code>entity_types</code></td>
+</tr>
+<tr>
+<td><code>entity_id</code></td>
+<td><code>integer</code></td>
+<td>Entity ID e.g. sales order number when <code>entity_type_id</code> is <code>7</code></td>
+</tr>
+</tbody></table>
+
+<p>The result will be a <a href="#comment-object">Comments (object)</a></p>
+
+<p><strong>Pagination</strong></p>
+
+<p>In every response you&#39;ll find a path to the next resultset. In the example the next resultset
+is <code>/api/v1/comments/7/1006.json?offset=1</code>. If <code>next_resultset</code> is null no additional data is available.</p>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/comments/7/1006.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">637</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"next_resultset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/v1/comments/7/1006.json?offset=1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"comment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">227445</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Note"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46933</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default 10% discount"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='comments-get-comments-by-customer-id'>Get comments by customer ID</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-get">GET</i>
+        <h6>/api/v1/customers/:customer_id/comments.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>integer</code></td>
+<td>Customer ID e.g. <code>1006</code></td>
+</tr>
+</tbody></table>
+
+<p>The result will be a <a href="#comment-object">Comments (object)</a></p>
+
+<p><strong>Pagination</strong></p>
+
+<p>In every response you&#39;ll find a path to the next resultset. In the example the next resultset
+is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_resultset</code> is null no additional data is available.</p>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/customers/1006/comments.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">637</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"next_resultset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/api/v1/customers/1006/comments.json?offset=1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"comment_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">227445</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Note"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46933</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"entity_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment_type_label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"modified_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-13 09:32:55"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default 10% discount"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='comments-delete-comment'>Delete comment</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-delete">DELETE</i>
+        <h6>/api/v1/comments/:comment_id.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>comment_id</code></td>
+<td><code>integer</code></td>
+<td>Comment ID e.g. <code>6</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/api/v1/comments/6.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">55</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="err">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='comments-update-comment'>Update comment</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-put">PUT</i>
+        <h6>/api/v1/comment/227445.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/v1/comment/227445.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+{
+    "comment_id": 227445,
+    "comment_type_id": 1,
+    "employee_id": 46933,
+    "comment": "Default 5% discount"
+}
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">55</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="err">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='comments-create-comment'>Create comment</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">POST</i>
+        <h6>/api/v1/comment/create.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/comment/create.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+{
+    "comment_type_id": 1,
+    "employee_id": 46933,
+    "entity_id": 1006,
+    "entity_type_id": 7,
+    "customer_id": 1006,
+    "comment": "Default 8% discount"
+}
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">55</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="err">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='common'>Common</h1>
 <p>Access common data</p>
 
 <p><strong><em>Authentication mechanism</em></strong></p>
@@ -5060,7 +5524,7 @@ This will save you bandwidth and time.
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">WSDL-SOAP</i>
-        <h6>/app/cs/api/ecommerce/soap_2_11/?wsdl</h6>
+        <h6>/app/cs/api/ecommerce/soap_2_12/?wsdl</h6>
     </div>
 </div>
 <h2 id='e-commerce-properties'>Properties</h2>
@@ -5381,6 +5845,36 @@ This will save you bandwidth and time.
 <td><code>?integer</code></td>
 <td>The customer ID to assign the payment to when using <code>order_item_invoice_customer_id</code></td>
 </tr>
+<tr>
+<td><code>ThirdPartyFinanceProvider</code></td>
+<td><code>?object</code></td>
+<td>Allows for third party insurance involvement. This option can not be used with split orders.</td>
+</tr>
+<tr>
+<td><code>ThirdPartyFinanceProvider.third_party_payout_type</code></td>
+<td><code>string</code></td>
+<td>Any of <code>insurance</code>, <code>damage</code>, <code>delete</code>. <code>delete</code> applies when updating the order</td>
+</tr>
+<tr>
+<td><code>ThirdPartyFinanceProvider.third_party_customer_id</code></td>
+<td><code>integer</code></td>
+<td>The customer ID of the insurance provider <code>123823</code></td>
+</tr>
+<tr>
+<td><code>ThirdPartyFinanceProvider.third_party_payout_amount</code></td>
+<td><code>decimal</code></td>
+<td>The nett amount paid by insurance company e.g. <code>1250.00</code></td>
+</tr>
+<tr>
+<td><code>ThirdPartyFinanceProvider.third_party_own_risk_amount</code></td>
+<td><code>decimal</code></td>
+<td>The own risk amount for the customer e.g. <code>250.00</code></td>
+</tr>
+<tr>
+<td><code>ThirdPartyFinanceProvider.third_party_reference</code></td>
+<td><code>?string</code></td>
+<td>Reference of the insurance order e.g. <code>ANWB-12222</code></td>
+</tr>
 </tbody></table>
 <h2 id='e-commerce-saveorder'>SaveOrder</h2>
 <p>Creates a new order in CycleSoftware</p>
@@ -5515,6 +6009,18 @@ This will save you bandwidth and time.
             <span class="p">],</span>
 <span class="p">]</span>
     <span class="p">];</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$insurance</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Optional in case of insurance  </span>
+        <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">ThirdPartyFinanceProvider</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+            <span class="s1">'third_party_payout_type'</span> <span class="o">=&gt;</span> <span class="s1">'damage'</span><span class="p">,</span> <span class="c1">// damage, insurance or delete</span>
+            <span class="s1">'third_party_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'200002'</span><span class="p">,</span> <span class="c1">// the customer ID of the Insurance company.</span>
+            <span class="s1">'third_party_payout_amount'</span> <span class="o">=&gt;</span> <span class="s1">'1000.00'</span><span class="p">,</span> <span class="c1">// nett payment by insurance</span>
+            <span class="s1">'third_party_own_risk_amount'</span> <span class="o">=&gt;</span> <span class="s1">'250.00'</span><span class="p">,</span>
+            <span class="s1">'third_party_reference'</span> <span class="o">=&gt;</span> <span class="s1">'Reference1'</span><span class="p">,</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+
     <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="nf">SaveOrder</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
     <span class="nv">$order_id</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="n">order_id</span><span class="p">;</span>
     <span class="nv">$customer_id</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="n">customer_id</span><span class="p">;</span>
@@ -5630,6 +6136,13 @@ This will save you bandwidth and time.
           <span class="nt">&lt;voucher_or_discount_code&gt;</span>1000-2000-3000-4000<span class="nt">&lt;/voucher_or_discount_code&gt;</span>
         <span class="nt">&lt;/Payment&gt;</span>
       <span class="nt">&lt;/Payments&gt;</span>
+      <span class="nt">&lt;ThirdPartyFinanceProvider&gt;</span>
+        <span class="nt">&lt;third_party_payout_type&gt;</span>damage<span class="nt">&lt;/third_party_payout_type&gt;</span>
+        <span class="nt">&lt;third_party_customer_id&gt;</span>200002<span class="nt">&lt;/third_party_customer_id&gt;</span>
+        <span class="nt">&lt;third_party_payout_amount&gt;</span>1000.00<span class="nt">&lt;/third_party_payout_amount&gt;</span>
+        <span class="nt">&lt;third_party_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/third_party_own_risk_amount&gt;</span>
+        <span class="nt">&lt;third_party_reference&gt;</span>Reference1<span class="nt">&lt;/third_party_reference&gt;</span>
+      <span class="nt">&lt;/ThirdPartyFinanceProvider&gt;</span>
     <span class="nt">&lt;/ns1:SaveOrderRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
@@ -5680,6 +6193,14 @@ Content-length: 2083
           <span class="nt">&lt;order_item_object_id/&gt;</span>
           <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
         <span class="nt">&lt;/OrderItem&gt;</span>
+      <span class="nt">&lt;/OrderItems&gt;</span>
+      <span class="nt">&lt;ThirdPartyFinanceProvider&gt;</span>
+        <span class="nt">&lt;third_party_payout_type&gt;</span>damage<span class="nt">&lt;/third_party_payout_type&gt;</span>
+        <span class="nt">&lt;third_party_customer_id&gt;</span>200002<span class="nt">&lt;/third_party_customer_id&gt;</span>
+        <span class="nt">&lt;third_party_payout_amount&gt;</span>1000.00<span class="nt">&lt;/third_party_payout_amount&gt;</span>
+        <span class="nt">&lt;third_party_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/third_party_own_risk_amount&gt;</span>
+        <span class="nt">&lt;third_party_reference&gt;</span>Reference1<span class="nt">&lt;/third_party_reference&gt;</span>
+      <span class="nt">&lt;/ThirdPartyFinanceProvider&gt;</span>
     <span class="nt">&lt;/SaveOrderResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
@@ -5939,6 +6460,7 @@ Content-length: 2083
           <span class="nt">&lt;order_item_object_id/&gt;</span>
           <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
         <span class="nt">&lt;/OrderItem&gt;</span>
+      <span class="nt">&lt;/OrderItems&gt;</span>
     <span class="nt">&lt;/SaveQuoteResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
@@ -5988,9 +6510,24 @@ Content-length: 2083
 <td>General remarks about the order</td>
 </tr>
 <tr>
+<td><code>order_status_id</code></td>
+<td><code>integer</code></td>
+<td>Status ID of the order see common enum <code>sales_order_status</code> for possible values, this could trigger customer messages if <code>order_send_customer_messages</code> not provider</td>
+</tr>
+<tr>
+<td><code>order_send_customer_messages</code></td>
+<td><code>boolean</code></td>
+<td>If status ID triggers customer messages, you can provide <code>false</code> to prevent customer messages being sent.</td>
+</tr>
+<tr>
 <td><code>AddPayments</code></td>
 <td><code>object[]</code></td>
 <td>Add payments to the order, see <code>Payments.Payment</code> structure</td>
+</tr>
+<tr>
+<td><code>ThirdPartyFinanceProvider</code></td>
+<td><code>?object</code></td>
+<td>Add insurance payout details to the order, see <code>ThirdPartyFinanceProvider</code> structure in <code>SaveOrder</code></td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
@@ -6032,6 +6569,16 @@ Content-length: 2083
                                 <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'order_track_trace_reference'</span><span class="p">,</span>
                                 <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'615beab217c76'</span><span class="p">,</span>
                             <span class="p">],</span>
+                        <span class="mi">3</span> <span class="o">=&gt;</span>
+                            <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'order_status_id'</span><span class="p">,</span>
+                                <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'4'</span><span class="p">,</span> <span class="c1">// see common enum endpoint </span>
+                            <span class="p">],</span>
+                        <span class="mi">4</span> <span class="o">=&gt;</span>
+                            <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+                                <span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'order_send_customer_messages'</span><span class="p">,</span>
+                                <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'true'</span><span class="p">,</span> <span class="c1">// allow customer message to be sent..</span>
+                            <span class="p">],</span>
                     <span class="p">],</span>
             <span class="p">],</span>
         <span class="s1">'AddPayments'</span> <span class="o">=&gt;</span>  <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
@@ -6050,6 +6597,16 @@ Content-length: 2083
                 <span class="p">],</span>
             <span class="p">],</span>
     <span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$insurance</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Optional in case of insurance  </span>
+        <span class="nv">$input</span><span class="o">-&gt;</span><span class="nc">ThirdPartyFinanceProvider</span> <span class="o">=</span> <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
+            <span class="s1">'third_party_payout_type'</span> <span class="o">=&gt;</span> <span class="s1">'damage'</span><span class="p">,</span> <span class="c1">// damage, insurance or delete</span>
+            <span class="s1">'third_party_customer_id'</span> <span class="o">=&gt;</span> <span class="s1">'2'</span><span class="p">,</span> <span class="c1">// the customer ID of the Insurance company.</span>
+            <span class="s1">'third_party_payout_amount'</span> <span class="o">=&gt;</span> <span class="s1">'1000.00'</span><span class="p">,</span> <span class="c1">// nett payment by insurance</span>
+            <span class="s1">'third_party_own_risk_amount'</span> <span class="o">=&gt;</span> <span class="s1">'250.00'</span><span class="p">,</span>
+            <span class="s1">'third_party_reference'</span> <span class="o">=&gt;</span> <span class="s1">'Reference1'</span><span class="p">,</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
     <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$client</span><span class="o">-&gt;</span><span class="nf">UpdateOrder</span><span class="p">(</span><span class="nv">$input</span><span class="p">);</span>
     <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$result</span><span class="p">);</span>
 <span class="p">}</span>
@@ -6090,6 +6647,14 @@ Content-length: 2083
           <span class="nt">&lt;name&gt;</span>order_remarks<span class="nt">&lt;/name&gt;</span>
           <span class="nt">&lt;value&gt;</span>Will pickup at 13.00<span class="nt">&lt;/value&gt;</span>
         <span class="nt">&lt;/UpdateValue&gt;</span>
+        <span class="nt">&lt;UpdateValue&gt;</span>
+          <span class="nt">&lt;name&gt;</span>order_status_id<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;value&gt;</span>4<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/UpdateValue&gt;</span>
+        <span class="nt">&lt;UpdateValue&gt;</span>
+          <span class="nt">&lt;name&gt;</span>order_send_customer_messages<span class="nt">&lt;/name&gt;</span>
+          <span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
+        <span class="nt">&lt;/UpdateValue&gt;</span>
       <span class="nt">&lt;/UpdateValues&gt;</span>
       <span class="nt">&lt;AddPayments&gt;</span>
         <span class="nt">&lt;Payment&gt;</span>
@@ -6107,6 +6672,13 @@ Content-length: 2083
           <span class="nt">&lt;voucher_or_discount_code&gt;</span>1000-2000-3000-4000<span class="nt">&lt;/voucher_or_discount_code&gt;</span>
         <span class="nt">&lt;/Payment&gt;</span>
       <span class="nt">&lt;/AddPayments&gt;</span>
+      <span class="nt">&lt;ThirdPartyFinanceProvider&gt;</span>
+        <span class="nt">&lt;third_party_payout_type&gt;</span>damage<span class="nt">&lt;/third_party_payout_type&gt;</span>
+        <span class="nt">&lt;third_party_customer_id&gt;</span>2<span class="nt">&lt;/third_party_customer_id&gt;</span>
+        <span class="nt">&lt;third_party_payout_amount&gt;</span>1000.00<span class="nt">&lt;/third_party_payout_amount&gt;</span>
+        <span class="nt">&lt;third_party_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/third_party_own_risk_amount&gt;</span>
+        <span class="nt">&lt;third_party_reference&gt;</span>Reference1<span class="nt">&lt;/third_party_reference&gt;</span>
+      <span class="nt">&lt;/ThirdPartyFinanceProvider&gt;</span>
     <span class="nt">&lt;/ns1:UpdateOrderRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
@@ -6123,7 +6695,7 @@ Content-length: 2446
       <span class="nt">&lt;order_id&gt;</span>3623<span class="nt">&lt;/order_id&gt;</span>
       <span class="nt">&lt;order_reference_text&gt;</span>563c8b1bc4ada<span class="nt">&lt;/order_reference_text&gt;</span>
       <span class="nt">&lt;order_reference_id&gt;</span>-663982782<span class="nt">&lt;/order_reference_id&gt;</span>
-      <span class="nt">&lt;order_status_text&gt;</span>In behandeling<span class="nt">&lt;/order_status_text&gt;</span>
+      <span class="nt">&lt;order_status_text&gt;</span>Staat klaar<span class="nt">&lt;/order_status_text&gt;</span>
       <span class="nt">&lt;order_track_trace_reference&gt;</span>563c8b1bc4ada<span class="nt">&lt;/order_track_trace_reference&gt;</span>
       <span class="nt">&lt;order_date_preferred_delivery&gt;</span>2015-11-09 15:50:35<span class="nt">&lt;/order_date_preferred_delivery&gt;</span>
       <span class="nt">&lt;order_vat_country_code/&gt;</span>
@@ -6160,6 +6732,13 @@ Content-length: 2446
           <span class="nt">&lt;order_item_invoice_customer_id&gt;</span>1000<span class="nt">&lt;/order_item_invoice_customer_id&gt;</span>
         <span class="nt">&lt;/OrderResultItem&gt;</span>
       <span class="nt">&lt;/OrderResultItems&gt;</span>
+      <span class="nt">&lt;ThirdPartyFinanceProvider&gt;</span>
+        <span class="nt">&lt;third_party_payout_type&gt;</span>damage<span class="nt">&lt;/third_party_payout_type&gt;</span>
+        <span class="nt">&lt;third_party_customer_id&gt;</span>2<span class="nt">&lt;/third_party_customer_id&gt;</span>
+        <span class="nt">&lt;third_party_payout_amount&gt;</span>1000.00<span class="nt">&lt;/third_party_payout_amount&gt;</span>
+        <span class="nt">&lt;third_party_own_risk_amount&gt;</span>250.00<span class="nt">&lt;/third_party_own_risk_amount&gt;</span>
+        <span class="nt">&lt;third_party_reference&gt;</span>Reference1<span class="nt">&lt;/third_party_reference&gt;</span>
+      <span class="nt">&lt;/ThirdPartyFinanceProvider&gt;</span>
     <span class="nt">&lt;/ns1:OrderStatusResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 </code></pre></div><h2 id='e-commerce-create-invoice-s'>Create invoice(s)</h2>
@@ -8022,7 +8601,148 @@ Content-length: 1448
 <td>URL to large image e.g. <code>https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg</code></td>
 </tr>
 </tbody></table>
-<h2 id='repair-objects-list-repair-objects'>List repair objects</h2>
+<h2 id='repair-objects-search-repair-objects'>Search repair objects</h2>
+<p>Search for repair objects given a query parameter</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/workshop/repair-objects/search.json?query=:query</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>query</code></td>
+<td><code>string</code></td>
+<td>Search query e.g. <code>1006</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint will return a list of in the <code>data</code> element <a href="#repair-objects-repair-object-object">Repair object (object)</a>.</p>
+<h3 id='repair-objects-search-repair-objects-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td>e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>?string</code></td>
+<td>e.g. <code>Unauthorized</code></td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>object[]</code></td>
+<td>Array of <a href="#repair-objects-repair-object-object">Repair object (object)</a></td>
+</tr>
+<tr>
+<td><code>pagination.next_url</code></td>
+<td><code>?string</code></td>
+<td>If there is more data this is the URL to the next API request. <code>https://api.cyclesoftware.nl/api/v1/workshop/repair-objects/search.json?offset=1000&amp;query=abc...</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/customers/1006/objects.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1676</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1004</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiets"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hybride fietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apache Deluxe"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scumzilver"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dames"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mob"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"license_plate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"km_mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"chip_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"engine_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"battery_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-24 11:15:02"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">208410</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object_barcode"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object_type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fiets"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Racefietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brand"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"model"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"color"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heren"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"license_plate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"license_plate"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"km_mileage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"frame_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frame_id"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"chip_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chip_id"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"key_id"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"engine_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"engine_id"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"battery_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lock_id"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v1/workshop/repair-objects/search.json?offset=1000&amp;query=abc"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='repair-objects-list-repair-objects'>List repair objects</h2>
 <p>Get a list of repair objects for a customer</p>
 
 <div class="api-endpoint">
@@ -8526,9 +9246,9 @@ By default the book-date is used.</p>
 <td>CSV of dealer_ids (only applicable for <code>warehouse</code> accounts), dealer_ids are converted to account to get all data from that account</td>
 </tr>
 <tr>
-<td><code>sales_order_id</code></td>
-<td><code>?int</code></td>
-<td>Filters transactions on <code>sales_order_id</code>, multiple transactions can be returned (split-orders)</td>
+<td><code>sales_order_ids</code></td>
+<td><code>?string</code></td>
+<td>Filter sales transaction on a CSV of sales order IDs e.g. <code>1000,2000</code>. Max 25 sales-order-ids are allowed. Multiple transactions per <code>sales_order_id</code> can be returned (split-orders)</td>
 </tr>
 <tr>
 <td><code>token</code></td>
@@ -8763,6 +9483,106 @@ By default the book-date is used.</p>
 <td><code>data[].workshop_order.km_age</code></td>
 <td><code>?integer</code></td>
 <td>KM age of object if registered with this order</td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.object</code></td>
+<td><code>object</code></td>
+<td>Information about of repair object</td>
+</tr>
+<tr>
+<td><code>workshop_order.object.color</code></td>
+<td><code>string</code></td>
+<td>Color of repair object e.g. <code>Zwart</code></td>
+</tr>
+<tr>
+<td><code>workshop_order.object.brand_name</code></td>
+<td><code>string</code></td>
+<td>Brand of repair object e.g. <code>Batavus</code></td>
+</tr>
+<tr>
+<td><code>workshop_order.object.model_name</code></td>
+<td><code>string</code></td>
+<td>Model name of repair object e.g. <code>Cosmo CS 1</code></td>
+</tr>
+<tr>
+<td><code>workshop_order.object.object_id</code></td>
+<td><code>integer</code></td>
+<td>Object ID of repair object e.g. <code>16782</code></td>
+</tr>
+<tr>
+<td><code>workshop_order.object.size</code></td>
+<td><code>string</code></td>
+<td>Size description of repair object e.g. <code>L</code></td>
+</tr>
+<tr>
+<td><code>workshop_order.object.year</code></td>
+<td><code>?int</code></td>
+<td>Model year of repair object or <code>null</code></td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.identification</code></td>
+<td><code>object</code></td>
+<td>Identifications of repair object</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.battery_number</code></td>
+<td><code>?string</code></td>
+<td>The battery number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.battery_number_2</code></td>
+<td><code>?string</code></td>
+<td>The battery number_2 if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.engine_number</code></td>
+<td><code>?string</code></td>
+<td>The engine number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.frame_number</code></td>
+<td><code>?string</code></td>
+<td>The frame number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.imei_number</code></td>
+<td><code>?string</code></td>
+<td>The imei number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.key_number</code></td>
+<td><code>?string</code></td>
+<td>The key number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.key_number_2</code></td>
+<td><code>?string</code></td>
+<td>The key number_2 if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.license_plate_number</code></td>
+<td><code>?string</code></td>
+<td>The license plat if set if se</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.lock_number</code></td>
+<td><code>?string</code></td>
+<td>The lock number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.lock_number_2</code></td>
+<td><code>?string</code></td>
+<td>The lock number_2 if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.serial_number</code></td>
+<td><code>?string</code></td>
+<td>The serial number if set</td>
+</tr>
+<tr>
+<td><code>workshop_order.identification.velopass_code</code></td>
+<td><code>?string</code></td>
+<td>The velopass code if set</td>
 </tr>
 <tr>
 <td><code>data[].sales_items</code></td>
@@ -9322,7 +10142,29 @@ By default the book-date is used.</p>
                 </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                      </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giant"</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zwart"</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cosmo CS 1"</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">19224</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L"</span><span class="p">,</span><span class="w">
+                      </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                     </span><span class="nl">"battery_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BATT3333"</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"battery_number_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"engine_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"frame_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR12121212"</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"imei_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"key_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"key_number_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"license_plate_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"lock_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"lock_number_2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"serial_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="nl">"velopass_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+              </span><span class="p">},</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nl">"sales_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
@@ -11864,7 +12706,12 @@ not included.</p>
 <tr>
 <td><code>data.result_items[].stock_stores[].quantity</code></td>
 <td><code>integer</code></td>
-<td>quantity available including demo <code>0</code></td>
+<td>Sum of available quantity <code>new</code>+<code>demo</code>+<code>used</code>+<code>rental</code> e.g. <code>4</code> (quantity of objects have priority over article stock if both are present)</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].quantity_new</code></td>
+<td><code>integer</code></td>
+<td>Quantity of new models</td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].quantity_demo</code></td>
@@ -11872,9 +12719,39 @@ not included.</p>
 <td>Quantity of demo models</td>
 </tr>
 <tr>
+<td><code>data.result_items[].stock_stores[].quantity_used</code></td>
+<td><code>integer</code></td>
+<td>Quantity of used models</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].quantity_rental</code></td>
+<td><code>integer</code></td>
+<td>Quantity of rental models</td>
+</tr>
+<tr>
 <td><code>data.result_items[].stock_stores[].quantity_expected</code></td>
 <td><code>integer</code></td>
 <td>Quantity expected from supplier</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].objects</code></td>
+<td><code>object[]</code></td>
+<td>List of stock objects, empty for articles</td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].objects[].object_id</code></td>
+<td><code>integer</code></td>
+<td>Object ID e.g. <code>10001</code></td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].objects[].status</code></td>
+<td><code>string</code></td>
+<td>Status of object e.g. <code>new</code>, <code>demo</code>, <code>rental</code>, <code>expected</code></td>
+</tr>
+<tr>
+<td><code>data.result_items[].stock_stores[].objects[].delivery_date</code></td>
+<td><code>?date</code></td>
+<td>Delivery date if known and status <code>expected</code> e.g. <code>19-02-2025</code></td>
 </tr>
 <tr>
 <td><code>data.result_items[].stock_stores[].delivery_dates</code></td>
@@ -11914,16 +12791,50 @@ not included.</p>
                 </span><span class="nl">"stock_available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"stock_supplier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"stock_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock_quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"stock_stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                     </span><span class="p">{</span><span class="w">
                         </span><span class="nl">"dealer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                         </span><span class="nl">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
                         </span><span class="nl">"store_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0733030050"</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"quantity_expected"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"delivery_dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_new"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_demo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_used"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_rental"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"quantity_expected"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"objects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36564</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">365634</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rental"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">365635</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">365633</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"used"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">189186</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"expected"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-04-2025"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">189188</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"expected"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01-05-2025"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nl">"delivery_dates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                          </span><span class="s2">"01-04-2025"</span><span class="p">,</span><span class="w">
+                          </span><span class="s2">"01-05-2025"</span><span class="p">,</span><span class="w">
+                        </span><span class="p">]</span><span class="w">
                     </span><span class="p">}</span><span class="w">
                 </span><span class="p">],</span><span class="w">
                 </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="w">
@@ -12969,8 +13880,13 @@ Be aware! The goods in the packinglist will not be added to the stock!
 </tr>
 <tr>
 <td><code>day_count</code></td>
-<td><code>integer</code></td>
+<td><code>?integer</code></td>
 <td>Number of days to retrieve information for e.g. <code>3</code></td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td><code>?date</code></td>
+<td>Start date in results e.g. <code>2024-10-03</code></td>
 </tr>
 </tbody></table>
 <h3 id='workshop-trading-hours-properties'>Properties</h3>
@@ -13115,6 +14031,11 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <td><code>offset</code></td>
 <td><code>integer</code></td>
 <td>Offset given in <code>pagination.next_url</code> pagination e.g. <code>3</code></td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td><code>?date</code></td>
+<td>Start date in results e.g. <code>2024-10-03</code></td>
 </tr>
 </tbody></table>
 <h3 id='workshop-trading-hours-per-store-properties'>Properties</h3>
@@ -13551,7 +14472,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <tr>
 <td><code>status_id</code></td>
 <td><code>integer</code></td>
-<td><code>POST</code></td>
+<td><code>POST&#124;PUT</code></td>
 <td>Status see common enum <code>workshop_order_status</code> e.g. <code>7</code></td>
 </tr>
 <tr>
@@ -13730,10 +14651,205 @@ Be aware! The goods in the packinglist will not be added to the stock!
 </tr>
 </tbody></table>
 <h2 id='workshop-orders-list-workshop-orders'>List workshop orders</h2>
-<p>List workshop orders for a specific customer</p>
+<p>List workshop orders for given parameters</p>
 
-<p>@TODO</p>
-<h2 id='workshop-orders-get-workshop-order'>Get workshop order</h2>
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/workshop/orders.json?object_query=:object_query&store_id=:store_id&status_ids=:status_ids&customer_id=:customer_id&repair_object_id=:repair_object_id&&date_from=:date_from&date_until=:date_until</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>object_query</code></td>
+<td><code>?string</code></td>
+<td>Search for repair object. A maximum of <code>1000</code> repair objects are selected for filtering workshop orders</td>
+</tr>
+<tr>
+<td><code>store_id</code></td>
+<td><code>?int</code></td>
+<td>Store ID e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>status_ids</code></td>
+<td><code>?string</code></td>
+<td>Filter on a CSV of status ids e.g. <code>1,2</code>, see common enum for <code>workshop_order_status</code></td>
+</tr>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>?bool</code></td>
+<td>Filter on customer ID e.g. <code>1006</code> (can&#39;t be used in combination with <code>object_query</code> parameter)</td>
+</tr>
+<tr>
+<td><code>repair_object_id</code></td>
+<td><code>?int</code></td>
+<td>Filters on repair object e.g. <code>10001</code> (can&#39;t be used in combination with <code>object_query</code> parameter)</td>
+</tr>
+<tr>
+<td><code>date_from</code></td>
+<td><code>?date</code></td>
+<td>Filters all start dates from this date e.g. <code>2025-01-20</code></td>
+</tr>
+<tr>
+<td><code>date_until</code></td>
+<td><code>?date</code></td>
+<td>Filters all start dates until this date start date e.g. <code>2025-01-25</code></td>
+</tr>
+</tbody></table>
+<h3 id='workshop-orders-list-workshop-orders-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td>true if an error occurred</td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>?string</code></td>
+<td>Empty if no error</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>object[]</code></td>
+<td>Array with Workshop order (object)</td>
+</tr>
+<tr>
+<td><code>pagination.next_url</code></td>
+<td><code>?string</code></td>
+<td>URL to next result set if available, <code>null</code> otherwise.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/workshop/orders.json?date_from=2023-03-07&amp;date_until=2023-03-07</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">3448</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"workshop_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978768</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978768</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"repair_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1105</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"work_number"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"datetime_scheduled_start"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-07 16:54:23"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"datetime_scheduled_finished"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-07 17:54:23"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-07 16:54:23"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"datetime_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-07 16:54:23"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"mechanic_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_by_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"last_update_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"phone_number_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tel"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"repair_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posted repair"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reparatie voltooid"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"borrowed_object_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"total_repair_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"custom_repair_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"workshop_order_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"special_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"102"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In- en uitbouwen electromotor in- en uitbouwen accu"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"unit_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">9000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"unit_discount_amount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">9000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">743</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"item_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"item_status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"special_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"102"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In- en uitbouwen electromotor in- en uitbouwen accu"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"unit_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">9000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"unit_discount_amount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">9000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">743</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"item_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"item_status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"item_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"special_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"999"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Title"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"unit_price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"unit_discount_amount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"price_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">12000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">991</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"item_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"item_status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://..."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='workshop-orders-get-workshop-order'>Get workshop order</h2>
 <p>Get workshop order</p>
 
 <blockquote>
@@ -14027,10 +15143,24 @@ Be aware! The goods in the packinglist will not be added to the stock!
 </span></code></pre></div><h2 id='workshop-orders-update-workshop-order'>Update workshop order</h2>
 <p>Update a workshop order</p>
 
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>send_customer_messages</code></td>
+<td><code>bool</code></td>
+<td><code>true</code> send e-mail and phone messages to the customer when <code>status_id</code> is changed</td>
+</tr>
+</tbody></table>
+
 <blockquote>
 <p>HTTP request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/v1/customers/24/workshop-order/397876.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/v1/customers/24/workshop-order/397876.json?send_customer_messages=true</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic</span>
 <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
@@ -14046,6 +15176,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
     </span><span class="nl">"borrowed_object_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"total_repair_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
     </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
     </span><span class="nl">"order_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">

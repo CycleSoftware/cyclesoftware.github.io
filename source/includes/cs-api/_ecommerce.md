@@ -23,7 +23,7 @@ The latest definition of the WSDL specification can be found at:
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">WSDL-SOAP</i>
-		<h6>/app/cs/api/ecommerce/soap_2_11/?wsdl</h6>
+		<h6>/app/cs/api/ecommerce/soap_2_12/?wsdl</h6>
 	</div>
 </div>
 
@@ -93,6 +93,12 @@ The latest definition of the WSDL specification can be found at:
 | `Payments.Payment[].payment_amount`                                     | `decimal`             | The payment amount e.g. `100.00`                                                                                                                                                                                                                                                                    |
 | `Payments.Payment[].voucher_or_discount_code`                           | `?string`             | The voucher code e.g. `1000-2000-3000-4000`                                                                                                                                                                                                                                                         |
 | `Payments.Payment[].payment_for_customer_id`                            | `?integer`            | The customer ID to assign the payment to when using `order_item_invoice_customer_id`                                                                                                                                                                                                                |
+| `ThirdPartyFinanceProvider`                                             | `?object`             | Allows for third party insurance involvement. This option can not be used with split orders.                                                                                                                                                                                                        |
+| `ThirdPartyFinanceProvider.third_party_payout_type`                     | `string`              | Any of `insurance`, `damage`, `delete`. `delete` applies when updating the order                                                                                                                                                                                                                    |
+| `ThirdPartyFinanceProvider.third_party_customer_id`                     | `integer`             | The customer ID of the insurance provider `123823`                                                                                                                                                                                                                                                  |
+| `ThirdPartyFinanceProvider.third_party_payout_amount`                   | `decimal`             | The nett amount paid by insurance company e.g. `1250.00`                                                                                                                                                                                                                                            |
+| `ThirdPartyFinanceProvider.third_party_own_risk_amount`                 | `decimal`             | The own risk amount for the customer e.g. `250.00`                                                                                                                                                                                                                                                  |
+| `ThirdPartyFinanceProvider.third_party_reference`                       | `?string`             | Reference of the insurance order e.g. `ANWB-12222`                                                                                                                                                                                                                                                  |
 
 ## SaveOrder ##
 
@@ -230,6 +236,18 @@ try {
             ],
 ]
     ];
+    
+    if ($insurance) {
+        // Optional in case of insurance  
+        $input->ThirdPartyFinanceProvider = (object)[
+            'third_party_payout_type' => 'damage', // damage, insurance or delete
+            'third_party_customer_id' => '200002', // the customer ID of the Insurance company.
+            'third_party_payout_amount' => '1000.00', // nett payment by insurance
+            'third_party_own_risk_amount' => '250.00',
+            'third_party_reference' => 'Reference1',
+        ];
+    }
+    
     $result = $client->SaveOrder($input);
     $order_id = $result->order_id;
     $customer_id = $result->customer_id;
@@ -346,6 +364,13 @@ Content-length: 4614
           <voucher_or_discount_code>1000-2000-3000-4000</voucher_or_discount_code>
         </Payment>
       </Payments>
+      <ThirdPartyFinanceProvider>
+        <third_party_payout_type>damage</third_party_payout_type>
+        <third_party_customer_id>200002</third_party_customer_id>
+        <third_party_payout_amount>1000.00</third_party_payout_amount>
+        <third_party_own_risk_amount>250.00</third_party_own_risk_amount>
+        <third_party_reference>Reference1</third_party_reference>
+      </ThirdPartyFinanceProvider>
     </ns1:SaveOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -396,6 +421,14 @@ Content-length: 2083
           <order_item_object_id/>
           <order_item_invoice_customer_id>1000</order_item_invoice_customer_id>
         </OrderItem>
+      </OrderItems>
+      <ThirdPartyFinanceProvider>
+        <third_party_payout_type>damage</third_party_payout_type>
+        <third_party_customer_id>200002</third_party_customer_id>
+        <third_party_payout_amount>1000.00</third_party_payout_amount>
+        <third_party_own_risk_amount>250.00</third_party_own_risk_amount>
+        <third_party_reference>Reference1</third_party_reference>
+      </ThirdPartyFinanceProvider>
     </SaveOrderResponse>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -661,6 +694,7 @@ Content-length: 2083
           <order_item_object_id/>
           <order_item_invoice_customer_id>1000</order_item_invoice_customer_id>
         </OrderItem>
+      </OrderItems>
     </SaveQuoteResponse>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -670,16 +704,19 @@ Content-length: 2083
 
 Update some header fields in the sales order. The following fields can be updated:
 
-| Property                            | Type       | Description                                                                                       |
-|-------------------------------------|------------|---------------------------------------------------------------------------------------------------|
-| `order_reference_text`              | `string`   | Order reference text value                                                                        |
-| `order_payment_method_description`  | `string`   | Legacy field with description of the payment method, this will not process a payment on the order |
-| `order_ship_to_customer`            | `bool`     | `true` if the order will be shipped to the customer, `false` for pickup in store                  |
-| `order_shipment_method_description` | `string`   | Description of shipment method                                                                    |
-| `order_date_preferred_delivery`     | `date`     | Date of preferred delivery e.g. `2023-01-01`                                                      |
-| `order_track_trace_reference`       | `string`   | Track and Trace ID                                                                                |
-| `order_remarks`                     | `string`   | General remarks about the order                                                                   |
-| `AddPayments`                       | `object[]` | Add payments to the order, see `Payments.Payment` structure                                       |
+| Property                            | Type       | Description                                                                                                                                                          |
+|-------------------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `order_reference_text`              | `string`   | Order reference text value                                                                                                                                           |
+| `order_payment_method_description`  | `string`   | Legacy field with description of the payment method, this will not process a payment on the order                                                                    |
+| `order_ship_to_customer`            | `bool`     | `true` if the order will be shipped to the customer, `false` for pickup in store                                                                                     |
+| `order_shipment_method_description` | `string`   | Description of shipment method                                                                                                                                       |
+| `order_date_preferred_delivery`     | `date`     | Date of preferred delivery e.g. `2023-01-01`                                                                                                                         |
+| `order_track_trace_reference`       | `string`   | Track and Trace ID                                                                                                                                                   |
+| `order_remarks`                     | `string`   | General remarks about the order                                                                                                                                      |
+| `order_status_id`                   | `integer`  | Status ID of the order see common enum `sales_order_status` for possible values, this could trigger customer messages if `order_send_customer_messages` not provider |
+| `order_send_customer_messages`      | `boolean`  | If status ID triggers customer messages, you can provide `false` to prevent customer messages being sent.                                                            |                                
+| `AddPayments`                       | `object[]` | Add payments to the order, see `Payments.Payment` structure                                                                                                          |
+| `ThirdPartyFinanceProvider`         | `?object`  | Add insurance payout details to the order, see `ThirdPartyFinanceProvider` structure in `SaveOrder`                                                                  |
 
 ```php
 <?php
@@ -721,6 +758,16 @@ try {
                                 'name' => 'order_track_trace_reference',
                                 'value' => '615beab217c76',
                             ],
+                        3 =>
+                            (object)[
+                                'name' => 'order_status_id',
+                                'value' => '4', // see common enum endpoint 
+                            ],
+                        4 =>
+                            (object)[
+                                'name' => 'order_send_customer_messages',
+                                'value' => 'true', // allow customer message to be sent..
+                            ],
                     ],
             ],
         'AddPayments' =>  (object)[
@@ -739,6 +786,16 @@ try {
                 ],
             ],
     ];
+    if ($insurance) {
+        // Optional in case of insurance  
+        $input->ThirdPartyFinanceProvider = (object)[
+            'third_party_payout_type' => 'damage', // damage, insurance or delete
+            'third_party_customer_id' => '2', // the customer ID of the Insurance company.
+            'third_party_payout_amount' => '1000.00', // nett payment by insurance
+            'third_party_own_risk_amount' => '250.00',
+            'third_party_reference' => 'Reference1',
+        ];
+    }
     $result = $client->UpdateOrder($input);
     var_dump($result);
 }
@@ -780,6 +837,14 @@ Content-length: 846
           <name>order_remarks</name>
           <value>Will pickup at 13.00</value>
         </UpdateValue>
+        <UpdateValue>
+          <name>order_status_id</name>
+          <value>4</value>
+        </UpdateValue>
+        <UpdateValue>
+          <name>order_send_customer_messages</name>
+          <value>true</value>
+        </UpdateValue>
       </UpdateValues>
       <AddPayments>
         <Payment>
@@ -797,6 +862,13 @@ Content-length: 846
           <voucher_or_discount_code>1000-2000-3000-4000</voucher_or_discount_code>
         </Payment>
       </AddPayments>
+      <ThirdPartyFinanceProvider>
+        <third_party_payout_type>damage</third_party_payout_type>
+        <third_party_customer_id>2</third_party_customer_id>
+        <third_party_payout_amount>1000.00</third_party_payout_amount>
+        <third_party_own_risk_amount>250.00</third_party_own_risk_amount>
+        <third_party_reference>Reference1</third_party_reference>
+      </ThirdPartyFinanceProvider>
     </ns1:UpdateOrderRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
@@ -813,7 +885,7 @@ Content-length: 2446
       <order_id>3623</order_id>
       <order_reference_text>563c8b1bc4ada</order_reference_text>
       <order_reference_id>-663982782</order_reference_id>
-      <order_status_text>In behandeling</order_status_text>
+      <order_status_text>Staat klaar</order_status_text>
       <order_track_trace_reference>563c8b1bc4ada</order_track_trace_reference>
       <order_date_preferred_delivery>2015-11-09 15:50:35</order_date_preferred_delivery>
       <order_vat_country_code/>
@@ -850,6 +922,13 @@ Content-length: 2446
           <order_item_invoice_customer_id>1000</order_item_invoice_customer_id>
         </OrderResultItem>
       </OrderResultItems>
+      <ThirdPartyFinanceProvider>
+        <third_party_payout_type>damage</third_party_payout_type>
+        <third_party_customer_id>2</third_party_customer_id>
+        <third_party_payout_amount>1000.00</third_party_payout_amount>
+        <third_party_own_risk_amount>250.00</third_party_own_risk_amount>
+        <third_party_reference>Reference1</third_party_reference>
+      </ThirdPartyFinanceProvider>
     </ns1:OrderStatusResponse>
   </SOAP-ENV:Body>
 ```

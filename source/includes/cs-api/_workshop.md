@@ -43,10 +43,11 @@ Workshop trading hours for default or specific store
     </div>
 </div>
 
-| **GET parameter** | **Type**  | **Description**                                     |
-|-------------------|-----------|-----------------------------------------------------|
-| `store_id`        | `integer` | Store ID to get info for .e.g `2`                   |
-| `day_count`       | `integer` | Number of days to retrieve information for e.g. `3` |
+| **GET parameter** | **Type**   | **Description**                                     |
+|-------------------|------------|-----------------------------------------------------|
+| `store_id`        | `integer`  | Store ID to get info for .e.g `2`                   |
+| `day_count`       | `?integer` | Number of days to retrieve information for e.g. `3` |
+| `start_date`      | `?date`    | Start date in results e.g. `2024-10-03`             |
 
 ### Properties
 
@@ -183,6 +184,8 @@ Get the workshop trading hours per store
 |-------------------|-----------|-----------------------------------------------------------|
 | `day_count`       | `integer` | Number of days to retrieve information for e.g. `3`       |
 | `offset`          | `integer` | Offset given in `pagination.next_url` pagination e.g. `3` |
+| `start_date`      | `?date`   | Start date in results e.g. `2024-10-03`                   |
+
 
 
 ### Properties

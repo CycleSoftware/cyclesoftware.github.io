@@ -26,7 +26,7 @@ Read, create or update workshop orders
 | `last_update_employee_id`                         | `integer`   | `POST`                     | Last update by employee ID (see common employees) e.g. `1`                                                                         |
 | `phone_number_id`                                 | `string`    | `POST`                     | Phone number ID for communication e.g. `tel`                                                                                       |
 | `repair_description`                              | `string`    | <code>POST&#124;PUT</code> | Description of repair e.g. `posted repair`                                                                                         |
-| `status_id`                                       | `integer`   | `POST`                     | Status see common enum `workshop_order_status` e.g. `7`                                                                            |
+| `status_id`                                       | `integer`   | <code>POST&#124;PUT</code> | Status see common enum `workshop_order_status` e.g. `7`                                                                            |
 | `status_text`                                     | `string`    | `readonly`                 | Status text see common enum `workshop_order_status` e.g. `Reparatie voltooid`                                                      |
 | `invoice_number`                                  | `integer`   | `readonly`                 | Sales transaction / invoice number `0` if not invoiced                                                                             |
 | `borrowed_object_reference`                       | `string`    | <code>POST&#124;PUT</code> | Borrowed object reference                                                                                                          |
@@ -59,9 +59,156 @@ Read, create or update workshop orders
 
 ## List workshop orders
 
-List workshop orders for a specific customer
+List workshop orders for given parameters
 
-@TODO
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v1/workshop/orders.json?object_query=:object_query&store_id=:store_id&status_ids=:status_ids&customer_id=:customer_id&repair_object_id=:repair_object_id&&date_from=:date_from&date_until=:date_until</h6>
+	</div>
+</div>
+
+| GET parameter      | Type      | Description                                                                                             |
+|--------------------|-----------|---------------------------------------------------------------------------------------------------------|
+| `object_query`     | `?string` | Search for repair object. A maximum of `1000` repair objects are selected for filtering workshop orders |
+| `store_id`         | `?int`    | Store ID e.g. `1`                                                                                       |
+| `status_ids`       | `?string` | Filter on a CSV of status ids e.g. `1,2`, see common enum for `workshop_order_status`                   |
+| `customer_id`      | `?bool`   | Filter on customer ID e.g. `1006` (can't be used in combination with `object_query` parameter)          |
+| `repair_object_id` | `?int`    | Filters on repair object e.g. `10001` (can't be used in combination with `object_query` parameter)      |
+| `date_from`        | `?date`   | Filters all start dates from this date e.g. `2025-01-20`                                                |
+| `date_until`       | `?date`   | Filters all start dates until this date start date e.g. `2025-01-25`                                    |
+
+
+### Properties
+
+| Property              | Type       | Description                                            |
+|-----------------------|------------|--------------------------------------------------------|
+| `error`               | `boolean`  | true if an error occurred                              | 
+| `error_message`       | `?string`  | Empty if no error                                      |                                                  
+| `data`                | `object[]` | Array with Workshop order (object)                     |
+| `pagination.next_url` | `?string`  | URL to next result set if available, `null` otherwise. |
+
+
+
+> HTTP request
+
+```http
+GET /api/v1/workshop/orders.json?date_from=2023-03-07&date_until=2023-03-07 HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+Content-length: 3448
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+
+{
+    "error": false,
+    "error_message": null,
+    "data": {
+        "workshop_order_id": 978768,
+        "sales_order_id": 978768,
+        "customer_id": 24,
+        "store_id": 1,
+        "repair_object_id": 1105,
+        "is_active": true,
+        "reference_text": "work_number",
+        "datetime_scheduled_start": "2023-03-07 16:54:23",
+        "datetime_scheduled_finished": "2023-03-07 17:54:23",
+        "datetime_created": "2023-03-07 16:54:23",
+        "datetime_modified": "2023-03-07 16:54:23",
+        "mechanic_employee_id": 12,
+        "created_by_employee_id": 1,
+        "last_update_employee_id": 1,
+        "phone_number_id": "tel",
+        "repair_description": "posted repair",
+        "status_id": 7,
+        "status_text": "Reparatie voltooid",
+        "invoice_number": 0,
+        "borrowed_object_reference": "",
+        "total_repair_time_minutes": 60,
+        "custom_repair_time_minutes": 0,
+        "delivery_method_id": 0,
+        "workshop_order_type_id": 1,
+        "order_items": [
+            {
+                "item_id": 1,
+                "item_type_id": 4,
+                "special_type_id": 0,
+                "quantity": 1,
+                "barcode": "102",
+                "pos_group_id": 2,
+                "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+                "unit_price_in_vat_cents": 9000,
+                "unit_discount_amount_in_vat_cents": 0,
+                "price_in_vat_cents": 9000,
+                "discount_percentage": 0,
+                "vat_code": 1,
+                "vat_percentage": 9,
+                "vat_amount_cents": 743,
+                "item_status_id": 0,
+                "item_status_text": "Geen status",
+                "unit_work_time_minutes": 0,
+                "assigned_to_customer_id": 24
+            },
+            {
+                "item_id": 2,
+                "item_type_id": 1,
+                "special_type_id": 0,
+                "quantity": 1,
+                "barcode": "102",
+                "pos_group_id": 2,
+                "description": "In- en uitbouwen electromotor in- en uitbouwen accu",
+                "unit_price_in_vat_cents": 9000,
+                "unit_discount_amount_in_vat_cents": 0,
+                "price_in_vat_cents": 9000,
+                "discount_percentage": 0,
+                "vat_code": 1,
+                "vat_percentage": 9,
+                "vat_amount_cents": 743,
+                "item_status_id": 0,
+                "item_status_text": "Geen status",
+                "unit_work_time_minutes": 0,
+                "assigned_to_customer_id": 24
+            },
+            {
+                "item_id": 3,
+                "item_type_id": 4,
+                "special_type_id": 0,
+                "quantity": 1,
+                "barcode": "999",
+                "pos_group_id": 2,
+                "description": "Test Title",
+                "unit_price_in_vat_cents": 12000,
+                "unit_discount_amount_in_vat_cents": 0,
+                "price_in_vat_cents": 12000,
+                "discount_percentage": 0,
+                "vat_code": 1,
+                "vat_percentage": 9,
+                "vat_amount_cents": 991,
+                "item_status_id": 0,
+                "item_status_text": "Geen status",
+                "unit_work_time_minutes": 60,
+                "assigned_to_customer_id": 24
+            }
+        ]
+    },
+    "pagination": {
+        "next_url": "https://..."
+    }
+}
+```
+
 
 ## Get workshop order
 
@@ -366,10 +513,16 @@ X-RateLimit-Daily-Reset: 1678230000
 
 Update a workshop order
 
+
+| GET parameter            | Type   | Description                                                                       |
+|--------------------------|--------|-----------------------------------------------------------------------------------|
+| `send_customer_messages` | `bool` | `true` send e-mail and phone messages to the customer when `status_id` is changed |
+
+
 > HTTP request
 
 ```http
-PUT /api/v1/customers/24/workshop-order/397876.json HTTP/1.1
+PUT /api/v1/customers/24/workshop-order/397876.json?send_customer_messages=true HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic
 Basic VXNlcm5hbWU6UGFzc3dvcmQ=
@@ -385,6 +538,7 @@ Content-length: 2237
     "borrowed_object_reference": "",
     "total_repair_time_minutes": 30,
     "delivery_method_id": 0,
+    "status_id": 4,
     "order_items": [
         {
             "item_id": 1,

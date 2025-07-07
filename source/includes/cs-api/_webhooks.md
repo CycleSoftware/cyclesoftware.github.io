@@ -287,7 +287,7 @@ Every JSON payload has the same structure. The payload object is different per e
         "item_status_id": 0,
         "item_status_text": "Geen status",
         "unit_work_time_minutes": 0,
-        "assigned_to_customer_id":  6667
+        "assigned_to_customer_id": 6667
       }
     ],
     "customer": {
@@ -361,29 +361,32 @@ Every JSON payload has the same structure. The payload object is different per e
 
 ## Workshop orders ##
 
-| Event name               | Description                                                 |
-|--------------------------|-------------------------------------------------------------|
-| `workshop_order.created` | Fired when the workshop order / repair is created           |
-| `workshop_order.updated` | Fired when the workshop order / repair is updated           |
-| `workshop_order.deleted` | Fired when the workshop order / repair is marked as deleted |
+| Event name                          | Description                                                          |
+|-------------------------------------|----------------------------------------------------------------------|
+| `workshop_order.created`            | Fired when the workshop order / repair is created                    |
+| `workshop_order.updated`            | Fired when the workshop order / repair is updated                    |
+| `workshop_order.deleted`            | Fired when the workshop order / repair is marked as deleted          |
+| `workshop_order_roadworthy.created` | Fired when the roadworthy workshop order for a sales order is created |
+| `workshop_order_roadworthy.updated` | Fired when the roadworthy workshop order for a sales order is updated |
+| `workshop_order_roadworthy.deleted` | Fired when the roadworthy workshop order for a sales order is deleted |
 
 ### Properties
 
-| Property                      | Type       | Description                                                      |
-|-------------------------------|------------|------------------------------------------------------------------|
-| `workshop_order_id`           | `integer`  | Workshop order ID e.g. `50032`                                   |
-| `repair_object_id`            | `integer`  | Repair object ID e.g. `22534`                                    |
-| `reference_text`              | `string`   | Reference of order `RefText`                                     |
-| `datetime_scheduled_start`    | `datetime` | Scheduled start `2019-06-07 14:30:00`                            |
-| `datetime_scheduled_finished` | `datetime` | Scheduled finished `2019-06-07 16:10:00`                         |
-| `mechanic_employee_id`        | `integer`  | Assigned to mechanic see common employees `40899`                |
-| `repair_description`          | `string`   | Description of workshop order `Band plakken`                     |
-| `status_id`                   | `integer`  | Workshop order status ID see common enum e.g. `7`                |
-| `status_text`                 | `string`   | Workshop order status see common enum e.g. `Reparatie voltooid`  |
-| `borrowed_object_reference`   | `string`   | Reference to borrowed object `BORROWEDBIKE1`                     |
-| `total_repair_time_minutes`   | `integer`  | Total time of repair in minutes e.g. `100` (Custom time + items) |
-| `custom_repair_time_minutes`  | `integer`  | Custom time of repair in minutes e.g. `0`                        |
-| `sales_order`                 | `object`   | See structure of sales order webhook `                           |
+| Property                      | Type       | Description                                                     |
+|-------------------------------|------------|-----------------------------------------------------------------|
+| `workshop_order_id`           | `integer`  | Workshop order ID e.g. `50032`                                  |
+| `repair_object_id`            | `integer`  | Repair object ID e.g. `22534`                                   |
+| `reference_text`              | `string`   | Reference of order `RefText`                                    |
+| `datetime_scheduled_start`    | `datetime` | Scheduled start `2019-06-07 14:30:00`                           |
+| `datetime_scheduled_finished` | `datetime` | Scheduled finished `2019-06-07 16:10:00`                        |
+| `mechanic_employee_id`        | `integer`  | Assigned to mechanic see common employees `40899`               |
+| `repair_description`          | `string`   | Description of workshop order `Band plakken`                    |
+| `status_id`                   | `integer`  | Workshop order status ID see common enum e.g. `7`               |
+| `status_text`                 | `string`   | Workshop order status see common enum e.g. `Reparatie voltooid` |
+| `borrowed_object_reference`   | `string`   | Reference to borrowed object `BORROWEDBIKE1`                    |
+| `total_repair_time_minutes`   | `integer`  | Total time of repair in minutes e.g. `100` (Custom time + items)|
+| `custom_repair_time_minutes`  | `integer`  | Custom time of repair in minutes e.g. `0`                       |
+| `sales_order`                 | `object`   | See structure of sales order webhook                            |
 
 > Payload example
 
@@ -655,9 +658,9 @@ Every JSON payload has the same structure. The payload object is different per e
 
 ## Payments created ##
 
-| Event name            | Description                                                                  |
-|-----------------------|------------------------------------------------------------------------------|
-| `payments.created`    | Will be delivered when payments were registered for a sales order or invoice |
+| Event name         | Description                                                                  |
+|--------------------|------------------------------------------------------------------------------|
+| `payments.created` | Will be delivered when payments were registered for a sales order or invoice |
 
 ### Payload properties ###
 

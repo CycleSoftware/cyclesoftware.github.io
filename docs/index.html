@@ -16297,7 +16297,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
         </span><span class="nl">"item_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"item_status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Geen status"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"unit_work_time_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w">  </span><span class="mi">6667</span><span class="w">
+        </span><span class="nl">"assigned_to_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6667</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -16386,6 +16386,18 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <td><code>workshop_order.deleted</code></td>
 <td>Fired when the workshop order / repair is marked as deleted</td>
 </tr>
+<tr>
+<td><code>workshop_order_roadworthy.created</code></td>
+<td>Fired when the roadworthy workshop order for a sales order is created</td>
+</tr>
+<tr>
+<td><code>workshop_order_roadworthy.updated</code></td>
+<td>Fired when the roadworthy workshop order for a sales order is updated</td>
+</tr>
+<tr>
+<td><code>workshop_order_roadworthy.deleted</code></td>
+<td>Fired when the roadworthy workshop order for a sales order is deleted</td>
+</tr>
 </tbody></table>
 <h3 id='webhooks-workshop-orders-properties'>Properties</h3>
 <table><thead>
@@ -16458,7 +16470,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <tr>
 <td><code>sales_order</code></td>
 <td><code>object</code></td>
-<td>See structure of sales order webhook `</td>
+<td>See structure of sales order webhook</td>
 </tr>
 </tbody></table>
 

@@ -677,8 +677,8 @@ invoices.
 	</div>
 </div>
 
-| URL parameter     | Type      | Description                                                |
-|-------------------|-----------|------------------------------------------------------------|
+| URL parameter        | Type      | Description                                                |
+|----------------------|-----------|------------------------------------------------------------|
 | `:workshop_order_id` | `integer` | Workshop order ID <i class="label label-info">required</i> |
 
 ### Limits ###

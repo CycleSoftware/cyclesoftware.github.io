@@ -662,3 +662,119 @@ X-RateLimit-Daily-Reset: 1678230000
 }
 ```
 
+
+## Create invoice(s) ##
+
+Create invoice(s) for workshop order. If the workshop-order is split amongst several customers, the result will yield multiple
+invoices.
+
+- Scope(s): `resources`
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/api/v1/workshop/orders/:workshop_order_id/create-invoices.json</h6>
+	</div>
+</div>
+
+| URL parameter     | Type      | Description                                                |
+|-------------------|-----------|------------------------------------------------------------|
+| `:workshop_order_id` | `integer` | Workshop order ID <i class="label label-info">required</i> |
+
+### Limits ###
+
+See [API limits](#introduction-limits) for more information about API rate limiting.
+
+| Type             | Limit     | Description                     |
+|------------------|-----------|---------------------------------|
+| `minutely-limit` | `15`      | 15 requests per minute allowed  |
+| `daily-limit`    | `default` | The default daily limit applies |
+
+The following optional POST parameters can be used to specify specific behavior.
+
+| POST parameter                                    | Type      | Default                                              | Description                                                                                                    |
+|---------------------------------------------------|-----------|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| `employee_id`                                     | `integer` | The sales employee registered for the workshop-order | Employee ID for registration                                                                                   |
+| `workshop_order_status_id`                        | `integer` | `null`                                               | New workshop order status. See common endpoint                                                                 |
+| `book`                                            | `boolean` | `false`                                              | if `true`, the invoice will be booked in administration. Otherwise the invoice will be pro-forma               |
+| `customer_messages`                               | `boolean` | `true`                                               | if `true` a phone- of e-mail message will be sent (according to account settings) to inform the customer       |
+| `allow_resend_messages`                           | `boolean` | `false`                                              | if `true` a phone- of e-mail message will be sent again if there were previous messages                        |
+| `apply_service_vat_correction`                    | `boolean` | `true`                                               | if `true` service VAT correction will be applied if active in account settings                                 |
+| `split_items_as_text_on_default_customer_invoice` | `boolean` | `true`                                               | if `true` in case of split order the invoice items will be displayed as text items on default customer invoice |
+
+### Properties ###
+
+| Property                                    | Type       | Description                                      |
+|---------------------------------------------|------------|--------------------------------------------------|
+| `error`                                     | `boolean`  | `true` if an error occurred                      |
+| `error_message`                             | `?string`  | Error message if occurred                        |
+| `invoices`                                  | `object[]` | Array of created invoices                        |
+| `invoices[].invoice_number`                 | `integer`  | Invoice number e.g. `20173383`                   |
+| `invoices[].customer_id`                    | `integer`  | Customer number of invoice e.g. `9011`           |
+| `invoices[].sent_messages.phone_message`    | `boolean`  | `true` if a phone message was sent               |
+| `invoices[].sent_messages.email_message`    | `boolean`  | `true` if an e-mail message was sent             |
+| `invoices[].documents`                      | `object[]` | Array of generated documents                     |
+| `invoices[].documents[].document_mime_type` | `string`   | Mime type of the document e.g. `application/pdf` |
+| `invoices[].documents[].document_base64`    | `string`   | Base64 encoded string of document                |
+
+> HTTP request
+
+```http
+POST /api/v1/workshop/orders/1000/create-invoices.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+Content-type: application/x-www-form-urlencoded; charset=utf-8
+Content-length: 299
+
+employee_id=1005&workshop_order_status_id=9&book=1&customer_messages=1&allow_resend_messages=1
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 900
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+
+{
+    "error": false,
+    "error_message": null,
+    "invoices": [
+        {
+            "invoice_number": 20173382,
+            "customer_id": 6298,
+            "sent_messages": {
+                "phone_message": true,
+                "email_message": false
+            },
+            "documents": [
+                {
+                    "document_mime_type": "application/pdf",
+                    "document_base64": "VBERi0xLjcKJ..."
+                }
+            ]
+        },
+        {
+            "invoice_number": 20173383,
+            "customer_id": 9011,
+            "sent_messages": {
+                "phone_message": false,
+                "email_message": false
+            },
+            "documents": [
+                {
+                    "document_mime_type": "application/pdf",
+                    "document_base64": "VBERi0xLjcKJ..."
+                }
+            ]
+        }
+    ]
+}
+```

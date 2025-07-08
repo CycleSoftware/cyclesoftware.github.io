@@ -741,7 +741,7 @@ Get a list of proforma sales transactions / invoices.
 > HTTP request
 
 ```http
-GET /api/v1/invoices/unbooked.json HTTP/1.1
+GET /api/v1/invoices/proforma.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip

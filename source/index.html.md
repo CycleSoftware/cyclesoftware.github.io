@@ -22,6 +22,7 @@ includes:
 - cs-api/_ecommerce
 - cs-api/_labels
 - cs-api/_leads
+- cs-api/_packinglists
 - cs-api/_payments
 - cs-api/_rental
 - cs-api/_repair_objects

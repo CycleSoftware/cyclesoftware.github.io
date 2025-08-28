@@ -9,22 +9,22 @@
 
 Properties used in get endpoint.
 
-| Property                           | Type     | POST | Description                                                             |
-|------------------------------------|----------|------|-------------------------------------------------------------------------|
-| `supplier_packinglist_id`          | integer  |      | Packing list ID in Cyclesoftware `2222`                                 |
-| `supplier_packinglist_item_id`     | integer  |      | The ID of this item on the packing list `3456`                          |
-| `store_id`                         | integer  |      | Store ID within account `2`                                             |
-| `supplier_id`                      | integer  |      | The supplier id in Cyclesoftware `117`                                  |
-| `supplier_name`                    | string   |      | Name of the supplier `Aalten`                                           |
-| `supplier_order_id`                | integer  |      | ID of the order where this item was in `10012`                          |
-| `employee_id`                      | integer  |      | ID of the employee in this account that imported this packing list `45` |
-| `employee_name`                    | string   |      | Name of the employee that imported this packing list `Steve`            |
-| `barcode`                          | string   |      | Barcode of the item on the packing list `123456789`                     | 
-| `article_id`                       | string   |      | Supplier article ID of the item `ABC1234`                               |
-| `unit_purchase_price_ex_vat_cents` | integer  |      | Purchase price excluding VAT in eurocents `399`                         |
-| `quantity`                         | integer  |      | Amount of units delivered `3`                                           |
-| `stock_object_id`                  | integer  |      | ID of the stock object this item is assigned to `2335`                  |
-| `created_at`                       | DateTime |      | Date the packing list was imported `27-09-2025 11:47`                   |
+| Property                           | Type     | Description                                                             |
+|------------------------------------|----------|-------------------------------------------------------------------------|
+| `supplier_packinglist_id`          | integer  | Packing list ID in Cyclesoftware `2222`                                 |
+| `supplier_packinglist_item_id`     | integer  | The ID of this item on the packing list `3456`                          |
+| `store_id`                         | integer  | Store ID within account `2`                                             |
+| `supplier_id`                      | integer  | The supplier id in Cyclesoftware `117`                                  |
+| `supplier_name`                    | string   | Name of the supplier `Aalten`                                           |
+| `supplier_order_id`                | integer  | ID of the order where this item was in `10012`                          |
+| `employee_id`                      | integer  | ID of the employee in this account that imported this packing list `45` |
+| `employee_name`                    | string   | Name of the employee that imported this packing list `Steve`            |
+| `barcode`                          | string   | Barcode of the item on the packing list `123456789`                     | 
+| `article_id`                       | string   | Supplier article ID of the item `ABC1234`                               |
+| `unit_purchase_price_ex_vat_cents` | integer  | Purchase price excluding VAT in eurocents `399`                         |
+| `quantity`                         | integer  | Amount of units delivered `3`                                           |
+| `stock_object_id`                  | integer  | ID of the stock object this item is assigned to `2335`                  |
+| `created_at`                       | datetime | Date the packing list was imported `27-09-2025 11:47`                   |
 
 ## Get packing list items
 Get all items on packing lists in a configurable period
@@ -81,11 +81,7 @@ X-RateLimit-Daily-Reset: 1678230000
         "unit_purchase_price_ex_vat_cents": 500,
         "quantity": 2,
         "stock_object_id": null,
-        "created_at": {
-          "date": "2020-05-04 13:17:18.000000",
-          "timezone_type": 3,
-          "timezone": "Europe/Amsterdam"
-        }
+        "created_at": "2025-06-07 12:33:45"
       }
     ],
     "pagination": {

@@ -572,6 +572,17 @@
               </ul>
           </li>
           <li>
+            <a href="#supplier-packing-lists" class="toc-h1 toc-link" data-title="Supplier packing lists">Supplier packing lists</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#supplier-packing-lists-process-dropshipment-packinglist-packing-list-object" class="toc-h2 toc-link" data-title="Packing list (object)">Packing list (object)</a>
+                  </li>
+                  <li>
+                    <a href="#supplier-packing-lists-get-packing-list-items" class="toc-h2 toc-link" data-title="Get packing list items">Get packing list items</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#workshop" class="toc-h1 toc-link" data-title="Workshop">Workshop</a>
               <ul class="toc-list-h2">
                   <li>
@@ -10448,7 +10459,7 @@ By default the book-date is used.</p>
 <blockquote>
 <p>HTTP request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/invoices/unbooked.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/invoices/proforma.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
@@ -13828,6 +13839,176 @@ Be aware! The goods in the packinglist will not be added to the stock!
                 </span><span class="nl">"status_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succesvol verzonden"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='supplier-packing-lists'>Supplier packing lists</h1>
+<p>Get a list of delivered articles with usage of a packinglist.</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scope(s): <code>resources</code></li>
+</ul>
+<h3 id='supplier-packing-lists-process-dropshipment-packinglist-packing-list-object'>Packing list (object)</h3>
+<p>Properties used in get endpoint.</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>supplier_packinglist_id</code></td>
+<td>integer</td>
+<td>Packing list ID in Cyclesoftware <code>2222</code></td>
+</tr>
+<tr>
+<td><code>supplier_packinglist_item_id</code></td>
+<td>integer</td>
+<td>The ID of this item on the packing list <code>3456</code></td>
+</tr>
+<tr>
+<td><code>store_id</code></td>
+<td>integer</td>
+<td>Store ID within account <code>2</code></td>
+</tr>
+<tr>
+<td><code>supplier_id</code></td>
+<td>integer</td>
+<td>The supplier id in Cyclesoftware <code>117</code></td>
+</tr>
+<tr>
+<td><code>supplier_name</code></td>
+<td>string</td>
+<td>Name of the supplier <code>Aalten</code></td>
+</tr>
+<tr>
+<td><code>supplier_order_id</code></td>
+<td>integer</td>
+<td>ID of the order where this item was in <code>10012</code></td>
+</tr>
+<tr>
+<td><code>employee_id</code></td>
+<td>integer</td>
+<td>ID of the employee in this account that imported this packing list <code>45</code></td>
+</tr>
+<tr>
+<td><code>employee_name</code></td>
+<td>string</td>
+<td>Name of the employee that imported this packing list <code>Steve</code></td>
+</tr>
+<tr>
+<td><code>barcode</code></td>
+<td>string</td>
+<td>Barcode of the item on the packing list <code>123456789</code></td>
+</tr>
+<tr>
+<td><code>article_id</code></td>
+<td>string</td>
+<td>Supplier article ID of the item <code>ABC1234</code></td>
+</tr>
+<tr>
+<td><code>unit_purchase_price_ex_vat_cents</code></td>
+<td>integer</td>
+<td>Purchase price excluding VAT in eurocents <code>399</code></td>
+</tr>
+<tr>
+<td><code>quantity</code></td>
+<td>integer</td>
+<td>Amount of units delivered <code>3</code></td>
+</tr>
+<tr>
+<td><code>stock_object_id</code></td>
+<td>integer</td>
+<td>ID of the stock object this item is assigned to <code>2335</code></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>datetime</td>
+<td>Date the packing list was imported <code>27-09-2025 11:47</code></td>
+</tr>
+</tbody></table>
+<h2 id='supplier-packing-lists-get-packing-list-items'>Get packing list items</h2>
+<p>Get all items on packing lists in a configurable period</p>
+
+<div class="api-endpoint">
+<div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/supplier/packinglists.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th>GET parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>offset</code></td>
+<td>integer</td>
+<td>Offset for pagination <code>300</code></td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td>datetime</td>
+<td>Start date for querying packing list items <code>27-09-2025 11:47</code></td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td>datetime</td>
+<td>End date for querying packing list items <code>27-09-2025 11:47</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/supplier/packinglists.json?offset=300&amp;start_date=01-01-2025&amp;end_date=27-09-2025</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">425</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"supplier_packinglist_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1837221</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"supplier_packinglist_item_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8477749</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"supplier_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8939</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"supplier_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"packinglist_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order-2118"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"supplier_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46933</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sep"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OBSTB"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unit_purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"stock_object_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-06-07 12:33:45"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"previous"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/api/v1/supplier/packinglists.json?start_date=01-01-2020&amp;end_date=27-09-2025&amp;offset=100"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/api/v1/supplier/packinglists.json?start_date=01-01-2020&amp;end_date=27-09-2025&amp;offset=300"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='workshop'>Workshop</h1>

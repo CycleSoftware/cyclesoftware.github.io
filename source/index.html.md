@@ -22,7 +22,6 @@ includes:
 - cs-api/_ecommerce
 - cs-api/_labels
 - cs-api/_leads
-- cs-api/_packinglists
 - cs-api/_payments
 - cs-api/_rental
 - cs-api/_repair_objects
@@ -31,6 +30,7 @@ includes:
 - cs-api/_service_items
 - cs-api/_stockinfo
 - cs-api/_supplier_orders
+- cs-api/_packinglists
 - cs-api/_workshop
 - cs-api/_workshop_orders
 - cs-api/_vouchers

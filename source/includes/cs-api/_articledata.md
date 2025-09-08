@@ -1699,3 +1699,77 @@ Accept: application/json
   ]
 }
 ```
+
+
+## Article batch updates ##
+
+Apply batch updates to articles
+
+***Authentication mechanism***
+
+- Basic HTTP Authentication
+- Scopes: `resources`
+
+## Article batch item object (object)
+
+| **Property** | **Type** | **Description**                                                                            |
+|--------------|----------|--------------------------------------------------------------------------------------------|
+| `barode`     | `string` | ID of the object e.g. `208410`                                                             |
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">PATCH</i>
+		<h6>/api/beta/articles/batch/update.json</h6>
+	</div>
+</div>
+
+### Request properties
+
+| Property            | Type       | Description                              |
+|---------------------|------------|------------------------------------------|
+| `updates`           | `object[]` | Array with data objects                  |
+
+
+### Result properties
+
+| Property            | Type       | Description                              |
+|---------------------|------------|------------------------------------------|
+| `results`           | `object[]` | Array with data objects                  |
+| `results[].barcode` | `integer`  | Barcode of the article                   |
+| `results[].article` | `integer`  | See `Article batch item object (object)` |
+
+
+> HTTP request
+
+```http
+PATCH /api/beta/articles/batch/update.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+
+{
+    "updates": [
+        {
+            "": ""
+        }
+    ]
+}
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 19744
+
+{
+    "results": [
+        {
+        
+        }
+    ]
+}
+
+

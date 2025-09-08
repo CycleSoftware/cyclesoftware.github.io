@@ -1710,11 +1710,7 @@ Apply batch updates to articles
 - Basic HTTP Authentication
 - Scopes: `resources`
 
-## Article batch item object (object)
-
-| **Property** | **Type** | **Description**                                                                            |
-|--------------|----------|--------------------------------------------------------------------------------------------|
-| `barode`     | `string` | ID of the object e.g. `208410`                                                             |
+## Article batch update
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1818,7 +1814,7 @@ Accept: application/json
 {
     "updates": [
         {
-            "": ""
+            "barcode": "28323823"
         }
     ]
 }
@@ -1834,7 +1830,8 @@ Content-length: 19744
 {
     "results": [
         {
-        
+            "barcode": "28323823",
+            "article": {}
         }
     ]
 }

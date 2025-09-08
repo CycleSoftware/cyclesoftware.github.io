@@ -1,4 +1,6 @@
-# Packing lists #
+# Supplier packing lists #
+
+Get a list of delivered articles with usage of a packinglist.
 
 ***Authentication mechanism***
 

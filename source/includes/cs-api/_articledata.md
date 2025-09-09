@@ -1710,8 +1710,6 @@ Apply batch updates to articles
 - Basic HTTP Authentication
 - Scopes: `resources`
 
-## Article batch update
-
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">PATCH</i>
@@ -1814,7 +1812,64 @@ Accept: application/json
 {
     "updates": [
         {
-            "barcode": "28323823"
+            "barcode": "4026495856010",
+            "brand_name": "SCHWALBE",
+            "description_nl": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand",
+            "description_en": " ##28x1 1/2 (40-635) Delta Cruiser Plus natural RS Flamand",
+            "description_fr": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS French",
+            "pos_group_id": 11,
+            "article_main_group": 2,
+            "article_group": "A",
+            "article_sub_group": 2,
+            "pos_sales_price_cents": 2490,
+            "pos_promo_price_cents": 0,
+            "pos_promo_price_from": null,
+            "pos_promo_price_until": null,
+            "purchase_price_cents": 100,
+            "ecommerce": true,
+            "ecommerce_price_cents": 2490,
+            "ecommerce_promo_price_cents": 0,
+            "ecommerce_promo_price_from": null,
+            "ecommerce_promo_price_until": null,
+            "stock": 20,
+            "max_stock": 17,
+            "min_stock": 13,
+            "custom_variable_1": "Variable 1",
+            "custom_variable_2": "Variable 2",
+            "custom_variable_3": "Variable 3",
+            "custom_variable_4": "Variable 4",
+            "custom_variable_5": "Variable 5",
+            "custom_variable_6": "Variable 6"
+        },
+        {
+            "barcode": "4026495843614",
+            "brand_name": "SCHWALBE",
+            "description_nl": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2",
+            "pos_group_id": 11,
+            "article_main_group": 2,
+            "stock": 22,
+            "max_stock": 17,
+            "min_stock": 13
+        },
+        {
+            "barcode": "4019238805475",
+            "update_mode": "create_only",
+            "brand_name": "SCHWALBE",
+            "description_nl": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2",
+            "pos_group_id": 11,
+            "stock": 22,
+            "max_stock": 17,
+            "min_stock": 13
+        },
+        {
+            "barcode": "1121121222",
+            "update_mode": "update_only",
+            "brand_name": "SCHWALBE",
+            "description_nl": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2",
+            "pos_group_id": 11,
+            "stock": 22,
+            "max_stock": 17,
+            "min_stock": 13
         }
     ]
 }
@@ -1830,8 +1885,104 @@ Content-length: 19744
 {
     "results": [
         {
-            "barcode": "28323823",
-            "article": {}
+            "barcode": "4026495856010",
+            "result": "success",
+            "article": {
+                "currency": "EUR",
+                "store_id": 1,
+                "barcode": "4026495856010",
+                "brand_name": "SCHWALBE",
+                "description_nl": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand",
+                "description_en": " ##28x1 1/2 (40-635) Delta Cruiser Plus natural RS Flamand",
+                "description_fr": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS French",
+                "pos_group_id": 11,
+                "article_main_group": 2,
+                "article_group": "A",
+                "article_sub_group": 2,
+                "pos_sales_price_cents": 2490,
+                "pos_promo_price_cents": 0,
+                "pos_promo_price_from": null,
+                "pos_promo_price_until": null,
+                "purchase_price_cents": 100,
+                "ecommerce": true,
+                "ecommerce_price_cents": 2490,
+                "ecommerce_promo_price_cents": 0,
+                "ecommerce_promo_price_from": null,
+                "ecommerce_promo_price_until": null,
+                "stock": 20,
+                "max_stock": 17,
+                "min_stock": 13,
+                "custom_variable_1": "Variable 1",
+                "custom_variable_2": "Variable 2",
+                "custom_variable_3": "Variable 3",
+                "custom_variable_4": "Variable 4",
+                "custom_variable_5": "Variable 5",
+                "custom_variable_6": "Variable 6"
+            }
+        },
+        {
+            "barcode": "4026495843614",
+            "result": "partial",
+            "article": {
+                "currency": "EUR",
+                "store_id": 1,
+                "barcode": "4026495843614",
+                "brand_name": "SCHWALBE",
+                "description_nl": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2",
+                "description_en": " ##28x1 1/2 (40-635) Delta Cruiser Plus natural RS Flamand",
+                "description_fr": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS French",
+                "pos_group_id": 11,
+                "article_main_group": 2,
+                "article_group": "A",
+                "article_sub_group": 2,
+                "pos_sales_price_cents": 2490,
+                "pos_promo_price_cents": 0,
+                "pos_promo_price_from": null,
+                "pos_promo_price_until": null,
+                "purchase_price_cents": 100,
+                "ecommerce": true,
+                "ecommerce_price_cents": 2490,
+                "ecommerce_promo_price_cents": 0,
+                "ecommerce_promo_price_from": null,
+                "ecommerce_promo_price_until": null,
+                "stock": 20,
+                "max_stock": 17,
+                "min_stock": 13,
+                "custom_variable_1": "",
+                "custom_variable_2": "",
+                "custom_variable_3": "",
+                "custom_variable_4": "",
+                "custom_variable_5": "",
+                "custom_variable_6": ""
+            },
+            "skipped_fields": [
+                "article_main_group",
+                "stock"
+            ],
+            "warnings": [
+                {
+                    "field": "article_main_group",
+                    "message": "article_main_group, article_group, article_sub_group zijn verplicht bij update van article_main_group"
+                },
+                {
+                    "field": "stock",
+                    "message": "Je kunt de voorraad niet bijwerken wanneer deze niet gelijk is aan 0"
+                }
+            ]
+        },
+        {
+            "barcode": "4019238805475",
+            "result": "error",
+            "error": {
+                "message": "Dit artikel bestaat al."
+            }
+        },
+        {
+            "barcode": "1121121222",
+            "result": "error",
+            "error": {
+                "message": "Article not found"
+            }
         }
     ]
 }

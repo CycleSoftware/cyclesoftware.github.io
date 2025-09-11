@@ -30,6 +30,7 @@ includes:
 - cs-api/_service_items
 - cs-api/_stockinfo
 - cs-api/_supplier_orders
+- cs-api/_packinglists
 - cs-api/_workshop
 - cs-api/_workshop_orders
 - cs-api/_vouchers

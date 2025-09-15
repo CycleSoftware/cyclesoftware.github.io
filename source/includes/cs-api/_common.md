@@ -158,6 +158,7 @@ X-RateLimit-Daily-Reset: 1678230000
     {
       "employee_id": 44269,
       "employee_name": "John Doe",
+      "sso_username": "john@example.nl",
       "verification_hash": "345ef8a695fded5cff8c2bfb83fa1bffc39f7bc9d13c589facac9ed2b41ebefe",
       "roles": [
         "employee"
@@ -180,6 +181,7 @@ X-RateLimit-Daily-Reset: 1678230000
     {
       "employee_id": 1133,
       "employee_name": "Jane Doe",
+      "sso_username": null,
       "verification_hash": "69baca4df93b1f213aff9d8582178ec6875da7d8c9bd030340d2de623aa19a69",
       "roles": [
         "mechanic"

@@ -40,7 +40,6 @@ Get a set of enums with identifiers and descriptions used in various APIs
 | `voucher_types`           | Voucher types and descriptions                                                              |
 | `consignment_status`      | Object consignment type and descriptions                                                    |
 
-
 > HTTP Request
 
 ```http
@@ -111,22 +110,23 @@ Get a list of employees associated with the account
 
 ### Properties ###
 
-| Property                          | Type        | Description                                                                                                    |
-|-----------------------------------|-------------|----------------------------------------------------------------------------------------------------------------|
-| error                             | `boolean`   | e.g. `false`                                                                                                   |
-| error_message                     | `?string`   | e.g. `Unauthorized`                                                                                            |
-| data                              | `object[]`  | array of objects                                                                                               |
-| data[].employee_id                | `integer`   | e.g. `4475`                                                                                                    |
-| data[].employee_name              | `string`    | e.g. `John`                                                                                                    |
-| data[].verification_hash          | `string`    | e.g. `8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb` sha256 hash mac with api-key as secret |
-| data[].roles                      | `string[]`  | array of strings                                                                                               |
-| data[].roles[]                    | `string`    | e.g. `employee`                                                                                                |
-| data[].is_active                  | `boolean`   | e.g. `false`                                                                                                   |
-| data[].is_default                 | `boolean`   | e.g. `false`                                                                                                   |
-| data[].is_administrator           | `boolean`   | e.g. `false`                                                                                                   |
-| data[].avatar                     | `?string`   | URL to avatar or null                                                                                          |
-| data[].authorization[]            | `string[]`  | Array of authorizations e.g. `["MAY_ACCEPT_SALES_LEADS"]`                                                      |
-| data[].authorizations_warehouse[] | `?string[]` | Array of authorizations for warehouse if warehouse account e.g. `["AUTH_ACCOUNTING"]`                          |
+| Property                          | Type            | Description                                                                                                    |
+|-----------------------------------|-----------------|----------------------------------------------------------------------------------------------------------------|
+| error                             | `boolean`       | e.g. `false`                                                                                                   |
+| error_message                     | `?string`       | e.g. `Unauthorized`                                                                                            |
+| data                              | `object[]`      | array of objects                                                                                               |
+| data[].employee_id                | `integer`       | e.g. `4475`                                                                                                    |
+| data[].employee_name              | `string`        | e.g. `John`                                                                                                    |
+| data[].sso_username               | `string\| null` | e.g. `john@example.com`                                                                                        |
+| data[].verification_hash          | `string`        | e.g. `8fa5a0b532ca29bdc06b97586993e04d8432ac37d9ed6632b63ccc967f28dbcb` sha256 hash mac with api-key as secret |
+| data[].roles                      | `string[]`      | array of strings                                                                                               |
+| data[].roles[]                    | `string`        | e.g. `employee`                                                                                                |
+| data[].is_active                  | `boolean`       | e.g. `false`                                                                                                   |
+| data[].is_default                 | `boolean`       | e.g. `false`                                                                                                   |
+| data[].is_administrator           | `boolean`       | e.g. `false`                                                                                                   |
+| data[].avatar                     | `?string`       | URL to avatar or null                                                                                          |
+| data[].authorization[]            | `string[]`      | Array of authorizations e.g. `["MAY_ACCEPT_SALES_LEADS"]`                                                      |
+| data[].authorizations_warehouse[] | `?string[]`     | Array of authorizations for warehouse if warehouse account e.g. `["AUTH_ACCOUNTING"]`                          |
 
 > HTTP Request
 
@@ -158,6 +158,7 @@ X-RateLimit-Daily-Reset: 1678230000
     {
       "employee_id": 44269,
       "employee_name": "John Doe",
+      "sso_username": "john@example.nl",
       "verification_hash": "345ef8a695fded5cff8c2bfb83fa1bffc39f7bc9d13c589facac9ed2b41ebefe",
       "roles": [
         "employee"
@@ -180,6 +181,7 @@ X-RateLimit-Daily-Reset: 1678230000
     {
       "employee_id": 1133,
       "employee_name": "Jane Doe",
+      "sso_username": null,
       "verification_hash": "69baca4df93b1f213aff9d8582178ec6875da7d8c9bd030340d2de623aa19a69",
       "roles": [
         "mechanic"
@@ -209,7 +211,6 @@ if(\hash_equals('data[].verification_hash', $hash)){
    // code is correct
 }
 ```
-
 
 ## Supplier list ##
 

@@ -1,0 +1,964 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>CycleSoftware API documentation</title>
+
+    <link rel="icon" href="images/favicon-32x32-fe8fe4b0.png" sizes="32x32" />
+    <link rel="icon" href="images/favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="images/favicon-180x180.png" />
+    <meta name="msapplication-TileImage" content="images/favicon-270x270.png" />
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s, .highlight .sa, .highlight .dl {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf, .highlight .fm {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nn {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nl {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ni {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .bp {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vg {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .vi {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .nv, .highlight .vm {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .w {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+  background-color: #272822;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen-ab12f221.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-c427a123.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-c5541673.js"></script>
+  </head>
+
+  <body class="beta" data-languages="[&quot;code&quot;,&quot;php&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar-cad8cdcb.png" alt="" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <a href="#" class="logo">
+        <img src="images/logo-transparant-e28903f5.png" alt="" />
+      </a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="code">Code</a>
+              <a href="#" data-language-name="php">PHP</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#article-data" class="toc-h1 toc-link" data-title="Article data">Article data</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#article-data-article-batch-updates-beta" class="toc-h2 toc-link" data-title="Article batch updates (beta)">Article batch updates (beta)</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href="https://docs.cyclesoftware.nl/warehouse.html" target="_blank">Warehouse platform documentation</a></li>
+            <li><a href="https://docs.cyclesoftware.nl/supplier.html" target="_blank">Supplier integration documentation</a></li>
+            <li><a href="https://docs.cyclesoftware.nl/platform.html" target="_blank">Stock platform documentation</a></li>
+            <li><a href="https://cyclesoftware.nl/" target="_blank">CycleSoftware</a></li>
+            <li><a href="https://github.com/CycleSoftware/cyclesoftware.github.io">Contribute to the documentation</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='article-data'>Article data</h1><h2 id='article-data-article-batch-updates-beta'>Article batch updates (beta)</h2>
+<p>Apply batch updates to articles.</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scopes: <code>resources</code></li>
+</ul>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">PATCH</i>
+        <h6>/api/beta/articles/batch/update.json</h6>
+    </div>
+</div>
+<h3 id='article-data-article-batch-updates-beta-request-properties'>Request properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>updates</code></td>
+<td><code>object[]</code></td>
+<td><code>true</code></td>
+<td>Array with data objects, maximum of 150 items</td>
+</tr>
+<tr>
+<td><code>updates[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Barcode of the article e.g. <code>878825512152</code></td>
+</tr>
+<tr>
+<td><code>updates[].update_mode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Update mode e.g. <code>update_or_create</code>, <code>update_only</code>, <code>create_only</code></td>
+</tr>
+<tr>
+<td><code>updates[].pos_group_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>POS group ID e.g. <code>5</code> see <code>pos_groups</code> see <code>pos_groups</code> in <code>/api/v1/common/enum.json</code></td>
+</tr>
+<tr>
+<td><code>updates[].article_main_group</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Main article group ID e.g. <code>2</code> if provided <code>article_group</code> and <code>article_sub_group</code> are also required. See <code>/api/v4/articledata/codelist/article_main_group.json</code></td>
+</tr>
+<tr>
+<td><code>updates[].article_group</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Article group ID e.g. <code>A</code>  if provided <code>article_main_group</code> and <code>article_sub_group</code> are also required. See <code>/api/v4/articledata/codelist/article_group.json</code></td>
+</tr>
+<tr>
+<td><code>updates[].article_sub_group</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Sub article group ID e.g. <code>2</code>  if provided <code>article_main_group</code> and <code>article_group</code> are also required. See <code>/api/v4/articledata/codelist/article_sub_group.json</code></td>
+</tr>
+<tr>
+<td><code>updates[].brand_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Brand name e.g. <code>SCHWALBE</code></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_1</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 1 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_2</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 2 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_3</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 3 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_4</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 4 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_5</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 5 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_6</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 6 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].description_en</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description in English e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>updates[].description_nl</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description in Dutch (generally default description) e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>updates[].description_fr</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description in French e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Available for e-commerce e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The e-commerce price in cents e.g. <code>6290</code></td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce_promo_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The e-commerce promo price in cents e.g. <code>0</code> (disabled if <code>0</code>)</td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce_promo_price_from</code></td>
+<td><code>?date</code></td>
+<td><code>false</code></td>
+<td>The date for e-commerce promo price interval start e.g. <code>2022-01-01</code> or <code>null</code></td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce_promo_price_until</code></td>
+<td><code>?date</code></td>
+<td><code>false</code></td>
+<td>The date for e-commerce promo price interval until e.g. <code>2022-01-01</code> or <code>null</code></td>
+</tr>
+<tr>
+<td><code>updates[].min_stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Minimal stock level e.g. <code>10</code></td>
+</tr>
+<tr>
+<td><code>updates[].max_stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Maximum stock level e.g. <code>20</code></td>
+</tr>
+<tr>
+<td><code>updates[].stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Stock level e.g. <code>1</code>. You can not update the stock if stock is already non-zero.</td>
+</tr>
+<tr>
+<td><code>updates[].pos_promo_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Promo price in cents e.g. <code>5750</code> (disabled if <code>0</code>)</td>
+</tr>
+<tr>
+<td><code>updates[].pos_promo_price_from</code></td>
+<td><code>?date</code></td>
+<td><code>false</code></td>
+<td>The date for promo price interval start e.g. <code>2022-01-01</code> or <code>null</code></td>
+</tr>
+<tr>
+<td><code>updates[].pos_promo_price_until</code></td>
+<td><code>?date</code></td>
+<td><code>false</code></td>
+<td>The date for promo price interval until e.g. <code>2022-01-01</code> or <code>null</code></td>
+</tr>
+<tr>
+<td><code>updates[].pos_sales_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The POS sales price in cents e.g. <code>6290</code></td>
+</tr>
+<tr>
+<td><code>updates[].purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The purchase price in cents e.g. <code>3624</code></td>
+</tr>
+</tbody></table>
+<h3 id='article-data-article-batch-updates-beta-result-properties'>Result properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Omittable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>results</code></td>
+<td><code>object[]</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Array of objects</td>
+</tr>
+<tr>
+<td><code>results[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Barcode of the article e.g. <code>878825512152</code></td>
+</tr>
+<tr>
+<td><code>results[].result</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Result status <code>success</code> (all fields updated),  <code>partial</code> (not all fields could be updated see <code>results[].skipped_fields</code>, <code>success_with_warnings</code> (all fields updated with some warnings, see <code>results[].warnings</code>), <code>error</code> (article not updated or created, see <code>results[].error.message</code>)</td>
+</tr>
+<tr>
+<td><code>results[].article</code></td>
+<td><code>object</code></td>
+<td><code>false</code></td>
+<td><code>Yes</code></td>
+<td>Object with resulting article details, omitted when an error occurs</td>
+</tr>
+<tr>
+<td><code>results[].article.barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Barcode of the article e.g. <code>878825512152</code></td>
+</tr>
+<tr>
+<td><code>results[].article.store_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Store ID related to <code>stock</code>, <code>min_stock</code>, and <code>max_stock</code> e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>results[].article.update_mode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Update mode e.g. <code>update_or_create</code>, <code>update_only</code>, <code>create_only</code></td>
+</tr>
+<tr>
+<td><code>results[].article.pos_group_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>POS group ID e.g. <code>5</code> see <code>pos_groups</code> in common enum endpoint</td>
+</tr>
+<tr>
+<td><code>results[].article.article_main_group</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Main article group ID e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>results[].article.article_group</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Article group ID e.g. <code>A</code></td>
+</tr>
+<tr>
+<td><code>results[].article.article_sub_group</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Sub article group ID e.g. <code>2</code></td>
+</tr>
+<tr>
+<td><code>results[].article.brand_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Brand name e.g. <code>SCHWALBE</code></td>
+</tr>
+<tr>
+<td><code>results[].article.currency</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Currency <code>EUR</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_1</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 1 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_2</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 2 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_3</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 3 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_4</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 4 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_5</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 5 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_6</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 6 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.description_en</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Description in English e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>results[].article.description_nl</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Description in Dutch (generally default description) e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>results[].article.description_fr</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Description in French e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>results[].article.ecommerce</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Available for e-commerce e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>results[].article.ecommerce_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The e-commerce price in cents e.g. <code>6290</code></td>
+</tr>
+<tr>
+<td><code>results[].article.ecommerce_promo_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The e-commerce promo price in cents e.g. <code>0</code> (disabled if <code>0</code>)</td>
+</tr>
+<tr>
+<td><code>results[].article.ecommerce_promo_price_from</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td></td>
+<td>The date for e-commerce promo price interval start e.g. <code>2022-01-01</code></td>
+</tr>
+<tr>
+<td><code>results[].article.ecommerce_promo_price_until</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td></td>
+<td>The date for e-commerce promo price interval until e.g. <code>2022-01-01</code></td>
+</tr>
+<tr>
+<td><code>results[].article.min_stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Minimal stock level e.g. <code>10</code></td>
+</tr>
+<tr>
+<td><code>results[].article.max_stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Maximum stock level e.g. <code>20</code></td>
+</tr>
+<tr>
+<td><code>results[].article.stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Stock level e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>results[].article.pos_promo_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Promo price in cents e.g. <code>5750</code> (disabled if <code>0</code>)</td>
+</tr>
+<tr>
+<td><code>results[].article.pos_promo_price_from</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td></td>
+<td>The date for promo price interval start e.g. <code>2022-01-01</code></td>
+</tr>
+<tr>
+<td><code>results[].article.pos_promo_price_until</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td></td>
+<td>The date for promo price interval until e.g. <code>2022-01-01</code></td>
+</tr>
+<tr>
+<td><code>results[].article.pos_sales_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The POS sales price in cents e.g. <code>6290</code></td>
+</tr>
+<tr>
+<td><code>results[].article.purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The purchase price in cents e.g. <code>3624</code></td>
+</tr>
+<tr>
+<td><code>results[].skipped_fields</code></td>
+<td><code>string[]</code></td>
+<td><code>false</code></td>
+<td><code>Yes</code></td>
+<td>Array of fields which are ignored in the update. Omitted if not present</td>
+</tr>
+<tr>
+<td><code>results[].warnings</code></td>
+<td><code>object[]</code></td>
+<td><code>false</code></td>
+<td><code>Yes</code></td>
+<td>Array of warnings, omitted if status <code>error</code> or <code>success</code></td>
+</tr>
+<tr>
+<td><code>results[].warnings[].field</code></td>
+<td><code>?string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The field which the warning is related to if applicable e.g. <code>ecommerce_price_cents</code></td>
+</tr>
+<tr>
+<td><code>results[].warnings[].message</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The warning message</td>
+</tr>
+<tr>
+<td><code>results[].error</code></td>
+<td><code>object</code></td>
+<td><code>false</code></td>
+<td><code>Yes</code></td>
+<td>Object with error info. Only present when status <code>error</code></td>
+</tr>
+<tr>
+<td><code>results[].error.message</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The error message e.g. <code>Maximaal 150 updates toegestaan per aanvraag</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/api/beta/articles/batch/update.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+{
+    "updates": [
+        {
+            "barcode": "4026495856010",
+            "brand_name": "SCHWALBE",
+            "description_nl": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand",
+            "description_en": " ##28x1 1/2 (40-635) Delta Cruiser Plus natural RS Flamand",
+            "description_fr": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS French",
+            "pos_group_id": 11,
+            "article_main_group": 2,
+            "article_group": "A",
+            "article_sub_group": 2,
+            "pos_sales_price_cents": 2490,
+            "pos_promo_price_cents": 0,
+            "pos_promo_price_from": null,
+            "pos_promo_price_until": null,
+            "purchase_price_cents": 100,
+            "ecommerce": true,
+            "ecommerce_price_cents": 2490,
+            "ecommerce_promo_price_cents": 0,
+            "ecommerce_promo_price_from": null,
+            "ecommerce_promo_price_until": null,
+            "stock": 20,
+            "max_stock": 17,
+            "min_stock": 13,
+            "custom_variable_1": "Variable 1",
+            "custom_variable_2": "Variable 2",
+            "custom_variable_3": "Variable 3",
+            "custom_variable_4": "Variable 4",
+            "custom_variable_5": "Variable 5",
+            "custom_variable_6": "Variable 6"
+        },
+        {
+            "barcode": "4026495843614",
+            "brand_name": "SCHWALBE",
+            "description_nl": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2",
+            "pos_group_id": 11,
+            "article_main_group": 2,
+            "stock": 22,
+            "max_stock": 17,
+            "min_stock": 13
+        },
+        {
+            "barcode": "4019238805475",
+            "update_mode": "create_only",
+            "brand_name": "SCHWALBE",
+            "description_nl": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2",
+            "pos_group_id": 11,
+            "stock": 22,
+            "max_stock": 17,
+            "min_stock": 13
+        },
+        {
+            "barcode": "1121121222",
+            "update_mode": "update_only",
+            "brand_name": "SCHWALBE",
+            "description_nl": "##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2",
+            "pos_group_id": 11,
+            "stock": 22,
+            "max_stock": 17,
+            "min_stock": 13
+        }
+    ]
+}
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">19744</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495856010"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495856010"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCHWALBE"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">" ##28x1 1/2 (40-635) Delta Cruiser Plus natural RS Flamand"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS French"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"max_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"min_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 3"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 4"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 5"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 6"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"partial"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCHWALBE"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">" ##28x1 1/2 (40-635) Delta Cruiser Plus natural RS Flamand"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS French"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"max_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"min_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_6"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"skipped_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"article_main_group"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"stock"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_main_group"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_main_group, article_group, article_sub_group zijn verplicht bij update van article_main_group"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stock"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Je kunt de voorraad niet bijwerken wanneer deze niet gelijk is aan 0"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4019238805475"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dit artikel bestaat al."</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1121121222"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Article not found"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre></div>
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="code">Code</a>
+                <a href="#" data-language-name="php">PHP</a>
+          </div>
+      </div>
+	</div>
+
+
+  </body>
+</html>

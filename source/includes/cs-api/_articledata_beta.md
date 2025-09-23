@@ -3,7 +3,7 @@
 
 ## Article batch updates (beta)##
 
-Apply batch updates to articles.
+Apply batch updates to articles. Be aware that during the beta-phase the properties may change.
 
 ***Authentication mechanism***
 

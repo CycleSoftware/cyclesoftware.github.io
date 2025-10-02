@@ -14,6 +14,7 @@ toc_footers:
 
 includes:
 - cs-api/_articledata_beta
+- cs-api/_stock_objects_beta
 
 search: true
 ---

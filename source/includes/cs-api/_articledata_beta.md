@@ -265,7 +265,7 @@ Content-length: 19744
                 {
                     "field": "article_main_group",
                     "message": "article_main_group, article_group, article_sub_group zijn verplicht bij update van article_main_group",
-                    "code_list": "https://s01.cyclesoftware.local/api/v4/articledata/codelist/tree/articles.json"
+                    "code_list": "https://api.cyclesoftware.nl/api/v4/articledata/codelist/tree/articles.json"
                 },
                 {
                     "field": "stock",

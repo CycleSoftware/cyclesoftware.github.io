@@ -39,6 +39,7 @@ Get a set of enums with identifiers and descriptions used in various APIs
 | `entity_types`            | Entity types and descriptions, used as reference to an object in API requests and responses |
 | `voucher_types`           | Voucher types and descriptions                                                              |
 | `consignment_status`      | Object consignment type and descriptions                                                    |
+| `warranty_types`          | Object warranty type and descriptions                                                       |
 
 > HTTP Request
 
@@ -94,6 +95,60 @@ json
   }
 }
 ```
+
+## Enum ##
+
+Get a specific enum, see types on Enums endpoint
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v1/common/enum/:subject.json</h6>
+	</div>
+</div>
+
+
+> HTTP Request
+
+```http
+GET /api/v1/common/enum/sales-order-types.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+```
+
+> HTTP Response (limited)
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 571
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+
+json
+{
+  "error": false,
+  "error_message": null,
+  "data": [
+      {
+        "id": 0,
+        "description": "Bestelling",
+        "description_en": "Order"
+      },
+      {
+        "id": 1,
+        "description": "E-commerce",
+        "description_en": "E-commerce"
+      }
+    ]
+}
+```
+
 
 ## Employees ##
 
@@ -214,7 +269,7 @@ if(\hash_equals('data[].verification_hash', $hash)){
 
 ## Supplier list ##
 
-Get a list of suppliers
+Get a list of suppliers (all types), bike-brands or moped-brands
 
 ### HTTP request examples ###
 
@@ -222,6 +277,18 @@ Get a list of suppliers
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
 		<h6>/api/v1/common/suppliers.json</h6>
+	</div>
+</div>
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v1/common/bike-brands.json</h6>
+	</div>
+</div>
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v1/common/moped-brands.json</h6>
 	</div>
 </div>
 

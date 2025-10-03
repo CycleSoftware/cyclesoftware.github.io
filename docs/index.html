@@ -313,6 +313,9 @@
                     <a href="#common-enums" class="toc-h2 toc-link" data-title="Enums">Enums</a>
                   </li>
                   <li>
+                    <a href="#common-enum" class="toc-h2 toc-link" data-title="Enum">Enum</a>
+                  </li>
+                  <li>
                     <a href="#common-employees" class="toc-h2 toc-link" data-title="Employees">Employees</a>
                   </li>
                   <li>
@@ -340,6 +343,9 @@
                   </li>
                   <li>
                     <a href="#article-data-code-lists-v4" class="toc-h2 toc-link" data-title="Code lists - V4">Code lists - V4</a>
+                  </li>
+                  <li>
+                    <a href="#article-data-code-list-tree-v4" class="toc-h2 toc-link" data-title="Code list tree - V4">Code list tree - V4</a>
                   </li>
               </ul>
           </li>
@@ -1512,6 +1518,10 @@ is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_res
 <td><code>consignment_status</code></td>
 <td>Object consignment type and descriptions</td>
 </tr>
+<tr>
+<td><code>warranty_types</code></td>
+<td>Object warranty type and descriptions</td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -1565,6 +1575,54 @@ is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_res
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='common-enum'>Enum</h2>
+<p>Get a specific enum, see types on Enums endpoint</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/common/enum/:subject.json</h6>
+    </div>
+</div>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/common/enum/sales-order-types.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response (limited)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">571</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+
+<span class="err">json</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bestelling"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='common-employees'>Employees</h2>
 <p>Get a list of employees associated with the account</p>
@@ -1739,12 +1797,26 @@ is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_res
    <span class="c1">// code is correct</span>
 <span class="p">}</span>
 </code></pre></div><h2 id='common-supplier-list'>Supplier list</h2>
-<p>Get a list of suppliers</p>
+<p>Get a list of suppliers (all types), bike-brands or moped-brands</p>
 <h3 id='common-supplier-list-http-request-examples'>HTTP request examples</h3>
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
         <h6>/api/v1/common/suppliers.json</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/common/bike-brands.json</h6>
+    </div>
+</div>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/common/moped-brands.json</h6>
     </div>
 </div>
 <h3 id='common-supplier-list-properties'>Properties</h3>
@@ -1842,7 +1914,8 @@ is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_res
 <h2 id='article-data-articledata-v3'>Articledata - V3</h2>
 <p>From 16-1-2025 we maintain a backwards compatible <code>v2</code> &amp; <code>v3</code> version of the articledata API.</p>
 
-<p>The backwards compatible versions have minor differences compared to the legacy implementation. The pagination uses a different token and bicycles may appear in a seperate entry when they contain a barcode.</p>
+<p>The backwards compatible versions have minor differences compared to the legacy implementation. The pagination uses a
+different token and bicycles may appear in a seperate entry when they contain a barcode.</p>
 
 <p>We advice to migrate to <code>v4</code> but will provide the backwards compatible versions.</p>
 
@@ -1866,7 +1939,8 @@ is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_res
 <p><strong>Pagination</strong></p>
 
 <p>In every response you&#39;ll find a path to the next resultset. In the example the next resultset
-is <code>/app/api/v3/articledata/NDg2NjM0NGIzMDg3NjFjZTA1OGVhMGVlYmUzODVlZW/</code>. If <code>next_resultset</code> is null no additional data is available.</p>
+is <code>/app/api/v3/articledata/NDg2NjM0NGIzMDg3NjFjZTA1OGVhMGVlYmUzODVlZW/</code>. If <code>next_resultset</code> is null no additional data
+is available.</p>
 
 <blockquote>
 <p>HTTP Request</p>
@@ -3313,9 +3387,9 @@ This will save you bandwidth and time.
           </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
           </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
           </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
-              </span><span class="nl">"frame_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0023232"</span><span class="p">,</span><span class="w">
-              </span><span class="nl">"key_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"K3323"</span><span class="w">
+          </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"frame_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0023232"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"key_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"K3323"</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
@@ -4052,7 +4126,8 @@ This will save you bandwidth and time.
   </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description in French"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This object provides translations for a description in the available languages. If a language is not available the key is omitted from the body.</p>
+<p>This object provides translations for a description in the available languages. If a language is not available the key
+is omitted from the body.</p>
 
 <table><thead>
 <tr>
@@ -4467,6 +4542,27 @@ This will save you bandwidth and time.
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='article-data-code-lists-v4'>Code lists - V4</h2>
 <p>Get code list entries.</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v4/articledata/codelist/:name.json</h6>
+    </div>
+</div>
+<h3 id='article-data-code-lists-v4-url-parameters'>URL parameters</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>The name of the code list</td>
+</tr>
+</tbody></table>
 <h3 id='article-data-code-lists-v4-properties'>Properties</h3>
 <table><thead>
 <tr>
@@ -4661,6 +4757,245 @@ This will save you bandwidth and time.
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='article-data-code-list-tree-v4'>Code list tree - V4</h2>
+<p>Get code list for article groups</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v4/articledata/codelist/tree/:type.json</h6>
+    </div>
+</div>
+<h3 id='article-data-code-list-tree-v4-url-parameters'>URL parameters</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>type</code></td>
+<td><code>string</code></td>
+<td><code>bikes</code>, <code>articles</code> or <code>all-article-groups</code></td>
+</tr>
+</tbody></table>
+<h3 id='article-data-code-list-tree-v4-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if an error occurred e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>?string</code></td>
+<td>Error message if available</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>object[]</code></td>
+<td>Array of code list entries</td>
+</tr>
+<tr>
+<td><code>data[].code</code></td>
+<td><code>string</code></td>
+<td>Code value e.g. <code>2A</code></td>
+</tr>
+<tr>
+<td><code>data[].code_international</code></td>
+<td><code>string</code></td>
+<td>International code value e.g. <code>BLACK</code></td>
+</tr>
+<tr>
+<td><code>data[].codelist</code></td>
+<td><code>string</code></td>
+<td>e.g. <code>codelist:name-of-list</code></td>
+</tr>
+<tr>
+<td><code>data[].description</code></td>
+<td><code>localized-string</code></td>
+<td>Object with localized descriptions</td>
+</tr>
+<tr>
+<td><code>data[].description.de</code></td>
+<td><code>string</code></td>
+<td>e.g. <code>Description in German</code></td>
+</tr>
+<tr>
+<td><code>data[].description.en</code></td>
+<td><code>string</code></td>
+<td>e.g. <code>Description in English</code></td>
+</tr>
+<tr>
+<td><code>data[].description.fr</code></td>
+<td><code>string</code></td>
+<td>e.g. <code>Description in French</code></td>
+</tr>
+<tr>
+<td><code>data[].description.nl</code></td>
+<td><code>string</code></td>
+<td>e.g. <code>Description in Dutch</code></td>
+</tr>
+<tr>
+<td><code>data[].sub_options</code></td>
+<td><code>object[]</code></td>
+<td>Sub groups</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v4/articledata/codelist/tree/all-article-groups.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response (partial)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_main_group"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fietsen"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vélos"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bikes"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Radfahren"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"sub_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_sub_group"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stadsfietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vélos De Ville"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Citybike"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City-Bike"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"sub_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_sub_group"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stadsfiets"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vélo de Ville"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City bike without gear or with hub gear"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City-Bike ohne Kettenschaltung oder Nabenschaltung"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_sub_group"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stadsfiets (elektrisch)"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vélo de Ville (électrique)"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-bike city bike without gear system or with hub gear"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Elektrisches Citybike ohne Kettenschaltung oder Nabenschaltung"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_sub_group"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Transportfiets"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vélo de transport"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Transport bike without gear system or with hub gear"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Transport fahrräder ohne Kettenschaltung oder Nabenschaltung"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_sub_group"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Transportfiets (elektrisch)"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vélo de transport (électrique)"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Transport e-bike without gear or with hub gear"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-bike transport fahrräd ohne Kettenschaltung oder Nabenschaltung"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_sub_group"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Familie fiets"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vélo familial"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Family bike without gear or with hub gear"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Familien Fahräd ohne Kettenschaltung oder Nabenschaltung"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_sub_group"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Familie fiets (elektrisch)"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vélo familial (électrique)"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Family e-bike without gear or with hub gear"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-bike Familien Fahräd ohne Kettenschaltung oder Nabenschaltung"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_sub_group"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hybride fietsen"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VTC"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hybrid bikes"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hybrid Fahrrad"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"sub_options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_sub_group"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hybride fiets"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vélo Hybride"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hybrid bike with derailleur gears"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hybrid-Fahrrad mit Kettenschaltung"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_sub_group"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"code_international"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hybride fiets (elektrisch)"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vélos Hybrides Electriques"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-bike Hybrid bike with derailleur gears"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"de"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-Bike Hybrid -Bike mit Kettenschaltung"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span></code></pre></div><h1 id='customers'>Customers</h1>
 <p>Find, create and update customers</p>
 

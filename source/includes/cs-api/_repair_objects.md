@@ -32,7 +32,7 @@ Read, create or update repair objects for a customer
 | `lock_id`                | `string`                        | <code>PUT&#124;POST</code> | Lock number e.g. `1234`                                                                    |
 | `workshop_rate_id`       | `integer`                       | <code>PUT&#124;POST</code> | See common API `workshop_rates` e.g. `1`                                                   |
 | `service_level_id`       | `integer`                       | <code>PUT&#124;POST</code> | Service level ID e.g. `0`                                                                  |
-| `images`                 | `object[]`                      | `readonly`                 | Array of images                                                                            |
+| `images`                 | `object[]`                      | `readonly`                 | List of images                                                                             |
 | `images[].date_modified` | <code>datetime&#124;null</code> | `readonly`                 | Modification date e.g. `2016-05-24 11:15:02`                                               |
 | `images[].url_thumb`     | `string`                        | `readonly`                 | URL to thumbnail e.g. `https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg`   |
 | `images[].url_large`     | `string`                        | `readonly`                 | URL to large image e.g. `https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg` |
@@ -62,7 +62,7 @@ This endpoint will return a list of in the `data` element [Repair object (object
 |-----------------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `error`               | `boolean`  | e.g. `false`                                                                                                                                                      |
 | `error_message`       | `?string`  | e.g. `Unauthorized`                                                                                                                                               |
-| `data`                | `object[]` | Array of [Repair object (object)](#repair-objects-repair-object-object)                                                                                           |
+| `data`                | `object[]` | List of [Repair object (object)](#repair-objects-repair-object-object)                                                                                            |
 | `pagination.next_url` | `?string`  | If there is more data this is the URL to the next API request. `https://api.cyclesoftware.nl/api/v1/workshop/repair-objects/search.json?offset=1000&query=abc...` |
 
 

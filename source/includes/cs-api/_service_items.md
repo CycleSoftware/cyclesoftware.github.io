@@ -235,7 +235,7 @@ Get list of service items for workshop.
 |----------------------------------------|------------|---------------------------------------------------------------------------------------|
 | `error`                                | `boolean`  | e.g. `false`                                                                          |
 | `error_message`                        | `?string`  | if not null the error message                                                         |
-| `data`                                 | `object[]` | Array of service item objects                                                         |
+| `data`                                 | `object[]` | List of service item objects                                                          |
 | `data[].account_id`                    | `integer`  | Account ID within CS `1000`                                                           |
 | `data[].store_id`                      | `integer`  | Store ID of associated to service item `1`                                            |
 | `data[].service_id`                    | `integer`  | ID of service `1790811`                                                               |
@@ -383,11 +383,11 @@ Get list of service items for workshop.
 
 ### Response properties ###
 
-| Property        | Type       | Description                                                                                                    |
-|-----------------|------------|----------------------------------------------------------------------------------------------------------------|
-| `error`         | `boolean`  | `true` if an error occurred. e.g. &#96;false&#96;                                                              |
-| `error_message` | `string`   | `true`                                                                                                         |                                               |
-| `data`          | `object[]` | Array of service items associated with the `:service_barcode`, see definition in `Service items list` endpoint |
+| Property        | Type       | Description                                                                                                   |
+|-----------------|------------|---------------------------------------------------------------------------------------------------------------|
+| `error`         | `boolean`  | `true` if an error occurred. e.g. &#96;false&#96;                                                             |
+| `error_message` | `string`   | `true`                                                                                                        |                                               |
+| `data`          | `object[]` | List of service items associated with the `:service_barcode`, see definition in `Service items list` endpoint |
 
 ```http
 PUT /api/v1/workshop/service-items/DSK-2080494-1/close.json HTTP/1.1

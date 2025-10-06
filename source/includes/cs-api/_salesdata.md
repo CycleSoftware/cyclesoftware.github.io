@@ -1022,7 +1022,7 @@ Get payments within date interval (max 31 days)
 | `payments[].amount_cents`     | `integer`  | Amount of payment in cents `6999`                                                                                                     |
 | `payments[].book_date`        | `string`   | Date booked `01-04-2022 15:31:44`                                                                                                     |
 | `payments[].created_at`       | `string`   | Date created `01-04-2022 15:31:44`                                                                                                    |
-| `psp`                         | `object[]` | Array of payment service provider information (e.g. PAY.)                                                                             |
+| `psp`                         | `object[]` | List of payment service provider information (e.g. PAY.)                                                                              |
 | `psp[].psp_reference`         | `string`   | PSP reference `17232323571X84a7d`                                                                                                     |
 | `psp[].psp_reference_2`       | `string`   | PSP reference 2 `fb9c911850f4edfe214ff3cdfb214dbef9e8e599`                                                                            |
 | `psp[].amount_cents`          | `integer`  | Amount of PSP payment `6999`                                                                                                          |

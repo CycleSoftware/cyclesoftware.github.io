@@ -36,7 +36,7 @@ Read, create or update workshop orders
 | `service_card_codes`                              | `?string[]` | `POST`                     | On create a list of service-item codes. See [Service item (object)](#workshop-service-items-service-item-object) `service_barcode` |
 | `delivery_method_id`                              | `integer`   | <code>POST&#124;PUT</code> | Delivery method see common enum `delivery_methods` e.g. `0`                                                                        |
 | `workshop_order_type_id`                          | `integer`   | `readonly`                 | Workshop order type id see common enum `workshop_order_types` e.g. `1`                                                             |
-| `order_items`                                     | `?array`    | <code>POST&#124;PUT</code> | Array of order items                                                                                                               |
+| `order_items`                                     | `?array`    | <code>POST&#124;PUT</code> | List of order items                                                                                                                |
 | `order_items[].item_id`                           | `integer`   | `readonly`                 | Unique item id within the order e.g. `2`                                                                                           |
 | `order_items[].item_type_id`                      | `integer`   | <code>POST&#124;PUT</code> | Order item type see common enum `transaction_item_types` e.g. `1`                                                                  |
 | `order_items[].special_type_id`                   | `integer`   | <code>POST&#124;PUT</code> | Related id for example object id e.g. `0`                                                                                          |
@@ -708,12 +708,12 @@ The following optional POST parameters can be used to specify specific behavior.
 |---------------------------------------------|------------|--------------------------------------------------|
 | `error`                                     | `boolean`  | `true` if an error occurred                      |
 | `error_message`                             | `?string`  | Error message if occurred                        |
-| `invoices`                                  | `object[]` | Array of created invoices                        |
+| `invoices`                                  | `object[]` | List of created invoices                         |
 | `invoices[].invoice_number`                 | `integer`  | Invoice number e.g. `20173383`                   |
 | `invoices[].customer_id`                    | `integer`  | Customer number of invoice e.g. `9011`           |
 | `invoices[].sent_messages.phone_message`    | `boolean`  | `true` if a phone message was sent               |
 | `invoices[].sent_messages.email_message`    | `boolean`  | `true` if an e-mail message was sent             |
-| `invoices[].documents`                      | `object[]` | Array of generated documents                     |
+| `invoices[].documents`                      | `object[]` | List of generated documents                      |
 | `invoices[].documents[].document_mime_type` | `string`   | Mime type of the document e.g. `application/pdf` |
 | `invoices[].documents[].document_base64`    | `string`   | Base64 encoded string of document                |
 

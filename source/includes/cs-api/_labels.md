@@ -17,7 +17,7 @@ Properties used in create, get and send endpoints.
 | `error_message`  | `?string`  | Error message, `null` if no error occured                    |
 | `entity_type_id` | `integer`  | Entity type e.g. `7`, see common API `entity_types`          |
 | `entity_id`      | `integer`  | Entity ID e.g. sales order number when `entity_type_id` is 7 |
-| `labels`         | `string[]` | Array of labels in CS e.g. `["Label"]`                       |
+| `labels`         | `string[]` | List of labels in CS e.g. `["Label"]`                        |
 
 ## Get entity labels
 

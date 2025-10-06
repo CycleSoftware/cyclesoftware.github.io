@@ -180,8 +180,8 @@ Get a list of employees associated with the account
 | data[].is_default                 | `boolean`       | e.g. `false`                                                                                                   |
 | data[].is_administrator           | `boolean`       | e.g. `false`                                                                                                   |
 | data[].avatar                     | `?string`       | URL to avatar or null                                                                                          |
-| data[].authorization[]            | `string[]`      | Array of authorizations e.g. `["MAY_ACCEPT_SALES_LEADS"]`                                                      |
-| data[].authorizations_warehouse[] | `?string[]`     | Array of authorizations for warehouse if warehouse account e.g. `["AUTH_ACCOUNTING"]`                          |
+| data[].authorization[]            | `string[]`      | List of authorizations e.g. `["MAY_ACCEPT_SALES_LEADS"]`                                                       |
+| data[].authorizations_warehouse[] | `?string[]`     | List of authorizations for warehouse if warehouse account e.g. `["AUTH_ACCOUNTING"]`                           |
 
 > HTTP Request
 
@@ -298,7 +298,7 @@ Get a list of suppliers (all types), bike-brands or moped-brands
 |-----------------------------|------------|----------------------------------------------|
 | `error`                     | `boolean`  | e.g. `false`                                 |
 | `error_message`             | `?string`  | Error message if occured                     |
-| `data`                      | `object[]` | Array of suppliers                           |
+| `data`                      | `object[]` | List of suppliers                            |
 | `data[].type`               | `string`   | `supplier`, `bike-brand` or `moped-brand`    |
 | `data[].supplier_id`        | `integer`  | Unique supplier ID `580`                     |
 | `data[].supplier_name`      | `string`   | Name of supplier e.g. `Accell NL`            |

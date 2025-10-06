@@ -331,12 +331,12 @@ The following optional POST parameters can be used to specify specific behavior.
 |---------------------------------------------|------------|--------------------------------------------------|
 | `error`                                     | `boolean`  | `true` if an error occurred                      |
 | `error_message`                             | `?string`  | Error message if occurred                        |
-| `invoices`                                  | `object[]` | Array of created invoices                        |
-| `invoices[].invoice_number`                 | `integer`  | Invoice number e.g. `20173383`                   |
+| `invoices`                                  | `object[]` | List of created invoices                         |
+| `invoices[].invoice_number`                 | `integer`  | Invoice number e.g. `20173383f`                  |
 | `invoices[].customer_id`                    | `integer`  | Customer number of invoice e.g. `9011`           |
 | `invoices[].sent_messages.phone_message`    | `boolean`  | `true` if a phone message was sent               |
 | `invoices[].sent_messages.email_message`    | `boolean`  | `true` if an e-mail message was sent             |
-| `invoices[].documents`                      | `object[]` | Array of generated documents                     |
+| `invoices[].documents`                      | `object[]` | List of generated documents                      |
 | `invoices[].documents[].document_mime_type` | `string`   | Mime type of the document e.g. `application/pdf` |
 | `invoices[].documents[].document_base64`    | `string`   | Base64 encoded string of document                |
 

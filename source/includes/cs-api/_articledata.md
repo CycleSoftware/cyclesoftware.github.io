@@ -462,7 +462,7 @@ Use `/app/api/v3/articledata/definition/` and `/app/api/groups/`  for more infor
 | `has_stock`             | Boolean, if true there is stock for this article at supplier                            |                                   |
 | `is_discontinued`       | Boolean, whether the article is marked by dealer as discontinued                        |                                   |
 | `rrp`                   | Recommended Retail Price                                                                | decimal string                    |
-| `lease_options`         | Array of objects with lease option                                                      |                                   |
+| `lease_options`         | List of objects with lease option                                                       |                                   |
 | `removal_fee`           | The default removal fee for elo bikes                                                   | decimal string                    |
 | `pos_description`       | Description used in POS and Invoices                                                    | 255                               |
 | `brand`                 | Brand name                                                                              | 30                                |
@@ -485,15 +485,15 @@ Use `/app/api/v3/articledata/definition/` and `/app/api/groups/`  for more infor
 
 **Lease option object**
 
-| **Property**         | **Description**                                                                       | **Type**                                                         |
-|----------------------|---------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| `type`               | b2b or b2c                                                                            | String                                                           |
-| `platform`           | Name of the lease platform e.g. “cyclelease”                                          | String                                                           |
-| `rrp`                | RRP used to calculate the fee                                                         | Decimal string                                                   |
-| `duration_months`    | Contract length                                                                       | Integer                                                          |
-| `fee_monthly_ex_vat` | The estimated base lease fee ex vat                                                   | Decimal string                                                   |
-| `service`            | Services included                                                                     | Array of strings                                                 |
-| `options`            | Additional selectable options with description and fee_monthly_ex_vat for each option | Array of object with elements description and fee_monthly_ex_vat |
+| **Property**         | **Description**                                                                       | **Type**                                                        |
+|----------------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `type`               | b2b or b2c                                                                            | String                                                          |
+| `platform`           | Name of the lease platform e.g. “cyclelease”                                          | String                                                          |
+| `rrp`                | RRP used to calculate the fee                                                         | Decimal string                                                  |
+| `duration_months`    | Contract length                                                                       | Integer                                                         |
+| `fee_monthly_ex_vat` | The estimated base lease fee ex vat                                                   | Decimal string                                                  |
+| `service`            | Services included                                                                     | List of strings                                                 |
+| `options`            | Additional selectable options with description and fee_monthly_ex_vat for each option | List of object with elements description and fee_monthly_ex_vat |
 
 **Images object**
 
@@ -1319,13 +1319,13 @@ Every property has it's own value structure. See the properties endpoint for exa
 | `decimal`                        | Decimal or float value                                                                |
 | `integer`                        | Integer value                                                                         |
 | `localized-strings`              | Localized string object                                                               |
-| `object[]`                       | Array of objects                                                                      |
+| `object[]`                       | List of objects                                                                       |
 | `string`                         | String value                                                                          |
-| `string[]`                       | Array of strings                                                                      |
-| `image[]`                        | Array of images                                                                       |
-| `battery[]`                      | Array of battery options                                                              |
-| `document[]`                     | Array of documents                                                                    |
-| `bundle[]`                       | Array of product bundles                                                              |
+| `string[]`                       | List of strings                                                                       |
+| `image[]`                        | List of images                                                                        |
+| `battery[]`                      | List of battery options                                                               |
+| `document[]`                     | List of documents                                                                     |
+| `bundle[]`                       | List of product bundles                                                               |
 
 ### Localized-strings type ###
 
@@ -1411,7 +1411,7 @@ is omitted from the body.
 | `battery_included_in_base_price`     | `boolean` | `true`    | Wether the price of this option is included in the retail price e.g. `true` |
 | `battery_location`                   | `string`  | `true`    | Location see `codelist:battery_position` e.g. `FRAME`                       |
 | `battery_model`                      | `string`  | `true`    | The model description of battery e.g. `Model name 1`                        |
-| `battery_ranges`                     | `array`   | `true`    | Array of ranges for different modes                                         |
+| `battery_ranges`                     | `array`   | `true`    | List of ranges for different modes                                          |
 | `battery_ranges[].range_avg`         | `integer` | `true`    | Average range in `km` e.g. `50`                                             |
 | `battery_ranges[].range_description` | `string`  | `true`    | e.g. `Fast`                                                                 |
 | `battery_ranges[].range_max`         | `integer` | `true`    | Maximum range in `km`e.g. `100`                                             |
@@ -1581,7 +1581,7 @@ Get code list entries.
 |-----------------------------|--------------------|:----|------------------------------------------|
 | `error`                     | `boolean`          |     | `true` if an error occurred e.g. `false` |
 | `error_message`             | `?string`          |     | Error message if available               |
-| `data`                      | `object[]`         |     | Array of code list entries               |
+| `data`                      | `object[]`         |     | List of code list entries                |
 | `data[].code`               | `string`           |     | Code value e.g. `2A`                     |
 | `data[].code_international` | `string`           |     | International code value e.g. `BLACK`    |
 | `data[].codelist`           | `string`           |     | e.g. `codelist:name-of-list`             |
@@ -1711,9 +1711,9 @@ Accept: application/json
 }
 ```
 
-## Code list tree - V4 ##
+## Code list categories - V4 ##
 
-Get code list for article groups
+Get code list for article groups / categories.
 
 <div class="api-endpoint">
 	<div class="endpoint-data">
@@ -1734,7 +1734,7 @@ Get code list for article groups
 |-----------------------------|--------------------|------------------------------------------|
 | `error`                     | `boolean`          | `true` if an error occurred e.g. `false` |
 | `error_message`             | `?string`          | Error message if available               |
-| `data`                      | `object[]`         | Array of code list entries               |
+| `data`                      | `object[]`         | List of code list entries                |
 | `data[].code`               | `string`           | Code value e.g. `2A`                     |
 | `data[].code_international` | `string`           | International code value e.g. `BLACK`    |
 | `data[].codelist`           | `string`           | e.g. `codelist:name-of-list`             |

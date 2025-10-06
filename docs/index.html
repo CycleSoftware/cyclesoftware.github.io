@@ -345,7 +345,7 @@
                     <a href="#article-data-code-lists-v4" class="toc-h2 toc-link" data-title="Code lists - V4">Code lists - V4</a>
                   </li>
                   <li>
-                    <a href="#article-data-code-list-tree-v4" class="toc-h2 toc-link" data-title="Code list tree - V4">Code list tree - V4</a>
+                    <a href="#article-data-code-list-categories-v4" class="toc-h2 toc-link" data-title="Code list categories - V4">Code list categories - V4</a>
                   </li>
               </ul>
           </li>
@@ -1709,12 +1709,12 @@ is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_res
 <tr>
 <td>data[].authorization[]</td>
 <td><code>string[]</code></td>
-<td>Array of authorizations e.g. <code>[&quot;MAY_ACCEPT_SALES_LEADS&quot;]</code></td>
+<td>List of authorizations e.g. <code>[&quot;MAY_ACCEPT_SALES_LEADS&quot;]</code></td>
 </tr>
 <tr>
 <td>data[].authorizations_warehouse[]</td>
 <td><code>?string[]</code></td>
-<td>Array of authorizations for warehouse if warehouse account e.g. <code>[&quot;AUTH_ACCOUNTING&quot;]</code></td>
+<td>List of authorizations for warehouse if warehouse account e.g. <code>[&quot;AUTH_ACCOUNTING&quot;]</code></td>
 </tr>
 </tbody></table>
 
@@ -1840,7 +1840,7 @@ is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_res
 <tr>
 <td><code>data</code></td>
 <td><code>object[]</code></td>
-<td>Array of suppliers</td>
+<td>List of suppliers</td>
 </tr>
 <tr>
 <td><code>data[].type</code></td>
@@ -2419,7 +2419,7 @@ is available.</p>
 </tr>
 <tr>
 <td><code>lease_options</code></td>
-<td>Array of objects with lease option</td>
+<td>List of objects with lease option</td>
 <td></td>
 </tr>
 <tr>
@@ -2556,12 +2556,12 @@ is available.</p>
 <tr>
 <td><code>service</code></td>
 <td>Services included</td>
-<td>Array of strings</td>
+<td>List of strings</td>
 </tr>
 <tr>
 <td><code>options</code></td>
 <td>Additional selectable options with description and fee_monthly_ex_vat for each option</td>
-<td>Array of object with elements description and fee_monthly_ex_vat</td>
+<td>List of object with elements description and fee_monthly_ex_vat</td>
 </tr>
 </tbody></table>
 
@@ -4092,7 +4092,7 @@ This will save you bandwidth and time.
 </tr>
 <tr>
 <td><code>object[]</code></td>
-<td>Array of objects</td>
+<td>List of objects</td>
 </tr>
 <tr>
 <td><code>string</code></td>
@@ -4100,23 +4100,23 @@ This will save you bandwidth and time.
 </tr>
 <tr>
 <td><code>string[]</code></td>
-<td>Array of strings</td>
+<td>List of strings</td>
 </tr>
 <tr>
 <td><code>image[]</code></td>
-<td>Array of images</td>
+<td>List of images</td>
 </tr>
 <tr>
 <td><code>battery[]</code></td>
-<td>Array of battery options</td>
+<td>List of battery options</td>
 </tr>
 <tr>
 <td><code>document[]</code></td>
-<td>Array of documents</td>
+<td>List of documents</td>
 </tr>
 <tr>
 <td><code>bundle[]</code></td>
-<td>Array of product bundles</td>
+<td>List of product bundles</td>
 </tr>
 </tbody></table>
 <h3 id='article-data-data-types-v4-localized-strings-type'>Localized-strings type</h3><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -4294,7 +4294,7 @@ is omitted from the body.</p>
 <td><code>battery_ranges</code></td>
 <td><code>array</code></td>
 <td><code>true</code></td>
-<td>Array of ranges for different modes</td>
+<td>List of ranges for different modes</td>
 </tr>
 <tr>
 <td><code>battery_ranges[].range_avg</code></td>
@@ -4588,7 +4588,7 @@ is omitted from the body.</p>
 <td><code>data</code></td>
 <td><code>object[]</code></td>
 <td style="text-align: left"></td>
-<td>Array of code list entries</td>
+<td>List of code list entries</td>
 </tr>
 <tr>
 <td><code>data[].code</code></td>
@@ -4757,8 +4757,8 @@ is omitted from the body.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='article-data-code-list-tree-v4'>Code list tree - V4</h2>
-<p>Get code list for article groups</p>
+</span></code></pre></div><h2 id='article-data-code-list-categories-v4'>Code list categories - V4</h2>
+<p>Get code list for article groups / categories.</p>
 
 <div class="api-endpoint">
     <div class="endpoint-data">
@@ -4766,7 +4766,7 @@ is omitted from the body.</p>
         <h6>/api/v4/articledata/codelist/tree/:type.json</h6>
     </div>
 </div>
-<h3 id='article-data-code-list-tree-v4-url-parameters'>URL parameters</h3>
+<h3 id='article-data-code-list-categories-v4-url-parameters'>URL parameters</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -4780,7 +4780,7 @@ is omitted from the body.</p>
 <td><code>bikes</code>, <code>articles</code> or <code>all-article-groups</code></td>
 </tr>
 </tbody></table>
-<h3 id='article-data-code-list-tree-v4-properties'>Properties</h3>
+<h3 id='article-data-code-list-categories-v4-properties'>Properties</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -4801,7 +4801,7 @@ is omitted from the body.</p>
 <tr>
 <td><code>data</code></td>
 <td><code>object[]</code></td>
-<td>Array of code list entries</td>
+<td>List of code list entries</td>
 </tr>
 <tr>
 <td><code>data[].code</code></td>
@@ -5714,7 +5714,7 @@ is omitted from the body.</p>
 <tr>
 <td><code>customers</code></td>
 <td><code>object[]</code></td>
-<td>Array of <a href="#customers-customer-object">Customer (object)</a></td>
+<td>List of <a href="#customers-customer-object">Customer (object)</a></td>
 </tr>
 <tr>
 <td><code>pagination.count</code></td>
@@ -6007,7 +6007,7 @@ is omitted from the body.</p>
 <tr>
 <td><code>Order.OrderItems.OrderItem</code></td>
 <td><code>object[]</code></td>
-<td>Array of OrderItem objects</td>
+<td>List of OrderItem objects</td>
 </tr>
 <tr>
 <td><code>Order.OrderItems.OrderItem[].order_item_is_bicycle</code></td>
@@ -6067,7 +6067,7 @@ is omitted from the body.</p>
 <tr>
 <td><code>UpdateValues.UpdateValue</code></td>
 <td><code>object[]</code></td>
-<td>Array of UpdateValue objects</td>
+<td>List of UpdateValue objects</td>
 </tr>
 <tr>
 <td><code>UpdateValues.UpdateValue[].name</code></td>
@@ -6182,7 +6182,7 @@ is omitted from the body.</p>
 <tr>
 <td><code>Payments.Payment</code></td>
 <td><code>object[]</code></td>
-<td>Array of Payment objects</td>
+<td>List of Payment objects</td>
 </tr>
 <tr>
 <td><code>Payments.Payment[].payment_method_id</code></td>
@@ -7589,7 +7589,7 @@ Content-length: 1448
 <tr>
 <td><code>labels</code></td>
 <td><code>string[]</code></td>
-<td>Array of labels in CS e.g. <code>[&quot;Label&quot;]</code></td>
+<td>List of labels in CS e.g. <code>[&quot;Label&quot;]</code></td>
 </tr>
 </tbody></table>
 <h2 id='labels-get-entity-labels'>Get entity labels</h2>
@@ -8717,7 +8717,7 @@ Content-length: 1448
 <td><code>images</code></td>
 <td><code>object[]</code></td>
 <td><code>readonly</code></td>
-<td>Array of images</td>
+<td>List of images</td>
 </tr>
 <tr>
 <td><code>images[].date_modified</code></td>
@@ -8784,7 +8784,7 @@ Content-length: 1448
 <tr>
 <td><code>data</code></td>
 <td><code>object[]</code></td>
-<td>Array of <a href="#repair-objects-repair-object-object">Repair object (object)</a></td>
+<td>List of <a href="#repair-objects-repair-object-object">Repair object (object)</a></td>
 </tr>
 <tr>
 <td><code>pagination.next_url</code></td>
@@ -11337,7 +11337,7 @@ By default the book-date is used.</p>
 <tr>
 <td><code>psp</code></td>
 <td><code>object[]</code></td>
-<td>Array of payment service provider information (e.g. PAY.)</td>
+<td>List of payment service provider information (e.g. PAY.)</td>
 </tr>
 <tr>
 <td><code>psp[].psp_reference</code></td>
@@ -12207,12 +12207,12 @@ invoices.</p>
 <tr>
 <td><code>invoices</code></td>
 <td><code>object[]</code></td>
-<td>Array of created invoices</td>
+<td>List of created invoices</td>
 </tr>
 <tr>
 <td><code>invoices[].invoice_number</code></td>
 <td><code>integer</code></td>
-<td>Invoice number e.g. <code>20173383</code></td>
+<td>Invoice number e.g. <code>20173383f</code></td>
 </tr>
 <tr>
 <td><code>invoices[].customer_id</code></td>
@@ -12232,7 +12232,7 @@ invoices.</p>
 <tr>
 <td><code>invoices[].documents</code></td>
 <td><code>object[]</code></td>
-<td>Array of generated documents</td>
+<td>List of generated documents</td>
 </tr>
 <tr>
 <td><code>invoices[].documents[].document_mime_type</code></td>
@@ -12676,7 +12676,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <tr>
 <td><code>data</code></td>
 <td><code>object[]</code></td>
-<td>Array of service item objects</td>
+<td>List of service item objects</td>
 </tr>
 <tr>
 <td><code>data[].account_id</code></td>
@@ -12950,7 +12950,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
 <tr>
 <td><code>data</code></td>
 <td><code>object[]</code></td>
-<td>Array of service items associated with the <code>:service_barcode</code>, see definition in <code>Service items list</code> endpoint</td>
+<td>List of service items associated with the <code>:service_barcode</code>, see definition in <code>Service items list</code> endpoint</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PUT</span> <span class="nn">/api/v1/workshop/service-items/DSK-2080494-1/close.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
@@ -13361,7 +13361,7 @@ not included.</p>
 <tr>
 <td><code>data</code></td>
 <td><code>object[]</code></td>
-<td>Array of objects</td>
+<td>List of objects</td>
 </tr>
 <tr>
 <td><code>data[].account_id</code></td>
@@ -13596,7 +13596,7 @@ not included.</p>
 <td><code>items</code></td>
 <td><code>object[]</code></td>
 <td></td>
-<td>Array of order items</td>
+<td>List of order items</td>
 </tr>
 <tr>
 <td><code>items[].supplier_order_item_id</code></td>
@@ -14007,7 +14007,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <tr>
 <td><code>result.delivered_objects</code></td>
 <td><code>object[]</code></td>
-<td>Array of delivered objects</td>
+<td>List of delivered objects</td>
 </tr>
 <tr>
 <td><code>result.delivered_objects[].customer_id</code></td>
@@ -14032,7 +14032,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <tr>
 <td><code>result.sales_orders</code></td>
 <td><code>object[]</code></td>
-<td>Array of related sales orders</td>
+<td>List of related sales orders</td>
 </tr>
 <tr>
 <td><code>result.sales_orders[].barcode</code></td>
@@ -14062,7 +14062,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <tr>
 <td><code>result.notifications</code></td>
 <td><code>object[]</code></td>
-<td>Array of sent notifications</td>
+<td>List of sent notifications</td>
 </tr>
 <tr>
 <td><code>result.notifications[].entity_id</code></td>
@@ -14407,7 +14407,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <tr>
 <td><code>workshop_trading_hours</code></td>
 <td><code>object[]</code></td>
-<td>Array of trading hours</td>
+<td>List of trading hours</td>
 </tr>
 <tr>
 <td><code>workshop_trading_hours[].start</code></td>
@@ -15147,7 +15147,7 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <td><code>order_items</code></td>
 <td><code>?array</code></td>
 <td><code>POST&#124;PUT</code></td>
-<td>Array of order items</td>
+<td>List of order items</td>
 </tr>
 <tr>
 <td><code>order_items[].item_id</code></td>
@@ -16035,7 +16035,7 @@ invoices.</p>
 <tr>
 <td><code>invoices</code></td>
 <td><code>object[]</code></td>
-<td>Array of created invoices</td>
+<td>List of created invoices</td>
 </tr>
 <tr>
 <td><code>invoices[].invoice_number</code></td>
@@ -16060,7 +16060,7 @@ invoices.</p>
 <tr>
 <td><code>invoices[].documents</code></td>
 <td><code>object[]</code></td>
-<td>Array of generated documents</td>
+<td>List of generated documents</td>
 </tr>
 <tr>
 <td><code>invoices[].documents[].document_mime_type</code></td>
@@ -17408,7 +17408,7 @@ employee_id=1005&amp;workshop_order_status_id=9&amp;book=1&amp;customer_messages
 <tr>
 <td><code>sales_items</code></td>
 <td><code>object[]</code></td>
-<td>Array of sales items</td>
+<td>List of sales items</td>
 </tr>
 <tr>
 <td><code>sales_items[].sales_item_id</code></td>

@@ -508,7 +508,7 @@ Every JSON payload has the same structure. The payload object is different per e
 | `unpayed_amount_cents`                              | `integer`  | Unpayed amount in cents. `278820`                                           |
 | `invoice_date`                                      | `date`     | (pro-forma) date of the invoice `2022-04-29`                                |
 | `book_date`                                         | `?date`    | Book date of invoice. `null` if not booked                                  |
-| `sales_items`                                       | `object[]` | Array of sales items                                                        |
+| `sales_items`                                       | `object[]` | List of sales items                                                         |
 | `sales_items[].sales_item_id`                       | `integer`  | Item identifier `115350527`                                                 |
 | `sales_items[].item_type_id`                        | `integer`  | Item type, see common enum .e.g. `1`                                        |
 | `sales_items[].special_type_id`                     | `integer`  | If associated with a stock item this is the stock item id `0`               |

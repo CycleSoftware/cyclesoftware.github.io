@@ -198,7 +198,7 @@ Get a list of stocked objects with status available or pro-forma sold.
 |-------------------------------|------------|-------------------------------------------------|
 | `error`                       | `boolean`  | e.g. `false`                                    |
 | `error_message`               | `?string`  |                                                 |
-| `data`                        | `object[]` | Array of objects                                |
+| `data`                        | `object[]` | List of objects                                 |
 | `data[].account_id`           | `integer`  | Account ID of store e.g. `1`                    |
 | `data[].store_id`             | `integer`  | ID of the POS store e.g. `1`                    |
 | `data[].object_id`            | `integer`  | POS Object ID e.g. `22952`                      |

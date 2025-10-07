@@ -514,7 +514,7 @@ List customers
 |--------------------------|------------|-----------------------------------------------------------------------------|
 | `error`                  | `boolean`  | `true` if an error occured e.g. `false`                                     |
 | `error_message`          | `?string`  | The error message if occured.                                               |
-| `customers`              | `object[]` | Array of [Customer (object)](#customers-customer-object)                    |
+| `customers`              | `object[]` | List of [Customer (object)](#customers-customer-object)                     |
 | `pagination.count`       | `integer`  | Number of customers the `customers` element e.g. `500`                      |
 | `pagination.next_offset` | `?integer` | `null` if no next page available, otherwise value for `offset` GET variable |
 

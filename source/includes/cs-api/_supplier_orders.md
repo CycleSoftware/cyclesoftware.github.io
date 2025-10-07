@@ -22,7 +22,7 @@ Properties used in create, get and send endpoints.
 | `supplier_reference`              | `string`   |        | Reference from supplier `ref-from-supplier`                 |
 | `own_reference`                   | `string`   |        | Own reference e.g. `Own1212`                                |
 | `created_at`                      | `datetime` |        | Creation date `2022-01-12 12:30:30`                         |
-| `items`                           | `object[]` |        | Array of order items                                        |
+| `items`                           | `object[]` |        | List of order items                                         |
 | `items[].supplier_order_item_id`  | `integer`  |        | Item ID `10012`                                             |
 | `items[].item_type_id`            | `integer`  |        | Item type see common enum transaction_item_types e.g. `1`   |
 | `items[].article_id`              | `string`   | `POST` | Article Number. `ART2`                                      |
@@ -336,18 +336,18 @@ Be aware! The goods in the packinglist will not be added to the stock!
 | `result.articles[].barcode`                 | `string`   | Barcode of article e.g. `54423933323`                                         |
 | `result.articles[].stock`                   | `integer`  | Stock level e.g. `2`                                                          |
 | `result.articles[].units_delivered`         | `integer`  | The units delivered / processed e.g. `4`                                      |
-| `result.delivered_objects`                  | `object[]` | Array of delivered objects                                                    |
+| `result.delivered_objects`                  | `object[]` | List of delivered objects                                                     |
 | `result.delivered_objects[].customer_id`    | `?integer` | Customer ID of owner e.g. `1006` or `null`                                    |
 | `result.delivered_objects[].frame_number`   | `string`   | Frame number of object e.g. `FR1443433`                                       |
 | `result.delivered_objects[].object_id`      | `integer`  | Object ID of object e.g. `10002`                                              |
 | `result.delivered_objects[].sales_order_id` | `?integer` | Sales order ID related to the object or `null`                                |
-| `result.sales_orders`                       | `object[]` | Array of related sales orders                                                 |
+| `result.sales_orders`                       | `object[]` | List of related sales orders                                                  |
 | `result.sales_orders[].barcode`             | `string`   | Barcode of item e.g. `BARCODE2`                                               |
 | `result.sales_orders[].item_status_id`      | `integer`  | Item status ID see common api `sales_order_item_status` e.g. `3`              |
 | `result.sales_orders[].quantity`            | `integer`  | Quantity of sales order item e.g. `2`                                         |
 | `result.sales_orders[].sales_order_id`      | `integer`  | The sales order ID e.g. `1002`                                                |
 | `result.sales_orders[].status_id`           | `integer`  | The status ID of the sales order see common api `sales_order_status` e.g. `2` |
-| `result.notifications`                      | `object[]` | Array of sent notifications                                                   |
+| `result.notifications`                      | `object[]` | List of sent notifications                                                    |
 | `result.notifications[].entity_id`          | `integer`  | Entity ID (usually sales order ID see `entity_type_id`) e.g. `1002`           |
 | `result.notifications[].entity_type_id`     | `integer`  | Entity type see common api `entity_types` e.g. `7`                            |
 | `result.notifications[].recipient`          | `string`   | Recipient of message phone number or e-mail address e.g. `test@mail.nl`       |

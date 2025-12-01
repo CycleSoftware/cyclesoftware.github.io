@@ -88,6 +88,7 @@ The latest definition of the WSDL specification can be found at:
 | `Customer.customer_newsletter`                                          | `boolean`             | Toggle newsletter option boolean `1` or `0`                                                                                                                                                                                                                                                         |
 | `Customer.customer_date_of_birth`                                       | `date`                | e.g. `1980-01-01`                                                                                                                                                                                                                                                                                   |
 | `Customer.customer_iban`                                                | `string`              | e.g. `NL69INGB0123456789`                                                                                                                                                                                                                                                                           |
+| `Customer.customer_vat_number`                                          | `string`              | Vat Number e.g. `NL855630693B01` (added in v2.13)                                                                                                                                                                                                                                                   |
 | `Payments.Payment`                                                      | `object[]`            | List of Payment objects                                                                                                                                                                                                                                                                             |
 | `Payments.Payment[].payment_method_id`                                  | `integer&#124;string` | The payment method ID or description e.g. `1` or `PSP` . See common enum API `payment_methods`                                                                                                                                                                                                      |
 | `Payments.Payment[].payment_amount`                                     | `decimal`             | The payment amount e.g. `100.00`                                                                                                                                                                                                                                                                    |
@@ -156,6 +157,7 @@ try {
                         'customer_newsletter' => '1',
                         'customer_date_of_birth' => '',
                         'customer_iban' => '',
+                        'customer_vat_number' => '',
                         'DeliveryAddress' =>
                             (object)[
                                 'delivery_address_use_delivery_address' => '1',
@@ -306,6 +308,7 @@ Content-length: 4614
           <customer_email>test@test.com</customer_email>
           <customer_newsletter>1</customer_newsletter>
           <customer_iban>NL69INGB0123456789</customer_iban>
+          <customer_vat_number>NL855630693B01</customer_vat_number>
           <customer_date_of_birth>1988-09-29</customer_date_of_birth>
           <DeliveryAddress>
             <delivery_address_use_delivery_address>1</delivery_address_use_delivery_address>
@@ -490,6 +493,7 @@ try {
                         'customer_newsletter' => '1',
                         'customer_date_of_birth' => '',
                         'customer_iban' => '',
+                        'customer_vat_number' => '',
                         'DeliveryAddress' =>
                             (object)[
                                 'delivery_address_use_delivery_address' => '1',
@@ -602,6 +606,7 @@ Content-length: 4614
           <customer_email>test@test.com</customer_email>
           <customer_newsletter>1</customer_newsletter>
           <customer_iban>NL69INGB0123456789</customer_iban>
+          <customer_vat_number>NL855630693B01</customer_vat_number>
           <customer_date_of_birth>1988-09-29</customer_date_of_birth>
           <DeliveryAddress>
             <delivery_address_use_delivery_address>1</delivery_address_use_delivery_address>
@@ -1307,6 +1312,7 @@ try {
             'customer_newsletter' => '0',
             'customer_date_of_birth' => NULL,
             'customer_iban' => 'NL69INGB0123456789',
+            'customer_vat_number' => 'NL855630693B01',
             'DeliveryAddress' => NULL,
         )
     );
@@ -1361,6 +1367,7 @@ Content-length: 1648
         <customer_newsletter>0</customer_newsletter>
         <customer_date_of_birth/>
         <customer_iban>NL69INGB0123456789</customer_iban>
+        <customer_vat_number>NL855630693B01</customer_vat_number>
       </Customer>
     </ns1:CreateOrUpdateCustomerRequest>
   </SOAP-ENV:Body>
@@ -1398,6 +1405,7 @@ Content-length: 1448
         <customer_newsletter>0</customer_newsletter>
         <customer_date_of_birth/>
         <customer_iban></customer_iban>
+        <customer_vat_number></customer_vat_number>
       </Customer>
     </ns1:CreateOrUpdateCustomerResponse>
   </SOAP-ENV:Body>

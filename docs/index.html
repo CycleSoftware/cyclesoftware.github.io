@@ -6180,6 +6180,11 @@ is omitted from the body.</p>
 <td>e.g. <code>NL69INGB0123456789</code></td>
 </tr>
 <tr>
+<td><code>Customer.customer_vat_number</code></td>
+<td><code>string</code></td>
+<td>Vat Number e.g. <code>NL855630693B01</code> (added in v2.13)</td>
+</tr>
+<tr>
 <td><code>Payments.Payment</code></td>
 <td><code>object[]</code></td>
 <td>List of Payment objects</td>
@@ -6288,6 +6293,7 @@ is omitted from the body.</p>
                         <span class="s1">'customer_newsletter'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
                         <span class="s1">'customer_date_of_birth'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
                         <span class="s1">'customer_iban'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+                        <span class="s1">'customer_vat_number'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
                         <span class="s1">'DeliveryAddress'</span> <span class="o">=&gt;</span>
                             <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
                                 <span class="s1">'delivery_address_use_delivery_address'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
@@ -6437,6 +6443,7 @@ is omitted from the body.</p>
           <span class="nt">&lt;customer_email&gt;</span>test@test.com<span class="nt">&lt;/customer_email&gt;</span>
           <span class="nt">&lt;customer_newsletter&gt;</span>1<span class="nt">&lt;/customer_newsletter&gt;</span>
           <span class="nt">&lt;customer_iban&gt;</span>NL69INGB0123456789<span class="nt">&lt;/customer_iban&gt;</span>
+          <span class="nt">&lt;customer_vat_number&gt;</span>NL855630693B01<span class="nt">&lt;/customer_vat_number&gt;</span>
           <span class="nt">&lt;customer_date_of_birth&gt;</span>1988-09-29<span class="nt">&lt;/customer_date_of_birth&gt;</span>
           <span class="nt">&lt;DeliveryAddress&gt;</span>
             <span class="nt">&lt;delivery_address_use_delivery_address&gt;</span>1<span class="nt">&lt;/delivery_address_use_delivery_address&gt;</span>
@@ -6616,6 +6623,7 @@ Content-length: 2083
                         <span class="s1">'customer_newsletter'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
                         <span class="s1">'customer_date_of_birth'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
                         <span class="s1">'customer_iban'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+                        <span class="s1">'customer_vat_number'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
                         <span class="s1">'DeliveryAddress'</span> <span class="o">=&gt;</span>
                             <span class="p">(</span><span class="n">object</span><span class="p">)[</span>
                                 <span class="s1">'delivery_address_use_delivery_address'</span> <span class="o">=&gt;</span> <span class="s1">'1'</span><span class="p">,</span>
@@ -6727,6 +6735,7 @@ Content-length: 2083
           <span class="nt">&lt;customer_email&gt;</span>test@test.com<span class="nt">&lt;/customer_email&gt;</span>
           <span class="nt">&lt;customer_newsletter&gt;</span>1<span class="nt">&lt;/customer_newsletter&gt;</span>
           <span class="nt">&lt;customer_iban&gt;</span>NL69INGB0123456789<span class="nt">&lt;/customer_iban&gt;</span>
+          <span class="nt">&lt;customer_vat_number&gt;</span>NL855630693B01<span class="nt">&lt;/customer_vat_number&gt;</span>
           <span class="nt">&lt;customer_date_of_birth&gt;</span>1988-09-29<span class="nt">&lt;/customer_date_of_birth&gt;</span>
           <span class="nt">&lt;DeliveryAddress&gt;</span>
             <span class="nt">&lt;delivery_address_use_delivery_address&gt;</span>1<span class="nt">&lt;/delivery_address_use_delivery_address&gt;</span>
@@ -7453,6 +7462,7 @@ Content-length: 2595
             <span class="s1">'customer_newsletter'</span> <span class="o">=&gt;</span> <span class="s1">'0'</span><span class="p">,</span>
             <span class="s1">'customer_date_of_birth'</span> <span class="o">=&gt;</span> <span class="kc">NULL</span><span class="p">,</span>
             <span class="s1">'customer_iban'</span> <span class="o">=&gt;</span> <span class="s1">'NL69INGB0123456789'</span><span class="p">,</span>
+            <span class="s1">'customer_vat_number'</span> <span class="o">=&gt;</span> <span class="s1">'NL855630693B01'</span><span class="p">,</span>
             <span class="s1">'DeliveryAddress'</span> <span class="o">=&gt;</span> <span class="kc">NULL</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="p">);</span>
@@ -7506,6 +7516,7 @@ Content-length: 2595
         <span class="nt">&lt;customer_newsletter&gt;</span>0<span class="nt">&lt;/customer_newsletter&gt;</span>
         <span class="nt">&lt;customer_date_of_birth/&gt;</span>
         <span class="nt">&lt;customer_iban&gt;</span>NL69INGB0123456789<span class="nt">&lt;/customer_iban&gt;</span>
+        <span class="nt">&lt;customer_vat_number&gt;</span>NL855630693B01<span class="nt">&lt;/customer_vat_number&gt;</span>
       <span class="nt">&lt;/Customer&gt;</span>
     <span class="nt">&lt;/ns1:CreateOrUpdateCustomerRequest&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
@@ -7543,6 +7554,7 @@ Content-length: 1448
         <span class="nt">&lt;customer_newsletter&gt;</span>0<span class="nt">&lt;/customer_newsletter&gt;</span>
         <span class="nt">&lt;customer_date_of_birth/&gt;</span>
         <span class="nt">&lt;customer_iban&gt;&lt;/customer_iban&gt;</span>
+        <span class="nt">&lt;customer_vat_number&gt;&lt;/customer_vat_number&gt;</span>
       <span class="nt">&lt;/Customer&gt;</span>
     <span class="nt">&lt;/ns1:CreateOrUpdateCustomerResponse&gt;</span>
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>

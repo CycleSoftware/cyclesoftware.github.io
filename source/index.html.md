@@ -29,6 +29,7 @@ includes:
 - cs-api/_salesorders
 - cs-api/_service_items
 - cs-api/_stockinfo
+- cs-api/_stock_objects
 - cs-api/_supplier_orders
 - cs-api/_packinglists
 - cs-api/_workshop

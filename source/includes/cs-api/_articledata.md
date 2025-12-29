@@ -1945,6 +1945,7 @@ Apply batch updates to articles.
 | `updates[].pos_promo_price_until`       | `?date`    | `false`  | The date for promo price interval until e.g. `2022-01-01` or `null`                                                                                          |
 | `updates[].pos_sales_price_cents`       | `integer`  | `false`  | The POS sales price in cents e.g. `6290`                                                                                                                     |
 | `updates[].purchase_price_cents`        | `integer`  | `false`  | The purchase price in cents e.g. `3624`                                                                                                                      |
+| `updates[].avg_purchase_price_cents`    | `integer`  | `false`  | The average purchase price in cents e.g. `3624` (current stock level will set the weight of the purchase price average)                                      |
 
 
 ### Result properties
@@ -1986,6 +1987,7 @@ Apply batch updates to articles.
 | `results[].article.pos_promo_price_until`       | `date`     | `true`   |           | The date for promo price interval until e.g. `2022-01-01`                                                                                                                                                                                                                                   |
 | `results[].article.pos_sales_price_cents`       | `integer`  | `false`  |           | The POS sales price in cents e.g. `6290`                                                                                                                                                                                                                                                    |
 | `results[].article.purchase_price_cents`        | `integer`  | `false`  |           | The purchase price in cents e.g. `3624`                                                                                                                                                                                                                                                     |
+| `results[].article.avg_purchase_price_cents`    | `integer`  | `false`  |           | The average purchase price in cents e.g. `3624`                                                                                                                                                                                                                                             |
 | `results[].skipped_fields`                      | `string[]` | `false`  | `Yes`     | List of fields which are ignored in the update. Omitted if not present                                                                                                                                                                                                                      |
 | `results[].warnings`                            | `object[]` | `false`  | `Yes`     | List of warnings, omitted if status `error` or `success`                                                                                                                                                                                                                                    |
 | `results[].warnings[].field`                    | `?string`  | `false`  |           | The field which the warning is related to if applicable e.g. `ecommerce_price_cents`                                                                                                                                                                                                        |
@@ -2022,6 +2024,7 @@ Accept: application/json
             "pos_promo_price_from": null,
             "pos_promo_price_until": null,
             "purchase_price_cents": 100,
+            "avg_purchase_price_cents": 100,
             "ecommerce": true,
             "ecommerce_price_cents": 2490,
             "ecommerce_promo_price_cents": 0,
@@ -2100,6 +2103,7 @@ Content-length: 19744
                 "pos_promo_price_from": null,
                 "pos_promo_price_until": null,
                 "purchase_price_cents": 100,
+                "avg_purchase_price_cents": 100,
                 "ecommerce": true,
                 "ecommerce_price_cents": 2490,
                 "ecommerce_promo_price_cents": 0,
@@ -2136,6 +2140,7 @@ Content-length: 19744
                 "pos_promo_price_from": null,
                 "pos_promo_price_until": null,
                 "purchase_price_cents": 100,
+                "avg_purchase_price_cents": 100,
                 "ecommerce": true,
                 "ecommerce_price_cents": 2490,
                 "ecommerce_promo_price_cents": 0,

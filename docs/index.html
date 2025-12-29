@@ -5215,6 +5215,12 @@ is omitted from the body.</p>
 <td><code>false</code></td>
 <td>The purchase price in cents e.g. <code>3624</code></td>
 </tr>
+<tr>
+<td><code>updates[].avg_purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The average purchase price in cents e.g. <code>3624</code> (current stock level will set the weight of the purchase price average)</td>
+</tr>
 </tbody></table>
 <h3 id='article-data-article-batch-updates-result-properties'>Result properties</h3>
 <table><thead>
@@ -5472,6 +5478,13 @@ is omitted from the body.</p>
 <td>The purchase price in cents e.g. <code>3624</code></td>
 </tr>
 <tr>
+<td><code>results[].article.avg_purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The average purchase price in cents e.g. <code>3624</code></td>
+</tr>
+<tr>
 <td><code>results[].skipped_fields</code></td>
 <td><code>string[]</code></td>
 <td><code>false</code></td>
@@ -5549,6 +5562,7 @@ is omitted from the body.</p>
             </span><span class="nl">"pos_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"pos_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"avg_purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
             </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
             </span><span class="nl">"ecommerce_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -5626,6 +5640,7 @@ is omitted from the body.</p>
                 </span><span class="nl">"pos_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"pos_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"avg_purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ecommerce_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -5662,6 +5677,7 @@ is omitted from the body.</p>
                 </span><span class="nl">"pos_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"pos_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"avg_purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ecommerce_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">

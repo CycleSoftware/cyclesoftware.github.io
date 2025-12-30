@@ -347,6 +347,9 @@
                   <li>
                     <a href="#article-data-code-list-categories-v4" class="toc-h2 toc-link" data-title="Code list categories - V4">Code list categories - V4</a>
                   </li>
+                  <li>
+                    <a href="#article-data-article-batch-updates" class="toc-h2 toc-link" data-title="Article batch updates">Article batch updates</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -558,10 +561,21 @@
               </ul>
           </li>
           <li>
+            <a href="#stock-objects" class="toc-h1 toc-link" data-title="Stock objects">Stock objects</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#stock-objects-stock-object-info" class="toc-h2 toc-link" data-title="Stock object info">Stock object info</a>
+                  </li>
+                  <li>
+                    <a href="#stock-objects-stock-object-batch-updates" class="toc-h2 toc-link" data-title="Stock object batch updates">Stock object batch updates</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#supplier-orders" class="toc-h1 toc-link" data-title="Supplier orders">Supplier orders</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#supplier-orders-stock-list-supplier-order-object" class="toc-h2 toc-link" data-title="Supplier order (object)">Supplier order (object)</a>
+                    <a href="#supplier-orders-stock-object-batch-updates-supplier-order-object" class="toc-h2 toc-link" data-title="Supplier order (object)">Supplier order (object)</a>
                   </li>
                   <li>
                     <a href="#supplier-orders-create-supplier-order" class="toc-h2 toc-link" data-title="Create supplier order">Create supplier order</a>
@@ -4994,6 +5008,722 @@ is omitted from the body.</p>
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h2 id='article-data-article-batch-updates'>Article batch updates</h2>
+<p>Apply batch updates to articles.</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scopes: <code>resources</code></li>
+</ul>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">PATCH</i>
+        <h6>/api/v1/articles/batch/update.json</h6>
+    </div>
+</div>
+<h3 id='article-data-article-batch-updates-request-properties'>Request properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>updates</code></td>
+<td><code>object[]</code></td>
+<td><code>true</code></td>
+<td>Array with data objects, maximum of 150 items</td>
+</tr>
+<tr>
+<td><code>updates[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>true</code></td>
+<td>Barcode of the article e.g. <code>878825512152</code></td>
+</tr>
+<tr>
+<td><code>updates[].update_mode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Update mode e.g. <code>update_or_create</code>, <code>update_only</code>, <code>create_only</code>, <code>delete_if_no_stock</code></td>
+</tr>
+<tr>
+<td><code>updates[].pos_group_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>POS group ID e.g. <code>5</code> see <code>pos_groups</code>. See <code>/api/v1/common/enum/pos-groups.json</code></td>
+</tr>
+<tr>
+<td><code>updates[].article_main_group</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Main article group ID e.g. <code>2</code> if provided <code>article_group</code> and <code>article_sub_group</code> are also required. See <code>/api/v4/articledata/codelist/tree/articles.json</code></td>
+</tr>
+<tr>
+<td><code>updates[].article_group</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Article group ID e.g. <code>A</code>  if provided <code>article_main_group</code> and <code>article_sub_group</code> are also required. See <code>/api/v4/articledata/codelist/tree/articles.json</code></td>
+</tr>
+<tr>
+<td><code>updates[].article_sub_group</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Sub article group ID e.g. <code>2</code>  if provided <code>article_main_group</code> and <code>article_group</code> are also required. See <code>/api/v4/articledata/codelist/tree/articles.json</code></td>
+</tr>
+<tr>
+<td><code>updates[].brand_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Brand name e.g. <code>SCHWALBE</code> (advice to use <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_1</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 1 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_2</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 2 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_3</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 3 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_4</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 4 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_5</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 5 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_6</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 6 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>updates[].description_en</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description in English e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>updates[].description_nl</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description in Dutch (generally default description) e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>updates[].description_fr</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description in French e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td>Available for e-commerce e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The e-commerce price in cents e.g. <code>6290</code></td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce_promo_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The e-commerce promo price in cents e.g. <code>0</code> (disabled if <code>0</code>)</td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce_promo_price_from</code></td>
+<td><code>?date</code></td>
+<td><code>false</code></td>
+<td>The date for e-commerce promo price interval start e.g. <code>2022-01-01</code> or <code>null</code></td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce_promo_price_until</code></td>
+<td><code>?date</code></td>
+<td><code>false</code></td>
+<td>The date for e-commerce promo price interval until e.g. <code>2022-01-01</code> or <code>null</code></td>
+</tr>
+<tr>
+<td><code>updates[].min_stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Minimal stock level e.g. <code>10</code></td>
+</tr>
+<tr>
+<td><code>updates[].max_stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Maximum stock level e.g. <code>20</code></td>
+</tr>
+<tr>
+<td><code>updates[].stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Stock level e.g. <code>1</code>. You can not update the stock if stock is already non-zero.</td>
+</tr>
+<tr>
+<td><code>updates[].pos_promo_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Promo price in cents e.g. <code>5750</code> (disabled if <code>0</code>)</td>
+</tr>
+<tr>
+<td><code>updates[].pos_promo_price_from</code></td>
+<td><code>?date</code></td>
+<td><code>false</code></td>
+<td>The date for promo price interval start e.g. <code>2022-01-01</code> or <code>null</code></td>
+</tr>
+<tr>
+<td><code>updates[].pos_promo_price_until</code></td>
+<td><code>?date</code></td>
+<td><code>false</code></td>
+<td>The date for promo price interval until e.g. <code>2022-01-01</code> or <code>null</code></td>
+</tr>
+<tr>
+<td><code>updates[].pos_sales_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The POS sales price in cents e.g. <code>6290</code></td>
+</tr>
+<tr>
+<td><code>updates[].purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The purchase price in cents e.g. <code>3624</code></td>
+</tr>
+<tr>
+<td><code>updates[].avg_purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The average purchase price in cents e.g. <code>3624</code> (current stock level will set the weight of the purchase price average)</td>
+</tr>
+</tbody></table>
+<h3 id='article-data-article-batch-updates-result-properties'>Result properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Omittable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>results</code></td>
+<td><code>object[]</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>List of objects</td>
+</tr>
+<tr>
+<td><code>results[].barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Barcode of the article e.g. <code>878825512152</code></td>
+</tr>
+<tr>
+<td><code>results[].result</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td><code>success</code> (all fields updated),  <br/><code>partial</code> (not all fields could be updated see <code>results[].skipped_fields</code> <br/><code>success_with_warnings</code> (all fields updated with some warnings, see <code>results[].warnings</code>) <br/><code>error</code> (article not updated or created, see <code>results[].error.message</code>)</td>
+</tr>
+<tr>
+<td><code>results[].article</code></td>
+<td><code>object</code></td>
+<td><code>false</code></td>
+<td><code>Yes</code></td>
+<td>Object with resulting article details, omitted when an error occurs or when deleted and no information available</td>
+</tr>
+<tr>
+<td><code>results[].article.barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Barcode of the article e.g. <code>878825512152</code></td>
+</tr>
+<tr>
+<td><code>results[].article.store_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Store ID related to <code>stock</code>, <code>min_stock</code>, and <code>max_stock</code> e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>results[].article.update_mode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Update mode e.g. <code>update_or_create</code>, <code>update_only</code>, <code>create_only</code></td>
+</tr>
+<tr>
+<td><code>results[].article.pos_group_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>POS group ID e.g. <code>5</code> see <code>pos_groups</code> (see code list <code>/api/v1/common/enum/pos-groups.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].article.article_main_group</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Main article group ID e.g. <code>2</code>  (see code list <code>/api/v4/articledata/codelist/tree/articles.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].article.article_group</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Article group ID e.g. <code>A</code>  (see code list <code>/api/v4/articledata/codelist/tree/articles.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].article.article_sub_group</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Sub article group ID e.g. <code>2</code>  (see code list <code>/api/v4/articledata/codelist/tree/articles.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].article.brand_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Brand name e.g. <code>SCHWALBE</code> (advice to use <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].article.currency</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Currency <code>EUR</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_1</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 1 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_2</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 2 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_3</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 3 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_4</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 4 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_5</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 5 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.custom_variable_6</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Custom variable 6 e.g. <code>Some Value</code></td>
+</tr>
+<tr>
+<td><code>results[].article.description_en</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Description in English e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>results[].article.description_nl</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Description in Dutch (generally default description) e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>results[].article.description_fr</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Description in French e.g. <code>29x2.25 Racing Ralph SuperRace Addix Speed TLE Skinwall</code></td>
+</tr>
+<tr>
+<td><code>results[].article.ecommerce</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Available for e-commerce e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>results[].article.ecommerce_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The e-commerce price in cents e.g. <code>6290</code></td>
+</tr>
+<tr>
+<td><code>results[].article.ecommerce_promo_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The e-commerce promo price in cents e.g. <code>0</code> (disabled if <code>0</code>)</td>
+</tr>
+<tr>
+<td><code>results[].article.ecommerce_promo_price_from</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td></td>
+<td>The date for e-commerce promo price interval start e.g. <code>2022-01-01</code></td>
+</tr>
+<tr>
+<td><code>results[].article.ecommerce_promo_price_until</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td></td>
+<td>The date for e-commerce promo price interval until e.g. <code>2022-01-01</code></td>
+</tr>
+<tr>
+<td><code>results[].article.min_stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Minimal stock level e.g. <code>10</code></td>
+</tr>
+<tr>
+<td><code>results[].article.max_stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Maximum stock level e.g. <code>20</code></td>
+</tr>
+<tr>
+<td><code>results[].article.stock</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Stock level e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>results[].article.pos_promo_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>Promo price in cents e.g. <code>5750</code> (disabled if <code>0</code>)</td>
+</tr>
+<tr>
+<td><code>results[].article.pos_promo_price_from</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td></td>
+<td>The date for promo price interval start e.g. <code>2022-01-01</code></td>
+</tr>
+<tr>
+<td><code>results[].article.pos_promo_price_until</code></td>
+<td><code>date</code></td>
+<td><code>true</code></td>
+<td></td>
+<td>The date for promo price interval until e.g. <code>2022-01-01</code></td>
+</tr>
+<tr>
+<td><code>results[].article.pos_sales_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The POS sales price in cents e.g. <code>6290</code></td>
+</tr>
+<tr>
+<td><code>results[].article.purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The purchase price in cents e.g. <code>3624</code></td>
+</tr>
+<tr>
+<td><code>results[].article.avg_purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The average purchase price in cents e.g. <code>3624</code></td>
+</tr>
+<tr>
+<td><code>results[].skipped_fields</code></td>
+<td><code>string[]</code></td>
+<td><code>false</code></td>
+<td><code>Yes</code></td>
+<td>List of fields which are ignored in the update. Omitted if not present</td>
+</tr>
+<tr>
+<td><code>results[].warnings</code></td>
+<td><code>object[]</code></td>
+<td><code>false</code></td>
+<td><code>Yes</code></td>
+<td>List of warnings, omitted if status <code>error</code> or <code>success</code></td>
+</tr>
+<tr>
+<td><code>results[].warnings[].field</code></td>
+<td><code>?string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The field which the warning is related to if applicable e.g. <code>ecommerce_price_cents</code></td>
+</tr>
+<tr>
+<td><code>results[].warnings[].message</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The warning message</td>
+</tr>
+<tr>
+<td><code>results[].warnings[].code_list</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td><code>Yes</code></td>
+<td>The URL the the codelist if this applies to the <code>field</code> e.g. <code>https://s01.cyclesoftware.nl/api/v4/articledata/codelist/tree/articles.json</code></td>
+</tr>
+<tr>
+<td><code>results[].error</code></td>
+<td><code>object</code></td>
+<td><code>false</code></td>
+<td><code>Yes</code></td>
+<td>Object with error info. Only present when status <code>error</code></td>
+</tr>
+<tr>
+<td><code>results[].error.message</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The error message in your locale e.g. <code>Maximaal 150 updates toegestaan per aanvraag</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/api/v1/articles/batch/update.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"updates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495856010"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCHWALBE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description_nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">" ##28x1 1/2 (40-635) Delta Cruiser Plus natural RS Flamand"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description_fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS French"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"avg_purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ecommerce_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ecommerce_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ecommerce_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"min_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 3"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 4"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 5"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 6"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCHWALBE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description_nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"min_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4019238805475"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"update_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"create_only"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCHWALBE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description_nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"min_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1121121222"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"update_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"update_only"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCHWALBE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description_nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"min_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">19744</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495856010"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495856010"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCHWALBE"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">" ##28x1 1/2 (40-635) Delta Cruiser Plus natural RS Flamand"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS French"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"avg_purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"max_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"min_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 3"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 4"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 5"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Variable 6"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"partial"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4026495843614"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SCHWALBE"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_nl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS Flamand 2"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">" ##28x1 1/2 (40-635) Delta Cruiser Plus natural RS Flamand"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"##28x1 1/2 (40-635) Delta Cruiser Plus naturel RS French"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pos_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"avg_purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"max_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"min_stock"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_5"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_6"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"skipped_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"article_main_group"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"stock"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_main_group"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_main_group, article_group, article_sub_group zijn verplicht bij update van article_main_group"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"code_list"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v4/articledata/codelist/tree/articles.json"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stock"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Je kunt de voorraad niet bijwerken wanneer deze niet gelijk is aan 0"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4019238805475"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dit artikel bestaat al."</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1121121222"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Article not found"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre></div><h1 id='customers'>Customers</h1>
@@ -13530,6 +14260,1452 @@ not included.</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='stock-objects'>Stock objects</h1><h2 id='stock-objects-stock-object-info'>Stock object info</h2>
+<p>Get info for a specific stock object</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/stock-objects/:stock_object_id.json</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>URI parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>stock_object_id</code></td>
+<td><code>integer</code></td>
+<td>The stock object ID e.g. <code>12122</code></td>
+</tr>
+</tbody></table>
+<h3 id='stock-objects-stock-object-info-result-properties'>Result properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Omittable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>stock_object_id</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>....</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>customer_id</code></td>
+<td><code>?integer</code></td>
+<td><code>true</code></td>
+<td>If sold, the customer ID of the rider</td>
+</tr>
+<tr>
+<td><code>stock_object_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The unique stock object ID within the account e.g. <code>99999</code></td>
+</tr>
+<tr>
+<td><code>store_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Store ID e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>sales_order_id</code></td>
+<td><code>?integer</code></td>
+<td><code>true</code></td>
+<td>If sold with a sales order, the sales order ID. <code>null</code> if not set.</td>
+</tr>
+<tr>
+<td><code>sales_transaction_number</code></td>
+<td><code>?integer</code></td>
+<td><code>true</code></td>
+<td>If sold and invoiced, the invoice number. <code>null</code> if not set.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>object</code></td>
+<td><code>false</code></td>
+<td>Object with stock-status data</td>
+</tr>
+<tr>
+<td><code>status.available</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if the object is not-sold and in stock e.g. <code>true</code></td>
+</tr>
+<tr>
+<td><code>status.expected_at</code></td>
+<td><code>?date</code></td>
+<td><code>true</code></td>
+<td>The expected delivery date if not <code>available</code>. <code>null</code> if unknown</td>
+</tr>
+<tr>
+<td><code>status.is_demo</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if the object is marked as demo e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>status.is_rental</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if the object is a rental object e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>status.is_reserved</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if the object is reserved e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>status.is_sold</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if the object is sold e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>status.is_used</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if the object is used e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>status.km_age</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Kilometer age e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>identification</code></td>
+<td><code>object</code></td>
+<td><code>false</code></td>
+<td>Object with identification. If the value is not available the property is not present/</td>
+</tr>
+<tr>
+<td><code>identification.frame_number</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The frame number e.g. <code>FR0000010</code></td>
+</tr>
+<tr>
+<td><code>identification.key_number</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The key number e.g. <code>SL10000</code></td>
+</tr>
+<tr>
+<td><code>identification.key_number_2</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The key number 2 e.g. <code>SL100001</code></td>
+</tr>
+<tr>
+<td><code>identification.lock_number</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The lock number e.g. <code>L11122</code></td>
+</tr>
+<tr>
+<td><code>identification.lock_number_2</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The lock number 2 e.g. <code>L11122-2</code></td>
+</tr>
+<tr>
+<td><code>identification.battery_number</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The battery number e.g. <code>BAT11221</code></td>
+</tr>
+<tr>
+<td><code>identification.battery_number_2</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The battery number 2 e.g. <code>BAT11222</code></td>
+</tr>
+<tr>
+<td><code>identification.engine_number</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The engine number e.g. <code>EN-11111</code></td>
+</tr>
+<tr>
+<td><code>identification.serial_number</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The serial number e.g. <code>SL3332323</code></td>
+</tr>
+<tr>
+<td><code>identification.imei_number</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The imei number e.g. <code>IMEI23322323</code></td>
+</tr>
+<tr>
+<td><code>identification.license_plate_number</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The license plate number e.g. <code>xx-yy-zz</code></td>
+</tr>
+<tr>
+<td><code>identification.velopass_code</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>The velopass code e.g. <code>VP12EH6745</code></td>
+</tr>
+<tr>
+<td><code>images</code></td>
+<td><code>object[]</code></td>
+<td><code>false</code></td>
+<td>List of images</td>
+</tr>
+<tr>
+<td><code>images[].date_modified</code></td>
+<td><code>datetime</code></td>
+<td><code>false</code></td>
+<td>Date modification e.g. <code>2025-10-01 12:00:00</code></td>
+</tr>
+<tr>
+<td><code>images[].url_large</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>URL the large image e.g. <code>https://cdn.cyclesoftware.nl/app/img/artPic_public_L_1.jpg</code></td>
+</tr>
+<tr>
+<td><code>images[].url_thumb</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>URL the thumbnail image e.g. <code>https://cdn.cyclesoftware.nl/app/img/artPic_public_T_1.jpg</code></td>
+</tr>
+<tr>
+<td><code>object</code></td>
+<td><code>object</code></td>
+<td><code>false</code></td>
+<td>Same structure as object in <code>results[].object</code> of the batch update endpoint result</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/stock-objects/1333.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">2898</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"stock_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26034</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sales_order_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sales_transaction_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"expected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_used"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_rental"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_sold"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_reserved"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"stock_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26034</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_reserved"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"object_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REF1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8713568461597"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE102029"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BATAVUS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1759</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finez E-Go-D Power Sport"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"frame_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LAGE INSTAP"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2024</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"frame_height"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"frame_size_supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"wheel_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"customer_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAMES"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"frame_material"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALUMINIUM"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zwart Glans"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"primary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"secondary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SH"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"brand_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGURA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"model_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HYDRAULISCHE SCHIJFREM"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SH"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"brand_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAGURA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"model_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HYDRAULISCHE SCHIJFREM"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DERAILLEUR"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"brand_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIMANO"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"model_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUES"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gear_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description_short"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FINEZ E-GO PT SPORT BES-3 DV10 NERO 53 NO BATT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FINEZ E-GO PT SPORT BES-3 DV10 NERO 53 NO BATT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">273896</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">369900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">389900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">389900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"nett_weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gross_weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"supplier_invoice_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"supplier_order_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"frame_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"key_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SL1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"key_number_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SL2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lock_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lock_number_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"L2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"battery_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"battery_number_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AC2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"engine_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EN1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"serial_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SR1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"imei_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMEI"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"license_plate_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-22-33"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"date_modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-12-04 13:54:31"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.cyclesoftware.nl/app/img/artPic_public_T_2254286.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cdn.cyclesoftware.nl/app/img/artPic_public_L_2254286.jpg"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='stock-objects-stock-object-batch-updates'>Stock object batch updates</h2>
+<p>Apply batch updates to stock objects. You can only update stock objects which are not sold and are not used.</p>
+
+<p><strong><em>Authentication mechanism</em></strong></p>
+
+<ul>
+<li>Basic HTTP Authentication</li>
+<li>Scopes: <code>resources</code></li>
+</ul>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">PATCH</i>
+        <h6>/api/v1/stock-objects/batch/update.json</h6>
+    </div>
+</div>
+<h3 id='stock-objects-stock-object-batch-updates-request-properties'>Request properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>updates</code></td>
+<td><code>object[]</code></td>
+<td><code>true</code></td>
+<td>Array with data objects, maximum of 150 items</td>
+</tr>
+</tbody></table>
+<h3 id='stock-objects-stock-object-batch-updates-request-properties'>Request properties</h3>
+<p>All properties except <code>filter</code> may be omitted in the request. If you update <code>article_main_group</code>, <code>article_group</code>,
+<code>article_sub_group</code> all properties should be present.</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Omittable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>updates</code></td>
+<td><code>object[]</code></td>
+<td><code>false</code></td>
+<td>List of updates</td>
+<td>List of updates</td>
+</tr>
+<tr>
+<td><code>updates[].filter</code></td>
+<td><code>object</code></td>
+<td><code>false</code></td>
+<td>Filter that contains information about which objects to update</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].filter.barcode</code></td>
+<td><code>string</code></td>
+<td><code>omitable</code></td>
+<td>Barcode of stock object to update</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].filter.stock_object_ids</code></td>
+<td><code>integer[]</code></td>
+<td><code>omitable</code></td>
+<td>List of stock object ids to update</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].is_reserved</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td><code>true</code> if object is reserved e.g. <code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].is_demo</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td><code>true</code> if object is demo e.g. <code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].object_reference</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Object reference e.g. <code>F23322332</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].barcode</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Barcode of object e.g. <code>878734843384</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].article_id</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Article ID of object e.g. <code>0298</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].brand_id</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Brand ID of object e.g. <code>1759</code> (codelist: <code>/api/v1/common/bike-brands.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].model_name</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model name of object e.g. <code>New model name</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].article_main_group</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Main article group ID e.g. <code>1</code> - should always be <code>1</code> for bikes (see code list <code>/api/v4/articledata/codelist/tree/bikes.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].article_group</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Article group ID e.g. <code>A</code> (see code list <code>/api/v4/articledata/codelist/tree/bikes.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].article_sub_group</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Sub article group ID e.g. <code>1</code> (see code list <code>/api/v4/articledata/codelist/tree/bikes.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].frame_type</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Frame type of object e.g. <code>WOMEN</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/frame.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].model_year</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Model year of object  e.g. <code>2025</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].frame_height</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Frame height in CM e.g. <code>53</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].frame_size_supplier</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Frame size description e.g. <code>M</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].wheel_size</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Wheel size in inch e.g. <code>28</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].customer_group</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Customer group e.g. <code>MEN</code>  (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/customer_group.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].frame_material</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Frame material e.g. <code>CARBON</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/frame_material.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].color</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Color description e.g. <code>Scumzilver</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].primary_color</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Primary color e.g. <code>BLACK</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/base_color.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].secondary_color</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Secondary color e.g. <code>BLACK</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/base_color.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].type_brake_system_front</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Type brake system front e.g. <code>BK</code> (see <code>/api/v4/articledata/codelist/brake_system.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].brand_brake_system_front</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand brake system front e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].model_brake_system_front</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model brake system front e.g. <code>Modelname</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].type_brake_system_rear</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Type brake system rear e.g. `<code>(see</code>/api/v4/articledata/codelist/brake_system.json`)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].brand_brake_system_rear</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand brake system rear e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].model_brake_system_rear</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model brake system rear e.g. <code>Modelname</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].type_gear_system</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Type gear system e.g. <code>DERAILLEUR</code> (see <code>/api/v4/articledata/codelist/gear_system.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].brand_gear_system</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand gear system e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].model_gear_system</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model gear system e.g. <code>Modelname</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].gear_count</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Gear count e.g. <code>24</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].description_short</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Description e.g. <code>Batavus Crescendo</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].description</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Description long e.g. <code>Some text</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Purchase price in cents e.g. <code>80000</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].sales_price_cents</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Sales price in cents e.g. <code>129900</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].rrp_cents</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Recommended retail price in cents e.g. <code>129900</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td><code>true</code> if available for e-commerce e.g. <code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].ecommerce_price_cents</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>E-commerce sales price e.g. <code>129900</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].nett_weight_kg</code></td>
+<td><code>double</code></td>
+<td></td>
+<td>Weight (kg) e.g. <code>11.2</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].gross_weight_kg</code></td>
+<td><code>double</code></td>
+<td></td>
+<td>Weight gross (kg) e.g. <code>12</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].supplier_invoice_reference</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Supplier invoice reference e.g. <code>INV-1121221</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].supplier_order_reference</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Supplier order reference e.g. <code>ORDER-1121221</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_1</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Custom variable 1 e.g. <code>Some value</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_2</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Custom variable 2 e.g. <code>Some value</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_3</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Custom variable 3 e.g. <code>Some value</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].custom_variable_4</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Custom variable 4 e.g. <code>Some value</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].warranty_duration_months</code></td>
+<td><code>integer</code></td>
+<td><code>omitable</code></td>
+<td>Warranty duration in months if set.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].warranty_type</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Warranty type e.g. <code>2</code> (see <code>/api/v1/common/enum/warranty-types.json</code>)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='stock-objects-stock-object-batch-updates-result-properties'>Result properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Omittable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>results</code></td>
+<td><code>object[]</code></td>
+<td></td>
+<td>List of result objects</td>
+</tr>
+<tr>
+<td><code>results[].result</code></td>
+<td><code>string</code></td>
+<td></td>
+<td><code>success</code> (all fields updated),  <br/><code>partial</code> (not all fields could be updated see <code>results[].skipped_fields</code> <br/><code>success_with_warnings</code> (all fields updated with some warnings, see <code>results[].warnings</code>) <br/><code>error</code> (article not updated or created, see <code>results[].error.message</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object</code></td>
+<td><code>object</code></td>
+<td><code>Yes</code></td>
+<td>Object with resulting stock object details, omitted when an error occurs</td>
+</tr>
+<tr>
+<td><code>results[].stock_object_id</code></td>
+<td><code>integer</code></td>
+<td><code>Yes</code></td>
+<td>If present the update is based on filter.stock_object_ids and this field is the stock-object affected e.g. <code>26042</code></td>
+</tr>
+<tr>
+<td><code>results[].barcode</code></td>
+<td><code>integer</code></td>
+<td><code>Yes</code></td>
+<td>If present the update is based on filter.barcode e.g. <code>26042</code></td>
+</tr>
+<tr>
+<td><code>results[].object.stock_object_id</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Stock object ID e.g. <code>26042</code></td>
+</tr>
+<tr>
+<td><code>results[].object.store_id</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>The store ID of the object, e.g. <code>1</code> (readonly)</td>
+</tr>
+<tr>
+<td><code>results[].object.is_reserved</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td><code>true</code> if object is reserved e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>results[].object.is_demo</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td><code>true</code> if object is demo e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>results[].object.object_reference</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Object reference e.g. <code>F23322332</code></td>
+</tr>
+<tr>
+<td><code>results[].object.barcode</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Barcode of object e.g. <code>878734843384</code></td>
+</tr>
+<tr>
+<td><code>results[].object.article_id</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Article ID of object e.g. <code>0298</code></td>
+</tr>
+<tr>
+<td><code>results[].object.brand_name</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand name of object e.g. <code>Batavus</code> (readonly)</td>
+</tr>
+<tr>
+<td><code>results[].object.brand_id</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Brand ID of object e.g. <code>1759</code> (codelist: <code>/api/v1/common/bike-brands.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.model_name</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model name of object e.g. <code>New model name</code></td>
+</tr>
+<tr>
+<td><code>results[].object.article_main_group</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Main article group ID e.g. <code>1</code> - should always be <code>1</code> for bikes (see code list <code>/api/v4/articledata/codelist/tree/bikes.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.article_group</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Article group ID e.g. <code>A</code> (see code list <code>/api/v4/articledata/codelist/tree/bikes.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.article_sub_group</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Sub article group ID e.g. <code>1</code> (see code list <code>/api/v4/articledata/codelist/tree/bikes.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.frame_type</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Frame type of object e.g. <code>WOMEN</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/frame.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.model_year</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Model year of object  e.g. <code>2025</code></td>
+</tr>
+<tr>
+<td><code>results[].object.frame_height</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Frame height in CM e.g. <code>53</code></td>
+</tr>
+<tr>
+<td><code>results[].object.frame_size_supplier</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Frame size description e.g. <code>M</code></td>
+</tr>
+<tr>
+<td><code>results[].object.wheel_size</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Wheel size in inch e.g. <code>28</code></td>
+</tr>
+<tr>
+<td><code>results[].object.customer_group</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Customer group e.g. <code>MEN</code>  (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/customer_group.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.frame_material</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Frame material e.g. <code>CARBON</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/frame_material.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.color</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Color description e.g. <code>Scumzilver</code></td>
+</tr>
+<tr>
+<td><code>results[].object.primary_color</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Primary color e.g. <code>BLACK</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/base_color.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.secondary_color</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Secondary color e.g. <code>BLACK</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/base_color.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.type_brake_system_front</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Type brake system front e.g. <code>BK</code> (see <code>/api/v4/articledata/codelist/brake_system.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.brand_brake_system_front</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand brake system front e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.model_brake_system_front</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model brake system front e.g. <code>Modelname</code></td>
+</tr>
+<tr>
+<td><code>results[].object.type_brake_system_rear</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Type brake system rear e.g. `<code>(see</code>/api/v4/articledata/codelist/brake_system.json`)</td>
+</tr>
+<tr>
+<td><code>results[].object.brand_brake_system_rear</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand brake system rear e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.model_brake_system_rear</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model brake system rear e.g. <code>Modelname</code></td>
+</tr>
+<tr>
+<td><code>results[].object.type_gear_system</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Type gear system e.g. <code>DERAILLEUR</code> (see <code>/api/v4/articledata/codelist/gear_system.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.brand_gear_system</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand gear system e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].object.model_gear_system</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model gear system e.g. <code>Modelname</code></td>
+</tr>
+<tr>
+<td><code>results[].object.gear_count</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Gear count e.g. <code>24</code></td>
+</tr>
+<tr>
+<td><code>results[].object.description_short</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Description e.g. <code>Batavus Crescendo</code></td>
+</tr>
+<tr>
+<td><code>results[].object.description</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Description long e.g. <code>Some text</code></td>
+</tr>
+<tr>
+<td><code>results[].object.purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Purchase price in cents e.g. <code>80000</code></td>
+</tr>
+<tr>
+<td><code>results[].object.sales_price_cents</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Sales price in cents e.g. <code>129900</code></td>
+</tr>
+<tr>
+<td><code>results[].object.rrp_cents</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Recommended retail price in cents e.g. <code>129900</code></td>
+</tr>
+<tr>
+<td><code>results[].object.ecommerce</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td><code>true</code> if available for e-commerce e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>results[].object.ecommerce_price_cents</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>E-commerce sales price e.g. <code>129900</code></td>
+</tr>
+<tr>
+<td><code>results[].object.nett_weight_kg</code></td>
+<td><code>double</code></td>
+<td></td>
+<td>Weight (kg) e.g. <code>11.2</code></td>
+</tr>
+<tr>
+<td><code>results[].object.gross_weight_kg</code></td>
+<td><code>double</code></td>
+<td></td>
+<td>Weight gross (kg) e.g. <code>12</code></td>
+</tr>
+<tr>
+<td><code>results[].object.supplier_invoice_reference</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Supplier invoice reference e.g. <code>INV-1121221</code></td>
+</tr>
+<tr>
+<td><code>results[].object.supplier_order_reference</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Supplier order reference e.g. <code>ORDER-1121221</code></td>
+</tr>
+<tr>
+<td><code>results[].object.custom_variable_1</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Custom variable 1 e.g. <code>Some value</code></td>
+</tr>
+<tr>
+<td><code>results[].object.custom_variable_2</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Custom variable 2 e.g. <code>Some value</code></td>
+</tr>
+<tr>
+<td><code>results[].object.custom_variable_3</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Custom variable 3 e.g. <code>Some value</code></td>
+</tr>
+<tr>
+<td><code>results[].object.custom_variable_4</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Custom variable 4 e.g. <code>Some value</code></td>
+</tr>
+<tr>
+<td><code>results[].object.warranty_duration_months</code></td>
+<td><code>integer</code></td>
+<td><code>Yes</code></td>
+<td>Warranty duration in months if set.</td>
+</tr>
+<tr>
+<td><code>results[].object.warranty_type</code></td>
+<td><code>integer</code></td>
+<td></td>
+<td>Warranty type e.g. <code>2</code> (see <code>/api/v1/common/enum/warranty-types.json</code>)</td>
+</tr>
+<tr>
+<td><code>results[].skipped_fields</code></td>
+<td><code>string[]</code></td>
+<td><code>Yes</code></td>
+<td>List of fields which are ignored in the update. Omitted if not present</td>
+</tr>
+<tr>
+<td><code>results[].warnings</code></td>
+<td><code>object[]</code></td>
+<td><code>Yes</code></td>
+<td>List of warnings, omitted if status <code>error</code> or <code>success</code></td>
+</tr>
+<tr>
+<td><code>results[].warnings[].field</code></td>
+<td><code>?string</code></td>
+<td></td>
+<td>The field which the warning is related to if applicable e.g. <code>ecommerce_price_cents</code></td>
+</tr>
+<tr>
+<td><code>results[].warnings[].message</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>The warning message</td>
+</tr>
+<tr>
+<td><code>results[].warnings[].code_list</code></td>
+<td><code>string</code></td>
+<td><code>Yes</code></td>
+<td>The URL the the codelist if this applies to the <code>field</code> e.g. <code>https://s01.cyclesoftware.nl/api/v4/articledata/codelist/tree/bikes.json</code></td>
+</tr>
+<tr>
+<td><code>results[].error</code></td>
+<td><code>object</code></td>
+<td><code>Yes</code></td>
+<td>Object with error info. Only present when status <code>error</code></td>
+</tr>
+<tr>
+<td><code>results[].error.message</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>The error message in your locale e.g. <code>Maximaal 150 updates toegestaan per aanvraag</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/api/v1/stock-objects/batch/update.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"updates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"filter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"stock_object_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">26058</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">26042</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New model name"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"primary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"secondary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some new value"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"frame_material"</span><span class="p">:</span><span class="w"> </span><span class="s2">"carbon"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"customer_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heren"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"filter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8719461035866"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New model name 8719461035866"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"primary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"secondary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68de5167c84b3"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"frame_material"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID-MATERIAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unknown_field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"filter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown-barcode"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New model name"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"primary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"secondary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZWART"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68de5167c84b6"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"frame_material"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FOO"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unknown_field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">19744</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"stock_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26042</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"stock_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26042</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"is_reserved"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"object_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3323"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0298"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batavus"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1759</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New model name"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WOMEN"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_height"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_size_supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"wheel_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"customer_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MEN"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_material"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARBON"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scumzilver"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"primary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLACK"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"secondary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLACK"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"gear_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_short"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"nett_weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"gross_weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"supplier_invoice_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"supplier_order_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some new value"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"skipped_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"stock_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26058</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Object with number 26058 is not found"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"skipped_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8719461035866"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"partial"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"stock_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24304</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"is_reserved"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"object_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8719461035866"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CT7NDH56JEBMT"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cortina"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1941</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New model name 8719461035866"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MEN"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_height"</span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_size_supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"wheel_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"customer_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MEN"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_material"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ALUMINIUM"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jet Black Matt"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"primary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLACK"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"secondary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLACK"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RK"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIMANO"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RK"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIMANO"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIMANO"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HUB"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"gear_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_short"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cortina U4 H56 Jet Black Matt ND7"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cortina Transport U4 herenfiets in framemaat 56cm. Kleur: Jet Black Matt. Uitgerust met achter een Shimano Nexus 7-traps versnellingsnaaf met rollerbrake en voor een Shimano naafdynamo met rollerbrake. Opvallende details: aluminium frame, stuurslot, voordrager. Kleurnummer: UZZ 69005 Matt."</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">44902</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">79900</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">79900</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"nett_weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"gross_weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mf">23.8</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"supplier_invoice_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"supplier_order_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F.24304"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68de518217573"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"skipped_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"article_main_group"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"article_group"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ecommerce_price_cents"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"frame_material"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"unknown_field"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_main_group"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_main_group, article_group, article_sub_group are required when updating article_main_group"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"code_list"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v4/articledata/codelist/tree/bikes.json"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_group"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_main_group, article_group, article_sub_group are required when updating article_main_group"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"code_list"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v4/articledata/codelist/tree/bikes.json"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frame_material"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID-MATERIAL is not a valid option"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"code_list"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v4/articledata/codelist/frame_material.json"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ecommerce_price_cents"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">test</span><span class="se">\"</span><span class="s2"> is not a valid numeric value"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8719461035866"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"partial"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"stock_object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24222</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"is_reserved"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"is_demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"object_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8719461035866"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CT7NDH56JEBMT"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cortina"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1941</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New model name 8719461035866"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_main_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"article_sub_group"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MEN"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_height"</span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_size_supplier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"wheel_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"customer_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MEN"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"frame_material"</span><span class="p">:</span><span class="w"> </span><span class="s2">"56"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jet Black Matt"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"primary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLACK"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"secondary_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BLACK"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RK"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIMANO"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_brake_system_front"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RK"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIMANO"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_brake_system_rear"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIMANO"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"brand_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIMANO"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"model_gear_system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HUB"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"gear_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_short"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cortina U4 H56 Jet Black Matt ND7"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cortina Transport U4 herenfiets in framemaat 56cm. Kleur: Jet Black Matt. Uitgerust met achter een Shimano Nexus 7-traps versnellingsnaaf met rollerbrake en voor een Shimano naafdynamo met rollerbrake. Opvallende details: aluminium frame, stuurslot, voordrager. Kleurnummer: UZZ 69005 Matt."</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">52823</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">79900</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">79900</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"nett_weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"gross_weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mf">23.8</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"supplier_invoice_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"supplier_order_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68de518217573"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"skipped_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"article_main_group"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"article_group"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ecommerce_price_cents"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"frame_material"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"unknown_field"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_main_group"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_main_group, article_group, article_sub_group are required when updating article_main_group"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"code_list"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v4/articledata/codelist/tree/bikes.json"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_group"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article_main_group, article_group, article_sub_group are required when updating article_main_group"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"code_list"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v4/articledata/codelist/tree/bikes.json"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frame_material"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID-MATERIAL is not a valid option"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"code_list"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v4/articledata/codelist/frame_material.json"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ecommerce_price_cents"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\"</span><span class="s2">test</span><span class="se">\"</span><span class="s2"> is not a valid numeric value"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"barcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown-barcode"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No new &amp; unsold objects found with barcode </span><span class="se">\"</span><span class="s2">unknown-barcode</span><span class="se">\"</span><span class="s2">"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"skipped_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='supplier-orders'>Supplier orders</h1>
 <p>Create and send supplier orders</p>
 
@@ -13539,7 +15715,7 @@ not included.</p>
 <li>Basic HTTP Authentication</li>
 <li>Scope(s): <code>e-commerce</code></li>
 </ul>
-<h3 id='supplier-orders-stock-list-supplier-order-object'>Supplier order (object)</h3>
+<h3 id='supplier-orders-stock-object-batch-updates-supplier-order-object'>Supplier order (object)</h3>
 <p>Properties used in create, get and send endpoints.</p>
 
 <table><thead>

@@ -1,9 +1,174 @@
 # Stock objects #
 
-## Stock object batch updates (beta) ##
 
-Apply batch updates to stock objects. Be aware that during the beta-phase the properties may change.
-You can only update stock objects which are not sold and are not used.
+## Stock object info ##
+
+Get info for a specific stock object
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v1/stock-objects/:stock_object_id.json</h6>
+	</div>
+</div>
+
+| **URI parameter** | **Type**  | **Description**                  |
+|-------------------|-----------|----------------------------------|
+| `stock_object_id` | `integer` | The stock object ID e.g. `12122` |
+
+### Result properties
+
+| Property          | Type      | Omittable | Description |
+|-------------------|-----------|-----------|-------------|
+| `stock_object_id` | `integer` |           | ....        |
+
+| Property                              | Type       | Nullable   | Description                                                                               |
+|---------------------------------------|------------|------------|-------------------------------------------------------------------------------------------|
+| `customer_id`                         | `?integer` | `true`     | If sold, the customer ID of the rider                                                     |
+| `stock_object_id`                     | `integer`  | `false`    | The unique stock object ID within the account e.g. `99999`                                |
+| `store_id`                            | `integer`  | `false`    | Store ID e.g. `1`                                                                         |
+| `sales_order_id`                      | `?integer` | `true`     | If sold with a sales order, the sales order ID. `null` if not set.                        |
+| `sales_transaction_number`            | `?integer` | `true`     | If sold and invoiced, the invoice number. `null` if not set.                              |
+| `status`                              | `object`   | `false`    | Object with stock-status data                                                             |
+| `status.available`                    | `boolean`  | `false`    | `true` if the object is not-sold and in stock e.g. `true`                                 |
+| `status.expected_at`                  | `?date`    | `true`     | The expected delivery date if not `available`. `null` if unknown                          |
+| `status.is_demo`                      | `boolean`  | `false`    | `true` if the object is marked as demo e.g. `false`                                       |
+| `status.is_rental`                    | `boolean`  | `false`    | `true` if the object is a rental object e.g. `false`                                      |
+| `status.is_reserved`                  | `boolean`  | `false`    | `true` if the object is reserved e.g. `false`                                             |
+| `status.is_sold`                      | `boolean`  | `false`    | `true` if the object is sold e.g. `false`                                                 |
+| `status.is_used`                      | `boolean`  | `false`    | `true` if the object is used e.g. `false`                                                 |
+| `status.km_age`                       | `integer`  | `false`    | Kilometer age e.g. `0`                                                                    |
+| `identification`                      | `object`   | `false`    | Object with identification. If the value is not available the property is not present/    |
+| `identification.frame_number`         | `string`   | `omitable` | The frame number e.g. `FR0000010`                                                         |
+| `identification.key_number`           | `string`   | `omitable` | The key number e.g. `SL10000`                                                             |
+| `identification.key_number_2`         | `string`   | `omitable` | The key number 2 e.g. `SL100001`                                                          |
+| `identification.lock_number`          | `string`   | `omitable` | The lock number e.g. `L11122`                                                             |
+| `identification.lock_number_2`        | `string`   | `omitable` | The lock number 2 e.g. `L11122-2`                                                         |
+| `identification.battery_number`       | `string`   | `omitable` | The battery number e.g. `BAT11221`                                                        |
+| `identification.battery_number_2`     | `string`   | `omitable` | The battery number 2 e.g. `BAT11222`                                                      |
+| `identification.engine_number`        | `string`   | `omitable` | The engine number e.g. `EN-11111`                                                         |
+| `identification.serial_number`        | `string`   | `omitable` | The serial number e.g. `SL3332323`                                                        |
+| `identification.imei_number`          | `string`   | `omitable` | The imei number e.g. `IMEI23322323`                                                       |
+| `identification.license_plate_number` | `string`   | `omitable` | The license plate number e.g. `xx-yy-zz`                                                  |
+| `identification.velopass_code`        | `string`   | `omitable` | The velopass code e.g. `VP12EH6745`                                                       |
+| `images`                              | `object[]` | `false`    | List of images                                                                            |
+| `images[].date_modified`              | `datetime` | `false`    | Date modification e.g. `2025-10-01 12:00:00`                                              |
+| `images[].url_large`                  | `string`   | `false`    | URL the large image e.g. `https://cdn.cyclesoftware.nl/app/img/artPic_public_L_1.jpg`     |
+| `images[].url_thumb`                  | `string`   | `false`    | URL the thumbnail image e.g. `https://cdn.cyclesoftware.nl/app/img/artPic_public_T_1.jpg` |
+| `object`                              | `object`   | `false`    | Same structure as object in `results[].object` of the batch update endpoint result        |
+
+> HTTP request
+
+```http
+GET /api/v1/stock-objects/1333.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 2898
+
+{
+    "stock_object_id": 26034,
+    "store_id": 1,
+    "customer_id": null,
+    "sales_order_id": null,
+    "sales_transaction_number": null,
+    "status": {
+        "available": true,
+        "expected_at": null,
+        "is_demo": false,
+        "is_used": false,
+        "is_rental": false,
+        "is_sold": false,
+        "is_reserved": false,
+        "km_age": 1000
+    },
+    "object": {
+        "stock_object_id": 26034,
+        "store_id": 1,
+        "is_reserved": false,
+        "is_demo": false,
+        "object_reference": "REF1",
+        "barcode": "8713568461597",
+        "article_id": "BE102029",
+        "brand_name": "BATAVUS",
+        "brand_id": 1759,
+        "model_name": "Finez E-Go-D Power Sport",
+        "article_main_group": 1,
+        "article_group": "A",
+        "article_sub_group": 1,
+        "frame_type": "LAGE INSTAP",
+        "model_year": 2024,
+        "frame_height": 53,
+        "frame_size_supplier": "",
+        "wheel_size": 28,
+        "customer_group": "DAMES",
+        "frame_material": "ALUMINIUM",
+        "color": "Zwart Glans",
+        "primary_color": "ZWART",
+        "secondary_color": "",
+        "type_brake_system_front": "SH",
+        "brand_brake_system_front": "MAGURA",
+        "model_brake_system_front": "HYDRAULISCHE SCHIJFREM",
+        "type_brake_system_rear": "SH",
+        "brand_brake_system_rear": "MAGURA",
+        "model_brake_system_rear": "HYDRAULISCHE SCHIJFREM",
+        "type_gear_system": "DERAILLEUR",
+        "brand_gear_system": "SHIMANO",
+        "model_gear_system": "CUES",
+        "gear_count": 10,
+        "description_short": "FINEZ E-GO PT SPORT BES-3 DV10 NERO 53 NO BATT",
+        "description": "FINEZ E-GO PT SPORT BES-3 DV10 NERO 53 NO BATT",
+        "purchase_price_cents": 273896,
+        "sales_price_cents": 369900,
+        "rrp_cents": 389900,
+        "ecommerce": true,
+        "ecommerce_price_cents": 389900,
+        "nett_weight_kg": 31,
+        "gross_weight_kg": 0,
+        "supplier_invoice_reference": "",
+        "supplier_order_reference": "",
+        "custom_variable_1": "",
+        "custom_variable_2": "",
+        "custom_variable_3": "",
+        "custom_variable_4": "",
+        "warranty_type": 0
+    },
+    "identification": {
+        "frame_number": "FR1",
+        "key_number": "SL1",
+        "key_number_2": "SL2",
+        "lock_number": "L1",
+        "lock_number_2": "L2",
+        "battery_number": "AC1",
+        "battery_number_2": "AC2",
+        "engine_number": "EN1",
+        "serial_number": "SR1",
+        "imei_number": "IMEI",
+        "license_plate_number": "11-22-33"
+    },
+    "images": [
+        {
+            "date_modified": "2024-12-04 13:54:31",
+            "url_thumb": "https://cdn.cyclesoftware.nl/app/img/artPic_public_T_2254286.jpg",
+            "url_large": "https://cdn.cyclesoftware.nl/app/img/artPic_public_L_2254286.jpg"
+        }
+    ]
+}
+```
+
+
+## Stock object batch updates ##
+
+Apply batch updates to stock objects. You can only update stock objects which are not sold and are not used.
 
 ***Authentication mechanism***
 
@@ -13,7 +178,7 @@ You can only update stock objects which are not sold and are not used.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">PATCH</i>
-		<h6>/api/beta/stock-objects/batch/update.json</h6>
+		<h6>/api/v1/stock-objects/batch/update.json</h6>
 	</div>
 </div>
 
@@ -152,7 +317,7 @@ All properties except `filter` may be omitted in the request. If you update `art
 > HTTP request
 
 ```http
-PATCH /api/beta/stock-objects/batch/update.json HTTP/1.1
+PATCH /api/v1/stock-objects/batch/update.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
@@ -464,169 +629,3 @@ Content-length: 19744
     ]
 }
 ```
-
-## Stock object (beta) ##
-
-Get info for a specific stock object
-
-<div class="api-endpoint">
-	<div class="endpoint-data">
-		<i class="label label-post">GET</i>
-		<h6>/api/beta/stock-objects/:stock_object_id.json</h6>
-	</div>
-</div>
-
-| **URI parameter** | **Type**  | **Description**                  |
-|-------------------|-----------|----------------------------------|
-| `stock_object_id` | `integer` | The stock object ID e.g. `12122` |
-
-### Result properties
-
-| Property          | Type      | Omittable | Description |
-|-------------------|-----------|-----------|-------------|
-| `stock_object_id` | `integer` |           | ....        |
-
-| Property                              | Type       | Nullable   | Description                                                                               |
-|---------------------------------------|------------|------------|-------------------------------------------------------------------------------------------|
-| `customer_id`                         | `?integer` | `true`     | If sold, the customer ID of the rider                                                     |
-| `stock_object_id`                     | `integer`  | `false`    | The unique stock object ID within the account e.g. `99999`                                |
-| `store_id`                            | `integer`  | `false`    | Store ID e.g. `1`                                                                         |
-| `sales_order_id`                      | `?integer` | `true`     | If sold with a sales order, the sales order ID. `null` if not set.                        |
-| `sales_transaction_number`            | `?integer` | `true`     | If sold and invoiced, the invoice number. `null` if not set.                              |
-| `status`                              | `object`   | `false`    | Object with stock-status data                                                             |
-| `status.available`                    | `boolean`  | `false`    | `true` if the object is not-sold and in stock e.g. `true`                                 |
-| `status.expected_at`                  | `?date`    | `true`     | The expected delivery date if not `available`. `null` if unknown                          |
-| `status.is_demo`                      | `boolean`  | `false`    | `true` if the object is marked as demo e.g. `false`                                       |
-| `status.is_rental`                    | `boolean`  | `false`    | `true` if the object is a rental object e.g. `false`                                      |
-| `status.is_reserved`                  | `boolean`  | `false`    | `true` if the object is reserved e.g. `false`                                             |
-| `status.is_sold`                      | `boolean`  | `false`    | `true` if the object is sold e.g. `false`                                                 |
-| `status.is_used`                      | `boolean`  | `false`    | `true` if the object is used e.g. `false`                                                 |
-| `status.km_age`                       | `integer`  | `false`    | Kilometer age e.g. `0`                                                                    |
-| `identification`                      | `object`   | `false`    | Object with identification. If the value is not available the property is not present/    |
-| `identification.frame_number`         | `string`   | `omitable` | The frame number e.g. `FR0000010`                                                         |
-| `identification.key_number`           | `string`   | `omitable` | The key number e.g. `SL10000`                                                             |
-| `identification.key_number_2`         | `string`   | `omitable` | The key number 2 e.g. `SL100001`                                                          |
-| `identification.lock_number`          | `string`   | `omitable` | The lock number e.g. `L11122`                                                             |
-| `identification.lock_number_2`        | `string`   | `omitable` | The lock number 2 e.g. `L11122-2`                                                         |
-| `identification.battery_number`       | `string`   | `omitable` | The battery number e.g. `BAT11221`                                                        |
-| `identification.battery_number_2`     | `string`   | `omitable` | The battery number 2 e.g. `BAT11222`                                                      |
-| `identification.engine_number`        | `string`   | `omitable` | The engine number e.g. `EN-11111`                                                         |
-| `identification.serial_number`        | `string`   | `omitable` | The serial number e.g. `SL3332323`                                                        |
-| `identification.imei_number`          | `string`   | `omitable` | The imei number e.g. `IMEI23322323`                                                       |
-| `identification.license_plate_number` | `string`   | `omitable` | The license plate number e.g. `xx-yy-zz`                                                  |
-| `identification.velopass_code`        | `string`   | `omitable` | The velopass code e.g. `VP12EH6745`                                                       |
-| `images`                              | `object[]` | `false`    | List of images                                                                            |
-| `images[].date_modified`              | `datetime` | `false`    | Date modification e.g. `2025-10-01 12:00:00`                                              |
-| `images[].url_large`                  | `string`   | `false`    | URL the large image e.g. `https://cdn.cyclesoftware.nl/app/img/artPic_public_L_1.jpg`     |
-| `images[].url_thumb`                  | `string`   | `false`    | URL the thumbnail image e.g. `https://cdn.cyclesoftware.nl/app/img/artPic_public_T_1.jpg` |
-| `object`                              | `object`   | `false`    | Same structure as object in `results[].object` of the batch update endpoint result        |
-
-> HTTP request
-
-```http
-GET /api/beta/stock-objects/1333.json HTTP/1.1
-Host: api.cyclesoftware.nl
-Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
-Accept-encoding: gzip
-Accept: application/json
-
-```
-
-> HTTP Response
-
-```http
-HTTP/1.1 200 
-Content-type: application/json; charset=utf-8
-Content-length: 2898
-
-{
-    "stock_object_id": 26034,
-    "store_id": 1,
-    "customer_id": null,
-    "sales_order_id": null,
-    "sales_transaction_number": null,
-    "status": {
-        "available": true,
-        "expected_at": null,
-        "is_demo": false,
-        "is_used": false,
-        "is_rental": false,
-        "is_sold": false,
-        "is_reserved": false,
-        "km_age": 1000
-    },
-    "object": {
-        "stock_object_id": 26034,
-        "store_id": 1,
-        "is_reserved": false,
-        "is_demo": false,
-        "object_reference": "REF1",
-        "barcode": "8713568461597",
-        "article_id": "BE102029",
-        "brand_name": "BATAVUS",
-        "brand_id": 1759,
-        "model_name": "Finez E-Go-D Power Sport",
-        "article_main_group": 1,
-        "article_group": "A",
-        "article_sub_group": 1,
-        "frame_type": "LAGE INSTAP",
-        "model_year": 2024,
-        "frame_height": 53,
-        "frame_size_supplier": "",
-        "wheel_size": 28,
-        "customer_group": "DAMES",
-        "frame_material": "ALUMINIUM",
-        "color": "Zwart Glans",
-        "primary_color": "ZWART",
-        "secondary_color": "",
-        "type_brake_system_front": "SH",
-        "brand_brake_system_front": "MAGURA",
-        "model_brake_system_front": "HYDRAULISCHE SCHIJFREM",
-        "type_brake_system_rear": "SH",
-        "brand_brake_system_rear": "MAGURA",
-        "model_brake_system_rear": "HYDRAULISCHE SCHIJFREM",
-        "type_gear_system": "DERAILLEUR",
-        "brand_gear_system": "SHIMANO",
-        "model_gear_system": "CUES",
-        "gear_count": 10,
-        "description_short": "FINEZ E-GO PT SPORT BES-3 DV10 NERO 53 NO BATT",
-        "description": "FINEZ E-GO PT SPORT BES-3 DV10 NERO 53 NO BATT",
-        "purchase_price_cents": 273896,
-        "sales_price_cents": 369900,
-        "rrp_cents": 389900,
-        "ecommerce": true,
-        "ecommerce_price_cents": 389900,
-        "nett_weight_kg": 31,
-        "gross_weight_kg": 0,
-        "supplier_invoice_reference": "",
-        "supplier_order_reference": "",
-        "custom_variable_1": "",
-        "custom_variable_2": "",
-        "custom_variable_3": "",
-        "custom_variable_4": "",
-        "warranty_type": 0
-    },
-    "identification": {
-        "frame_number": "FR1",
-        "key_number": "SL1",
-        "key_number_2": "SL2",
-        "lock_number": "L1",
-        "lock_number_2": "L2",
-        "battery_number": "AC1",
-        "battery_number_2": "AC2",
-        "engine_number": "EN1",
-        "serial_number": "SR1",
-        "imei_number": "IMEI",
-        "license_plate_number": "11-22-33"
-    },
-    "images": [
-        {
-            "date_modified": "2024-12-04 13:54:31",
-            "url_thumb": "https://cdn.cyclesoftware.nl/app/img/artPic_public_T_2254286.jpg",
-            "url_large": "https://cdn.cyclesoftware.nl/app/img/artPic_public_L_2254286.jpg"
-        }
-    ]
-}
-```
-
-

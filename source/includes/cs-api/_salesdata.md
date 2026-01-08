@@ -36,7 +36,7 @@ By default the book-date is used.
 |---------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `date_field`  | `string` | `kassadatum` (default) interval as booked date<br/> `datetime_modified` interval as modification dates<br/>`factuurdatum` interval as invoice proforma date |
 
-## Sales transactions - V2 ##
+## Sales transactions - V3 ##
 
 Get sales transactions and related data such as customers, article and object data.
 By default the book-date is used.
@@ -44,13 +44,13 @@ By default the book-date is used.
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
-		<h6>/api/v2/salesdata/transactions.json?date_field=:date_field&date_start=:date_start&date_end=:date_end&only_booked_transactions=:only_booked_transactions&store_id=:store_id&dealer_ids=:dealer_ids</h6>
+		<h6>/api/v3/salesdata/transactions.json?date_field=:date_field&date_start=:date_start&date_end=:date_end&only_booked_transactions=:only_booked_transactions&store_id=:store_id&dealer_ids=:dealer_ids</h6>
 	</div>
 </div>
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
-		<h6>/api/v2/salesdata/transactions.json?token=:pagination_token</h6>
+		<h6>/api/v3/salesdata/transactions.json?token=:pagination_token</h6>
 	</div>
 </div>
 
@@ -64,6 +64,14 @@ By default the book-date is used.
 | `dealer_ids`               | `?string` | CSV of dealer_ids (only applicable for `warehouse` accounts), dealer_ids are converted to account to get all data from that account                                                  |
 | `sales_order_ids`          | `?string` | Filter sales transaction on a CSV of sales order IDs e.g. `1000,2000`. Max 25 sales-order-ids are allowed. Multiple transactions per `sales_order_id` can be returned (split-orders) |
 | `token`                    | `?string` | The token of next result set in pagination. In `pagination.next_url` the full URL for next result set if given if available                                                          |
+
+### Version changes
+
+| Property                          | Version  | Description                                                  |
+|-----------------------------------|----------|--------------------------------------------------------------|
+| `data[].unpayed_amount_cents`     | `v2->v3` | Removed with correct spelling                                |
+| `data[].unpaid_amount_cents`      | `v2->v3` | Added with correct spelling                                  |
+| `data[].gross_total_amount_cents` | `v2->v3` | Added field for total amount excluding advance payment items |
 
 ### Properties
 
@@ -82,8 +90,9 @@ By default the book-date is used.
 | `data[].booked_at`                                                   | `?datetime`            | Book date time e.g. `2009-08-17 15:24:00`                                                                                                        |
 | `data[].vat_number`                                                  | `?string`              | VAT-number of customer                                                                                                                           |
 | `data[].vat_country_code`                                            | `?string`              | VAT country code if VAT from other country is applied                                                                                            |
-| `data[].total_amount_cents`                                          | `integer`              | Total amount in cents of the transaction e.g. `99900`                                                                                            |
-| `data[].unpayed_amount_cents`                                        | `integer`              | Total amount that is unpayed e.g. `5000`                                                                                                         |
+| `data[].total_amount_cents`                                          | `integer`              | Total amount in cents of the transaction with advance payments included e.g. `99900`                                                             |
+| `data[].gross_total_amount_cents`                                    | `integer`              | Total amount in cents of the transaction excluding advance payments e.g. `99900`                                                                 |
+| `data[].unpaid_amount_cents`                                         | `integer`              | Total amount that is unpaid e.g. `5000`                                                                                                          |
 | `data[].sales_employee_name`                                         | `string`               | Employee name of sales person e.g. `John`                                                                                                        |
 | `data[].sales_employee_id`                                           | `integer`              | Employee ID of sales person e.g. `3`                                                                                                             |
 | `data[].booked_by_employee_name`                                     | `string`               | Employee name who booked the transaction e.g. `John`                                                                                             |
@@ -262,7 +271,8 @@ Content-length: 19744
             "vat_number": null,
             "vat_country_code": null,
             "total_amount_cents": 18994,
-            "unpayed_amount_cents": 0,
+            "gross_total_amount_cents": 18994,
+            "unpaid_amount_cents": 0,
             "sales_employee_name": "Sander",
             "sales_employee_id": 49075,
             "booked_by_employee_name": "Giel",
@@ -541,7 +551,8 @@ Content-length: 19744
             "vat_number": null,
             "vat_country_code": null,
             "total_amount_cents": 831150,
-            "unpayed_amount_cents": 798400,
+            "gross_total_amount_cents": 831150,
+            "unpaid_amount_cents": 798400,
             "sales_employee_name": "Sander",
             "sales_employee_id": 49075,
             "booked_by_employee_name": "David",

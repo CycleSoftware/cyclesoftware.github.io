@@ -496,7 +496,7 @@
                     <a href="#sales-data-sales-transactions-v1" class="toc-h2 toc-link" data-title="Sales transactions - V1">Sales transactions - V1</a>
                   </li>
                   <li>
-                    <a href="#sales-data-sales-transactions-v2" class="toc-h2 toc-link" data-title="Sales transactions - V2">Sales transactions - V2</a>
+                    <a href="#sales-data-sales-transactions-v3" class="toc-h2 toc-link" data-title="Sales transactions - V3">Sales transactions - V3</a>
                   </li>
                   <li>
                     <a href="#sales-data-pro-forma-invoices" class="toc-h2 toc-link" data-title="Pro-forma invoices">Pro-forma invoices</a>
@@ -10154,21 +10154,21 @@ By default the book-date is used.</p>
 <td><code>kassadatum</code> (default) interval as booked date<br/> <code>datetime_modified</code> interval as modification dates<br/><code>factuurdatum</code> interval as invoice proforma date</td>
 </tr>
 </tbody></table>
-<h2 id='sales-data-sales-transactions-v2'>Sales transactions - V2</h2>
+<h2 id='sales-data-sales-transactions-v3'>Sales transactions - V3</h2>
 <p>Get sales transactions and related data such as customers, article and object data.
 By default the book-date is used.</p>
 
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v2/salesdata/transactions.json?date_field=:date_field&date_start=:date_start&date_end=:date_end&only_booked_transactions=:only_booked_transactions&store_id=:store_id&dealer_ids=:dealer_ids</h6>
+        <h6>/api/v3/salesdata/transactions.json?date_field=:date_field&date_start=:date_start&date_end=:date_end&only_booked_transactions=:only_booked_transactions&store_id=:store_id&dealer_ids=:dealer_ids</h6>
     </div>
 </div>
 
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v2/salesdata/transactions.json?token=:pagination_token</h6>
+        <h6>/api/v3/salesdata/transactions.json?token=:pagination_token</h6>
     </div>
 </div>
 
@@ -10220,7 +10220,31 @@ By default the book-date is used.</p>
 <td>The token of next result set in pagination. In <code>pagination.next_url</code> the full URL for next result set if given if available</td>
 </tr>
 </tbody></table>
-<h3 id='sales-data-sales-transactions-v2-properties'>Properties</h3>
+<h3 id='sales-data-sales-transactions-v3-version-changes'>Version changes</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Version</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>data[].unpayed_amount_cents</code></td>
+<td><code>v2-&gt;v3</code></td>
+<td>Removed with correct spelling</td>
+</tr>
+<tr>
+<td><code>data[].unpaid_amount_cents</code></td>
+<td><code>v2-&gt;v3</code></td>
+<td>Added with correct spelling</td>
+</tr>
+<tr>
+<td><code>data[].gross_total_amount_cents</code></td>
+<td><code>v2-&gt;v3</code></td>
+<td>Added field for total amount excluding advance payment items</td>
+</tr>
+</tbody></table>
+<h3 id='sales-data-sales-transactions-v3-properties'>Properties</h3>
 <table><thead>
 <tr>
 <th>Property</th>
@@ -10296,12 +10320,17 @@ By default the book-date is used.</p>
 <tr>
 <td><code>data[].total_amount_cents</code></td>
 <td><code>integer</code></td>
-<td>Total amount in cents of the transaction e.g. <code>99900</code></td>
+<td>Total amount in cents of the transaction with advance payments included e.g. <code>99900</code></td>
 </tr>
 <tr>
-<td><code>data[].unpayed_amount_cents</code></td>
+<td><code>data[].gross_total_amount_cents</code></td>
 <td><code>integer</code></td>
-<td>Total amount that is unpayed e.g. <code>5000</code></td>
+<td>Total amount in cents of the transaction excluding advance payments e.g. <code>99900</code></td>
+</tr>
+<tr>
+<td><code>data[].unpaid_amount_cents</code></td>
+<td><code>integer</code></td>
+<td>Total amount that is unpaid e.g. <code>5000</code></td>
 </tr>
 <tr>
 <td><code>data[].sales_employee_name</code></td>
@@ -11057,7 +11086,8 @@ By default the book-date is used.</p>
             </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"vat_country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">18994</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"unpayed_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"gross_total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">18994</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unpaid_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"sales_employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sander"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"sales_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49075</span><span class="p">,</span><span class="w">
             </span><span class="nl">"booked_by_employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giel"</span><span class="p">,</span><span class="w">
@@ -11336,7 +11366,8 @@ By default the book-date is used.</p>
             </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"vat_country_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">831150</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"unpayed_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">798400</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"gross_total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">831150</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"unpaid_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">798400</span><span class="p">,</span><span class="w">
             </span><span class="nl">"sales_employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sander"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"sales_employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49075</span><span class="p">,</span><span class="w">
             </span><span class="nl">"booked_by_employee_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"David"</span><span class="p">,</span><span class="w">

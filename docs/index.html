@@ -13971,6 +13971,11 @@ not included.</p>
 <td>Delivery date if known and status <code>expected</code> e.g. <code>19-02-2025</code></td>
 </tr>
 <tr>
+<td><code>data.result_items[].stock_stores[].objects[].store_order_id</code></td>
+<td><code>?integer</code></td>
+<td>If present and set to positive value, this stock object is included in a store order for internal delivery. Property is omitted if not in store order.</td>
+</tr>
+<tr>
 <td><code>data.result_items[].stock_stores[].delivery_dates</code></td>
 <td><code>string[]</code></td>
 <td>Delivery dates expected from supplier. <br/>If back-orders are available the date of back-order will be used.<br/>If objects are not assigned to a back-order and have a delivery date this date will be used</td>
@@ -14024,6 +14029,11 @@ not included.</p>
                           </span><span class="p">{</span><span class="w">
                             </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36564</span><span class="p">,</span><span class="w">
                             </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="w">
+                          </span><span class="p">},</span><span class="w">
+                          </span><span class="p">{</span><span class="w">
+                            </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36564</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"store_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3322333</span><span class="w">
                           </span><span class="p">},</span><span class="w">
                           </span><span class="p">{</span><span class="w">
                             </span><span class="nl">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">365634</span><span class="p">,</span><span class="w">

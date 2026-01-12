@@ -26,38 +26,39 @@ Get a list of stock items released for shipment
 
 ### Properties ###
 
-| Property                                                      | Type       | Description                                                                                                                                            |
-|---------------------------------------------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `error`                                                       | `boolean`  | true if errors occurred                                                                                                                                |
-| `error_message`                                               | `?string`  | Error message if occurred                                                                                                                              |
-| `data.status`                                                 | `boolean`  | true if no errors occurred                                                                                                                             |
-| `data.result_items`                                           | `object[]` | Result per requested barcode                                                                                                                           |
-| `data.result_items[].barcode`                                 | `string`   | Article barcode                                                                                                                                        |
-| `data.result_items[].stock_available`                         | `boolean`  | Overall status whether stock is available                                                                                                              |
-| `data.result_items[].delivery_date`                           | `?date`    | expected delivery date from supplier                                                                                                                   |
-| `data.result_items[].delivery_date_supplier`                  | `?date`    | expected delivery date from supplier                                                                                                                   |
-| `data.result_items[].delivery_date_backlog`                   | `?date`    | expected delivery date from registered backlog orders supplier                                                                                         |
-| `data.result_items[].stock_supplier`                          | `?boolean` | true if stock available at supplier, null if not checked                                                                                               |
-| `data.result_items[].stock_quantity`                          | `integer`  | available quantity within stores+warehouse (new+demo+used+rental)                                                                                      |
-| `data.result_items[].stock_quantity_stores`                   | `integer`  | available quantity within stores                                                                                                                       |
-| `data.result_items[].stock_quantity_warehouse`                | `integer`  | available quantity within warehouse                                                                                                                    |
-| `data.result_items[].stock_stores`                            | `object[]` | array with stock info per store                                                                                                                        |
-| `data.result_items[].stock_stores[].dealer_id`                | `integer`  | dealer-id of store                                                                                                                                     |
-| `data.result_items[].stock_stores[].store_name`               | `string`   | name of store                                                                                                                                          |
-| `data.result_items[].stock_stores[].store_phone`              | `string`   | phone number of store                                                                                                                                  |
-| `data.result_items[].stock_stores[].quantity`                 | `integer`  | Quantity of `new`+`demo` models (this is different in POS implementation, quantity of objects have priority over article stock if both are present))   |
-| `data.result_items[].stock_stores[].quantity_new`             | `integer`  | Quantity of new models available                                                                                                                       |
-| `data.result_items[].stock_stores[].quantity_demo`            | `integer`  | Quantity of demo models available                                                                                                                      |
-| `data.result_items[].stock_stores[].quantity_used`            | `integer`  | Quantity of used models available                                                                                                                      |
-| `data.result_items[].stock_stores[].quantity_rental`          | `integer`  | Quantity of rental models available                                                                                                                    |
-| `data.result_items[].stock_stores[].quantity_expected`        | `integer`  | Quantity expected from supplier                                                                                                                        |
-| `data.result_items[].stock_stores[].objects`                  | `object[]` | List of stock objects, empty for articles                                                                                                              | 
-| `data.result_items[].stock_stores[].objects[].object_id`      | `integer`  | Object ID e.g. `10001`                                                                                                                                 |
-| `data.result_items[].stock_stores[].objects[].status`         | `string`   | Status of object e.g. `new`, `demo`, `rental`, `expected`                                                                                              |
-| `data.result_items[].stock_stores[].objects[].delivery_date`  | `?date`    | Delivery date if known and status `expected` e.g. `19-02-2025`                                                                                         |
-| `data.result_items[].stock_stores[].objects[].store_order_id` | `?integer` | If present and set to positive value, this stock object is included in a store order for internal delivery. Property is omitted if not in store order. |
-| `data.result_items[].supplier_id`                             | `?string`  | used supplier_id in request                                                                                                                            |
-| `data.result_items[].article_id`                              | `string`   | used "barcode" in request e.g. `8719461035781`                                                                                                         |
+| Property                                                               | Type       | Description                                                                                                                                            |
+|------------------------------------------------------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `error`                                                                | `boolean`  | true if errors occurred                                                                                                                                |
+| `error_message`                                                        | `?string`  | Error message if occurred                                                                                                                              |
+| `data.status`                                                          | `boolean`  | true if no errors occurred                                                                                                                             |
+| `data.result_items`                                                    | `object[]` | Result per requested barcode                                                                                                                           |
+| `data.result_items[].barcode`                                          | `string`   | Article barcode                                                                                                                                        |
+| `data.result_items[].stock_available`                                  | `boolean`  | Overall status whether stock is available                                                                                                              |
+| `data.result_items[].delivery_date`                                    | `?date`    | expected delivery date from supplier                                                                                                                   |
+| `data.result_items[].delivery_date_supplier`                           | `?date`    | expected delivery date from supplier                                                                                                                   |
+| `data.result_items[].delivery_date_backlog`                            | `?date`    | expected delivery date from registered backlog orders supplier                                                                                         |
+| `data.result_items[].stock_supplier`                                   | `?boolean` | true if stock available at supplier, null if not checked                                                                                               |
+| `data.result_items[].stock_quantity`                                   | `integer`  | available quantity within stores+warehouse (new+demo+used+rental)                                                                                      |
+| `data.result_items[].stock_quantity_stores`                            | `integer`  | available quantity within stores                                                                                                                       |
+| `data.result_items[].stock_quantity_warehouse`                         | `integer`  | available quantity within warehouse                                                                                                                    |
+| `data.result_items[].stock_stores`                                     | `object[]` | array with stock info per store                                                                                                                        |
+| `data.result_items[].stock_stores[].dealer_id`                         | `integer`  | dealer-id of store                                                                                                                                     |
+| `data.result_items[].stock_stores[].store_name`                        | `string`   | name of store                                                                                                                                          |
+| `data.result_items[].stock_stores[].store_phone`                       | `string`   | phone number of store                                                                                                                                  |
+| `data.result_items[].stock_stores[].quantity`                          | `integer`  | Quantity of `new`+`demo` models (this is different in POS implementation, quantity of objects have priority over article stock if both are present))   |
+| `data.result_items[].stock_stores[].quantity_new`                      | `integer`  | Quantity of new models available                                                                                                                       |
+| `data.result_items[].stock_stores[].quantity_demo`                     | `integer`  | Quantity of demo models available                                                                                                                      |
+| `data.result_items[].stock_stores[].quantity_used`                     | `integer`  | Quantity of used models available                                                                                                                      |
+| `data.result_items[].stock_stores[].quantity_rental`                   | `integer`  | Quantity of rental models available                                                                                                                    |
+| `data.result_items[].stock_stores[].quantity_expected`                 | `integer`  | Quantity expected from supplier                                                                                                                        |
+| `data.result_items[].stock_stores[].objects`                           | `object[]` | List of stock objects, empty for articles                                                                                                              | 
+| `data.result_items[].stock_stores[].objects[].object_id`               | `integer`  | Object ID e.g. `10001`                                                                                                                                 |
+| `data.result_items[].stock_stores[].objects[].status`                  | `string`   | Status of object e.g. `new`, `demo`, `rental`, `expected`                                                                                              |
+| `data.result_items[].stock_stores[].objects[].delivery_date`           | `?date`    | Delivery date if known and status `expected` e.g. `19-02-2025`                                                                                         |
+| `data.result_items[].stock_stores[].objects[].transfer`                | `?object`  | If present there is a transfer related to this object. Object is omitted if no transfer is related to this object.                                     |
+| `data.result_items[].stock_stores[].objects[].transfer.store_order_id` | `?integer` | If present and set to positive value, this stock object is included in a store order for internal delivery. Property is omitted if not in store order. |
+| `data.result_items[].supplier_id`                                      | `?string`  | used supplier_id in request                                                                                                                            |
+| `data.result_items[].article_id`                                       | `string`   | used "barcode" in request e.g. `8719461035781`                                                                                                         |
 
 ### HTTP request examples ###
 
@@ -164,7 +165,9 @@ Get a list of stock items released for shipment
               {
                 "object_id": 1101344,
                 "status": "new",
-                "store_order_id": 333023
+                "transfer": {
+                  "store_order_id": 333023
+                }
               },
               {
                 "object_id": 343444,

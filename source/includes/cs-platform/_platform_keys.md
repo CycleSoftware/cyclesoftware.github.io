@@ -17,6 +17,7 @@ Get list of associated stores
 | `keys`                                           | `object[]` | List of entries                                             |
 | `keys[].key`                                     | `string`   | The API key e.g. `Ls6m1ZOgt5JbClmZZHAr8GNhk1qL4Dx0SB7hyyWf` |
 | `keys[].is_active`                               | `boolean`  | Whether the API access is enabled `true`                    |
+| `keys[].scopes`                                  | `string[]` | The access scopes for this key                              |
 | `keys[].store.store_id`                          | `string`   | CS store ID `1-1`                                           |
 | `keys[].store.store_gln`                         | `string`   | Global Location Number e.g. `8718288145482`                 |
 | `keys[].store.store_name`                        | `string`   | Store name e.g. `CycleSoftware Store`                       |
@@ -67,6 +68,7 @@ Content-length: 1626
         {
             "key": "Ls6m1ZOgt5JbClmZZHAr8GNhk1qL4Dx0SB7hyyWf",
             "is_active": true,
+            "scopes": ["platform", "e-commerce"],
             "store": {
                 "store_id": "1-3",
                 "store_gln": "",
@@ -89,6 +91,7 @@ Content-length: 1626
         {
             "key": "BLs6m1ZOgt5JbClmZZHAr8GNhk1qL4Dx0SB7hyyWf",
             "is_active": false,
+            "scopes": [],
             "store": {
                 "store_id": "1-1",
                 "store_gln": "8718288145482",

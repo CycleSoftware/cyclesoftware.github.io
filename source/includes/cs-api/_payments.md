@@ -86,3 +86,97 @@ X-RateLimit-Daily-Reset: 1678230000
 }
 ```
 
+## Bulk payments ##
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/api/v1/payments/order/:id/add.json</h6>
+	</div>
+</div>
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">POST</i>
+		<h6>/api/v1/payments/invoice/:id/add.json</h6>
+	</div>
+</div>
+
+| URI parameter | Type      | Description                                              |
+|---------------|-----------|----------------------------------------------------------|
+| `id`          | `integer` | Sales order ID or the invoice / sales transaction number |
+|
+
+| POST data                           | Type      | Description                                                                                                                                                                                                |
+|-------------------------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `employee_id`                       | `integer` | The employee ID of the employee who processed the payment                                                                                                                                                  |
+| `payments.payment_method_id`        | `integer` | The ID of the payment method used to make the payment. Has to be a valid payment method.                                                                                                                   |
+| `payments.payment_amount_cents`     | `integer` | The amount of cents paid by this payment method                                                                                                                                                            |
+| `payments.voucher_code`             | `string`  | The voucher code used to make this payment. Only works when used in combination with payment_method_id = 5(vouchers) and for orders. Paying invoices with vouchers via this endpoint is not supported yet. |
+| `payments.payment_for_customer_id`  | `integer` | The customer this payment should be linked to.                                                                                                                                                             |
+
+| Property                           | Type       | Description                                                                              |
+|------------------------------------|------------|------------------------------------------------------------------------------------------|
+| `error`                            | `boolean`  | `true` if an error occurred                                                              |
+| `error_message`                    | `?string`  | The error message if an error occurred                                                   |
+| `payments.book_date`               | `datetime` | The datetime this payment was added                                                      |
+| `payments.payment_method_id`       | `integer`  | The ID of the payment method used to make the payment. Has to be a valid payment method. |
+| `payments.payment_amount_cents`    | `integer`  | The amount of cents paid by this payment method                                          |
+| `payments.payment_for_customer_id` | `?integer` | The id of the customer this payment was made for                                         |
+
+> HTTP request
+
+```http
+POST /api/v1/payments/order/1012/add.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+
+{
+  "employee_id": 40899,
+  "payments": [
+    {
+      "payment_method_id": 1,
+      "payment_amount_cents": 200
+    },
+    {
+      "payment_method_id": 3,
+      "payment_amount_cents": 200
+    }
+  ]
+}
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200 
+Content-type: application/json; charset=utf-8
+Content-length: 425
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+
+{
+  "error": false,
+  "error_message": null,
+  "payments": [
+    {
+      "book_date": "2024-08-08 16:43:47",
+      "payment_method_id": 2,
+      "payment_amount_cents": 500,
+      "payment_for_customer_id": null
+    },
+    {
+      "book_date": "2024-08-08 16:43:47",
+      "payment_method_id": 2,
+      "payment_amount_cents": 500,
+      "payment_for_customer_id": null
+    },
+  ],
+  "total_amount_cents": 3500,
+  "unpaid_amount_cents": 2500
+}
+```

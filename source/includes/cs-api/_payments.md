@@ -106,11 +106,13 @@ X-RateLimit-Daily-Reset: 1678230000
 | `id`          | `integer` | Sales order ID or the invoice / sales transaction number |
 |
 
-| POST data                       | Type      | Description                                                                              |
-|---------------------------------|-----------|------------------------------------------------------------------------------------------|
-| `employee_id`                   | `integer` | The employee ID of the employee who processed the payment                                |
-| `payments.payment_method_id`    | `integer` | The ID of the payment method used to make the payment. Has to be a valid payment method. |
-| `payments.payment_amount_cents` | `integer` | The amount of cents paid by this payment method                                          |
+| POST data                           | Type      | Description                                                                                                                                                                                                |
+|-------------------------------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `employee_id`                       | `integer` | The employee ID of the employee who processed the payment                                                                                                                                                  |
+| `payments.payment_method_id`        | `integer` | The ID of the payment method used to make the payment. Has to be a valid payment method.                                                                                                                   |
+| `payments.payment_amount_cents`     | `integer` | The amount of cents paid by this payment method                                                                                                                                                            |
+| `payments.voucher_code`             | `string`  | The voucher code used to make this payment. Only works when used in combination with payment_method_id = 5(vouchers) and for orders. Paying invoices with vouchers via this endpoint is not supported yet. |
+| `payments.payment_for_customer_id`  | `integer` | The customer this payment should be linked to.                                                                                                                                                             |
 
 | Property                           | Type       | Description                                                                              |
 |------------------------------------|------------|------------------------------------------------------------------------------------------|

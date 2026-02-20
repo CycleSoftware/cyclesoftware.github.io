@@ -453,9 +453,6 @@
                   <li>
                     <a href="#payments-payment-links" class="toc-h2 toc-link" data-title="Payment links">Payment links</a>
                   </li>
-                  <li>
-                    <a href="#payments-bulk-payments" class="toc-h2 toc-link" data-title="Bulk payments">Bulk payments</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -9222,168 +9219,6 @@ Content-length: 1448
         </span><span class="nl">"qr_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64,iVBORw0KGgoAAAANSUhEU...."</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='payments-bulk-payments'>Bulk payments</h2>
-<div class="api-endpoint">
-    <div class="endpoint-data">
-        <i class="label label-post">POST</i>
-        <h6>/api/v1/payments/order/:id/add.json</h6>
-    </div>
-</div>
-
-<div class="api-endpoint">
-    <div class="endpoint-data">
-        <i class="label label-post">POST</i>
-        <h6>/api/v1/payments/invoice/:id/add.json</h6>
-    </div>
-</div>
-
-<table><thead>
-<tr>
-<th>URI parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>id</code></td>
-<td><code>integer</code></td>
-<td>Sales order ID or the invoice / sales transaction number</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>POST data</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>employee_id</code></td>
-<td><code>integer</code></td>
-<td>The employee ID of the employee who processed the payment</td>
-</tr>
-<tr>
-<td><code>payments.payment_method_id</code></td>
-<td><code>integer</code></td>
-<td>The ID of the payment method used to make the payment. Has to be a valid payment method.</td>
-</tr>
-<tr>
-<td><code>payments.payment_amount_cents</code></td>
-<td><code>integer</code></td>
-<td>The amount of cents paid by this payment method</td>
-</tr>
-<tr>
-<td><code>payments.voucher_code</code></td>
-<td><code>string</code></td>
-<td>The voucher code used to make this payment. Only works when used in combination with payment_method_id = 5(vouchers) and for orders. Paying invoices with vouchers via this endpoint is not supported yet.</td>
-</tr>
-<tr>
-<td><code>payments.payment_for_customer_id</code></td>
-<td><code>integer</code></td>
-<td>The customer this payment should be linked to.</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>error</code></td>
-<td><code>boolean</code></td>
-<td><code>true</code> if an error occurred</td>
-</tr>
-<tr>
-<td><code>error_message</code></td>
-<td><code>?string</code></td>
-<td>The error message if an error occurred</td>
-</tr>
-<tr>
-<td><code>payments.book_date</code></td>
-<td><code>datetime</code></td>
-<td>The datetime this payment was added</td>
-</tr>
-<tr>
-<td><code>payments.payment_method_id</code></td>
-<td><code>integer</code></td>
-<td>The ID of the payment method used to make the payment. Has to be a valid payment method.</td>
-</tr>
-<tr>
-<td><code>payments.payment_amount_cents</code></td>
-<td><code>integer</code></td>
-<td>The amount of cents paid by this payment method</td>
-</tr>
-<tr>
-<td><code>payments.payment_for_customer_id</code></td>
-<td><code>?integer</code></td>
-<td>The id of the customer this payment was made for</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>HTTP request</p>
-</blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/api/v1/payments/order/1012/add.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
-<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
-<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
-
-{
-  "employee_id": 40899,
-  "payments": [
-    {
-      "payment_method_id": 1,
-      "payment_amount_cents": 200
-    },
-    {
-      "payment_method_id": 3,
-      "payment_amount_cents": 200
-    }
-  ]
-}
-</code></pre></div>
-<blockquote>
-<p>HTTP Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> 
-<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
-<span class="na">Content-length</span><span class="p">:</span> <span class="s">425</span>
-<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
-<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
-<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
-<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
-<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
-
-<span class="p">{</span><span class="w">
-  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"book_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-08 16:43:47"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"payment_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"payment_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"payment_for_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"book_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-08-08 16:43:47"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"payment_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"payment_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"payment_for_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"total_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">3500</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"unpaid_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2500</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='rental'>Rental</h1>
 <p>Access rental object data</p>
 
@@ -9644,6 +9479,18 @@ Content-length: 1448
 <td><code>readonly</code></td>
 <td>URL to large image e.g. <code>https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg</code></td>
 </tr>
+<tr>
+<td><code>lease_fleet_customer_id</code></td>
+<td><code>integer</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Lease fleet customer_id</td>
+</tr>
+<tr>
+<td><code>lease_contract_number</code></td>
+<td><code>string</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Lease contract number</td>
+</tr>
 </tbody></table>
 <h2 id='repair-objects-search-repair-objects'>Search repair objects</h2>
 <p>Search for repair objects given a query parameter</p>
@@ -9754,7 +9601,9 @@ Content-length: 1448
                     </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
@@ -9779,7 +9628,9 @@ Content-length: 1448
             </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lock_id"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -9864,6 +9715,8 @@ Content-length: 1448
                 </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
+        </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
@@ -9888,7 +9741,9 @@ Content-length: 1448
         </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lock_id"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div><h2 id='repair-objects-get-repair-object'>Get repair object</h2>
@@ -9976,6 +9831,8 @@ Content-length: 1448
             </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
+    </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='repair-objects-get-repair-object-by-object-id'>Get repair object by object id</h2>
 <p>Get a repair object by object id</p>
@@ -10059,7 +9916,9 @@ Content-length: 1448
             </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">   
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='repair-objects-create-repair-object'>Create repair object</h2>
@@ -10159,7 +10018,9 @@ Content-length: 1448
     </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lock_id"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='repair-objects-update-repair-object'>Update repair object</h2>
 <p>Update a repair object</p>
@@ -10257,6 +10118,8 @@ Content-length: 1448
             </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1215427.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
+    </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='sales-data'>Sales data</h1>
 <p>Access sales data</p>

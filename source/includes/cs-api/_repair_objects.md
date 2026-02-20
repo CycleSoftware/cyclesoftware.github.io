@@ -8,34 +8,36 @@ Read, create or update repair objects for a customer
 
 ## Repair object (object)
 
-| **Property**             | **Type**                        | **Modify**                 | **Description**                                                                            |
-|--------------------------|---------------------------------|----------------------------|--------------------------------------------------------------------------------------------|
-| `customer_id`            | `integer`                       | `readonly`                 | Customer ID of owner e.g. `6`                                                              |
-| `object_id`              | `integer`                       | `readonly`                 | ID of the object e.g. `208410`                                                             |
-| `object_barcode`         | `string`                        | <code>PUT&#124;POST</code> | e.g. `object_barcode`                                                                      |
-| `is_active`              | `boolean`                       | <code>PUT&#124;POST</code> | Whether this object is still owned by customer e.g. `true`                                 |
-| `object_type_name`       | `string`                        | <code>PUT&#124;POST</code> | e.g. `fiets`                                                                               |
-| `category`               | `string`                        | <code>PUT&#124;POST</code> | Category name e.g. `Racefietsen`                                                           |
-| `brand`                  | `string`                        | <code>PUT&#124;POST</code> | Brand name e.g. `BrandName`                                                                |
-| `model`                  | `string`                        | <code>PUT&#124;POST</code> | Model name e.g. `ModelName`                                                                |
-| `model_year`             | `string`                        | <code>PUT&#124;POST</code> | Model year e.g. `2017`                                                                     |
-| `color`                  | `string`                        | <code>PUT&#124;POST</code> | Color of object e.g. `Black`                                                               |
-| `variant`                | `string`                        | <code>PUT&#124;POST</code> | Variant name e.g. `Heren`                                                                  |
-| `phone_number_id`        | `string`                        | <code>PUT&#124;POST</code> | Phone number ID for communication e.g. `12345`                                             |
-| `license_plate`          | `string`                        | <code>PUT&#124;POST</code> | License plate number e.g. `xx-zz-yy`                                                       |
-| `km_mileage`             | `string`                        | <code>PUT&#124;POST</code> | Kilometer age e.g. `200`                                                                   |
-| `frame_id`               | `string`                        | <code>PUT&#124;POST</code> | Frame number e.g. `frame_id`                                                               |
-| `chip_id`                | `string`                        | <code>PUT&#124;POST</code> | Chip number e.g. `chip_id`                                                                 |
-| `key_id`                 | `string`                        | <code>PUT&#124;POST</code> | Key number e.g. `key_id`                                                                   |
-| `engine_id`              | `string`                        | <code>PUT&#124;POST</code> | Engine number e.g. `engine_id`                                                             |
-| `battery_id`             | `string`                        | <code>PUT&#124;POST</code> | Battery number e.g. `1234`                                                                 |
-| `lock_id`                | `string`                        | <code>PUT&#124;POST</code> | Lock number e.g. `1234`                                                                    |
-| `workshop_rate_id`       | `integer`                       | <code>PUT&#124;POST</code> | See common API `workshop_rates` e.g. `1`                                                   |
-| `service_level_id`       | `integer`                       | <code>PUT&#124;POST</code> | Service level ID e.g. `0`                                                                  |
-| `images`                 | `object[]`                      | `readonly`                 | List of images                                                                             |
-| `images[].date_modified` | <code>datetime&#124;null</code> | `readonly`                 | Modification date e.g. `2016-05-24 11:15:02`                                               |
-| `images[].url_thumb`     | `string`                        | `readonly`                 | URL to thumbnail e.g. `https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg`   |
-| `images[].url_large`     | `string`                        | `readonly`                 | URL to large image e.g. `https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg` |
+| **Property**              | **Type**                        | **Modify**                 | **Description**                                                                            |
+|---------------------------|---------------------------------|----------------------------|--------------------------------------------------------------------------------------------|
+| `customer_id`             | `integer`                       | `readonly`                 | Customer ID of owner e.g. `6`                                                              |
+| `object_id`               | `integer`                       | `readonly`                 | ID of the object e.g. `208410`                                                             |
+| `object_barcode`          | `string`                        | <code>PUT&#124;POST</code> | e.g. `object_barcode`                                                                      |
+| `is_active`               | `boolean`                       | <code>PUT&#124;POST</code> | Whether this object is still owned by customer e.g. `true`                                 |
+| `object_type_name`        | `string`                        | <code>PUT&#124;POST</code> | e.g. `fiets`                                                                               |
+| `category`                | `string`                        | <code>PUT&#124;POST</code> | Category name e.g. `Racefietsen`                                                           |
+| `brand`                   | `string`                        | <code>PUT&#124;POST</code> | Brand name e.g. `BrandName`                                                                |
+| `model`                   | `string`                        | <code>PUT&#124;POST</code> | Model name e.g. `ModelName`                                                                |
+| `model_year`              | `string`                        | <code>PUT&#124;POST</code> | Model year e.g. `2017`                                                                     |
+| `color`                   | `string`                        | <code>PUT&#124;POST</code> | Color of object e.g. `Black`                                                               |
+| `variant`                 | `string`                        | <code>PUT&#124;POST</code> | Variant name e.g. `Heren`                                                                  |
+| `phone_number_id`         | `string`                        | <code>PUT&#124;POST</code> | Phone number ID for communication e.g. `12345`                                             |
+| `license_plate`           | `string`                        | <code>PUT&#124;POST</code> | License plate number e.g. `xx-zz-yy`                                                       |
+| `km_mileage`              | `string`                        | <code>PUT&#124;POST</code> | Kilometer age e.g. `200`                                                                   |
+| `frame_id`                | `string`                        | <code>PUT&#124;POST</code> | Frame number e.g. `frame_id`                                                               |
+| `chip_id`                 | `string`                        | <code>PUT&#124;POST</code> | Chip number e.g. `chip_id`                                                                 |
+| `key_id`                  | `string`                        | <code>PUT&#124;POST</code> | Key number e.g. `key_id`                                                                   |
+| `engine_id`               | `string`                        | <code>PUT&#124;POST</code> | Engine number e.g. `engine_id`                                                             |
+| `battery_id`              | `string`                        | <code>PUT&#124;POST</code> | Battery number e.g. `1234`                                                                 |
+| `lock_id`                 | `string`                        | <code>PUT&#124;POST</code> | Lock number e.g. `1234`                                                                    |
+| `workshop_rate_id`        | `integer`                       | <code>PUT&#124;POST</code> | See common API `workshop_rates` e.g. `1`                                                   |
+| `service_level_id`        | `integer`                       | <code>PUT&#124;POST</code> | Service level ID e.g. `0`                                                                  |
+| `images`                  | `object[]`                      | `readonly`                 | List of images                                                                             |
+| `images[].date_modified`  | <code>datetime&#124;null</code> | `readonly`                 | Modification date e.g. `2016-05-24 11:15:02`                                               |
+| `images[].url_thumb`      | `string`                        | `readonly`                 | URL to thumbnail e.g. `https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg`   |
+| `images[].url_large`      | `string`                        | `readonly`                 | URL to large image e.g. `https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg` |
+| `lease_fleet_customer_id` | `integer`                       | <code>PUT&#124;POST</code> | Lease fleet customer_id                                                                    |
+| `lease_contract_number`   | `string`                        | <code>PUT&#124;POST</code> | Lease contract number                                                                      |
 
 
 
@@ -121,7 +123,9 @@ X-RateLimit-Daily-Reset: 1678230000
                     "url_thumb": "https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg",
                     "url_large": "https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"
                 }
-            ]
+            ],
+            "lease_fleet_customer_id": 0,
+            "lease_contract_number": "",
         },
         {
             "customer_id": 1006,
@@ -146,7 +150,9 @@ X-RateLimit-Daily-Reset: 1678230000
             "lock_id": "lock_id",
             "workshop_rate_id": 1,
             "service_level_id": 0,
-            "images": []
+            "images": [],
+            "lease_fleet_customer_id": 0,
+            "lease_contract_number": "",
         }
     ],
     "pagination": {
@@ -225,6 +231,8 @@ X-RateLimit-Daily-Reset: 1678230000
                 "url_large": "https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"
             }
         ]
+        "lease_fleet_customer_id": 0,
+        "lease_contract_number": "",
     },
     {
         "customer_id": 1006,
@@ -249,7 +257,9 @@ X-RateLimit-Daily-Reset: 1678230000
         "lock_id": "lock_id",
         "workshop_rate_id": 1,
         "service_level_id": 0,
-        "images": []
+        "images": [],
+        "lease_fleet_customer_id": 0,
+        "lease_contract_number": "",
     }
 ]
 ```
@@ -327,6 +337,8 @@ X-RateLimit-Daily-Reset: 1678230000
             "url_large": "https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"
         }
     ]
+    "lease_fleet_customer_id": 0,
+    "lease_contract_number": "",
 }
 ```
 
@@ -404,7 +416,9 @@ X-RateLimit-Daily-Reset: 1678230000
             "url_thumb": "https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg",
             "url_large": "https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"
         }
-    ]
+    ],
+    "lease_fleet_customer_id": 0,
+    "lease_contract_number": "",   
   }
 }
 ```
@@ -499,7 +513,9 @@ X-RateLimit-Daily-Reset: 1678230000
     "lock_id": "lock_id",
     "workshop_rate_id": 1,
     "service_level_id": 0,
-    "images": []
+    "images": [],
+    "lease_fleet_customer_id": 0,
+    "lease_contract_number": "",
 }
 ```
 
@@ -587,5 +603,7 @@ X-RateLimit-Daily-Reset: 1678230000
             "url_large": "https://s01.cyclesoftware.nl/app/img/artPic_public_L_1215427.jpg"
         }
     ]
+    "lease_fleet_customer_id": 0,
+    "lease_contract_number": "",
 }
 ```

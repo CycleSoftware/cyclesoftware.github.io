@@ -8152,8 +8152,13 @@ Content-length: 2595
   <span class="nt">&lt;/SOAP-ENV:Body&gt;</span>
 <span class="nt">&lt;/SOAP-ENV:Envelope&gt;</span>
 </code></pre></div><h2 id='e-commerce-createorupdatecustomer'>CreateOrUpdateCustomer</h2>
-<p>This method creates or updates an existing customer. Existing customers are matched on <code>customer_id</code>, <code>customer_phone</code>
-, <code>customer_mobile</code>, <code>customer_reference</code> or <code>customer_email</code>.</p>
+<p>This method creates or updates an existing customer. Existing customers can be matched in several ways, sorted by priority:
+ 1. <code>customer_id</code> matches an existing customer
+ 2. Both e-mail address and phone number match
+ 3. The customer that has the most, but at least one of the following fields in common with the new customer: mobile phone number, landline number, reference, customer id, email</p>
+
+<p>However, using fields other than customer_id is not recommended due to the risk of matching the wrong customer and the data model allowing duplicate e-mail addresses. 
+Please use the <a href="/?code#customers-find-customers">find customer endpoint</a> to search by e-mail for a certain customer id.</p>
 <div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
 <span class="k">try</span> <span class="p">{</span>
     <span class="nv">$client</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">SoapClient</span><span class="p">(</span>

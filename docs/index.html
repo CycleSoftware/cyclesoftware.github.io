@@ -9644,6 +9644,24 @@ Content-length: 1448
 <td><code>readonly</code></td>
 <td>URL to large image e.g. <code>https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg</code></td>
 </tr>
+<tr>
+<td><code>lease_fleet_customer_id</code></td>
+<td><code>integer</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Lease fleet customer_id</td>
+</tr>
+<tr>
+<td><code>lease_employer_customer_id</code></td>
+<td><code>integer</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Lease employer customer_id</td>
+</tr>
+<tr>
+<td><code>lease_contract_number</code></td>
+<td><code>string</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Lease contract number</td>
+</tr>
 </tbody></table>
 <h2 id='repair-objects-search-repair-objects'>Search repair objects</h2>
 <p>Search for repair objects given a query parameter</p>
@@ -9754,7 +9772,10 @@ Content-length: 1448
                     </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1007</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lease_employer_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1008</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1001"</span><span class="p">,</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
@@ -9779,7 +9800,10 @@ Content-length: 1448
             </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lock_id"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1007</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lease_employer_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1008</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1001"</span><span class="p">,</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -9864,6 +9888,9 @@ Content-length: 1448
                 </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
+            </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1007</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lease_employer_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1008</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1001"</span><span class="p">,</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1006</span><span class="p">,</span><span class="w">
@@ -9888,7 +9915,10 @@ Content-length: 1448
         </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lock_id"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1007</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lease_employer_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1008</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1001"</span><span class="p">,</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div><h2 id='repair-objects-get-repair-object'>Get repair object</h2>
@@ -9976,6 +10006,9 @@ Content-length: 1448
             </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
+    </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1007</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_employer_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1008</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1001"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='repair-objects-get-repair-object-by-object-id'>Get repair object by object id</h2>
 <p>Get a repair object by object id</p>
@@ -10059,7 +10092,10 @@ Content-length: 1448
             </span><span class="nl">"url_thumb"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1007</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_employer_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1008</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1001"</span><span class="p">,</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='repair-objects-create-repair-object'>Create repair object</h2>
@@ -10159,7 +10195,10 @@ Content-length: 1448
     </span><span class="nl">"lock_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lock_id"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"workshop_rate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"service_level_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1007</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_employer_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1008</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1001"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='repair-objects-update-repair-object'>Update repair object</h2>
 <p>Update a repair object</p>
@@ -10257,6 +10296,9 @@ Content-length: 1448
             </span><span class="nl">"url_large"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/app/img/artPic_public_L_1215427.jpg"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
+    </span><span class="nl">"lease_fleet_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1007</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_employer_customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1008</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1001"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='sales-data'>Sales data</h1>
 <p>Access sales data</p>

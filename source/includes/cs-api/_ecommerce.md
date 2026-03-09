@@ -1270,8 +1270,10 @@ Content-length: 2595
 
 ## CreateOrUpdateCustomer ##
 
-This method creates or updates an existing customer. Existing customers are matched on `customer_id`, `customer_phone`
-, `customer_mobile`, `customer_reference` or `customer_email`.
+This method creates or updates an existing customer. Existing customers can be matched in several ways, sorted by priority:
+ 1. `customer_id` matches an existing customer
+ 2. Both e-mail address and phone number match
+3. 
 
 ```php
 <?php

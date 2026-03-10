@@ -1270,8 +1270,13 @@ Content-length: 2595
 
 ## CreateOrUpdateCustomer ##
 
-This method creates or updates an existing customer. Existing customers are matched on `customer_id`, `customer_phone`
-, `customer_mobile`, `customer_reference` or `customer_email`.
+This method creates or updates an existing customer. Existing customers can be matched in several ways, sorted by priority:
+ 1. `customer_id` matches an existing customer
+ 2. Both e-mail address and phone number match
+ 3. The customer that has the most, but at least one of the following fields in common with the new customer: mobile phone number, landline number, reference, customer id, email
+
+However, using fields other than customer_id is not recommended due to the risk of matching the wrong customer and the data model allowing duplicate e-mail addresses. 
+Please use the [find customer endpoint](/?code#customers-find-customers) to search by e-mail for a certain customer id.
 
 ```php
 <?php

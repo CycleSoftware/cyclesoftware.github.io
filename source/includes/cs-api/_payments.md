@@ -86,7 +86,7 @@ X-RateLimit-Daily-Reset: 1678230000
 }
 ```
 
-## Bulk payments ##
+## Create payments ##
 
 <div class="api-endpoint">
 	<div class="endpoint-data">

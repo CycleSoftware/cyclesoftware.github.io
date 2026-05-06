@@ -18,10 +18,6 @@ Get info for a specific stock object
 
 ### Result properties
 
-| Property          | Type      | Omittable | Description |
-|-------------------|-----------|-----------|-------------|
-| `stock_object_id` | `integer` |           | ....        |
-
 | Property                              | Type       | Nullable   | Description                                                                               |
 |---------------------------------------|------------|------------|-------------------------------------------------------------------------------------------|
 | `customer_id`                         | `?integer` | `true`     | If sold, the customer ID of the rider                                                     |
@@ -56,6 +52,55 @@ Get info for a specific stock object
 | `images[].url_large`                  | `string`   | `false`    | URL the large image e.g. `https://cdn.cyclesoftware.nl/app/img/artPic_public_L_1.jpg`     |
 | `images[].url_thumb`                  | `string`   | `false`    | URL the thumbnail image e.g. `https://cdn.cyclesoftware.nl/app/img/artPic_public_T_1.jpg` |
 | `object`                              | `object`   | `false`    | Same structure as object in `results[].object` of the batch update endpoint result        |
+| `object.stock_object_id`              | `integer`  | `false`    | The unique stock object ID e.g. `26034`                                                   |
+| `object.store_id`                     | `integer`  | `false`    | The store ID of the object e.g. `1`                                                       |
+| `object.is_reserved`                  | `boolean`  | `false`    | `true` if object is reserved e.g. `false`                                                 |
+| `object.is_demo`                      | `boolean`  | `false`    | `true` if object is demo e.g. `false`                                                     |
+| `object.object_reference`             | `string`   | `false`    | Object reference e.g. `REF1`                                                              |
+| `object.barcode`                      | `string`   | `false`    | Barcode of object e.g. `8713568461597`                                                    |
+| `object.article_id`                   | `string`   | `false`    | Article ID of object e.g. `BE102029`                                                      |
+| `object.brand_name`                   | `string`   | `false`    | Brand name of object e.g. `BATAVUS`                                                       |
+| `object.brand_id`                     | `integer`  | `false`    | Brand ID of object e.g. `1759` (codelist: `/api/v1/common/bike-brands.json`)              |
+| `object.model_name`                   | `string`   | `false`    | Model name of object e.g. `Finez E-Go-D Power Sport`                                      |
+| `object.article_main_group`           | `integer`  | `false`    | Main article group ID e.g. `1` - should always be `1` for bikes (see code list `/api/v4/articledata/codelist/tree/bikes.json`) |
+| `object.article_group`                | `string`   | `false`    | Article group ID e.g. `A` (see code list `/api/v4/articledata/codelist/tree/bikes.json`)  |
+| `object.article_sub_group`            | `integer`  | `false`    | Sub article group ID e.g. `1` (see code list `/api/v4/articledata/codelist/tree/bikes.json`) |
+| `object.frame_type`                   | `string`   | `false`    | Frame type of object e.g. `LAGE INSTAP` (if language is nl_NL this field will be in Dutch, see `/api/v4/articledata/codelist/frame.json`) |
+| `object.model_year`                   | `integer`  | `false`    | Model year of object e.g. `2024`                                                          |
+| `object.frame_height`                 | `integer`  | `false`    | Frame height in CM e.g. `53`                                                              |
+| `object.frame_size_supplier`          | `string`   | `false`    | Frame size description e.g. `M`                                                           |
+| `object.wheel_size`                   | `integer`  | `false`    | Wheel size in inch e.g. `28`                                                              |
+| `object.customer_group`               | `string`   | `false`    | Customer group e.g. `DAMES` (if language is nl_NL this field will be in Dutch, see `/api/v4/articledata/codelist/customer_group.json`) |
+| `object.frame_material`               | `string`   | `false`    | Frame material e.g. `ALUMINIUM` (if language is nl_NL this field will be in Dutch, see `/api/v4/articledata/codelist/frame_material.json`) |
+| `object.color`                        | `string`   | `false`    | Color description e.g. `Zwart Glans`                                                      |
+| `object.primary_color`                | `string`   | `false`    | Primary color e.g. `ZWART` (if language is nl_NL this field will be in Dutch, see `/api/v4/articledata/codelist/base_color.json`) |
+| `object.secondary_color`              | `string`   | `false`    | Secondary color e.g. `BLACK` (if language is nl_NL this field will be in Dutch, see `/api/v4/articledata/codelist/base_color.json`) |
+| `object.type_brake_system_front`      | `string`   | `false`    | Type brake system front e.g. `SH` (see `/api/v4/articledata/codelist/brake_system.json`)  |
+| `object.brand_brake_system_front`     | `string`   | `false`    | Brand brake system front e.g. `MAGURA` (see `/api/v4/articledata/codelist/brand.json`)    |
+| `object.model_brake_system_front`     | `string`   | `false`    | Model brake system front e.g. `HYDRAULISCHE SCHIJFREM`                                    |
+| `object.type_brake_system_rear`       | `string`   | `false`    | Type brake system rear e.g. `SH` (see `/api/v4/articledata/codelist/brake_system.json`)   |
+| `object.brand_brake_system_rear`      | `string`   | `false`    | Brand brake system rear e.g. `MAGURA` (see `/api/v4/articledata/codelist/brand.json`)     |
+| `object.model_brake_system_rear`      | `string`   | `false`    | Model brake system rear e.g. `HYDRAULISCHE SCHIJFREM`                                     |
+| `object.type_gear_system`             | `string`   | `false`    | Type gear system e.g. `DERAILLEUR` (see `/api/v4/articledata/codelist/gear_system.json`)  |
+| `object.brand_gear_system`            | `string`   | `false`    | Brand gear system e.g. `SHIMANO` (see `/api/v4/articledata/codelist/brand.json`)          |
+| `object.model_gear_system`            | `string`   | `false`    | Model gear system e.g. `CUES`                                                             |
+| `object.gear_count`                   | `integer`  | `false`    | Gear count e.g. `10`                                                                      |
+| `object.description_short`            | `string`   | `false`    | Description e.g. `FINEZ E-GO PT SPORT BES-3 DV10 NERO 53 NO BATT`                         |
+| `object.description`                  | `string`   | `false`    | Description long e.g. `FINEZ E-GO PT SPORT BES-3 DV10 NERO 53 NO BATT`                    |
+| `object.purchase_price_cents`         | `integer`  | `false`    | Purchase price in cents e.g. `273896`                                                     |
+| `object.sales_price_cents`            | `integer`  | `false`    | Sales price in cents e.g. `369900`                                                        |
+| `object.rrp_cents`                    | `integer`  | `false`    | Recommended retail price in cents e.g. `389900`                                           |
+| `object.ecommerce`                    | `boolean`  | `false`    | `true` if available for e-commerce e.g. `true`                                            |
+| `object.ecommerce_price_cents`        | `integer`  | `false`    | E-commerce sales price e.g. `389900`                                                      |
+| `object.nett_weight_kg`               | `double`   | `false`    | Weight (kg) e.g. `31`                                                                     |
+| `object.gross_weight_kg`              | `double`   | `false`    | Weight gross (kg) e.g. `0`                                                                |
+| `object.supplier_invoice_reference`   | `string`   | `false`    | Supplier invoice reference e.g. `INV-1121221`                                             |
+| `object.supplier_order_reference`     | `string`   | `false`    | Supplier order reference e.g. `ORDER-1121221`                                             |
+| `object.custom_variable_1`            | `string`   | `false`    | Custom variable 1 e.g. `Some value`                                                       |
+| `object.custom_variable_2`            | `string`   | `false`    | Custom variable 2 e.g. `Some value`                                                       |
+| `object.custom_variable_3`            | `string`   | `false`    | Custom variable 3 e.g. `Some value`                                                       |
+| `object.custom_variable_4`            | `string`   | `false`    | Custom variable 4 e.g. `Some value`                                                       |
+| `object.warranty_type`                | `integer`  | `false`    | Warranty type e.g. `0` (see `/api/v1/common/enum/warranty-types.json`)                    |
 
 > HTTP request
 
@@ -153,7 +198,8 @@ Content-length: 2898
         "engine_number": "EN1",
         "serial_number": "SR1",
         "imei_number": "IMEI",
-        "license_plate_number": "11-22-33"
+        "license_plate_number": "11-22-33",
+        "velopass_code": "VP12EH6745"
     },
     "images": [
         {

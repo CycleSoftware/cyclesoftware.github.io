@@ -14543,22 +14543,6 @@ not included.</p>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Omittable</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>stock_object_id</code></td>
-<td><code>integer</code></td>
-<td></td>
-<td>....</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
 <th>Nullable</th>
 <th>Description</th>
 </tr>
@@ -14755,6 +14739,300 @@ not included.</p>
 <td><code>false</code></td>
 <td>Same structure as object in <code>results[].object</code> of the batch update endpoint result</td>
 </tr>
+<tr>
+<td><code>object.stock_object_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The unique stock object ID e.g. <code>26034</code></td>
+</tr>
+<tr>
+<td><code>object.store_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The store ID of the object e.g. <code>1</code></td>
+</tr>
+<tr>
+<td><code>object.is_reserved</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if object is reserved e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>object.is_demo</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if object is demo e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>object.object_reference</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Object reference e.g. <code>REF1</code></td>
+</tr>
+<tr>
+<td><code>object.barcode</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Barcode of object e.g. <code>8713568461597</code></td>
+</tr>
+<tr>
+<td><code>object.article_id</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Article ID of object e.g. <code>BE102029</code></td>
+</tr>
+<tr>
+<td><code>object.brand_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Brand name of object e.g. <code>BATAVUS</code></td>
+</tr>
+<tr>
+<td><code>object.brand_id</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Brand ID of object e.g. <code>1759</code> (codelist: <code>/api/v1/common/bike-brands.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.model_name</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Model name of object e.g. <code>Finez E-Go-D Power Sport</code></td>
+</tr>
+<tr>
+<td><code>object.article_main_group</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Main article group ID e.g. <code>1</code> - should always be <code>1</code> for bikes (see code list <code>/api/v4/articledata/codelist/tree/bikes.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.article_group</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Article group ID e.g. <code>A</code> (see code list <code>/api/v4/articledata/codelist/tree/bikes.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.article_sub_group</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Sub article group ID e.g. <code>1</code> (see code list <code>/api/v4/articledata/codelist/tree/bikes.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.frame_type</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Frame type of object e.g. <code>LAGE INSTAP</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/frame.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.model_year</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Model year of object e.g. <code>2024</code></td>
+</tr>
+<tr>
+<td><code>object.frame_height</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Frame height in CM e.g. <code>53</code></td>
+</tr>
+<tr>
+<td><code>object.frame_size_supplier</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Frame size description e.g. <code>M</code></td>
+</tr>
+<tr>
+<td><code>object.wheel_size</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Wheel size in inch e.g. <code>28</code></td>
+</tr>
+<tr>
+<td><code>object.customer_group</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Customer group e.g. <code>DAMES</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/customer_group.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.frame_material</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Frame material e.g. <code>ALUMINIUM</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/frame_material.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.color</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Color description e.g. <code>Zwart Glans</code></td>
+</tr>
+<tr>
+<td><code>object.primary_color</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Primary color e.g. <code>ZWART</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/base_color.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.secondary_color</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Secondary color e.g. <code>BLACK</code> (if language is nl_NL this field will be in Dutch, see <code>/api/v4/articledata/codelist/base_color.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.type_brake_system_front</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Type brake system front e.g. <code>SH</code> (see <code>/api/v4/articledata/codelist/brake_system.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.brand_brake_system_front</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Brand brake system front e.g. <code>MAGURA</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.model_brake_system_front</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Model brake system front e.g. <code>HYDRAULISCHE SCHIJFREM</code></td>
+</tr>
+<tr>
+<td><code>object.type_brake_system_rear</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Type brake system rear e.g. <code>SH</code> (see <code>/api/v4/articledata/codelist/brake_system.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.brand_brake_system_rear</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Brand brake system rear e.g. <code>MAGURA</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.model_brake_system_rear</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Model brake system rear e.g. <code>HYDRAULISCHE SCHIJFREM</code></td>
+</tr>
+<tr>
+<td><code>object.type_gear_system</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Type gear system e.g. <code>DERAILLEUR</code> (see <code>/api/v4/articledata/codelist/gear_system.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.brand_gear_system</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Brand gear system e.g. <code>SHIMANO</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>object.model_gear_system</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Model gear system e.g. <code>CUES</code></td>
+</tr>
+<tr>
+<td><code>object.gear_count</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Gear count e.g. <code>10</code></td>
+</tr>
+<tr>
+<td><code>object.description_short</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description e.g. <code>FINEZ E-GO PT SPORT BES-3 DV10 NERO 53 NO BATT</code></td>
+</tr>
+<tr>
+<td><code>object.description</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description long e.g. <code>FINEZ E-GO PT SPORT BES-3 DV10 NERO 53 NO BATT</code></td>
+</tr>
+<tr>
+<td><code>object.purchase_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Purchase price in cents e.g. <code>273896</code></td>
+</tr>
+<tr>
+<td><code>object.sales_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Sales price in cents e.g. <code>369900</code></td>
+</tr>
+<tr>
+<td><code>object.rrp_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Recommended retail price in cents e.g. <code>389900</code></td>
+</tr>
+<tr>
+<td><code>object.ecommerce</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if available for e-commerce e.g. <code>true</code></td>
+</tr>
+<tr>
+<td><code>object.ecommerce_price_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>E-commerce sales price e.g. <code>389900</code></td>
+</tr>
+<tr>
+<td><code>object.nett_weight_kg</code></td>
+<td><code>double</code></td>
+<td><code>false</code></td>
+<td>Weight (kg) e.g. <code>31</code></td>
+</tr>
+<tr>
+<td><code>object.gross_weight_kg</code></td>
+<td><code>double</code></td>
+<td><code>false</code></td>
+<td>Weight gross (kg) e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>object.supplier_invoice_reference</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Supplier invoice reference e.g. <code>INV-1121221</code></td>
+</tr>
+<tr>
+<td><code>object.supplier_order_reference</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Supplier order reference e.g. <code>ORDER-1121221</code></td>
+</tr>
+<tr>
+<td><code>object.custom_variable_1</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 1 e.g. <code>Some value</code></td>
+</tr>
+<tr>
+<td><code>object.custom_variable_2</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 2 e.g. <code>Some value</code></td>
+</tr>
+<tr>
+<td><code>object.custom_variable_3</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 3 e.g. <code>Some value</code></td>
+</tr>
+<tr>
+<td><code>object.custom_variable_4</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Custom variable 4 e.g. <code>Some value</code></td>
+</tr>
+<tr>
+<td><code>object.warranty_type</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Warranty type e.g. <code>0</code> (see <code>/api/v1/common/enum/warranty-types.json</code>)</td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -14852,7 +15130,8 @@ not included.</p>
         </span><span class="nl">"engine_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EN1"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"serial_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SR1"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"imei_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMEI"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"license_plate_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-22-33"</span><span class="w">
+        </span><span class="nl">"license_plate_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-22-33"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"velopass_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VP12EH6745"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">

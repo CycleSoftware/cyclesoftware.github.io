@@ -14648,6 +14648,36 @@ not included.</p>
 <td>Kilometer age e.g. <code>0</code></td>
 </tr>
 <tr>
+<td><code>has_front_suspension</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Has front suspension e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>front_suspension_brand</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand front suspension system e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>front_suspension_model</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model front suspension e.g. <code>Modelname</code></td>
+</tr>
+<tr>
+<td><code>rear_suspension_brand</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand rear suspension system e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>rear_suspension_model</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model rear suspension e.g. <code>Modelname</code></td>
+</tr>
+<tr>
 <td><code>identification</code></td>
 <td><code>object</code></td>
 <td><code>false</code></td>
@@ -14839,7 +14869,12 @@ not included.</p>
         </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"has_front_suspension"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"front_suspension_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"front_suspension_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"rear_suspension_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"rear_suspension_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"frame_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR1"</span><span class="p">,</span><span class="w">
@@ -15264,6 +15299,41 @@ not included.</p>
 <td>Warranty type e.g. <code>2</code> (see <code>/api/v1/common/enum/warranty-types.json</code>)</td>
 <td></td>
 </tr>
+<tr>
+<td><code>updates[].has_front_suspension</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Has front suspension e.g. <code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].front_suspension_brand</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand front suspension system e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].front_suspension_model</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model front suspension e.g. <code>Modelname</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].rear_suspension_brand</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand rear suspension system e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].rear_suspension_model</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model rear suspension e.g. <code>Modelname</code></td>
+<td></td>
+</tr>
 </tbody></table>
 <h3 id='stock-objects-stock-object-batch-updates-result-properties'>Result properties</h3>
 <table><thead>
@@ -15605,6 +15675,36 @@ not included.</p>
 <td>Warranty type e.g. <code>2</code> (see <code>/api/v1/common/enum/warranty-types.json</code>)</td>
 </tr>
 <tr>
+<td><code>updates[].has_front_suspension</code></td>
+<td><code>boolean</code></td>
+<td></td>
+<td>Has front suspension e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>updates[].front_suspension_brand</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand front suspension system e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>updates[].front_suspension_model</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model front suspension e.g. <code>Modelname</code></td>
+</tr>
+<tr>
+<td><code>updates[].rear_suspension_brand</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Brand rear suspension system e.g. <code>SRAM</code> (see <code>/api/v4/articledata/codelist/brand.json</code>)</td>
+</tr>
+<tr>
+<td><code>updates[].rear_suspension_model</code></td>
+<td><code>string</code></td>
+<td></td>
+<td>Model rear suspension e.g. <code>Modelname</code></td>
+</tr>
+<tr>
 <td><code>results[].skipped_fields</code></td>
 <td><code>string[]</code></td>
 <td><code>Yes</code></td>
@@ -15772,7 +15872,12 @@ not included.</p>
                 </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some new value"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"has_front_suspension"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"front_suspension_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"front_suspension_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rear_suspension_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rear_suspension_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nl">"skipped_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
             </span><span class="nl">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
@@ -15837,7 +15942,12 @@ not included.</p>
                 </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68de518217573"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"has_front_suspension"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"front_suspension_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"front_suspension_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rear_suspension_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rear_suspension_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nl">"skipped_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"article_main_group"</span><span class="p">,</span><span class="w">
@@ -15919,7 +16029,12 @@ not included.</p>
                 </span><span class="nl">"custom_variable_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"68de518217573"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"custom_variable_3"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"custom_variable_4"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                </span><span class="nl">"warranty_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"has_front_suspension"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"front_suspension_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"front_suspension_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rear_suspension_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rear_suspension_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nl">"skipped_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="s2">"article_main_group"</span><span class="p">,</span><span class="w">

@@ -95,7 +95,7 @@ The latest definition of the WSDL specification can be found at:
 | `Payments.Payment[].voucher_or_discount_code`                           | `?string`             | The voucher code e.g. `1000-2000-3000-4000`                                                                                                                                                                                                                                                         |
 | `Payments.Payment[].payment_for_customer_id`                            | `?integer`            | The customer ID to assign the payment to when using `order_item_invoice_customer_id`                                                                                                                                                                                                                |
 | `ThirdPartyFinanceProvider`                                             | `?object`             | Allows for third party insurance involvement. This option can not be used with split orders.                                                                                                                                                                                                        |
-| `ThirdPartyFinanceProvider.third_party_payout_type`                     | `string`              | Any of `insurance`, `damage`, `delete`. `delete` applies when updating the order                                                                                                                                                                                                                    |
+| `ThirdPartyFinanceProvider.third_party_payout_type`                     | `string`              | Any of `insurance`, `damage`, `payment_provider`, `delete`. `delete` applies when updating the order                                                                                                                                                                                                                |
 | `ThirdPartyFinanceProvider.third_party_customer_id`                     | `integer`             | The customer ID of the insurance provider `123823`                                                                                                                                                                                                                                                  |
 | `ThirdPartyFinanceProvider.third_party_payout_amount`                   | `decimal`             | The nett amount paid by insurance company e.g. `1250.00`                                                                                                                                                                                                                                            |
 | `ThirdPartyFinanceProvider.third_party_own_risk_amount`                 | `decimal`             | The own risk amount for the customer e.g. `250.00`                                                                                                                                                                                                                                                  |
@@ -242,7 +242,7 @@ try {
     if ($insurance) {
         // Optional in case of insurance  
         $input->ThirdPartyFinanceProvider = (object)[
-            'third_party_payout_type' => 'damage', // damage, insurance or delete
+            'third_party_payout_type' => 'damage', // damage, insurance, payment_provider or delete
             'third_party_customer_id' => '200002', // the customer ID of the Insurance company.
             'third_party_payout_amount' => '1000.00', // nett payment by insurance
             'third_party_own_risk_amount' => '250.00',
@@ -794,7 +794,7 @@ try {
     if ($insurance) {
         // Optional in case of insurance  
         $input->ThirdPartyFinanceProvider = (object)[
-            'third_party_payout_type' => 'damage', // damage, insurance or delete
+            'third_party_payout_type' => 'damage', // damage, insurance, payment_provider or delete
             'third_party_customer_id' => '2', // the customer ID of the Insurance company.
             'third_party_payout_amount' => '1000.00', // nett payment by insurance
             'third_party_own_risk_amount' => '250.00',

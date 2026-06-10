@@ -164,7 +164,7 @@ X-RateLimit-Daily-Reset: 1678230000
 }
 ```
 
-## List repair objects 
+## List repair objects for customer 
 
 Get a list of repair objects for a customer
 
@@ -267,6 +267,120 @@ X-RateLimit-Daily-Reset: 1678230000
         "lease_contract_number": "CS1001",
     }
 ]
+```
+
+## List all repair objects
+
+Get a paginated list of all repair objects
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/workshop/repair-objects.json?offset=500&limit=500</h6>
+    </div>
+</div>
+
+| **GET Parameter** | **Type** | **Description**                      | **Default** |
+|-------------------|----------|--------------------------------------|-------------|
+| `offset`          | `int`    | The index of the first item to get   | 0           |
+| `limit`           | `int`    | The amount of items to get, max 1000 | 150         |
+ 
+
+
+This endpoint will return a list of [Repair object (object)](#repair-objects-repair-object-object).
+
+> HTTP request
+
+```http
+GET /api/v1/workshop/repair_objects.json HTTP/1.1
+Host: api.cyclesoftware.nl
+Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
+Accept-encoding: gzip
+Accept: application/json
+```
+
+> HTTP Response
+
+```http
+HTTP/1.1 200
+Content-type: application/json; charset=utf-8
+Content-length: 1676
+X-RateLimit-Minutely-Limit: 360
+X-RateLimit-Minutely-Remaining: 59
+X-RateLimit-Daily-Limit: 15000
+X-RateLimit-Daily-Remaining: 14999
+X-RateLimit-Daily-Reset: 1678230000
+{
+  "error": false,
+  "error_message": null,
+  "data": [
+      {
+          "customer_id": 1006,
+          "object_id": 1004,
+          "object_barcode": "",
+          "is_active": true,
+          "object_type_name": "fiets",
+          "category": "Hybride fietsen",
+          "brand": "Batavus",
+          "model": "Apache Deluxe",
+          "model_year": "",
+          "color": "Scumzilver",
+          "variant": "Dames",
+          "phone_number_id": "mob",
+          "license_plate": "",
+          "km_mileage": "0",
+          "frame_id": "",
+          "chip_id": "",
+          "key_id": "",
+          "engine_id": "",
+          "battery_id": "",
+          "lock_id": "",
+          "workshop_rate_id": 1,
+          "service_level_id": 0,
+          "images": [
+              {
+                  "date_modified": "2016-05-24 11:15:02",
+                  "url_thumb": "https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg",
+                  "url_large": "https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"
+              }
+          ]
+              "lease_fleet_customer_id": 1007,
+              "lease_employer_customer_id": 1008,
+              "lease_contract_number": "CS1001",
+      },
+      {
+          "customer_id": 1006,
+          "object_id": 208410,
+          "object_barcode": "object_barcode",
+          "is_active": true,
+          "object_type_name": "fiets",
+          "category": "Racefietsen",
+          "brand": "brand",
+          "model": "model",
+          "model_year": "2017",
+          "color": "color",
+          "variant": "Heren",
+          "phone_number_id": "12345",
+          "license_plate": "license_plate",
+          "km_mileage": "200",
+          "frame_id": "frame_id",
+          "chip_id": "chip_id",
+          "key_id": "key_id",
+          "engine_id": "engine_id",
+          "battery_id": "1234",
+          "lock_id": "lock_id",
+          "workshop_rate_id": 1,
+          "service_level_id": 0,
+          "images": [],
+          "lease_fleet_customer_id": 1007,
+          "lease_employer_customer_id": 1008,
+          "lease_contract_number": "CS1001",
+      }
+  ],
+  "pagination": {
+    "next_url": "https://s01.cyclesoftware.nl/api/v1/workshop/repair-objects.json?offset=1000&limit=500
+  }
+}  
 ```
 
 ## Get repair object

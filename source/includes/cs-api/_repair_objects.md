@@ -292,7 +292,7 @@ This endpoint will return a list of [Repair object (object)](#repair-objects-rep
 > HTTP request
 
 ```http
-GET /api/v1/workshop/repair_objects.json HTTP/1.1
+GET /api/v1/workshop/repair-objects.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip

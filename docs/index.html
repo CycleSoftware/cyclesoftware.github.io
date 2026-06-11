@@ -476,7 +476,10 @@
                     <a href="#repair-objects-search-repair-objects" class="toc-h2 toc-link" data-title="Search repair objects">Search repair objects</a>
                   </li>
                   <li>
-                    <a href="#repair-objects-list-repair-objects" class="toc-h2 toc-link" data-title="List repair objects">List repair objects</a>
+                    <a href="#repair-objects-list-repair-objects-for-customer" class="toc-h2 toc-link" data-title="List repair objects for customer">List repair objects for customer</a>
+                  </li>
+                  <li>
+                    <a href="#repair-objects-list-all-repair-objects" class="toc-h2 toc-link" data-title="List all repair objects">List all repair objects</a>
                   </li>
                   <li>
                     <a href="#repair-objects-get-repair-object" class="toc-h2 toc-link" data-title="Get repair object">Get repair object</a>
@@ -9810,7 +9813,7 @@ Content-length: 1448
         </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.cyclesoftware.nl/api/v1/workshop/repair-objects/search.json?offset=1000&amp;query=abc"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='repair-objects-list-repair-objects'>List repair objects</h2>
+</span></code></pre></div><h2 id='repair-objects-list-repair-objects-for-customer'>List repair objects for customer</h2>
 <p>Get a list of repair objects for a customer</p>
 
 <div class="api-endpoint">
@@ -9921,7 +9924,132 @@ Content-length: 1448
         </span><span class="nl">"lease_contract_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CS1001"</span><span class="p">,</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre></div><h2 id='repair-objects-get-repair-object'>Get repair object</h2>
+</span></code></pre></div><h2 id='repair-objects-list-all-repair-objects'>List all repair objects</h2>
+<p>Get a paginated list of all repair objects</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v1/workshop/repair-objects.json?offset=500&limit=500</h6>
+    </div>
+</div>
+
+<table><thead>
+<tr>
+<th><strong>GET Parameter</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Default</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>offset</code></td>
+<td><code>int</code></td>
+<td>The index of the first item to get</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td><code>int</code></td>
+<td>The amount of items to get, max 1000</td>
+<td>150</td>
+</tr>
+</tbody></table>
+
+<p>This endpoint will return a list of <a href="#repair-objects-repair-object-object">Repair object (object)</a>.</p>
+
+<blockquote>
+<p>HTTP request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/workshop/repair_objects.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
+<span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">application/json</span>
+</code></pre></div>
+<blockquote>
+<p>HTTP Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">application/json; charset=utf-8</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">1676</span>
+<span class="na">X-RateLimit-Minutely-Limit</span><span class="p">:</span> <span class="s">360</span>
+<span class="na">X-RateLimit-Minutely-Remaining</span><span class="p">:</span> <span class="s">59</span>
+<span class="na">X-RateLimit-Daily-Limit</span><span class="p">:</span> <span class="s">15000</span>
+<span class="na">X-RateLimit-Daily-Remaining</span><span class="p">:</span> <span class="s">14999</span>
+<span class="na">X-RateLimit-Daily-Reset</span><span class="p">:</span> <span class="s">1678230000</span>
+<span class="s">{</span>
+<span class="s">  "error": false,</span>
+<span class="s">  "error_message": null,</span>
+<span class="s">  "data": [</span>
+<span class="s">      {</span>
+<span class="s">          "customer_id": 1006,</span>
+<span class="s">          "object_id": 1004,</span>
+<span class="s">          "object_barcode": "",</span>
+<span class="s">          "is_active": true,</span>
+<span class="s">          "object_type_name": "fiets",</span>
+<span class="s">          "category": "Hybride fietsen",</span>
+<span class="s">          "brand": "Batavus",</span>
+<span class="s">          "model": "Apache Deluxe",</span>
+<span class="s">          "model_year": "",</span>
+<span class="s">          "color": "Scumzilver",</span>
+<span class="s">          "variant": "Dames",</span>
+<span class="s">          "phone_number_id": "mob",</span>
+<span class="s">          "license_plate": "",</span>
+<span class="s">          "km_mileage": "0",</span>
+<span class="s">          "frame_id": "",</span>
+<span class="s">          "chip_id": "",</span>
+<span class="s">          "key_id": "",</span>
+<span class="s">          "engine_id": "",</span>
+<span class="s">          "battery_id": "",</span>
+<span class="s">          "lock_id": "",</span>
+<span class="s">          "workshop_rate_id": 1,</span>
+<span class="s">          "service_level_id": 0,</span>
+<span class="s">          "images": [</span>
+<span class="s">              {</span>
+<span class="s">                  "date_modified": "2016-05-24 11:15:02",</span>
+<span class="s">                  "url_thumb": "https://s01.cyclesoftware.nl/app/img/artPic_public_T_1317089.jpg",</span>
+<span class="s">                  "url_large": "https://s01.cyclesoftware.nl/app/img/artPic_public_L_1317089.jpg"</span>
+<span class="s">              }</span>
+<span class="s">          ]</span>
+<span class="s">              "lease_fleet_customer_id": 1007,</span>
+<span class="s">              "lease_employer_customer_id": 1008,</span>
+<span class="s">              "lease_contract_number": "CS1001",</span>
+<span class="s">      },</span>
+<span class="s">      {</span>
+<span class="s">          "customer_id": 1006,</span>
+<span class="s">          "object_id": 208410,</span>
+<span class="s">          "object_barcode": "object_barcode",</span>
+<span class="s">          "is_active": true,</span>
+<span class="s">          "object_type_name": "fiets",</span>
+<span class="s">          "category": "Racefietsen",</span>
+<span class="s">          "brand": "brand",</span>
+<span class="s">          "model": "model",</span>
+<span class="s">          "model_year": "2017",</span>
+<span class="s">          "color": "color",</span>
+<span class="s">          "variant": "Heren",</span>
+<span class="s">          "phone_number_id": "12345",</span>
+<span class="s">          "license_plate": "license_plate",</span>
+<span class="s">          "km_mileage": "200",</span>
+<span class="s">          "frame_id": "frame_id",</span>
+<span class="s">          "chip_id": "chip_id",</span>
+<span class="s">          "key_id": "key_id",</span>
+<span class="s">          "engine_id": "engine_id",</span>
+<span class="s">          "battery_id": "1234",</span>
+<span class="s">          "lock_id": "lock_id",</span>
+<span class="s">          "workshop_rate_id": 1,</span>
+<span class="s">          "service_level_id": 0,</span>
+<span class="s">          "images": [],</span>
+<span class="s">          "lease_fleet_customer_id": 1007,</span>
+<span class="s">          "lease_employer_customer_id": 1008,</span>
+<span class="s">          "lease_contract_number": "CS1001",</span>
+<span class="s">      }</span>
+<span class="s">  ],</span>
+<span class="s">  "pagination": {</span>
+<span class="s">    "next_url": "https://s01.cyclesoftware.nl/api/v1/workshop/repair-objects.json?offset=1000&amp;limit=500</span>
+<span class="s">  }</span>
+<span class="s">}  </span>
+</code></pre></div><h2 id='repair-objects-get-repair-object'>Get repair object</h2>
 <p>Get a repair object</p>
 
 <div class="api-endpoint">

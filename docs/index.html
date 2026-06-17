@@ -9961,7 +9961,7 @@ Content-length: 1448
 <blockquote>
 <p>HTTP request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/workshop/repair_objects.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v1/workshop/repair-objects.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
@@ -10723,6 +10723,11 @@ By default the book-date is used.</p>
 <td>Object with information about the sales order</td>
 </tr>
 <tr>
+<td><code>data[].sales_order.customer_id</code></td>
+<td><code>integer</code></td>
+<td>Customer ID of the sales order. If split order is used this might be different compared to the customer_id of the sales-transaction</td>
+</tr>
+<tr>
 <td><code>data[].sales_order.delivery_method_id</code></td>
 <td><code>integer</code></td>
 <td>Delivery method ID e.g. <code>0</code> (see common enum <code>delivery_methods</code>)</td>
@@ -10828,6 +10833,16 @@ By default the book-date is used.</p>
 <td>Brand of repair object e.g. <code>Batavus</code></td>
 </tr>
 <tr>
+<td><code>workshop_order.object.category_name</code></td>
+<td><code>string</code></td>
+<td>Category name of repair object e.g. <code>Stadsfietsen</code></td>
+</tr>
+<tr>
+<td><code>workshop_order.object.sub_category_name</code></td>
+<td><code>string</code></td>
+<td>Sub-category name of repair object e.g. <code>Heren</code></td>
+</tr>
+<tr>
 <td><code>workshop_order.object.model_name</code></td>
 <td><code>string</code></td>
 <td>Model name of repair object e.g. <code>Cosmo CS 1</code></td>
@@ -10921,6 +10936,11 @@ By default the book-date is used.</p>
 <td><code>data[].sales_items[].sales_item_id</code></td>
 <td><code>integer</code></td>
 <td>Unique sales item ID e.g. <code>63883</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].sales_transaction_number</code></td>
+<td><code>?integer</code></td>
+<td>If this is an order item and invoice is created, this is the sales-transaction-number e.g. <code>63883</code> (omitted if the sales-data is based from sales-transaction)</td>
 </tr>
 <tr>
 <td><code>data[].sales_items[].item_type_id</code></td>
@@ -11026,6 +11046,21 @@ By default the book-date is used.</p>
 <td><code>data[].sales_items[].description_extended</code></td>
 <td><code>?string</code></td>
 <td>Extended description e.g. <code>Something extra</code></td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].sales_order_item_id</code></td>
+<td><code>int</code></td>
+<td>Sales order item ID, if transaction is created from sales-order-item this will be the same ID</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].unit_work_time_minutes</code></td>
+<td><code>?int</code></td>
+<td>Unit work time in minutes if known</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].workshop_rate_id</code></td>
+<td><code>?int</code></td>
+<td>Workshop rate ID if known. See common enum for <code>workshop_rates</code></td>
 </tr>
 <tr>
 <td><code>data[].sales_items[].article</code></td>

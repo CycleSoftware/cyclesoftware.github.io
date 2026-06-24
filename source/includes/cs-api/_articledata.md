@@ -672,6 +672,8 @@ Get article data available for e-commerce environments or for a specific `barcod
 | `data[].stock.stores`                                           | `object`     | `false`   | Array with object information per store-id                                                                                                 |
 | `data[].stock.stores[].store_id`                                | `integer`    | `false`   | Store ID e.g. `1`                                                                                                                          |
 | `data[].stock.stores[].stock_level`                             | `integer`    | `false`   | Stock level in this store e.g. `0`                                                                                                         |
+| `data[].stock.stores[].min_stock_level`                         | `integer`    | `false`   | Minimum stock level configured for this store e.g. `2` (`0` if not set)                                                                    |
+| `data[].stock.stores[].max_stock_level`                         | `integer`    | `false`   | Maximum stock level configured for this store e.g. `10` (`0` if not set)                                                                   |
 | `data[].stock.stores[].locations`                               | `array`      | `false`   | Stock locations associated with this article                                                                                               |
 | `data[].stock.stores[].locations[].store_id`                    | `integer`    | `false`   | e.g. `1`                                                                                                                                   |
 | `data[].stock.stores[].locations[].location_id`                 | `integer`    | `false`   | ID of the location e.g. `3`                                                                                                                |
@@ -1030,6 +1032,8 @@ Accept: application/json
           {
             "store_id": 1,
             "stock_level": 0,
+            "min_stock_level": 2,
+            "max_stock_level": 10,
             "locations": [
               {
                 "store_id": 1,
@@ -1044,11 +1048,15 @@ Accept: application/json
           {
             "store_id": 2,
             "stock_level": 0,
+            "min_stock_level": 0,
+            "max_stock_level": 0,
             "locations": []
           },
           {
             "store_id": 3,
             "stock_level": 0,
+            "min_stock_level": 0,
+            "max_stock_level": 0,
             "locations": []
           }
         ]

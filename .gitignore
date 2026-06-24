@@ -24,3 +24,4 @@ doc/
 .idea/
 
 test.*
+.claude\settings.local.json

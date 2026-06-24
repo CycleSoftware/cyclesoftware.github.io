@@ -23,7 +23,7 @@ The latest definition of the WSDL specification can be found at:
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">WSDL-SOAP</i>
-		<h6>/app/cs/api/ecommerce/soap_2_12/?wsdl</h6>
+		<h6>/app/cs/api/ecommerce/soap_2_13/?wsdl</h6>
 	</div>
 </div>
 
@@ -111,7 +111,7 @@ Creates a new order in CycleSoftware
 
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_13/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -263,7 +263,7 @@ catch (\SoapFault $e) {
 > HTTP Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_13/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -447,7 +447,7 @@ Creates a new quote in CycleSoftware
 
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_13/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -561,7 +561,7 @@ catch (\SoapFault $e) {
 > HTTP Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_13/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -728,7 +728,7 @@ Update some header fields in the sales order. The following fields can be update
 
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_13/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -812,7 +812,7 @@ catch (\SoapFault $e) {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_13/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -945,7 +945,7 @@ Add new order items to an existing order.
 ```php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_13/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -997,7 +997,7 @@ catch (\SoapFault $e) {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_13/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -1099,7 +1099,7 @@ Get an invoice document based on the invoice-number.
 <?php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_13/?wsdl',
         [
           'trace' => true,
           'use' => SOAP_LITERAL,
@@ -1122,7 +1122,7 @@ try {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_13/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -1168,7 +1168,7 @@ Get an invoice document based on the sales order id or order reference.
 <?php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_13/?wsdl',
         [
           'trace' => true,
           'use' => SOAP_LITERAL,
@@ -1192,7 +1192,7 @@ try {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_13/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml
@@ -1277,7 +1277,7 @@ This method creates or updates an existing customer. Existing customers are matc
 <?php
 try {
     $client = new \SoapClient(
-        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_11/?wsdl',
+        'https://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_13/?wsdl',
         [
             'trace' => true,
             'use' => SOAP_LITERAL,
@@ -1326,7 +1326,7 @@ try {
 > Request
 
 ```http
-POST /app/cs/api/ecommerce/soap_2_11/ HTTP/1.1
+POST /app/cs/api/ecommerce/soap_2_13/ HTTP/1.1
 Host: api.cyclesoftware.nl
 Accept-encoding: gzip
 Accept: text/xml

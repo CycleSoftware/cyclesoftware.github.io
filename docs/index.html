@@ -3318,6 +3318,18 @@ This will save you bandwidth and time.
 <td>Stock level in this store e.g. <code>0</code></td>
 </tr>
 <tr>
+<td><code>data[].stock.stores[].min_stock_level</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Minimum stock level configured for this store e.g. <code>2</code> (<code>0</code> if not set)</td>
+</tr>
+<tr>
+<td><code>data[].stock.stores[].max_stock_level</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>Maximum stock level configured for this store e.g. <code>10</code> (<code>0</code> if not set)</td>
+</tr>
+<tr>
 <td><code>data[].stock.stores[].locations</code></td>
 <td><code>array</code></td>
 <td><code>false</code></td>
@@ -3715,6 +3727,8 @@ This will save you bandwidth and time.
           </span><span class="p">{</span><span class="w">
             </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nl">"stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"min_stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
             </span><span class="nl">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -3729,11 +3743,15 @@ This will save you bandwidth and time.
           </span><span class="p">{</span><span class="w">
             </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nl">"stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"min_stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
             </span><span class="nl">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
             </span><span class="nl">"stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"min_stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"max_stock_level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="nl">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">

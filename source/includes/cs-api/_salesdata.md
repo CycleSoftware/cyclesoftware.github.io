@@ -112,6 +112,8 @@ By default the book-date is used.
 | `data[].sales_order.sales_order_status_id`                           | `integer`              | Sales order status ID e.g. `9` (see common enum `sales_order_status`)                                                                                          |
 | `data[].sales_order.sales_order_type_id`                             | `integer`              | Sales order type  ID e.g. `6` (see common enum `sales_order_types`)                                                                                            |
 | `data[].sales_order.track_trace_reference`                           | `string`               | Track and trace reference                                                                                                                                      |
+| `data[].sales_order.created_at`                                      | `datetime`             | Creation date                                                                                                                                                  |
+| `data[].sales_order.quote_converted_at`                              | `?datetime`            | When this sales-order was converted from a quote. This is the datetime of the conversion. This property is not present if the quote is not converted.          |
 | `data[].workshop_order`                                              | `?object`              | Workshop / repair related information                                                                                                                          |
 | `data[].workshop_order.workshop_order_id`                            | `integer`              | Workshop order ID e.g. `40573`                                                                                                                                 |
 | `data[].workshop_order.repair_object_id`                             | `integer`              | Repair object ID e.g. `425`                                                                                                                                    |
@@ -318,7 +320,9 @@ Content-length: 19744
                 "reference_id": "",
                 "reference_text": "",
                 "delivery_method_id": 0,
-                "track_trace_reference": ""
+                "track_trace_reference": "",
+                "created_at": "2023-01-22 10:52:57",
+                "quote_converted_at": "2023-01-22 10:55:57"
             },
             "workshop_order": {
                 "workshop_order_id": 55339,

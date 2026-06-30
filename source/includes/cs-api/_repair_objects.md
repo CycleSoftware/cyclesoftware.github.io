@@ -30,6 +30,8 @@ Read, create or update repair objects for a customer
 | `engine_id`                  | `string`                        | <code>PUT&#124;POST</code> | Engine number e.g. `engine_id`                                                             |
 | `battery_id`                 | `string`                        | <code>PUT&#124;POST</code> | Battery number e.g. `1234`                                                                 |
 | `lock_id`                    | `string`                        | <code>PUT&#124;POST</code> | Lock number e.g. `1234`                                                                    |
+| `key_id_2`                   | `string`                        | <code>PUT&#124;POST</code> | Second key number e.g. `key_id_2`                                                          |
+| `imei`                       | `string`                        | <code>PUT&#124;POST</code> | IMEI number e.g. `imei`                                                                    |
 | `workshop_rate_id`           | `integer`                       | <code>PUT&#124;POST</code> | See common API `workshop_rates` e.g. `1`                                                   |
 | `service_level_id`           | `integer`                       | <code>PUT&#124;POST</code> | Service level ID e.g. `0`                                                                  |
 | `images`                     | `object[]`                      | `readonly`                 | List of images                                                                             |
@@ -116,6 +118,8 @@ X-RateLimit-Daily-Reset: 1678230000
             "engine_id": "",
             "battery_id": "",
             "lock_id": "",
+            "key_id_2": "",
+            "imei": "",
             "workshop_rate_id": 1,
             "service_level_id": 0,
             "images": [
@@ -150,6 +154,8 @@ X-RateLimit-Daily-Reset: 1678230000
             "engine_id": "engine_id",
             "battery_id": "1234",
             "lock_id": "lock_id",
+            "key_id_2": "key_id_2",
+            "imei": "imei",
             "workshop_rate_id": 1,
             "service_level_id": 0,
             "images": [],
@@ -225,6 +231,8 @@ X-RateLimit-Daily-Reset: 1678230000
         "engine_id": "",
         "battery_id": "",
         "lock_id": "",
+        "key_id_2": "",
+        "imei": "",
         "workshop_rate_id": 1,
         "service_level_id": 0,
         "images": [
@@ -259,6 +267,8 @@ X-RateLimit-Daily-Reset: 1678230000
         "engine_id": "engine_id",
         "battery_id": "1234",
         "lock_id": "lock_id",
+        "key_id_2": "key_id_2",
+        "imei": "imei",
         "workshop_rate_id": 1,
         "service_level_id": 0,
         "images": [],
@@ -335,6 +345,8 @@ X-RateLimit-Daily-Reset: 1678230000
           "engine_id": "",
           "battery_id": "",
           "lock_id": "",
+          "key_id_2": "",
+          "imei": "",
           "workshop_rate_id": 1,
           "service_level_id": 0,
           "images": [
@@ -369,6 +381,8 @@ X-RateLimit-Daily-Reset: 1678230000
           "engine_id": "engine_id",
           "battery_id": "1234",
           "lock_id": "lock_id",
+          "key_id_2": "key_id_2",
+          "imei": "imei",
           "workshop_rate_id": 1,
           "service_level_id": 0,
           "images": [],
@@ -447,6 +461,8 @@ X-RateLimit-Daily-Reset: 1678230000
     "engine_id": "",
     "battery_id": "",
     "lock_id": "",
+    "key_id_2": "",
+    "imei": "",
     "workshop_rate_id": 1,
     "service_level_id": 0,
     "images": [
@@ -528,6 +544,8 @@ X-RateLimit-Daily-Reset: 1678230000
     "engine_id": "",
     "battery_id": "",
     "lock_id": "",
+    "key_id_2": "",
+    "imei": "",
     "workshop_rate_id": 1,
     "service_level_id": 0,
     "images": [
@@ -594,6 +612,8 @@ Content-length: 620
     "engine_id": "engine_id",
     "battery_id": "1234",
     "lock_id": "lock_id",
+    "key_id_2": "key_id_2",
+    "imei": "imei",
     "workshop_rate_id": 1,
     "service_level_id": 0
 }
@@ -632,6 +652,8 @@ X-RateLimit-Daily-Reset: 1678230000
     "engine_id": "engine_id",
     "battery_id": "1234",
     "lock_id": "lock_id",
+    "key_id_2": "key_id_2",
+    "imei": "imei",
     "workshop_rate_id": 1,
     "service_level_id": 0,
     "images": [],
@@ -716,6 +738,8 @@ X-RateLimit-Daily-Reset: 1678230000
     "engine_id": "",
     "battery_id": "",
     "lock_id": "",
+    "key_id_2": "",
+    "imei": "",
     "workshop_rate_id": 1,
     "service_level_id": 1,
     "images": [

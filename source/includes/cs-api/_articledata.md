@@ -573,17 +573,18 @@ Get article data available for e-commerce environments or for a specific `barcod
 <div class="api-endpoint">
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
-		<h6>/api/v4/articledata/entries.json</h6>
+		<h6>/api/v4/articledata/ecommerce.json</h6>
 	</div>
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
-		<h6>/api/v4/articledata/entries.json?token=:token</h6>
+		<h6>/api/v4/articledata/ecommerce.json?token=:token</h6>
 	</div>
 	<div class="endpoint-data">
 		<i class="label label-post">GET</i>
-		<h6>/api/v4/articledata/entries.json?barcode=:barcode</h6>
+		<h6>/api/v4/articledata/ecommerce.json?barcode=:barcode</h6>
 	</div>
 </div>
+
 
 | GET parameter        | Type      | Description                                                                       |
 |----------------------|-----------|-----------------------------------------------------------------------------------|
@@ -598,95 +599,110 @@ Get article data available for e-commerce environments or for a specific `barcod
 
 - Stock only present for non-objects
 - Objects lists the available stock objects
+- The endpoint `/api/v4/articledata/entries.json` was renamed to `/api/v4/articledata/ecommerce.json` (July 2026)
+
+
+**All own articles regardless of e-commerce setting**
+
+If you want to list all articles in your own enviroment regardless of the e-commerce flag. Use the following endpoint
+
+<div class="api-endpoint">
+	<div class="endpoint-data">
+		<i class="label label-post">GET</i>
+		<h6>/api/v4/articledata/articles/own.json</h6>
+	</div>
+</div>
+
+
 
 ### Response properties ###
 
-| Property                                                        | Type         | Omittable | Description                                                                                                                                |
-|-----------------------------------------------------------------|--------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `data`                                                          | `object[]`   | `false`   |                                                                                                                                            |
-| `data[].modified_at`                                            | `datetime`   | `false`   | Last modification of underlying data e.g. `2024-07-24 16:23:45`                                                                            |
-| `data[].barcode`                                                | `string`     | `false`   | The barcode of the article e.g. `5400928076890` (usually an EAN code)                                                                      |
-| `data[].pricing`                                                | `object`     | `false`   | Object with pricing information about the article`                                                                                         |
-| `data[].pricing.currency`                                       | `string`     | `false`   | The currency code e.g. `EUR`                                                                                                               |
-| `data[].pricing.rrp_cents`                                      | `integer`    | `false`   | Recommended retail price in cents e.g. `269900`                                                                                            |
-| `data[].pricing.pos_sales_price_cents`                          | `integer`    | `false`   | POS sales price in cents e.g. `269900`                                                                                                     |
-| `data[].pricing.ecommerce_price_cents`                          | `integer`    | `true`    | E-commerce sales price in cents e.g. `269900`                                                                                              |
-| `data[].pricing.purchase_price_cents`                           | `integer`    | `true`    | Purchase price in cents (excluding VAT) e.g. `99500`                                                                                       |
-| `data[].pricing.pos_group_id`                                   | `integer`    | `false`   | POS group ID e.g. `1` (see common enum)                                                                                                    |
-| `data[].pricing.vat_code`                                       | `?integer`   | `true`    | VAT code if specified e.g. `2`, if no specified the default VAT-code of POS group is applied                                               |
-| `data[].pricing.pos_promo_price_cents`                          | `?integer`   | `true`    | POS promo price in cents e.g. `4000`                                                                                                       |
-| `data[].pricing.pos_promo_price_from`                           | `?date`      | `true`    | POS promo start date e.g. `2024-07-03`                                                                                                     |
-| `data[].pricing.pos_promo_price_until`                          | `?date`      | `true`    | POS promo end date e.g. `2024-10-19`                                                                                                       |
-| `data[].pricing.ecommerce_promo_price_cents`                    | `?integer`   | `true`    | E-commerce promo price in cents e.g. `3900`                                                                                                |
-| `data[].pricing.ecommerce_promo_price_from`                     | `?date`      | `true`    | E-commerce promo start date e.g. `2024-07-01`                                                                                              |
-| `data[].pricing.ecommerce_promo_price_until`                    | `?date`      | `true`    | E-commerce promo end date e.g. `2024-10-19`                                                                                                |
-| `data[].objects`                                                | `?object[]`  | `false`   | When the article is an object (bicycle, moped) this element is present and contains unique objects                                         |
-| `data[].objects[].object_code`                                  | `string`     | `false`   | The object code with account and object_id e.g. `F.1-232432`                                                                               |
-| `data[].objects[].object_id`                                    | `integer`    | `false`   | The unique object_id within account e.g. `232432`                                                                                          |
-| `data[].objects[].store_id`                                     | `integer`    | `false`   | Store ID e.g. `1`                                                                                                                          |
-| `data[].objects[].available`                                    | `boolean`    | `false`   | `true` if the object is available (in stock, not sold and not reserved) e.g. `true`                                                        |
-| `data[].objects[].expected_at`                                  | `date`       | `true`    | Expected delivery date or null .e.g. `2024-10-01`                                                                                          |
-| `data[].objects[].is_demo`                                      | `boolean`    | `false`   | `true` if object is a demo object e.g. `false`                                                                                             |
-| `data[].objects[].is_used`                                      | `boolean`    | `false`   | `true` if the object is used e.g. `false`                                                                                                  |
-| `data[].objects[].currency`                                     | `string`     | `false`   | Currency code e.g. `EUR`                                                                                                                   |
-| `data[].objects[].ecommerce_price_cents`                        | `integer`    | `false`   | E-commerce price in cents e.g. `269900`                                                                                                    |
-| `data[].objects[].pos_sales_price_cents`                        | `integer`    | `false`   | POS sales price in cents e.g. `269900`                                                                                                     |
-| `data[].objects[].purchase_price_cents`                         | `integer`    | `true`    | Purchase price in cents e.g. `0`                                                                                                           |
-| `data[].objects[].km_age`                                       | `?integer`   | `false`   | KM age e.g. `100` or `null` when not available                                                                                             |
-| `data[].objects[].identification`                               | `object`     | `false`   | Object with identifications, may be an empty object if no values available                                                                 |
-| `data[].objects[].identification.battery_number`                | `string`     | `true`    | The battery number if set                                                                                                                  |
-| `data[].objects[].identification.battery_number_2`              | `string`     | `true`    | The battery number_2 if set                                                                                                                |
-| `data[].objects[].identification.engine_number`                 | `string`     | `true`    | The engine number if set                                                                                                                   |
-| `data[].objects[].identification.frame_number`                  | `string`     | `true`    | The frame number if set                                                                                                                    |
-| `data[].objects[].identification.imei_number`                   | `string`     | `true`    | The imei number if set                                                                                                                     |
-| `data[].objects[].identification.key_number`                    | `string`     | `true`    | The key number if set                                                                                                                      |
-| `data[].objects[].identification.key_number_2`                  | `string`     | `true`    | The key number_2 if set                                                                                                                    |
-| `data[].objects[].identification.license_plate_number`          | `string`     | `true`    | The license plat if set if set                                                                                                             |
-| `data[].objects[].identification.lock_number`                   | `string`     | `true`    | The lock number if set                                                                                                                     |
-| `data[].objects[].identification.lock_number_2`                 | `string`     | `true`    | The lock number_2 if set                                                                                                                   |
-| `data[].objects[].identification.serial_number`                 | `string`     | `true`    | The serial number if set                                                                                                                   |
-| `data[].objects[].identification.velopass_code`                 | `string`     | `true`    | The velopass code if set                                                                                                                   |
-| `data[].suppliers`                                              | `object[]`   | `false`   | List of suppliers associated with the article                                                                                              |
-| `data[].suppliers[]._id`                                        | `integer`    | `false`   | Internal ID e.g. `11043281`                                                                                                                |
-| `data[].suppliers[].supplier_id`                                | `integer`    | `false`   | Supplier ID e.g. `13005` (see common supplier list)                                                                                        |
-| `data[].suppliers[].supplier_name`                              | `string`     | `false`   | Supplier code name e.g. `BELGIAN CYCLING FACTORY`                                                                                          |
-| `data[].suppliers[].article_id`                                 | `string`     | `false`   | Article number e.g. `SBIELARID023`                                                                                                         |
-| `data[].suppliers[].model_id`                                   | `null`       | `true`    | Model ID, if other entries have the same model_id they could be grouped                                                                    |
-| `data[].suppliers[].parent_barcode`                             | `null`       | `true`    | Parent barcode (if grouped within model_id)                                                                                                |
-| `data[].suppliers[].currency`                                   | `string`     | `false`   | Currency code e.g. `EUR`                                                                                                                   |
-| `data[].suppliers[].rrp_cents`                                  | `integer`    | `false`   | Recommended retail price in cents e.g. `269900`                                                                                            |
-| `data[].suppliers[].purchase_price_cents`                       | `integer`    | `false`   | Purchase price in cents e.g. `0`                                                                                                           |
-| `data[].suppliers[].package.package_contents`                   | `integer`    | `false`   | Number of consumer goods within delivery from supplier e.g. `1`                                                                            |
-| `data[].suppliers[].package.min_order_quantity`                 | `integer`    | `false`   | Minimal order quantity for this supplier e.g. `1`                                                                                          |
-| `data[].suppliers[].package.order_unit`                         | `integer`    | `false`   | Order unit for this supplier e.g. `1`                                                                                                      |
-| `data[].properties<:property_name>.type`                        | `string`     | `false`   | The data type of the property e.g. `codelist:article_main_group` (see `Data-types` for possible types)                                     |
-| `data[].properties<:property_name>.unit`                        | `?string`    | `true`    | The unit of data e.g. `kg` or `cm` if available.                                                                                           |
-| `data[].properties<:property_name>.values`                      | `object[]`   | `false`   | Different values for the property (different values may be present sourced from different suppliers and or objects)                        |
-| `data[].properties<:property_name>.values[].supplier_ids`       | `?integer[]` | `true`    | The list of supplier-ids which have this property in their article definition                                                              |
-| `data[].properties<:property_name>.values[].object_ids`         | `?integer[]` | `true`    | The list of object-ids which have this property in their definition                                                                        |
-| `data[].properties<:property_name>.values[].code`               | `?string`    | `true`    | If the data-type refers to a code list, this is the code value e.g. `1`                                                                    |
-| `data[].properties<:property_name>.values[].code_international` | `?string`    | `true`    | If the data-type refers to a code list, this is the international code value e.g. `1`                                                      |
-| `data[].properties<:property_name>.values[].value`              | `mixed`      | `false`   | The value of the property, the structure depends on `data[].properties<:property_name>.type` e.g. `2021`                                   |
-| `data[].stock`                                                  | `?object`    | `false`   | Only present for non object entries, contains stock information within stores                                                              |
-| `data[].stock.available`                                        | `boolean`    | `false`   | `true` if there is stock available within stores e.g. `false`                                                                              |
-| `data[].stock.stores`                                           | `object`     | `false`   | Array with object information per store-id                                                                                                 |
-| `data[].stock.stores[].store_id`                                | `integer`    | `false`   | Store ID e.g. `1`                                                                                                                          |
-| `data[].stock.stores[].stock_level`                             | `integer`    | `false`   | Stock level in this store e.g. `0`                                                                                                         |
-| `data[].stock.stores[].min_stock_level`                         | `integer`    | `false`   | Minimum stock level configured for this store e.g. `2` (`0` if not set)                                                                    |
-| `data[].stock.stores[].max_stock_level`                         | `integer`    | `false`   | Maximum stock level configured for this store e.g. `10` (`0` if not set)                                                                   |
-| `data[].stock.stores[].locations`                               | `array`      | `false`   | Stock locations associated with this article                                                                                               |
-| `data[].stock.stores[].locations[].store_id`                    | `integer`    | `false`   | e.g. `1`                                                                                                                                   |
-| `data[].stock.stores[].locations[].location_id`                 | `integer`    | `false`   | ID of the location e.g. `3`                                                                                                                |
-| `data[].stock.stores[].locations[].location_x`                  | `integer`    | `false`   | Location x-axis e.g. `1`                                                                                                                   |
-| `data[].stock.stores[].locations[].location_y`                  | `integer`    | `false`   | Location y-axis e.g. `2`                                                                                                                   |
-| `data[].stock.stores[].locations[].location_capacity`           | `integer`    | `false`   | Capacity e.g. `33`                                                                                                                         |
-| `data[].stock.stores[].locations[].location_bulk`               | `string`     | `false`   | Bulk location name e.g. `Magazijn`                                                                                                         |
-| `pagination.next_url`                                           | `?string`    | `true`    | If there is more data this is the URL to the next API request. `https://api.cyclesoftware.nl/api/v4/articledata/entries.json?token=abc...` |
+| Property                                                        | Type         | Omittable | Description                                                                                                                                  |
+|-----------------------------------------------------------------|--------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| `data`                                                          | `object[]`   | `false`   |                                                                                                                                              |
+| `data[].modified_at`                                            | `datetime`   | `false`   | Last modification of underlying data e.g. `2024-07-24 16:23:45`                                                                              |
+| `data[].barcode`                                                | `string`     | `false`   | The barcode of the article e.g. `5400928076890` (usually an EAN code)                                                                        |
+| `data[].pricing`                                                | `object`     | `false`   | Object with pricing information about the article`                                                                                           |
+| `data[].pricing.currency`                                       | `string`     | `false`   | The currency code e.g. `EUR`                                                                                                                 |
+| `data[].pricing.rrp_cents`                                      | `integer`    | `false`   | Recommended retail price in cents e.g. `269900`                                                                                              |
+| `data[].pricing.pos_sales_price_cents`                          | `integer`    | `false`   | POS sales price in cents e.g. `269900`                                                                                                       |
+| `data[].pricing.ecommerce_price_cents`                          | `integer`    | `true`    | E-commerce sales price in cents e.g. `269900`                                                                                                |
+| `data[].pricing.purchase_price_cents`                           | `integer`    | `true`    | Purchase price in cents (excluding VAT) e.g. `99500`                                                                                         |
+| `data[].pricing.pos_group_id`                                   | `integer`    | `false`   | POS group ID e.g. `1` (see common enum)                                                                                                      |
+| `data[].pricing.vat_code`                                       | `?integer`   | `true`    | VAT code if specified e.g. `2`, if no specified the default VAT-code of POS group is applied                                                 |
+| `data[].pricing.pos_promo_price_cents`                          | `?integer`   | `true`    | POS promo price in cents e.g. `4000`                                                                                                         |
+| `data[].pricing.pos_promo_price_from`                           | `?date`      | `true`    | POS promo start date e.g. `2024-07-03`                                                                                                       |
+| `data[].pricing.pos_promo_price_until`                          | `?date`      | `true`    | POS promo end date e.g. `2024-10-19`                                                                                                         |
+| `data[].pricing.ecommerce_promo_price_cents`                    | `?integer`   | `true`    | E-commerce promo price in cents e.g. `3900`                                                                                                  |
+| `data[].pricing.ecommerce_promo_price_from`                     | `?date`      | `true`    | E-commerce promo start date e.g. `2024-07-01`                                                                                                |
+| `data[].pricing.ecommerce_promo_price_until`                    | `?date`      | `true`    | E-commerce promo end date e.g. `2024-10-19`                                                                                                  |
+| `data[].objects`                                                | `?object[]`  | `false`   | When the article is an object (bicycle, moped) this element is present and contains unique objects                                           |
+| `data[].objects[].object_code`                                  | `string`     | `false`   | The object code with account and object_id e.g. `F.1-232432`                                                                                 |
+| `data[].objects[].object_id`                                    | `integer`    | `false`   | The unique object_id within account e.g. `232432`                                                                                            |
+| `data[].objects[].store_id`                                     | `integer`    | `false`   | Store ID e.g. `1`                                                                                                                            |
+| `data[].objects[].available`                                    | `boolean`    | `false`   | `true` if the object is available (in stock, not sold and not reserved) e.g. `true`                                                          |
+| `data[].objects[].expected_at`                                  | `date`       | `true`    | Expected delivery date or null .e.g. `2024-10-01`                                                                                            |
+| `data[].objects[].is_demo`                                      | `boolean`    | `false`   | `true` if object is a demo object e.g. `false`                                                                                               |
+| `data[].objects[].is_used`                                      | `boolean`    | `false`   | `true` if the object is used e.g. `false`                                                                                                    |
+| `data[].objects[].currency`                                     | `string`     | `false`   | Currency code e.g. `EUR`                                                                                                                     |
+| `data[].objects[].ecommerce_price_cents`                        | `integer`    | `false`   | E-commerce price in cents e.g. `269900`                                                                                                      |
+| `data[].objects[].pos_sales_price_cents`                        | `integer`    | `false`   | POS sales price in cents e.g. `269900`                                                                                                       |
+| `data[].objects[].purchase_price_cents`                         | `integer`    | `true`    | Purchase price in cents e.g. `0`                                                                                                             |
+| `data[].objects[].km_age`                                       | `?integer`   | `false`   | KM age e.g. `100` or `null` when not available                                                                                               |
+| `data[].objects[].identification`                               | `object`     | `false`   | Object with identifications, may be an empty object if no values available                                                                   |
+| `data[].objects[].identification.battery_number`                | `string`     | `true`    | The battery number if set                                                                                                                    |
+| `data[].objects[].identification.battery_number_2`              | `string`     | `true`    | The battery number_2 if set                                                                                                                  |
+| `data[].objects[].identification.engine_number`                 | `string`     | `true`    | The engine number if set                                                                                                                     |
+| `data[].objects[].identification.frame_number`                  | `string`     | `true`    | The frame number if set                                                                                                                      |
+| `data[].objects[].identification.imei_number`                   | `string`     | `true`    | The imei number if set                                                                                                                       |
+| `data[].objects[].identification.key_number`                    | `string`     | `true`    | The key number if set                                                                                                                        |
+| `data[].objects[].identification.key_number_2`                  | `string`     | `true`    | The key number_2 if set                                                                                                                      |
+| `data[].objects[].identification.license_plate_number`          | `string`     | `true`    | The license plat if set if set                                                                                                               |
+| `data[].objects[].identification.lock_number`                   | `string`     | `true`    | The lock number if set                                                                                                                       |
+| `data[].objects[].identification.lock_number_2`                 | `string`     | `true`    | The lock number_2 if set                                                                                                                     |
+| `data[].objects[].identification.serial_number`                 | `string`     | `true`    | The serial number if set                                                                                                                     |
+| `data[].objects[].identification.velopass_code`                 | `string`     | `true`    | The velopass code if set                                                                                                                     |
+| `data[].suppliers`                                              | `object[]`   | `false`   | List of suppliers associated with the article                                                                                                |
+| `data[].suppliers[]._id`                                        | `integer`    | `false`   | Internal ID e.g. `11043281`                                                                                                                  |
+| `data[].suppliers[].supplier_id`                                | `integer`    | `false`   | Supplier ID e.g. `13005` (see common supplier list)                                                                                          |
+| `data[].suppliers[].supplier_name`                              | `string`     | `false`   | Supplier code name e.g. `BELGIAN CYCLING FACTORY`                                                                                            |
+| `data[].suppliers[].article_id`                                 | `string`     | `false`   | Article number e.g. `SBIELARID023`                                                                                                           |
+| `data[].suppliers[].model_id`                                   | `null`       | `true`    | Model ID, if other entries have the same model_id they could be grouped                                                                      |
+| `data[].suppliers[].parent_barcode`                             | `null`       | `true`    | Parent barcode (if grouped within model_id)                                                                                                  |
+| `data[].suppliers[].currency`                                   | `string`     | `false`   | Currency code e.g. `EUR`                                                                                                                     |
+| `data[].suppliers[].rrp_cents`                                  | `integer`    | `false`   | Recommended retail price in cents e.g. `269900`                                                                                              |
+| `data[].suppliers[].purchase_price_cents`                       | `integer`    | `false`   | Purchase price in cents e.g. `0`                                                                                                             |
+| `data[].suppliers[].package.package_contents`                   | `integer`    | `false`   | Number of consumer goods within delivery from supplier e.g. `1`                                                                              |
+| `data[].suppliers[].package.min_order_quantity`                 | `integer`    | `false`   | Minimal order quantity for this supplier e.g. `1`                                                                                            |
+| `data[].suppliers[].package.order_unit`                         | `integer`    | `false`   | Order unit for this supplier e.g. `1`                                                                                                        |
+| `data[].properties<:property_name>.type`                        | `string`     | `false`   | The data type of the property e.g. `codelist:article_main_group` (see `Data-types` for possible types)                                       |
+| `data[].properties<:property_name>.unit`                        | `?string`    | `true`    | The unit of data e.g. `kg` or `cm` if available.                                                                                             |
+| `data[].properties<:property_name>.values`                      | `object[]`   | `false`   | Different values for the property (different values may be present sourced from different suppliers and or objects)                          |
+| `data[].properties<:property_name>.values[].supplier_ids`       | `?integer[]` | `true`    | The list of supplier-ids which have this property in their article definition                                                                |
+| `data[].properties<:property_name>.values[].object_ids`         | `?integer[]` | `true`    | The list of object-ids which have this property in their definition                                                                          |
+| `data[].properties<:property_name>.values[].code`               | `?string`    | `true`    | If the data-type refers to a code list, this is the code value e.g. `1`                                                                      |
+| `data[].properties<:property_name>.values[].code_international` | `?string`    | `true`    | If the data-type refers to a code list, this is the international code value e.g. `1`                                                        |
+| `data[].properties<:property_name>.values[].value`              | `mixed`      | `false`   | The value of the property, the structure depends on `data[].properties<:property_name>.type` e.g. `2021`                                     |
+| `data[].stock`                                                  | `?object`    | `false`   | Only present for non object entries, contains stock information within stores                                                                |
+| `data[].stock.available`                                        | `boolean`    | `false`   | `true` if there is stock available within stores e.g. `false`                                                                                |
+| `data[].stock.stores`                                           | `object`     | `false`   | Array with object information per store-id                                                                                                   |
+| `data[].stock.stores[].store_id`                                | `integer`    | `false`   | Store ID e.g. `1`                                                                                                                            |
+| `data[].stock.stores[].stock_level`                             | `integer`    | `false`   | Stock level in this store e.g. `0`                                                                                                           |
+| `data[].stock.stores[].min_stock_level`                         | `integer`    | `false`   | Minimum stock level configured for this store e.g. `2` (`0` if not set)                                                                      |
+| `data[].stock.stores[].max_stock_level`                         | `integer`    | `false`   | Maximum stock level configured for this store e.g. `10` (`0` if not set)                                                                     |
+| `data[].stock.stores[].locations`                               | `array`      | `false`   | Stock locations associated with this article                                                                                                 |
+| `data[].stock.stores[].locations[].store_id`                    | `integer`    | `false`   | e.g. `1`                                                                                                                                     |
+| `data[].stock.stores[].locations[].location_id`                 | `integer`    | `false`   | ID of the location e.g. `3`                                                                                                                  |
+| `data[].stock.stores[].locations[].location_x`                  | `integer`    | `false`   | Location x-axis e.g. `1`                                                                                                                     |
+| `data[].stock.stores[].locations[].location_y`                  | `integer`    | `false`   | Location y-axis e.g. `2`                                                                                                                     |
+| `data[].stock.stores[].locations[].location_capacity`           | `integer`    | `false`   | Capacity e.g. `33`                                                                                                                           |
+| `data[].stock.stores[].locations[].location_bulk`               | `string`     | `false`   | Bulk location name e.g. `Magazijn`                                                                                                           |
+| `pagination.next_url`                                           | `?string`    | `true`    | If there is more data this is the URL to the next API request. `https://api.cyclesoftware.nl/api/v4/articledata/ecommerce.json?token=abc...` |
 
 > HTTP Request
 
 ```http
-GET /api/v4/articledata/entries.json HTTP/1.1
+GET /api/v4/articledata/ecommerce.json HTTP/1.1
 Host: api.cyclesoftware.nl
 Authorization: Basic VXNlcm5hbWU6UGFzc3dvcmQ=
 Accept-encoding: gzip
@@ -1281,7 +1297,7 @@ Accept: application/json
     }
   ],
   "pagination": {
-    "next_url": "https://s01.cyclesoftware.nl/api/v4/articledata/entries.json?token=ABC"
+    "next_url": "https://s01.cyclesoftware.nl/api/v4/articledata/ecommerce.json?token=ABC"
   }
 }
 ```

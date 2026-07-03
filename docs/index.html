@@ -1543,6 +1543,64 @@ is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_res
 <td>Object warranty type and descriptions</td>
 </tr>
 </tbody></table>
+<h3 id='common-enums-properties'>Properties</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>error</code></td>
+<td><code>boolean</code></td>
+<td><code>false</code></td>
+<td><code>true</code> if an error occurred e.g. <code>false</code></td>
+</tr>
+<tr>
+<td><code>error_message</code></td>
+<td><code>?string</code></td>
+<td><code>true</code></td>
+<td>Error message if there is one</td>
+</tr>
+<tr>
+<td><code>data&lt;:subject&gt;</code></td>
+<td><code>object</code></td>
+<td><code>false</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>data&lt;:subject&gt;[].id</code></td>
+<td><code>integer/string</code></td>
+<td><code>false</code></td>
+<td>The ID of this element e.g. <code>11</code></td>
+</tr>
+<tr>
+<td><code>data&lt;:subject&gt;[].source</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td><code>global</code> if this applies to multiple accounts or <code>account</code> when specific to this account</td>
+</tr>
+<tr>
+<td><code>data&lt;:subject&gt;[].description</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description (nl) e.g. <code>Bestelling</code></td>
+</tr>
+<tr>
+<td><code>data&lt;:subject&gt;[].description_en</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description (en) e.g. <code>Order</code></td>
+</tr>
+<tr>
+<td><code>data&lt;:subject&gt;[].description_fr</code></td>
+<td><code>string</code></td>
+<td><code>false</code></td>
+<td>Description (fr) e.g. <code>Commande</code></td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>HTTP Request</p>
@@ -1567,34 +1625,42 @@ is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_res
 
 <span class="err">json</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"sales_order_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bestelling"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"sales_order_status"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In behandeling"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nog niet besteld"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not ordered"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"sales_order_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"global"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bestelling"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Commande"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"global"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"sales_order_status"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"global"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"In behandeling"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"En cours de traitement"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"global"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nog niet besteld"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not ordered"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description_fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pas encore commandé"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='common-enum'>Enum</h2>
 <p>Get a specific enum, see types on Enums endpoint</p>
@@ -1632,16 +1698,20 @@ is <code>/api/v1/customers/1006/comments.json?offset=1</code>. If <code>next_res
   </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bestelling"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"global"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bestelling"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description_fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Commande"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"global"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description_fr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='common-employees'>Employees</h2>

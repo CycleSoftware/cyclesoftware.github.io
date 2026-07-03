@@ -41,6 +41,19 @@ Get a set of enums with identifiers and descriptions used in various APIs
 | `consignment_status`      | Object consignment type and descriptions                                                    |
 | `warranty_types`          | Object warranty type and descriptions                                                       |
 
+### Properties ###
+
+| Property                          | Type             | Nullable | Description                                                                              |
+|-----------------------------------|------------------|----------|------------------------------------------------------------------------------------------|
+| `error`                           | `boolean`        | `false`  | `true` if an error occurred e.g. `false`                                                 |
+| `error_message`                   | `?string`        | `true`   | Error message if there is one                                                            |
+| `data<:subject>`                  | `object`         | `false`  |                                                                                          |
+| `data<:subject>[].id`             | `integer/string` | `false`  | The ID of this element e.g. `11`                                                         |
+| `data<:subject>[].source`         | `string`         | `false`  | `global` if this applies to multiple accounts or `account` when specific to this account |
+| `data<:subject>[].description`    | `string`         | `false`  | Description (nl) e.g. `Bestelling`                                                       |
+| `data<:subject>[].description_en` | `string`         | `false`  | Description (en) e.g. `Order`                                                            |
+| `data<:subject>[].description_fr` | `string`         | `false`  | Description (fr) e.g. `Commande`                                                         |
+
 > HTTP Request
 
 ```http
@@ -65,34 +78,42 @@ X-RateLimit-Daily-Reset: 1678230000
 
 json
 {
-  "error": false,
-  "error_message": null,
-  "data": {
-    "sales_order_types": [
-      {
-        "id": 0,
-        "description": "Bestelling",
-        "description_en": "Order"
-      },
-      {
-        "id": 1,
-        "description": "E-commerce",
-        "description_en": "E-commerce"
-      }
-    ],
-    "sales_order_status": [
-      {
-        "id": 2,
-        "description": "In behandeling",
-        "description_en": "Pending"
-      },
-      {
-        "id": 8,
-        "description": "Nog niet besteld",
-        "description_en": "Not ordered"
-      }
-    ]
-  }
+    "error": false,
+    "error_message": null,
+    "data": {
+        "sales_order_types": [
+            {
+                "id": 0,
+                "source": "global",
+                "description": "Bestelling",
+                "description_en": "Order",
+                "description_fr": "Commande"
+            },
+            {
+                "id": 1,
+                "source": "global",
+                "description": "E-commerce",
+                "description_en": "E-commerce",
+                "description_fr": "E-commerce"
+            }
+        ],
+        "sales_order_status": [
+            {
+                "id": 2,
+                "source": "global",
+                "description": "In behandeling",
+                "description_en": "Pending",
+                "description_fr": "En cours de traitement"
+            },
+            {
+                "id": 8,
+                "source": "global",
+                "description": "Nog niet besteld",
+                "description_en": "Not ordered",
+                "description_fr": "Pas encore commandé"
+            }
+        ]
+    }
 }
 ```
 
@@ -135,20 +156,23 @@ json
   "error": false,
   "error_message": null,
   "data": [
-      {
-        "id": 0,
-        "description": "Bestelling",
-        "description_en": "Order"
-      },
-      {
-        "id": 1,
-        "description": "E-commerce",
-        "description_en": "E-commerce"
-      }
+        {
+            "id": 0,
+            "source": "global",
+            "description": "Bestelling",
+            "description_en": "Order",
+            "description_fr": "Commande"
+        },
+        {
+            "id": 1,
+            "source": "global",
+            "description": "E-commerce",
+            "description_en": "E-commerce",
+            "description_fr": "E-commerce"
+        }
     ]
 }
 ```
-
 
 ## Employees ##
 

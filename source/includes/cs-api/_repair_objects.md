@@ -27,9 +27,13 @@ Read, create or update repair objects for a customer
 | `frame_id`                   | `string`                        | <code>PUT&#124;POST</code> | Frame number e.g. `frame_id`                                                               |
 | `chip_id`                    | `string`                        | <code>PUT&#124;POST</code> | Chip number e.g. `chip_id`                                                                 |
 | `key_id`                     | `string`                        | <code>PUT&#124;POST</code> | Key number e.g. `key_id`                                                                   |
+| `key_id_2`                   | `string`                        | <code>PUT&#124;POST</code> | Key number (2) e.g. `key_id`                                                               |
 | `engine_id`                  | `string`                        | <code>PUT&#124;POST</code> | Engine number e.g. `engine_id`                                                             |
 | `battery_id`                 | `string`                        | <code>PUT&#124;POST</code> | Battery number e.g. `1234`                                                                 |
+| `battery_id_2`               | `string`                        | <code>PUT&#124;POST</code> | Battery number (2) e.g. `1234`                                                             |
 | `lock_id`                    | `string`                        | <code>PUT&#124;POST</code> | Lock number e.g. `1234`                                                                    |
+| `lock_id_2`                  | `string`                        | <code>PUT&#124;POST</code> | Lock number (2) e.g. `1234`                                                                |
+| `imei`                       | `string`                        | <code>PUT&#124;POST</code> | IMEI number e.g. `imei`                                                                    |
 | `workshop_rate_id`           | `integer`                       | <code>PUT&#124;POST</code> | See common API `workshop_rates` e.g. `1`                                                   |
 | `service_level_id`           | `integer`                       | <code>PUT&#124;POST</code> | Service level ID e.g. `0`                                                                  |
 | `images`                     | `object[]`                      | `readonly`                 | List of images                                                                             |
@@ -113,9 +117,13 @@ X-RateLimit-Daily-Reset: 1678230000
             "frame_id": "",
             "chip_id": "",
             "key_id": "",
+            "key_id_2": "",
             "engine_id": "",
             "battery_id": "",
+            "battery_id_2": "",
             "lock_id": "",
+            "lock_id_2": "",
+            "imei": "",
             "workshop_rate_id": 1,
             "service_level_id": 0,
             "images": [
@@ -147,9 +155,13 @@ X-RateLimit-Daily-Reset: 1678230000
             "frame_id": "frame_id",
             "chip_id": "chip_id",
             "key_id": "key_id",
+            "key_id_2": "key_id-2",
             "engine_id": "engine_id",
             "battery_id": "1234",
+            "battery_id_2": "1234-2",
             "lock_id": "lock_id",
+            "lock_id_2": "lock_id-2",
+            "imei": "imei",
             "workshop_rate_id": 1,
             "service_level_id": 0,
             "images": [],
@@ -222,9 +234,13 @@ X-RateLimit-Daily-Reset: 1678230000
         "frame_id": "",
         "chip_id": "",
         "key_id": "",
+        "key_id_2": "",
         "engine_id": "",
         "battery_id": "",
+        "battery_id_2": "",
         "lock_id": "",
+        "lock_id_2": "",
+        "imei": "",
         "workshop_rate_id": 1,
         "service_level_id": 0,
         "images": [
@@ -256,9 +272,13 @@ X-RateLimit-Daily-Reset: 1678230000
         "frame_id": "frame_id",
         "chip_id": "chip_id",
         "key_id": "key_id",
+        "key_id_2": "key_id_2",
         "engine_id": "engine_id",
         "battery_id": "1234",
+        "battery_id_2": "1234-2",
         "lock_id": "lock_id",
+        "lock_id_2": "lock_id-2",
+        "imei": "imei",
         "workshop_rate_id": 1,
         "service_level_id": 0,
         "images": [],
@@ -332,9 +352,13 @@ X-RateLimit-Daily-Reset: 1678230000
           "frame_id": "",
           "chip_id": "",
           "key_id": "",
+          "key_id_2": "",
           "engine_id": "",
           "battery_id": "",
+          "battery_id_2": "",
           "lock_id": "",
+          "lock_id_2": "",
+          "imei": "",
           "workshop_rate_id": 1,
           "service_level_id": 0,
           "images": [
@@ -366,9 +390,13 @@ X-RateLimit-Daily-Reset: 1678230000
           "frame_id": "frame_id",
           "chip_id": "chip_id",
           "key_id": "key_id",
+          "key_id_2": "key_id_2",
           "engine_id": "engine_id",
           "battery_id": "1234",
+          "battery_id_2": "1234-2",
           "lock_id": "lock_id",
+          "lock_id_2": "lock_id-2",
+          "imei": "imei",
           "workshop_rate_id": 1,
           "service_level_id": 0,
           "images": [],
@@ -444,9 +472,13 @@ X-RateLimit-Daily-Reset: 1678230000
     "frame_id": "",
     "chip_id": "",
     "key_id": "",
+    "key_id_2": "",
     "engine_id": "",
     "battery_id": "",
+    "battery_id_2": "",
     "lock_id": "",
+    "lock_id_2": "",
+    "imei": "",
     "workshop_rate_id": 1,
     "service_level_id": 0,
     "images": [
@@ -525,9 +557,13 @@ X-RateLimit-Daily-Reset: 1678230000
     "frame_id": "",
     "chip_id": "",
     "key_id": "",
+    "key_id_2": "",
     "engine_id": "",
     "battery_id": "",
+    "battery_id_2": "",
     "lock_id": "",
+    "lock_id_2": "",
+    "imei": "",
     "workshop_rate_id": 1,
     "service_level_id": 0,
     "images": [
@@ -591,9 +627,13 @@ Content-length: 620
     "frame_id": "frame_id",
     "chip_id": "chip_id",
     "key_id": "key_id",
+    "key_id_2": "key_id_2",
     "engine_id": "engine_id",
     "battery_id": "1234",
+    "battery_id_2": "1234-2",
     "lock_id": "lock_id",
+    "lock_id_2": "lock_id-2",
+    "imei": "imei",
     "workshop_rate_id": 1,
     "service_level_id": 0
 }
@@ -629,9 +669,13 @@ X-RateLimit-Daily-Reset: 1678230000
     "frame_id": "frame_id",
     "chip_id": "chip_id",
     "key_id": "key_id",
+    "key_id_2": "key_id_2",
     "engine_id": "engine_id",
     "battery_id": "1234",
+    "battery_id_2": "1234-2",
     "lock_id": "lock_id",
+    "lock_id_2": "lock_id-2",
+    "imei": "imei",
     "workshop_rate_id": 1,
     "service_level_id": 0,
     "images": [],
@@ -713,9 +757,13 @@ X-RateLimit-Daily-Reset: 1678230000
     "frame_id": "",
     "chip_id": "",
     "key_id": "",
+    "key_id_2": "",
     "engine_id": "",
     "battery_id": "",
+    "battery_id_2": "",
     "lock_id": "",
+    "lock_id_2": "",
+    "imei": "",
     "workshop_rate_id": 1,
     "service_level_id": 1,
     "images": [

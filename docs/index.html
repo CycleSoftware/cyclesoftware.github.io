@@ -2907,15 +2907,15 @@ This will save you bandwidth and time.
 <div class="api-endpoint">
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v4/articledata/entries.json</h6>
+        <h6>/api/v4/articledata/ecommerce.json</h6>
     </div>
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v4/articledata/entries.json?token=:token</h6>
+        <h6>/api/v4/articledata/ecommerce.json?token=:token</h6>
     </div>
     <div class="endpoint-data">
         <i class="label label-post">GET</i>
-        <h6>/api/v4/articledata/entries.json?barcode=:barcode</h6>
+        <h6>/api/v4/articledata/ecommerce.json?barcode=:barcode</h6>
     </div>
 </div>
 
@@ -2963,7 +2963,19 @@ This will save you bandwidth and time.
 <ul>
 <li>Stock only present for non-objects</li>
 <li>Objects lists the available stock objects</li>
+<li>The endpoint <code>/api/v4/articledata/entries.json</code> was renamed to <code>/api/v4/articledata/ecommerce.json</code> (July 2026)</li>
 </ul>
+
+<p><strong>All own articles regardless of e-commerce setting</strong></p>
+
+<p>If you want to list all articles in your own enviroment regardless of the e-commerce flag. Use the following endpoint</p>
+
+<div class="api-endpoint">
+    <div class="endpoint-data">
+        <i class="label label-post">GET</i>
+        <h6>/api/v4/articledata/articles/own.json</h6>
+    </div>
+</div>
 <h3 id='article-data-articledata-v4-response-properties'>Response properties</h3>
 <table><thead>
 <tr>
@@ -3445,14 +3457,14 @@ This will save you bandwidth and time.
 <td><code>pagination.next_url</code></td>
 <td><code>?string</code></td>
 <td><code>true</code></td>
-<td>If there is more data this is the URL to the next API request. <code>https://api.cyclesoftware.nl/api/v4/articledata/entries.json?token=abc...</code></td>
+<td>If there is more data this is the URL to the next API request. <code>https://api.cyclesoftware.nl/api/v4/articledata/ecommerce.json?token=abc...</code></td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>HTTP Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v4/articledata/entries.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/api/v4/articledata/ecommerce.json</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.cyclesoftware.nl</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Basic VXNlcm5hbWU6UGFzc3dvcmQ=</span>
 <span class="na">Accept-encoding</span><span class="p">:</span> <span class="s">gzip</span>
@@ -4046,7 +4058,7 @@ This will save you bandwidth and time.
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nl">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/api/v4/articledata/entries.json?token=ABC"</span><span class="w">
+    </span><span class="nl">"next_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s01.cyclesoftware.nl/api/v4/articledata/ecommerce.json?token=ABC"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='article-data-data-types-v4'>Data-types - V4</h2>

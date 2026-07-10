@@ -1204,7 +1204,7 @@ Content-length: 580
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://api.cyclesoftware.nl/app/cs/api/ecommerce/soap_2_0/">
   <SOAP-ENV:Body>
-    <ns1:GetInvoiceDocumentRequest>
+    <ns1:GetOrderStatusRequest>
       <Authentication>
         <username>your-username</username>
         <password>your-password</password>
@@ -1212,7 +1212,7 @@ Content-length: 580
       </Authentication>
       <order_id>711075</order_id>
       <order_reference_id>61a0d79989fa3</order_reference_id>
-    </ns1:GetInvoiceDocumentRequest>
+    </ns1:GetOrderStatusRequest>
   </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
 

@@ -669,6 +669,12 @@
                     <a href="#webhooks-voucher-info-payload-structure" class="toc-h2 toc-link" data-title="Payload structure">Payload structure</a>
                   </li>
                   <li>
+                    <a href="#webhooks-voucher-info-delivery-and-retries" class="toc-h2 toc-link" data-title="Delivery and retries">Delivery and retries</a>
+                  </li>
+                  <li>
+                    <a href="#webhooks-voucher-info-manual-redelivery" class="toc-h2 toc-link" data-title="Manual redelivery">Manual redelivery</a>
+                  </li>
+                  <li>
                     <a href="#webhooks-customers" class="toc-h2 toc-link" data-title="Customers">Customers</a>
                   </li>
                   <li>
@@ -19238,7 +19244,101 @@ employee_id=1005&amp;workshop_order_status_id=9&amp;book=1&amp;customer_messages
   </span><span class="nl">"event_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mf">1640787926.323</span><span class="p">,</span><span class="w">
   </span><span class="nl">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='webhooks-customers'>Customers</h2>
+</span></code></pre></div><h3 id='webhooks-voucher-info-delivery-and-retries'>Delivery and retries</h3>
+<p>A webhook is considered delivered when your server responds with an HTTP <code>2xx</code> status code. Respond as quickly as possible and process the payload asynchronously on your side.</p>
+
+<table><thead>
+<tr>
+<th>Response</th>
+<th>Result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>2xx</code></td>
+<td>Delivered, no further attempts</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Cancelled immediately, the webhook is not retried</td>
+</tr>
+<tr>
+<td>Any other status code, timeout or connection error</td>
+<td>Queued for a retry</td>
+</tr>
+</tbody></table>
+
+<p>A failed webhook is retried <strong>11 times</strong> after the initial attempt (12 attempts in total). The delay between attempts increases with every retry, spreading the retries over roughly <strong>18 hours</strong>:</p>
+
+<table><thead>
+<tr>
+<th>Retry</th>
+<th>Delay after previous attempt</th>
+<th>Approx. time after first attempt</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>18 minutes</td>
+<td>18 minutes</td>
+</tr>
+<tr>
+<td>2</td>
+<td>24 minutes</td>
+<td>42 minutes</td>
+</tr>
+<tr>
+<td>3</td>
+<td>30 minutes</td>
+<td>1 hour 12 minutes</td>
+</tr>
+<tr>
+<td>4</td>
+<td>36 minutes</td>
+<td>1 hour 48 minutes</td>
+</tr>
+<tr>
+<td>5</td>
+<td>42 minutes</td>
+<td>2 hours 30 minutes</td>
+</tr>
+<tr>
+<td>6</td>
+<td>48 minutes</td>
+<td>3 hours 18 minutes</td>
+</tr>
+<tr>
+<td>7</td>
+<td>54 minutes</td>
+<td>4 hours 12 minutes</td>
+</tr>
+<tr>
+<td>8</td>
+<td>60 minutes</td>
+<td>5 hours 12 minutes</td>
+</tr>
+<tr>
+<td>9</td>
+<td>66 minutes</td>
+<td>6 hours 18 minutes</td>
+</tr>
+<tr>
+<td>10</td>
+<td>72 minutes</td>
+<td>7 hours 30 minutes</td>
+</tr>
+<tr>
+<td>11</td>
+<td>10 hours 12 minutes</td>
+<td>17 hours 42 minutes</td>
+</tr>
+</tbody></table>
+
+<p>The delays are minimums; the actual moment of a retry can be slightly later. After the last retry has failed, the webhook is no longer delivered automatically.</p>
+
+<p>When a newer webhook is created for the same entity and endpoint (e.g. a <code>sales_order.updated</code> following a failed <code>sales_order.created</code>), pending retries of the older webhook are cancelled. The newer webhook always contains the latest state of the entity.</p>
+<h3 id='webhooks-voucher-info-manual-redelivery'>Manual redelivery</h3>
+<p>Every webhook can also be resent manually from the webhooks overview in CycleSoftware. Open a webhook in the list of recent webhooks to view the request and response, and click <strong>Opnieuw verzenden</strong> (resend) to deliver it again. A manual redelivery is possible at any time, including after all automatic retries have failed.</p>
+<h2 id='webhooks-customers'>Customers</h2>
 <table><thead>
 <tr>
 <th>Event name</th>

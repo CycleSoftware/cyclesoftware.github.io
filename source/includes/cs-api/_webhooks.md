@@ -36,6 +36,40 @@ Every JSON payload has the same structure. The payload object is different per e
 }
 ```
 
+### Delivery and retries
+
+A webhook is considered delivered when your server responds with an HTTP `2xx` status code. Respond as quickly as possible and process the payload asynchronously on your side.
+
+| Response                                       | Result                                          |
+|------------------------------------------------|-------------------------------------------------|
+| `2xx`                                          | Delivered, no further attempts                  |
+| `404`                                          | Cancelled immediately, the webhook is not retried |
+| Any other status code, timeout or connection error | Queued for a retry                          |
+
+A failed webhook is retried **11 times** after the initial attempt (12 attempts in total). The delay between attempts increases with every retry, spreading the retries over roughly **18 hours**:
+
+| Retry | Delay after previous attempt | Approx. time after first attempt |
+|-------|------------------------------|----------------------------------|
+| 1     | 18 minutes                   | 18 minutes                       |
+| 2     | 24 minutes                   | 42 minutes                       |
+| 3     | 30 minutes                   | 1 hour 12 minutes                |
+| 4     | 36 minutes                   | 1 hour 48 minutes                |
+| 5     | 42 minutes                   | 2 hours 30 minutes               |
+| 6     | 48 minutes                   | 3 hours 18 minutes               |
+| 7     | 54 minutes                   | 4 hours 12 minutes               |
+| 8     | 60 minutes                   | 5 hours 12 minutes               |
+| 9     | 66 minutes                   | 6 hours 18 minutes               |
+| 10    | 72 minutes                   | 7 hours 30 minutes               |
+| 11    | 10 hours 12 minutes          | 17 hours 42 minutes              |
+
+The delays are minimums; the actual moment of a retry can be slightly later. After the last retry has failed, the webhook is no longer delivered automatically.
+
+When a newer webhook is created for the same entity and endpoint (e.g. a `sales_order.updated` following a failed `sales_order.created`), pending retries of the older webhook are cancelled. The newer webhook always contains the latest state of the entity.
+
+### Manual redelivery
+
+Every webhook can also be resent manually from the webhooks overview in CycleSoftware. Open a webhook in the list of recent webhooks to view the request and response, and click **Opnieuw verzenden** (resend) to deliver it again. A manual redelivery is possible at any time, including after all automatic retries have failed.
+
 ## Customers ##
 
 | Event name         | Description                        |

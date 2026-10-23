@@ -113,6 +113,7 @@ By default the book-date is used.
 | `data[].sales_order.sales_order_type_id`                             | `integer`              | Sales order type  ID e.g. `6` (see common enum `sales_order_types`)                                                                                            |
 | `data[].sales_order.track_trace_reference`                           | `string`               | Track and trace reference                                                                                                                                      |
 | `data[].sales_order.created_at`                                      | `datetime`             | Creation date                                                                                                                                                  |
+| `data[].sales_order.order_date`                                      | `date`                 | Order date of the sales order e.g. `2023-01-22`                                                                                                                |
 | `data[].sales_order.quote_converted_at`                              | `?datetime`            | When this sales-order was converted from a quote. This is the datetime of the conversion. This property is not present if the quote is not converted.          |
 | `data[].workshop_order`                                              | `?object`              | Workshop / repair related information                                                                                                                          |
 | `data[].workshop_order.workshop_order_id`                            | `integer`              | Workshop order ID e.g. `40573`                                                                                                                                 |
@@ -122,6 +123,8 @@ By default the book-date is used.
 | `data[].workshop_order.workshop_rate_id`                             | `integer`              | Workshop rate ID e.g. `1` (see common enum `workshop_rates`)                                                                                                   |
 | `data[].workshop_order.mechanic_employee_id`                         | `?integer`             | Workshop mechanic ID e.g. `1` (see employees endpoint) if available                                                                                            |
 | `data[].workshop_order.mechanic_employee_name`                       | `?string`              | Workshop mechanic name e.g. `John` if available                                                                                                                |
+| `data[].workshop_order.scheduled_finished_at`                        | `?datetime`            | Scheduled (planned) finish date-time of the workshop order e.g. `2023-01-23 17:00:00`, `null` if not scheduled                                                 |
+| `data[].workshop_order.marked_finished_at`                           | `?datetime`            | Date-time the workshop order was marked as finished e.g. `2023-01-23 15:12:00`, `null` if not (yet) finished                                                   |
 | `data[].workshop_order.delivery_method_id`                           | `integer`              | Delivery method ID e.g. `0` (see common enum `delivery_methods`)                                                                                               |
 | `data[].workshop_order.reference_text`                               | `string`               | Reference of order e.g. `85`                                                                                                                                   |
 | `data[].workshop_order.km_age`                                       | `?integer`             | KM age of object if registered with this order                                                                                                                 |
@@ -322,6 +325,7 @@ Content-length: 19744
                 "delivery_method_id": 0,
                 "track_trace_reference": "",
                 "created_at": "2023-01-22 10:52:57",
+                "order_date": "2023-01-22",
                 "quote_converted_at": "2023-01-22 10:55:57"
             },
             "workshop_order": {
@@ -333,6 +337,8 @@ Content-length: 19744
                 "delivery_method_id": 0,
                 "reference_text": "",
                 "km_age": null,
+                "scheduled_finished_at": "2023-01-23 17:00:00",
+                "marked_finished_at": "2023-01-23 15:12:00",
                 "object": {
                       "brand_name": "Giant",
                       "color": "Zwart",

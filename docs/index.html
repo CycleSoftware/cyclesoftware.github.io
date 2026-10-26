@@ -10947,6 +10947,11 @@ By default the book-date is used.</p>
 <td>Creation date</td>
 </tr>
 <tr>
+<td><code>data[].sales_order.order_date</code></td>
+<td><code>date</code></td>
+<td>Order date of the sales order e.g. <code>2023-01-22</code></td>
+</tr>
+<tr>
 <td><code>data[].sales_order.quote_converted_at</code></td>
 <td><code>?datetime</code></td>
 <td>When this sales-order was converted from a quote. This is the datetime of the conversion. This property is not present if the quote is not converted.</td>
@@ -10990,6 +10995,16 @@ By default the book-date is used.</p>
 <td><code>data[].workshop_order.mechanic_employee_name</code></td>
 <td><code>?string</code></td>
 <td>Workshop mechanic name e.g. <code>John</code> if available</td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.scheduled_finished_at</code></td>
+<td><code>?datetime</code></td>
+<td>Scheduled (planned) finish date-time of the workshop order e.g. <code>2023-01-23 17:00:00</code>, <code>null</code> if not scheduled</td>
+</tr>
+<tr>
+<td><code>data[].workshop_order.marked_finished_at</code></td>
+<td><code>?datetime</code></td>
+<td>Date-time the workshop order was marked as finished e.g. <code>2023-01-23 15:12:00</code>, <code>null</code> if not (yet) finished</td>
 </tr>
 <tr>
 <td><code>data[].workshop_order.delivery_method_id</code></td>
@@ -11687,6 +11702,7 @@ By default the book-date is used.</p>
                 </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"track_trace_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-22 10:52:57"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"order_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-22"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"quote_converted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-22 10:55:57"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nl">"workshop_order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -11698,6 +11714,8 @@ By default the book-date is used.</p>
                 </span><span class="nl">"delivery_method_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"reference_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"scheduled_finished_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-23 17:00:00"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"marked_finished_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-23 15:12:00"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"object"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                       </span><span class="nl">"brand_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Giant"</span><span class="p">,</span><span class="w">
                       </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zwart"</span><span class="p">,</span><span class="w">

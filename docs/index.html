@@ -14433,6 +14433,16 @@ not included.</p>
 <td>integer</td>
 <td>If 0, no remote supplier checks are performed <i class="label label-info">optional</i></td>
 </tr>
+<tr>
+<td><code>only_objects_available_for_platforms</code></td>
+<td>integer</td>
+<td>If 1, only stock objects available for external platforms (&quot;Extern aanbod&quot;) are counted, like the article data api <i class="label label-info">optional</i></td>
+</tr>
+<tr>
+<td><code>skip_article_number_match_with_other_barcode</code></td>
+<td>integer</td>
+<td>Default 1: a stock object found by brand and article number is not counted for a barcode when the object has another barcode; it is counted for its own barcode, like the article data api. If 0, the object is also counted for the requested barcode <i class="label label-info">optional</i></td>
+</tr>
 </tbody></table>
 <h3 id='stock-stockinfo-properties'>Properties</h3>
 <table><thead>

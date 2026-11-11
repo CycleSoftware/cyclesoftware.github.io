@@ -5952,6 +5952,12 @@ is omitted from the body.</p>
 <td>Country code e.g. <code>NL</code></td>
 </tr>
 <tr>
+<td><code>language_code</code></td>
+<td><code>string</code></td>
+<td><code>PUT&#124;POST</code></td>
+<td>Preferred language of customer, one of <code>nl_NL</code>, <code>en_GB</code> or <code>fr_FR</code> (1)</td>
+</tr>
+<tr>
 <td><code>email</code></td>
 <td><code>string</code></td>
 <td><code>PUT&#124;POST</code></td>
@@ -6012,6 +6018,10 @@ is omitted from the body.</p>
 <td>Name of number e.g. <code>Dhr./Mevr.  T UnitTest</code></td>
 </tr>
 </tbody></table>
+
+<p>(1) A short code such as <code>fr</code> is also accepted and converted to <code>fr_FR</code>. When <code>language_code</code> is omitted while creating a
+customer, the language is derived from <code>country_code_iso_3166</code> (e.g. <code>FR</code> results in <code>fr_FR</code>), falling back to the
+default language of the store. When omitted on update, the current language of the customer is kept.</p>
 <h2 id='customers-get-customer'>Get Customer</h2>
 <p>Get customer</p>
 
@@ -6076,6 +6086,7 @@ is omitted from the body.</p>
     </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Raadhuisplein"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nistelrode"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl_NL"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name@domain.nl"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL855630693B01"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"64356582"</span><span class="p">,</span><span class="w">
@@ -6133,6 +6144,7 @@ is omitted from the body.</p>
     </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"street"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sr"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_GB"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@mail.com"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL855630693B01"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"64356582"</span><span class="p">,</span><span class="w">
@@ -6189,6 +6201,7 @@ is omitted from the body.</p>
     </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"street"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sr"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_GB"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email@mail.com"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL855630693B01"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"64356582"</span><span class="p">,</span><span class="w">
@@ -6268,6 +6281,7 @@ is omitted from the body.</p>
     </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bruggen"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rosmalen"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl_NL"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@hotmail.com"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">    
@@ -6318,6 +6332,7 @@ is omitted from the body.</p>
     </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bruggen"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rosmalen"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl_NL"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@hotmail.com"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">   
@@ -6440,6 +6455,7 @@ is omitted from the body.</p>
         </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mauritslaan"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heerenveen"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl_NL"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test235238848@cyclesoftware.nl"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">   
@@ -6482,6 +6498,7 @@ is omitted from the body.</p>
         </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belgische weg"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belgcity"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl_NL"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gielwijgergangs@example.com"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">   
@@ -6614,6 +6631,7 @@ is omitted from the body.</p>
             </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mauritslaan"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heerenveen"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl_NL"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test235238848@cyclesoftware.nl"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">   
@@ -6657,6 +6675,7 @@ is omitted from the body.</p>
             </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belgische weg"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Belgcity"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BE"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl_NL"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gielwijgergangs@example.com"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"vat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nl">"coc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -19481,6 +19500,11 @@ employee_id=1005&amp;workshop_order_status_id=9&amp;book=1&amp;customer_messages
 <td style="text-align: left">Country code e.g. <code>NL</code></td>
 </tr>
 <tr>
+<td><code>customer.language_code</code></td>
+<td><code>string</code></td>
+<td style="text-align: left">Preferred language <code>nl_NL</code>, <code>en_GB</code> or <code>fr_FR</code> e.g. <code>nl_NL</code></td>
+</tr>
+<tr>
 <td><code>customer.email</code></td>
 <td><code>string</code></td>
 <td style="text-align: left">Customer E-mail e.g. <code>test@test.nl</code></td>
@@ -19547,6 +19571,7 @@ employee_id=1005&amp;workshop_order_status_id=9&amp;book=1&amp;customer_messages
       </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hoogheem"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boxtel"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AF"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en_GB"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email20@example.nl"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-12 12:30:44"</span><span class="p">,</span><span class="w">
@@ -20101,6 +20126,7 @@ employee_id=1005&amp;workshop_order_status_id=9&amp;book=1&amp;customer_messages
       </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aalsburg"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amsterdam"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl_NL"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@test.nl"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -20323,6 +20349,7 @@ employee_id=1005&amp;workshop_order_status_id=9&amp;book=1&amp;customer_messages
         </span><span class="nl">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nl">"country_code_iso_3166"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NL"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"language_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl_NL"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@cyclesoftware.nl"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"discount_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"datetime_created"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">

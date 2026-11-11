@@ -101,6 +101,7 @@ Every webhook can also be resent manually from the webhooks overview in CycleSof
 | `customer.street`                          | `string`   | Street name e.g. `Aalsburg`                                           |
 | `customer.city`                            | `string`   | City name e.g. `Amsterdam`                                            |
 | `customer.country_code_iso_3166`           | `string`   | Country code e.g. `NL`                                                |
+| `customer.language_code`                   | `string`   | Preferred language `nl_NL`, `en_GB` or `fr_FR` e.g. `nl_NL`           |
 | `customer.email`                           | `string`   | Customer E-mail e.g. `test@test.nl`                                   |
 | `customer.discount_percentage`             | `integer`  | Default discount percentage e.g. `0`                                  |
 | `customer.datetime_created`                | `?string`  | datetime created if known (null if unknown)                           |
@@ -135,6 +136,7 @@ Every webhook can also be resent manually from the webhooks overview in CycleSof
       "street": "Hoogheem",
       "city": "Boxtel",
       "country_code_iso_3166": "AF",
+      "language_code": "en_GB",
       "email": "email20@example.nl",
       "discount_percentage": 0,
       "datetime_created": "2023-02-12 12:30:44",
@@ -345,6 +347,7 @@ Every webhook can also be resent manually from the webhooks overview in CycleSof
       "street": "Aalsburg",
       "city": "Amsterdam",
       "country_code_iso_3166": "",
+      "language_code": "nl_NL",
       "email": "test@test.nl",
       "discount_percentage": 0,
       "datetime_created": null,
@@ -491,6 +494,7 @@ Every webhook can also be resent manually from the webhooks overview in CycleSof
         "street": "",
         "city": "",
         "country_code_iso_3166": "NL",
+        "language_code": "nl_NL",
         "email": "test@cyclesoftware.nl",
         "discount_percentage": 0,
         "datetime_created": null,

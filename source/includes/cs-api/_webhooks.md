@@ -6,11 +6,59 @@ Receive updates from CycleSoftware for specific entities.
 
 The payload is a raw POST of a JSON string to your server. Several headers are included:
 
-| Header                      | Description                                                     |
-|-----------------------------|-----------------------------------------------------------------|
-| `X-CycleSoftware-Delivery`  | Unique UUID of the webhook message. Same value JSON id property |
-| `X-CycleSoftware-Event`     | Event name. Same value as JSON event_name property              |
-| `X-CycleSoftware-Signature` | HMAC of the payload using your hash secret                      |
+| Header                      | Description                                                                                            |
+|-----------------------------|--------------------------------------------------------------------------------------------------------|
+| `X-CycleSoftware-Delivery`  | Unique UUID of the webhook message. Same value JSON id property                                        |
+| `X-CycleSoftware-Event`     | Event name. Same value as JSON event_name property                                                     |
+| `X-CycleSoftware-Signature` | HMAC signature of the raw request body, see Signature verification                                     |   
+
+### Signature verification
+
+Every webhook request is signed with the hash secret configured for your webhook endpoint. Verify the signature before processing the payload to make sure the request was sent by CycleSoftware and was not modified.
+
+| Item      | Value                                                                       |
+|-----------|-----------------------------------------------------------------------------|
+| Algorithm | `HMAC-SHA1`                                                                 |
+| Key       | Your webhook hash secret                                                    |
+| Input     | The raw, unmodified HTTP request body (exact bytes as received)             |
+| Encoding  | Lowercase hexadecimal (40 characters)                                       |
+| Format    | Prefixed with `sha1=`, e.g. `sha1=90167acac5cfa3d97c1ff30d44e20ad04758e953` |
+
+To verify a request:
+
+1. Read the raw request body **before** decoding the JSON. Do not re-encode the decoded JSON, as whitespace, key order or escaping may differ.
+2. Calculate `sha1=` + `hex(HMAC-SHA1(hash_secret, raw_body))`.
+3. Compare the result with the `X-CycleSoftware-Signature` header using a constant-time comparison (e.g. `hash_equals` in PHP, `hmac.compare_digest` in Python).
+4. Reject the request (e.g. with `401`) if the signatures do not match.
+
+The signature does not include a timestamp. To protect against replayed requests, store the `X-CycleSoftware-Delivery` UUID and ignore deliveries you have already processed. Note that a manual redelivery uses the same UUID.
+
+> Example test vector
+
+```
+Hash secret: your-hash-secret
+Raw body:    {"id":"20c5d026-68b3-11ec-90d6-0242ac120003","account_id":1,"event_name":"event.sub_name","event_timestamp":1640787926.323,"payload":{}}
+Signature:   sha1=90167acac5cfa3d97c1ff30d44e20ad04758e953
+```
+
+> Verify signature
+
+```php
+<?php
+$hashSecret = 'your-hash-secret';
+$rawBody    = file_get_contents('php://input');
+$signature  = $_SERVER['HTTP_X_CYCLESOFTWARE_SIGNATURE'] ?? '';
+
+$expected = 'sha1=' . hash_hmac('sha1', $rawBody, $hashSecret);
+
+if (!hash_equals($expected, $signature)) {
+    http_response_code(401);
+    exit;
+}
+
+$webhook = json_decode($rawBody, true);
+// process $webhook asynchronously and respond with 2xx
+```
 
 ### Payload structure
 

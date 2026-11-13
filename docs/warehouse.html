@@ -349,6 +349,9 @@
                     <a href="#webhooks-available-locations-webhook-request" class="toc-h2 toc-link" data-title="Webhook request">Webhook request</a>
                   </li>
                   <li>
+                    <a href="#webhooks-available-locations-signature-verification" class="toc-h2 toc-link" data-title="Signature verification">Signature verification</a>
+                  </li>
+                  <li>
                     <a href="#webhooks-available-locations-payload-structure" class="toc-h2 toc-link" data-title="Payload structure">Payload structure</a>
                   </li>
                   <li>
@@ -2597,10 +2600,76 @@ available.</p>
 </tr>
 <tr>
 <td><code>X-CycleSoftware-Signature</code></td>
-<td>HMAC of the payload using your hash secret</td>
+<td>HMAC signature of the raw request body, see Signature verification</td>
 </tr>
 </tbody></table>
-<h3 id='webhooks-available-locations-payload-structure'>Payload structure</h3>
+<h3 id='webhooks-available-locations-signature-verification'>Signature verification</h3>
+<p>Every webhook request is signed with the hash secret configured for your webhook endpoint. Verify the signature before processing the payload to make sure the request was sent by CycleSoftware and was not modified.</p>
+
+<table><thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Algorithm</td>
+<td><code>HMAC-SHA1</code></td>
+</tr>
+<tr>
+<td>Key</td>
+<td>Your webhook hash secret</td>
+</tr>
+<tr>
+<td>Input</td>
+<td>The raw, unmodified HTTP request body (exact bytes as received)</td>
+</tr>
+<tr>
+<td>Encoding</td>
+<td>Lowercase hexadecimal (40 characters)</td>
+</tr>
+<tr>
+<td>Format</td>
+<td>Prefixed with <code>sha1=</code>, e.g. <code>sha1=90167acac5cfa3d97c1ff30d44e20ad04758e953</code></td>
+</tr>
+</tbody></table>
+
+<p>To verify a request:</p>
+
+<ol>
+<li>Read the raw request body <strong>before</strong> decoding the JSON. Do not re-encode the decoded JSON, as whitespace, key order or escaping may differ.</li>
+<li>Calculate <code>sha1=</code> + <code>hex(HMAC-SHA1(hash_secret, raw_body))</code>.</li>
+<li>Compare the result with the <code>X-CycleSoftware-Signature</code> header using a constant-time comparison (e.g. <code>hash_equals</code> in PHP, <code>hmac.compare_digest</code> in Python).</li>
+<li>Reject the request (e.g. with <code>401</code>) if the signatures do not match.</li>
+</ol>
+
+<p>The signature does not include a timestamp. To protect against replayed requests, store the <code>X-CycleSoftware-Delivery</code> UUID and ignore deliveries you have already processed.</p>
+
+<blockquote>
+<p>Example test vector</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>Hash secret: your-hash-secret
+Raw body:    {"id":"20c5d026-68b3-11ec-90d6-0242ac120003","account_id":1,"event_name":"event.sub_name","event_timestamp":1640787926.323,"payload":{}}
+Signature:   sha1=90167acac5cfa3d97c1ff30d44e20ad04758e953
+</code></pre></div>
+<blockquote>
+<p>Verify signature</p>
+</blockquote>
+<div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+<span class="nv">$hashSecret</span> <span class="o">=</span> <span class="s1">'your-hash-secret'</span><span class="p">;</span>
+<span class="nv">$rawBody</span>    <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'php://input'</span><span class="p">);</span>
+<span class="nv">$signature</span>  <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">'HTTP_X_CYCLESOFTWARE_SIGNATURE'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">''</span><span class="p">;</span>
+
+<span class="nv">$expected</span> <span class="o">=</span> <span class="s1">'sha1='</span> <span class="mf">.</span> <span class="nb">hash_hmac</span><span class="p">(</span><span class="s1">'sha1'</span><span class="p">,</span> <span class="nv">$rawBody</span><span class="p">,</span> <span class="nv">$hashSecret</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">hash_equals</span><span class="p">(</span><span class="nv">$expected</span><span class="p">,</span> <span class="nv">$signature</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">401</span><span class="p">);</span>
+    <span class="k">exit</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$webhook</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$rawBody</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="c1">// process $webhook asynchronously and respond with 2xx</span>
+</code></pre></div><h3 id='webhooks-available-locations-payload-structure'>Payload structure</h3>
 <p>Every JSON payload has the same structure. The payload object is different per event.</p>
 
 <table><thead>

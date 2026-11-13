@@ -10,7 +10,7 @@ The payload is a raw POST of a JSON string to your server. Several headers are i
 |-----------------------------|--------------------------------------------------------------------------------------------------------|
 | `X-CycleSoftware-Delivery`  | Unique UUID of the webhook message. Same value JSON id property                                        |
 | `X-CycleSoftware-Event`     | Event name. Same value as JSON event_name property                                                     |
-| `X-CycleSoftware-Signature` | HMAC signature of the raw request body, see [Signature verification](#webhooks-signature-verification) |
+| `X-CycleSoftware-Signature` | HMAC signature of the raw request body, see Signature verification                                     |   
 
 ### Signature verification
 

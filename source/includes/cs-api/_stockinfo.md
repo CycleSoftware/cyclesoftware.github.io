@@ -20,11 +20,13 @@ not included.
 	</div>
 </div>
 
-| GET parameter           | Type    | Description                                                                                     |
-|-------------------------|---------|-------------------------------------------------------------------------------------------------|
-| `only_supplier_stock`   | integer | if 1 stock in stores is ignored <i class="label label-info">optional</i>                        |
-| `only_supplier_id`      | integer | If supplied only the stock of this supplier is checked <i class="label label-info">optional</i> |
-| `remote_supplier_check` | integer | If 0, no remote supplier checks are performed <i class="label label-info">optional</i>          |
+| GET parameter                                  | Type    | Description                                                                                                                                                                                                                                                                                     |
+|------------------------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `only_supplier_stock`                          | integer | if 1 stock in stores is ignored <i class="label label-info">optional</i>                                                                                                                                                                                                                        |
+| `only_supplier_id`                             | integer | If supplied only the stock of this supplier is checked <i class="label label-info">optional</i>                                                                                                                                                                                                 |
+| `remote_supplier_check`                        | integer | If 0, no remote supplier checks are performed <i class="label label-info">optional</i>                                                                                                                                                                                                          |
+| `only_objects_available_for_platforms`         | integer | If 1, only stock objects available for external platforms ("Extern aanbod") are counted, like the article data api <i class="label label-info">optional</i>                                                                                                                                     |
+| `skip_article_number_match_with_other_barcode` | integer | Default 1: a stock object found by brand and article number is not counted for a barcode when the object has another barcode; it is counted for its own barcode, like the article data api. If 0, the object is also counted for the requested barcode <i class="label label-info">optional</i> |
 
 ### Properties ###
 

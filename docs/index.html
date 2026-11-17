@@ -13469,6 +13469,13 @@ is not invoiced.</p>
 <p>Create invoice(s) for sales order. If the sales-order is split amongst several customers, the result will yield multiple
 invoices.</p>
 
+<p>A sales order is invoiced only once. When the sales order is already invoiced, also by an employee or by a request
+at the same time, no new invoice is created: the response contains the existing invoice(s) with <code>already_existed</code>
+set to <code>true</code> and no messages are sent again. When another request is still creating the invoice, the response is
+<code>409 Conflict</code> with a <code>Retry-After</code> header: send the request again after that number of seconds.
+The parameters below are only used when the invoice is created: for an existing invoice <code>book</code> and <code>order_status_id</code>
+are not applied.</p>
+
 <ul>
 <li>Scope(s): <code>e-commerce</code></li>
 </ul>
@@ -13589,17 +13596,22 @@ invoices.</p>
 <tr>
 <td><code>invoices</code></td>
 <td><code>object[]</code></td>
-<td>List of created invoices</td>
+<td>List of created or existing invoices</td>
 </tr>
 <tr>
 <td><code>invoices[].invoice_number</code></td>
 <td><code>integer</code></td>
-<td>Invoice number e.g. <code>20173383f</code></td>
+<td>Invoice number e.g. <code>20173383</code></td>
 </tr>
 <tr>
 <td><code>invoices[].customer_id</code></td>
 <td><code>integer</code></td>
 <td>Customer number of invoice e.g. <code>9011</code></td>
+</tr>
+<tr>
+<td><code>invoices[].already_existed</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if the invoice was created before</td>
 </tr>
 <tr>
 <td><code>invoices[].sent_messages.phone_message</code></td>
@@ -13660,6 +13672,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20173382</span><span class="p">,</span><span class="w">
             </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6298</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"already_existed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nl">"sent_messages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"phone_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"email_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
@@ -13674,6 +13687,7 @@ employee_id=1005&amp;order_status_id=9&amp;book=1&amp;customer_messages=1&amp;al
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20173383</span><span class="p">,</span><span class="w">
             </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9011</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"already_existed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nl">"sent_messages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"phone_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"email_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
@@ -18885,6 +18899,13 @@ Be aware! The goods in the packinglist will not be added to the stock!
 <p>Create invoice(s) for workshop order. If the workshop-order is split amongst several customers, the result will yield multiple
 invoices.</p>
 
+<p>A workshop order is invoiced only once. When the workshop order is already invoiced, also by an employee or by a
+request at the same time, no new invoice is created: the response contains the existing invoice(s) with
+<code>already_existed</code> set to <code>true</code> and no messages are sent again. When another request is still creating the invoice,
+the response is <code>409 Conflict</code> with a <code>Retry-After</code> header: send the request again after that number of seconds.
+The parameters below are only used when the invoice is created: for an existing invoice <code>book</code> and <code>workshop_order_status_id</code>
+are not applied.</p>
+
 <ul>
 <li>Scope(s): <code>resources</code></li>
 </ul>
@@ -19005,7 +19026,7 @@ invoices.</p>
 <tr>
 <td><code>invoices</code></td>
 <td><code>object[]</code></td>
-<td>List of created invoices</td>
+<td>List of created or existing invoices</td>
 </tr>
 <tr>
 <td><code>invoices[].invoice_number</code></td>
@@ -19016,6 +19037,11 @@ invoices.</p>
 <td><code>invoices[].customer_id</code></td>
 <td><code>integer</code></td>
 <td>Customer number of invoice e.g. <code>9011</code></td>
+</tr>
+<tr>
+<td><code>invoices[].already_existed</code></td>
+<td><code>boolean</code></td>
+<td><code>true</code> if the invoice was created before</td>
 </tr>
 <tr>
 <td><code>invoices[].sent_messages.phone_message</code></td>
@@ -19076,6 +19102,7 @@ employee_id=1005&amp;workshop_order_status_id=9&amp;book=1&amp;customer_messages
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20173382</span><span class="p">,</span><span class="w">
             </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6298</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"already_existed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nl">"sent_messages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"phone_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"email_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
@@ -19090,6 +19117,7 @@ employee_id=1005&amp;workshop_order_status_id=9&amp;book=1&amp;customer_messages
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">20173383</span><span class="p">,</span><span class="w">
             </span><span class="nl">"customer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9011</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"already_existed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="nl">"sent_messages"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"phone_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"email_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">

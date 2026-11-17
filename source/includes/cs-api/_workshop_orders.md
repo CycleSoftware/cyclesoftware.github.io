@@ -668,6 +668,13 @@ X-RateLimit-Daily-Reset: 1678230000
 Create invoice(s) for workshop order. If the workshop-order is split amongst several customers, the result will yield multiple
 invoices.
 
+A workshop order is invoiced only once. When the workshop order is already invoiced, also by an employee or by a
+request at the same time, no new invoice is created: the response contains the existing invoice(s) with
+`already_existed` set to `true` and no messages are sent again. When another request is still creating the invoice,
+the response is `409 Conflict` with a `Retry-After` header: send the request again after that number of seconds.
+The parameters below are only used when the invoice is created: for an existing invoice `book` and `workshop_order_status_id`
+are not applied.
+
 - Scope(s): `resources`
 
 <div class="api-endpoint">
@@ -708,9 +715,10 @@ The following optional POST parameters can be used to specify specific behavior.
 |---------------------------------------------|------------|--------------------------------------------------|
 | `error`                                     | `boolean`  | `true` if an error occurred                      |
 | `error_message`                             | `?string`  | Error message if occurred                        |
-| `invoices`                                  | `object[]` | List of created invoices                         |
+| `invoices`                                  | `object[]` | List of created or existing invoices             |
 | `invoices[].invoice_number`                 | `integer`  | Invoice number e.g. `20173383`                   |
 | `invoices[].customer_id`                    | `integer`  | Customer number of invoice e.g. `9011`           |
+| `invoices[].already_existed`                | `boolean`  | `true` if the invoice was created before         |
 | `invoices[].sent_messages.phone_message`    | `boolean`  | `true` if a phone message was sent               |
 | `invoices[].sent_messages.email_message`    | `boolean`  | `true` if an e-mail message was sent             |
 | `invoices[].documents`                      | `object[]` | List of generated documents                      |
@@ -750,6 +758,7 @@ X-RateLimit-Daily-Reset: 1678230000
         {
             "invoice_number": 20173382,
             "customer_id": 6298,
+            "already_existed": false,
             "sent_messages": {
                 "phone_message": true,
                 "email_message": false
@@ -764,6 +773,7 @@ X-RateLimit-Daily-Reset: 1678230000
         {
             "invoice_number": 20173383,
             "customer_id": 9011,
+            "already_existed": false,
             "sent_messages": {
                 "phone_message": false,
                 "email_message": false

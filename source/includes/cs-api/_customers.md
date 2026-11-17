@@ -26,6 +26,7 @@ Find, create and update customers
 | `street`                          | `string`    | <code>PUT&#124;POST</code> | Street e.g. `Raadhuisplein`                                                |
 | `city`                            | `string`    | <code>PUT&#124;POST</code> | City e.g. `Nistelrode`                                                     |
 | `country_code_iso_3166`           | `string`    | <code>PUT&#124;POST</code> | Country code e.g. `NL`                                                     |
+| `language_code`                   | `string`    | <code>PUT&#124;POST</code> | Preferred language of customer, one of `nl_NL`, `en_GB` or `fr_FR` (1)     |
 | `email`                           | `string`    | <code>PUT&#124;POST</code> | E-mail e.g. `name@domain.nl`                                               |
 | `vat_number`                      | `string`    | <code>PUT&#124;POST</code> | Vat number `NL855630693B01`                                                |
 | `coc_number`                      | `string`    | <code>PUT&#124;POST</code> | Chamber of commerce number `64356582`                                      |
@@ -36,6 +37,10 @@ Find, create and update customers
 | `phone_numbers[].customer_id`     | `integer`   | `readonly`                 | Customer ID e.g. `6`                                                       |
 | `phone_numbers[].phone_number`    | `string`    | <code>PUT&#124;POST</code> | Phone number e.g. `0733030050`                                             |
 | `phone_numbers[].name`            | `string`    | <code>PUT&#124;POST</code> | Name of number e.g. `Dhr./Mevr.  T UnitTest`                               |
+
+(1) A short code such as `fr` is also accepted and converted to `fr_FR`. When `language_code` is omitted while creating a
+customer, the language is derived from `country_code_iso_3166` (e.g. `FR` results in `fr_FR`), falling back to the
+default language of the store. When omitted on update, the current language of the customer is kept.
 
 ## Get Customer
 
@@ -94,6 +99,7 @@ Content-length: 914
     "street": "Raadhuisplein",
     "city": "Nistelrode",
     "country_code_iso_3166": "NL",
+    "language_code": "nl_NL",
     "email": "name@domain.nl",
     "vat_number": "NL855630693B01",
     "coc_number": "64356582",
@@ -155,6 +161,7 @@ Content-length: 1030
     "street": "street",
     "city": "city",
     "country_code_iso_3166": "sr",
+    "language_code": "en_GB",
     "email": "email@mail.com",
     "vat_number": "NL855630693B01",
     "coc_number": "64356582",
@@ -212,6 +219,7 @@ Content-length: 1030
     "street": "street",
     "city": "city",
     "country_code_iso_3166": "sr",
+    "language_code": "en_GB",
     "email": "email@mail.com",
     "vat_number": "NL855630693B01",
     "coc_number": "64356582",
@@ -284,6 +292,7 @@ Content-length: 873
     "street": "Bruggen",
     "city": "Rosmalen",
     "country_code_iso_3166": "NL",
+    "language_code": "nl_NL",
     "email": "test@hotmail.com",
     "vat_number": "",
     "coc_number": "",    
@@ -335,6 +344,7 @@ Content-length: 873
     "street": "Bruggen",
     "city": "Rosmalen",
     "country_code_iso_3166": "NL",
+    "language_code": "nl_NL",
     "email": "test@hotmail.com",
     "vat_number": "",
     "coc_number": "",   
@@ -423,6 +433,7 @@ X-RateLimit-Daily-Reset: 1678230000
         "street": "Mauritslaan",
         "city": "Heerenveen",
         "country_code_iso_3166": "NL",
+        "language_code": "nl_NL",
         "email": "test235238848@cyclesoftware.nl",
         "vat_number": "",
         "coc_number": "",   
@@ -465,6 +476,7 @@ X-RateLimit-Daily-Reset: 1678230000
         "street": "Belgische weg",
         "city": "Belgcity",
         "country_code_iso_3166": "BE",
+        "language_code": "nl_NL",
         "email": "gielwijgergangs@example.com",
         "vat_number": "",
         "coc_number": "",   
@@ -563,6 +575,7 @@ X-RateLimit-Daily-Reset: 1678230000
             "street": "Mauritslaan",
             "city": "Heerenveen",
             "country_code_iso_3166": "NL",
+            "language_code": "nl_NL",
             "email": "test235238848@cyclesoftware.nl",
             "vat_number": "",
             "coc_number": "",   
@@ -606,6 +619,7 @@ X-RateLimit-Daily-Reset: 1678230000
             "street": "Belgische weg",
             "city": "Belgcity",
             "country_code_iso_3166": "BE",
+            "language_code": "nl_NL",
             "email": "gielwijgergangs@example.com",
             "vat_number": "",
             "coc_number": "",

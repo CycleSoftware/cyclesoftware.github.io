@@ -171,6 +171,8 @@ By default the book-date is used.
 | `data[].sales_items[].vat_code`                                      | `integer`              | VAT code e.g. `2` (see common enum `vat_codes`)                                                                                                                |
 | `data[].sales_items[].vat_percentage`                                | `integer&vert;decimal` | VAT percentage e.g. `21`                                                                                                                                       |
 | `data[].sales_items[].vat_amount_cents`                              | `integer`              | Line VAT amount in cents e.g. `21`, for margin VAT always `0`                                                                                                  |
+| `data[].sales_items[].eco_fee_line_amount_in_vat_cents`              | `?integer`             | Line ECO-fee including VAT in cents  e.g. `121`, property omitted if not present                                                                               |
+| `data[].sales_items[].eco_fee_line_amount_ex_vat_cents`              | `?integer`             | Line ECO-fee including VAT ex cents  e.g. `100`, property omitted if not present                                                                               |
 | `data[].sales_items[].purchase_price_ex_vat_cents`                   | `?integer`             | Purchase price recorded on creation of `sales_item` e.g. `4900`                                                                                                |
 | `data[].sales_items[].description`                                   | `string`               | Sales item description e.g. `Cyclon All weather spray 250ml`                                                                                                   |
 | `data[].sales_items[].description_extended`                          | `?string`              | Extended description e.g. `Something extra`                                                                                                                    |
@@ -410,6 +412,8 @@ Content-length: 19744
                     "vat_code": 2,
                     "vat_percentage": 21,
                     "vat_amount_cents": 520,
+                    "eco_fee_line_amount_in_vat_cents": 121,
+                    "eco_fee_line_amount_ex_vat_cents": 100,
                     "purchase_price_ex_vat_cents": null,
                     "description": "Jumbo pomp op plank met slang",
                     "description_extended": null,

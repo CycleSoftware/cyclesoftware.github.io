@@ -3049,6 +3049,12 @@ This will save you bandwidth and time.
 <td>Purchase price in cents (excluding VAT) e.g. <code>99500</code></td>
 </tr>
 <tr>
+<td><code>data[].pricing.eco_fee_cents</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>ECO Fee, for example ECO Participation Fee (including VAT) e.g. <code>120</code>, property is omitted if not present</td>
+</tr>
+<tr>
 <td><code>data[].pricing.pos_group_id</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
@@ -3167,6 +3173,12 @@ This will save you bandwidth and time.
 <td><code>integer</code></td>
 <td><code>true</code></td>
 <td>Purchase price in cents e.g. <code>0</code></td>
+</tr>
+<tr>
+<td><code>data[].objects[].eco_fee_cents</code></td>
+<td><code>integer</code></td>
+<td><code>true</code></td>
+<td>ECO Fee set on this object, for example ECO Participation Fee (including VAT) e.g. <code>120</code>, property is omitted if not present</td>
 </tr>
 <tr>
 <td><code>data[].objects[].km_age</code></td>
@@ -3493,6 +3505,7 @@ This will save you bandwidth and time.
         </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
         </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
         </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"eco_fee_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
         </span><span class="nl">"pos_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
       </span><span class="p">},</span><span class="w">
@@ -3509,6 +3522,7 @@ This will save you bandwidth and time.
           </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
           </span><span class="nl">"pos_sales_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">269900</span><span class="p">,</span><span class="w">
           </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"eco_fee_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
           </span><span class="nl">"km_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
           </span><span class="nl">"identification"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nl">"frame_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0023232"</span><span class="p">,</span><span class="w">
@@ -5331,6 +5345,12 @@ is omitted from the body.</p>
 <td>The purchase price in cents e.g. <code>3624</code></td>
 </tr>
 <tr>
+<td><code>updates[].eco_fee_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td>The WEEE / ECO-participation fee in cents e.g. <code>120</code></td>
+</tr>
+<tr>
 <td><code>updates[].avg_purchase_price_cents</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
@@ -5593,6 +5613,13 @@ is omitted from the body.</p>
 <td>The purchase price in cents e.g. <code>3624</code></td>
 </tr>
 <tr>
+<td><code>results[].article.eco_fee_cents</code></td>
+<td><code>integer</code></td>
+<td><code>false</code></td>
+<td></td>
+<td>The WEEE / ECO-Participation in cents e.g. <code>121</code></td>
+</tr>
+<tr>
 <td><code>results[].article.avg_purchase_price_cents</code></td>
 <td><code>integer</code></td>
 <td><code>false</code></td>
@@ -5677,6 +5704,7 @@ is omitted from the body.</p>
             </span><span class="nl">"pos_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"pos_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"eco_fee_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">121</span><span class="p">,</span><span class="w">
             </span><span class="nl">"avg_purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
             </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
@@ -5755,6 +5783,7 @@ is omitted from the body.</p>
                 </span><span class="nl">"pos_promo_price_from"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"pos_promo_price_until"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"eco_fee_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">121</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"avg_purchase_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2490</span><span class="p">,</span><span class="w">
@@ -11259,6 +11288,16 @@ By default the book-date is used.</p>
 <td>Line VAT amount in cents e.g. <code>21</code>, for margin VAT always <code>0</code></td>
 </tr>
 <tr>
+<td><code>data[].sales_items[].eco_fee_line_amount_in_vat_cents</code></td>
+<td><code>?integer</code></td>
+<td>Line ECO-fee including VAT in cents  e.g. <code>121</code>, property omitted if not present</td>
+</tr>
+<tr>
+<td><code>data[].sales_items[].eco_fee_line_amount_ex_vat_cents</code></td>
+<td><code>?integer</code></td>
+<td>Line ECO-fee including VAT ex cents  e.g. <code>100</code>, property omitted if not present</td>
+</tr>
+<tr>
 <td><code>data[].sales_items[].purchase_price_ex_vat_cents</code></td>
 <td><code>?integer</code></td>
 <td>Purchase price recorded on creation of <code>sales_item</code> e.g. <code>4900</code></td>
@@ -11809,6 +11848,8 @@ By default the book-date is used.</p>
                     </span><span class="nl">"vat_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"vat_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"vat_amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">520</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"eco_fee_line_amount_in_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">121</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"eco_fee_line_amount_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"purchase_price_ex_vat_cents"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jumbo pomp op plank met slang"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"description_extended"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -15273,6 +15314,7 @@ not included.</p>
         </span><span class="nl">"rrp_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">389900</span><span class="p">,</span><span class="w">
         </span><span class="nl">"ecommerce"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nl">"ecommerce_price_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">389900</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"eco_fee_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w">
         </span><span class="nl">"nett_weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
         </span><span class="nl">"gross_weight_kg"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"supplier_invoice_reference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -15639,6 +15681,13 @@ not included.</p>
 <td><code>integer</code></td>
 <td></td>
 <td>E-commerce sales price e.g. <code>129900</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>updates[].eco_fee_cents</code></td>
+<td><code>integer</code></td>
+<td><code>omitable</code></td>
+<td>The WEEE / ECO-participation fee in cents e.g. <code>120</code></td>
 <td></td>
 </tr>
 <tr>
@@ -16025,6 +16074,12 @@ not included.</p>
 <td><code>integer</code></td>
 <td></td>
 <td>E-commerce sales price e.g. <code>129900</code></td>
+</tr>
+<tr>
+<td><code>results[].object.eco_fee_cents</code></td>
+<td><code>integer</code></td>
+<td><code>omitable</code></td>
+<td>The WEEE / ECO-participation fee in cents e.g. <code>120</code></td>
 </tr>
 <tr>
 <td><code>results[].object.nett_weight_kg</code></td>

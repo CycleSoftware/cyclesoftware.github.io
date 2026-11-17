@@ -628,6 +628,7 @@ If you want to list all articles in your own enviroment regardless of the e-comm
 | `data[].pricing.pos_sales_price_cents`                          | `integer`    | `false`   | POS sales price in cents e.g. `269900`                                                                                                       |
 | `data[].pricing.ecommerce_price_cents`                          | `integer`    | `true`    | E-commerce sales price in cents e.g. `269900`                                                                                                |
 | `data[].pricing.purchase_price_cents`                           | `integer`    | `true`    | Purchase price in cents (excluding VAT) e.g. `99500`                                                                                         |
+| `data[].pricing.eco_fee_cents`                                  | `integer`    | `true`    | ECO Fee, for example ECO Participation Fee (including VAT) e.g. `120`, property is omitted if not present                                    |
 | `data[].pricing.pos_group_id`                                   | `integer`    | `false`   | POS group ID e.g. `1` (see common enum)                                                                                                      |
 | `data[].pricing.vat_code`                                       | `?integer`   | `true`    | VAT code if specified e.g. `2`, if no specified the default VAT-code of POS group is applied                                                 |
 | `data[].pricing.pos_promo_price_cents`                          | `?integer`   | `true`    | POS promo price in cents e.g. `4000`                                                                                                         |
@@ -648,6 +649,7 @@ If you want to list all articles in your own enviroment regardless of the e-comm
 | `data[].objects[].ecommerce_price_cents`                        | `integer`    | `false`   | E-commerce price in cents e.g. `269900`                                                                                                      |
 | `data[].objects[].pos_sales_price_cents`                        | `integer`    | `false`   | POS sales price in cents e.g. `269900`                                                                                                       |
 | `data[].objects[].purchase_price_cents`                         | `integer`    | `true`    | Purchase price in cents e.g. `0`                                                                                                             |
+| `data[].objects[].eco_fee_cents`                                | `integer`    | `true`    | ECO Fee set on this object, for example ECO Participation Fee (including VAT) e.g. `120`, property is omitted if not present                 |
 | `data[].objects[].km_age`                                       | `?integer`   | `false`   | KM age e.g. `100` or `null` when not available                                                                                               |
 | `data[].objects[].identification`                               | `object`     | `false`   | Object with identifications, may be an empty object if no values available                                                                   |
 | `data[].objects[].identification.battery_number`                | `string`     | `true`    | The battery number if set                                                                                                                    |
@@ -723,6 +725,7 @@ Accept: application/json
         "pos_sales_price_cents": 269900,
         "ecommerce_price_cents": 269900,
         "purchase_price_cents": 100,
+        "eco_fee_cents": 120,
         "pos_group_id": 1,
         "vat_code": 2
       },
@@ -739,6 +742,7 @@ Accept: application/json
           "ecommerce_price_cents": 269900,
           "pos_sales_price_cents": 269900,
           "purchase_price_cents": 100,
+          "eco_fee_cents": 120,
           "km_age": null,
           "identification": {
             "frame_number": "0023232",
@@ -1969,6 +1973,7 @@ Apply batch updates to articles.
 | `updates[].pos_promo_price_until`       | `?date`    | `false`  | The date for promo price interval until e.g. `2022-01-01` or `null`                                                                                          |
 | `updates[].pos_sales_price_cents`       | `integer`  | `false`  | The POS sales price in cents e.g. `6290`                                                                                                                     |
 | `updates[].purchase_price_cents`        | `integer`  | `false`  | The purchase price in cents e.g. `3624`                                                                                                                      |
+| `updates[].eco_fee_cents`               | `integer`  | `false`  | The WEEE / ECO-participation fee in cents e.g. `120`                                                                                                         |
 | `updates[].avg_purchase_price_cents`    | `integer`  | `false`  | The average purchase price in cents e.g. `3624` (current stock level will set the weight of the purchase price average)                                      |
 
 
@@ -2011,6 +2016,7 @@ Apply batch updates to articles.
 | `results[].article.pos_promo_price_until`       | `date`     | `true`   |           | The date for promo price interval until e.g. `2022-01-01`                                                                                                                                                                                                                                   |
 | `results[].article.pos_sales_price_cents`       | `integer`  | `false`  |           | The POS sales price in cents e.g. `6290`                                                                                                                                                                                                                                                    |
 | `results[].article.purchase_price_cents`        | `integer`  | `false`  |           | The purchase price in cents e.g. `3624`                                                                                                                                                                                                                                                     |
+| `results[].article.eco_fee_cents`               | `integer`  | `false`  |           | The WEEE / ECO-Participation in cents e.g. `121`                                                                                                                                                                                                                                            |
 | `results[].article.avg_purchase_price_cents`    | `integer`  | `false`  |           | The average purchase price in cents e.g. `3624`                                                                                                                                                                                                                                             |
 | `results[].skipped_fields`                      | `string[]` | `false`  | `Yes`     | List of fields which are ignored in the update. Omitted if not present                                                                                                                                                                                                                      |
 | `results[].warnings`                            | `object[]` | `false`  | `Yes`     | List of warnings, omitted if status `error` or `success`                                                                                                                                                                                                                                    |
@@ -2048,6 +2054,7 @@ Accept: application/json
             "pos_promo_price_from": null,
             "pos_promo_price_until": null,
             "purchase_price_cents": 100,
+            "eco_fee_cents": 121,
             "avg_purchase_price_cents": 100,
             "ecommerce": true,
             "ecommerce_price_cents": 2490,
@@ -2127,6 +2134,7 @@ Content-length: 19744
                 "pos_promo_price_from": null,
                 "pos_promo_price_until": null,
                 "purchase_price_cents": 100,
+                "eco_fee_cents": 121,
                 "avg_purchase_price_cents": 100,
                 "ecommerce": true,
                 "ecommerce_price_cents": 2490,
